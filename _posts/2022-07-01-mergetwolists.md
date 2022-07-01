@@ -2,7 +2,6 @@
 layout: post
 title: 合并两个有序链表
 date: 2022-07-01 15:38 +0800
-date: 2022-07-01 12:36 +0800
 categories: [algorithm]
 tags: [面试, 算法, C++]
 typora-root-url: ..
