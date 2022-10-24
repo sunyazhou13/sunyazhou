@@ -44,4 +44,50 @@ if (option & MyOption3) { //0011 & 0100 = 0000
 option = option | MyOption4;//0011 | 1000 = 1011, 11
 //减少选项
 option = option & (~MyOption4);//1011 & (~1000) = 1011 & 0111 = 0011, 3
+
+//除了MyOption2以外都恢复到默认  
+option =  option & MyOption2
+// 相当于擦除 MyOption2以外的所有值只保留MyOption2
+option &= MyOption2
+// 也相当于
+option = MyOption2
+
+
+```
+
+#### 枚举示例代码片段(可复制使用)
+
+``` objc
+typedef NS_OPTIONS(NSUInteger, YZOptionsFlag) {
+    YZOptionsFlagNone            = 0,       //二进制0000,十进制0
+    YZOptionsFlagNormal          = 1 <<  0, //0001,1 常规状态 下面以此类推
+    YZOptionsFlag1               = 1 <<  1, //0010,2 
+    YZOptionsFlag2               = 1 <<  2, // 
+    YZOptionsFlag3               = 1 <<  3, // 
+    YZOptionsFlag4               = 1 <<  4, // 
+    YZOptionsFlag5               = 1 <<  5, // 
+    YZOptionsFlag6               = 1 <<  6, // 
+    YZOptionsFlag7               = 1 <<  7, // 
+//    YZOptionsFlag              = 1 <<  8, //
+//    YZOptionsFlag              = 1 <<  9, //
+//
+//    YZOptionsFlag              = 0 << 16, //
+//    YZOptionsFlag              = 1 << 16,
+//    YZOptionsFlag              = 2 << 16,
+//    YZOptionsFlag              = 3 << 16,
+//
+//    YZOptionsFlag              = 0 << 20, //
+//    YZOptionsFlag              = 1 << 20,
+//    YZOptionsFlag              = 2 << 20,
+//    YZOptionsFlag              = 3 << 20,
+//    YZOptionsFlag              = 4 << 20,
+//    YZOptionsFlag              = 5 << 20,
+//    YZOptionsFlag              = 6 << 20,
+//    YZOptionsFlag              = 7 << 20,
+//
+//    YZOptionsFlag              = 0 << 24,
+//    YZOptionsFlag              = 3 << 24,
+//    YZOptionsFlag              = 7 << 24,
+} API_AVAILABLE(ios(4.0));
+
 ```
