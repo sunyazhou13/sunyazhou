@@ -202,3 +202,26 @@ git clean -dfx
 ```
 
 > 2020.1.7 update
+
+
+删除工程中总是放到ignore中跟踪不上小的xcode userdata
+
+最近工程中总是出现下面这个文件 无论如何放gitignore总是不生效
+
+``` sh
+Crown.xcworkspace/xcuserdata/sunyazhou.xcuserdatad/UserInterfaceState.xcuserstate
+
+```
+
+下面看下正确的操作
+
+` [project] `替换成你的工程 ` [username]  `替换成你的用户名
+
+``` sh
+git rm --cached [project].xcodeproj/project.xcworkspace/xcuserdata/[username].xcuserdatad/UserInterfaceState.xcuserstate
+git commit -m "Removed file that shouldn't be tracked"
+```
+> 2022.12.2 更新自[Can't ignore UserInterfaceState.xcuserstate](https://stackoverflow.com/questions/6564257/cant-ignore-userinterfacestate-xcuserstate)
+
+
+如果需要各种语言的ignore可以参考[A collection of useful .gitignore templates](https://github.com/github/gitignore)
