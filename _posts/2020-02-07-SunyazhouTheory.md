@@ -1,7 +1,7 @@
 ---
 title: 《孙亚洲理论》的诞生
-categories: [ios开发]
-tags: [ios, macos]
+categories: [理论]
+tags: [经济]
 date: 2020-02-07 04:59:11
 ---
 
