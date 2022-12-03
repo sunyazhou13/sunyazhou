@@ -6,7 +6,7 @@ categories: [理论]
 tags: [汽车]
 ---
 
-![](/assets/images/20221203TheSunyazhouTheoryII/laserladar1.webp)
+![](/assets/images/20221203TheSunyazhouTheoryII/thesunyazhoutheoryii.png)
 
 # 前言
 
@@ -26,7 +26,7 @@ tags: [汽车]
 
 * `TSTⅡCVLRS` (The Sunyazhou Theory Ⅱ Computer Vision Laser Radar System) 孙亚洲第二理论计算机视觉激光雷达系统.
 
-
+![](/assets/images/20221203TheSunyazhouTheoryII/laserladar1.webp)
 
 
 > 注:  

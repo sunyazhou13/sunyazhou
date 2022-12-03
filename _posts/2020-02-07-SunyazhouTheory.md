@@ -6,6 +6,8 @@ date: 2020-02-07 04:59:11
 ---
 
 
+![](/assets/images/20200207SunyazhouTheory/thesunyazhoutheory.png)
+
 # 前言
 
 由于基础知识薄弱，我所做到的内容仅限于学习和观察到的一些事实，未能上升为理论学说.
