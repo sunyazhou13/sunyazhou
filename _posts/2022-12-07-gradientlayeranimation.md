@@ -353,7 +353,7 @@ self.backgroundView.layer.masksToBounds = true //超出屏幕截掉
 
 这里我用了一个iOS11以后的api `maskedCorners`可以导不同方向的角.很多人都会有疑问,设置倒角半径和`masksToBounds` 容易触发离屏渲染,导致带来额外的开销. 如果你有这个疑问请参考一下我的[UIView不同方向的导角](https://www.sunyazhou.com/2018/05/HowToCreateTopBottomRoundedCornersForViews/)
 
-下面看下昨晚的效果
+下面看下做完的效果
 
 ![](/assets/images/20221207RadialGradientlayer/final.gif)
 
