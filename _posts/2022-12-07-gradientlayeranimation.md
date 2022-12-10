@@ -252,6 +252,7 @@ gradientLayer.endPoint = CGPoint(x: 0.5, y: 0)
 #### 实现Q音效果的思路
 
 我们先观察一下QQ音乐的效果
+
 ![](/assets/images/20221207RadialGradientlayer/qqmusicanimation1.gif)
 
 我们的思路
