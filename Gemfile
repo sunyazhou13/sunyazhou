@@ -1,4 +1,7 @@
-source "https://rubygems.org"
+
+#source "https://rubygems.org" 20230204更新,修复io-event在apple m1 上报错
+
+source "https://gems.ruby-china.com"
 
 gem "jekyll", ">=3.8.6"
 
