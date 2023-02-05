@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2018-08-13 14:28:04
 ---
 
-![](/assets/images/20180813TapticEngineFeedback/TapticEngine.jpg)
+![](/assets/images/20180813TapticEngineFeedback/TapticEngine.webp)
 
 
 # 前言
@@ -37,7 +37,7 @@ iOS10 引入了一种新的、产生触觉反馈的方式， 帮助用户认识�
 
 > 下图开启 声音与触感
 > 手机 -- 设置 -- 声音与触感 -- 系统触感反馈(打开)
-> ![](/assets/images/20180813TapticEngineFeedback/setting.png)
+> ![](/assets/images/20180813TapticEngineFeedback/setting.webp)
  
 
 ### 调用相关振动代码实现振动功能

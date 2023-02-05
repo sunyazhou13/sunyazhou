@@ -6,7 +6,7 @@ date: 2020-02-07 04:59:11
 ---
 
 
-![](/assets/images/20200207SunyazhouTheory/thesunyazhoutheory.png)
+![](/assets/images/20200207SunyazhouTheory/thesunyazhoutheory.webp)
 
 # 前言
 

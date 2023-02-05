@@ -28,7 +28,7 @@ date: 2018-11-08 11:52:06
 2. Background Layer 
 3. Album (UIImageView)
 
-![](/assets/images/20181108AwemeAlbumAnimation/album1.png)
+![](/assets/images/20181108AwemeAlbumAnimation/album1.webp)
 
 我们首先写个 `MusicAlbumView` 继承自UIView
 
@@ -150,7 +150,7 @@ self.album.layer.masksToBounds = YES;
 
 这是一张音符动画 它的运动轨迹大概是这样的
 
-![](/assets/images/20181108AwemeAlbumAnimation/bezier1.png)
+![](/assets/images/20181108AwemeAlbumAnimation/bezier1.webp)
 
 我们其实用到的是贝塞尔曲线动画 (我画的不是很好 大家理解这个意思就好)
 
@@ -219,7 +219,7 @@ pathAnimation.path = customPath.CGPath; //让动画沿着轨迹运动
 
 大家可以不用理解这些细节 看下面图就好了 
 
-![](/assets/images/20181108AwemeAlbumAnimation/bezier2.png)
+![](/assets/images/20181108AwemeAlbumAnimation/bezier2.webp)
 
 > customPath: 贝塞尔曲线对象
 

@@ -6,7 +6,7 @@ date: 2019-07-26 11:13:44
 ---
 
 
-![](/assets/images/20190726LoadingAnimationI/CircleLoadingAnimation.png)
+![](/assets/images/20190726LoadingAnimationI/CircleLoadingAnimation.webp)
 
 
 # 前言

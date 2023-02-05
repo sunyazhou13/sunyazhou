@@ -5,7 +5,7 @@ tags: [iOS, 学习笔记]
 date: 2021-06-23 00:30:00
 ---
 
-![](/assets/images/20210623CheckNSStringIsPureInteger/pureinteger.jpeg)
+![](/assets/images/20210623CheckNSStringIsPureInteger/pureinteger.webp)
 
 # 前言
 

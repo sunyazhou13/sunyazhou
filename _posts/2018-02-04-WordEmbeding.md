@@ -5,7 +5,7 @@ tags: [python开发]
 date: 2018-02-04 12:24:30
 ---
 
-![](/assets/images/20180204WordEmbeding/wordembeding.png)
+![](/assets/images/20180204WordEmbeding/wordembeding.webp)
 
 # 前言
 

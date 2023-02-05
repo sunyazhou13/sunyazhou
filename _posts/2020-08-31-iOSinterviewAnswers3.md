@@ -5,7 +5,7 @@ tags: [ios开发, ios面试题]
 date: 2020-08-31 16:52:25
 ---
 
-![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.jpeg)
+![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.webp)
 
 # 前言
 

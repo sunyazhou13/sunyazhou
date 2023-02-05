@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2018-06-08 09:18:03
 ---
 
-![](/assets/images/20180608SwiftRandom/whatisnewinswift.png)
+![](/assets/images/20180608SwiftRandom/whatisnewinswift.webp)
 
 # 前言
 

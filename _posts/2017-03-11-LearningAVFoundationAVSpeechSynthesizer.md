@@ -6,7 +6,7 @@ date: 2017-03-11 12:38:53
 ---
 
 
-![AVSpeechSynthesizer](/assets/images/20170311LearningAVFoundationAVSpeechSynthesizer/Cover.jpeg)
+![AVSpeechSynthesizer](/assets/images/20170311LearningAVFoundationAVSpeechSynthesizer/Cover.webp)
 
 前言
 
@@ -23,10 +23,10 @@ AVFoundation整体架构
 
 研究这个功能之前先介绍一下`AV Foundation`整体架构
 
-![iOS](/assets/images/20170311LearningAVFoundationAVSpeechSynthesizer/frameworksBlockDiagram.png)  
+![iOS](/assets/images/20170311LearningAVFoundationAVSpeechSynthesizer/frameworksBlockDiagram.webp)  
 这是iOS上的架构设计 (上图)  
 
-![iOS](/assets/images/20170311LearningAVFoundationAVSpeechSynthesizer/frameworksBlockDiagramOSX.png)  
+![iOS](/assets/images/20170311LearningAVFoundationAVSpeechSynthesizer/frameworksBlockDiagramOSX.webp)  
 这是macOS上的架构设计(上图)
 
 

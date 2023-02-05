@@ -6,7 +6,7 @@ date: 2017-05-30 20:32:33
 ---
 
 # 前言  
-![](/assets/images/20170530OpenGLglslLanguage/OpenglVboShaderGlslVaoGPU.jpg)
+![](/assets/images/20170530OpenGLglslLanguage/OpenglVboShaderGlslVaoGPU.webp)
 
 最近在研究OpenGL 被各种陌生的名词虐成狗,所以记录下来一些学习知识点供学习和参考.
 

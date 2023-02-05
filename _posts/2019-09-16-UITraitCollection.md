@@ -6,7 +6,7 @@ date: 2019-09-16 18:49:05
 ---
 
 
-![](/assets/images/20190916UITraitCollection/UITraitCollection1.png)
+![](/assets/images/20190916UITraitCollection/UITraitCollection1.webp)
 
 # 前言
 

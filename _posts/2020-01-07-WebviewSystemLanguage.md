@@ -12,7 +12,7 @@ date: 2020-10-27 13:57:30
 
 最近开发遇到一个bug,在h5中点击选择iOS系统相册,显示的是英文的
 
-![](/assets/images/2020107WebviewSystemLanguage/WebviewSystemLanguage1.jpeg)
+![](/assets/images/2020107WebviewSystemLanguage/WebviewSystemLanguage1.webp)
 
 
 ## 解决方式 
@@ -26,12 +26,12 @@ date: 2020-10-27 13:57:30
 
 也可以 在 info.plist里面添加`Localized resources can be mixed` `YES`表示是否允许应用程序获取框架库内语言。
 
-![](/assets/images/2020107WebviewSystemLanguage/WebviewSystemLanguage2.png)
+![](/assets/images/2020107WebviewSystemLanguage/WebviewSystemLanguage2.webp)
 
 
 然后运行效果:
 
-![](/assets/images/2020107WebviewSystemLanguage/WebviewSystemLanguage3.jpeg)
+![](/assets/images/2020107WebviewSystemLanguage/WebviewSystemLanguage3.webp)
 
 # 总结
 

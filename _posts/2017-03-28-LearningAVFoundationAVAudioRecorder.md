@@ -5,7 +5,7 @@ tags: [ios, macos, learning av foundation]
 date: 2017-03-28 09:40:18
 ---
 
-![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/cover.jpg)
+![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/cover.webp)
 
 前言
 --
@@ -177,11 +177,11 @@ __音频队列服务分为3个部分:__
 
 **1. 下面是录音的音频队列服务的工作原理:**
 
-![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/QueueServiceRecord.png)
+![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/QueueServiceRecord.webp)
 
 **2. 下面是播放音频的音频队列服务的工作原理;**
 
-![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/QueueServicePlay.png)
+![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/QueueServicePlay.webp)
 
 当然处理这些不需要我们自己去写C语言函数实现 有个开源库[FreeStreamer](https://github.com/sunyazhou13/FreeStreamer)
 
@@ -251,10 +251,10 @@ FreeStreamer使用
 
 下一步 配置 plist文件访问权限信息 可以参考[Access privacy-sensitive data](http://localhost:4000/2017/03/20/Access-privacy-sensitive-data-private-access-permission/)这篇文章把访问权限需要的 信息填充上.
 
-![plist1](/assets/images/20170328LearningAVFoundationAVAudioRecorder/FillInfo.png)
+![plist1](/assets/images/20170328LearningAVFoundationAVAudioRecorder/FillInfo.webp)
 
 然后选择SourceCode 
-![plist2](/assets/images/20170328LearningAVFoundationAVAudioRecorder/SourceCode.png)
+![plist2](/assets/images/20170328LearningAVFoundationAVAudioRecorder/SourceCode.webp)
 
 填写上
 
@@ -1156,7 +1156,7 @@ CGFloat clamp(CGFloat intensity) {
 --
 `AVAudioRecorder` 的学习还算完整的搞完了,随时记录一下学习内容和技术知识。
 
-![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/FinalDemo.png)
+![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/FinalDemo.webp)
 
 __最终[Demo](https://github.com/sunyazhou13/AVAudioRecorderDemo)__
 

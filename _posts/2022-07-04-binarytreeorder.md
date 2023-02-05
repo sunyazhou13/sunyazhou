@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20220701ReverseList/algorithm.jpg)
+![](/assets/images/20220701ReverseList/algorithm.webp)
 
 # 前言
 
@@ -22,7 +22,7 @@ typora-root-url: ..
 
 #### 示例1
 
-![](/assets/images/20220704BinaryTreeOrder/1.jpg)
+![](/assets/images/20220704BinaryTreeOrder/1.webp)
 
 ``` sh 
 输入：root = [1,null,2,3]

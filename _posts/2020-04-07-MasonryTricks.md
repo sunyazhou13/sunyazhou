@@ -52,18 +52,18 @@ iOS11之后推出的safeArea 用于处理刘海屏幕的问题.如果自己处�
 1. 顶部区域
 
 	* `mas_topLayoutGuide`和`mas_topLayoutGuideBottom`都是 顶到屏幕 刘海屏底部 也就是说和 safeAreaTop一样,如下图:    
-	![](/assets/images/20200407MasonryTricks/mas_topLayoutGuide&mas_topLayoutGuideBottom.jpg)
+	![](/assets/images/20200407MasonryTricks/mas_topLayoutGuide&mas_topLayoutGuideBottom.webp)
 	
 	* `mas_topLayoutGuideTop` 顶到屏幕顶部(忽略刘海屏,也就是说被刘海盖住),如下图示:
-	![](/assets/images/20200407MasonryTricks/mas_topLayoutGuideTop.jpg)
+	![](/assets/images/20200407MasonryTricks/mas_topLayoutGuideTop.webp)
 
 2. 底部区域
 
 	* `mas_bottomLayoutGuide`和`mas_bottomLayoutGuideTop` 都是在`Home条`的上面 ,如下图:  
-	![](/assets/images/20200407MasonryTricks/mas_bottomLayoutGuide&mas_bottomLayoutGuideTop.jpg)
+	![](/assets/images/20200407MasonryTricks/mas_bottomLayoutGuide&mas_bottomLayoutGuideTop.webp)
 	
 	* `mas_bottomLayoutGuideBottom` 直接推底,撑到屏幕边缘,如下图:  
-	![](/assets/images/20200407MasonryTricks/mas_bottomLayoutGuideBottom.jpg)
+	![](/assets/images/20200407MasonryTricks/mas_bottomLayoutGuideBottom.webp)
 	
 
 #### 如果想实现和safeArea一样的搞法 可以这样写
@@ -81,7 +81,7 @@ iOS11之后推出的safeArea 用于处理刘海屏幕的问题.如果自己处�
 
 附上一张搞完的效果图
 
-![](/assets/images/20200407MasonryTricks/LayoutGuideFullsceen.jpg)
+![](/assets/images/20200407MasonryTricks/LayoutGuideFullsceen.webp)
 
 
 

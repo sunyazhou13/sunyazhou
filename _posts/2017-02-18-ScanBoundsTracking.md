@@ -12,7 +12,7 @@ date: 2017-02-18 19:08:56
 > 开发过程中经常会遇到二维码条形码,但总会有一个比较蛋疼的问题
 如何让二维码的扫描框跟随扫码到的二维码移动跟踪呢(就是智能探测扫描的layer.bounds)？  
 
-![](http://www.appcoda.com/wp-content/uploads/2016/11/qrcode-reader-5-1024x637.jpg)
+![](http://www.appcoda.com/wp-content/uploads/2016/11/qrcode-reader-5-1024x637.webp)
 
 
 

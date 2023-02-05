@@ -6,7 +6,7 @@ date: 2021-04-06 10:58:36
 ---
 
 
-![](/assets/images/20210406WCDBPractice/wcdb.jpeg)
+![](/assets/images/20210406WCDBPractice/wcdb.webp)
 
 # 前言
 

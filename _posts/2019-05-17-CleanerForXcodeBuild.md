@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2019-05-17 16:37:43
 ---
 
-![](/assets/images/20190517CleanerForXcodeBuild/CleanerForXcode.png)
+![](/assets/images/20190517CleanerForXcodeBuild/CleanerForXcode.webp)
 
 # 前言
 

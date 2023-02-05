@@ -5,7 +5,7 @@ tags: [ios, macos, 技巧]
 date: 2017-06-20 15:07:33
 ---
 
-![](/assets/images/20170620EnableStaticAnalyer/static.png)
+![](/assets/images/20170620EnableStaticAnalyer/static.webp)
 
 
 
@@ -27,7 +27,7 @@ Clang 编译器（也就是 XCode 使用的编译器）有一个 静态分析器
 
 把 `build setting` 里的 “Mode of Analysis for `‘Build’`” 设为 `Shallow` (faster)
 
-![](/assets/images/20170620EnableStaticAnalyer/EnableSStaticAnalyer.png)
+![](/assets/images/20170620EnableStaticAnalyer/EnableSStaticAnalyer.webp)
 
 全文完
 

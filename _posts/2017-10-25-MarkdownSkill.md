@@ -23,7 +23,7 @@ date: 2017-10-25 16:10:35
 第一眼我震撼了 原来 markdown 里面还能嵌入这么多好玩的 就这个问题 问了一下喵神
 
 
-![与喵神对话](/assets/images/20171025MarkdownSkill/MarkdownQuestion.png)
+![与喵神对话](/assets/images/20171025MarkdownSkill/MarkdownQuestion.webp)
 
 
 [简单的 summary tag 而已..](https://www.w3schools.com/tags/tag_summary.asp)
@@ -54,7 +54,7 @@ date: 2017-10-25 16:10:35
 
 <details>
   <summary>书法</summary>
-  <p><img src="/assets/images/aboutme/about_read_books.jpg" alt=""> </p>
+  <p><img src="/assets/images/aboutme/about_read_books.webp" alt=""> </p>
   <p> </p>
 </details>
 
@@ -62,7 +62,7 @@ date: 2017-10-25 16:10:35
 ``` html
 <details>
   <summary>书法</summary>
-  <p><img src="/assets/images/aboutme/about_read_books.jpg" alt=""> </p>
+  <p><img src="/assets/images/aboutme/about_read_books.webp" alt=""> </p>
   <p> </p>
 </details>
 ```

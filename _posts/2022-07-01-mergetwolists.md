@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20220701ReverseList/algorithm.jpg)
+![](/assets/images/20220701ReverseList/algorithm.webp)
 
 # 前言
 
@@ -20,7 +20,7 @@ typora-root-url: ..
 
 #### 示例1
 
-![](/assets/images/20220701MergeTwoLists/mergelinklist.jpg)
+![](/assets/images/20220701MergeTwoLists/mergelinklist.webp)
 
 ``` sh
 输入：l1 = [1,2,4], l2 = [1,3,4]

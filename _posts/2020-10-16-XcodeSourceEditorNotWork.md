@@ -5,7 +5,7 @@ tags: [ios开发, macos开发]
 date: 2020-10-16 16:05:42
 ---
 
-![](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditorCover.jpg)
+![](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditorCover.webp)
 
 # 前言
 
@@ -15,7 +15,7 @@ date: 2020-10-16 16:05:42
 ## 问题描述
 
 这几天要对代码进行对齐发现经常用的 XAlign插件不起作用了,一看设置中发现 扩展中没有了Xcode Source Editor
-![](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditor.png)
+![](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditor.webp)
 
 通过网络上查询找到一篇靠谱的方式 特记录下来
 

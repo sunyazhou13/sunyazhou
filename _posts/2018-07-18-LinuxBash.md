@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2018-07-18 09:29:39
 ---
 
-![](/assets/images/20180718LinuxBash/20130520LinuxLogoOnCentos5.png)
+![](/assets/images/20180718LinuxBash/20130520LinuxLogoOnCentos5.webp)
 
 
 # bash及其特性

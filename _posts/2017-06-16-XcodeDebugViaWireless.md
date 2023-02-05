@@ -17,11 +17,11 @@ date: 2017-06-16 11:07:46
 
 第一步 选择设备选项
 
-![](/assets/images/20170616XcodeDebugViaWireless/setting1.png)
+![](/assets/images/20170616XcodeDebugViaWireless/setting1.webp)
 
 第二步 点勾选 via network
 
-![](/assets/images/20170616XcodeDebugViaWireless/setting2.png)
+![](/assets/images/20170616XcodeDebugViaWireless/setting2.webp)
 
 剩下的工作就是拔掉那个我们非常讨厌而且有不得不用还死贵且总折头处的白色数据线了
 

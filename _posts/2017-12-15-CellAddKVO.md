@@ -6,7 +6,7 @@ date: 2017-12-15 17:05:10
 ---
 
 
-![](/assets/images/20171215CellAddKVO/UICollectionViewCell.png)
+![](/assets/images/20171215CellAddKVO/UICollectionViewCell.webp)
 
 
 # 前言

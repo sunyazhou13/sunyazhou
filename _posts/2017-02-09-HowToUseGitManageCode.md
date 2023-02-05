@@ -5,7 +5,7 @@ categories: [ios开发]
 tags: [ios, macos]
 ---
 
-![](/assets/images/20170209HowToUseGitManageCode/guide.jpg)
+![](/assets/images/20170209HowToUseGitManageCode/guide.webp)
 
 全局配置git
 --

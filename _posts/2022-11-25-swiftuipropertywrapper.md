@@ -7,7 +7,7 @@ tags: [iOS, swift]
 typora-root-url: ..
 ---
 
-![](/assets/images/20221125SwiftUIPropertyWrapper/swiftUIPropertyWrappers.png)
+![](/assets/images/20221125SwiftUIPropertyWrapper/swiftUIPropertyWrappers.webp)
 
 # 前言
 

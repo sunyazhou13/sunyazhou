@@ -6,7 +6,7 @@ date: 2019-03-21 09:50:20
 ---
 
 
-![](/assets/images/20190321UIScrollTextDemo/CAGradientCover.png)
+![](/assets/images/20190321UIScrollTextDemo/CAGradientCover.webp)
 
 # 前言
 

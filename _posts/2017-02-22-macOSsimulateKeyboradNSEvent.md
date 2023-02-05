@@ -5,7 +5,7 @@ tags: [iOS开发,macOS开发]
 date: 2017-02-22 16:17:00
 ---
 
-![](/assets/images/20170222macOSsimulateKeyboradNSEvent/Cover.png)
+![](/assets/images/20170222macOSsimulateKeyboradNSEvent/Cover.webp)
 
 
 

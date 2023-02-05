@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2019-04-17 15:19:52
 ---
 
-![](/assets/images/20190417AVRoutePickerView/cover_album.jpg)
+![](/assets/images/20190417AVRoutePickerView/cover_album.webp)
 
 
 # 前言

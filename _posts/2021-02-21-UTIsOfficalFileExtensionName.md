@@ -5,7 +5,7 @@ tags: [iOS, 学习笔记]
 date: 2021-02-21 10:40:31
 ---
 
-![](/assets/images/20210221UTIsOfficalFileExtensionName/UTIs.png)
+![](/assets/images/20210221UTIsOfficalFileExtensionName/UTIs.webp)
 
 # 前言
 

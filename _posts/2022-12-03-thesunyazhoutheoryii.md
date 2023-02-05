@@ -6,7 +6,7 @@ categories: [理论]
 tags: [汽车]
 ---
 
-![](/assets/images/20221203TheSunyazhouTheoryII/thesunyazhoutheoryii.png)
+![](/assets/images/20221203TheSunyazhouTheoryII/thesunyazhoutheoryii.webp)
 
 # 前言
 

@@ -26,7 +26,7 @@ date: 2017-10-31 11:32:17
 不是这个问题不行就那个问题不能满足 
 
 
-![](/assets/images/20171031ElegantPresentTransition/demo1.png)
+![](/assets/images/20171031ElegantPresentTransition/demo1.webp)
 
 
 根据`Raywenderrich`的教程 我翻译成了 OC 版本 并加了一些小改动 

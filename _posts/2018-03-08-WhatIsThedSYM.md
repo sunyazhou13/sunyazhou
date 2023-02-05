@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2018-03-08 11:14:12
 ---
 
-![](/assets/images/20180308WhatIsThedSYM/homePageLog.jpeg)
+![](/assets/images/20180308WhatIsThedSYM/homePageLog.webp)
 
 # 前言
 
@@ -33,7 +33,7 @@ iOS 开发中经常回定位 bug 通过崩溃堆栈,此时我们需要借助符�
 
 举一个例子：
 
-![](/assets/images/20180308WhatIsThedSYM/stackSymbol.png)
+![](/assets/images/20180308WhatIsThedSYM/stackSymbol.webp)
 
 
 上图是我们通过符号表来解析出来崩溃堆栈的调用
@@ -44,7 +44,7 @@ iOS 开发中经常回定位 bug 通过崩溃堆栈,此时我们需要借助符�
 
 iOS平台中，`dSYM`文件是指具有调试信息的目标文件，文件名通常为： `com.公司名.dSYM`。如下图所示：
 
-![](/assets/images/20180308WhatIsThedSYM/testdSYM.png)
+![](/assets/images/20180308WhatIsThedSYM/testdSYM.webp)
 
 一般都是和Xcode 工程名的 aget一样的名字
 
@@ -56,9 +56,9 @@ iOS平台中，`dSYM`文件是指具有调试信息的目标文件，文件名�
 
 一般情况下，项目编译完`dSYM`文件跟`app`文件在同一个目录下，下面以`XCode`作为IDE详细说明定位`dSYM`文件
 
-![](/assets/images/20180308WhatIsThedSYM/dSYM1.png)
+![](/assets/images/20180308WhatIsThedSYM/dSYM1.webp)
 
-![](/assets/images/20180308WhatIsThedSYM/dSYM2.png)
+![](/assets/images/20180308WhatIsThedSYM/dSYM2.webp)
 
 
 > 这里用 release 模式做的测试 
@@ -75,33 +75,33 @@ XCode在 `Release`编译环境下默认会生成`dSYM`文件，而`Debug`编译�
 `XCode -> Build Settings -> Code Generation -> Generate Debug Symbols -> Yes`  
 `XCode -> Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
 
-![](/assets/images/20180308WhatIsThedSYM/dSYM3.png)  
-![](/assets/images/20180308WhatIsThedSYM/dSYM4.png)
+![](/assets/images/20180308WhatIsThedSYM/dSYM3.webp)  
+![](/assets/images/20180308WhatIsThedSYM/dSYM4.webp)
 
 #### 开启Bitcode之后需要注意哪些问题?
 
 * 在点`Upload to App Store`上传到`App Store`服务器的时候需要声明符号文件(`dSYM`文件)的生成:
 
-![](/assets/images/20180308WhatIsThedSYM/dSYM5.jpg)
+![](/assets/images/20180308WhatIsThedSYM/dSYM5.webp)
 
 * 在配置符号表文件之前，需要从App Store中把该版本对应的dSYM文件下载回本地,然后用符号表工具生成和上传符号表文件。
 
 这里找回`ipa`版本对应的dSYM文件有两种方式
 
 1. 通过Xcode的归档文件找回dSYM,打开`Xcode` 顶部菜单栏 -> `Window` -> `Organizer` 窗口,如下图:
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM2.jpg)  
+	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM2.webp)  
 	打开 `Xcode` 顶部菜单栏，选择`Archive` 标签:   
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM3.jpg)  
+	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM3.webp)  
 	找到发布的归档包，右键点击对应归档包，选择`Show in Finder`操作:  
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM4.jpg)
+	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM4.webp)
 	右键选择定位到的归档文件，选择显示包内容操作:  
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM5.jpg)  
+	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM5.webp)  
 	选择`dSYMs`目录，目录内即为下载到的 `dSYM` 文件:  
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM6.jpg)
+	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM6.webp)
 	
 2. 通过[iTunes Connect](https://itunesconnect.apple.com/)找回
 	
-	![](/assets/images/20180308WhatIsThedSYM/itunesConnect.png)
+	![](/assets/images/20180308WhatIsThedSYM/itunesConnect.webp)
 	
 	在“所有构件版本（All Builds）”中选择某一个版本，点“下载`dSYM`（Download dSYM）”下载dSYM文件.
 	

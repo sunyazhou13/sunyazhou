@@ -6,7 +6,7 @@ date: 2019-09-06 10:19:48
 ---
 
 
-![](/assets/images/20190906OpenGLESDemo1/sunyazhou_logo_glsl.jpeg)
+![](/assets/images/20190906OpenGLESDemo1/sunyazhou_logo_glsl.webp)
 
 
 # 前言
@@ -73,7 +73,7 @@ typedef struct {
     [self bindRenderLayer:layer];
     
     // 读取纹理
-    NSString *imagePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"logo.png"];
+    NSString *imagePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"logo.webp"];
     UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
     GLuint textureID = [self createTextureWithImage:image];
     

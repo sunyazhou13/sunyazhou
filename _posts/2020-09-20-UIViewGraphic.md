@@ -5,7 +5,7 @@ tags: [ios开发, ios面试题]
 date: 2020-09-20 11:40:47
 ---
 
-![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.jpeg)
+![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.webp)
 
 # 前言
 
@@ -53,7 +53,7 @@ date: 2020-09-20 11:40:47
 
 经过实验得出如下图标结论:
 
-![](/assets/images/20200920UIViewGraphic/HighPerformanceAutoLayoutResult.png)
+![](/assets/images/20200920UIViewGraphic/HighPerformanceAutoLayoutResult.webp)
 
 iOS12之前，视图嵌套的数量对性能的影响是呈指数级增长的，而iOS12优化之后对性能的影响是线性增长，对性能消耗不大。
 
@@ -130,7 +130,7 @@ Core Animation 是显式动画.因为它既可以直接对其layer属性做动�
 
 ### 8.什么是离屏渲染
 
-![](/assets/images/20200920UIViewGraphic/CoreAnimationPipeline.jpg)
+![](/assets/images/20200920UIViewGraphic/CoreAnimationPipeline.webp)
 
 [iOS离屏渲染的深入研究](https://zhuanlan.zhihu.com/p/72653360)
 

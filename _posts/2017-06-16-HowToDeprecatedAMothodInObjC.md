@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2017-06-16 16:40:26
 ---
 # 前言
-![](/assets/images/20170616HowToDeprecatedAMothodInObjC/deprecated.png)
+![](/assets/images/20170616HowToDeprecatedAMothodInObjC/deprecated.webp)
 
 
 最新在从事SDK方向的开发 有的时候 不能轻易的把某个API去掉 因为有些人还在使用 于是为了保留 相关方法 并标识为弃用 的方式 我采用如下代码
@@ -33,7 +33,7 @@ __attribute__((deprecated("此方法已弃用,请使用xxxxx:方法")));
 
 这样调用的时候就直接显示警告了 告诉当前方法传入URL被弃用
 
-![](/assets/images/20170616HowToDeprecatedAMothodInObjC/code.png)
+![](/assets/images/20170616HowToDeprecatedAMothodInObjC/code.webp)
 
 
 

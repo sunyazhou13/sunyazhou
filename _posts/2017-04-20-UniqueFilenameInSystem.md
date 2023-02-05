@@ -5,7 +5,7 @@ tags: [ios开发, macos开发]
 date: 2017-04-20 16:35:42
 ---
 
-![](/assets/images/20170420UniqueFilenameInSystem/StockPhoto.jpg)
+![](/assets/images/20170420UniqueFilenameInSystem/StockPhoto.webp)
 
 ## 前言
 
@@ -32,13 +32,13 @@ date: 2017-04-20 16:35:42
 ```  
 
 使用前
-![](/assets/images/20170420UniqueFilenameInSystem/before.png)
+![](/assets/images/20170420UniqueFilenameInSystem/before.webp)
 
 过程中
-![](/assets/images/20170420UniqueFilenameInSystem/after.png)
+![](/assets/images/20170420UniqueFilenameInSystem/after.webp)
 
 完成之后
-![](/assets/images/20170420UniqueFilenameInSystem/done.png)
+![](/assets/images/20170420UniqueFilenameInSystem/done.webp)
 
 
 

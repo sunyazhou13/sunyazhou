@@ -5,7 +5,7 @@ tags: [ios, macos, learning av foundation]
 date: 2018-03-04 16:56:06
 ---
 
-![](/assets/images/20180304LearningAVFoundationPlayingVideo/5kAirplay.jpg)
+![](/assets/images/20180304LearningAVFoundationPlayingVideo/5kAirplay.webp)
 
 # 前言
 
@@ -15,7 +15,7 @@ date: 2018-03-04 16:56:06
 了解视频播放之前我们来看戏`AVPlayer`需要的一些组件模型
 
 
-![AVPlayer组件模型](/assets/images/20180304LearningAVFoundationPlayingVideo/AVPlayer.png)
+![AVPlayer组件模型](/assets/images/20180304LearningAVFoundationPlayingVideo/AVPlayer.webp)
 
 
 ## AVPlayer
@@ -51,15 +51,15 @@ date: 2018-03-04 16:56:06
 如下图:
 
 __AVLayerVideoGravityResizeAspect__保持缩放比例
-![](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResizeAspect.png)
+![](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResizeAspect.webp)
 
 __AVLayerVideoGravityResizeAspectFill__填充
-![](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResizeAspectFill.png)
+![](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResizeAspectFill.webp)
 
 
 __AVLayerVideoGravityResize__拉伸
 
-![](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResize.png)
+![](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResize.webp)
 
 
 

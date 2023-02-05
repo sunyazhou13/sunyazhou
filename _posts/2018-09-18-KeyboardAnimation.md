@@ -6,7 +6,7 @@ date: 2018-09-18 09:49:58
 ---
 
 
-![](/assets/images/20180918KeyboardAnimation/keyboard1.png)
+![](/assets/images/20180918KeyboardAnimation/keyboard1.webp)
 
 
 # 前言

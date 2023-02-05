@@ -5,7 +5,7 @@ tags: [iOS, 学习笔记]
 date: 2021-01-21 20:00:29
 ---
 
-![](/assets/images/20210121TextGradient/gradientcover.png)
+![](/assets/images/20210121TextGradient/gradientcover.webp)
 
 # 前言
 

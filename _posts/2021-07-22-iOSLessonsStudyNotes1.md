@@ -6,7 +6,7 @@ categories: [iOS]
 tags: [iOS, 学习笔记]
 ---
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/studycover.jpg)
+![](/assets/images/20210722iOSLessonsStudyNotes1/studycover.webp)
 
 # 前言
 
@@ -30,24 +30,24 @@ Awesome 系列，就是专门用来搜集各类资料的，其中 [iOS 的 Aweso
 
 iOS 开发者需要掌握的整个基础知识，按照 App 的开发流程（开发、调试测试、发布、上线）进行了划分，如下图所示:
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/basicmodule.png)
+![](/assets/images/20210722iOSLessonsStudyNotes1/basicmodule.webp)
 
 ### 应用开发
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/applicationdevelopmodule.png)
+![](/assets/images/20210722iOSLessonsStudyNotes1/applicationdevelopmodule.webp)
 
 ### 原理模块
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/principlemodule.png)
+![](/assets/images/20210722iOSLessonsStudyNotes1/principlemodule.webp)
 
 ### 原生与前端
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/nativeandfemudule.jpg)
+![](/assets/images/20210722iOSLessonsStudyNotes1/nativeandfemudule.webp)
 
 
 ### 汇总
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/final.jpg)
+![](/assets/images/20210722iOSLessonsStudyNotes1/final.webp)
 
 # 总结
 

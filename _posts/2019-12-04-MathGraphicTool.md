@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2019-12-04 18:12:58
 ---
 
-![](/assets/images/20191204MathGraphicTool/MathGraphic.png)
+![](/assets/images/20191204MathGraphicTool/MathGraphic.webp)
 
 # 前言
 

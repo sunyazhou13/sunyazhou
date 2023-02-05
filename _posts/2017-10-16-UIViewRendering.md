@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2017-10-16 13:00:30
 ---
 
-![UIView渲染](/assets/images/20171016UIViewRendering/UIViewRendering.png)
+![UIView渲染](/assets/images/20171016UIViewRendering/UIViewRendering.webp)
 
 # 前言
 
@@ -50,7 +50,7 @@ date: 2017-10-16 13:00:30
 
 上面提到的从`CPU`到`GPU`的过程可用下图表示:
 
-![](/assets/images/20171016UIViewRendering/CPUToGPU.png)
+![](/assets/images/20171016UIViewRendering/CPUToGPU.webp)
 
 
 下面具体来讨论下这个过程
@@ -73,7 +73,7 @@ label.text = @"test";
 
 类似这个样子:
 
-![](/assets/images/20171016UIViewRendering/DrawRect.png)
+![](/assets/images/20171016UIViewRendering/DrawRect.webp)
 
 
 
@@ -95,7 +95,7 @@ label.text = @"test";
 在`begin`和`commit`之间做的事情是将`view`增加到`view hierarchy`中，这个时候也不会发生任何绘制的操作。
 当`[CATransaction commit]`执行完后，`CPU`开始绘制这个`view`:
 
-![CPU绘制图](/assets/images/20171016UIViewRendering/CATransactionCommit.png)
+![CPU绘制图](/assets/images/20171016UIViewRendering/CATransactionCommit.webp)
 
 
 首先`CPU`会为`layer`分配一块内存用来绘制`bitmap`，叫做__`backing store`__  
@@ -147,7 +147,7 @@ GPU bound：
 这个对应关系建立起来之后，剩下的任务就是`GPU`如何将`Texture`渲染到屏幕上了。
 `GPU`大致的工作模式如下：
 
-![](/assets/images/20171016UIViewRendering/GPUWorkflow.png)
+![](/assets/images/20171016UIViewRendering/GPUWorkflow.webp)
 
 整个过程也就是一件事：
 
@@ -226,7 +226,7 @@ label.layer.rasterizationScale = label.layer.contentsScale;
 简单的说，这是一种`cache`机制。  
 同样`GPU`的性能也可以通过`instrument`去衡量：
 
-![](/assets/images/20171016UIViewRendering/RenderingResult.png)
+![](/assets/images/20171016UIViewRendering/RenderingResult.webp)
 
 红色代表`GPU`需要做额外的工作来渲染`View`，绿色代表`GPU`无需做额外的工作来处理`bitmap`。
 

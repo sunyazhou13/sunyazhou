@@ -5,7 +5,7 @@ tags: [ios开发, ios面试题]
 date: 2020-09-02 11:23:24
 ---
 
-![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.jpeg)
+![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.webp)
 
 # 前言
 
@@ -40,7 +40,7 @@ date: 2020-09-02 11:23:24
 
 回答这个问题前请认真阅读一下 [iOS触摸事件全家桶](https://mp.weixin.qq.com/s/9rvSRt4kfpy7e87EJoaJOQ)
 
-![](/assets/images/20200902iOSinterviewAnswers/runloop_event_receive.jpg)
+![](/assets/images/20200902iOSinterviewAnswers/runloop_event_receive.webp)
 
 通过上图可以看出整个流程就是 我们app启动默认会通过machPort监听端口的方式 来接受IOHIDEvent 来接收和处理触摸事件.
 

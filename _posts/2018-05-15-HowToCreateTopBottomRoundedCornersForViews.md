@@ -5,7 +5,7 @@ tags: [ios, macos]
 date: 2018-05-15 09:58:00
 ---
 
-![](/assets/images/20180515HowToCreateTopBottomRoundedCornersForViews/TopBottomCornerDemo.png)
+![](/assets/images/20180515HowToCreateTopBottomRoundedCornersForViews/TopBottomCornerDemo.webp)
 
 # 前言
 
