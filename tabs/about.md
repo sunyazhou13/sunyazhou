@@ -8,7 +8,7 @@ title: The Mr. Sun's Work Notes
 # MIT License
 ---
 
-![](/assets/images/aboutme/background_th.jpg)
+![](/assets/images/aboutme/background_th.webp)
 
 ## Foreword
 
@@ -52,11 +52,11 @@ title: The Mr. Sun's Work Notes
 
 #### 书法
 
-![](/assets/images/aboutme/about_read_books.jpg)
+![](/assets/images/aboutme/about_read_books.webp)
 
 #### 羽毛球
 
-![](/assets/images/aboutme/badminton.jpg)
+![](/assets/images/aboutme/badminton.webp)
 
 --- 
 
