@@ -10,6 +10,3 @@ echo "即将推送目标仓库:`git remote -v`"
 sh push.sh 
 echo "Done!"
 popd
-
-
-# rsync -auv _site onevcat@onevcat.com:/home/onevcat/www/blog
