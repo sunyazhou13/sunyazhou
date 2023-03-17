@@ -116,6 +116,6 @@ struct CircularSliderView: View
 SwiftUI写代码很快,api非常多,比UIKit便携了很多,也简单了很多,我的习惯是别人的东西拿来消化吸收的同时必须出demo.
 
 
-[本文demo](https://github.com/sunyazhou13/CircleSliderDemo)
+[本文demo](https://github.com/sunyazhou13/CircleSliderDemo)  
 [在 SwiftUI 中创建一个环形 Slider
 ](https://mp.weixin.qq.com/s/DUFEB5aOTx1jurPP4gP0MQ)
