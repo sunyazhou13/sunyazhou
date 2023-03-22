@@ -40,7 +40,7 @@ UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
 
 ![](/assets/images/20230322PodXCAssets/1.webp)
 
-## 图片都是带2x3x的图,怎么从默认的pod里面去掉相关的图片呢?.
+## 图片都是带2x3x的图,怎么从默认的pod里面取到相关的图片呢?.
 
 这时候我们要做几件事
 
