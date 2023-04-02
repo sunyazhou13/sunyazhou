@@ -2,8 +2,8 @@
 layout: post
 title: 2019年终总结
 date: 2019-12-30 23:30:00
-categories: [记录世界记录你]
-tags: [生活,  年终总结]
+categories: [生活纪实]
+tags: [年终总结]
 typora-root-url: ..
 ---
 
