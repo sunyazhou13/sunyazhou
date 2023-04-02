@@ -2,8 +2,8 @@
 layout: post
 title: SwiftUI属性包装器:State、Binding、ObservableObject、EnvironmentObject
 date: 2022-11-25 18:45 +0800
-categories: [swiftUI]
-tags: [iOS, swift]
+categories: [iOS, SwiftUI]
+tags: [iOS, SwiftUI, Swift, Objective-C, skills]
 typora-root-url: ..
 ---
 

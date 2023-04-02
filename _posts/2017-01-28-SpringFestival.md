@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 2017回家过年
 date: 2017-01-28 13:42:34
-categories: [生活记录]
-tags: [生活]
+categories: [生活纪实]
+tags: [年终总结]
+typora-root-url: ..
 ---
 
 ![](http://p1.bqimg.com/584350/7df258f2ecddcf81.webp)

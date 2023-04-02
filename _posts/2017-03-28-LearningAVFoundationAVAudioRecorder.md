@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Learning AV Foundation(三)AVAudioRecorder
-categories: [ios开发]
-tags: [ios, macos, learning av foundation]
 date: 2017-03-28 09:40:18
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, AVFoundation, 音视频]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/cover.webp)

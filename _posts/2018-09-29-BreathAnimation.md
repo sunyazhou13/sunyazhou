@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS呼吸动画
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-09-29 10:09:30
+categories: [iOS]
+tags: [iOS, 动画, Objective-C, skills]
+typora-root-url: ..
 ---
 
 # 前言

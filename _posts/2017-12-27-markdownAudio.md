@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Markdown中插入音频文件
-categories: [ios开发]
-tags: [ios]
 date: 2017-12-27 12:04:07
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

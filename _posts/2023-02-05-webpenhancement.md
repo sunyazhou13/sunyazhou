@@ -2,8 +2,8 @@
 layout: post
 title: 博客的图片资源优化
 date: 2023-02-05 17:09 +0800
-categories: [Blog]
-tags: [rubygems, shell]
+categories: [系统理论实践]
+tags: [Linux, shell]
 typora-root-url: ..
 ---
 

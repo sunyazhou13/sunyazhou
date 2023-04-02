@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 阿里、字节：一套高效的iOS面试题之runtime相关问题2
-categories: [ios开发]
-tags: [ios, ios面试题]
 date: 2020-08-08 14:54:07
+categories: [iOS, 系统理论实践]
+tags: [Algorithm, Objective-C]
+typora-root-url: ..
 ---
 
 

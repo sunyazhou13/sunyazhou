@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 计算机图形渲染的流程
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-03-05 12:11:41
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, OpenGL, 图形图象, 音视频]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20180305ComputerGraphicsRenderingProcess/IvanSutherland.webp)

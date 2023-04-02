@@ -1,8 +1,10 @@
 ---
+layout: post
 title: AVAudioSession-Category各种姿势
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-01-12 10:32:18
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, AVFoundation, 音视频]
+typora-root-url: ..
 ---
 
 ![AVAudioSession](/assets/images/20180112AVAudioSessionCategory/ASPGIntro.webp)

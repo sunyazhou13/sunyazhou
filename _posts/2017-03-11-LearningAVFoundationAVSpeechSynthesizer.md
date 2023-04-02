@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Learning AV Foundation(一)汉字语音朗读
-categories: [macOS开发]
-tags: [iOS开发, macOS开发,  learning av foundation]
 date: 2017-03-11 12:38:53
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, AVFoundation, 音视频]
+typora-root-url: ..
 ---
 
 

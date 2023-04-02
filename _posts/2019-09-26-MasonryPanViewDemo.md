@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 使用Masonry约束实现简单的高级拖拽视图
-categories: [ios开发]
-tags: [ios, macos]
 date: 2019-09-26 20:05:20
+categories: [iOS, Swift]
+tags: [iOS, macOS, Objective-C, Swift, skills]
+typora-root-url: ..
 ---
 
 

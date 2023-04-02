@@ -2,8 +2,8 @@
 layout: post
 title: whimsical模块设计
 date: 2023-03-08 11:09 +0800
-categories: [ObjectiveC]
-tags: [iOS, swift]
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
 typora-root-url: ..
 ---
 

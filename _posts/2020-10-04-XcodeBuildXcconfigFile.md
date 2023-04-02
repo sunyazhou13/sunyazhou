@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 使用Xcode配置文件来管理不同的环境设置
-categories: [iOS开发]
-tags: [ios开发, macos开发]
 date: 2020-10-04 11:58:03
+categories: [iOS, 系统理论实践]
+tags: [Algorithm, Objective-C]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20201004XcodeBuildXcconfigFile/XcodeBuildConfigrationFile1.webp)

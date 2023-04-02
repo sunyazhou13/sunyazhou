@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 如何在iOS/macOS系统中创建文件时创建唯一的文件名
-categories: [iOS开发]
-tags: [ios开发, macos开发]
 date: 2017-04-20 16:35:42
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20170420UniqueFilenameInSystem/StockPhoto.webp)

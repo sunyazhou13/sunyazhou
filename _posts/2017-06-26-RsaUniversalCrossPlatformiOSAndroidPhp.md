@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS Android Php RSA加密解密通配方案
-categories: [ios开发]
-tags: [ios, macos, 安全]
 date: 2017-06-26 10:42:47
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20170626RsaUniversalCrossPlatformiOSAndroidPhp/RSALogo.webp)

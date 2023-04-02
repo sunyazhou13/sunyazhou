@@ -2,8 +2,8 @@
 layout: post
 title: iOS开发中的字符串枚举
 date: 2022-08-22 19:23 +0800
-categories: [iOS开发]
-tags: [iOS, Objective-C]
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
 typora-root-url: ..
 
 ---

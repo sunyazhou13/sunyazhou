@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 阿里、字节：一套高效的iOS面试题之性能优化
-categories: [iOS开发]
-tags: [ios开发, macos开发]
 date: 2020-09-22 09:42:48
+categories: [iOS, 系统理论实践]
+tags: [Algorithm, Objective-C]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.webp)

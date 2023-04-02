@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 隐私及敏感数据访问权限(Access privacy-sensitive data)  
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-03-29 10:54:40
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, AVFoundation, 音视频]
+typora-root-url: ..
 ---
 
 

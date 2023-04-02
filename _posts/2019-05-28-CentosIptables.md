@@ -1,8 +1,10 @@
 ---
+layout: post
 title: CentOS7安装iptables防火墙
-categories: [linux]
-tags: [shell]
 date: 2019-05-28 10:06:24
+categories: [系统理论实践]
+tags: [Linux, shell]
+typora-root-url: ..
 ---
 
 

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 如何使用git管理代码
 date: 2017-02-09 19:35:45
-categories: [ios开发]
-tags: [ios, macos]
+categories: [Git]
+tags: [iOS, macOS, Git, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20170209HowToUseGitManageCode/guide.webp)

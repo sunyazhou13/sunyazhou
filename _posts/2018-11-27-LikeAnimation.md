@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS抖音点赞动画实现
-categories: [ios开发]
-tags: [ios, 抖音动画系列]
 date: 2018-11-27 11:16:14
+categories: [iOS]
+tags: [iOS, 动画, 抖音动画系列, Objective-C, skills]
+typora-root-url: ..
 ---
 
 # 前言

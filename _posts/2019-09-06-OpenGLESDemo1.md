@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 从零学习OpenGLES的纹理渲染
-categories: [ios开发]
-tags: [ios, macos]
 date: 2019-09-06 10:19:48
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, OpenGL, 图形图象, 音视频]
+typora-root-url: ..
 ---
 
 

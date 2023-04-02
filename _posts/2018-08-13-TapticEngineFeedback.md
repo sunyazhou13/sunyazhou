@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Taptic Engine振动反馈
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-08-13 14:28:04
+categories: [iOS]
+tags: [iOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20180813TapticEngineFeedback/TapticEngine.webp)

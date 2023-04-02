@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Swift4.2中的随机数
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-06-08 09:18:03
+categories: [iOS, Swift]
+tags: [iOS, macOS, Objective-C, Swift, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20180608SwiftRandom/whatisnewinswift.webp)

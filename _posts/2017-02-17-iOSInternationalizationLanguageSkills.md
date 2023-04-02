@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS语言本地化/国际化一些技巧
 date: 2017-02-17 10:01:19
-categories: [ios开发]
-tags: [ios, macos]
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 代码获取国际化语言数组  

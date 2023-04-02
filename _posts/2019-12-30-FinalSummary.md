@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 2019年终总结
+date: 2019-12-30 23:30:00
 categories: [记录世界记录你]
 tags: [生活,  年终总结]
-date: 2019-12-30 23:30:00
+typora-root-url: ..
 ---
 
 ![](/assets/images/20191231FinalSummary/AlanTuring.webp)

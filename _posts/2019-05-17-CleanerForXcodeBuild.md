@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Cleaner For Xcode编译
-categories: [ios开发]
-tags: [ios, macos]
 date: 2019-05-17 16:37:43
+categories: [iOS, Swift]
+tags: [iOS, macOS, Objective-C, Swift, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20190517CleanerForXcodeBuild/CleanerForXcode.webp)

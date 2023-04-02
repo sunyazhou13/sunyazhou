@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 如何计算文本中某些单词出现的频率
-categories: [iOS,swift]
-tags: [iOS, 学习笔记]
 date: 2021-12-12 08:08:08
+categories: [iOS,Swift]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

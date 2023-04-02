@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS如何让二维码/条形码扫描框跟随二维码移动
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-02-18 19:08:56
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 

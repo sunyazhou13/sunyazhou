@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS所有Animation相关可用的Keypath
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-11-13 11:46:45
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

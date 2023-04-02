@@ -2,8 +2,8 @@
 layout: post
 title: FB内存检测工具分享
 date: 2022-09-16 10:11 +0800
-categories: [iOS开发]
-tags: [iOS, Objective-C]
+categories: [iOS, Swift]
+tags: [iOS, Swift, Objective-C, skills]
 typora-root-url: ..
 
 ---

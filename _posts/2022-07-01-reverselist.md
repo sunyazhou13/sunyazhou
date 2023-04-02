@@ -2,8 +2,8 @@
 layout: post
 title: 反转链表
 date: 2022-07-01 12:36 +0800
-categories: [algorithm]
-tags: [面试, 算法, C++]
+categories: [系统理论实践]
+tags: [Algorithm, C++]
 typora-root-url: ..
 
 ---

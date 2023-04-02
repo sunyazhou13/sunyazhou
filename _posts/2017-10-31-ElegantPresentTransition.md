@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 论一个优雅的模态转场的自我修养
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-10-31 11:32:17
+categories: [iOS]
+tags: [iOS, Objective-C]
+typora-root-url: ..
 ---
 
 

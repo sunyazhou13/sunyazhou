@@ -2,8 +2,8 @@
 layout: post
 title: 合并两个有序链表
 date: 2022-07-01 15:38 +0800
-categories: [algorithm]
-tags: [面试, 算法, C++]
+categories: [系统理论实践]
+tags: [Algorithm, C++]
 typora-root-url: ..
 
 ---

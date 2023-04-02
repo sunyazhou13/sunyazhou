@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 搭建hexo博客教程
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-02-10 10:24:25
+categories: [系统理论实践]
+tags: [skills]
+typora-root-url: ..
 ---
 
 

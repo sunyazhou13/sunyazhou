@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 解决iOS系统时间被修改的问题
-categories: [ios开发]
-tags: [ios, macos]
 date: 2020-12-05 21:12:31
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

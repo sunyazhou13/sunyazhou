@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Xcode快捷键
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-04-06 10:36:30
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 ![shortcuts](/assets/images/20170406XcodeShortcuts/cover.webp)
@@ -47,7 +49,7 @@ date: 2017-04-06 10:36:30
 
 ![](/assets/images/20170406XcodeShortcuts/CommondOptionLeft.webp)
 
-> **command+option+⬅︎**=隐藏函数 `⬅︎`代表左箭头   
+> **command+option+⬅︎**=隐藏函数 `⬅︎`代表左箭头   iOS, macOS, Objective-C
 > **command+option+➡︎**=显示函数  `➡︎`代表右箭头 
 
 

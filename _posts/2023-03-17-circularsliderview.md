@@ -2,8 +2,8 @@
 layout: post
 title:  使用SwiftUI绘制环形 Slider
 date: 2023-03-17 20:38 +0800
-categories: [SwiftUI]
-tags: [iOS, swift]
+categories: [iOS, SwiftUI]
+tags: [iOS, SwiftUI, Swift, Objective-C, skills]
 typora-root-url: ..
 ---
 

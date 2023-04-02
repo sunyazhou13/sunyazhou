@@ -3,7 +3,8 @@ layout: post
 title: "iOS开发高手课01-建立你自己的iOS开发知识体系"
 date: 2021-12-23 10:30:00.000000000 +09:00
 categories: [iOS]
-tags: [iOS, 学习笔记]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20210722iOSLessonsStudyNotes1/studycover.webp)

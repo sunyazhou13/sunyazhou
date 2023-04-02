@@ -3,9 +3,8 @@ layout: post
 title: "深入理解CVPixelBufferRef"
 date: 2022-04-06 09:50:00.000000000 +08:00
 categories: [iOS, Swift]
-tags: [swift, AVFoundation]
+tags: [iOS, macOS, Objective-C, AVFoundation, 音视频]
 typora-root-url: ..
-
 ---
 
 ![](/assets/images/20220406CVPixelBufferRef/Cover.webp)

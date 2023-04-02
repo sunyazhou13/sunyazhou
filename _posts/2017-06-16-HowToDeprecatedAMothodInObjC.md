@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 如何在Objective-C中废弃一个方法
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-06-16 16:40:26
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 # 前言
 ![](/assets/images/20170616HowToDeprecatedAMothodInObjC/deprecated.webp)

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Learning AV Foundation(四)AVAsset元数据(高级篇)
-categories: [ios开发]
-tags: [ios, macos, learning av foundation]
 date: 2017-08-07 20:36:46
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, AVFoundation, 音视频]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20170807LearningAVFoundationAVAssetSenior/AudioArtwork.webp)

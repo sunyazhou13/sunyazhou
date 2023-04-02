@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 自定义NSTableRowView实现鼠标跟踪动态显示选中/非选中颜色
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-05-10 15:24:20
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 ``` objc

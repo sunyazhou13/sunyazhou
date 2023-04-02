@@ -2,8 +2,8 @@
 layout: post
 title: NS-OPTIONS的用法
 date: 2022-09-16 17:02 +0800
-categories: [iOS开发]
-tags: [iOS, Objective-C]
+categories: [iOS, Swift]
+tags: [iOS, Swift, Objective-C, skills]
 typora-root-url: ..
 
 ---

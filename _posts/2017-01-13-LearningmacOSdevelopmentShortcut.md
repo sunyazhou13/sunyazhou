@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 学习macOS开发的路线
 date: 2017-01-13 11:38:30
-categories: [ios开发]
-tags: [ios, macos]
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

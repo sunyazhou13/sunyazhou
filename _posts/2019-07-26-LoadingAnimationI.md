@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 做一个简单的Loading动画
-categories: [ios开发]
-tags: [ios, 动画]
 date: 2019-07-26 11:13:44
+categories: [iOS]
+tags: [iOS, 动画, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

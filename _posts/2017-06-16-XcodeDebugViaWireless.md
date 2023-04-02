@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Xcode9新功能 无线真机调试
-categories: [ios开发]
-tags: [ios, macos, 技巧, xcode] 
 date: 2017-06-16 11:07:46
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills] 
+typora-root-url: ..
 ---
 
 ### 效果

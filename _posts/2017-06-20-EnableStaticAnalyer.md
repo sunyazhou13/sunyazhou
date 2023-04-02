@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Xcode开启静态分析器
-categories: [ios开发]
-tags: [ios, macos, 技巧]
 date: 2017-06-20 15:07:33
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20170620EnableStaticAnalyer/static.webp)

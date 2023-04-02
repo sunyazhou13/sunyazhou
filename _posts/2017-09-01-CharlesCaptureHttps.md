@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 如何使用Charles截获https请求
-categories: [ios开发,网络代理,https]
-tags: [ios, macos, 技巧]
 date: 2017-09-01 23:17:09
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 修复Xcode Source Editor在masOS的扩展中不显示
-categories: [mac疑难杂症]
-tags: [ios开发, macos开发]
 date: 2020-10-16 16:05:42
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditorCover.webp)

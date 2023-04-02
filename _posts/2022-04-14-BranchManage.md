@@ -3,7 +3,7 @@ layout: post
 title: "开发分支管理模型"
 date: 2022-04-14 08:50:00.000000000 +08:00
 categories: [iOS, Swift]
-tags: [swift, AVFoundation, Git]
+tags: [Swift, AVFoundation, Git]
 typora-root-url: ..
 
 ---

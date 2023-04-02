@@ -1,8 +1,10 @@
 ---
+layout: post
 title: WCDB实践记录
-categories: [iOS]
-tags: [iOS, 学习笔记]
 date: 2021-04-06 10:58:36
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

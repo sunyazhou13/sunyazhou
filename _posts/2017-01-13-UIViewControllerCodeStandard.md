@@ -1,8 +1,10 @@
 ---
+layout: post
 title: UIViewController代码规范
 date: 2017-01-13 11:18:07
-categories: [ios开发]
-tags: [ios, macos]
+categories: [iOS]
+tags: [iOS, Swift, macOS]
+typora-root-url: ..
 ---
 
 ## Objective-C

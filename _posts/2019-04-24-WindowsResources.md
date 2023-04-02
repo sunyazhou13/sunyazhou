@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Windows装机教程
-categories: [windows装机]
-tags: [win7]
 date: 2019-04-24 11:26:34
+categories: [系统理论实践]
+tags: [win7]
+typora-root-url: ..
 ---
 
 

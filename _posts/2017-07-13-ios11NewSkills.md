@@ -1,8 +1,11 @@
 ---
+layout: post
 title: iOS 11 新技能
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-07-13 10:55:15
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
+
 ---
 
 ![](/assets/images/20170713ios11NewSkills/whatisnewsinios11.webp)

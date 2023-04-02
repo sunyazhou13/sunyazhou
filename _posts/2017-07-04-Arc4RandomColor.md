@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS生成随机UIColor颜色代码
-categories: [ios开发]
-tags: [ios, macos, 技巧]
 date: 2017-07-04 17:45:28
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 

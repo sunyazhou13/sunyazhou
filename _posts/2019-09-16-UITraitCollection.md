@@ -1,8 +1,10 @@
 ---
+layout: post
 title: UITraitCollection详解
-categories: [ios开发]
-tags: [ios, macos]
 date: 2019-09-16 18:49:05
+categories: [iOS, Swift]
+tags: [iOS, macOS, Objective-C, Swift, skills]
+typora-root-url: ..
 ---
 
 

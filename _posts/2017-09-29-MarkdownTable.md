@@ -1,8 +1,9 @@
 ---
+layout: post
 title: Markdown插入表格语法
-categories: [ios开发]
-tags: [ios, macos, 技巧]
 date: 2017-09-29 18:01:08
+categories: [系统理论实践]
+tags: [skills]
 ---
 
 # 前言

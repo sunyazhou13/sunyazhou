@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 2017年终总结
-categories: [记录世界记录你]
-tags: [生活,  年终总结]
 date: 2017-12-31 10:46:20
+categories: [生活纪实]
+tags: [年终总结]
+typora-root-url: ..
 ---
 
 

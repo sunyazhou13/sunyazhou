@@ -2,8 +2,8 @@
 layout: post
 title: 二叉树的层序遍历
 date: 2022-07-04 10:10 +0800
-categories: [algorithm]
-tags: [面试, 算法, C++]
+categories: [系统理论实践]
+tags: [Algorithm, C++]
 typora-root-url: ..
 
 ---

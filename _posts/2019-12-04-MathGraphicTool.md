@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 图形示意绘制工具
-categories: [ios开发]
-tags: [ios, macos]
 date: 2019-12-04 18:12:58
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, OpenGL, 图形图象, 音视频]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20191204MathGraphicTool/MathGraphic.webp)

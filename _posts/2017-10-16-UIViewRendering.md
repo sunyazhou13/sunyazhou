@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 理解UIView的绘制
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-10-16 13:00:30
+categories: [iOS]
+tags: [iOS, Objective-C]
+typora-root-url: ..
 ---
 
 ![UIView渲染](/assets/images/20171016UIViewRendering/UIViewRendering.webp)

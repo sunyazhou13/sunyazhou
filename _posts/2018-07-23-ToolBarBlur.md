@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 利用UIToolBar做高斯模糊背景
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-07-23 18:22:05
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

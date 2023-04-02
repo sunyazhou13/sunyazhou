@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 《孙亚洲理论》的诞生
-categories: [理论]
-tags: [经济]
 date: 2020-02-07 04:59:11
+categories: [系统理论实践]
+tags: [理论]
+typora-root-url: ..
 ---
 
 

@@ -3,7 +3,7 @@ layout: post
 title: iOS中的崩溃类型
 date: 2022-07-11 09:53 +0800
 categories: [iOS, Swift]
-tags: [面试]
+tags: [iOS, Swift, Objective-C, skills]
 typora-root-url: ..
 
 ---

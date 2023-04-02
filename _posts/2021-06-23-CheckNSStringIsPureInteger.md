@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 如何判断NSString是纯数字类型
-categories: [iOS]
-tags: [iOS, 学习笔记]
 date: 2021-06-23 00:30:00
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20210623CheckNSStringIsPureInteger/pureinteger.webp)

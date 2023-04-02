@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 判断NSWindow是否全屏
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-03-23 14:03:32
+categories: [macOS]
+tags: [macOS, Objective-C]
+typora-root-url: ..
 ---
 
 ``` objc

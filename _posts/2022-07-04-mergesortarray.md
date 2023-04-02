@@ -2,8 +2,8 @@
 layout: post
 title: 合并两个有序数组
 date: 2022-07-04 17:25 +0800
-categories: [algorithm]
-tags: [面试, 算法, C++]
+categories: [系统理论实践]
+tags: [Algorithm, C++]
 typora-root-url: ..
 
 ---

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Objective-C中使用正则去除非数字字母汉字
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-06-25 18:35:17
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 # 前言

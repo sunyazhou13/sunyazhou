@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS键盘动画细节
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-09-18 09:49:58
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

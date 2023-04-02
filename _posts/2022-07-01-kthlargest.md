@@ -2,8 +2,8 @@
 layout: post
 title: 数组中的第K个最大元素
 date: 2022-07-01 14:44 +0800
-categories: [algorithm]
-tags: [面试, 算法, C++]
+categories: [系统理论实践]
+tags: [Algorithm, C++]
 typora-root-url: ..
 
 ---

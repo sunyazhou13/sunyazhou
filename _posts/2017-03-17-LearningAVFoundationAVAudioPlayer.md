@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Learning AV Foundation(二)AVAudioPlayer
-categories: [ios开发]
-tags: [ios, macos, learning av foundation]
 date: 2017-03-17 10:26:06
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, AVFoundation, 音视频]
+typora-root-url: ..
 ---
 
 ![AVAudioPlayer](/assets/images/20170317LearningAVFoundationAVAudioPlayer/cover.webp)

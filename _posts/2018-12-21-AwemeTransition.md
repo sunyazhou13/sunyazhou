@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS抖音的转场动画
-categories: [ios开发]
-tags: [ios, 抖音动画系列]
 date: 2018-12-21 10:12:07
+categories: [iOS]
+tags: [iOS, 动画, 抖音动画系列, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: UICollectionViewCell添加KVO
-categories: [ios开发]
-tags: [ios]
 date: 2017-12-15 17:05:10
+categories: [iOS]
+tags: [iOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

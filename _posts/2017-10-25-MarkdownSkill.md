@@ -1,8 +1,10 @@
 ---
+layout: post
 title: markdown嵌入折叠标签
-categories: [ios开发]
-tags: [ios, macos, 技巧]
 date: 2017-10-25 16:10:35
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

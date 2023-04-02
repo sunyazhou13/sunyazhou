@@ -2,8 +2,8 @@
 layout: post
 title: 如何在pod中的podspec使用XCAssets
 date: 2023-03-22 10:08 +0800
-categories: [iOS开发]
-tags: [iOS, Objective-C]
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, Cocoapods, skills]
 typora-root-url: ..
 ---
 

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 解决iOS调用系统相册不显示中文问题
-categories: [ios开发]
-tags: [ios, macos]
 date: 2020-10-27 13:57:30
+categories: [iOS, Swift]
+tags: [iOS, macOS, Objective-C, Swift, skills]
+typora-root-url: ..
 ---
 
 

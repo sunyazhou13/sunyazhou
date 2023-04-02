@@ -1,8 +1,10 @@
 ---
+layout: post
 title: OpenGL编程语言-glsl基础
-categories: [ios开发]
-tags: [ios, macos, opengl es]
 date: 2017-05-30 20:32:33
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, OpenGL, 图形图象, 音视频]
+typora-root-url: ..
 ---
 
 # 前言  

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 滚动文本设置渐变颜色
-categories: [iOS]
-tags: [iOS, 学习笔记]
 date: 2021-01-21 20:00:29
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20210121TextGradient/gradientcover.webp)

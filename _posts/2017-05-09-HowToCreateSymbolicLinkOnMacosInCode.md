@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 如何在macOS/MAC OS X上创建替身文件
-categories: [ios开发]
-tags: [ios, macos]
 date: 2017-05-09 17:41:17
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20170509HowToCreateSymbolicLinkOnMacosInCode/symboliclink.webp)

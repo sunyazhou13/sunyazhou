@@ -1,8 +1,10 @@
 ---
+layout: post
 title: UTIs苹果官方的文件扩展名全集
-categories: [iOS]
-tags: [iOS, 学习笔记]
 date: 2021-02-21 10:40:31
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20210221UTIsOfficalFileExtensionName/UTIs.webp)

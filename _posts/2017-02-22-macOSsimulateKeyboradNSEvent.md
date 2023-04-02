@@ -1,8 +1,10 @@
 ---
+layout: post
 title: macOS上模拟发送键盘事件
-categories: [macOS开发]
-tags: [iOS开发,macOS开发]
+categories: [macOS]
+tags: [iOS, macOS, Objective-C]
 date: 2017-02-22 16:17:00
+typora-root-url: ..
 ---
 
 ![](/assets/images/20170222macOSsimulateKeyboradNSEvent/Cover.webp)

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: UIView不同方向的导角
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-05-15 09:58:00
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20180515HowToCreateTopBottomRoundedCornersForViews/TopBottomCornerDemo.webp)

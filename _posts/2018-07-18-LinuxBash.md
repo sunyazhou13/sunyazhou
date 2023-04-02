@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Linux 终端 Bash 常用快捷键介绍及经验
-categories: [ios开发, linux]
-tags: [ios, macos]
 date: 2018-07-18 09:29:39
+categories: [Linux]
+tags: [系统理论实践, macOS, skills]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20180718LinuxBash/20130520LinuxLogoOnCentos5.webp)

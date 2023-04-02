@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 手动管理UIViewController的生命周期
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-05-08 12:01:27
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 

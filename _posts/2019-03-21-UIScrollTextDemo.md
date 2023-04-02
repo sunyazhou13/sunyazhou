@@ -1,8 +1,10 @@
 ---
+layout: post
 title: iOS抖音滚动字幕
-categories: [ios开发]
-tags: [ios, 抖音动画系列]
 date: 2019-03-21 09:50:20
+categories: [iOS]
+tags: [iOS, 动画, 抖音动画系列, Objective-C, skills]
+typora-root-url: ..
 ---
 
 

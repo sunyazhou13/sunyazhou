@@ -2,8 +2,8 @@
 layout: post
 title: 模仿Q音径向渐变动画
 date: 2022-12-07 16:00 +0800
-categories: [iOS开发]
-tags: [iOS, Swift]
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, skills]
 typora-root-url: ..
 ---
 

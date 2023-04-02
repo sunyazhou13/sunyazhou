@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 探测UIPanGesture的滑动方向
-categories: [ios开发]
-tags: [ios]
 date: 2018-12-06 13:59:46
+categories: [iOS, Swift]
+tags: [iOS, Objective-C, Swift, skills]
+typora-root-url: ..
 ---
 
 # 前言

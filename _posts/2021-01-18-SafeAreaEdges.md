@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 获取UIWindow的边界距离
-categories: [iOS,swift]
-tags: [iOS, 学习笔记]
 date: 2021-01-18 13:43:41
+categories: [iOS,Swift]
+tags: [iOS, Swift, Objective-C]
+typora-root-url: ..
 ---
 
 

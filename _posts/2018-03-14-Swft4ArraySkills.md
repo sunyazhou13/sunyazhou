@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Swift 4 中的数组技巧
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-03-14 10:17:56
+categories: [iOS, Swift]
+tags: [iOS, macOS, Objective-C, Swift, skills]
+typora-root-url: ..
 ---
 
 

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 什么是符号表?
-categories: [ios开发]
-tags: [ios, macos]
 date: 2018-03-08 11:14:12
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20180308WhatIsThedSYM/homePageLog.webp)

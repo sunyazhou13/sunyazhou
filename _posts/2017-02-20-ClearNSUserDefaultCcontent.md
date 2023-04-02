@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 使用终端删除NSUserDefault的内容
 date: 2017-02-20 19:05:01
-categories: [macOS开发]
-tags: [iOS开发, macOS开发]
+categories: [iOS]
+tags: [iOS, macOS, Objective-C]
+typora-root-url: ..
 ---
 
 前言

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 2020年终总结
-categories: [记录世界记录你]
-tags: [生活,  年终总结]
 date: 2020-12-30 23:30:00
+categories: [生活纪实]
+tags: [年终总结]
+typora-root-url: ..
 ---
 
 ![](/assets/images/20201231FinalSummary/ShulanServiceArea.webp)

@@ -1,8 +1,10 @@
 ---
+layout: post
 title: 向往计算机科学相关专业的必学经典
-categories: [生活,大学]
-tags: [生活]
 date: 2017-04-29 09:15:21
+categories: [生活纪实]
+tags: [系统理论实践]
+typora-root-url: ..
 ---
 
 

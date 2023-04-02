@@ -3,7 +3,7 @@ layout: post
 title: iOS面试问题记录
 date: 2022-07-14 08:58 +0800
 categories: [iOS, Swift]
-tags: [面试]
+tags: [iOS, Swift, Objective-C, skills]
 typora-root-url: ..
 
 ---

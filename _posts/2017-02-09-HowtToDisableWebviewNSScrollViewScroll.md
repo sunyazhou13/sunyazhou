@@ -1,8 +1,10 @@
 ---
+layout: post
 title: Webview的NSScrollView禁用滑动功能
 date: 2017-02-09 13:37:28
-categories: [ios开发]
-tags: [ios, macos]
+categories: [iOS]
+tags: [macOS, Objective-C]
+typora-root-url: ..
 ---
 
 

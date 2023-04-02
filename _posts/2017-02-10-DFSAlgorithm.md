@@ -1,8 +1,10 @@
 ---
+layout: post
 title: DFS算法扫描上传文件/文件夹
 date: 2017-02-10 10:07:55
-categories: [ios开发]
-tags: [ios, macos]
+categories: [iOS]
+tags: [iOS, macOS, Objective-C, Swift]
+typora-root-url: ..
 ---
 
 DFS需求背景
