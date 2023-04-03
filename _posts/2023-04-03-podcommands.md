@@ -17,7 +17,7 @@ typora-root-url: ..
 ## 添加私有源站的仓库
 
 ``` sh
-repo add sunyazhou-specs https://www.sunyazhou.com/xxproject/Specs.git --verbose
+pod repo add sunyazhou-specs https://www.sunyazhou.com/xxproject/Specs.git --verbose
 ```
 
 ## 单独更新某个pod spec的仓库索引
