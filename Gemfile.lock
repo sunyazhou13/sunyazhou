@@ -85,10 +85,10 @@ GEM
     unicode-display_width (2.4.2)
     webrick (1.8.1)
     yell (2.2.2)
-    zeitwerk (2.6.6)
+    zeitwerk (2.6.7)
 
 PLATFORMS
-  ruby
+  x86_64-darwin-21
 
 DEPENDENCIES
   html-proofer
@@ -99,4 +99,4 @@ DEPENDENCIES
   jekyll-seo-tag (~> 2.6.1)
 
 BUNDLED WITH
-   2.1.4
+   2.4.6
