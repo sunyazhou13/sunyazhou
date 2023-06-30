@@ -88,7 +88,7 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
-  x86_64-darwin-21
+  ruby
 
 DEPENDENCIES
   html-proofer
@@ -99,4 +99,4 @@ DEPENDENCIES
   jekyll-seo-tag (~> 2.6.1)
 
 BUNDLED WITH
-   2.4.6
+   2.1.4
