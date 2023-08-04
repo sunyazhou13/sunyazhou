@@ -2,8 +2,8 @@
 layout: post
 title: SwiftUI可用性检测,解决小组件iOS17 available问题
 date: 2023-08-02 17:13 +0800
-categories: [iOS]
-tags: [iOS, macOS, SwiftUI]
+categories: [iOS, SwiftUI]
+tags: [iOS, macOS,iPadOS,watchOS, SwiftUI]
 typora-root-url: ..
 ---
 
