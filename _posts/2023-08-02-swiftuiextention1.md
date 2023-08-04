@@ -104,7 +104,7 @@ struct MomentsWidget: Widget {
 
 # 总结
 
-1.写swiftUI感觉像是第一次接触UIKit时候那样 一开始比较困难时因为对它缺少认知
+1.写swiftUI感觉像是第一次接触UIKit时候那样 一开始比较困难时因为对它缺少认知  
 2.swiftUI的框架设计应该把这种问题考虑进去 提供一个专用的API,或者至少不要让Xcode的提示出错吧,Xcode提供的东西都出错只能说明这个东西还不成熟.
 
 [参考stackoverflow](https://stackoverflow.com/questions/76595240/widget-on-ios-17-beta-device-adopt-containerbackground-api)
