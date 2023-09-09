@@ -2,7 +2,7 @@
 layout: post
 title: SwiftUI第一章学习总结
 date: 2023-06-04 13:32 +0800
-categories: [iOS]
+categories: [iOS, SwiftUI]
 tags: [iOS, macOS, Objective-C, SwiftUI]
 typora-root-url: ..
 ---
