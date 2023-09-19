@@ -74,7 +74,7 @@ struct ContentView: View {
 示例代码:
 
 ``` swift
-	struct BtnView: View {
+struct BtnView: View {
     @Binding var isShowText: Bool
     
     var body: some View {
