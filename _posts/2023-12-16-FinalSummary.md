@@ -174,13 +174,26 @@ biden也快到任期了,在他在位的这几年间世界人民真的陷入到�
 学习了一段时间发现,它的框架太好了,基本都把所有的工作都做了.
 
 下半年 接到任务,开发iOS17小组件,而且这小组件还必须用SwiftUI.从学习完Flutter立马用至少10几个周末的时间学习SwiftUI.
-![](/assets/images/20231231FinalSummary/SwiftUI.webp)   
+![](/assets/images/20231231FinalSummary/swiftUI.webp)   
 
 [SwiftUI开发教程](https://www.bilibili.com/video/BV1pW4y1j7MC/?spm_id_from=333.999.0.0&vd_source=9309f71afe97e633abeadc8407870e76)
 
 这是一个台湾的美女推出的教程,感觉像是推出了大半年,还剩余一些SwiftUI的新内容没有提及,整体思路比较清晰,只是她讲课的风格比较上蹿下跳,学习前要有思想准备.
 
 最后用了这个SwiftUI开发了酷我音乐的小组件,还算是从学习落地到了代码,完成了一次标志性的跨越.
+
+还有鸿蒙开发  
+[HarmonyOS4.0教程](https://www.bilibili.com/video/BV1pb4y1g75m/?spm_id_from=333.999.0.0&vd_source=9309f71afe97e633abeadc8407870e76)
+[鸿蒙HarmonyOS讲明白了（鸿蒙4）开发应用从入门](https://www.bilibili.com/video/BV1dw411b7Jm/?spm_id_from=333.999.0.0&vd_source=9309f71afe97e633abeadc8407870e76)
+鸿蒙这里只是一些基础
+
+官方资料:
+ArkUI实战 文档 [https://www.arkui.club/](https://www.arkui.club/)
+开发者指南： [https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/start-overview-0000001478061421-V3?catalogVersion=V3](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/start-overview-0000001478061421-V3?catalogVersion=V3)
+
+官方内部提供未发布的[SDK IDE以及模拟器 ](https://developer.harmonyos.com/deveco-developer-suite/enabling/kit?currentPage=1&pageSize=100)
+
+学习鸿蒙学了有一段时间了,我的理解就是勤加练习,掌握大概框架和底层服务就好.一些其它的深入内容边战斗边学习就好.
 
 现在的B站太好了,能学习各种课程还没有广告还免费.真的良心.还记得去年学习完成swift的课程,感觉也没什么,但是swift和SwiftUI每年发布一版我就得学习一遍,每次的改动太多了,根本跟不过来.
 
