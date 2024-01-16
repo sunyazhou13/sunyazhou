@@ -108,13 +108,13 @@ du -sh *
  
  假设我们获取的文件绝对路径是`/storage/media/100/local/files/Photo/4/VID_1705287805_004.mp4`
  
-这时候我们新开一个终端.
+这时候我们新开一个终端.并输入如下命令.(参考文档可以找到更多关于文件操作的指令)
 
 ``` sh
 hdc file recv /storage/media/100/local/files/Photo/4/VID_1705287805_004.mp4 ~/Downloads/
 ```
 
-输入
+输出
 
 ``` sh
 [I][2024-01-16 11:11:29] HdcFile::TransferSummary success
