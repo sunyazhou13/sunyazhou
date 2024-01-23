@@ -103,6 +103,162 @@ Image("https://www.sunyazhou.com/assets/images/20240116HarmonyPhoneSendFileTomac
 Image($rawfile("sunyazhou.png"))
 ```
 
+#### 装饰器@Styles
+
+@Styles装饰器可以将多条样式设置提炼成一个方法，直接在组件声明的位置调用。通过@Styles装饰器可以快速定义并复用自定义样式。用于快速定义并复用自定义样式.  
+
+* 当前@Styles仅支持通用属性和通用事件。
+* @Styles方法不支持参数
+
+> 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
+
+使用全局的@Styles封装的样式  
+
+``` ts
+@Styles function globalStyles() {
+  .width(150)
+  .height(300)
+  .backgroundColor(Color.Pink)
+}
+```
+
+定义在组件内的@Styles封装的样式
+
+``` ts
+struct LearnDetail {
+  @State heightValue: number = 100
+  // 定义在组件内的@Styles封装的样式
+  @Styles innerStyle() {
+    .width(200)
+    .height(this.heightValue)
+    .backgroundColor(Color.Yellow)
+    .onClick(() => {
+      this.heightValue = 200
+    })
+  }
+
+  build() {
+    ...  
+  }
+}
+```
+
+如何使用
+
+``` ts
+@Entry
+@Component
+struct LearnDetail {
+  @State heightValue: number = 100
+  // 定义在组件内的@Styles封装的样式
+  @Styles innerStyle() {
+    .width(200)
+    .height(this.heightValue)
+    .backgroundColor(Color.Yellow)
+    .onClick(() => {
+      this.heightValue = 200
+    })
+  }
+
+  build() {
+    Row() {
+      Column() {
+        // 使用全局的@Styles封装的样式
+        Text('sunyazhou.com')
+          .globalStyles ()
+          .fontSize(30)
+        // 使用组件内的@Styles封装的样式
+        Text('迈腾大队长')
+          .innerStyle()
+          .fontSize(30)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Styles function globalStyles() {
+  .width(150)
+  .height(300)
+  .backgroundColor(Color.Pink)
+}
+```
+
+以上是是如何使用 @Styles装饰器的代码, [参考官方@Styles文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-style-0000001630145729-V2)
+
+#### @Extend装饰器: 定义扩展组件样式
+
+装饰器使用语法
+
+``` ts
+@Extend(UIComponentName) function functionName { ... }
+```
+
+* 和@Styles不同，@Extend仅支持在全局定义，不支持在组件内部定义。
+
+* 和@Styles不同，@Extend支持封装指定的组件的私有属性和私有事件，以及预定义相同组件的@Extend的方法。
+* 和@Styles不同，@Extend装饰的方法支持参数，开发者可以在调用时传递参数，调用遵循TS方法传值调用。
+* @Extend装饰的方法的参数可以为function，作为Event事件的句柄
+* @Extend的参数可以为状态变量，当状态变量改变时，UI可以正常的被刷新渲染。
+* @Extend可以协变调用
+
+如下调用协变调用
+
+``` ts
+// @Extend(Text)可以支持Text的私有属性fontColor
+@Extend(Text) function fancy () {
+  .fontColor(Color.Red)
+}
+// superFancyText可以调用预定义的fancy
+@Extend(Text) function superFancyText(size:number) {
+    .fontSize(size)
+    .fancy() //这里调用的是上方定义的@extend
+}
+```
+
+使用@Extend示例代码如下:
+
+``` ts
+@Entry
+@Component
+struct LearnDetail {
+  @State heightValue: number = 100
+
+  build() {
+    Row() {
+      Column() {
+        Text("sunyazhou.com").textExtend1(20, Color.Green)
+        Text("迈腾大队长")
+          .textExtend1(20, Color.Blue)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Extend(Text) function textStyles1() {
+  .textAlign(TextAlign.Center)
+  .fontStyle(FontStyle.Italic)
+  .decoration({
+    type: TextDecorationType.Underline
+  })
+}
+
+@Extend(Text) function textExtend1(fontSize: number, fontColor: Color) {
+  .fontSize(fontSize)
+  .fontColor(fontColor)
+  .textStyles1()
+}
+
+```
+
+![](/assets/images/20240119ArkTSBasic/extend_example.webp)
+
+[参考@Extend官方文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-extend-0000001580345074-V2)
+
+
 # 总结
 
 随时积累记录
