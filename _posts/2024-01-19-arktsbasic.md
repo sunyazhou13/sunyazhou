@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ArkTS基础语法
+title: ArkTS和ArkUI基础语法
 date: 2024-01-19 10:19 +0800
 categories: [ArkUI, HarmonyOS]
 tags: [鸿蒙OS开发, HarmonyOS, ArkTS]
@@ -17,6 +17,8 @@ typora-root-url: ..
 ## 学习记录
 
 在看过几遍鸿蒙教程视频和文档后,我觉得把容易遗忘的基础都记录下来,以备后续使用的时候随时查找.
+
+### ArkTS基础部分
 
 #### 基础类型和函数方法
 
@@ -83,6 +85,8 @@ struct LearnDetail {
   }
 }
 ```
+
+### ArkUI部分
 
 #### 图片控件
 
@@ -257,6 +261,14 @@ struct LearnDetail {
 ![](/assets/images/20240119ArkTSBasic/extend_example.webp)
 
 [参考@Extend官方文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-extend-0000001580345074-V2)
+
+#### @Prop装饰器:父子单向同步
+
+初始化规则图示  
+![](/assets/images/20240119ArkTSBasic/rules.webp)
+
+
+
 
 
 # 总结
