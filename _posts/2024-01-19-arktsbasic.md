@@ -276,7 +276,74 @@ struct LearnDetail {
 初始化规则图示  
 ![](/assets/images/20240119ArkTSBasic/rules.webp)
 
+下面是单向传递示例代码
 
+* Prop不能赋值
+
+``` ts
+@Entry
+@Component
+struct LearnDetail {
+  @State msg: string = "sunyazhou.com"
+  build() {
+    Row() {
+      Column() {
+        Text(this.msg).textExtend1(30, Color.Green)
+        Button("点击修改传透到子组件",{type: ButtonType.Normal})
+          .borderRadius(8)
+          .backgroundColor(0x317aff)
+          .width(180)
+          .height(40)
+          .onClick(()=>{
+              console.log('点击修改传透到子组件')
+              this.msg = this.msg === "sunyazhou.com" ? "迈腾大队长" : "sunyazhou.com"
+          })
+        LearnDetailProp1({name :this.msg})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct LearnDetailProp1 {
+  @Prop name: string //Prop不能赋值
+  build() {
+    Column() {
+      Text("www." + this.name).textStyles1()
+      Button("单向传递").buttonStyle1(ButtonType.Normal)
+        .onClick(()=>{
+          this.name = "Prop修饰器修改内容"
+        })
+    }
+  }
+}
+
+@Extend(Button) function buttonStyle1 (type :ButtonType) {
+  .type(type)
+  .borderRadius(8)
+  .backgroundColor(0x317aff)
+  .width(90)
+  .height(40)
+}
+
+@Extend(Text) function textStyles1() {
+  .textAlign(TextAlign.Center)
+  .fontStyle(FontStyle.Italic)
+  .decoration({
+    type: TextDecorationType.Underline
+  })
+}
+
+@Extend(Text) function textExtend1(fontSize: number, fontColor: Color) {
+  .fontSize(fontSize)
+  .fontColor(fontColor)
+  .textStyles1()
+}
+```
+
+![](/assets/images/20240119ArkTSBasic/prop.gif)
 
 [@Prop参考文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-prop-0000001580185150-V2)
 
