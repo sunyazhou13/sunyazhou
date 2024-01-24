@@ -269,6 +269,8 @@ struct LearnDetail {
 
 
 
+[@Prop参考文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-prop-0000001580185150-V2)
+
 
 
 # 总结
