@@ -21,6 +21,20 @@ typora-root-url: ..
 
 ![](/assets/images/20240125MPRemoteCommandLikecommand/MPRemoteCommand.gif)
 
+这里要用到的关键代码api如下:
+
+``` objc
+@interface MPFeedbackCommand : MPRemoteCommand
+
+/// Whether the feedback command is in an "active" state. An example of when a
+/// feedback command would be active is if the user already "liked" a particular
+/// content item.
+@property (nonatomic, assign, getter = isActive) BOOL active;   //就是这个
+...  
+@end
+```
+下面是完整的添加此功能的代码.
+
 ``` objc
 if (@available(iOS 17.1, *)) {
     MPRemoteCommandCenter *center = [MPRemoteCommandCenter sharedCommandCenter];
