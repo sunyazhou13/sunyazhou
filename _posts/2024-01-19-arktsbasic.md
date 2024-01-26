@@ -14,9 +14,9 @@ typora-root-url: ..
 
 本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或使用,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,这样您将能在第一时间获取本站信息.
 
-## 学习记录
+以下内容是学习记录
 
-### DevEco Studio快捷键
+## DevEco Studio快捷键
 
 | 快捷键 | 用途 | 备注 |
 | ------| ------ | ------ |
@@ -27,9 +27,9 @@ typora-root-url: ..
 
 在看过几遍鸿蒙教程视频和文档后,我觉得把容易遗忘的基础都记录下来,以备后续使用的时候随时查找.
 
-### ArkTS基础部分
+## ArkTS基础部分
 
-#### 基础类型和函数方法
+### 基础类型和函数方法
 
 ``` ts
 let number1: number = 99 // 默认情况下 正常情况下给的数字 就是十进制的哦
@@ -70,7 +70,7 @@ let str1: null = null
 let str2: undefined = undefined
 ```
 
-#### 作用域范围
+### 作用域范围
 
 ``` ts
 @Entry
@@ -95,9 +95,9 @@ struct LearnDetail {
 }
 ```
 
-### ArkUI部分
+## ArkUI部分
 
-#### 图片控件
+### 图片控件
 
 加载 常规本地资源
 
@@ -116,7 +116,7 @@ Image("https://www.sunyazhou.com/assets/images/20240116HarmonyPhoneSendFileTomac
 Image($rawfile("sunyazhou.png"))
 ```
 
-#### 装饰器@Styles
+### 装饰器@Styles
 
 @Styles装饰器可以将多条样式设置提炼成一个方法，直接在组件声明的位置调用。通过@Styles装饰器可以快速定义并复用自定义样式。用于快速定义并复用自定义样式.  
 
@@ -200,7 +200,7 @@ struct LearnDetail {
 
 以上是是如何使用 @Styles装饰器的代码, [参考官方@Styles文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-style-0000001630145729-V2)
 
-#### @Extend装饰器: 定义扩展组件样式
+### @Extend装饰器: 定义扩展组件样式
 
 装饰器使用语法
 
@@ -271,7 +271,7 @@ struct LearnDetail {
 
 [参考@Extend官方文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-extend-0000001580345074-V2)
 
-#### @Prop装饰器:父子单向同步
+### @Prop装饰器:父子单向同步
 
 初始化规则图示  
 ![](/assets/images/20240119ArkTSBasic/rules.webp)
@@ -306,6 +306,7 @@ struct LearnDetail {
   }
 }
 
+// @prop装饰状态数据，方便父与子组件之问进行数据传递与同步 父State--------->prop 单向
 @Component
 struct LearnDetailProp1 {
   @Prop name: string //Prop不能赋值
@@ -347,7 +348,114 @@ struct LearnDetailProp1 {
 
 [@Prop参考文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-prop-0000001580185150-V2)
 
+### @Link装饰器:父子双向同步
 
+示例代码如果
+
+``` ts
+// @Link装饰状态数据，方便父与子组件之问进行数据传递与同步 父State <--------->prop 双向传递
+@Component
+struct  LearnDetailLink1 {
+  @Link lineName: string //@Link不能赋值
+  build() {
+    Column() {
+      Text("Link数据:" + this.lineName).textStyles1()
+      Button("双向传递").buttonStyle1(ButtonType.Normal)
+        .onClick(()=> {
+            this.lineName = "被修改的 Link数据"
+        })
+    }
+  }
+}
+```
+
+效果展示
+
+![](/assets/images/20240119ArkTSBasic/link.gif)
+
+基于上述@Prop代码完整展示
+
+``` ts
+@Entry
+@Component
+struct LearnDetail {
+  @State msg: string = "sunyazhou.com"
+  build() {
+    Row() {
+      Column() {
+        Text(this.msg).textExtend1(30, Color.Green)
+        Button("点击修改传透到子组件",{type: ButtonType.Normal})
+          .borderRadius(8)
+          .backgroundColor(0x317aff)
+          .width(180)
+          .height(40)
+          .onClick(()=>{
+              console.log('点击修改传透到子组件')
+              this.msg = this.msg === "sunyazhou.com" ? "迈腾大队长" : "sunyazhou.com"
+          })
+        Divider()
+        LearnDetailProp1({name :this.msg})
+        Divider()
+        LearnDetailLink1({lineName :this.msg})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct LearnDetailProp1 {
+  @Prop name: string //Prop不能赋值
+  build() {
+    Column() {
+      Text("www." + this.name).textStyles1()
+      Button("单向传递").buttonStyle1(ButtonType.Normal)
+        .onClick(()=>{
+          this.name = "Prop修饰器修改内容"
+        })
+    }
+  }
+}
+// @Link装饰状态数据，方便父与子组件之问进行数据传递与同步 父State <--------->prop 双向传递
+@Component
+struct  LearnDetailLink1 {
+  @Link lineName: string //@Link不能赋值
+  build() {
+    Column() {
+      Text("Link数据:" + this.lineName).textStyles1()
+      Button("双向传递").buttonStyle1(ButtonType.Normal)
+        .onClick(()=> {
+            this.lineName = "被修改的 Link数据"
+        })
+    }
+  }
+}
+
+@Extend(Button) function buttonStyle1 (type :ButtonType) {
+  .type(type)
+  .borderRadius(8)
+  .backgroundColor(0x317aff)
+  .width(90)
+  .height(40)
+}
+
+@Extend(Text) function textStyles1() {
+  .textAlign(TextAlign.Center)
+  .fontStyle(FontStyle.Italic)
+  .decoration({
+    type: TextDecorationType.Underline
+  })
+}
+
+@Extend(Text) function textExtend1(fontSize: number, fontColor: Color) {
+  .fontSize(fontSize)
+  .fontColor(fontColor)
+  .textStyles1()
+}
+```
+
+[@Link参考文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-link-0000001630145733-V2)
 
 # 总结
 
