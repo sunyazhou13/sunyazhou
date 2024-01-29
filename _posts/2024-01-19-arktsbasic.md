@@ -457,6 +457,101 @@ struct  LearnDetailLink1 {
 
 [@Link参考文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-link-0000001630145733-V2)
 
+## @Provide装饰器和@Consume装饰器:与后代组件双向同步
+
+@Provide和@Consume，应用于与后代组件的双向数据同步，应用于状态数据在多个层级之间传递的场景。不同于上文提到的父子组件之间通过命名参数机制传递，@Provide和@Consume摆脱参数传递机制的束缚，实现跨层级传递。
+
+其中@Provide装饰的变量是在祖先组件中，可以理解为被“提供”给后代的状态变量。@Consume装饰的变量是在后代组件中，去“消费（绑定）”祖先组件提供的变量。
+
+#### @Provide/@Consume装饰的状态变量有以下特性：
+
+* @Provide装饰的状态变量自动对其所有后代组件可用，即该变量被“provide”给他的后代组件。由此可见，@Provide的方便之处在于，开发者不需要多次在组件之间传递变量。
+
+* 后代通过使用@Consume去获取@Provide提供的变量，建立在@Provide和@Consume之间的双向数据同步，与@State/@Link不同的是，前者可以在多层级的父子组件之间传递。
+
+* @Provide和@Consume可以通过相同的变量名或者相同的变量别名绑定，建议类型相同，否则会发生类型隐式转换，从而导致应用行为异常。
+
+``` ts
+// 通过相同的变量名绑定
+@Provide a: number = 0;
+@Consume a: number;
+
+// 通过相同的变量别名绑定
+@Provide('a') b: number = 0;
+@Consume('a') c: number;
+```
+
+显然这修饰器是统一标识 类型一直 根据文档说明如下
+
+| @Provide变量装饰器 | 	说明  |
+| ------| ------ |
+| 装饰器参数 | 别名：常量字符串，可选。如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
+| 同步类型 | 双向同步。从@Provide变量到所有@Consume变量以及相反的方向的数据同步。双向同步的操作与@State和@Link的组合相同。 |
+
+... 更多内容请参照官方文档[官网文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-provide-and-consume-0000001580345078-V2)
+
+
+``` ts
+@Entry
+@Component
+struct ProvideConsumeDemo {
+  @Provide("com.sunyazhou.message.provide_consume") message: string = "sunyazhou.com"
+  build() {
+    Row() {
+      Column() {
+        Text(this.message).textExtend2(30, Color.Black)
+          .onClick( ()=> {
+            this.message = this.message === "迈腾大队长"? "sunyazhou.com": "迈腾大队长"
+          })
+        Divider()
+        //... 假设这里中间有 100层Component创建和使用
+        ProvideConsumeDemo2()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct  ProvideConsumeDemo2 {
+  @Consume("com.sunyazhou.message.provide_consume") info: string //和之前介绍的@Prop @Link一样 consume不能赋值
+  build() {
+    Column() {
+      Text(this.info).textExtend2(45, Color.Green)
+    }
+  }
+}
+
+@Extend(Button) function buttonStyle2 (type :ButtonType) {
+  .type(type)
+  .borderRadius(8)
+  .backgroundColor(0x317aff)
+  .width(90)
+  .height(40)
+}
+
+@Extend(Text) function textStyles2() {
+  .textAlign(TextAlign.Center)
+  .fontStyle(FontStyle.Italic)
+  .decoration({
+    type: TextDecorationType.Underline
+  })
+}
+
+@Extend(Text) function textExtend2(fontSize: number, fontColor: Color) {
+  .fontSize(fontSize)
+  .fontColor(fontColor)
+  .textStyles2()
+
+```
+
+效果如下:
+
+![](/assets/images/20240119ArkTSBasic/provideconsume.gif)
+
+[@Provide装饰器和@Consume装饰器官网文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-provide-and-consume-0000001580345078-V2)
+
 # 总结
 
 随时积累记录
