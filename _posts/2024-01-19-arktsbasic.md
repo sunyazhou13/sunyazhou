@@ -552,6 +552,57 @@ struct  ProvideConsumeDemo2 {
 
 [@Provide装饰器和@Consume装饰器官网文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-provide-and-consume-0000001580345078-V2)
 
+## @Watch修饰器 用于监听状态变量更改通知
+
+@Watch应用于对状态变量的监听。如果开发者需要关注某个状态变量的值是否改变，可以使用@Watch为状态变量设置回调函数。
+
+
+``` ts
+@State @Watch("didMessageChanged") num1: number = 10;
+didMessageChanged () {  //此方法被触发,代表其它地方修改了 @Watch 修饰的变量
+	console.log("监听到消息发生变化:" + this.num1)
+}
+```
+![](/assets/images/20240119ArkTSBasic/watch.gif)
+
+完整示例代码
+
+``` ts
+@Entry
+@Component
+struct WatchDemo {
+  @State @Watch("didMessageChanged") price: number = 0;
+  didMessageChanged () {  //此方法被触发,代表其它地方修改了 @Watch 修饰的变量
+    if (this.price >= 10) {
+      //TODO: 处理享受9折...
+      console.log("监听到消息发生变化:" + this.price * 0.9)
+    } else {
+      console.log("监听到消息发生变化:" + this.price)
+    }
+
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text("测试值" + this.price)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick( ()=> {
+            this.price ++
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+[@Watch装饰器官方文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-watch-0000001630305681-V2)
+
+
+
 # 总结
 
 随时积累记录
