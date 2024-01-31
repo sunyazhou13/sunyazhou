@@ -601,7 +601,55 @@ struct WatchDemo {
 
 [@Watch装饰器官方文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-watch-0000001630305681-V2)
 
+## ForEach:循环渲染
 
+假设我们要做一个像iOS中的UITableView列表我们可以使用ArkUI中的`ForEach`
+
+
+``` ts
+@Entry
+@Component
+struct ForEachDemo {
+  @State message: string = 'sunyazhou.com';
+  @State tags: Array<string> = ['Algorithm29','ArkTS1','AVFoundation15','AVKit1','C++19','Cocoapods5','Dart2','Git3','HarmonyOS3','iOS119','...']
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(38)
+          .fontWeight(FontWeight.Bold)
+        Divider()
+        ForEach(this.tags, (tag : string) => {
+            Text("Blog tag has "+ tag)
+              .textAlign(TextAlign.Start)
+              .fontSize(18)
+              .width('80%')
+              .backgroundColor('#00E5EE')
+        }, (tag: string)=>{
+          return tag
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](/assets/images/20240119ArkTSBasic/ForEach.gif)
+
+这里有个坑, __ForEach(this.tags, (tag : string*这里必须标注类型在Harmonry4.1中*) => {}__
+
+如果不标注类型就容易报错
+
+``` sh
+Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) <ArkTSCheck>
+```
+![](/assets/images/20240119ArkTSBasic/ForEachError.gif)  
+
+
+[ForEach:循环渲染](官方文档)
 
 # 总结
 
