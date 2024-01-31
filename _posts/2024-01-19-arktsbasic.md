@@ -637,7 +637,7 @@ struct ForEachDemo {
 }
 ```
 
-![](/assets/images/20240119ArkTSBasic/ForEach.gif)
+![](/assets/images/20240119ArkTSBasic/ForEach.webp)
 
 这里有个坑, __ForEach(this.tags, (tag : string*这里必须标注类型在Harmonry4.1中*) => {}__
 
@@ -646,7 +646,7 @@ struct ForEachDemo {
 ``` sh
 Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) <ArkTSCheck>
 ```
-![](/assets/images/20240119ArkTSBasic/ForEachError.gif)  
+![](/assets/images/20240119ArkTSBasic/ForEachError.webp)  
 
 
 [ForEach:循环渲染](官方文档)
