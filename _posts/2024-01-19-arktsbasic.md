@@ -29,6 +29,261 @@ typora-root-url: ..
 
 ## ArkTS基础部分
 
+### 页面和自定义组件组成生命周期
+
+首先我们要了解一下一个组件是组成UI的基本单元,我们要明确自定义组件和页面的关系
+
+* 自定义组件：`@Component`装饰的UI单元，可以组合多个系统组件实现UI的复用，可以调用组件的生命周期。
+* 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，[@Entry](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-create-custom-components-0000001580025742-V2#ZH-CN_TOPIC_0000001711026924__%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84)装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个@Entry。只有被@Entry装饰的组件才可以调用页面的生命周期。
+
+``` ts
+@Entry
+@Component
+struct LiftCycle {
+  build() {
+   	... 
+   }
+}
+```
+
+* struct：自定义组件基于struct实现，struct + 自定义组件名 + {...}的组合构成自定义组件，不能有继承关系。对于struct的实例化，可以省略new (__自定义组件名、类名、函数名不能和系统组件名相同。__)
+* @Component：@Component装饰器仅能装饰struct关键字声明的数据结构。struct被@Component装饰后具备组件化的能力，需要实现build方法描述UI，一个struct只能被一个@Component装饰。(__从API version 9开始，该装饰器支持在ArkTS卡片中使用。__)
+* build()函数：build()函数用于定义自定义组件的声明式UI描述，自定义组件必须定义build()函数。
+* @Entry：@Entry装饰的自定义组件将作为UI页面的入口。在单个UI页面中，最多可以使用@Entry装饰一个自定义组件。@Entry可以接受一个可选的LocalStorage的参数。
+
+> 从API version 9开始，该装饰器支持在ArkTS卡片中使用。  
+> 从API version 10开始，@Entry可以接受一个可选的[LocalStorage](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-localstorage-0000001630265133-V2)的参数或者一个可选的EntryOptions参数。
+
+#### EntryOptions10+ 
+命名路由跳转选项
+
+| 名称 | 类型 | 必填 | 说明 |
+| ------| ------ | ------ | ------ |
+| routeName | string | 否 |  表示作为命名路由页面的名字。 |
+| storage | [LocalStorage](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-localstorage-0000001630265133-V2)  |  否  | 页面级的UI状态存储。 |
+
+``` ts
+@Entry({ routeName : 'myPage' })
+@Component
+struct MyComponent {
+
+}
+```
+
+* @Reusable：@Reusable装饰的自定义组件具备可复用能力
+
+``` ts
+@Reusable
+@Component
+struct MyComponent {
+}
+```
+> 从API version 10开始，该装饰器支持在ArkTS卡片中使用。
+
+### 页面和组件的生命周期
+
+被？**@Entry**装饰的组件生命周期，提供以下生命周期接口：  
+* `onPageShow`：页面每次显示时触发一次，包括路由过程、应用进入前台等场景，仅@Entry装饰的自定义组件生效。  
+* `onPageHide`：页面每次隐藏时触发一次，包括路由过程、应用进入后台等场景，仅@Entry装饰的自定义组件生效。  
+* `onBackPress`：当用户点击返回按钮时触发，仅@Entry装饰的自定义组件生效。
+
+//被@Entry装饰的组件 的生命周期 代码如下演示
+
+``` ts
+//页面每次显示的时候被触发
+onPageShow(): void {
+	console.log("LiftCycle onPageShow")
+}
+
+//页面每次隐藏的时候被触发
+onPageHide(): void {
+	console.log("LiftCycle onPageHide")
+}
+//点击返回按钮时触发
+onBackPress(): boolean | void {
+	console.log("LiftCycle onBackPress")
+}
+```
+
+组件生命周期，即一般用**@Component**装饰的自定义组件的生命周期，提供以下生命周期接口：
+
+* `aboutToAppear`：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build()函数之前执行。
+* `aboutToDisappear`：aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是@Link变量的修改可能会导致应用程序行为不稳定
+
+``` ts
+//被@Component修饰的 自定义组件的生命周期
+aboutToAppear(): void {
+	console.log("LiftCycle aboutToAppear")
+}
+  
+aboutToDisappear(): void {
+	console.log("LiftCycle aboutToDisappear")
+}
+```
+
+生命周期流程如下图所示，下图展示的是被**@Entry装饰的组件（首页）生命周期。  
+![](/assets/images/20240119ArkTSBasic/EntryLifeCycle.webp)  
+**由此可知, @Component组件的声明周期方法 中间包含了@Entry方法全部生命周期方法调用.**
+
+示例代码演示了一个LifeCycle中 添加一个Child子组件,点击按钮push到新页面LifeCycleDetail
+
+``` ts
+// LiftCycle.ets
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct LiftCycle {
+  @State showChild: boolean = true;
+  @State btnColor:string = "#FF007DFF"
+
+  // 组件生命周期
+  aboutToAppear() {
+    console.info('LiftCycle aboutToAppear');
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageShow() {
+    console.info('LiftCycle onPageShow');
+  }
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageHide() {
+    console.info('LiftCycle onPageHide');
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onBackPress() {
+    console.info('LiftCycle onBackPress');
+    this.btnColor ="#FFEE0606"
+    return true // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
+  }
+
+  // 组件生命周期
+  aboutToDisappear() {
+    console.info('LiftCycle aboutToDisappear');
+  }
+
+  build() {
+    Column() {
+      // this.showChild为true，创建Child子组件，执行Child aboutToAppear
+      if (this.showChild) {
+        Child()
+      }
+      // this.showChild为false，删除Child子组件，执行Child aboutToDisappear
+      Button('delete Child')
+        .margin(20)
+        .backgroundColor(this.btnColor)
+        .onClick(() => {
+          this.showChild = false;
+        })
+      // push到page页面，执行onPageHide
+      Button('push to next page')
+        .onClick(() => {
+          router.pushUrl({ url: 'pages/LifeCycleDetail' });
+        })
+    }
+
+  }
+}
+
+@Component
+struct Child {
+  @State title: string = 'SUNYAZHOU.COM';
+  // 组件生命周期
+  aboutToAppear() {
+    console.info('Child aboutToAppear')
+  }
+
+  // 组件生命周期
+  aboutToDisappear() {
+    console.info('Child aboutToDisappear')
+  }
+
+  build() {
+    Text(this.title).fontSize(50).margin(20).onClick(() => {
+      this.title = 'SUNYAZHOU.COM ArkUI';
+    })
+  }
+}
+```
+
+LifeCycleDetail代码如下
+
+``` ts
+@Entry
+@Component
+struct LifeCycleDetail {
+  @State textColor: Color = Color.Black;
+  @State num: number = 0
+
+  onPageShow() {
+    this.num = 5
+    console.log("LifeCycleDetail onPageShow");
+  }
+
+  onPageHide() {
+    console.log("LifeCycleDetail onPageHide");
+  }
+
+  onBackPress() { // 不设置返回值按照false处理
+    this.textColor = Color.Grey
+    this.num = 0
+    console.log("LifeCycleDetail onBackPress");
+  }
+
+  aboutToAppear() {
+    this.textColor = Color.Blue
+  }
+
+  build() {
+    Column() {
+      Text(`num 的值为：${this.num}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .fontColor(this.textColor)
+        .margin(20)
+        .onClick(() => {
+          this.num += 5
+        })
+    }
+    .width('100%')
+  }
+}
+```
+当我们启动预览的时候声明周期函数如下:
+
+``` sh
+app Log: LiftCycle aboutToAppear
+app Log: Child aboutToAppear
+app Log: LiftCycle onPageShow
+```
+
+当我们点击Push的时候
+
+``` sh
+app Log: LiftCycle onPageHide
+app Log: LifeCycleDetail onPageShow
+```
+
+点击返回的时候
+
+``` sh
+LifeCycleDetail onBackPress
+LifeCycleDetail onPageHide
+LiftCycle onPageShow
+```
+
+删除 Child的时候
+
+``` sh
+app Log: Child aboutToDisappear
+```
+
+![](/assets/images/20240119ArkTSBasic/EntryLifeCycle.gif)
+
+[页面和自定义组件生命周期 官方文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-page-custom-components-lifecycle-0000001630265125-V2)
+
+
 ### 基础类型和函数方法
 
 ``` ts
