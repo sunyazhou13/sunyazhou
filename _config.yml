@@ -42,7 +42,7 @@ google_site_verification: Xo29j227HYVdC-vDA_-qJwvDP3PIo-lC78CFeBvhrDA #已经通
 baseurl: ''
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Asia/Harbin
+timezone: Asia/Beijing
 
 disqus:
   comments: false  # boolean type, the global switch for posts comments.
