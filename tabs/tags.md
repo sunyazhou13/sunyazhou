@@ -1,6 +1,7 @@
 ---
 title: 标签
 type: tags
+date: 2018-08-08 08:08:08
 # All the Tags of posts.
 # v2.0
 # https://github.com/cotes2020/jekyll-theme-chirpy
