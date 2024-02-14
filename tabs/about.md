@@ -22,8 +22,6 @@ title: The Mr. Sun's Work Notes
 
 **腾讯音乐娱乐** 2022~至今
 
-![](/assets/images/aboutme/tme.webp)
-
 负责开发酷我音乐app. 
 
 **快手** 2018~2021   
@@ -58,30 +56,19 @@ title: The Mr. Sun's Work Notes
 
 ## 爱好
 
-### 台球
-
-![](/assets/images/aboutme/cue8ball.webp)
-![](/assets/images/aboutme/cue8ball1.webp)
-
-### 摩托车
-
-![](/assets/images/aboutme/fixmoto.webp)
-
-### 羽毛球
-
-![](/assets/images/aboutme/badminton.webp)
-
-### 厨艺
-
-![](/assets/images/aboutme/cook.webp)
+### 台球  
+![](/assets/images/aboutme/cue8ball.webp)  
+### 摩托车  
+![](/assets/images/aboutme/fixmoto.webp)  
+### 羽毛球  
+![](/assets/images/aboutme/badminton.webp)  
 
 --- 
 
-
 ## 人生格言
 
-\- **人还得用实力去赢得别人的尊重.**  
-\- **不断学习,与时俱进.**
+**人还得用实力去赢得别人的尊重.**  
+**不断学习,与时俱进.**
 
 --- 
 
@@ -90,7 +77,7 @@ title: The Mr. Sun's Work Notes
 搭建这个博客可谓填坑无数,血泪交加,最终才得以成功搭建博客.  
 
 start.  
-2014年了解相关博客支持和git...FAILED. 
+2014年了解相关博客知识和git...FAILED. 
 
 retry...  
 2015年在大神(我的小伙伴宇光)[不会开机的男孩](http://studentdeng.github.io/)的帮助下尝试搭建配置github pages...FAILED.  
