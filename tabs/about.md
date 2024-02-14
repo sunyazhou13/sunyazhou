@@ -23,12 +23,12 @@ title: The Mr. Sun's Work Notes
 ![红松](/assets/images/aboutme/hongsong.webp)    
 奔流到江千年不休萧红笔下的呼兰河，
 ![呼兰河](/assets/images/aboutme/hulanhe.webp)
-越海出关行千里一往无前闯关东的先民，一二九抗日救亡运动的主要领导者[林枫](https://baike.baidu.com/item/%E6%9E%97%E6%9E%AB/60298)，
-![林枫](/assets/images/aboutme/linfeng.webp)
-党对敌斗争隐蔽战线上的杰出战士[于炳然](https://baike.baidu.com/item/%E4%BA%8E%E7%82%B3%E7%84%B6/5862027)，
-![于炳然](/assets/images/aboutme/yubingran.webp)
-新中国第一位女拖拉机手一元人民币原型人物梁军  
-![人民币一元圆形人物梁军](/assets/images/aboutme/rmb1.webp)
+越海出关行千里一往无前闯关东的先民，一二九抗日救亡运动的主要领导者[林枫](https://baike.baidu.com/item/%E6%9E%97%E6%9E%AB/60298),  
+![林枫](/assets/images/aboutme/linfeng.webp)  
+党对敌斗争隐蔽战线上的杰出战士[于炳然](https://baike.baidu.com/item/%E4%BA%8E%E7%82%B3%E7%84%B6/5862027),  
+![于炳然](/assets/images/aboutme/yubingran.webp)  
+新中国第一位女拖拉机手一元人民币原型人物梁军,  
+![人民币一元圆形人物梁军](/assets/images/aboutme/rmb1.webp)  
 唱响世界壮怀激烈的《中国人民志愿军战歌》词作者麻扶摇，开辟出贫铁矿高效开发的鞍钢奠基人邵安林，中国第一代原子弹、火箭、洲际导弹遥控设计者孙玉，帝王将相一人扮，才子佳人双手提的皮影，妙手挥天地情洒沃土间的剪纸画，板上刀风劲，稻菽暗香来的版画，春天里水天一色播种希望的插秧人，夏日里整齐待发粒粒饱满的鲜玉米，秋天里摇铃的大豆，弯腰的稻谷，飘香的沃野，凛冽的冬季飞雪中敬畏天地的那份肃穆和庄严。这地方叫绥化，不要做一个在这生活一辈子却对它的人文和历史了解甚少的无知者。
 
 沿着前辈们留下的路继续前行.
