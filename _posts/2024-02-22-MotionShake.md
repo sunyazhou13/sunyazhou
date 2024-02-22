@@ -2,7 +2,6 @@
 layout: post
 title: 运动传感器摇晃检测优化
 date: 2024-02-22 07:56 +0000
-author: "sunyazhou"
 categories: [iOS, SwiftUI]
 tags: [iOS,iPadOS,watchOS, SwiftUI]
 typora-root-url: ..
