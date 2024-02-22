@@ -22,13 +22,13 @@ typora-root-url: ..
 
 很显然用户使用摇一摇手机切换歌曲的灵敏度太高了.那怎么调整灵敏度到一个合理区间呢？
 
-## 实现摇晃动作的几种方式
+# 实现摇晃动作的几种方式
 
 * 1.系统事件
 * 2.CMMotionManager加速计api
 * 3.UIAccelerometer
 
-### 系统的摇一摇事件
+## 系统的摇一摇事件
 
 我们可以写一个继承自`UIResponder`的类,实现如下方法
 
@@ -68,7 +68,7 @@ typora-root-url: ..
 
 > 然而这种模式没有入口让我设置阈值控制摇一摇的灵敏度
 
-### CMMotionManager
+## CMMotionManager
 
 首先先搞清楚这里有啥,iOS 中常见传感器如下所示:
 
@@ -129,7 +129,7 @@ CMMotionManager 是 `Core Motion` 库的核心类，负责获取和处理手机�
 @end
 ```
 
-#### 实现原理
+### 实现原理
 
 ``` objc
 typedef struct {
@@ -155,7 +155,7 @@ if (fabs(acceleration.x) > threshold || fabs(acceleration.y) > threshold || fabs
 
 `2.45`是我测试出来比较适合大部分人手摇晃的力量,并且避免轻微晃动触发得出的理想值.
 
-#### 队列控制
+### 队列控制
 
 当我使用`CMMotionManager`时注意,最好是放在一个单独的队列中.主要是担心放主线程影响主线程性能.
 
@@ -164,7 +164,7 @@ if (fabs(acceleration.x) > threshold || fabs(acceleration.y) > threshold || fabs
 [self.motionManager startAccelerometerUpdatesToQueue:customeMotionOperationQueue withHandler:..];
 ```
 
-#### 频率优化
+### 频率优化
 
 因为根据上述原理介绍我们可以通过x, y, z轴的加速度来检测当前是否是摇晃,但是有可能 上下操作过快会导致检测触发多次,为了控制 多次之间的间隙太短问题,我们通过如下代码控制频率
 
@@ -190,7 +190,7 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 
 这样就控制了加速计多次检测触发频率比较频繁的回调问题.
 
-#### 编写工具类
+### 编写工具类
 
 然后写个工具类,把上述的内容全部放到一个工具类中供大家使用, 我们写一个MTCMMotionTool类用于封装加速计传感器的实现
 
@@ -320,7 +320,7 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 
 以上就是 CMMotionManager方案的实现代码.
 
-### UIAccelerometer
+## UIAccelerometer
 
 这个类远古时期的方案,从iOS2.0~iOS5.0的方式, 现在都iOS17时代了,我觉得它应该领退休金了,可是它坚持依然坚守岗位,依然在发挥作用.
 
