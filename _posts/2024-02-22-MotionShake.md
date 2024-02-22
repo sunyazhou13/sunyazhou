@@ -2,16 +2,18 @@
 layout: post
 title: 运动传感器摇晃检测优化
 date: 2024-02-22 07:56 +0000
+author: "sunyazhou"
 categories: [iOS, SwiftUI]
 tags: [iOS,iPadOS,watchOS, SwiftUI]
 typora-root-url: ..
 ---
 
+![](/assets/images/20240222MotionShake/CMMotion.webp)
+
 # 前言
 
 本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或使用,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,这样您将能在第一时间获取本站信息.
 
-![](/assets/images/20240222MotionShake/CMMotion.webp)
 
 ## 背景说明
 
