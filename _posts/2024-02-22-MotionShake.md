@@ -133,9 +133,9 @@ CMMotionManager 是 `Core Motion` 库的核心类，负责获取和处理手机�
 实现原理：通过x、y、z三个轴的方向的加速度计算出摇动手机时，手机摇动方向的加速度a,
 
 $$
-\begin{align*}  
+\begin{align}  
   g = \sqrt{x^2+y^2+z^2}
-\end{align*}  
+\end{align}  
 $$
 
 
