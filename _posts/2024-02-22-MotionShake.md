@@ -133,10 +133,11 @@ CMMotionManager 是 `Core Motion` 库的核心类，负责获取和处理手机�
 实现原理：通过x、y、z三个轴的方向的加速度计算出摇动手机时，手机摇动方向的加速度a,
 
 $$
-\begin{align*}
+\begin{align*}  
   g = \sqrt{x^2+y^2+z^2}
-\end{align*}
+\end{align*}  
 $$
+
 
 加速计中的单位为：g(重力加速度9.8米/秒), 当g > 1.6, 记录一次摇动.参考范围(2.0~3.0).
 
