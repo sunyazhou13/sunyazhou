@@ -935,7 +935,42 @@ struct UniversalEventDemo {
 
 ![](/assets/images/20240119ArkTSBasic/ClickEvent.webp)  
 
+## 组件通用特性-触摸事件
 
+``` ts
+@Entry
+@Component
+struct UniversalEventDemo {
+  @State message: string = 'https://www.sunyazhou.com/';
+  @State eventType :string = ''
+  build() {
+    Column(){
+      Row() {
+        Button('按钮1', {type: ButtonType.Normal}).width('100').height('66')
+          .onTouch((event: TouchEvent)=> {
+            if (event.type == TouchType.Down) {
+              this.eventType = '按下-Down'
+            }
+            if (event.type == TouchType.Up) {
+              this.eventType = '抬起-Up'
+            }
+            if (event.type == TouchType.Move) {
+              this.eventType = '触摸中-Move'
+            }
+            this.message = '触摸类型:'+ this.eventType + '\n' +
+              'x:' + event.touches[0].x + '\n' +
+              'y:' + event.touches[0].y + '\n' +
+              '宽度:' + event.target.area.width + '\n'
+              '高度:' + event.target.area.height + '\n'
+          })
+      }
+      Text(this.message).margin(20).fontSize(12)
+    }.height('100%').alignItems(HorizontalAlign.Start).padding({top: 33, left: 50})
+  }
+}
+```
+
+![](/assets/images/20240119ArkTSBasic/TouchEvent.gif)  
 
 # 总结
 
