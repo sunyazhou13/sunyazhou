@@ -906,6 +906,37 @@ Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) <ArkTSChec
 
 [ForEach:循环渲染](官方文档)
 
+## 组件通用特性-点击事件
+
+我们可以通过点击事件对象拿到相应的位置信息.
+
+``` ts
+@Entry
+@Component
+struct UniversalEventDemo {
+  @State message: string = 'https://www.sunyazhou.com/';
+  //TODO 所有的 组件 的 通用特性之 事件系
+  build() {
+    Column(){
+      Row() {
+        Button('按钮1', {type: ButtonType.Normal}).width('100').height('66')
+          .onClick((event: ClickEvent) => {
+            this.message =
+              `屏幕X:${event.windowX} \n屏幕Y:${event.windowY} \n按钮X:${event.x} \n按钮Y:${event.y} \n宽度:${event.target.area.width} \n高度:${event.target.area.height}`
+          })
+      }
+      Text(this.message).margin(20).fontSize(12)
+    }.height('100%').alignItems(HorizontalAlign.Start).padding({top: 33, left: 50})
+  }
+}
+```
+
+`ClickEvent `类可以拿到如下各种变量
+
+![](/assets/images/20240119ArkTSBasic/ClickEvent.webp)  
+
+
+
 # 总结
 
 随时积累记录
