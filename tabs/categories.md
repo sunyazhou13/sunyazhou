@@ -1,5 +1,6 @@
 ---
 title: 分类
+icon: fas fa-stream  
 type: categories
 # All the Categories of posts
 # v2.0

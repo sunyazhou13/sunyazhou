@@ -1,5 +1,6 @@
 ---
 title: 归档
+icon: fas fa-archive  
 type: archives
 # The Archives of posts.
 # v2.0

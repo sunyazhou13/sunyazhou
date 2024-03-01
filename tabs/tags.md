@@ -1,5 +1,6 @@
 ---
 title: 标签
+icon: fas fa-tags
 type: tags
 date: 2018-08-08 08:08:08
 # All the Tags of posts.
