@@ -125,9 +125,33 @@ FileTransfer finish, Size:1823388, File count = 1, time:140ms rate:13024.20kB/s
 
 通过上述操作我们就从华为的鸿蒙手机中把相应的文件传到了我们的macOS上了
 
+
 ## 其它操作
 
 比如把文件 从macOS上传到鸿蒙手机上 这里就不一一测试了,这样操作非常方便,完全命令行式的方式
+
+
+## 使用IDE 设备文件浏览工具(2024年3月2日更新)
+
+
+在最新版本的Dev-Eco Studio(DevEco Studio NEXT Developer Preview2)中,加入了新的设备信息浏览工具
+
+位置在IDE的右下角
+![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/DeviceFileBrowserEntry.webp),
+![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/DeviceFileBrowser.webp)
+
+这里拿截图举个例子,上述是截图的图片保存路径.
+
+## 更新新版本hdc工具的环境变量配置
+
+``` sh
+export PATH=$PATH:~/Library/Huawei/sdk/HarmonyOS-NEXT-DP2/base/toolchains
+export HDC_SERVER_PORT=7035
+export OHPM_HOME=~/Library/Huawei/ohpm
+export PATH=${OHPM_HOME}/bin:${PATH}
+```
+
+我用的`.zshrc`的文件,所以环境变量写到了`.zshrc`里面.
 
 # 总结
 
