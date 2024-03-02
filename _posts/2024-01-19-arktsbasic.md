@@ -972,6 +972,58 @@ struct UniversalEventDemo {
 
 ![](/assets/images/20240119ArkTSBasic/TouchEvent.gif)  
 
+## 组件通用的尺寸排版学习
+
+``` ts
+@Entry
+@Component
+struct LayoutDemo {
+  build() {
+    Column() {
+      Text('组件通用的尺寸排版学习')
+      Divider()
+      Row() {
+        Text('https://www.sunyazhou.com/').fontSize(20).fontColor(Color.Green).width('90%')
+          .textAlign(TextAlign.Center)
+      }
+      .backgroundColor("#00F5FF")
+      Row(){
+        Text('左侧').fontSize(20).backgroundColor(Color.Yellow).height(100)
+        Row() {
+          Row() {
+            Text('本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. ' +
+              '本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或使用,' +
+              '请尊重版权并且保留原文链接,谢谢您的理解合作.' +
+              ' 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,' +
+              '这样您将能在第一时间获取本站信息.')
+              .fontSize(15)
+              .fontColor(Color.Pink)
+              .width('90%')
+          }
+        }
+        .width(200)
+        .height(200)
+        .backgroundColor(Color.Gray)
+        .padding(20) //外边距
+        .margin({top: 28, bottom: 28, left:20, right:20}) //内边距
+        .border({width: 10, color: Color.Blue}) //内部边框
+
+        Text('右侧').fontSize(22).backgroundColor(Color.Red).backgroundColor(Color.Green)
+      }
+      Row() {
+        Text('© 2024 sunyazhou. 保留部分权利').fontSize(20).fontColor(Color.White).width('90%')
+          .textAlign(TextAlign.Center)
+      }
+      .backgroundColor(Color.Orange)
+    }
+    .backgroundColor(Color.Transparent)
+  }
+}
+```
+
+![](/assets/images/20240119ArkTSBasic/LayoutStudy1.webp) 
+
+
 # 总结
 
 随时积累记录
