@@ -1098,6 +1098,57 @@ Column({ space: 8}) {
 
 ![](/assets/images/20240119ArkTSBasic/LayoutStudy3.webp) 
 
+### 组件的对齐方式
+
+两者一致的特点（特点: 从外到内的获取宽高）
+
+Column 主轴方向↓, 交叉轴→  justifyContent 垂直
+Row 主轴方向→,  交叉轴↓ justifycontent 水平
+
+### Flex可自主选择水平和垂直布局容器
+
+* **direction: FlexDirection.Column**  纵向
+* **direction: FlexDirection.Row**  横向
+
+``` ts
+@Entry
+@Component
+struct FlexPage {
+  build() {
+    Column({space: 20}) {
+      Flex({
+        direction: FlexDirection.Row, //这里Row和Column自主选择
+        justifyContent: FlexAlign.SpaceEvenly, //主轴方向 .Column垂直 .Row水平
+        alignItems: ItemAlign.Start, //交叉轴方向 .Cotumn 左边开始 右边开始 .Row
+        //wrap: FlexWrap.Wrap //换行
+        wrap: FlexWrap.NoWrap //不换行
+      }) {
+        Text("10").width('6%').height(60).backgroundColor(Color.Orange)
+        Text("20").width('20%').height(70).backgroundColor(Color.Red)
+        Text("30").width('30%').height(80).backgroundColor(Color.Blue)
+        Text("40").width('16%').height(90).backgroundColor(Color.Black)
+        Text("50").width('50%').height(100).backgroundColor(Color.Pink)
+        Text("60").width('30%').height(90).backgroundColor(Color.Brown)
+        Text("70").width('15%').height(120).backgroundColor(Color.White)
+      }
+      .height(180)
+      .width('90%')
+      .backgroundColor(Color.Gray)
+    }
+    .backgroundColor('#ff8ce53d')
+    .width('100%')
+  }
+}
+```
+
+下面是Column的对齐方向
+
+![](/assets/images/20240119ArkTSBasic/FlexColumn.webp) 
+
+下面是Row的对齐方向
+
+![](/assets/images/20240119ArkTSBasic/FlexRow.webp) 
+
 
 # 总结
 
