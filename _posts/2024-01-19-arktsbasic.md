@@ -1023,6 +1023,81 @@ struct LayoutDemo {
 
 ![](/assets/images/20240119ArkTSBasic/LayoutStudy1.webp) 
 
+`position`和`markAnchor`,以及`offset`的使用如下.
+
+``` ts
+@Entry
+@Component
+struct LayoutDemo2 {
+  build() {
+    Column({space:8}) { //
+      Row() {
+        Text('A').fontSize(24).fontColor(Color.Blue).width('25%').backgroundColor(Color.Red)
+        Text('B').fontSize(24).fontColor(Color.Blue).width('25%').backgroundColor(Color.Black)
+        Text('C').fontSize(24).fontColor(Color.Blue).width('25%').backgroundColor(Color.Yellow)
+        Text('D').fontSize(24).fontColor(Color.Blue).width('25%').backgroundColor(Color.Grey)
+      }
+      .backgroundColor(Color.Green)
+      .width('100%')
+      .height(100)
+      .direction(Direction.Rtl)
+
+      Divider()
+      Column({space: 8}) {
+        Row() {
+          Text('A').fontSize(24).fontColor(Color.Orange).width('25%').backgroundColor(Color.Red)
+          Text('B').fontSize(24).fontColor(Color.Orange).width('25%').backgroundColor(Color.Black)
+            .position({x: 66, y: 10})  //这种指定x y 适配性较差
+          Text('C').fontSize(24).fontColor(Color.Orange).width('25%').backgroundColor(Color.Yellow)
+          Text('D').fontSize(24).fontColor(Color.Orange).width('25%').backgroundColor(Color.Grey)
+            .position({x: '70%',y: '70%'}) //推荐方式适配性比较好
+        }
+        .backgroundColor(Color.Green)
+        .width('90%')
+        .height(100)
+        .direction(Direction.Ltr)
+      }
+      Divider()
+      //当前 mark  默认: .markAnchor({x: 0, y: 0})
+      Column({ space: 8}) {
+        Stack() {
+          Row().width(111).height(111).backgroundColor(Color.Grey)
+        }
+        Text("100").fontSize(22).fontColor(Color.Black).width('25').height(25).backgroundColor(Color.Red)
+          .markAnchor({x: 88, y: 100}) //自己当前值 + x 80, y 100.
+        Text("200").fontSize(22).fontColor(Color.Black).width('25').height(25).backgroundColor(Color.Green)
+          .markAnchor({x: 88, y: 100}) //自己当前值 + x 80, y 100.
+        Text("300").fontSize(22).fontColor(Color.Black).width('25').height(25).backgroundColor(Color.Blue)
+          .markAnchor({x: -88, y: 160})
+        Text("400").fontSize(22).fontColor(Color.Black).width('25').height(25).backgroundColor(Color.Red)
+          .markAnchor({x: -88, y: 160})
+      }
+    }
+  }
+}
+```  
+
+![](/assets/images/20240119ArkTSBasic/LayoutStudy2.webp) 
+
+``` ts
+//当前 offset
+Column({ space: 8}) {
+  Stack() {
+    Row().width(111).height(111).backgroundColor(Color.Grey)
+  }
+  Text("100").fontSize(22).fontColor(Color.Black).width('25').height(25).backgroundColor(Color.Red)
+    .offset({x: '-22%', y: '-12%'}) //自己当前值 + x值%, y值%.
+  Text("200").fontSize(22).fontColor(Color.Black).width('25').height(25).backgroundColor(Color.Green)
+    .offset({x: '-22%', y: '-12%'}) //自己当前值 + x值%, y值%.
+  Text("300").fontSize(22).fontColor(Color.Black).width('25').height(25).backgroundColor(Color.Blue)
+    .offset({x: '22%', y: '-20%'}) //自己当前值 + x值%, y值%.
+  Text("400").fontSize(22).fontColor(Color.Black).width('25').height(25).backgroundColor(Color.Red)
+    .offset({x: '22%', y: '-20%'}) //自己当前值 + x值%, y值%.
+}
+```
+
+![](/assets/images/20240119ArkTSBasic/LayoutStudy3.webp) 
+
 
 # 总结
 
