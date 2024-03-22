@@ -32,7 +32,7 @@ PE工具箱制作
 下载地址:链接：[http://www.usbrun.com/](http://www.usbrun.com/)
 
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkgqy53nj20qn0d7gu0.webp)
+![](/assets/images/20190424WindowsResources/1.webp)
 
 下载精简版本好后 先把杀毒软件关掉 ！！  双击安装一下此软件到电脑上 ，安装好软件后打开  ，如果软件提示更新，可以忽略，不需要更新！！
  
@@ -42,7 +42,7 @@ PE工具箱制作
 
 要是看不到设备的话， 把U盘重新插一下
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkgqtg3cj20km0efwih.webp)
+![](/assets/images/20190424WindowsResources/2.webp)
 
 点一键制作然后等制作完成就OK！！ 制作完成之后 点一下模拟启动看下U盘能不能启动，能的话就OK。关掉即可
 
@@ -57,9 +57,9 @@ WIN7 64位（B360B450锐龙二代CPU主板不支持）
 
 
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkknutp5j20le07ndhs.webp)
+![](/assets/images/20190424WindowsResources/3.webp)
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkknlhboj20nr0543yh.webp)
+![](/assets/images/20190424WindowsResources/4.webp)
 
 
 ## WIN7~10 64位
@@ -72,11 +72,11 @@ ed2k://|file|cn_windows_10_business_edition_version_1803_updated_sep_2018_x64_dv
 
 下载参考：
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkmns9ewj20w60n5djh.webp)  
+![](/assets/images/20190424WindowsResources/5.webp)
 
 下载好的系统直接拷贝到您刚刚制作好的的U盘里，随便放什么位置都可以。
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkmnyn49j20q10hztgf.webp)
+![](/assets/images/20190424WindowsResources/6.webp)
 
 
 ## 设置U盘启动步骤
@@ -90,11 +90,11 @@ ed2k://|file|cn_windows_10_business_edition_version_1803_updated_sep_2018_x64_dv
 
 >（注意：选择不带UEFI的选项）
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkogn1kzj20pc0ige62.webp)
+![](/assets/images/20190424WindowsResources/7.webp)
 
 出现U盘启动界面 如下图选择  启动WIN10 PE X 64 ，别的不用去选择。 
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkogdvc2j20kg0feaot.webp)
+![](/assets/images/20190424WindowsResources/8.webp)
 
 
 ## 分区安装系统步骤
@@ -109,18 +109,18 @@ AHCI模式是主板自带的 新主板都支持 ，如果有的老的主板是ID
 
  就要首先打开DG分区工具箱进行分区处理 ，如下图
  
- ![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkql68yej2087095n03.webp)  
+![](/assets/images/20190424WindowsResources/9.webp)
  
 点击分区工具 之后 会看到您的硬盘  这时候 可以选择您的新硬盘之后 点击上面的快速分区 如下图 
  
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkqlcps7j20sk0le0vb.webp)  
+![](/assets/images/20190424WindowsResources/10.webp)
 
 在新的页面中 你可以选择分几个区  多少容量 都可以自行填写 别的不需要去改变 ，另外右下角 就是4K对齐，只许勾选即可，如下图
 
 > 注：固态硬盘需要选择4K，机械硬盘不用现在 ，选择了会导致进不了系统
 
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkqlfbuwj20sg0lcdix.webp)
+![](/assets/images/20190424WindowsResources/11.webp)
 
 
 分区好后关闭分区接口窗口看下一步操作
@@ -135,12 +135,12 @@ AHCI模式是主板自带的 新主板都支持 ，如果有的老的主板是ID
 * ②选择需要安装系统的分区。[可以根据分区容量格式信息来判断分区]
 * ③点击执行按钮等待系统安装完成后重启拔掉U盘。
 
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dkteiu6oj20sh0lcndo.webp)  
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dktdvyxqj20sg0lcjz6.webp)  
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dktdt7xvj20sg0ldqaq.webp)  
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dktdmj5lj20s70lcwmd.webp)  
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dktddlauj20se0lc0wb.webp)  
-![](http://ww1.sinaimg.cn/large/bf8500b1gy1g2dktdxzdgj20sg0ldgtn.webp)  
+![](/assets/images/20190424WindowsResources/12.webp)
+![](/assets/images/20190424WindowsResources/13.webp)
+![](/assets/images/20190424WindowsResources/14.webp)
+![](/assets/images/20190424WindowsResources/15.webp)
+![](/assets/images/20190424WindowsResources/16.webp)
+![](/assets/images/20190424WindowsResources/17.webp)
 
 > PS：等进度条走完了  提示重启的时候一定要拔掉U盘   再重启哦！！之后就可以正常进入安装系统过程了，等待大概5-10分钟左右装好重启即可正常使用了  
 
