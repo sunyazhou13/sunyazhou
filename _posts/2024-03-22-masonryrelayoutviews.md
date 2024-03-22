@@ -36,7 +36,7 @@ const CGSize MTSubviewSize60_60 = CGSizeMake(60, 60);
     NSArray <UIView *> *allEntries = [[self.allEntryContainerView subviews] sortedArrayUsingDescriptors:[NSArray arrayWithObject:ascendingSort]];
     if (allEntries.count == 0) { return; }
     if (allEntries.count == 1) {
-        UIView *entryView = [allEntries kw_objectAtIndex:0];
+        UIView *entryView = [allEntries objectAtIndex:0];
         [entryView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(MTSubviewSize60_60);
             make.right.equalTo(self.allEntryContainerView.mas_right).offset(-10);
