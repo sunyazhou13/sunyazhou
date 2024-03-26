@@ -202,7 +202,7 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 
 这样就控制了加速计多次检测触发频率比较频繁的回调问题.
 
-### 编写工具类
+### 编写工具类 20240326更新,优化晃动算法,防止误触
 
 然后写个工具类,把上述的内容全部放到一个工具类中供大家使用, 我们写一个MTCMMotionTool类用于封装加速计传感器的实现
 
@@ -230,11 +230,21 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 
 // .m如下
 
+#define kFilteringFactor 0.1  // 初始化低通滤波器
+
 @interface MTCMMotionTool() <UIAccelerometerDelegate>
 
 @property (nonatomic, strong) CMMotionManager *motionManager;
 @property (nonatomic, strong) NSOperationQueue *cmMotionOperationQueue;
 @property (nonatomic, assign) CFAbsoluteTime beforeTime;
+
+/// 传统加速计暂存值
+@property (nonatomic, assign) UIAccelerationValue accelerationX;
+@property (nonatomic, assign) UIAccelerationValue accelerationY;
+@property (nonatomic, assign) double currentRawReading;
+
+/// 低通滤波器平滑用到加速计
+@property (nonatomic, assign) CMAcceleration previousAcceleration;
 
 @end
 
@@ -244,8 +254,13 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 {
     self = [super init];
     if (self) {
-        self.accelerateThreshold = 2.45;
+        self.accelerateThreshold = 0.0f;
         self.accelerateDetectedInterval = 1; //1s
+        CMAcceleration acceleration;
+        acceleration.x = 0;
+        acceleration.y = 0;
+        acceleration.z = 0;
+        self.previousAcceleration = acceleration;
         self.beforeTime = CFAbsoluteTimeGetCurrent(); // 记录执行摇晃检测逻辑前的时间
     }
     return self;
@@ -253,6 +268,7 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 
 #pragma mark -
 #pragma mark - private methods 私有方法
+//Note that when the updates are stopped, all operations in the given NSOperationQueue will be cancelled
 - (void)createOperationQueueIfNeeded
 {
     if (self.cmMotionOperationQueue == nil) {
@@ -267,10 +283,10 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
     }
     if (self.motionManager.isAccelerometerAvailable) {
         self.motionManager.accelerometerUpdateInterval = 0.2;
-        @weakify(self);
+        __weak typeof(self) weakSelf = self;
         [self.motionManager startAccelerometerUpdatesToQueue:self.cmMotionOperationQueue
                                                  withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-            @strongify(self);
+            __strong typeof(weakSelf) strongSelf = weakSelf;
             if (accelerometerData) {
                 [self detectShake:accelerometerData.acceleration];
             }
@@ -287,6 +303,17 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 }
 
 - (void)detectShake:(CMAcceleration)acceleration {
+    if (self.accelerationAlgorithm == MTAccelerationAlgorithmNormal) {
+        [self normalDetectShake:acceleration];
+    } else if (self.accelerationAlgorithm == MTAccelerationAlgorithmLPF) {
+        [self lpfDetectShake:acceleration];
+    } else {
+        //使用其它算法实现摇一摇
+    }
+}
+
+- (void)normalDetectShake:(CMAcceleration)acceleration
+{
     double threshold = self.accelerateThreshold;
     if (fabs(acceleration.x) > threshold || fabs(acceleration.y) > threshold || fabs(acceleration.z) > threshold) {
         // 检测到摇晃动作
@@ -305,6 +332,43 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
     }
 }
 
+//低通滤波器来平滑加速度数据，并计算加速度变化率。通过调整 kFilteringFactor 和阈值来适应具体需求，可以减少误触的可能性
+- (void)lpfDetectShake:(CMAcceleration)acceleration
+{
+    // 应用低通滤波器
+    CMAcceleration filteredAcceleration;
+    filteredAcceleration.x = (acceleration.x * kFilteringFactor) + (self.previousAcceleration.x * (1.0 - kFilteringFactor));
+    filteredAcceleration.y = (acceleration.y * kFilteringFactor) + (self.previousAcceleration.y * (1.0 - kFilteringFactor));
+    filteredAcceleration.z = (acceleration.z * kFilteringFactor) + (self.previousAcceleration.z * (1.0 - kFilteringFactor));
+
+    // 计算加速度变化率
+    double deltaX = fabs(filteredAcceleration.x - self.previousAcceleration.x);
+    double deltaY = fabs(filteredAcceleration.y - self.previousAcceleration.y);
+    double deltaZ = fabs(filteredAcceleration.z - self.previousAcceleration.z);
+
+    // 更新上一次加速度
+    self.previousAcceleration = filteredAcceleration;
+
+    // 判断是否发生了摇晃
+    double threshold = self.accelerateThreshold;
+    if (deltaX > threshold || deltaY > threshold || deltaZ > threshold) {
+        // 检测到摇晃动作
+        CFAbsoluteTime afterTime = CFAbsoluteTimeGetCurrent(); // 记录执行摇晃检测逻辑后的时间
+        CFTimeInterval timeDifference = afterTime - self.beforeTime; // 计算时间差 单位秒 s
+        CFTimeInterval intervalSenonds = self.accelerateDetectedInterval;
+        if (timeDifference >= intervalSenonds) { //控制检测前后间隔
+            NSLog(@"LFP算法检测到摇晃动作,距离上次检测: %.1f seconds", timeDifference);
+            self.beforeTime = CFAbsoluteTimeGetCurrent(); // 记录执行摇晃检测逻辑前的时间
+            if (self.didAcceleratorDectecdBlock) {
+                self.didAcceleratorDectecdBlock();
+            }
+            NSLog(@"LFP算法检测到摇晃动,{%.2f,%.2f,%.2f}",deltaX, deltaY, deltaZ);
+        } else {
+            NSLog(@"LFP算法检测到摇晃动作,间隔不满足 %.1f seconds,忽略本次检测!",intervalSenonds);
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark - public methods 公有方法
 - (void)startAccelerometer
@@ -318,6 +382,34 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 }
 
 #pragma mark -
+#pragma mark - UIAccelerometerDelegate
+#pragma mark- shake change song
+CGFloat KWCMMgrRadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;}
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+-(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
+    static double shakeDate = 0.0f;
+    self.accelerationX = acceleration.x * kFilteringFactor + self.accelerationX * (1.0 - kFilteringFactor);
+    self.accelerationY = acceleration.y * kFilteringFactor + self.accelerationY * (1.0 - kFilteringFactor);
+    if (fabs(acceleration.x) >= self.self.accelerateThreshold||
+        fabs(acceleration.y) >= self.accelerateThreshold ) {
+        if ([NSDate timeIntervalSinceReferenceDate] - shakeDate > self.accelerateDetectedInterval) {
+            self.accelerationX = acceleration.x * kFilteringFactor + self.accelerationX * (1.0 - kFilteringFactor);
+            self.accelerationY = acceleration.y * kFilteringFactor + self.accelerationY * (1.0 - kFilteringFactor);
+            self.currentRawReading =atan2(self.accelerationY, self.accelerationX);
+            float rotation = -KWCMMgrRadiansToDegrees(self.currentRawReading);
+            if (fabsf(rotation) > 70.0 ) {
+                if (self.didAcceleratorDectecdBlock) {
+                    self.didAcceleratorDectecdBlock();
+                }
+                shakeDate = [NSDate timeIntervalSinceReferenceDate];
+            }
+        }
+    }
+}
+
+#pragma mark -
 #pragma mark - life cycle 视图的生命周期
 - (void)dealloc
 {
@@ -327,7 +419,8 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
     }
 }
 
-@end  
+@end
+
 ```
 
 以上就是 CMMotionManager方案的实现代码.
