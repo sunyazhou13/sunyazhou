@@ -3,7 +3,7 @@ layout: post
 title: 使用Masonry处理UIView的safeArea边界布局问题
 date: 2020-04-07 11:54:39
 categories: [iOS]
-tags: [iOS, macOS, Objective-C, skills]
+tags: [iOS, macOS, Objective-C, Masonry]
 typora-root-url: ..
 ---
 
