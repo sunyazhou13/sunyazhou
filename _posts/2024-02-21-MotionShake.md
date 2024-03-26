@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 运动传感器摇晃检测优化
-date: 2024-02-22 07:56 +0000
+title: 运动传感器摇晃检测
+date: 2024-02-21 06:56 +0000
 categories: [iOS, SwiftUI]
-tags: [iOS,iPadOS,watchOS, SwiftUI]
+tags: [iOS, macOS,iPadOS,watchOS, SwiftUI]
 typora-root-url: ..
 ---
 
@@ -43,7 +43,9 @@ typora-root-url: ..
     }
 }
 ```
+
 比如在UIViewController中我们 实现上述代码
+
 
 ``` objc
 - (void)viewDidLoad {
@@ -73,9 +75,9 @@ typora-root-url: ..
 
 | 类型 | 作用 | 备注 |
 | ------| ------ | ------ |
-| 环境光传感器 | 感应光照强度 | 
-| 距离传感器	| 感应靠近设备屏幕的物体 | 
-| 磁力计传感器 | 感应周边磁场 | 
+| 环境光传感器 | 感应光照强度 | |
+| 距离传感器	| 感应靠近设备屏幕的物体 | |
+| 磁力计传感器 | 感应周边磁场 | |
 | 内部温度传感器	| 感应设备内部温度（非公开） | 
 | 湿度传感器	| 感应设备是否进水（非微电子传感器） | 
 | 陀螺仪	| 感应持握方式 | 
@@ -189,13 +191,13 @@ CFAbsoluteTime afterTime = CFAbsoluteTimeGetCurrent(); // 记录执行摇晃检�
 CFTimeInterval timeDifference = afterTime - self.beforeTime; // 计算时间差 单位秒 s
 CFTimeInterval intervalSenonds = 1.0;  
 if (timeDifference >= intervalSenonds) { //控制检测前后间隔
-    NSLog(@"检测到摇晃动作,距离上次检测: %.1f seconds", timeDifference);
+    //NSLog(@"检测到摇晃动作,距离上次检测: f seconds", timeDifference);
     self.beforeTime = CFAbsoluteTimeGetCurrent(); // 记录执行摇晃检测逻辑前的时间
     if (self.didAcceleratorDectecdBlock) {
         self.didAcceleratorDectecdBlock();
     }
 } else {
-    NSLog(@"检测到摇晃动作,间隔不满足 %.1f seconds,忽略本次检测!",intervalSenonds);
+    //NSLog(@"检测到摇晃动作,间隔不满足 f seconds,忽略本次检测!",intervalSenonds);
 }
 
 ```
@@ -206,20 +208,29 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 
 然后写个工具类,把上述的内容全部放到一个工具类中供大家使用, 我们写一个MTCMMotionTool类用于封装加速计传感器的实现
 
+//.h文件
+
 ``` objc
-// .h代码如下  
+typedef NS_ENUM(NSUInteger, MTAccelerationAlgorithm) {
+    MTAccelerationAlgorithmNormal = 0,  //常规算法摇一摇
+    MTAccelerationAlgorithmLPF    = 1,  //低通滤波器来平滑加速度 减少误触
+};
 
-#import <Foundation/Foundation.h>
-
-@interface MTCMMotionTool : NSObject
 /**
- 对于一般的摇一摇功能，阈值大小可以在1.0到2.0之间。
- 如果需要更高的灵敏度，可以选择较小的阈值，例如0.5到1.0。
- 如果需要较低的灵敏度，可以选择较大的阈值，例如2.0到3.0。
+ 利用门面模式,对外暴露统一接口
+ */
+@interface MTCMMotionTool : NSObject
+
+/**
+ 1.对于一般的摇一摇功能，阈值大小可以在1.0到2.0之间。
+   如果需要更高的灵敏度，可以选择较小的阈值，例如0.5到1.0。
+   如果需要较低的灵敏度，可以选择较大的阈值，例如2.0到3.0。
+ 2.对于LPF低通录波器平滑算法,阈值大小参考范围 0.33~0.88
 */
-@property (nonatomic, assign) CGFloat accelerateThreshold; //加速计灵敏度阈值,default 2.45.
+@property (nonatomic, assign) CGFloat accelerateThreshold; //加速计灵敏度阈值,Normal算法默认 2.45, LPF算法0.38(建议控制在0.33~0.88)
 @property (nonatomic, assign) CGFloat accelerateDetectedInterval; //加速计检查动作后的前后两次间隔时间,防止频繁检测执行 单位秒Senonds.default 1s.
 @property (nonatomic, copy) void (^didAcceleratorDectecdBlock)(void);
+@property (nonatomic, assign) MTAccelerationAlgorithm accelerationAlgorithm; //使用加速计 检测摇一摇算法类型
 
 //启动加速计
 - (void)startAccelerometer;
@@ -227,9 +238,11 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
 - (void)stopAccelerometer;
 
 @end
+```
 
-// .m如下
+//.m文件
 
+``` objc
 #define kFilteringFactor 0.1  // 初始化低通滤波器
 
 @interface MTCMMotionTool() <UIAccelerometerDelegate>
@@ -321,13 +334,13 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
         CFTimeInterval timeDifference = afterTime - self.beforeTime; // 计算时间差 单位秒 s
         CFTimeInterval intervalSenonds = self.accelerateDetectedInterval;
         if (timeDifference >= intervalSenonds) { //控制检测前后间隔
-            NSLog(@"检测到摇晃动作,距离上次检测: %.1f seconds", timeDifference);
+            //NSLog(@"检测到摇晃动作,距离上次检测: 1f seconds", timeDifference);
             self.beforeTime = CFAbsoluteTimeGetCurrent(); // 记录执行摇晃检测逻辑前的时间
             if (self.didAcceleratorDectecdBlock) {
                 self.didAcceleratorDectecdBlock();
             }
         } else {
-            NSLog(@"检测到摇晃动作,间隔不满足 %.1f seconds,忽略本次检测!",intervalSenonds);
+            //NSLog(@"检测到摇晃动作,间隔不满足 1f seconds,忽略本次检测!",intervalSenonds);
         }
     }
 }
@@ -357,14 +370,14 @@ if (timeDifference >= intervalSenonds) { //控制检测前后间隔
         CFTimeInterval timeDifference = afterTime - self.beforeTime; // 计算时间差 单位秒 s
         CFTimeInterval intervalSenonds = self.accelerateDetectedInterval;
         if (timeDifference >= intervalSenonds) { //控制检测前后间隔
-            NSLog(@"LFP算法检测到摇晃动作,距离上次检测: %.1f seconds", timeDifference);
+            //NSLog(@"LFP算法检测到摇晃动作,距离上次检测: 1f seconds", timeDifference);
             self.beforeTime = CFAbsoluteTimeGetCurrent(); // 记录执行摇晃检测逻辑前的时间
             if (self.didAcceleratorDectecdBlock) {
                 self.didAcceleratorDectecdBlock();
             }
-            NSLog(@"LFP算法检测到摇晃动,{%.2f,%.2f,%.2f}",deltaX, deltaY, deltaZ);
+            //NSLog(@"LFP算法检测到摇晃动,{2f,2f,2f}",deltaX, deltaY, deltaZ);
         } else {
-            NSLog(@"LFP算法检测到摇晃动作,间隔不满足 %.1f seconds,忽略本次检测!",intervalSenonds);
+            //NSLog(@"LFP算法检测到摇晃动作,间隔不满足 1f seconds,忽略本次检测!",intervalSenonds);
         }
     }
 }
