@@ -490,6 +490,51 @@ if (enableShake) {
 
 如果非要说UIAcceleration有啥优势的话,莫过于它不用在plist中添加隐私描述就能拿到用户传感器数据,不知道有没有啥适配问题如果不加隐私描述.
 
+### 2024年3月26日更新
+
+增加低通滤波器平滑算法,防止摇晃导致误触.
+
+``` objc
+
+//低通滤波器来平滑加速度数据，并计算加速度变化率。通过调整 kFilteringFactor 和阈值来适应具体需求，可以减少误触的可能性
+- (void)lpfDetectShake:(CMAcceleration)acceleration
+{
+    // 应用低通滤波器
+    CMAcceleration filteredAcceleration;
+    filteredAcceleration.x = (acceleration.x * kFilteringFactor) + (self.previousAcceleration.x * (1.0 - kFilteringFactor));
+    filteredAcceleration.y = (acceleration.y * kFilteringFactor) + (self.previousAcceleration.y * (1.0 - kFilteringFactor));
+    filteredAcceleration.z = (acceleration.z * kFilteringFactor) + (self.previousAcceleration.z * (1.0 - kFilteringFactor));
+
+    // 计算加速度变化率
+    double deltaX = fabs(filteredAcceleration.x - self.previousAcceleration.x);
+    double deltaY = fabs(filteredAcceleration.y - self.previousAcceleration.y);
+    double deltaZ = fabs(filteredAcceleration.z - self.previousAcceleration.z);
+
+    // 更新上一次加速度
+    self.previousAcceleration = filteredAcceleration;
+
+    // 判断是否发生了摇晃
+    double threshold = self.accelerateThreshold;
+    if (deltaX > threshold || deltaY > threshold || deltaZ > threshold) {
+        // 检测到摇晃动作
+        CFAbsoluteTime afterTime = CFAbsoluteTimeGetCurrent(); // 记录执行摇晃检测逻辑后的时间
+        CFTimeInterval timeDifference = afterTime - self.beforeTime; // 计算时间差 单位秒 s
+        CFTimeInterval intervalSenonds = self.accelerateDetectedInterval;
+        if (timeDifference >= intervalSenonds) { //控制检测前后间隔
+            //NSLog(@"LFP算法检测到摇晃动作,距离上次检测: 1f seconds", timeDifference);
+            self.beforeTime = CFAbsoluteTimeGetCurrent(); // 记录执行摇晃检测逻辑前的时间
+            if (self.didAcceleratorDectecdBlock) {
+                self.didAcceleratorDectecdBlock();
+            }
+            //NSLog(@"LFP算法检测到摇晃动,{2f,2f,2f}",deltaX, deltaY, deltaZ);
+        } else {
+            //NSLog(@"LFP算法检测到摇晃动作,间隔不满足 1f seconds,忽略本次检测!",intervalSenonds);
+        }
+    }
+}
+
+```
+
 
 # 总结
 
