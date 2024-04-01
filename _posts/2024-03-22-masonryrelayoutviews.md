@@ -287,3 +287,5 @@ CGFloat leadSpace = CGRectGetWidth(self.frame) - allEntries.count * MTContainerS
 # 总结
 
 深入了解Masonry的api使用.用高阶用法实现复杂的功能.
+
+[本文demo 点击下载](https://github.com/sunyazhou13/MasonryRelayoutDemo)
