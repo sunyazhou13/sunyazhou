@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 使用Masonry高阶方法对子视图统一布局,
+title: 使用Masonry高阶方法对子视图统一布局
 date: 2024-03-22 13:24 +0000
 categories: [iOS, SwiftUI]
 tags: [iOS,iPadOS,watchOS, SwiftUI,Masonry]
