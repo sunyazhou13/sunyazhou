@@ -111,6 +111,66 @@ XCode在 `Release`编译环境下默认会生成`dSYM`文件，而`Debug`编译�
 
 > 注意:_一个`Archiver`与`dSYM`文件一一对应,搞错了容易翻译不出来来源码的调用_
 
+## 还原符号命令 2024年04月03日更新
+
+``` sh
+atos -o KWPlayer.app.dSYM/Contents/Resources/DWARF/KWPlayer -arch arm64 -l 0x102100000 0x10720df70 0x10720a5ac 0x10720e13c 0x107211aa0 0x107215574 0x107211aa0 0x10720770c 0x10720772c 0x10720f6ec 0x10720f9e8 0x107208df0 0x1072039b8
+```
+输出如下:
+
+``` objc
+-[LOTLayerContainer display] (in KWPlayer) (LOTLayerContainer.m:385)
+-[LOTCompositionContainer displayWithFloatFrame:forceUpdate:] (in KWPlayer) (LOTCompositionContainer.m:107)
+-[LOTLayerContainer displayWithFloatFrame:forceUpdate:] (in KWPlayer) (LOTLayerContainer.m:411)
+-[LOTRenderGroup updateWithFrame:withModifierBlock:forceLocalUpdate:] (in KWPlayer) (LOTRenderGroup.m:142)
+-[LOTTrimPathNode updateWithFrame:withModifierBlock:forceLocalUpdate:] (in KWPlayer) (LOTTrimPathNode.m:62)
+-[LOTRenderGroup updateWithFrame:withModifierBlock:forceLocalUpdate:] (in KWPlayer) (LOTRenderGroup.m:142)
+-[LOTAnimatorNode updateWithFrame:withModifierBlock:forceLocalUpdate:] (in KWPlayer) (LOTAnimatorNode.m:51)
+-[LOTAnimatorNode updateWithFrame:withModifierBlock:forceLocalUpdate:] (in KWPlayer) (LOTAnimatorNode.m:54)
+-[LOTPathAnimator performLocalUpdate] (in KWPlayer) (LOTPathAnimator.m:36)
+-[LOTPathInterpolator pathForFrame:cacheLengths:] (in KWPlayer) (LOTPathInterpolator.m:0)
+-[LOTBezierPath LOT_addCurveToPoint:controlPoint1:controlPoint2:] (in KWPlayer) (LOTBezierPath.m:167)
+LOT_PointInCubicCurve (in KWPlayer) (CGGeometry+LOTAdditions.m:366)
+```
+
+`-l` 命令后可以接多个地址 可以用 `,`逗号和 空格隔开
+
+原始文件如下
+
+``` sh
+Heaviest stack for the target process:
+  5  ??? (dyld + 24012) [0x1be4d6dcc]
+  5  ??? (KWPlayer + 108397220) [0x1088602a4]
+  5  ??? (UIKitCore + 2276456) [0x19dbc0c68]
+  5  ??? (UIKitCore + 2278956) [0x19dbc162c]
+  5  ??? (GraphicsServices + 13560) [0x1ded1e4f8]
+  5  ??? (CoreFoundation + 210040) [0x19b79d478]
+  3  ??? (CoreFoundation + 211096) [0x19b79d898]
+  3  ??? (CoreFoundation + 215900) [0x19b79eb5c]
+  3  ??? (CoreFoundation + 222120) [0x19b7a03a8]
+  3  ??? (CoreFoundation + 225580) [0x19b7a112c]
+  3  ??? (UIKitCore + 696208) [0x19da3ef90]
+  3  ??? (UIKitCore + 696020) [0x19da3eed4]
+  3  ??? (UIKitCore + 698340) [0x19da3f7e4]
+  3  ??? (UIKitCore + 699596) [0x19da3fccc]
+  3  ??? (QuartzCore + 416484) [0x19cddbae4]
+  3  ??? (QuartzCore + 417340) [0x19cddbe3c]
+  2  ??? (QuartzCore + 445280) [0x19cde2b60]
+  2  ??? (QuartzCore + 419644) [0x19cddc73c]
+  1  ??? (KWPlayer + 84991856) [0x10720df70]
+  1  ??? (KWPlayer + 84977068) [0x10720a5ac]
+  1  ??? (KWPlayer + 84992316) [0x10720e13c]
+  1  ??? (KWPlayer + 85007008) [0x107211aa0]
+  1  ??? (KWPlayer + 85022068) [0x107215574]
+  1  ??? (KWPlayer + 85007008) [0x107211aa0]
+  1  ??? (KWPlayer + 84965132) [0x10720770c]
+  1  ??? (KWPlayer + 84965164) [0x10720772c]
+  1  ??? (KWPlayer + 84997868) [0x10720f6ec]
+  1  ??? (KWPlayer + 84998632) [0x10720f9e8]
+  1  ??? (KWPlayer + 84970992) [0x107208df0]
+  1  ??? (KWPlayer + 84949432) [0x1072039b8]
+
+```
 
 参考如下:
 
