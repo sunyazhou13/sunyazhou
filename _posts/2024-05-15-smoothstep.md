@@ -44,7 +44,7 @@ float a = min(max(0, a), maxValue); // 0 <= a <= 1
 return a;
 ```
 
-显然这种写法虽然一行代码搞定,显得NB多了,控制了这个值的最小和最大区间不超过范围.
+这种写法虽然一行代码搞定,显得NB多了,控制了这个值的最小和最大区间不超过范围.
 
 曾经还因为这个问题问过前公司的所有技术同学,我的提问如下 
 
@@ -76,7 +76,7 @@ Metal by Tutorials
 
 ``` c
 float color = smoothstep(0, params.width, in.position.x);
-return float4(color, color, color, 1);”
+return float4(color, color, color, 1);
 
 ```
 
