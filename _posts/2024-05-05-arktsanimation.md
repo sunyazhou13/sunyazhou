@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HarmonyOS组件内转场动画
+title: HarmonyOS动画分类
 date: 2024-05-05 11:05 +0000
 categories: [ArkUI, HarmonyOS]
 tags: [鸿蒙OS开发, HarmonyOS, ArkTS, Ark动画]
@@ -31,8 +31,90 @@ typora-root-url: ..
 
 详细资料来源[鸿蒙开发文档-动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-transition-animation-component-0000001862687721#ZH-CN_TOPIC_0000001862687721__transitioneffect10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
 
+## 显示动画(animateTo)
 
-# 组件内转场动画
+学过iOS开发都知道iOS中的显式动画是`[UIView animateWithDuratio...]`
+
+``` objc
++ (void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations API_AVAILABLE(ios(4.0)); 
+```
+
+在鸿蒙开发中,这种类型的动画叫做`animateTo`
+
+先看下示意图,我想让图片旋转90度,然后再回去,这在iOS中直接就改transfrom,并且把改动的代码放到上述UIView的animation中皆可,
+
+``` objc
+CGAffineTransformRotate(transform, M_PI_2); //旋转90°
+...
+
+CGAffineTransformIdentity;
+
+```
+
+![](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo.gif)
+
+这里 HarmonyOS的ArkUI示例代码演示:
+
+``` ts
+@Entry
+@Component
+struct MTAnimation2 {
+  @State message: string = '显式动画(animateTo)';
+  @State rotateValue: number = 0;
+  @State color: Color = Color.Blue;
+  @State isStart: boolean = false;
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Divider()
+          .height(20)
+        Image($r('app.media.sunyazhou'))
+          .width(333)
+          .height(333)
+          .rotate({
+            angle:this.rotateValue, //表面上是旋转功能， 实际上需要配合 x轴y抽z轴
+            x:0,
+            y:0,
+            z:1,
+          })
+          .onClick(() => {
+            animateTo({
+              duration: 1000, //ms
+              curve : Curve.EaseInOut, //动画速率
+              onFinish:() => {
+                this.message = "动画执行完成"
+                this.color = Color.Green
+              }
+            }, ()=> {
+              if (this.isStart) {
+                this.rotateValue = 0
+              } else  {
+                this.rotateValue = 90
+              }
+              this.isStart = !this.isStart
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+如果把`.rotate`中的x,y,z,都改成1并旋转625度的话是这样的
+
+![](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo2.gif)
+
+当我们在动画中连续点击动画的时候它很跟手,和iOS中的UIView Animation一样中间被打断直接执行下次显式动画,下图演示跟手效果.
+![](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo3.gif)
+
+[更多细节请访问 HarmonyOS官方文档 显式动画 (animateTo)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-explicit-animation-0000001862687717)
+
+## 组件内转场动画
 
 组件内转场动画
 
