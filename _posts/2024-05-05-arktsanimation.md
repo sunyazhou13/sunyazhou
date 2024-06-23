@@ -82,7 +82,7 @@ struct MTAnimation3 {
 ```
 >  注意 :.animation动画只对添加代码之前的属性生效,之后的属性不生效,[属性动画官网文档](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-animatorproperty-0000001815927688)
 
-## 显示动画(animateTo)
+## 显式动画(animateTo)
 
 学过iOS开发都知道iOS中的显式动画是`[UIView animateWithDuratio...]`
 
@@ -164,6 +164,63 @@ struct MTAnimation2 {
 ![](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo3.gif)
 
 [更多细节请访问 HarmonyOS官方文档 显式动画 (animateTo)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-explicit-animation-0000001862687717)
+
+## 关键帧动画
+
+关键帧动画在鸿蒙开发中是借助`UIContext`实现
+
+![](/assets/images/20240505ArkTSAnimation/HarmonyOSKeyframeAnimation.gif)
+
+``` ts
+// xxx.ets
+import { UIContext } from '@ohos.arkui.UIContext';
+@Entry
+@Component
+struct KeyframeDemo {
+  @State myScale: number = 1.0;
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext?.();
+  }
+
+  build() {
+    Column() {
+      Circle()
+        .width(100)
+        .height(100)
+        .fill("#46B1E3")
+        .margin(100)
+        .scale({ x: this.myScale, y: this.myScale })
+        .onClick(() => {
+          if (!this.uiContext) {
+            console.info("no uiContext, keyframe failed");
+            return;
+          }
+          this.myScale = 1;
+          // 设置关键帧动画整体播放3次
+          this.uiContext.keyframeAnimateTo({ iterations: 3 }, [
+            {
+              // 第一段关键帧动画时长为800ms，scale属性做从1到1.5的动画
+              duration: 800,
+              event: () => {
+                this.myScale = 1.5;
+              }
+            },
+            {
+              // 第二段关键帧动画时长为500ms，scale属性做从1.5到1的动画
+              duration: 500,
+              event: () => {
+                this.myScale = 1;
+              }
+            }
+          ]);
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
 
 ## 组件内转场动画
 
