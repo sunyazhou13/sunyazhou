@@ -31,6 +31,57 @@ typora-root-url: ..
 
 详细资料来源[鸿蒙开发文档-动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-transition-animation-component-0000001862687721#ZH-CN_TOPIC_0000001862687721__transitioneffect10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
 
+## 属性动画animation
+
+![](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimation.gif)
+
+``` ts
+import { SizeT } from '@ohos.arkui.node';
+
+@Entry
+@Component
+struct MTAnimation3 {
+  @State message: string = '迈腾大队长';
+  @State buttonSize: Size = {width: 266, height: 108};
+  @State didChanged: boolean = true;
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button("sunyazhou.com")
+          //.animation({}) // 公式：animation 增加到那个地方的后面，前面就会被animation管理，否则不生效
+          .onClick( ()=> {
+            console.log("点击sunyazhou.com按钮")
+            if (this.didChanged) {
+              this.buttonSize = {width: 166, height:80}
+            } else {
+              this.buttonSize = {width: 266, height:108}
+            }
+            this.didChanged = !this.didChanged //反置 交换
+          })
+          .width(this.buttonSize.width)
+          .animation({
+              duration: 1000,
+              curve: Curve.EaseInOut,
+              // iterations: 1, //执行次数,(动画来回算2次)
+              playMode: PlayMode.Alternate, //动画结束停在动画结束的位置
+              onFinish: ()=> {
+                console.log("动画执行完成")
+              }
+          }) //我只负责前面的代码 有动画，后面的代码，我不管(在这里之前的代码都受animation控制)
+          .height(this.buttonSize.height) //注意;这行代码不在动画范围内
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+>  注意 :.animation动画只对添加代码之前的属性生效,之后的属性不生效,[属性动画官网文档](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-animatorproperty-0000001815927688)
+
 ## 显示动画(animateTo)
 
 学过iOS开发都知道iOS中的显式动画是`[UIView animateWithDuratio...]`
