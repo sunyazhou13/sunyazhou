@@ -217,6 +217,33 @@ iOS系统还记录了上次设备重启的时间。可以通过如下API调用�
 
 `gettimeofday()`和`sysctl()`都会受系统时间影响,但他们二者做一个减法所得的值,就和系统时间无关了.这样就可以避免用户修改时间了。当然用户如果关机,过段时间再开机,会导致我们获取到的时间慢与服务器时间,真实场景中,慢于服务器时间往往影响较小,我们一般担心的是客户端时间快于服务器时间.
 
+以下这段代码也可以做到不被修改`local_absolute_n_clock ()`返回秒
+
+``` c++
+namespace
+{
+    mach_timebase_info_data_t init_mach_timebase_info()
+    {
+        mach_timebase_info_data_t info;
+        mach_timebase_info(&info);
+        return info;
+    }
+}
+
+int64_t CTimestamp::local_absolute_n_clock()
+{
+    static mach_timebase_info_data_t sTimebaseInfo = init_mach_timebase_info();
+    int64_t t = mach_absolute_time();
+    return t * sTimebaseInfo.numer / sTimebaseInfo.denom;
+}
+CTimestamp::CTimestamp()
+{
+    m_base_tm = time(0)*(1000*1000*1000);
+    m_base_clock = local_absolute_n_clock();
+}
+
+```
+
 # 总结
 
 本篇问题的解决难点的关键在于如果获取本地的时间,我们这里取的是`系统运行时间进行的差值计算法`.我没有尝试过 休眠 退后台等逻辑消耗的时长.但是我认为如果要做好工具类,要尝试计算后台消耗的时间计时时长,可以也可以通过系统运行时间的差值运算得到准确的时间.
