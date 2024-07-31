@@ -8,7 +8,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20240726UIViewrepresentable/UIViewRepresentable.webp)
+![](/assets/images/20240727Magnificationgesture/SwiftUI.webp)
 
 
 # 前言
