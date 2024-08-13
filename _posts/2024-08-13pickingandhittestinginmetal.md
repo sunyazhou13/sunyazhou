@@ -37,8 +37,8 @@ You’re going to store the model’s object ID into a texture in one render pas
 
 一下是picking技术的文章精选 
 
-[Picking and Hit-Testing in Metal](https://bit.ly/3rlzm9b)
-
+[Picking and Hit-Testing in Metal](https://bit.ly/3rlzm9b)  
+[Picking and Hit-Testing in Metal Demo](https://github.com/metal-by-example/metal-picking)
 
 # 总结
 
