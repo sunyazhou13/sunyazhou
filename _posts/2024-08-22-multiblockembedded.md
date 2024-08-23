@@ -22,7 +22,7 @@ typora-root-url: ..
 
 以下是一个示例，展示了如何在三层嵌套的方法中使用`weak self`和`strong self`：
 
-```objective-c
+``` objc
 - (void)outerMethod {
     __weak typeof(self) weakSelf = self;
     [self innerMethod1:^{
