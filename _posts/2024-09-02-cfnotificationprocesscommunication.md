@@ -251,5 +251,5 @@ struct BroadcastView: View {
 
 所以，就是这样了。如果你一直读到这里，我真的很感激。我希望这次对Darwin通知的探索能激发你以新的方式思考进程间通信。我迫不及待想看到你如何在应用中使用Darwin通知。请在下面的评论中告诉我你的想法和经验。你的反馈和想法总是受欢迎的！也别忘了与你的网络分享这篇文章！
 
-[原文链接 Send data Between iOS Apps and Extensions Using Darwin Notifications](https://ohmyswift.com/blog/2024/08/27/send-data-between-ios-apps-and-extensions-using-darwin-notifications/)
-[CFNotificationCenter](https://developer.apple.com/documentation/corefoundation/cfnotificationcenter)
+[原文链接 Send data Between iOS Apps and Extensions Using Darwin Notifications](https://ohmyswift.com/blog/2024/08/27/send-data-between-ios-apps-and-extensions-using-darwin-notifications/)  
+[CFNotificationCenter文档](https://developer.apple.com/documentation/corefoundation/cfnotificationcenter)
