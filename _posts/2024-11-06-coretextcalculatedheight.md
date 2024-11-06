@@ -17,45 +17,48 @@ typora-root-url: ..
 
 
 ``` objc
-NSString  *text = @"This\nis\nsome\nmulti-line\nsample\ntext."
-UIFont    *uiFont = [UIFont fontWithName:@"Helvetica" size:17.0];
-CTFontRef ctFont = CTFontCreateWithName((CFStringRef) uiFont.fontName, uiFont.pointSize, NULL);
+- (void)calculatedHeight:(CGSize)bounds
+{
+    NSString *text = @"This\nis\nsome\nmulti-line\nsample\ntext.";
+    UIFont   *uiFont = [UIFont fontWithName:@"Helvetica" size:17.0];
+    CTFontRef ctFont = CTFontCreateWithName((CFStringRef) uiFont.fontName, uiFont.pointSize, NULL);
 
-// 设置行间距
-CGFloat leading = uiFont.lineHeight - uiFont.ascender + uiFont.descender;
-CTParagraphStyleSetting LineSpacing;
-    
-LineSpacing.spec = kCTParagraphStyleSpecifierLineSpacingAdjustment;
-LineSpacing.value = &leading;
-LineSpacing.valueSize = sizeof(CGFloat);
-    
-// 设置换行模式
-CTParagraphStyleSetting lineBreakMode;
-CTLineBreakMode lineBreak = kCTLineBreakByCharWrapping; 
-lineBreakMode.spec = kCTParagraphStyleSpecifierLineBreakMode;
-lineBreakMode.value = &lineBreak;
-lineBreakMode.valueSize = sizeof(CTLineBreakMode);
+    // 设置行间距
+    CGFloat leading = uiFont.lineHeight - uiFont.ascender + uiFont.descender;
+    CTParagraphStyleSetting LineSpacing;
+        
+    LineSpacing.spec = kCTParagraphStyleSpecifierLineSpacingAdjustment;
+    LineSpacing.value = &leading;
+    LineSpacing.valueSize = sizeof(CGFloat);
+        
+    // 设置换行模式
+    CTParagraphStyleSetting lineBreakMode;
+    CTLineBreakMode lineBreak = kCTLineBreakByCharWrapping;
+    lineBreakMode.spec = kCTParagraphStyleSpecifierLineBreakMode;
+    lineBreakMode.value = &lineBreak;
+    lineBreakMode.valueSize = sizeof(CTLineBreakMode);
 
-CTParagraphStyleSetting paragraphSettings[] = {lineBreakMode,LineSpacing};
+    CTParagraphStyleSetting paragraphSettings[] = {lineBreakMode,LineSpacing};
 
-CTParagraphStyleRef  paragraphStyle = CTParagraphStyleCreate(paragraphSettings, 2);
-CFRange textRange = CFRangeMake(0, text.length);
+    CTParagraphStyleRef  paragraphStyle = CTParagraphStyleCreate(paragraphSettings, 2);
+    CFRange textRange = CFRangeMake(0, text.length);
 
-CFMutableAttributedStringRef string = CFAttributedStringCreateMutable(kCFAllocatorDefault, text.length);
-CFAttributedStringReplaceString(string, CFRangeMake(0, 0), (CFStringRef) text);
+    CFMutableAttributedStringRef string = CFAttributedStringCreateMutable(kCFAllocatorDefault, text.length);
+    CFAttributedStringReplaceString(string, CFRangeMake(0, 0), (CFStringRef) text);
 
-// 设置字体行间距和大小
-CFAttributedStringSetAttribute(string, textRange, kCTFontAttributeName, ctFont);
-CFAttributedStringSetAttribute(string, textRange, kCTParagraphStyleAttributeName, paragraphStyle);
+    // 设置字体行间距和大小
+    CFAttributedStringSetAttribute(string, textRange, kCTFontAttributeName, ctFont);
+    CFAttributedStringSetAttribute(string, textRange, kCTParagraphStyleAttributeName, paragraphStyle);
 
-CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(string);
-CFRange fitRange;
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(string);
+    CFRange fitRange;
 
-// 计算文本需要的高度
-CGSize frameSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, textRange, NULL, bounds, &fitRange);
+    // 计算文本需要的高度
+    CGSize frameSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, textRange, NULL, bounds, &fitRange);
 
-CFRelease(framesetter);
-CFRelease(string);
+    CFRelease(framesetter);
+    CFRelease(string);
+}
 ```
 
 
