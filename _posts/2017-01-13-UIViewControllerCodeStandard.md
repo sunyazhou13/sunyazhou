@@ -7,7 +7,7 @@ tags: [iOS, Swift, macOS]
 typora-root-url: ..
 ---
 
-### pragma 标准写法
+# pragma 标准写法
 
 ## Objective-C
 
@@ -78,7 +78,7 @@ typora-root-url: ..
 
 ---
 
-### UIViewController生命周期方法
+# UIViewController生命周期方法
 
 在 Objective-C 中，`UIViewController` 的生命周期方法涵盖了视图控制器从创建到销毁的整个过程。以下是这些方法的全面列表，包括它们被调用的时机和一些细节：
 
@@ -122,3 +122,113 @@ typora-root-url: ..
 请注意，从 iOS 6 开始，苹果推荐使用自动旋转支持方法（`shouldAutorotate`、`supportedInterfaceOrientations` 和 `preferredInterfaceOrientationForPresentation`）来处理设备方向变化，而不是使用 `willRotateToInterfaceOrientation:duration:` 等方法。此外，`viewWillUnload` 方法在 iOS 6 及以后的版本中不再被调用，苹果推荐使用 `viewDidDisappear:` 来替代。
 
 这些方法为视图控制器的生命周期提供了丰富的控制点，允许开发者在适当的时机进行资源管理、界面更新和状态保存。
+
+### UIViewController的示例代码如下:
+
+以下是一些示例代码，展示了在 Objective-C 中如何实现 `UIViewController` 生命周期方法：
+
+```objc
+// ViewController.h
+#import <UIKit/UIKit.h>
+
+@interface ViewController : UIViewController
+
+@end
+
+// ViewController.m
+#import "ViewController.h"
+
+@implementation ViewController
+
+// 初始化和加载视图
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)loadView {
+    [super loadView];
+    // Create your custom view here if not using a nib or storyboard
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Perform additional setup after loading the view, typically from a nib.
+}
+
+// 视图将要出现
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // Prepare your view for display
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    // Layout your subviews here
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    // Perform any additional layout here
+}
+
+// 视图已经出现
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // Update your UI here
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    // Prepare your view for disappearance
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    // Clean up after your view disappears
+}
+
+// 内存警告
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Release any cached data, images, etc. that aren't in use
+}
+
+// 旋转和大小变化
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    // Handle the transition to a different size
+}
+
+- (void)viewDidTransitionFromSize:(CGSize)fromSize withTransitioningCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewDidTransitionFromSize:fromSize withTransitioningCoordinator:coordinator];
+    // Handle the transition completion
+}
+
+@end
+```
+
+这段代码展示了 `UIViewController` 生命周期方法的基本实现。在实际应用中，你需要根据具体需求在这些方法中添加相应的逻辑。例如，在 `viewDidLoad` 中初始化视图，在 `viewWillAppear:` 中更新 UI，在 `viewWillDisappear:` 中保存状态等。
