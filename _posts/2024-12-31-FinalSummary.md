@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 2024年终总结
-date: 2024-12-23 13:53 +0000
+date: 2024-12-31 23:53 +0000
 categories: [生活纪实]
 tags: [年终总结]
 typora-root-url: ..
