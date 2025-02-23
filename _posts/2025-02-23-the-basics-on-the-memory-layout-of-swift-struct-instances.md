@@ -7,6 +7,9 @@ tags: [iOS, SwiftUI, Swift, Objective-C]
 typora-root-url: ..
 ---
 
+![](/assets/images/20240727Magnificationgesture/SwiftUI.webp)
+
+
 # 前言
 
 本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!
@@ -14,9 +17,11 @@ typora-root-url: ..
 
 ### 背景介绍
 
-2024年学习《Metal.by.Tutorials.4th.2023.12》中有提到如何使用`Unsafe Swift` 指针和C交互,主要是在内存中如何标识C的内容,下面这篇文章是书中介绍的英文文章我看了以后觉得消化吸收一下,整理成中文版供各位参考.
+![](/assets/images/20250223SwiftStructMemoryLayout/VerTexBufferLayout.webp)
 
-## 大小、步长和对齐(Size, Stride, Alignment)
+2024年学习《Metal.by.Tutorials.4th.2023.12》中有提到swift中的结构体实例的内存布局,我把这些整理了一下.
+
+### 大小、步长和对齐(Size, Stride, Alignment)
 
 
 Swift 结构体实例内存布局的基础知识
