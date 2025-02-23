@@ -15,13 +15,13 @@ typora-root-url: ..
 本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!
 
 
-### 背景介绍
+## 背景介绍
 
 ![](/assets/images/20250223SwiftStructMemoryLayout/VerTexBufferLayout.webp)
 
 2024年学习《Metal.by.Tutorials.4th.2023.12》中有提到swift中的结构体实例的内存布局,我把这些整理了一下.
 
-### 大小、步长和对齐(Size, Stride, Alignment)
+## 大小、步长和对齐(Size, Stride, Alignment)
 
 
 Swift 结构体实例内存布局的基础知识
@@ -29,7 +29,7 @@ Swift 结构体实例内存布局的基础知识
 
 在内存中处理 Swift 类型时，需要考虑三个属性：大小（Size）、步长（Stride） 和 对齐（Alignment）。
 
-#### 大小(Size)
+## 大小(Size)
 
 让我们以两个结构体的举例说明
 
@@ -46,7 +46,7 @@ struct YearWithMonth {
 
 我的直觉告诉我，YearWithMonth 的实例比 Year 的实例更大——它在内存中占用了更多的空间。但我们是科学家；我们如何用确凿的数据来验证直觉呢？
 
-#### 内存布局(Memory Layout)
+## 内存布局(Memory Layout)
 
 我们可以使用 `MemoryLayout` 类型来检查我们的类型在内存中的一些属性。
 
@@ -67,7 +67,7 @@ let size = MemoryLayout.size(ofValue: instance)
 
 不出所料，我们的结构体 `YearWithMonth` 的大小是 **16 字节**。
 
-#### 回到大小  
+## 回到大小  
 
 结构体的大小似乎非常直观——计算每个属性大小的总和。对于这样的结构体：
 
@@ -91,7 +91,7 @@ MemoryLayout<Puppy>.size
 
 看起来没问题！[旁白：真的没问题吗？😈]
 
-#### 步长（Stride）
+## 步长（Stride）
 
 当你在处理单个缓冲区（例如数组）中的多个实例时，类型的步长就变得非常重要。
 
@@ -120,7 +120,7 @@ MemoryLayout<Puppy>.stride
 为什么大小和步长会不同？这就引出了内存布局的最后一个神奇数字。
 
 
-#### 对齐（Alignment）  
+## 对齐（Alignment）  
 
 想象一下，计算机一次获取 8 位（即 1 字节）的内存。无论是获取第 1 个字节还是第 7 个字节，所需的时间是相同的。
 
@@ -140,7 +140,7 @@ MemoryLayout<Puppy>.stride
 
 在某些系统中，未对齐的访问不仅仅是慢的问题——它完全不被允许，并会导致程序崩溃。
 
-#### 简单的 Swift 类型  
+## 简单的 Swift 类型  
 
 在 Swift 中，简单类型（如 `Int` 和 `Double`）的对齐值与其大小相同。一个 32 位（4 字节）的整数大小为 4 字节，并且需要对齐到 4 字节。
 
@@ -155,7 +155,7 @@ MemoryLayout<Int32>.stride
 
 步长也是 4，这意味着在连续缓冲区中，值之间相隔 4 字节。不需要填充。
 
-#### 复合类型 (Compound Types)
+## 复合类型 (Compound Types)
 
 现在回到我们的 `Puppy` 结构体，它有一个 `Int` 和一个 `Bool` 属性。再次考虑值在缓冲区中紧挨在一起的情况：
 
@@ -171,7 +171,7 @@ MemoryLayout<Int32>.stride
 
 这就是为什么结构体的步长可以大于其大小：为了添加足够的填充以满足对齐要求。
 
-#### 计算对齐  
+## 计算对齐  
 
 那么，在我们这段旅程的结尾，`Puppy` 结构体类型的对齐值是多少呢？
 
@@ -189,7 +189,7 @@ MemoryLayout<Puppy>.alignment
 - 9 之后的下一个 8 的倍数是 16
 - 因此，步长是 16
 
-#### 最后一个复杂点  
+## 最后一个复杂点  
 
 考虑我们最初的 `Puppy`，并将其与 `AlternatePuppy` 进行对比：
 
@@ -241,7 +241,7 @@ struct CertifiedPuppy2 {
 
 这两个结构体的大小（size）、步长（stride）和对齐方式（alignment）分别是多少呢？🤔（提示）
 
-#### 关于闭合大括号
+## 关于闭合大括号
 
 假设你有一个`UnsafeRawPointer`（在C语言中相当于`void *`）。你知道它指向的类型。那么，大小（size）、步长（stride）和对齐方式（alignment）在其中扮演什么角色呢？
 
