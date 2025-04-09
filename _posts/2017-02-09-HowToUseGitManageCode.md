@@ -278,3 +278,15 @@ git rebase -i HEAD~3
    - 保存并关闭提交信息编辑器，Git 将完成变基操作，并将你的提交历史更新为一个新的线性历史。
 
 请注意，变基是一个破坏性操作，它会改变历史提交的哈希值。因此，只有在你确定不会影响其他人的工作时才应该使用它，特别是在公共分支上。如果你在团队中工作，最好在进行这样的操作之前与团队成员沟通。
+
+# 大文件处理
+
+``` sh
+brew install git-lfs                                 # install via homebrew
+git lfs install                                      # initialize lfs for yor repo
+git lfs track ios-app/Frameworks/*.framework/**/*    # track all frameworks in your project.  *.xcframework
+git add --all                                        # stage
+git commit -m "Added files to git lfs"               # commit
+git lfs ls-files
+git push
+```
