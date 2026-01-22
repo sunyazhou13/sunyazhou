@@ -43,10 +43,6 @@ _install_tools() {
 _init() {
   cd "$WORK_DIR"
 
-  if [[ -f Gemfile.lock ]]; then
-    rm -f Gemfile.lock
-  fi
-
   if [[ -d $CONTAINER ]]; then
     rm -rf "$CONTAINER"
   fi

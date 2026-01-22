@@ -34,6 +34,10 @@ lang: zh-Hans
 
 google_site_verification: Xo29j227HYVdC-vDA_-qJwvDP3PIo-lC78CFeBvhrDA #已经通过http://www.google.com/webmasters/tools/，将自己网站添加进 google网站管理，有利于googlegoogle的收录。
 
+# Google Analytics (GA4)
+google_analytics:
+  id: G-72CBVB74WB
+
 #--------------------------
 
 
