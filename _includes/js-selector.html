@@ -15,9 +15,9 @@
   <script async src="{{ '/assets/js/post.min.js' | relative_url }}"></script>
 
   {% if page.math %}
-    <!-- MathJax -->
+    <!-- MathJax - Local version -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async src="{{ '/assets/AISource/mathjax/tex-mml-chtml.js' | relative_url }}"></script>
   {% endif %}
 
 {% elsif page.layout == 'page' %}
