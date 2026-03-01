@@ -74,6 +74,9 @@ toc: true
 
 paginate: 10
 
+plugins:
+  - jekyll-tabs
+
 markdown: kramdown
 
 highlighter: rouge
