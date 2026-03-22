@@ -1,11 +1,9 @@
 
-#source "https://rubygems.org" 20230204更新,修复io-event在apple m1 上报错 
-
-source "https://gems.ruby-china.com"
+source "https://rubygems.org"
+# source "https://gems.ruby-china.com" # 2026-03-22: 证书失效，切换回官方源
 
 gem "jekyll", ">=3.8.6"
-# Pin sass converter to avoid Dart Sass @import deprecation warnings
-gem "jekyll-sass-converter", "~> 2.2"
+gem "jekyll-sass-converter", "~> 3.0"
 
 # Official Plugins
 group :jekyll_plugins do
