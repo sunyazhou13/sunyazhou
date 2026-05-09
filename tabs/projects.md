@@ -4,23 +4,23 @@ icon: fa-solid fa-paintbrush
 date: 2018-03-12 07:37:06
 ---
 
-![](/assets/images/projects/project_cover.webp)
+![](/assets/images/projects/project_cover.avif)
 
 ## ©腾讯音乐娱乐集团  
 酷我音乐  
-![](/assets/images/projects/kwmusic.webp)  
+![](/assets/images/projects/kwmusic.avif)  
 
 ## ©快手  
 快手极速版  
-![](/assets/images/projects/nebula.webp)  
+![](/assets/images/projects/nebula.avif)  
 快手  
-![](/assets/images/projects/kuaishou.webp). 
+![](/assets/images/projects/kuaishou.avif). 
 
 **在快手负责开发快手主app的直播业务和快手极速版的大部分业务**.
 
 ## ©金山云  
 金山云直播和短视频SDK  
-![](/assets/images/projects/shortvideo_sdk.webp)  
+![](/assets/images/projects/shortvideo_sdk.avif)  
 
 **在金山云开发多媒体相关技术的内容.**
 
@@ -33,7 +33,7 @@ date: 2018-03-12 07:37:06
 ## ©百度
 
 百度网盘  
-![](/assets/images/projects/BDNetDisk.webp)
+![](/assets/images/projects/BDNetDisk.avif)
 
 * [`百度网盘`](https://itunes.apple.com/cn/app/bai-du-wang-pan/id547166701?mt=8) for iOS 
 * `百度云管家` for mac
@@ -48,7 +48,7 @@ date: 2018-03-12 07:37:06
 
 开发过`新路由` app.   
 
-![](/assets/images/projects/newifi.webp)
+![](/assets/images/projects/newifi.avif)
 
 ## 工作经历
 
