@@ -63,6 +63,7 @@ type: about
 | **开发语言** | `Objective-C` `Swift` `Python` |
 | **平台 & 框架** | `iOS` `UIKit` `App 开发` `CocoaPods` |
 | **音视频** | `FFmpeg` `H264/H265` `音视频` |
+| **图形学** | `Metal` `GPU 渲染` `Shader` |
 | **AI & 其他** | `NLP` `Git` `Markdown` |
 | **博客** | `Jekyll` `Hexo` |
 
@@ -91,6 +92,14 @@ type: about
 ### 🏸 羽毛球
 
 ![](/assets/images/aboutme/badminton.avif)
+
+---
+
+## 📚 最近在读
+
+![Metal by Tutorials](/assets/images/aboutme/MetalbyTutorials.avif)
+
+[**Metal by Tutorials**](https://www.kodeco.com/books/metal-by-tutorials) — 学习 Metal 图形学，探索 GPU 渲染与 Shader 编程的世界。
 
 ---
 
