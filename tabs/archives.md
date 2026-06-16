@@ -1,6 +1,6 @@
 ---
 title: 归档
-icon: fas fa-archive  
+icon: fas fa-archive
 type: archives
 # The Archives of posts.
 # v2.0
@@ -9,33 +9,29 @@ type: archives
 # MIT License
 ---
 
+> 按时间顺序排列的所有文章记录，从入门 iOS 到探索图形学，每一步都值得被记住。
+
 <div id="archives" class="pl-xl-2">
-{% for post in site.posts %}
-  {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
-  {% capture pre_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
-  {% if forloop.first %}
-    {% assign last_day = "" %}
-    {% assign last_month = "" %}
-  <span class="lead">{{this_year}}</span>
+{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
+{% for year_group in posts_by_year %}
+  {% assign year = year_group.name %}
+  {% assign posts_in_year = year_group.items | size %}
+  <span class="lead">{{ year }} <sup class="text-muted" style="font-size:0.6em;font-weight:normal;">{{ posts_in_year }}</sup></span>
   <ul class="list-unstyled">
-  {% endif %}
+  {% for post in year_group.items %}
     <li>
       <div>
-        {% capture this_day %}{{ post.date | date: "%d" }}{% endcapture %}
-        {% capture this_month %}{{ post.date | date: "%b" }}{% endcapture %}
-        <span class="date day">{{ this_day }}</span>
-        <span class="date month small text-muted">{{ this_month }}</span>
+        <span class="date day">{{ post.date | date: "%d" }}</span>
+        <span class="date month small text-muted">{{ post.date | date: "%b" }}</span>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        {% if post.categories.size > 0 %}
+          {% for cat in post.categories limit:1 %}
+            <span class="archive-cat-badge">{{ cat }}</span>
+          {% endfor %}
+        {% endif %}
       </div>
     </li>
-  {% if forloop.last %}
+  {% endfor %}
   </ul>
-  {% elsif this_year != pre_year %}
-  </ul>
-  <span class="lead">{{pre_year}}</span>
-  <ul class="list-unstyled">
-    {% assign last_day = "" %}
-    {% assign last_month = "" %}
-  {% endif %}
 {% endfor %}
 </div>
