@@ -15,8 +15,7 @@ type: archives
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 {% for year_group in posts_by_year %}
   {% assign year = year_group.name %}
-  {% assign posts_in_year = year_group.items | size %}
-  <span class="lead">{{ year }} <sup class="text-muted" style="font-size:0.6em;font-weight:normal;">{{ posts_in_year }}</sup></span>
+  <span class="lead">{{ year }}</span>
   <ul class="list-unstyled">
   {% for post in year_group.items %}
     <li>

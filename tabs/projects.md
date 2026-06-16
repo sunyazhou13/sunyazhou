@@ -50,7 +50,7 @@ date: 2018-03-12 07:37:06
 
 <details>
   <summary>▶ 查看短视频特效 Demo</summary>
-  <p><img src="/assets/images/projects/fireworkmv_app.gif" alt="短视频特效演示"></p>
+  <p><img src="/assets/images/projects/fireworkmv_app.avif" alt="短视频特效演示"></p>
 </details>
 
 ---
@@ -67,13 +67,13 @@ date: 2018-03-12 07:37:06
 - 百度云管家 macOS 端
 - 百度云同步盘 macOS 端
 
-![](/assets/images/projects/pan_detail.gif)
+![](/assets/images/projects/pan_detail.avif)
 
 ### 百度 Hi
 
 **内部 IM 聊天工具 macOS 端开发**
 
-![](/assets/images/projects/BaiduHi.gif)
+![](/assets/images/projects/BaiduHi.avif)
 
 ### 小度新路由
 
