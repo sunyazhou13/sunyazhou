@@ -9,8 +9,6 @@ type: archives
 # MIT License
 ---
 
-> 按时间顺序排列的所有文章记录，从入门 iOS 到探索图形学，每一步都值得被记住。
-
 <div id="archives" class="pl-xl-2">
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 {% for year_group in posts_by_year %}
