@@ -18,6 +18,7 @@ tags: [Electron, Tauri, Qt6, Flutter, React Native, uni-app, Taro, Python, LangC
 
 这篇文章是我调研过程的完整记录，**从 iOS 开发者的认知模型出发**，把市面主流方案横向拉通，量化对比。
 
+
 2026 年，AI Agent 从概念验证全面进入生产落地阶段。LangChain 生态日趋成熟，MCP（Model Context Protocol）成为工具集成的事实标准，`llama.cpp` 让本地推理不再依赖云端 API。
 
 与此同时，"跨平台"的定义已经被彻底重写。一个 AI Agent 产品可能需要在以下 **6 个端**上运行：
@@ -378,9 +379,9 @@ async fn run_agent(prompt: String, app: tauri::AppHandle) -> Result<String, Stri
 
 ---
 
-#### Deno Desktop — 60.5 分 `★ 2026 新星`
+#### Deno Desktop — 54.9 分 `★ 2026 新星`
 
-**定位：Electron 去掉 80% 胶水 + 80% 包体。**
+**定位：Electron 去掉 80% 胶水 + 80% 包体。仅桌面端。**
 
 ```ts
 // deno.json — 零配置 AI Agent 桌面应用
@@ -393,29 +394,104 @@ async fn run_agent(prompt: String, app: tauri::AppHandle) -> Result<String, Stri
 }
 ```
 
-**核心卖点：** 零 IPC 样板、~30MB 包体、自动检测前端框架、开箱即用热重载。`Deno.BrowserWindow` 直接调用系统 API。
+核心卖点：零 IPC 样板、~30MB 包体、自动检测前端框架、开箱即用热重载。
 
 **适合：** TS 全栈 AI Agent（云端 LLM + 本地 Agent 编排）、受够 Electron 复杂度的前端团队。
-
-**不适合：** 需要本地大模型推理、2026 年上生产（v2.9 刚发布）。
-
----
-
-#### Flutter — 51.0 分
-
-Dart 的 AI 生态极其薄弱 —— 没有 LangChain、没有 llama.cpp 绑定、没有 MCP SDK。AI Agent 只能通过 HTTP 调用云端 API。如果 Agent 是"云端大脑 + 本地瘦客户端"，Flutter 的 UI 表现不错；但凡需要本地推理或复杂 Tool Calling，Dart 是瓶颈。
+**不适合：** 需要多端覆盖（仅桌面）、2026 年上生产（v2.9 刚发布）。
+**致命缺陷：1/6 平台覆盖。** 在"全平台"时代，这是一个战略性短板。
 
 ---
 
-#### Wails — 57.3 分 / Avalonia — 57.0 分 / Kotlin Compose — 55.0 分
+#### Flutter — 65.2 分
 
-这几个框架的共性问题：**AI 生态不在这门语言的主航道上**。Go、C#、Kotlin 各有优秀的 AI 库，但 LangChain 级别的 Agent 框架生态不存在。适合"已经有 Go/.NET/Kotlin 团队，只需要嵌入简单 LLM 调用"的场景。
+Impeller 引擎在 2026 年成熟。Dart 的 AI 生态薄弱（无 LangChain、无 llama.cpp 绑定），但**全平台覆盖 5.5/6（包括鸿蒙社区版）**是巨大的战略优势。
+
+如果 Agent 是"云端大脑 + 本地瘦客户端"，Flutter 是最均衡的全平台 UI 选择。鸿蒙适配由华为 OpenHarmony SIG 官方维护。
 
 ---
 
-#### Dioxus — 48.3 分
+#### React Native — 64.0 分 `★ 新增`
 
-Rust 版 React，包体 ~12MB，WGPU 抽象。v0.6 阶段，**2028 年再评估。**
+**定位：JS/TS 生态的移动端跨平台王者，桌面端也在逼近。**
+
+React Native 在 2026 年不再是"纯移动端框架"：
+- **iOS/Android**：Fabric 新架构 + Hermes 引擎，性能大幅提升
+- **Windows/macOS**：微软官方维护 `react-native-windows`，v0.84 已发布
+- **鸿蒙**：华为开发者联盟主导 RN-OH 项目
+- **小程序**：通过 Taro 或 expo 间接支持
+
+```tsx
+// React Native + LangChain.js → 全平台 AI Agent
+import { ChatOpenAI } from '@langchain/openai';
+import { Platform } from 'react-native';
+
+const llm = new ChatOpenAI({
+  modelName: 'gpt-4o-mini',
+  // iOS 用 CoreML 加速，Android 用 NNAPI
+});
+```
+
+**优势：** npm 生态最庞大、前端团队零学习成本、`@langchain/core` 直接跑在 Hermes 引擎里。
+**劣势：** 桌面端成熟度不如 Electron；本地大模型推理需后端中转。
+**关键判断：** 如果你需要 iOS/Android + 桌面 + Web，React Native 是仅次于 Flutter 的全平台选择。
+
+---
+
+#### uni-app X — 63.0 分 `★ 新增`
+
+**定位：唯一 6/6 全平台覆盖框架，微信小程序和鸿蒙是独有王牌。**
+
+uni-app X 使用 UTS（TypeScript 超集），编译为各平台原生代码。不再依赖 WebView，uvue 渲染引擎直接生成原生 UI。
+
+```vue
+<!-- 一套代码 → 16 个平台 -->
+<script setup lang="uts">
+import { ref } from 'vue'
+
+// 通过 uni.request 调用 LLM API 或 MCP Server
+async function callAgent(prompt: string) {
+  const res = await uni.request({
+    url: 'https://your-mcp-server/agent',
+    method: 'POST',
+    data: { prompt }
+  })
+  return res.data
+}
+</script>
+```
+
+**AI Agent 开发的实际模式**：uni-app 做 UI 层 → HTTP/MCP 连接后端 Python Agent 服务。模型推理和 Agent 编排在服务端，前端只做展示和交互。
+
+**优势：**
+- **6/6 全覆盖**：微信小程序、鸿蒙 NEXT 原生支持，国内 C 端无法绕过
+- HBuilderX IDE 云端打包，省去环境配置
+- 900 万开发者，插件市场成熟
+- 华为、阿里、腾讯、抖音、美团等大厂实际使用
+
+**劣势：**
+- 传统桌面（Win/Mac/Linux）支持弱于 Electron/Qt
+- AI 生态不如 Python—不能在同一进程跑 LangChain
+- Agent 逻辑必须分离到后端服务
+
+**关键判断：** 如果你的 AI Agent 是 C 端产品，需要微信小程序 + 鸿蒙，uni-app X 是**唯一正确选择**。接受"前端 UI 层 + 后端 Agent 服务"的架构即可。
+
+---
+
+#### Taro — 57.6 分 `★ 新增`
+
+**定位：React 技术栈、以小程序为核心的多端框架。**
+
+京东出品，用 React 写一套代码，编译到微信/支付宝/百度/抖音/飞书/QQ/快手等多个小程序 + H5 + React Native。
+
+```tsx
+import { ChatOpenAI } from '@langchain/openai'
+// Taro 环境中直接使用 LangChain.js
+const llm = new ChatOpenAI({ modelName: 'gpt-4o-mini' })
+```
+
+**适合：** 已有 React 前端团队、AI Agent 以小程序为第一入口。
+**不适合：** 桌面端（无原生支持）、需要本地推理。
+**对比 uni-app：** Taro 的 React 生态更国际化，uni-app 的 Vue + 鸿蒙覆盖更国内化。
 
 ---
 
@@ -425,46 +501,45 @@ Rust 版 React，包体 ~12MB，WGPU 抽象。v0.6 阶段，**2028 年再评估�
 
 ### 3.1 LLM 集成与 Agent 编排
 
-| 能力 | Qt6 Python | Electron | Qt6 C++ | Tauri | Deno Desktop | Flutter |
-|------|:---:|:---:|:---:|:---:|:---:|:---:|
-| **LangChain 支持** | 10 (原生) | 10 (LangChain.js) | 0 (无绑定) | 0 | 8 (LangChain.js) | 0 |
-| **LangGraph 编排** | 10 | 9 | 0 | 0 | 7 | 0 |
-| **CrewAI / AutoGen** | 10 | 6 | 0 | 0 | 4 | 0 |
-| **MCP 协议** | 10 (官方 SDK) | 8 (社区 SDK) | 4 (自实现) | 4 | 6 | 0 |
-| **OpenAI / Anthropic SDK** | 10 | 10 | 7 (HTTP) | 7 (HTTP) | 10 | 8 (HTTP) |
-| **Tool Calling 开发效率** | 10 | 9 | 5 | 6 | 9 | 5 |
+| 能力 | Qt6 Python | Electron | React Native | uni-app X | Taro | Flutter | Tauri | Qt6 C++ | Deno | Kotlin |
+|------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **LangChain 支持** | 10 | 10 | 8(LangChain.js) | 6(HTTP) | 7(LangChain.js) | 0 | 0 | 0 | 8 | 3 |
+| **LangGraph 编排** | 10 | 9 | 7 | 4 | 5 | 0 | 0 | 0 | 7 | 2 |
+| **MCP 协议** | 10 | 8 | 6 | 5 | 5 | 0 | 4 | 4 | 6 | 3 |
+| **OpenAI/Anthropic SDK** | 10 | 10 | 10 | 8(HTTP) | 9 | 8(HTTP) | 7 | 7 | 10 | 7 |
+| **Tool Calling 效率** | 10 | 9 | 7 | 5 | 6 | 5 | 6 | 5 | 9 | 5 |
 
 ### 3.2 本地模型部署
 
-| 能力 | Qt6 C++ | Qt6 Python | Tauri | Electron | Deno Desktop | Flutter |
-|------|:---:|:---:|:---:|:---:|:---:|:---:|
-| **llama.cpp 集成** | 10 (C++ API) | 9 (llama-cpp-python) | 8 (rust/llama-cpp-rs) | 5 (node-llama-cpp) | 5 | 0 |
-| **ONNX Runtime** | 9 | 9 | 7 | 5 (onnxruntime-node) | 5 | 3 |
-| **GPU 加速推理** | 10 (CUDA/Metal) | 8 (CUDA/MPS) | 7 | 3 (WebGPU实验) | 3 | 3 |
-| **量化模型支持** | 10 (GGUF) | 9 (GGUF) | 8 (GGUF) | 5 | 5 | 3 |
-| **内存效率** | 10 | 6 (Python GC) | 9 | 4 | 4 | 4 |
+| 能力 | Qt6 C++ | Qt6 Python | Tauri | Kotlin | Electron | Deno | React Native | uni-app X | Taro | Flutter |
+|------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **llama.cpp 集成** | 10 | 9 | 8 | 4 | 5 | 5 | 3 | 2 | 2 | 0 |
+| **ONNX Runtime** | 9 | 9 | 7 | 5 | 5 | 5 | 4 | 3 | 3 | 3 |
+| **GPU 加速推理** | 10 | 8 | 7 | 5 | 3 | 3 | 4 | 2 | 2 | 3 |
+| **量化模型支持** | 10 | 9 | 8 | 5 | 5 | 5 | 3 | 2 | 2 | 3 |
+| **移动端本地推理** | 8 | 7 | 6 | 6 | 0 | 0 | 5 | 3 | 2 | 5 |
 
-### 3.3 桌面系统集成深度
+### 3.3 各端能力专项对比
 
-| 能力 | Qt6 C++ | Qt6 Python | Electron | Tauri | Deno Desktop | Flutter |
-|------|:---:|:---:|:---:|:---:|:---:|:---:|
-| **系统托盘** | 10 | 9 | 10 | 8 | 6 | 5 |
-| **全局快捷键** | 10 | 9 | 10 | 8 | 5 | 6 |
-| **原生通知** | 10 | 9 | 8 | 8 | 6 | 6 |
-| **文件系统深度访问** | 10 | 10 | 9 | 9 | 9 | 8 |
-| **进程管理** | 10 | 10 | 8 | 7 | 6 | 5 |
-| **自动启动** | 9 | 9 | 10 | 8 | 5 | 5 |
-| **窗口管理** | 10 | 9 | 8 | 7 | 7 | 7 |
+| 能力 | Qt6 | Flutter | RN | uni-app X | Taro | Electron | Tauri |
+|------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Desktop (Win/Mac/Linux)** | 10 | 8 | 6 | 4 | 2 | 10 | 8 |
+| **iOS / Android 原生** | 8 | 9 | 9 | 8 | 5(通过RN) | 0 | 7 |
+| **鸿蒙 (HarmonyOS)** | 0 | 7(社区) | 6(社区) | 9 | 7 | 0 | 0 |
+| **微信小程序** | 0 | 2 | 2 | 10 | 10 | 0 | 0 |
+| **H5 / Web** | 5(WASM) | 8 | 7 | 9 | 9 | 0 | 0 |
 
 ### 关键结论
 
-1. **Python 是 AI Agent 桌面开发的"主场语言"。** LangChain、LangGraph、CrewAI、MCP 协议 —— 所有主流 Agent 框架的 Python SDK 都是一等公民。
+1. **Python 仍是 AI Agent 的"主场语言"。** LangChain、LangGraph、CrewAI、MCP — 所有主流 Agent 框架的 Python SDK 都是一等公民。但 Python 的原生框架（Qt6）平台覆盖只有 3.5/6。
 
-2. **本地推理的性能天花板在 C++ / Rust。** 如果你需要 7B+ 模型在消费级硬件上实时推理，Qt6 C++ 或 Tauri 的 Rust 后端是唯一选择。但 90% 的 Agent 场景用 3B-7B 量化模型 + Python 就够了。
+2. **全平台能力是 2026 年选型的核心分水岭。** uni-app X（6/6）和 Flutter/RN（5.5/6）在平台覆盖上遥遥领先。Electron（1/6）和 Deno Desktop（1/6）尽管 AI 生态优秀，但"仅桌面"是致命的战略短板。
 
-3. **Electron 的"云端 LLM + 桌面客户端"模式最成熟。** 如果不依赖本地推理，Electron 的开发效率无出其右。
+3. **微信小程序和鸿蒙是中国特色跨平台的两张"门票"。** 如果你做 C 端产品，没有微信小程序就等于丢了 80% 的触达渠道。uni-app X 和 Taro 是唯二能同时覆盖这两个端的框架。
 
-4. **MCP 协议正在改变桌面 Agent 的架构。** 未来你可以用 Python 跑 Agent 核心 + MCP Server，然后用 Electron/Qt/Tauri 只做 UI 层。这意味着框架选择的分层会越来越灵活。
+4. **"AI 生态强 + 平台覆盖弱" vs "平台覆盖强 + AI 生态弱"** — 这是 2026 年 AI Agent 跨平台选型的核心矛盾。MCP 分离架构提供了最佳解：用 Python 做 Agent 核心（AI 生态强），用 uni-app/Flutter/RN 做前端（平台覆盖强）。
+
+5. **本地推理的性能天花板在 C++/Rust。** 如果你需要 7B+ 模型在消费级硬件上实时推理，Qt6 C++ 或 Tauri Rust 后端是唯一选择。但移动端和小程序无法承载这个级别的本地推理——它们天然需要后端服务。
 
 ---
 
@@ -510,68 +585,88 @@ UI 层和技术栈解耦，Agent 核心独立运行，通过 MCP 协议暴露 To
 
 ---
 
-## 五、场景化决策矩阵
+## 五、全平台场景化决策矩阵
 
-根据团队背景和 Agent 需求，推荐以下五条选型路径：
+根据你的目标平台组合和 AI Agent 需求，推荐以下六条选型路径：
 
-### 场景 A：全功能桌面 Agent（需要复杂 Tool Calling + 本地推理）
+### 场景 A：C 端全平台产品（需要小程序 + 鸿蒙 + 移动端）
 
 ```
-选 PySide6 + QML
-├── Agent 层: LangChain / LangGraph (Python)
-├── 工具层: Shell / 文件系统 / Playwright / 自定义 MCP Server
-├── 推理层: llama-cpp-python (本地) / OpenAI API (云端)
-├── UI 层: QML 声明式 UI
-└── 交付: PyInstaller 打包
+第一选择：uni-app X（6/6 全覆盖）
+├── 前端 UI: uni-app X (Vue/UTS) → iOS/Android/鸿蒙/H5/微信小程序
+├── Agent 层: Python (LangChain/LangGraph) 独立部署为 HTTP/MCP 服务
+├── 推理层: 云端 API (OpenAI/DeepSeek) 或 独立 GPU 服务器
+└── 交付: HBuilderX 云端打包 + Docker 部署 Agent 后端
 ```
 
-**理由**：AI 生态最完整，Tool Calling 能力最强，本地推理可用。GIL 问题通过多进程隔离解决。
+**备选：Taro**（如果团队是 React 技术栈、小程序优先）
+
+**理由**：uni-app X 是唯一同时覆盖微信小程序和鸿蒙的框架。接受"前端 UI 层 + 后端 Agent 服务"的分离架构，Agent 核心用 Python 独立部署，通过 HTTP/MCP 通信。这是 2026 年中国 C 端 AI Agent 产品的最优解。
 
 ---
 
-### 场景 B：云端 Agent 聊天助手（依赖 API，不需要本地推理）
+### 场景 B：移动端优先 + 桌面辅助（iOS/Android 主力，Desktop 次要）
 
 ```
-选 Electron
+第一选择：Flutter（5.5/6 覆盖）
+├── 前端 UI: Flutter (Dart) → iOS/Android/Desktop/Web/鸿蒙(社区)
+├── Agent 层: Python 后端服务 (HTTP/MCP)
+├── 推理层: 云端 API 为主
+└── 交付: flutter build + Fastlane
+```
+
+**备选：React Native**（团队是 React 技术栈、需要更深度的桌面集成）
+
+**理由**：Flutter 的全平台一致性最好，Impeller 引擎性能优秀。鸿蒙由华为 OpenHarmony SIG 官方维护。如果你的 Agent 不需要本地推理，Flutter 是最均衡的全平台选择。
+
+---
+
+### 场景 C：桌面主力 + 移动端扩展（企业级桌面 Agent）
+
+```
+第一选择：Qt6 Python (PySide6)
+├── Agent 层: LangChain/LangGraph (Python) — 与 UI 同进程
+├── 工具层: Shell / 文件系统 / Playwright / MCP Server
+├── 推理层: llama-cpp-python (本地) / OpenAI API (云端)
+├── UI 层: QML 声明式 UI → Desktop + iOS + Android
+└── 交付: PyInstaller (Desktop) + Qt for Mobile
+```
+
+**理由**：AI 生态最完整 — LangChain 全套可在同一进程运行。Tool Calling 天花板。桌面端原生体验最强。移动端通过 Qt for Android/iOS 覆盖。**无法覆盖小程序和鸿蒙**，需要额外的 Taro/uni-app 子项目补位。
+
+---
+
+### 场景 D：纯桌面 AI Agent（不需要移动端/小程序）
+
+```
+第一选择：Electron
 ├── Agent 层: LangChain.js / Vercel AI SDK
 ├── 推理层: OpenAI / Anthropic / Claude API
 ├── UI 层: React / Vue
 └── 交付: electron-builder
 ```
 
-**理由**：开发效率最高，AI/前端双生态完整。包体 150MB 在企业桌面软件中不是痛点。
+**备选：Deno Desktop**（追求轻量、不急于生产）
+
+**理由**：前端 + AI 双生态完整。**但要清醒认识到：1/6 平台覆盖，未来扩展到移动端/小程序需要另起炉灶。**
 
 ---
 
-### 场景 C：TS 全栈 Agent（追求轻量）
+### 场景 E：本地大模型推理优先（7B+ 模型，消费级硬件）
 
 ```
-选 Deno Desktop
-├── Agent 层: LangChain.js (npm 生态)
-├── 推理层: 云端 API
-├── UI 层: Next.js / Vite
-└── 交付: deno desktop
-```
-
-**理由**：零 IPC 样板，~30MB 包体。前端团队零额外学习成本。但 v2.9 才发，生产需谨慎。
-
----
-
-### 场景 D：本地大模型推理优先（7B+ 模型，消费级硬件）
-
-```
-选 Qt6 C++ 或 Tauri (Rust 后端)
-├── Agent 层: llama.cpp (C++) / candle (Rust) + Python 子进程
+第一选择：Qt6 C++ 或 Tauri (Rust 后端)
+├── Agent 层: llama.cpp (C++) / candle (Rust) + Python 子进程辅助编排
 ├── 推理层: 纯本地 GGUF 量化模型
 ├── UI 层: QML / React
 └── 交付: CMake / cargo-bundle
 ```
 
-**理由**：只有 C++/Rust 能让 7B+ 模型在笔记本上达到可接受的推理速度。Agent 编排复杂逻辑通过 Python 子进程补位。
+**理由**：只有 C++/Rust 能让 7B+ 模型在笔记本上达到可接受的推理速度。**但移动端/小程序场景天然不适合 7B+ 本地推理** — 这个场景本身就是桌面专属。
 
 ---
 
-### 场景 E：轻量嵌入式 Agent（IoT / 边缘设备 / MCU）
+### 场景 F：轻量嵌入式 Agent（IoT / 边缘设备）
 
 ```
 选 Slint（Rust/C++ 路线）
@@ -581,7 +676,20 @@ UI 层和技术栈解耦，Agent 核心独立运行，通过 MCP 协议暴露 To
 └── 交付: 单二进制 <5MB
 ```
 
-**理由**：<300KB UI 框架 + 微型模型 = 入门级离线 Agent。不适合复杂 Agent 场景。
+**理由**：<300KB UI 框架 + 微型模型。不适合复杂 Agent 场景，但适合 IoT 离线指令识别等。
+
+---
+
+### 快速对照表
+
+| 你的目标平台 | 推荐框架 | 备选 | Agent 层策略 |
+|:---|:---|:---|:---|
+| **小程序 + 鸿蒙 + 移动端** | uni-app X | Taro | Python Agent 独立服务 |
+| **iOS/Android + Desktop + Web** | Flutter | React Native | Python Agent 独立服务 |
+| **Desktop 主力 + 移动端辅助** | Qt6 Python | Qt6 C++ | 同进程 LangChain |
+| **纯 Desktop** | Electron | Deno Desktop | 同进程 LangChain.js |
+| **Desktop 本地大模型推理** | Qt6 C++ | Tauri | llama.cpp C++ API |
+| **IoT/边缘设备** | Slint | — | 轻量 Rust ML |
 
 ---
 
@@ -589,39 +697,42 @@ UI 层和技术栈解耦，Agent 核心独立运行，通过 MCP 协议暴露 To
 
 ### 6.1 Python 后端开发者
 
-**最优路径**：PySide6 + QML，4-6 周可交付第一版 Agent。
+**桌面 Agent 路线**：PySide6 + QML，4-6 周。LangChain 直接对接现有 Python 模型代码。
+**全平台路线**：Python Agent 服务 + uni-app X 前端，需要学习 Vue/UTS，8-10 周。
 
-QML 语法类似 JSON/YAML 声明式配置，Python 后端开发者适应很快。LangChain / LlamaIndex 直接对接现有的 Python 模型代码。
+### 6.2 Web 前端开发者（React）
 
-### 6.2 Web 前端开发者（React / Vue）
+**桌面路线**：Electron + LangChain.js → 当天跑通原型。
+**移动路线**：React Native → 学习成本几乎为零。
+**全平台路线**：Taro（小程序 + H5）+ React Native（移动端）+ Electron（桌面）= 三件套组合拳。
+**小程序专属**：Taro — React 技术栈，零额外学习成本。
 
-**路径一（快速）**：Electron + LangChain.js → 当天就能跑通原型。
+### 6.3 Web 前端开发者（Vue）
 
-**路径二（进阶）**：Deno Desktop → 学习成本为零，等生态成熟后迁移。
+**全平台路线**：uni-app X — Vue 生态直接复用，一套代码覆盖 6 个端。约 4-6 周。
 
-**路径三（长期）**：Tauri + Rust → 前端不变 + Rust 后端推理，约 8-10 周。
+### 6.4 移动端原生开发者（Swift / Kotlin）
 
-### 6.3 移动端原生开发者（Swift / Kotlin）
+**全平台路线**：Flutter（Dart 语法接近 Swift/Kotlin，约 6-8 周）或 Kotlin Multiplatform（Kotlin 复用，约 4-6 周）。
+**桌面路线**：Qt6 Python（Python Agent + QML UI，声明式语法接近 SwiftUI/Compose，约 6-8 周）。
 
-**快速路线**：PySide6 + QML。QML 的声明式语法和 SwiftUI / Compose 思维一致，Python 的 AI 生态补上移动端缺失的能力。约 6-8 周。
+### 6.5 C++ / 系统级开发者
 
-**长期路线**：Qt6 C++。如果已有 C++ 基础（很多游戏/渲染方向移动端开发者有），直接走 C++ 路线做终极性能。约 12-16 周。
+**最优路径**：Qt6 C++ + llama.cpp。零 Python 依赖，全链路 C++。
 
-### 6.4 C++ / 系统级开发者
+### 6.6 实战踩坑记录
 
-**最优路径**：Qt6 C++ + llama.cpp。零 Python 依赖，全链路 C++。Agent 编排如果复杂度高，用 Python 子进程辅助。
+1. **Python GIL 是真问题。** PySide6 中如果 Agent 推理时阻塞了 GIL，整个 UI 会卡死。解决方案：Agent 逻辑跑在独立 QThread 或子进程。
 
-### 6.5 实战踩坑记录
+2. **Electron/node-llama-cpp 是小马拉大车。** 需要本地推理时，用 Python 子进程或独立推理服务。
 
-1. **Python GIL 是真问题**。PySide6 中如果 Agent 推理时阻塞了 GIL，整个 UI 会卡死。解决方案：Agent 逻辑跑在独立 QThread 或子进程中，UI 层只收发信号。
+3. **MCP 协议是解耦的银弹。** 不要把 UI 和 Agent 逻辑焊死在同一进程。用 MCP 连接：UI 层（uni-app/Flutter/RN/Electron）→ Agent 层（Python LangGraph 独立服务）。
 
-2. **Electron 的 node-llama-cpp 是小马拉大车**。如果你真的需要本地推理，不要在 Node.js 里跑 —— 用 Python 子进程或独立的推理服务。
+4. **微信小程序的请求限制是真问题。** 小程序不支持 SSE（Server-Sent Events）流式响应，Agent 的流式输出需要通过 WebSocket 或轮询实现。
 
-3. **MCP 协议是解耦的银弹**。不要把 UI 和 Agent 逻辑焊死在同一进程里。用 MCP 连接可以让 UI 层（Electron/Tauri）和 Agent 层（Python）独立演进。
+5. **鸿蒙开发需要 DevEco Studio。** 不管用 uni-app X 还是 Flutter，最终编译到鸿蒙都需要华为的 DevEco Studio 和 HarmonyOS SDK。macOS 上体验良好，Windows 上略有门槛。
 
-4. **LangChain.js 的 Tool Calling 比 Python 版功能少**。如果你需要复杂的自定义 Tool（比如需要异步执行 Shell 命令并流式返回输出），Python 版 LangChain 的 Tool 抽象更完整。
-
-5. **CMake 是 Qt6 C++ 路线的第一道墙**。现代应用开发者大多不直接和构建系统打交道，但 Qt6 世界里 CMake 无法绕过。直接用 Qt Creator 生成模板。
+6. **CMake 是 Qt6 C++ 路线的第一道墙。** 直接用 Qt Creator 生成模板。
 
 ---
 
@@ -633,16 +744,19 @@ QML 语法类似 JSON/YAML 声明式配置，Python 后端开发者适应很快�
 
 | 框架 | 首选 IDE | 备选 IDE | macOS 体验 | 核心理由 |
 |------|---------|---------|:---:|------|
-| **Qt6 (C++)** | **Qt Creator** | CLion / VS Code | ★★★★★ | QML 实时预览、信号/槽自动补全、RHI 调试器 |
-| **Qt6 (Python)** | **PyCharm Pro** | VS Code / Qt Creator | ★★★★☆ | Python 类型推断 + Qt 绑定，补全远超 VS Code |
-| **Electron** | **VS Code** | WebStorm | ★★★★★ | JS/TS 一等公民，Chrome DevTools 集成 |
-| **Deno Desktop** | **VS Code** | 无成熟替代 | ★★★★☆ | Deno 官方扩展 + LSP，唯一深度集成 |
-| **Tauri** | **VS Code** | RustRover / Zed | ★★★★★ | Rust Analyzer + 前端扩展同窗口，双语言零切换 |
-| **Flutter** | **VS Code** | Android Studio | ★★★★★ | Flutter 扩展 + Dart LSP，热重载和 Inspector 完美 |
-| **Wails** | **VS Code** | GoLand | ★★★★☆ | Go 扩展 + 前端双开，GoLand 重构更强但缺前端 |
-| **Avalonia** | **Rider** | VS Code + C# Dev Kit | ★★★☆☆ | Rider 的 XAML 预览天花板，VS Code C# 差一档 |
-| **Kotlin Compose** | **IntelliJ IDEA** | Fleet | ★★★★☆ | JetBrains 自家 Kotlin，Compose 预览开箱即用 |
-| **Dioxus** | **VS Code** | RustRover | ★★★★☆ | Rust Analyzer + Dioxus 语法高亮，够用 |
+| **Qt6 (C++)** | **Qt Creator** | CLion / VS Code | ★★★★★ | QML 实时预览、信号/槽自动补全 |
+| **Qt6 (Python)** | **PyCharm Pro** | VS Code / Qt Creator | ★★★★☆ | Python 类型推断 + Qt 绑定 |
+| **Electron** | **VS Code** | WebStorm | ★★★★★ | JS/TS 一等公民 |
+| **Deno Desktop** | **VS Code** | 无成熟替代 | ★★★★☆ | Deno 官方扩展 + LSP |
+| **Tauri** | **VS Code** | RustRover / Zed | ★★★★★ | Rust Analyzer + 前端双开 |
+| **Flutter** | **VS Code** | Android Studio | ★★★★★ | Flutter 扩展 + Dart LSP |
+| **React Native** | **VS Code** | WebStorm | ★★★★☆ | JS/TS 生态，Expo 集成 |
+| **uni-app X** | **HBuilderX** | VS Code | ★★★★☆ | 云端打包、可视化拖拽 |
+| **Taro** | **VS Code** | WebStorm | ★★★★☆ | React 生态，CLI 成熟 |
+| **Kotlin Multiplatform** | **IntelliJ IDEA** | Fleet | ★★★★☆ | JetBrains 自家 Kotlin |
+| **Wails** | **VS Code** | GoLand | ★★★★☆ | Go + 前端双开 |
+| **Avalonia** | **Rider** | VS Code + C# Dev Kit | ★★★☆☆ | Rider XAML 预览天花板 |
+| **Dioxus** | **VS Code** | RustRover | ★★★★☆ | Rust Analyzer 够用 |
 
 ### 7.2 macOS 平台深度推荐
 
@@ -768,28 +882,97 @@ AI Agent 桌面开发的特点是**多语言混合 + 多进程调试**，推荐�
 
 ## 八、总结
 
-回到最初的问题：**纯从 AI Agent 开发的角度，跨平台桌面框架怎么选？**
+回到最初的问题：**如果一个 AI Agent 产品需要覆盖桌面 + iOS + Android + H5 + 鸿蒙 + 微信小程序，该选哪套跨平台技术栈？**
 
-**核心结论：Python 是主场，Electron 是高效率，C++/Rust 是性能壁垒。**
+**核心结论：没有单个框架能包打天下。MCP 分离架构是唯一正解。**
 
 | 如果你的优先级是… | 推荐框架 | 一句话理由 |
 |:---|:---|------|
 | **AI 生态完整性** | Qt6 Python (PySide6) | LangChain + MCP + 本地推理，一个进程搞定 |
-| **开发效率** | Electron | JS/TS 全栈，前端生态 + AI SDK 开箱即用 |
-| **本地推理性能** | Qt6 C++ | llama.cpp C++ API 是天花板 |
+| **全平台覆盖（含小程序+鸿蒙）** | uni-app X | 唯一 6/6 全平台框架 |
+| **全平台覆盖（不含小程序）** | Flutter | 5.5/6，Impeller 引擎 + 鸿蒙社区支持 |
+| **开发效率（纯桌面）** | Electron | JS/TS 全栈，前端生态开箱即用 |
+| **本地推理性能（桌面）** | Qt6 C++ | llama.cpp C++ API 是天花板 |
+| **小程序 AI Agent** | Taro | React 生态 + LangChain.js + 多小程序 |
+| **移动端 AI Agent** | React Native | npm 生态 + Fabric 架构 + RN-OH 鸿蒙 |
 | **包体最小** | Tauri | 3MB + 模型文件 |
-| **TS 全栈轻量** | Deno Desktop | 零 IPC，但 2026 年还需观察 |
-| **Go 生态** | Wails | Go 团队的最佳桌面入口 |
-| **C# 生态** | Avalonia | .NET 企业的自然选择 |
-| **Dart 全栈** | Flutter | 云端 Agent 可用，本地推理不行 |
 
-**最重要的建议**：用 MCP 协议解耦 UI 和 Agent。选择 UI 框架时按团队技术栈走（Electron/React 或 Qt/QML），Agent 核心用 Python 独立部署。这是 2026 年最务实也最具弹性的架构。
+**最重要的建议**：用 MCP 协议解耦 UI 和 Agent。选择 UI 框架时按平台覆盖需求走（uni-app X 做全平台 / Flutter 做移动优先 / Electron 做桌面优先），Agent 核心统一用 Python 独立部署。这是 2026 年最务实也最具弹性的架构。
 
 ---
 
-## 九、跨平台框架资源大全（官网 · 安装 · 文档）
+## 九、全平台框架资源大全（官网 · 安装 · 文档）
 
-### 9.1 Web 套壳派
+### 9.1 全平台框架（覆盖 4+ 个端）
+
+#### uni-app X `★ 6/6 全平台`
+
+| 类型 | 链接 |
+|------|------|
+| 官网 | <https://uniapp.dcloud.net.cn/> |
+| uni-app X 文档 | <https://uniapp.dcloud.net.cn/uni-app-x/> |
+| 鸿蒙开发指南 | <https://uniapp.dcloud.net.cn/tutorial/harmony/> |
+| 插件市场 | <https://ext.dcloud.net.cn/> |
+| IDE 下载 (HBuilderX) | <https://www.dcloud.io/hbuilderx.html> |
+
+> 支持云端打包，无需本地配置 iOS/Android SDK。900 万开发者，腾讯/阿里/华为/抖音/美团等实际使用。
+
+---
+
+#### Taro `★ 小程序王者`
+
+| 类型 | 链接 |
+|------|------|
+| 官网 | <https://taro.jd.com/> |
+| 安装 | `npm install -g @tarojs/cli` |
+| 中文文档 | <https://taro-docs.jd.com/> |
+| GitHub | <https://github.com/NervJS/taro> |
+
+> 京东出品，React/Vue 写一套代码 → 微信/支付宝/百度/抖音等多小程序 + H5 + RN。
+
+---
+
+#### React Native
+
+| 类型 | 链接 |
+|------|------|
+| 官网 | <https://reactnative.dev/> |
+| 中文文档 | <https://reactnative.cn/> |
+| 安装 | `npx create-expo-app` |
+| Windows/macOS | <https://microsoft.github.io/react-native-windows/> |
+| 鸿蒙 (RN-OH) | <https://gitee.com/openharmony-sig/RNOHDCS> |
+| GitHub | <https://github.com/facebook/react-native> |
+
+> Expo 快速启动。鸿蒙适配由华为开发者联盟主导。
+
+---
+
+#### Flutter
+
+| 类型 | 链接 |
+|------|------|
+| 官网 | <https://flutter.dev/> |
+| 中文文档 | <https://docs.flutter.cn/> |
+| 安装 | `brew install --cask flutter` (macOS) |
+| 鸿蒙 (OpenHarmony) | <https://gitcode.com/openharmony-tpc/flutter_flutter> |
+| GitHub | <https://github.com/flutter/flutter> |
+
+> 鸿蒙版由 OpenHarmony SIG 官方维护。
+
+---
+
+#### Kotlin Multiplatform + Compose
+
+| 类型 | 链接 |
+|------|------|
+| 官网 | <https://kotlinlang.org/compose-multiplatform/> |
+| 安装 | `brew install kotlin` |
+| 中文文档 | <https://docs.kmpstudy.com/> |
+| GitHub | <https://github.com/JetBrains/compose-multiplatform> |
+
+---
+
+### 9.2 桌面框架（Desktop 为主，部分延伸移动端）
 
 #### Electron
 
@@ -798,26 +981,34 @@ AI Agent 桌面开发的特点是**多语言混合 + 多进程调试**，推荐�
 | 官网 | <https://www.electronjs.org/> |
 | 中文官网 | <https://electron.nodejs.cn/> |
 | 安装 | `npm install electron` |
-| 英文文档 | <https://www.electronjs.org/docs/latest/> |
-| 中文文档 | <https://electron.nodejs.cn/docs/latest/> |
 | GitHub | <https://github.com/electron/electron> |
-
-> 安装前提：Node.js ≥ 18。推荐用 `electron-builder` 打包。
 
 ---
 
-#### Tauri
+#### Tauri 2.0
 
 | 类型 | 链接 |
 |------|------|
 | 官网 | <https://tauri.app/> |
 | 中文官网 | <https://v2.tauri.org.cn/> |
 | 安装 | `npm create tauri-app@latest` |
-| 英文文档 | <https://tauri.app/start/> |
-| 中文文档 | <https://v2.tauri.org.cn/start/> |
 | GitHub | <https://github.com/tauri-apps/tauri> |
 
-> 安装前提：Rust toolchain + 系统 WebView2（Win）/ WebKitGTK（Linux）。
+> 移动端 (iOS/Android) 正式 GA。
+
+---
+
+#### Deno Desktop `★`
+
+| 类型 | 链接 |
+|------|------|
+| 官网 | <https://deno.com/> |
+| 桌面文档 | <https://docs.deno.com/runtime/desktop/> |
+| 安装 | `curl -fsSL https://deno.land/install.sh \| sh` |
+| 中文文档 | <https://docs.deno.org.cn/> |
+| GitHub | <https://github.com/denoland/deno> |
+
+> `deno desktop` 从 v2.9 开始内置。
 
 ---
 
@@ -828,24 +1019,7 @@ AI Agent 桌面开发的特点是**多语言混合 + 多进程调试**，推荐�
 | 官网 | <https://wails.io/> |
 | 中文文档 | <https://wails.golang.ac.cn/> |
 | 安装 | `go install github.com/wailsapp/wails/v3/cmd/wails@latest` |
-| 英文文档 | <https://wails.io/docs/> |
 | GitHub | <https://github.com/wailsapp/wails> |
-
-> 安装前提：Go ≥ 1.21 + Node.js。
-
----
-
-#### Deno Desktop `★ 2026 新星`
-
-| 类型 | 链接 |
-|------|------|
-| 官网 | <https://deno.com/> |
-| 桌面文档 | <https://docs.deno.com/runtime/desktop/> |
-| 安装 | `curl -fsSL https://deno.land/install.sh \| sh` |
-| 中文文档 | <https://docs.deno.org.cn/> |
-| GitHub | <https://github.com/denoland/deno> |
-
-> `deno desktop` 命令从 v2.9 开始内置。
 
 ---
 
@@ -854,72 +1028,40 @@ AI Agent 桌面开发的特点是**多语言混合 + 多进程调试**，推荐�
 | 类型 | 链接 |
 |------|------|
 | 官网 | <https://nwjs.io/> |
-| 英文文档 | <https://docs.nwjs.io/> |
 | 中文文档 | <https://nwjs-cn.readthedocs.io/> |
 | GitHub | <https://github.com/nwjs/nw.js> |
 
 ---
-
-#### Electrobun `★ 2026 新星`
-
-| 类型 | 链接 |
-|------|------|
-| GitHub | <https://github.com/blackboardsh/electrobun> |
-
-> Bun + Zig + WebView，早期实验阶段。
-
----
-
-### 9.2 Rust 原生派
 
 #### Dioxus
 
 | 类型 | 链接 |
 |------|------|
 | 官网 | <https://dioxuslabs.com/> |
-| 文档 | <https://dioxuslabs.com/learn/0.7/> |
 | 安装 | `cargo install dioxus-cli` |
 | GitHub | <https://github.com/DioxusLabs/dioxus> |
 
 ---
 
-#### Slint
+#### Electrobun `★`
 
 | 类型 | 链接 |
 |------|------|
-| 官网 | <https://slint.dev/> |
-| 文档 | <https://docs.slint.dev/latest/docs/slint/> |
-| 中文参考 | <https://qi-xmu.github.io/slint-reference-zh/> |
-| GitHub | <https://github.com/slint-ui/slint> |
-
-> 体积 <300KB，适合轻量嵌入式 Agent。
+| GitHub | <https://github.com/blackboardsh/electrobun> |
 
 ---
 
-### 9.3 企业级原生派
+### 9.3 企业级框架
 
-#### Qt6
+#### Qt6 (C++ / Python)
 
 | 类型 | 链接 |
 |------|------|
 | 官网 | <https://www.qt.io/development/qt-framework/qt6> |
-| 下载（开源版） | <https://www.qt.io/download-open-source> |
-| 英文文档 | <https://doc.qt.io/qt-6/> |
 | 中文文档 | <https://doc.qt.ac.cn/> |
 | PySide6 文档 | <https://doc.qt.io/qtforpython-6/> |
 
-> 开源版 LGPLv3/GPLv3。国内推荐清华镜像：`https://mirrors.tuna.tsinghua.edu.cn/qt/`
-
----
-
-#### Flutter
-
-| 类型 | 链接 |
-|------|------|
-| 官网 | <https://flutter.dev/> |
-| 中文文档 | <https://docs.flutter.cn/> |
-| 桌面端指南 | <https://docs.flutter.dev/platform-integration/desktop> |
-| GitHub | <https://github.com/flutter/flutter> |
+> 国内推荐清华镜像：`https://mirrors.tuna.tsinghua.edu.cn/qt/`
 
 ---
 
@@ -930,18 +1072,6 @@ AI Agent 桌面开发的特点是**多语言混合 + 多进程调试**，推荐�
 | 官网 | <https://dotnet.microsoft.com/en-us/apps/maui> |
 | 安装 | `dotnet workload install maui` |
 | 文档 | <https://learn.microsoft.com/en-us/dotnet/maui/> |
-| GitHub | <https://github.com/dotnet/maui> |
-
----
-
-#### Kotlin Multiplatform + Compose Desktop
-
-| 类型 | 链接 |
-|------|------|
-| 官网 | <https://kotlinlang.org/compose-multiplatform/> |
-| 文档 | <https://kotlinlang.org/docs/multiplatform.html> |
-| 中文文档 | <https://docs.kmpstudy.com/> |
-| GitHub | <https://github.com/JetBrains/compose-multiplatform> |
 
 ---
 
@@ -950,8 +1080,6 @@ AI Agent 桌面开发的特点是**多语言混合 + 多进程调试**，推荐�
 | 类型 | 链接 |
 |------|------|
 | 官网 | <https://avaloniaui.net/> |
-| 安装 | `dotnet new install Avalonia.Templates` |
-| 文档 | <https://docs.avaloniaui.net/> |
 | 中文文档 | <https://avaloniachina.github.io/avalonia-docs/> |
 | GitHub | <https://github.com/AvaloniaUI/Avalonia> |
 
@@ -962,33 +1090,30 @@ AI Agent 桌面开发的特点是**多语言混合 + 多进程调试**，推荐�
 | 类型 | 链接 |
 |------|------|
 | 官网 | <https://platform.uno/> |
-| 文档 | <https://platform.uno/docs/articles/intro.html> |
 | GitHub | <https://github.com/unoplatform/uno> |
 
 ---
 
-### 9.4 新锐实验派
+### 9.4 轻量与实验
+
+#### Slint
+
+| 类型 | 链接 |
+|------|------|
+| 官网 | <https://slint.dev/> |
+| 中文参考 | <https://qi-xmu.github.io/slint-reference-zh/> |
+| GitHub | <https://github.com/slint-ui/slint> |
+
+> 体积 <300KB。
+
+---
 
 #### Neutralinojs
 
 | 类型 | 链接 |
 |------|------|
 | 官网 | <https://neutralino.js.org/> |
-| 安装 | `npm i -g @neutralinojs/neu` |
-| 文档 | <https://neutralino.js.org/docs/> |
 | GitHub | <https://github.com/neutralinojs/neutralinojs> |
-
-> C++ 轻量后端 + WebView，Hello World ~5MB。
-
----
-
-#### React Native (Windows + macOS)
-
-| 类型 | 链接 |
-|------|------|
-| 官网 | <https://microsoft.github.io/react-native-windows/> |
-| 中文文档 | <https://msdocs.cn/react-native-windows/> |
-| GitHub | <https://github.com/microsoft/react-native-windows> |
 
 ---
 
@@ -996,18 +1121,29 @@ AI Agent 桌面开发的特点是**多语言混合 + 多进程调试**，推荐�
 
 | 资源 | 链接 | 说明 |
 |------|------|------|
-| LangChain Python | <https://python.langchain.com/> | Agent 编排框架（Python） |
-| LangChain.js | <https://js.langchain.com/> | Agent 编排框架（JS/TS） |
-| LangGraph | <https://langchain-ai.github.io/langgraph/> | 有状态多步 Agent 编排 |
+| LangChain Python | <https://python.langchain.com/> | Agent 编排框架 |
+| LangChain.js | <https://js.langchain.com/> | JS/TS Agent 编排 |
+| LangGraph | <https://langchain-ai.github.io/langgraph/> | 有状态多步 Agent |
 | LlamaIndex | <https://docs.llamaindex.ai/> | RAG 数据框架 |
-| CrewAI | <https://docs.crewai.com/> | 多 Agent 协作框架 |
-| AutoGen | <https://microsoft.github.io/autogen/> | 微软多 Agent 框架 |
-| Vercel AI SDK | <https://sdk.vercel.ai/> | 前端 AI 组件 + 流式响应 |
-| MCP 协议 | <https://modelcontextprotocol.io/> | Agent-Tool 标准通信协议 |
-| llama.cpp | <https://github.com/ggerganov/llama.cpp> | C++ 本地推理引擎 |
+| CrewAI | <https://docs.crewai.com/> | 多 Agent 协作 |
+| AutoGen | <https://microsoft.github.io/autogen/> | 微软多 Agent |
+| Vercel AI SDK | <https://sdk.vercel.ai/> | 前端 AI 组件 |
+| MCP 协议 | <https://modelcontextprotocol.io/> | Agent-Tool 标准协议 |
+| llama.cpp | <https://github.com/ggerganov/llama.cpp> | C++ 本地推理 |
 | ONNX Runtime | <https://onnxruntime.ai/> | 跨平台模型推理 |
 | Ollama | <https://ollama.com/> | 一键本地模型部署 |
-| Semantic Kernel | <https://learn.microsoft.com/en-us/semantic-kernel/> | 微软 AI Agent 框架 (C#/Python/Java) |
+| DeepSeek API | <https://platform.deepseek.com/> | 国产高性价比 LLM |
+
+### 9.6 鸿蒙 / 小程序专属资源
+
+| 资源 | 链接 | 说明 |
+|------|------|------|
+| HarmonyOS 开发者 | <https://developer.huawei.com/consumer/cn/harmonyos/> | 鸿蒙官方门户 |
+| DevEco Studio | <https://developer.huawei.com/consumer/cn/deveco-studio/> | 鸿蒙官方 IDE |
+| ArkUI 文档 | <https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkui-overview> | 鸿蒙原生 UI |
+| 微信小程序文档 | <https://developers.weixin.qq.com/miniprogram/dev/> | 小程序官方开发 |
+| 微信小程序 AI 能力 | <https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/ai.html> | 小程序内置 AI |
+| uni-app 插件市场 | <https://ext.dcloud.net.cn/> | uni-app/Taro 插件 |
 
 ---
 
