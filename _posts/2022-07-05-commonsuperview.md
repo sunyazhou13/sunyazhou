@@ -22,7 +22,7 @@ typora-root-url: ..
 //调用
 - (void)viewDidLoad {
     [super viewDidLoad];
-    Class commonClass1 = [self commonClass1:[ViewA class] andClass:[ViewC class]];
+    Class commonClass1 = [self commonClass:[ViewA class] andClass:[ViewC class]];
     NSLog(@"%@",commonClass1);
     // 输出：2022-07-03 17:36:01.868966+0800 两个UIView的最近公共父类[84288:2458900] ViewD
 }
@@ -40,7 +40,7 @@ typora-root-url: ..
     return [result copy];
 }
 //我们将一个路径中的所有点先放进NSSet中.因为NSSet的内部实现是一个hash表，所以查询元素的时间的复杂度变成O(1),我们一共有N个节点，所以总时间复杂度优化到了O(N)
-- (Class)commonClass2:(Class)classA andClass:(Class)classB{
+- (Class)commonClass:(Class)classA andClass:(Class)classB{
     NSArray *arr1 = [self superClasses:classA];
     NSArray *arr2 = [self superClasses:classB];
     NSSet *set = [NSSet setWithArray:arr2];
