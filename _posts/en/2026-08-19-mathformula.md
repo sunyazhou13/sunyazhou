@@ -1,11 +1,15 @@
 ---
 layout: post
-title: Math Formula Test
+title: Math Formula Render
 date: 2026-08-19 13:54 +0000
 categories: [Test]
 tags: [math, test]
 math: true
 ---
+
+# Preface
+
+This article is strongly personal in tone. If you find it uncomfortable to read, please close it as soon as possible. This article is only a personal learning record. You are welcome to repost or share it within the scope of the license agreement, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
 
 This post tests MathJax 3.2.2 rendering, following the official Chirpy theme conventions: block-level equations use `$$...$$`, inline math uses `$...$` (**never** use ```math fences — kramdown GFM renders them as plain code blocks).
 
