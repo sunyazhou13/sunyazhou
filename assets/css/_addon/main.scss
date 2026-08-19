@@ -883,7 +883,7 @@ div.post-content .table-wrapper {
   }
 
   a {
-    &:not(.img-hyperlink) {
+    &:not(.img-hyperlink):not(.popup) {
       @extend %link-color;
       @extend %link-underline;
       &:hover {
@@ -893,6 +893,18 @@ div.post-content .table-wrapper {
     &.img-hyperlink {
       @include img;
       @include img-caption;
+    }
+    &.popup {
+      display: block;
+      text-align: center;
+      border-bottom: none;
+      text-decoration: none;
+      cursor: zoom-in;
+      > img {
+        border-radius: 0.35rem;
+        overflow: hidden;
+        margin: 0.5rem 0;
+      }
     }
   }
 
