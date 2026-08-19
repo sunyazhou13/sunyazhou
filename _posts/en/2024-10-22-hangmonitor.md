@@ -4,6 +4,7 @@ title: iOS Hang Monitor Code
 date: 2024-10-22 05:01 +0000
 tags: [iOS, SwiftUI, Swift, Objective-C, skills]
 typora-root-url: ..
+math: true
 ---
 
 # Preface

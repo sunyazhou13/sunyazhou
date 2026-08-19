@@ -5,6 +5,7 @@ date: 2025-05-11 07:30 +0000
 categories: [iOS, SwiftUI]
 tags: [iOS, SwiftUI, Swift, Objective-C]
 typora-root-url: ..
+math: true
 ---
 
 
@@ -54,7 +55,7 @@ The bitwise AND (&) operation clears the high bits of size, keeping only the val
 Example calculation
 For size = 129, align = 128:
 
-``` math
+$$
 \begin{align*}
 \text{余数} &= 129 \ \% \ 128 \\
 &= 129 \ \& \ (128 - 1) \\
@@ -62,7 +63,7 @@ For size = 129, align = 128:
 &= \text{二进制} \ 10000001 \ \& \ 01111111 \\
 &= 00000001 \quad (\text{即十进制 1})
 \end{align*}
-```
+$$
 
 #### 2. Comparison with Traditional Modulo Operation
 
@@ -113,11 +114,9 @@ Yes, the expression `129 & (128 - 1)` is essentially an efficient modulo (remain
 - **Use cases**: GPU memory alignment, optimizing modulo operations in high-performance computing.
 - **Core formula**:  
 	
-``` math
-  \[
+$$
 \text{AlignedSize} = \text{size} - (\text{size} \ \% \ \text{align}) + \text{align}
-\]  
-```
+$$
 
 ![](/assets/images/20250511MemoryAlignmentAlgorithm/AlignedSize.avif)
 

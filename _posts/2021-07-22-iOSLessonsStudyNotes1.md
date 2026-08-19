@@ -5,6 +5,7 @@ date: 2021-12-23 10:30:00.000000000 +09:00
 categories: [iOS]
 tags: [iOS, macOS, Objective-C, skills]
 typora-root-url: ..
+math: true
 ---
 
 ![](/assets/images/20210722iOSLessonsStudyNotes1/studycover.avif)
