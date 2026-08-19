@@ -4,7 +4,7 @@ title: Markdown Table Syntax
 date: 2017-09-29 18:01:08
 categories: [系统理论实践]
 tags: [skills]
-math: true
+
 ---
 
 # Preface

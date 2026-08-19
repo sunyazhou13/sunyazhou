@@ -5,7 +5,7 @@ date: 2017-01-18 13:44:57
 categories: [iOS]
 tags: [iOS, macOS, Objective-C, 音视频]
 typora-root-url: ..
-math: true
+
 ---
 
 > I've been working on iOS development for a long time. In the past, I used my brain to memorize technical articles and the code of technical implementations. But when a person's brain exceeds a certain storage limit, stack overflow occurs (actually, I'm just not that smart). Later, I gradually started to remember which blog was written by whom, or the code of how a technique was implemented... But then I found that not only was the stack overflowing, the heap could barely hold the vast number of iOS technical articles anymore... Sigh. So I kept all the classic article bookmarks and browser URLs in my Chrome. Now I want to organize them and put them in my blog, to make it easy to look up the code of a certain technical implementation (in fact, even my former intern colleagues at Baidu Cloud were amazed at how I could store a certain technique in such detail). OK, let's start the iOS knowledge point technical navigation.

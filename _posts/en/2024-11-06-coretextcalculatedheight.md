@@ -4,7 +4,7 @@ title: How to Calculate the Font Height Needed When Rendering with CoreText?
 date: 2024-11-06 02:25 +0000
 tags: [iOS, SwiftUI, Swift, Objective-C, skills]
 typora-root-url: ..
-math: true
+
 ---
 
 

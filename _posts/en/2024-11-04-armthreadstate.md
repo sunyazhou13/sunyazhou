@@ -4,7 +4,7 @@ title: What Registers Are in the ARM Thread State of an iOS dSYM?
 date: 2024-11-04 02:31 +0000
 tags: [iOS, SwiftUI, Swift, Objective-C, skills]
 typora-root-url: ..
-math: true
+
 ---
 
 ![](/assets/images/20240727Magnificationgesture/SwiftUI.avif)
