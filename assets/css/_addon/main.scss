@@ -146,6 +146,11 @@ $sidebar-display: "sidebar-display";
     font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 1px;
+    /* left-aligned nav (English site): keep icons on one vertical line */
+    &.nav-link-start > i {
+      margin-left: 1.75rem;
+      margin-right: 1rem;
+    }
   }
   .nav-item {
     height: $tab-height;

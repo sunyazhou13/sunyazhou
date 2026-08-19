@@ -30,7 +30,14 @@
   <ul class="nav flex-column">
   {% assign page_urls = page.url | split: "/" %}
 
-  {% for item in site.data.tabs %}
+  {% assign _tabs = site.data.tabs %}
+  {% assign _nav_align = "justify-content-center" %}
+  {% if site.active_lang == "en" %}
+    {% assign _tabs = site.data.tabs_en %}
+    {% assign _nav_align = "justify-content-start nav-link-start" %}
+  {% endif %}
+
+  {% for item in _tabs %}
     {% assign ref = site.baseurl | append: "/" %}
 
     {% if item.path %}
@@ -44,7 +51,7 @@
       {% if item.url == page_urls.last
         or item.name == page.tab_active
         or item.name == "Home" and page.layout == "home" %}active{% endif %}">
-      <a href="{{ ref }}" class="nav-link d-flex justify-content-center align-items-center w-100">
+      <a href="{{ ref }}" class="nav-link d-flex {{ _nav_align }} align-items-center w-100">
         <i class="fa-fw {{ item.icon }} ml-xl-3 mr-xl-3"></i>
         <span>{{ item.name | upcase }}</span>
       </a>
