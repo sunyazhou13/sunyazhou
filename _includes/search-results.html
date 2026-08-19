@@ -5,10 +5,14 @@
   © 2017-2019 Cotes Chung
   MIT License
 -->
+{% assign _label = site.data.label %}
+{% if site.active_lang == "en" %}
+  {% assign _label = site.data.label_en %}
+{% endif %}
 <div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
   <div class="col-12 col-xl-11 post-content">
     <div id="search-hints">
-      <h4 class="text-muted mb-4">{{ site.data.label.panel.trending_tags }}</h4>
+      <h4 class="text-muted mb-4">{{ _label.panel.trending_tags }}</h4>
 
       {% include trending-tags.html %}
 

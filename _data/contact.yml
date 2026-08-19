@@ -7,12 +7,12 @@
 -
   type: github
   icon: 'fab fa-github-alt'
--
-  type: twitter
-  icon: 'fab fa-twitter'
--
-  icon: 'fab fa-weibo'
-  url:  'https://www.weibo.com/sunyazhou13'
+# -
+#   type: twitter
+#   icon: 'fab fa-twitter'
+# -
+#   icon: 'fab fa-weibo'
+#   url:  'https://www.weibo.com/sunyazhou13'
 -
   type: email
   icon: 'fas fa-envelope'

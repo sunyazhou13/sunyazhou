@@ -12,6 +12,7 @@ group :jekyll_plugins do
   gem "jekyll-seo-tag", "~> 2.6.1"
   gem 'jekyll-compose'
   gem "jekyll-tabs"
+  gem "jekyll-polyglot"
 end
 
 group :test do

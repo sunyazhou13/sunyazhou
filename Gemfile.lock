@@ -51,6 +51,8 @@ GEM
     jekyll-compose (0.12.0)
       jekyll (>= 3.7, < 5.0)
     jekyll-paginate (1.1.0)
+    jekyll-polyglot (1.9.0)
+      jekyll (>= 4.0, >= 3.0)
     jekyll-redirect-from (0.16.0)
       jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (3.0.0)
@@ -106,6 +108,7 @@ DEPENDENCIES
   jekyll (>= 3.8.6)
   jekyll-compose
   jekyll-paginate
+  jekyll-polyglot
   jekyll-redirect-from
   jekyll-sass-converter (~> 3.0)
   jekyll-seo-tag (~> 2.6.1)

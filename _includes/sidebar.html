@@ -57,6 +57,11 @@
 
 <div class="sidebar-bottom d-flex flex-wrap justify-content-around mt-4">
 
+  {% if site.languages.size > 1 %}
+  {% include lang-toggle.html %}
+  <span class="icon-border"></span>
+  {% endif %}
+
   {% if site.theme_mode == "dual" %}
   <span id="mode-toggle-wrapper">
     {% include mode-toggle.html %}

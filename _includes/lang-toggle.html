@@ -1,0 +1,18 @@
+<!--
+  Switch the language between Chinese and English.
+  Mirrors the mode-toggle pattern: both icons are rendered in the DOM,
+  the active language decides which one is visible (no JS needed,
+  since switching language is a plain URL jump).
+-->
+
+{% if site.languages.size > 1 %}
+  {% assign target_lang = site.languages | where_exp: "item", "item != site.active_lang" | first %}
+  {%- capture target_href -%}{{ site.baseurl }}/{%- if target_lang != site.default_lang -%}{{ target_lang }}/{%- endif -%}{{ page.url | remove_first: '/' }}{%- endcapture -%}
+  <a id="lang-toggle-wrapper" class="lang-toggle"
+     {% static_href %}href="{{ target_href }}"{% endstatic_href %}
+     title="{% if target_lang == 'en' %}English{% else %}中文{% endif %}"
+     aria-label="{% if target_lang == 'en' %}Switch to English{% else %}切换到中文{% endif %}">
+    <i class="lang-toggle-icon fas fa-language {% if site.active_lang == 'en' %}lang-invisible{% endif %}"></i>
+    <i class="lang-toggle-icon fas fa-earth-asia {% if site.active_lang == 'zh' %}lang-invisible{% endif %}"></i>
+  </a>
+{% endif %}

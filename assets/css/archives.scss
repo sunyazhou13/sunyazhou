@@ -110,24 +110,6 @@
     }
   } // #archives .date
 
-  .archive-cat-badge {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: #fff;
-    background-color: var(--btn-prompt-color, #2a6df4);
-    padding: 0.1em 0.5em;
-    border-radius: 0.25rem;
-    margin-left: 0.5em;
-    vertical-align: middle;
-    line-height: 1.4;
-    opacity: 0.85;
-    transition: opacity 0.2s ease;
-    &:hover {
-      opacity: 1;
-    }
-  }
-
   ul {
     > li {
       > div > a {

@@ -1,0 +1,19 @@
+# The label text of site. (English)
+#  v2.0
+#  https://github.com/cotes2020/jekyll-theme-chirpy
+# © 2017-2019 Cotes Chung
+# MIT Licensed
+
+
+panel:
+  lastmod: "Recently Updated"
+  trending_tags: "Trending Tags"
+  toc: "Table of Contents"
+
+post:
+  relate_posts: "Keep Reading"
+  button:
+    next: Newer Posts
+    previous: Older Posts
+
+search_hint: "Search"   # text show on search bar

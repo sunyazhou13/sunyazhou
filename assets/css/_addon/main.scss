@@ -194,6 +194,22 @@ $sidebar-display: "sidebar-display";
       }
     }
 
+    #lang-toggle-wrapper {
+      @include sidebar-links;
+      i {
+        @include sidebar-links;
+        margin-right: 0;
+        font-size: 1.05rem;
+        text-align: center;
+        &.lang-invisible {
+          display: none;
+        }
+      }
+      &:hover {
+        color: #fff;
+      }
+    }
+
     .icon-border {
       background: #525354;
       width: 3px;

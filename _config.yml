@@ -20,17 +20,24 @@ avatar: /assets/images/avatar.jpg
 github:
   username: sunyazhou13
 
-twitter:
-  username: sunyazhou
+# twitter:
+#   username: sunyazhou
 
 social:
   name: sunyazhou
   email: sunyazhou@111.com
   links:
     - https://github.com/sunyazhou13
-    - https://twitter.com/sunyazhou13
+    # - https://twitter.com/sunyazhou13
 
 lang: zh-Hans
+
+# jekyll-polyglot 多语言配置 › https://github.com/untra/polyglot
+languages: ["zh", "en"]
+default_lang: "zh"
+lang_from_path: true
+parallel_localization: true
+exclude_from_localization: ["assets", "javascript", "images", "css", "public", "sitemap.xml", "feed.xml", "robots.txt", "404.html"]
 
 google_site_verification: Xo29j227HYVdC-vDA_-qJwvDP3PIo-lC78CFeBvhrDA #已经通过http://www.google.com/webmasters/tools/，将自己网站添加进 google网站管理，有利于googlegoogle的收录。
 

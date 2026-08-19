@@ -21,11 +21,6 @@ type: archives
         <span class="date day">{{ post.date | date: "%d" }}</span>
         <span class="date month small text-muted">{{ post.date | date: "%b" }}</span>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        {% if post.categories.size > 0 %}
-          {% for cat in post.categories limit:1 %}
-            <span class="archive-cat-badge">{{ cat }}</span>
-          {% endfor %}
-        {% endif %}
       </div>
     </li>
   {% endfor %}

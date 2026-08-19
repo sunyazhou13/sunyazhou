@@ -8,6 +8,11 @@
  Published under the MIT License
 -->
 
+{% assign _label = site.data.label %}
+{% if site.active_lang == "en" %}
+  {% assign _label = site.data.label_en %}
+{% endif %}
+
 <!-- The total size of related posts  -->
 {% assign TOTAL_SIZE = 3 %}
 
@@ -85,7 +90,7 @@
 
 {% if index_list.size > 0 %}
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
-    <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>{{ site.data.label.post.relate_posts }}</h3>
+    <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>{{ _label.post.relate_posts }}</h3>
     <div class="card-deck mb-4">
     {% for entry in index_list %}
       {% assign index = entry | plus: 0 %}
