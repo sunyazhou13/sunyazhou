@@ -1,0 +1,84 @@
+<!--
+  Giscus comments (https://giscus.app/), based on GitHub Discussions.
+  Backported from upstream Chirpy, adapted to this theme's
+  html[mode] color-scheme switching (no Theme util dependency).
+
+  Prerequisites (one-time, on GitHub):
+    1. Enable Discussions on the repository.
+    2. Install the giscus App: https://github.com/apps/giscus
+    3. Fill repo_id / category_id in _config.yml (get them from https://giscus.app)
+-->
+
+{% if site.giscus.repo_id and site.giscus.category_id %}
+
+<div class="giscus-container pt-3">
+  <script>
+    (function () {
+      'use strict';
+
+      var THEME_LIGHT = '{{ site.giscus.light_theme | default: "light" }}';
+      var THEME_DARK = '{{ site.giscus.dark_theme | default: "dark_dimmed" }}';
+
+      function currentTheme() {
+        var mode = document.documentElement.getAttribute('mode');
+        if (mode === 'dark') { return THEME_DARK; }
+        if (mode === 'light') { return THEME_LIGHT; }
+        return (window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+          ? THEME_DARK
+          : THEME_LIGHT;
+      }
+
+      function giscusLang() {
+        var lang = '{{ site.lang | default: "en" }}';
+        if (lang.indexOf('zh') === 0) { return 'zh-CN'; }
+        return lang.slice(0, 2);
+      }
+
+      function loadGiscus() {
+        var s = document.createElement('script');
+        var attrs = {
+          src: 'https://giscus.app/client.js',
+          'data-repo': '{{ site.giscus.repo }}',
+          'data-repo-id': '{{ site.giscus.repo_id }}',
+          'data-category': '{{ site.giscus.category | default: "Announcements" }}',
+          'data-category-id': '{{ site.giscus.category_id }}',
+          'data-mapping': '{{ site.giscus.mapping | default: "pathname" }}',
+          'data-strict': '0',
+          'data-reactions-enabled': '{{ site.giscus.reactions_enabled | default: "1" }}',
+          'data-emit-metadata': '0',
+          'data-theme': currentTheme(),
+          'data-input-position': '{{ site.giscus.input_position | default: "bottom" }}',
+          'data-lang': giscusLang(),
+          'data-loading': 'lazy',
+          crossorigin: 'anonymous',
+          async: ''
+        };
+        Object.keys(attrs).forEach(function (k) {
+          s.setAttribute(k, attrs[k]);
+        });
+        document.querySelector('.giscus-container').appendChild(s);
+      }
+
+      /* follow the mode toggle: update giscus theme without reloading */
+      function updateGiscusTheme() {
+        var iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) { return; }
+        iframe.contentWindow.postMessage(
+          { giscus: { setConfig: { theme: currentTheme() } } },
+          'https://giscus.app'
+        );
+      }
+
+      new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          if (m.attributeName === 'mode') { updateGiscusTheme(); }
+        });
+      }).observe(document.documentElement, { attributes: true });
+
+      loadGiscus();
+    })();
+  </script>
+</div>
+
+{% endif %}

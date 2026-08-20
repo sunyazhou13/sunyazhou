@@ -176,6 +176,10 @@ layout: default
       {% include utterances.html %}
     {% endif %}
 
+    {% if site.giscus.comments and page.comments %}
+      {% include giscus.html %}
+    {% endif %}
+
     </div> <!-- #post-extend-wrapper -->
 
   </div> <!-- .col-* -->

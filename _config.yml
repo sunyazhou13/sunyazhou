@@ -60,10 +60,28 @@ disqus:
   shortname: 'sunyazhou13'    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 utterances:
-  comments: true
+  comments: false
   light_theme: github-light
   dark_theme: photon-dark
   repo: sunyazhou13/gitment-comments
+
+# Giscus comments (https://giscus.app), based on GitHub Discussions.
+# To enable:
+#   1. Enable Discussions on the repo below
+#   2. Install the giscus App: https://github.com/apps/giscus
+#   3. Fill repo_id / category_id from https://giscus.app
+#   4. Set comments to true (and set utterances.comments to false)
+giscus:
+  comments: true
+  repo: sunyazhou13/sunyazhou13.github.io
+  repo_id: 'MDEwOlJlcG9zaXRvcnkzODc1NTk1OA=='   # from https://giscus.app
+  category: Announcements
+  category_id: 'DIC_kwDOAk9eds4DDwpN'           # from https://giscus.app
+  mapping: pathname
+  light_theme: light
+  dark_theme: dark_dimmed
+  input_position: bottom
+  reactions_enabled: 1
 
 # Prefer color scheme setting, available values:
 #

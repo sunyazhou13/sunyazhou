@@ -149,3 +149,107 @@ div {
     }
   }
 }
+
+/* -- Code header (language label & copy button) --
+   Backported from upstream Chirpy v7 _sass/base/_syntax.scss */
+
+div[class^='language-'] {
+  background: var(--highlight-bg-color);
+  border-radius: 6px;
+  box-shadow: var(--highlight-lineno-border-color) 0 0 0 1px;
+  margin-bottom: 1.2rem;
+  padding-top: 0.1rem;
+
+  .code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2.25rem;
+    margin-left: 0.75rem;
+    margin-right: 0.25rem;
+
+    /* language label */
+    span {
+      color: var(--code-header-text-color);
+      line-height: 2.25rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      i {
+        font-size: 1rem;
+        color: var(--code-header-icon-color);
+
+        &.small {
+          font-size: 70%;
+        }
+      }
+
+      &::after {
+        content: attr(data-label-text);
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+    }
+
+    /* clipboard button */
+    button {
+      border: 1px solid transparent;
+      border-radius: 50%;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 0.125rem;
+      padding: 0;
+      background-color: inherit;
+      color: inherit;
+
+      i {
+        color: var(--code-header-icon-color);
+      }
+
+      &[timeout] {
+        &:hover {
+          border-color: var(--clipboard-checked-color);
+        }
+
+        i {
+          font-size: 90%;
+          color: var(--clipboard-checked-color);
+        }
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &:not([timeout]):hover {
+        background-color: rgba(128, 128, 128, 0.37);
+
+        i {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  /* macOS window dots */
+  @media (min-width: 576px) {
+    .code-header::before {
+      content: '';
+      display: inline-block;
+      margin-left: 1rem;
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background-color: var(--code-header-muted-color);
+      box-shadow:
+        1.25rem 0 0 var(--code-header-muted-color),
+        2.5rem 0 0 var(--code-header-muted-color);
+    }
+
+    .code-header span {
+      margin-left: -1.75rem; /* center the label text */
+      max-width: calc(100% - 6rem);
+    }
+  }
+}

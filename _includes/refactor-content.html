@@ -24,4 +24,67 @@
   {% assign _content = _content | replace: '</code></pre></div>', '</code></div>' %}
 {% endif %}
 
+
+<!--
+  Add header (language label & copy button) for code snippets.
+  Backported from upstream Chirpy (cotes2020/jekyll-theme-chirpy) refactor-content.html
+-->
+{% if _content contains '<div class="highlight"><code>' %}
+  {% assign _code_spippets = _content | split: '<div class="highlight"><code>' %}
+  {% assign _new_content = '' %}
+
+  {% for _snippet in _code_spippets %}
+    {% if forloop.last %}
+      {% assign _new_content = _new_content | append: _snippet %}
+
+    {% else %}
+      {% assign _left = _snippet | split: '><' | last %}
+
+      {% if _left contains 'file="' %}
+        {% assign _label_text = _left | split: 'file="' | last | split: '"' | first %}
+        {% assign _label_icon = 'far fa-file-code fa-fw' %}
+      {% else %}
+        {% assign _lang = _left | split: 'language-' | last | split: ' ' | first %}
+        {% capture _label_text %}{% include language-alias.html language=_lang %}{% endcapture %}
+        {% assign _label_icon = 'fas fa-code fa-fw small' %}
+      {% endif %}
+
+      {% capture _label %}
+        <span data-label-text="{{ _label_text | strip }}"><i class="{{ _label_icon }}"></i></span>
+      {% endcapture %}
+
+      {% if site.lang == 'zh' or site.lang == 'zh-CN' or site.lang == 'zh-Hans' %}
+        {% assign _copy_succeed = '已复制' %}
+      {% else %}
+        {% assign _copy_succeed = 'Copy done' %}
+      {% endif %}
+
+      {% assign _new_content = _new_content
+        | append: _snippet
+        | append: '<div class="code-header">'
+        | append: _label
+        | append: '<button aria-label="copy" data-title-succeed="'
+        | append: _copy_succeed
+        | append: '"><i class="far fa-clipboard"></i></button></div>'
+        | append: '<div class="highlight"><code>'
+      %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign _content = _new_content %}
+{% endif %}
+
+<!--
+  Change the icon of checkbox (backported from upstream Chirpy)
+-->
+
+{% if _content contains '<input type="checkbox"' %}
+  {% assign _content = _content
+    | replace: '<input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />',
+      '<i class="fas fa-check-circle fa-fw checked"></i>'
+    | replace: '<input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />',
+      '<i class="far fa-circle fa-fw"></i>'
+  %}
+{% endif %}
+
 {{ _content }}

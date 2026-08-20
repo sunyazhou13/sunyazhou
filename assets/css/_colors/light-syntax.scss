@@ -76,4 +76,10 @@
   --highlight-lineno-color: #c2c6cc;
   --highlight-lineno-border-color: #e9ecef;
   --inline-code-bg: #f3f3f3;
+
+  /* --- code header (backport from upstream Chirpy) --- */
+  --code-header-text-color: #a3a3a3;
+  --code-header-muted-color: #e5e5e5;
+  --code-header-icon-color: #c9c8c8;
+  --clipboard-checked-color: #43c743;
 } // light-syntax

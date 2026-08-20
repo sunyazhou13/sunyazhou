@@ -42,6 +42,35 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
       margin: 1rem 0 0.8rem;
     }
   }
+
+  /* Task list: FA icon replaces native checkbox (backported from upstream) */
+  ul.task-list {
+    padding-left: 1.25rem;
+
+    li {
+      list-style-type: none;
+      padding-left: 0;
+
+      > i {
+        width: 2rem;
+        margin-left: -1.25rem;
+        color: var(--checkbox-color);
+
+        &.checked {
+          color: var(--checkbox-checked-color);
+        }
+      }
+
+      ul {
+        padding-left: 1.75rem;
+      }
+    }
+
+    input[type='checkbox'] { // fallback if not replaced by Liquid
+      margin: 0 0.5rem 0.2rem -1.3rem;
+      vertical-align: middle;
+    }
+  }
   .post-preview-img {
     margin-top: 0;
     margin-bottom: 2.5rem;

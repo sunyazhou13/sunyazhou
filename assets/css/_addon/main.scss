@@ -660,6 +660,66 @@ blockquote {
       color: var(--link-color);
     }
   }
+
+  /* Prompt boxes (backport from upstream Chirpy _sass/base/_typography.scss) */
+  &[class^='prompt-'] {
+    border-left: 0;
+    position: relative;
+    padding: 1rem 1rem 1rem 3rem;
+    color: var(--prompt-text-color);
+    border-radius: 6px;
+
+    &::before {
+      text-align: center;
+      width: 3rem;
+      position: absolute;
+      left: 0.25rem;
+      margin-top: 0.4rem;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
+  &.prompt-tip {
+    background-color: var(--prompt-tip-bg);
+
+    &::before {
+      content: '\f0eb'; /* far fa-lightbulb */
+      color: var(--prompt-tip-icon-color);
+      font: var(--fa-font-regular);
+    }
+  }
+
+  &.prompt-info {
+    background-color: var(--prompt-info-bg);
+
+    &::before {
+      content: '\f06a'; /* fas fa-circle-info, flipped */
+      color: var(--prompt-info-icon-color);
+      font: var(--fa-font-solid);
+      transform: rotate(180deg);
+    }
+  }
+
+  &.prompt-warning {
+    background-color: var(--prompt-warning-bg);
+
+    &::before {
+      content: '\f06a'; /* fas fa-circle-exclamation */
+      color: var(--prompt-warning-icon-color);
+      font: var(--fa-font-solid);
+    }
+  }
+
+  &.prompt-danger {
+    background-color: var(--prompt-danger-bg);
+
+    &::before {
+      content: '\f071'; /* fas fa-triangle-exclamation */
+      color: var(--prompt-danger-icon-color);
+      font: var(--fa-font-solid);
+    }
+  }
 }
 
 kbd {
@@ -745,6 +805,39 @@ a {
 
 img {
   max-width: 100%;
+}
+
+/* --- Image utilities & mode-only images (backport from upstream Chirpy) --- */
+
+.w-25 { width: 25% !important; }
+.w-50 { width: 50% !important; }
+.w-75 { width: 75% !important; }
+
+.shadow {
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25) !important;
+}
+
+.rounded-10 { border-radius: 10px !important; }
+
+/* images only visible in one color mode: ![alt](src){: .light} / {: .dark} */
+html:not([mode]),
+html[mode=light] {
+  img.dark { display: none; }
+}
+
+html[mode=dark] {
+  img.light { display: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([mode]),
+  html[mode=dark] {
+    img.light { display: none; }
+  }
+
+  html[mode=light] {
+    img.dark { display: none; }
+  }
 }
 
 .post {
@@ -1600,4 +1693,20 @@ div.post-content .table-wrapper {
   #panel-wrapper {
     margin-left: 41px;
   }
+}
+
+/* mermaid diagrams (backport from upstream Chirpy) */
+
+.mermaid {
+  text-align: center;
+}
+
+/* Embedded videos (backported from upstream Chirpy _sass/base/_base.scss) */
+
+.embed-video {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1rem;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
 }

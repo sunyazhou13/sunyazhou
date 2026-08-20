@@ -14,6 +14,12 @@
   --highlight-lineno-border-color: #3c4042;
   --inline-code-bg: #272822;
 
+  /* --- code header (backport from upstream Chirpy) --- */
+  --code-header-text-color: #6a6a6a;
+  --code-header-muted-color: #353535;
+  --code-header-icon-color: #565656;
+  --clipboard-checked-color: #2bcc2b;
+
   .highlight {
     .gp { color: #818c96; }
   }
