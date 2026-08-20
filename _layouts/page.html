@@ -10,13 +10,52 @@ layout: default
 <div class="row">
   <div class="col-12 col-lg-11 col-xl-8">
     <div id="page" class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
+
+    {% comment %} Wrap images in <a class="popup"> for GLightbox preview (same as post layout) {% endcomment %}
+    {% assign _content = content %}
+    {% assign _img_tag = '<img ' %}
+
+    {% if _content contains _img_tag %}
+      {% assign _result = '' %}
+      {% assign _parts = _content | split: _img_tag %}
+
+      {% for _part in _parts %}
+        {% if forloop.first %}
+          {% assign _result = _part %}
+          {% continue %}
+        {% endif %}
+
+        {% assign _left = _part | split: '>' | first %}
+        {% assign _right = _part | remove: _left %}
+
+        {% if _left contains 'src="' %}
+          {% assign _src = _left | split: 'src="' | last | split: '"' | first %}
+          {% assign _after_img = _right | slice: 1, 4 %}
+
+          {% if _after_img == '</a>' %}
+            {% comment %} Image already inside <a> — add popup class to existing <a> tag {% endcomment %}
+            {% assign _size = _result | size | minus: 1 %}
+            {% assign _result = _result | slice: 0, _size | append: ' class="popup"' | append: '>' | append: _img_tag | append: _left | append: _right %}
+          {% else %}
+            {% comment %} Standalone image — wrap in <a class="popup"> {% endcomment %}
+            {% capture _wrapper %}<a class="popup" href="{{ _src }}">{% endcapture %}
+            {% assign _result = _result | append: _wrapper | append: _img_tag | append: _left | append: '></a' | append: _right %}
+          {% endif %}
+        {% else %}
+          {% assign _result = _result | append: _img_tag | append: _part %}
+        {% endif %}
+      {% endfor %}
+
+      {% assign _content = _result %}
+    {% endif %}
+
     {% if page.dynamic_title %}
       <h1 class="dynamic-title">{{ page.title }}</h1>
       <div class="post-content">
-        {{ content }}
+        {{ _content }}
       </div>
     {% else %}
-      {{ content }}
+      {{ _content }}
     {% endif %}
     </div> <!-- #page -->
   </div><!-- .col-12 -->
@@ -60,3 +99,5 @@ layout: default
   </div> <!-- .col-12 -->
 </div> <!-- .row -->
 {% endif %}
+
+{% include image-preview.html %}
