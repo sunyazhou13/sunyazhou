@@ -80,7 +80,7 @@ The video introduces tools that can format data such as dates, units, numbers, a
 
 # Summary
 
-Actually, Chapter 5 talks a lot about the high-level wrapping of property wrappers. I think the content is too long; rather than me recording it here, it's better if you watch the [tutorial video](https://www.bilibili.com/video/BV1bA411y71h/?spm_id_from=333.788&vd_source=9309f71afe97e633abeadc8407870e76) yourself — the explanations are quite thorough.
+Actually, Chapter 5 talks a lot about the high-level wrapping of property wrappers. I think the content is too long; rather than me writing it all out here, you're better off watching the [tutorial video](https://www.bilibili.com/video/BV1bA411y71h/?spm_id_from=333.788&vd_source=9309f71afe97e633abeadc8407870e76) yourself — the explanations are quite thorough.
 
 Secondly, a large portion covers unit testing. Since I'm not too keen on writing unit tests myself, I'll skip it directly...
 

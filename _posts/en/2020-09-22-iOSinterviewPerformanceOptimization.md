@@ -18,7 +18,7 @@ In this article, we'll talk about the performance optimization related questions
 
 ## Performance Optimization
 
-The main optimizations are as follows:
+Here are the main optimizations:
 
 1. How to optimize startup, and how to monitor it
 2. How to optimize lag, and how to monitor it

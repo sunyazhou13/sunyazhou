@@ -119,7 +119,7 @@ Life must go on. After thinking for a long time and recognizing the reality and 
 
 Of course, reading this you might mock my stupidity. That's fine — I also mock my own ignorant recklessness and misjudgment of urban development. But I believe all the above feelings are things that cannot be truly experienced or practiced while sitting in an office. This isn't necessarily a bad thing — it's a practical manifestation of growing up and broadening my horizons. If I had waited until middle age to experience this, I believe it would be even more painful! But I hope you all don't repeat my mistakes. Making wise choices and having a good career development path is what makes you a winner in life.
 
-Even though life has been so rough, my body and mind have achieved an unprecedented level of comfort and improvement. I've become increasingly willing to endure various painful experiences, and my mindset has improved. This is something unprecedented in my 7+ years of working in Beijing. Consumption habits, attitude toward life, psychological expectations, acceptance, acknowledging my own mediocrity, and so on.
+Even though life has been so rough, my body and mind have achieved an unprecedented level of comfort and improvement. I've become increasingly willing to endure various painful experiences, and my mindset has improved. This is something unprecedented in my 7+ years of working in Beijing. Consumption habits, attitude toward life, psychological expectations, acceptance, acknowledging my own mediocrity — all of it.
 
 To experience what everyone often discusses about civil service exams, I gave it a try. The result was as expected — it requires constant practice, not something achievable overnight. But I gained a lot. For example: in the essay section, describing social phenomena and providing reasonable, publicly acceptable, and practical solutions. Although sometimes we can be unbridled when thinking from an ordinary citizen's perspective, thinking from a civil servant's perspective requires following the first principle of `always serving the people`, articulating and writing feasible measures and optimal solutions. And it requires great challenges in writing ability and logical organization for civil servants. It can almost be said to be `one in a thousand`. The official notices or similar text messages we see in our daily lives — these all need to go through professional training and language organization skills, reviewed N times, before being sent out immediately. That's why when we see them, we can't find any problems. But have you ever thought about who writes these? It's civil service staff. You might think it's just a matter of speaking, but you don't know how much effort goes into being able to just speak. For training to write a single statement draft, I practiced 10+ times, and still couldn't write it perfectly! (Maybe I'm just not good at clerical work.) Honestly, from my high school graduation exam to writing the civil service essay, I hadn't written a 1200+ word essay in over a decade. As for structure, writing skills, and techniques — they've long been handed over to Baidu with the development of the internet. But after the exam, I was quite satisfied with my essay overall. Although it was a Category 3 essay, I scored 57 points, which exceeded my own expectations.
 
@@ -140,7 +140,7 @@ Rather than saying I returned to Beijing to fight, it's more like my failed esca
 
 Due to the wave of the internet, the "Double Reduction" policy impact, the national anti-monopoly crackdown, the capital market cooling, and the incremental user market turning into a stock market — the IT industry is now struggling. This is both good and bad. The good thing is that this industry will be continuously polished into a scientifically sustainable industry that drives economic development. The bad thing is that the difficulty and standards for finding jobs have become harder and higher.
 
-For an iOS developer, algorithms are not used much in daily work. But somehow this industry has made algorithms a must-ask in interviews.
+For an iOS developer, algorithms don't come up much in day-to-day work. But somehow this industry has made algorithms a must-ask in interviews.
 
 #### My Understanding of Algorithms
 
@@ -166,7 +166,7 @@ First, we need to understand why some companies introduce algorithm questions in
 
 Let me also say something about asking algorithms during iOS developer interviews. This is a trend. If the questioning is about solving real engineering problems through algorithms, from a practical perspective, I agree. If it's purely to test whether the interviewee has the ability by asking impractical algorithm questions, I'm opposed and strongly critical. This kind of interview is a waste of time. For an iOS developer who doesn't use this content every day, it's like you two are not on the same channel, deviating from the original purpose of algorithms. I don't recommend this approach.
 
-In summary, learning algorithms is an essential skill for programmers. You regret not having learned enough when you need it, and applying what you've learned is the highest level of mastering it.
+The bottom line: learning algorithms is an essential skill for programmers. You regret not having learned enough when you need it, and applying what you've learned is the highest level of mastering it.
 
 Back to work.
 
@@ -438,7 +438,7 @@ The shock springs had been compressed by more than 1cm due to stress. Replaced t
 
 #### Car Repair Summary
 
-The above is the complete list of parts I replaced after buying this used car. Seeing so many parts, you now understand why used cars are sold cheap! These parts were all due for replacement. The total cost of all these parts plus the original purchase price is enough to buy a new top-spec Golf. My current feeling is that this car has been restored to near peak condition. Although it cost a lot of money and time, it also turned me from a programmer into a multi-talented handyman. Sometimes car repair is actually fun. Cultivating it as a hobby is nice.
+That's the complete list of parts I replaced after buying this used car. Seeing so many parts, you now understand why used cars are sold cheap! These parts were all due for replacement. The total cost of all these parts plus the original purchase price is enough to buy a new top-spec Golf. My current feeling is that this car has been restored to near peak condition. Although it cost a lot of money and time, it also turned me from a programmer into a multi-talented handyman. Sometimes car repair is actually fun. Cultivating it as a hobby is nice.
 
 ## Summary
 

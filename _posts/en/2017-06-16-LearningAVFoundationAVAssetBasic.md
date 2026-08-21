@@ -12,7 +12,7 @@ typora-root-url: ..
 
 
 # Preface
-This chapter covers `AVAsset` metadata (which can be simply understood as the model information of an audio format such as mp3: title: xxxx, artist: Andy Lau, album: Love You for Ten Thousand Years... and the sources of such data). In this sense, the field information is a property of `AVAsset`. `AV Foundation` handles the metadata of various audio formats through the `AVAsset` wrapper, __such as extracting the cover artwork from an mp3 file__. The specific contents of this chapter are as follows:
+This chapter covers `AVAsset` metadata (which can be simply understood as the model information of an audio format such as mp3: title: xxxx, artist: Andy Lau, album: Love You for Ten Thousand Years... and the sources of such data). In this sense, the field information is a property of `AVAsset`. `AV Foundation` handles the metadata of various audio formats through the `AVAsset` wrapper, __such as extracting the cover artwork from an mp3 file__. Here's what this chapter covers:
 
 ### __Understanding Assets__
 ### __Creating Assets__
@@ -64,14 +64,14 @@ This means that whether you're dealing with `Quick Time` movies, `MPEG-4` video,
 
 ![](/assets/images/20170616LearningAVFoundationAVAssetBasic/AVAssetTrack.avif)
 
-_**`AVAsset.tracks`**_ is as follows
+Here's _**`AVAsset.tracks`**_:
 
 ``` objc 
 @property (nonatomic, readonly) NSArray<AVAssetTrack *> *tracks;
 
 ```
 
-Asset tracks can be accessed through the `tracks` property. This property returns an NSArray whose elements are all the tracks contained in the asset. In addition, `AVAsset` can also find the corresponding track by identifier, media type, media characteristics, etc. This makes it easy to retrieve the set of tracks we need in more advanced processing later.
+Asset tracks can be accessed through the `tracks` property. This property returns an NSArray whose elements are all the tracks contained in the asset. In addition, `AVAsset` can also find the corresponding track by identifier, media type, or media characteristics. This makes it easy to retrieve the set of tracks we need in more advanced processing later.
 
 
 
@@ -310,7 +310,7 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 
 3. __MP3__
 
-	`MP3` files differ significantly from `MPEG-4 (.mp4)` and `QuickTime (.mov)`: `MP3` doesn't use a container format; it uses __encoded audio data__, and the beginning of the file usually contains an optional block of metadata structures. `mp3` files use a format called ID3v2 to store descriptive information about the audio content, including artist, performer, album, music genre, and so on.
+	`MP3` files differ significantly from `MPEG-4 (.mp4)` and `QuickTime (.mov)`: `MP3` doesn't use a container format; it uses __encoded audio data__, and the beginning of the file usually contains an optional block of metadata structures. `mp3` files use a format called ID3v2 to store descriptive information about the audio content, including the artist, performer, album, and genre.
 	`ID3` data is quite simple. The first 10 bytes of an `mp3` file carry the embedded metadata; those 10 bytes define the header of the `ID3` block. The first three of the 10 bytes are always '49 44 33' (ID3), indicating an `ID3v2 tag`; the next two bytes define the major version — `2`, `3`, `4` — and the revision number. The remaining bytes define a set of flags and the size of the ID3 block.
 	![](/assets/images/20170616LearningAVFoundationAVAssetBasic/ID3Header.avif)
 	*ID3 header*

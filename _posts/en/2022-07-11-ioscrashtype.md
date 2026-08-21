@@ -17,7 +17,7 @@ This article carries strong personal feelings. If you feel uncomfortable reading
 
 ## Crash Types
 
-A crash usually refers to the operating system sending a signal to a running program, so when looking at crash logs, we often see error summaries like: Application received signal SIGSEGV. Generally speaking, the common crash types are as follows:
+A crash usually refers to the operating system sending a signal to a running program, so when looking at crash logs, we often see error summaries like: Application received signal SIGSEGV. Here are the common crash types:
 
 ### 1.`EXC_BAD_ACCESS`
 
@@ -72,7 +72,7 @@ This kind of crash is usually easy to identify because the error code is fixed a
 
 # Summary
 
-Crash log types are not limited to the ones above; combined with actual tracking, you'll find the crash information that matters. This is for reference only. If you want more details, please refer to the GNU [source code](http://fxr.watson.org/fxr/source/osfmk/mach/exception_types.h?v=xnu-2050.18.24)
+Crash log types are not limited to the ones above; combined with actual tracking, you'll find the crash information that matters. Take it as a rough guide. If you want more details, please refer to the GNU [source code](http://fxr.watson.org/fxr/source/osfmk/mach/exception_types.h?v=xnu-2050.18.24)
 
 [Reference](https://zhuanlan.zhihu.com/p/269371735)  
 [Understanding iOS exception types](https://juejin.cn/post/6844903866128039944)  

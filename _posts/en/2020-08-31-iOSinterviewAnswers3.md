@@ -182,7 +182,7 @@ These two methods are very simple and direct — just get the isa pointer and co
 ```
 
 Both methods ultimately get the relevant protocols via isa->data()->protocols, then check whether the protocol exists.  
-The code is as follows:
+Here's the code:
 
 ``` objc
 BOOL class_conformsToProtocol(Class cls, Protocol *proto_gen)

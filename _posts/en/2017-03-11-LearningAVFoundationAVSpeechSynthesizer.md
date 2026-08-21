@@ -67,7 +67,7 @@ sets up Simplified Chinese speech. A full list of supported speech voices will b
 
 
 
-The delegate methods of `AVSpeechSynthesizer` are as follows — mainly for monitoring speech playback status:
+The delegate methods of `AVSpeechSynthesizer` are listed below — they mainly monitor speech playback status:
 
 
 ``` objc

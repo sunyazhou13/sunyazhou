@@ -81,7 +81,7 @@ typora-root-url: ..
 
 # UIViewController Lifecycle Methods
 
-In Objective-C, the lifecycle methods of `UIViewController` cover the entire process of a view controller from creation to destruction. The following is a comprehensive list of these methods, including when they are called and some details:
+In Objective-C, the lifecycle methods of `UIViewController` cover the entire process of a view controller from creation to destruction. Here's a comprehensive list of these methods, including when they're called and some details:
 
 1. **Initialization and View Loading**
    - `initWithNibName:bundle:`: Initializes the view controller with a nib file.
@@ -126,7 +126,7 @@ These methods provide rich control points for the view controller lifecycle, all
 
 ### Example Code for UIViewController
 
-The following is some example code showing how to implement `UIViewController` lifecycle methods in Objective-C:
+Here's some example code showing how to implement `UIViewController` lifecycle methods in Objective-C:
 
 ```objc
 // ViewController.h

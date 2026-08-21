@@ -78,7 +78,7 @@ Then when using it:
 
 Only this way can it compile successfully in SwiftUI's body.
 
-The complete test code is as follows:
+Here's the complete test code:
 
 ``` swift
 struct MomentsWidget: Widget {

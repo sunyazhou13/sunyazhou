@@ -26,7 +26,7 @@ The year is over; as usual, I hand in my 2019 year-end summary.
 
 ## 2019 Review
 
-This year's events are as follows:
+Here are this year's events:
 
 
 * Work
@@ -80,7 +80,7 @@ The image below shows the scene after the renovation, when the marble casing was
 Below is the final photo after the renovation was completed.  
 ![](/assets/images/20191231FinalSummary/decoration3.avif)
 
-I have a rough idea of the renovation process; here it is for your reference if you renovate later:
+I have a rough idea of the renovation process; here it is in case you renovate later:
 
 1. Planning and design
 2. Re-plumbing and re-wiring
@@ -90,7 +90,7 @@ I have a rough idea of the renovation process; here it is for your reference if 
 6. Integrated ceiling
 7. Paint the walls white
 8. Buy appliances: for the kitchen, an integrated stove or a range hood and stove
-9. Kitchen cabinets, bedroom wooden wardrobes, etc. — the carpentry work
+9. Kitchen cabinets, bedroom wooden wardrobes, and the like — the carpentry work
 10. Custom wooden doors
 11. Marble casing, including the kitchen countertop, threshold stones, baseboards, etc.
 12. Wrap up and start buying appliances, sofa, washing machine, refrigerator, TV, etc.
@@ -245,7 +245,7 @@ The process of moving the hukou was roughly like this:
 
 The whole hukou process takes about 2 hours; the ID card takes about half a month or more.
 
-After getting the ID card done and returning to Beijing, I updated the identity information for all the documents and accounts I use: bank cards, Alipay, WeChat, work residence permit, residence permit, and so on.
+After getting the ID card done and returning to Beijing, I updated the identity information for all the documents and accounts I use: bank cards, Alipay, WeChat, work residence permit, residence permit — all of it.
 
 Going through all of it, I found that changing your hukou and ID card is really troublesome.
 

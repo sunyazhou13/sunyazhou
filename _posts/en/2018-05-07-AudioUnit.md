@@ -16,7 +16,7 @@ typora-root-url: ..
 # Preface
 
 
-On the iOS platform, audio rendering is done directly through the `AudioUnit` API. It is used to implement effects like "uncle voice", "KTV", "monitor return" and so on...
+On the iOS platform, audio rendering is done directly through the `AudioUnit` API. It is used to implement effects like "uncle voice", "KTV", and "monitor return".
 
 Today I'll take you through an in-depth understanding and study of these audio effects.
 
@@ -297,7 +297,7 @@ The following code sets the ASBD on the corresponding Audio Unit:
 AudioUnitSetProperty(remoteIOUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &asbd, sizeof(asbd));
 ```
 
-The complete code is as follows:
+Here's the complete code:
 
 ``` objc
 //Set ASBD
@@ -381,7 +381,7 @@ CF_ENUM(UInt32) {
 | Compressor | When the sound is too quiet or too loud, raises or lowers the sound energy by setting a threshold, e.g. attack time, release time, and threshold value, ultimately controlling the sound's energy range in the time domain | kAudioUnitSubType_DynamicsProcessor |
 | Reverb | Controls the sound effect through the delay of sound reflections | kAudioUnitSubType_Reverb2 |
 
-> The three most commonly used effects under Effect Unit are the ones above. High Pass, Low Pass, Band Pass, Delay, Limiter, etc. are not used very often. If you're familiar with them, feel free to give them a try.
+> The three most commonly used effects under Effect Unit are the ones above. High Pass, Low Pass, Band Pass, Delay, and Limiter are not used very often. If you're familiar with them, feel free to give them a try.
 
 #### Mixer Units subtypes and their usage
 

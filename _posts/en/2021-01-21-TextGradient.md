@@ -20,11 +20,11 @@ I recently saw an article published by Sohu, which included a section on how to 
 
 ## Implementing Gradient Colors in Scrolling Subtitles
 
-The core implementation is simple. The article [A Complete Guide to iOS Video Danmaku System](https://mp.weixin.qq.com/s/4pWrwmZBEbrca2uxIt3o6w) didn't provide the relevant demo. It only roughly described the implementation approach for the danmaku. So as an iOS developer, you should be proactive in writing code to implement and verify the approach. Honestly, I really dislike this kind of Sohu article that has a beginning but no end — it just talks about the concept without providing any code demo. That's obviously not being straightforward.
+The core implementation is simple. The article [A Complete Guide to iOS Video Danmaku System](https://mp.weixin.qq.com/s/4pWrwmZBEbrca2uxIt3o6w) didn't provide the relevant demo. It only roughly described the implementation approach for the danmaku. So as an iOS developer, you should be proactive in writing code to implement and verify the approach. Honestly, I really dislike this kind of Sohu article that has a beginning but no end — it just talks about the concept without providing any code demo. That's just not being upfront.
 
 Our implementation here is quite simple. Just calculate the size of the text, then use CoreGraphicContext to draw an image.
 
-The core code is as follows:
+Here's the core code:
 
 ``` objc
 + (UIImage *)gradientFromColor:(UIColor *)fromeColor toColor:(UIColor *)toColor andSize:(CGSize)imageSize {

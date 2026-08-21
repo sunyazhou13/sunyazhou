@@ -192,7 +192,7 @@ Creating it requires an `NSURL` representing the path of the file to be played. 
 ```
 
 `numberOfLoops` = -1; means the song loops infinitely. Other constants represent the number of loops.     
-`enableRate` indicates whether speed control is enabled, such as 0.5x, 1.0x, 2.0x, etc. 1.0 means normal speed
+`enableRate` indicates whether speed control is enabled, such as 0.5x, 1.0x, or 2.0x. 1.0 means normal speed
 
 Here let me talk about `[audioPlayer prepareToPlay]`
 __Calling this function is to obtain the required audio hardware and preload the buffer of the `Audio Queue`.__ Of course, you can skip this method and call `[audioPlayer play]` directly, but __calling the `play` method also implicitly activates it__. Calling `prepareToPlay` is to reduce the latency between the preset loading when creating the player and hearing the sound output.
@@ -226,7 +226,7 @@ __Calling this function is to obtain the required audio hardware and preload the
 ```
 
 > Call the code that creates the player in `initWithNibName` or `awakeFromNib`  
-`[self setupNotifications];` will be explained later  
+I'll explain `[self setupNotifications];` later  
 
 
 First, let me add some common method wrappers, such as __play, pause, stop__
@@ -318,7 +318,7 @@ If you need to continuously refresh the playback progress bar on the lock screen
 
 Below we'll introduce  
 `[self setupNotifications];` which registers observers to pause music playback when the audio is unexpectedly interrupted or the headphones are unplugged
-The implementation code is as follows
+Here's the implementation code:
 
 ``` objc 
 /**

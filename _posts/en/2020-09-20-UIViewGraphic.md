@@ -18,7 +18,7 @@ In this post, we'll cover the views & graphics related questions from [Alibaba &
 
 ## Views & Graphics Related
 
-The main question list is as follows:
+Here's the main question list:
 
 1. How does AutoLayout work, and how is its performance
 2. Differences between UIView &amp; CALayer
@@ -155,7 +155,7 @@ See the open-source [PINRemoteImage](https://github.com/pinterest/PINRemoteImage
 
 ### 11. How to optimize image rendering
 
-You can start with shadows and corner radius. Also frame rate, battery, image aliasing, and so on.
+You can start with shadows and corner radius. Also frame rate, battery, image aliasing, and the like.
 
 
 [iOS Development — View Rendering and Performance Optimization](https://www.jianshu.com/p/748f9abafff8)

@@ -15,13 +15,13 @@ typora-root-url: ..
 
 This post carries a strong personal tone. If you find it uncomfortable to read, please close it as soon as possible. This article is only for my personal learning notes. You're welcome to repost or share it within the scope of the license, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
 
-The science background knowledge used in this post is as follows:
+Here's the background knowledge used in this post:
 
 * GMT (Greenwich Mean Time): The standard time of Greenwich, UK. This is the time derived from the observations of the Royal Observatory in Greenwich, England — the local time of that place, which was historically treated as the world's standard time.
 * UT (Universal Time): The time calculated based on the [atomic clock](https://baike.baidu.com/item/%E5%8E%9F%E5%AD%90%E9%92%9F/765460).
 * UTC (Coordinated Universal Time): The position of the sun changes with the Earth's rotation. People used to believe the Earth's rotation rate was constant, but in 1960 this belief was overturned — the Earth's rotation rate was found to be slowing down, while the rate at which time moves forward remains constant. So UTC was no longer considered accurate enough for describing time precisely. We need to keep looking for a value that advances at a uniform rate. Looking up at the sky is how we seek answers on a macroscopic scale, while the advancement of science and technology has given us deeper understanding at the microscopic level. So some clever people built atomic clocks based on the physical properties of microscopic particles — atoms — and used them to measure the passage of time. An atomic clock only gains or loses 1 second in 5 billion years, far more precise than GMT. The time reflected by such an atomic clock is what we now use as UTC (Coordinated Universal Time).
 
-The above is excerpted from: [Time Handling in iOS](https://mp.weixin.qq.com/s/cSZUNMuqk6DL3-nctyxzcw?)  
+Excerpted from: [Time Handling in iOS](https://mp.weixin.qq.com/s/cSZUNMuqk6DL3-nctyxzcw?)  
 
 
 ## Scenario Description

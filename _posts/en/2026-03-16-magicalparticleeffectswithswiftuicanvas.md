@@ -51,7 +51,7 @@ struct ParticleCanvasView: View {
 
 There's an outer `TimelineView` that's responsible for periodically triggering redraws of the inner view. The main content is the `Canvas` view.
 
-For those with a UIKit background, the concept of a drawing context should be familiar: we get a canvas area with size information, then draw various elements on it — shapes, images, and so on.
+For those with a UIKit background, the concept of a drawing context should be familiar: we get a canvas area with size information, then draw various elements on it — shapes, images, and more.
 
 In our example, the particle to be drawn is represented by `SingleParticleView`. Note that it's placed in the `symbols` parameter — this means SwiftUI will **pre-render** it, making each subsequent draw call extremely efficient, which is great for large numbers of particles ;)
 

@@ -67,7 +67,7 @@ If you're not very familiar with view controller transitions, learning this may 
  `8` Set the modal presentation style of the VC being presented. This is used so that when showing the presented VC, the default background is a blue Gaussian blur at the bottom.  
  `9` Set the current VC's modal presentation style to the current presentation context.  
  
- > The dismiss transition animation set up in steps 5~7 will be explained below.
+ > I'll cover the dismiss transition animation set up in steps 5–7 below.
  
  Here we're reusing the VC from the previous swipe up/down post. Don't worry about it — just treat it as an ordinary `UIViewController`.
  

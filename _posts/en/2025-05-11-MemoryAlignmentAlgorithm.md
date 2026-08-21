@@ -17,7 +17,7 @@ This article carries strong personal sentiment. If you feel uncomfortable readin
 
 ## Background
 
-While studying the GPU shader programming chapter of "Metal", I came across a section about the argument buffer of the GPU resource heap, which needs to send resources from the CPU to the GPU. There I encountered a piece of code that calculates the memory footprint of a resource. It is quite interesting, so I am recording it here.
+While studying the GPU shader programming chapter of "Metal", I came across a section about the argument buffer of the GPU resource heap, which needs to send resources from the CPU to the GPU. There I encountered a piece of code that calculates the memory footprint of a resource. It's quite interesting, so I'm writing it down here.
 
 ``` swift
 let sizeAndAligns = descriptors.map { descriptor in

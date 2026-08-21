@@ -73,7 +73,7 @@ GROUP BY
     props['moduleName']
 ```
 
-And so on.
+You get the idea.
 
 #### Creating a table
 

@@ -104,7 +104,7 @@ The Toggle here is the switch we learned about in UIKit. The value it triggers i
 
 When this operation is done, it should take effect immediately.
 
-At this point, we need to modify the following code in the project:
+Now we need to modify this code in the project:
 
 ``` swift
 
@@ -133,7 +133,7 @@ NavigationStack {
 
 ![](/assets/images/20230805LearnSwiftUIChapter4/darkmode3.avif)
 
-The above is the technique learned in this section.
+That's the technique covered in this section.
 
 Complete code:
 
@@ -155,7 +155,7 @@ struct HomeScreen: View {
 
 #### Encoding and Decoding (Serializing to JSON)
 
-The above code all uses @AppStorage to store basic data types. But what if it's a Person object?
+All the code above uses @AppStorage to store basic data types. But what if it's a Person object?
 
 To be used with @AppStorage (i.e., UserDefault), it must implement encoding and decoding. Similar to how NSObject needs to conform to the Copy protocol, in Swift this is a synthesized protocol called `Codable`, which includes Decodable & Encodable.
 
@@ -256,6 +256,6 @@ This code is written in an extension, not where Person is declared, so Xcode won
 
 # Summary
 
-The above is the summary of what I learned after finishing Chapter 4. It's a bit rough, but I hope recording it will deepen my impression for future use and make it easier to share with others who need it.
+That's my takeaway after finishing Chapter 4. It's a bit rough, but I hope recording it will deepen my impression for future use and make it easier to share with others who need it.
 
 [Chapter 4 demo](https://github.com/sunyazhou13/FoodPicker)	

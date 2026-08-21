@@ -72,7 +72,7 @@ Grant root privileges to the device-side hdc background service process:
 hdc smode
 ```
 
-When connecting devices, if there's only one, no need to specify the device identifier. If there are multiple, you can only connect one at a time, and you need to specify the device identifier each time. The command format is as follows:
+When connecting devices, if there's only one, no need to specify the device identifier. If there are multiple, you can only connect one at a time, and you need to specify the device identifier each time. Here's the command format:
 
 ``` sh
 hdc -t FMR0223823025245 shell
@@ -110,7 +110,7 @@ The numbers are the names of the file directories. After finding the relevant di
  
 Assume the absolute path of the file we want to get is `/storage/media/100/local/files/Photo/4/VID_1705287805_004.mp4`
  
-At this point, open a new terminal and enter the following command. (Refer to the documentation for more file operation commands.)
+Now open a new terminal and enter the following command. (Refer to the documentation for more file operation commands.)
 
 ``` sh
 hdc file recv /storage/media/100/local/files/Photo/4/VID_1705287805_004.mp4 ~/Downloads/

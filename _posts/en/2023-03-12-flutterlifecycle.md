@@ -110,7 +110,7 @@ class ContentWidgetState extends State<ContentWidget>
 
 ![](/assets/images/20230312FlutterLifeCycle/flutter1.avif)
 
-The output is as follows:
+Here's the output:
 
 ``` sh
 flutter: ContentWidget构造函数被调用

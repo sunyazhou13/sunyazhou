@@ -66,7 +66,7 @@ CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
                                              &pixelBufferTexture);
 ```
 
-Here, `_textureCache` represents a `Texture` cache. Each `Texture` produced is obtained from the cache, which avoids the overhead of repeatedly creating `Texture`s. `_textureCache` must be created in advance; the creation method is as follows:
+Here, `_textureCache` represents a `Texture` cache. Each `Texture` produced is obtained from the cache, which avoids the overhead of repeatedly creating `Texture`s. `_textureCache` must be created in advance; here's how:
 
 ``` c
 CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, _context, NULL, &_textureCache);
@@ -89,7 +89,7 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 ```
 
-Of course, this isn't all the code. There's much more to the complete `openGL` drawing code. `openGL` is famously verbose and tedious — there's also the `openGL` `Context` creation, `shader` compilation, `DataBuffer` loading, and so on.
+Of course, this isn't all the code. There's much more to the complete `openGL` drawing code. `openGL` is famously verbose and tedious — there's also the `openGL` `Context` creation, `shader` compilation, `DataBuffer` loading, and more.
 
 Essentially, this code draws the content of the `Texture` into the `openGL`'s frame buffer, and then attaches the frame buffer to a `CAEAGLayer`.
 

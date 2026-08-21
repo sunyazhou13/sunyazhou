@@ -158,7 +158,7 @@ When we need it, we call this method to find the layer we added:
 
 #### Support Auto Layout
 
-Most people use `Masonry` these days, so let's use `Masonry` for auto layout here. The reason for using auto layout is that when external code uses auto layout for its views, the internal code needs to update the relevant `layer`'s `frame`. The code is as follows:
+Most people use `Masonry` these days, so let's use `Masonry` for auto layout here. The reason for using auto layout is that when external code uses auto layout for its views, the internal code needs to update the relevant `layer`'s `frame`. Here's the code:
 
 ``` objc
 - (void)layoutSubviews {

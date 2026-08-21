@@ -182,7 +182,7 @@ Traditional cross-platform comparisons focus on package size and rendering perfo
 
 ## 2. Core Framework Comparison Overview
 
-The following is a quantitative comparison from a pure AI Agent development perspective. It drops the graphics rendering dimension and adds Agent-specific dimensions such as local model deployment and Tool Calling.
+Here's a quantitative comparison from a pure AI Agent development perspective. It drops the graphics rendering dimension and adds Agent-specific dimensions such as local model deployment and Tool Calling.
 
 ### 2.1 Explanation of the Quantitative Scoring System
 

@@ -72,7 +72,7 @@ ivec2, ivec3, ivec4 // Vectors containing 2/3/4 integers (integer type, the 'i' 
 bvec2, bvec3, bvec4 // Vectors containing 2/3/4 booleans (bool, self-explanatory)
 ```
 
-The above are GLSL data types. Simply put, `vec+number` represents an array with that many elements (they're all between vec2~vec4; I've never seen vec5 or above, or anything below vec2 — this probably represents the number of coordinate dimensions). The default element type is float; the `i` prefix means `integer`, and `b` means `bool`.
+Those are the GLSL data types. Simply put, `vec+number` represents an array with that many elements (they're all between vec2~vec4; I've never seen vec5 or above, or anything below vec2 — this probably represents the number of coordinate dimensions). The default element type is float; the `i` prefix means `integer`, and `b` means `bool`.
 
 ### How to declare and use vec?
 

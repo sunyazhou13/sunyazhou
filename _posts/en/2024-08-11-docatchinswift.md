@@ -69,7 +69,7 @@ In this simplified version, we don't specify a particular error type, so it catc
 
 # Summary
 
-I encountered previously forgotten content while working on a Metal learning demo, so I'm recording it here.
+I encountered previously forgotten content while working on a Metal learning demo, so I'm writing it down here.
 
 ``` swift
 do {

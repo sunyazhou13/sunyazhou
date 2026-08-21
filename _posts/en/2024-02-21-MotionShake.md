@@ -20,7 +20,7 @@ This article carries strong personal sentiment. If it makes you uncomfortable, p
 Recently in development, I received user feedback that when the shake-to-switch-songs feature is enabled, putting the phone in a pants pocket or clothing pocket easily triggers an unwanted song switch. With this problem in mind, I carefully
 studied the existing code.
 
-Obviously, the sensitivity of the shake-to-switch-songs feature is too high. So how do we adjust the sensitivity to a reasonable range?
+Clearly the shake-to-switch-song sensitivity is far too high. So how do we tune it into a reasonable range?
 
 # Several Ways to Implement the Shake Gesture
 
@@ -72,7 +72,7 @@ This way, shake gesture detection can be implemented in Objective-C.
 
 ## CMMotionManager
 
-First, let's clarify what's available here. The common sensors in iOS are as follows:
+First, let's clarify what's available here. Here are the common sensors in iOS:
 
 | Type | Function | Notes |
 | ------| ------ | ------ |
@@ -207,7 +207,7 @@ This controls the problem of the accelerometer triggering callbacks too frequent
 
 ### Writing a Utility Class - Updated 2024-03-26, optimizing the shake algorithm to prevent false triggers
 
-Then write a utility class, putting all the above content into one utility class for everyone to use. We'll write an MTCMMotionTool class to encapsulate the accelerometer sensor implementation
+Then write a utility class, putting all the above content into one utility class for everyone to use. We'll write an MTCMMotionTool class to wrap up the accelerometer sensor implementation
 
 //.h file
 

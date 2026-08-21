@@ -236,7 +236,7 @@ The THOverlayView file is the top-level view with the play button and other cont
 @end
 ```
 
-The player's implementation file is as follows.
+Here's the player's implementation file.
 
 ``` objc
 #import "PlayerController.h"
@@ -613,7 +613,7 @@ There are two classes in `AVPlayerLayer` for handling subtitles.
 * AVMediaSelectionGroup
 * AVMediaSelectionOption
 
-`AVMediaSelectionOption` is used to represent the alternate media displays of an `AVAsset`. In earlier posts I mentioned that media metadata can contain `audio tracks`, `video tracks`, `subtitle tracks`, `alternate camera angles`, and so on.
+`AVMediaSelectionOption` is used to represent the alternate media displays of an `AVAsset`. In earlier posts I mentioned that media metadata can contain `audio tracks`, `video tracks`, `subtitle tracks`, `alternate camera angles`, and more.
 
 To find subtitles, we need to use the `availableMediaCharacteristicsWithMediaSelectionOptions` property of `AVAsset`.
 
@@ -621,7 +621,7 @@ To find subtitles, we need to use the `availableMediaCharacteristicsWithMediaSel
 @property (nonatomic, readonly) NSArray<AVMediaCharacteristic> *availableMediaCharacteristicsWithMediaSelectionOptions NS_AVAILABLE(10_8, 5_0);
 ```
 
-This property returns an array of `strings` that represent the media characteristics of the available options stored in the asset. In fact, the string values contained in the array are as follows:
+This property returns an array of `strings` that represent the media characteristics of the available options stored in the asset. In fact, the array's string values look like this:
 
 * AVMediaCharacteristicVisual — video
 * AVMediaCharacteristicAudible — audio
@@ -683,6 +683,6 @@ The route selection button is only shown when AirPlay is available and a Wi-Fi n
 
 ## Summary
 
-This chapter covered how to use `AVPlayer` and `AVPlayerItem`, observing playback progress callbacks, extracting subtitles, and so on.
+This chapter covered how to use `AVPlayer` and `AVPlayerItem`, observing playback progress callbacks, extracting subtitles, and more.
 
 [Refer to the detailed demo](https://github.com/sunyazhou13/Learning-AV-Foundation-Demos)

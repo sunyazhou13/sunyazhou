@@ -144,7 +144,7 @@ GPU bound:
 Basically, we control the `GPU` through `OpenGL`, but there needs to be a bridge from `bitmap` to `Texture`, and `Core Animation` happens to play that role:  
 `Core Animation` wraps the `OpenGL` `api`. When the `layer` we want to render already has `bitmap` content — which is generally a `CGImageRef` — `CoreAnimation` creates an `OpenGL` `Texture` and binds the `CGImageRef (bitmap)` to that `Texture`, identified by a `TextureID`.  
 Once this correspondence is established, the remaining task is how the `GPU` renders the `Texture` to the screen.  
-The `GPU`'s general working model is as follows:
+Here's the `GPU`'s general working model:
 
 ![](/assets/images/20171016UIViewRendering/GPUWorkflow.avif)
 
@@ -171,7 +171,7 @@ The bottleneck between the two is basically the second one. Rendering `Texture`s
 If `view`s don't overlap, the `GPU` only needs to do ordinary rendering.  
 If multiple `view`s overlap, the `GPU` needs to do `blending`.  
 
-Suppose two `view`s have the same size and one is stacked on top of the other, the calculation formula is as follows:
+Suppose two `view`s have the same size and one is stacked on top of the other. The formula is:
 
 `R` = `S`+`D`*(`1`-`Sa`)  
 

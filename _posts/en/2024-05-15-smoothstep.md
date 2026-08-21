@@ -12,9 +12,9 @@ typora-root-url: ..
 
 This article is highly personal in tone. If you find it uncomfortable to read, please close it as soon as possible. This article is only a personal learning record. Reposts and sharing are welcome within the scope of the license agreement. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
 
-# How do you control a value within a certain range so that it never exceeds the upper or lower bounds of the range?
+# How do you keep a value inside a range?
 
-## In development, we often compute range-bounded values, like this:
+## In everyday development we often need to clamp values, like this:
 
 ``` c
 float a = 某个输入值
@@ -31,9 +31,9 @@ return a;
 
 ```
 
-Obviously, this is the kind of code with zero technical content I wrote when I first learned C.
+This is the kind of code I wrote when I was first learning C.
 
-## The way I write it after years of working
+## Years later, this is how I write it
 
 ``` c
 //Include the standard library header; the import statement is omitted here...
@@ -45,17 +45,17 @@ float a = min(max(0, a), maxValue); // 0 <= a <= 1
 return a;
 ```
 
-This style gets it done in one line and looks much more impressive, clamping the value within the min and max range.
+One line, and it reads much better — the value is clamped between min and max.
 
-I even asked all the technical guys at my previous company about this question. My question was:
+I once asked all the senior engineers at my previous company:
 
 **Is there a function that combines min + max to clamp a value within a certain range?**
 
-Most people weren't sure. Damn.
+Most of them didn't know.
 
 ## smoothstep() — the Hermite smooth interpolation function
 
-However, years later, I realized I wasn't that elegant either. There are many functions in the standard library that you need to improve your awareness of to know what they do.
+Years later, though, I discovered my version wasn't the last word either. The standard library is full of functions you only find once you go looking.
 
 While reading `Metal by Tutorials`, a fragment shader snippet caught my eye.
 
@@ -80,11 +80,11 @@ return float4(color, color, color, 1);
 
 ```
 
-Yes — after all these years, this function I've been using is actually called a `smoothstep function`.
+So the function I'd been using all these years actually has a name: `smoothstep`.
 
 # Summary
 
-Obviously, the next step is: define a global inline function wrapping smoothstep().
+The natural next step: wrap `smoothstep()` in a global inline helper.
 
 ``` c
 inline xx_smoothstep(T minEdge, T maxEdge, value) {
@@ -93,4 +93,4 @@ inline xx_smoothstep(T minEdge, T maxEdge, value) {
 
 ```
 
-This approach solves all range-value problems in engineering. It turns out that the technology I've been pursuing all these years comes down to a rise in awareness.
+That handles every range-clamping case in real-world code. It turns out what I'd been chasing all these years wasn't fancier techniques — it was simply knowing the right tool exists.

@@ -24,7 +24,7 @@ I've been studying how Douyin's short video app implements the vertical top-to-b
 
 It's actually just a UITableView with its visible display range adjusted. Talk is cheap, show me the code.
 
-I won't beat around the bush — the code is as follows and it's very simple to implement.
+I won't beat around the bush — here's the code, and it's very simple to implement.
 
 ``` objc
 
@@ -184,7 +184,7 @@ Here we handle it by resetting to `0`.
 
 # Summary
 
-The above is a simple implementation of Douyin's vertical swiping. The demo is below. In the next post, I'll demonstrate more details — if possible, I'll eventually put a video on the cell to implement the whole vertical swipe control process: video pause, play, stop, etc. Since fully implementing Douyin requires a lot of code, to let everyone learn together, I've split each detail into its own section and written separate articles for discussion and learning.
+That's a simple implementation of Douyin's vertical swiping. The demo is below. In the next post, I'll demonstrate more details — if possible, I'll eventually put a video on the cell to implement the whole vertical swipe control process: video pause, play, stop, and the rest. Since fully implementing Douyin requires a lot of code, to let everyone learn together, I've split each detail into its own section and written separate articles for discussion and learning.
 
 
 [Douyin vertical swiping Demo](https://github.com/sunyazhou13/AwemeDemo)

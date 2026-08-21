@@ -12,7 +12,7 @@ typora-root-url: ..
 
 ## Preface
 
-Having seen countless times how people always create files using a `timestamp + arc4random()`, I felt deeply frustrated. Doesn't the operating system provide a relevant function? So I found the following code to solve the problem of filename conflicts when creating files.
+Having seen countless times how people always create files using a `timestamp + arc4random()`, I felt deeply frustrated. Doesn't the operating system provide a relevant function? So I found the following code to deal with filename conflicts when creating files.
 
 
 ``` objc

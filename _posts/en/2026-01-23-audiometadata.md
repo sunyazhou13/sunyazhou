@@ -27,7 +27,7 @@ NSString *filePath = [[NSBundle mainBundle] pathForResource:@"迈腾进行曲_�
 NSDictionary<NSString *, id> *metadata = [MTTagLibHelper readAudioTag:filePath];
 [self printDic:metadata];
 ```
-As follows:
+Here's the output:
 
 ``` sh
 === 字典内容（共9项）===
@@ -210,7 +210,7 @@ NS_ASSUME_NONNULL_END
 
 ```
 
-The .m file is as follows:
+Here's the .m file:
 
 ``` objc
 #import "MTTagLibHelper.h"

@@ -367,7 +367,7 @@ if ([cls respondsToSelector:sel]) {
 ```
 However, since this involves private methods, directly referencing it will not pass Apple's App Store review. So when using it, you need to process the strings, such as encrypting the method name with an algorithm. In practice, it can pass the review.
 
-In summary, NSURLProtocol is very powerful. Whether optimizing app performance or extending functionality, it offers a lot of flexibility. However, while using it, you should also pay attention to the issues it brings. Although it has been applied in many frameworks and well-known projects, its essence is still worth exploring by developers.
+All in all, NSURLProtocol is very powerful. Whether optimizing app performance or extending functionality, it offers a lot of flexibility. However, while using it, you should also pay attention to the issues it brings. Although it has been applied in many frameworks and well-known projects, its essence is still worth exploring by developers.
 
 
 # Summary

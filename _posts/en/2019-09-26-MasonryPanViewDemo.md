@@ -58,7 +58,7 @@ First, let's create a demo—a simple VC demo will do. Create the green backgrou
 
 ```
 
-Here you can see two constraint global variables: `leftConstraint` and `topConstraint`. These are used to change the constraint offsets during dragging to implement the functionality. The specific code is as follows:
+Here you can see two constraint global variables: `leftConstraint` and `topConstraint`. These are used to change the constraint offsets during dragging to implement the functionality. Here's the specific code:
 
 
 ``` objc

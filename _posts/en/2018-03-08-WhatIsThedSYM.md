@@ -65,7 +65,7 @@ We can see the `.dSYM` with the same name as the project `target`.
 
 By default, Xcode generates a `dSYM` file in the `Release` build configuration, but not in the `Debug` build configuration.
 
-If you want it in `Debug`, configure Xcode as follows:
+If you want it in `Debug`, configure Xcode like this:
 
 `XCode -> Build Settings -> Code Generation -> Generate Debug Symbols -> Yes`  
 `XCode -> Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
@@ -109,7 +109,7 @@ There are two ways to retrieve the dSYM file for an `ipa` version:
 ``` sh
 atos -o KWPlayer.app.dSYM/Contents/Resources/DWARF/KWPlayer -arch arm64 -l 0x102100000 0x10720df70 0x10720a5ac 0x10720e13c 0x107211aa0 0x107215574 0x107211aa0 0x10720770c 0x10720772c 0x10720f6ec 0x10720f9e8 0x107208df0 0x1072039b8
 ```
-The output is as follows:
+Here's the output:
 
 ``` objc
 -[LOTLayerContainer display] (in KWPlayer) (LOTLayerContainer.m:385)
@@ -128,7 +128,7 @@ LOT_PointInCubicCurve (in KWPlayer) (CGGeometry+LOTAdditions.m:366)
 
 After the `-l` command you can pass multiple addresses, separated by `,` commas or spaces.
 
-The raw file is as follows:
+Here's the raw file:
 
 ``` sh
 Heaviest stack for the target process:

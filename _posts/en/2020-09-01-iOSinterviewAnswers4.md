@@ -76,7 +76,7 @@ To put it simply, the relationship among `name` & `observer` & `SEL` is: `name` 
 
 ## Is Notification Posting Synchronous or Asynchronous?
 
-Synchronous. Because message forwarding is invoked. The so-called "asynchronous" here means **not posted in real time** but **posted at an appropriate moment**; no asynchronous thread is spawned.
+Synchronous. Because message forwarding is invoked. The "asynchronous" here means **not posted in real time** but **posted at an appropriate moment**; no asynchronous thread is spawned.
 
 ## Do NSNotificationCenter's Receiving and Posting Happen on the Same Thread? How to Post Asynchronously
 
@@ -169,7 +169,7 @@ typedef	struct Obs {
   ...
 } Observation;
 ```
-The concrete data structures of `nameless` and `named` are as follows:
+Here are the concrete data structures of `nameless` and `named`:
 
 ![](/assets/images/20200901iOSinterviewAnswers/NCTable.avif)  
 ![](/assets/images/20200901iOSinterviewAnswers/NCTable2.avif)  

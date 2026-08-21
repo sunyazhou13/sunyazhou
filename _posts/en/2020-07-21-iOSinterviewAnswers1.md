@@ -75,7 +75,7 @@ The objc_object implementation is quite long; [view it here](https://github.com/
 #### Classes
 
 A class in Objective-C is represented by Class, which is actually a pointer to an `objc_class`: `typedef struct objc_class *Class;`  
-The corresponding struct is as follows:
+Here's the corresponding struct:
 
 ``` objc
 struct objc_class {
@@ -143,7 +143,7 @@ struct objc_ivar_list {
 
 `objc_method_list`: stores the class's method list, which can be obtained via `class_copyMethodList`.
 
-The struct is as follows:
+Here's the struct:
 
 ``` objc
 struct objc_method {
@@ -166,7 +166,7 @@ struct objc_method_list {
 
 `objc_protocol_list`: stores the class's protocol list, which can be obtained via `class_copyProtocolList`.
 
-The struct is as follows:
+Here's the struct:
 
 ``` objc
 struct objc_protocol_list {
@@ -281,7 +281,7 @@ Let's declare a `ClassA` and test it with debug code:
 @implementation ClassA
 @end
 ```
-If obtained via the `class_copyIvarList()` function, the output is as follows:
+If you go through the `class_copyIvarList()` function, the output looks like this:
 
 ``` sh
  --- class_copyIvarList ↓↓↓---
@@ -295,7 +295,7 @@ If obtained via the `class_copyIvarList()` function, the output is as follows:
  --------------END----------------
 ```
 
-If obtained via the `class_copyPropertyList()` function, the output is as follows:
+If you go through the `class_copyPropertyList()` function, the output looks like this:
 
 ``` sh
  --- class_copyPropertyList ↓↓↓---
@@ -305,7 +305,7 @@ If obtained via the `class_copyPropertyList()` function, the output is as follow
  --------------END----------------
 ```
 
-The debug code is as follows:
+Here's the debug code:
 
 ``` objc
 - (void)printIvarOrProperty {
@@ -448,14 +448,14 @@ ___
 
 First, we need to understand where they come from. We know that `objc_class` has a member variable called `isa`; here we're going to introduce another member variable of `objc_class`: `bits`.
 
-The structure of `objc_class` is as follows:
+Here's the structure of `objc_class`:
 
 ![The structure of objc_class](/assets/images/20200721iOSinterviewAnswers/objc_class_struct.avif)
 
 
 `bits` is used to store the class's properties, methods, protocols, and other information. It is of type `class_data_bits_t`.
 
-`class_data_bits_t` is as follows:
+Here's `class_data_bits_t`:
 
 ``` objc
 struct class_data_bits_t {
@@ -524,7 +524,7 @@ After the class's `realizeClass` runs:
 
 ![](/assets/images/20200721iOSinterviewAnswers/after_bits.avif)
 
-A close look at the member variables of the two structs reveals many similarities: both store the current class's properties, ivars, methods, protocols, and so on. The difference is that `class_ro_t` stores what is determined at compile time, while `class_rw_t` is determined at `runtime`: it first copies the contents of `class_ro_t`, then copies in the properties, methods, etc., from the class's categories. So `class_rw_t` can be said to be a superset of `class_ro_t`. Of course, actually accessing a class's methods and properties accesses the contents of `class_rw_t`.
+A close look at the member variables of the two structs reveals many similarities: both store the current class's properties, ivars, methods, and protocols. The difference is that `class_ro_t` stores what is determined at compile time, while `class_rw_t` is determined at `runtime`: it first copies the contents of `class_ro_t`, then copies in the properties, methods, etc., from the class's categories. So `class_rw_t` can be said to be a superset of `class_ro_t`. Of course, actually accessing a class's methods and properties accesses the contents of `class_rw_t`.
 
 Properties are stored in `class_rw_t`, while instance variables (ivars) are stored in `class_ro_t`.
 
@@ -857,7 +857,7 @@ If `resolveInstanceMethod:` in stage 1 returns NO, `forwardingTargetForSelector:
 
 ##### Stage 3: The Full Message Forwarding Mechanism
 
-If `forwardingTargetForSelector:` in stage 2 returns `nil`, the so-called full message forwarding mechanism kicks in.
+If `forwardingTargetForSelector:` in stage 2 returns `nil`, the full message forwarding mechanism kicks in.
 
 First, `methodSignatureForSelector:` is called to return the correct signature for the message to be forwarded:
 
@@ -883,7 +883,7 @@ So unlike stage 2, in this stage you can:
 * Modify the message's target, selector, arguments, etc.
 * Forward the message multiple times, to multiple objects
 
-Obviously, in this stage you can do much more with an OC message.
+At this stage you can do much more with an Objective-C message.
 
 ---
 
@@ -916,7 +916,7 @@ Here are two articles for reference:
 
 * `IMP`: the concrete implementation of a method (a pointer)
 * `SEL`: the method name
-* `Method`: a pointer of type objc_method, which is a struct, as follows:
+* `Method`: a pointer of type objc_method, which is a struct, shown below:
 
 	``` objc
 	struct objc_method {

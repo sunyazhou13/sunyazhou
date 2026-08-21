@@ -20,7 +20,7 @@ In most cases we have to use a keypath. I've been studying animations recently a
 # CALayer Properties
 
 
-Without further ado, let's show a code snippet to demonstrate the topic of this post:
+Without further ado, here's a code snippet demonstrating the topic of this post:
 
 ``` objc
 CABasicAnimation * scaleAnimation = [CABasicAnimation animation];
@@ -176,7 +176,7 @@ size.height
 > There are also additional animatable properties you can [refer to](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/AnimatableProperties/AnimatableProperties.html), and for more details you can check the [official documentation](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514-CH1-SW1), as well as some [structs](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Key-ValueCodingExtensions/Key-ValueCodingExtensions.html#//apple_ref/doc/uid/TP40004514-CH12-SW2).
 
 
-The above are all the animation-related `keypath`s I've found so far.
+Those are all the animation-related `keypath`s I've found so far.
 
 
 ## Animatable Property Descriptions
@@ -252,6 +252,6 @@ The above are all the animation-related `keypath`s I've found so far.
 
 # Summary
 
-The above are all the keypaths I've collected and organized, for reference only.
+That's every keypath I've collected so far; hope it saves you some time.
 
 Years ago, walking down the street from Huihuang International to Xi'erqi, I kept wondering why animation keypaths are always strings and so easy to typo. Today this post of mine provides the answer: KVC member variables don't let you access the variable name directly; instead, you have to write the variable name as a string, and the content is manipulated through the string.

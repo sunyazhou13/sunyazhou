@@ -26,7 +26,7 @@ Another year has passed, and I have to hand in my year-end summary on schedule a
 
 ## Looking Back at 2017
 
-The key events of this year are mainly as follows:
+Here are the key events of this year:
 
 * Technology
 * Buying an apartment
@@ -287,7 +287,7 @@ I got screwed by rule `4`. After paying the down payment, saying I was penniless
 
 I've gone back to pre-liberation days. What more do they want from me?
 
-At this point, I think a country where even the most basic housing for ordinary people is a problem is no longer a good country.
+By this point, I think a country where even the most basic housing for ordinary people is a problem is no longer a good country.
 
 > __Note: After the bank disburses the loan, be sure to go to the sales office and ask for the invoices. Only the down-payment invoice + the balance invoice = the property title. If either of the two invoices is missing, you may not get the title deed. The annoying part is that the salespeople at the office don't tell us owners about this. (Updated 2018/02/28)__
 
@@ -334,7 +334,7 @@ After such complicated procedures, I finally managed to buy an apartment. Thinki
 
 If you have any questions about my house-buying experience, please leave a comment at the bottom — I'll answer them one by one.
 
-That's the end of the house-buying story. I believe my future neighbors are no ordinary people — they must have gone through at least part of what I did: income, status, and so on. Because those who can afford a place in the Aida plot are either rich or influential. I hope my experience and house-buying tips can serve as a reference so you can avoid the detours.
+That's the end of the house-buying story. I believe my future neighbors are no ordinary people — they must have gone through at least part of what I did: income, status, all of it. Because those who can afford a place in the Aida plot are either rich or influential. I hope my experience and house-buying tips can serve as a reference so you can avoid the detours.
 
 ---
 

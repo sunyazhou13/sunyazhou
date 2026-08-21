@@ -32,18 +32,18 @@ You’re going to store the model’s object ID into a texture in one render pas
 
 ```
 
-This article solved a problem I had been exploring for a long time: how to click elements in 3D space from 2D space. The core idea is a method called **3D ray and object intersection**.
+This chapter finally solved a problem I'd been chasing for a long time: how to pick elements in 3D space from a 2D screen. The core idea is a technique called **3D ray-object intersection**.
 
-The following articles solve this problem. Besides this approach, there is also one that **uses a color/object ID to distinguish which object was clicked**.
+Besides this approach, there's also one that **uses a color/object ID to determine which object was clicked**.
 
-Below is a selection of articles on the picking technique 
+Here are some good articles on picking:
 
 [Picking and Hit-Testing in Metal](https://bit.ly/3rlzm9b)  
 [Picking and Hit-Testing in Metal Demo](https://github.com/metal-by-example/metal-picking)
 
 # Summary
 
-I discussed this with a computer graphics colleague before, and he gave me some resources for learning Vulkan, which I have organized here 
+A computer graphics colleague once shared some Vulkan learning resources with me — collected here for reference
 
 ``` sh
 https://github.com/KhronosGroup/Vulkan-Guide

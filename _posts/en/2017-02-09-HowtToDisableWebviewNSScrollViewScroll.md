@@ -23,4 +23,4 @@ Implement the following code in the `webview`'s `WebFrameLoadDelegate` delegate 
 ```
 
 
-The above code is for `macOS` development.
+Note: the code above is for `macOS` development.

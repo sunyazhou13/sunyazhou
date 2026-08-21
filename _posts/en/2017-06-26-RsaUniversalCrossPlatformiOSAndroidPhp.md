@@ -113,7 +113,7 @@ Open `private_key.pem` and replace the $PRIVATE_KEY above with the content of pr
 
 ## Step 3: Android Implementation
 
-Use Java's Cipher class to implement the encryption/decryption class. The code is as follows:
+Use Java's Cipher class to implement the encryption/decryption class. Here's the code:
 
 ``` java
 import java.io.ByteArrayInputStream;
@@ -222,7 +222,7 @@ Open the `rsa_public_key.pem` file and replace `RSA_PUBLICE` in the code above w
 
 ## Step 4: iOS Implementation
 
-iOS doesn't provide a direct API for RSA encryption. Most approaches found online also rely on handling X.509 certificates. However, X.509 certificates are signed — when the `openssl_pkey_get_private` method in PHP obtains the key, the signature must be passed as the second parameter, and implementing X.509 certificate encryption/decryption on Android is not easy either. Here, we take advantage of iOS's compatibility with C programs and use the openssl API to implement RSA encryption and decryption. The code is as follows:
+iOS doesn't provide a direct API for RSA encryption. Most approaches found online also rely on handling X.509 certificates. However, X.509 certificates are signed — when the `openssl_pkey_get_private` method in PHP obtains the key, the signature must be passed as the second parameter, and implementing X.509 certificate encryption/decryption on Android is not easy either. Here, we take advantage of iOS's compatibility with C programs and use the openssl API to implement RSA encryption and decryption. Here's the code:
 
 CRSA.h code
 

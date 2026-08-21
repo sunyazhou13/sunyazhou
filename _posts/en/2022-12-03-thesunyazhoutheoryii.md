@@ -22,7 +22,7 @@ Computer vision can at most recognize the surface of objects. Only by comparing 
 
 --
 
-In summary, I hereby establish the Second Theory of Sunyazhou: in the future, autonomous driving must use eyes and ears together.
+All of which is to say, I hereby establish the Second Theory of Sunyazhou: in the future, autonomous driving must use eyes and ears together.
 
 Based on my superficial understanding, this system hasn't appeared yet, so I should enjoy the `priority naming right`:  
 

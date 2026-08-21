@@ -105,7 +105,7 @@ func processFile(filename: String) throws {
 }
 ```
 
-The above example uses a defer statement to ensure that the `open(_:)` function has a corresponding call to `close(_:)`.
+The example above uses a defer statement to ensure that the `open(_:)` function has a corresponding call to `close(_:)`.
 
 > You can use a defer statement even when no error handling code is involved.
 

@@ -23,7 +23,7 @@ There's an article that describes the development process, so I won't repeat it 
 
 
 
-*The core code is as follows*, using the `AVCaptureMetadataOutputObjectsDelegate` delegate:
+*Here's the core code*, using the `AVCaptureMetadataOutputObjectsDelegate` delegate:
 
 ```swift  
 

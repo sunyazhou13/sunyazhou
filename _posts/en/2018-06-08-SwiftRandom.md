@@ -126,7 +126,7 @@ Use the [shuffled()](https://developer.apple.com/documentation/swift/sequence/29
 // → numbers is now [16, 9, 2, 18, 5, 13, 8, 11, 17, 3, 6, 1, 14, 7, 10, 15, 20, 19, 12, 4]
 ```
 
-The above implements a shuffle-like sorting of numbers from 1 to 20. Note: both sides are closed ranges (closed ranges include the endpoint) because `...` is used here. If you don't understand, you can look up Swift's range notation.
+That gives you a shuffle-like sorting of numbers from 1 to 20. Note: both sides are closed ranges (closed ranges include the endpoint) because `...` is used here. If you don't understand, you can look up Swift's range notation.
 
 ## Random Number Generator Protocols
 

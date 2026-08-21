@@ -12,7 +12,7 @@ typora-root-url: ..
 
 # Preface
 
-It's been a long time since I used the less common APIs of UIViewController, and I've gradually lost my memory of them. In iOS apps, pages with multiple childViewControllers are a very common interaction design — the early NetEase News, Toutiao, and so on. This post reviews the old APIs for manually controlling the life cycle of view controllers.
+It's been a long time since I used the less common APIs of UIViewController, and I've gradually lost my memory of them. In iOS apps, pages with multiple childViewControllers are a very common interaction design — think the early NetEase News or Toutiao. This post reviews the old APIs for manually controlling the life cycle of view controllers.
 
 # UIViewController
 
@@ -81,7 +81,7 @@ You need to override the following method in the parent ViewController and retur
 }
 ```
 
-However, note that you must not call methods like `viewWillAppear`, `viewDidAppear`, etc. manually. Instead, you should call:
+However, note that you must not call methods like `viewWillAppear` or `viewDidAppear` manually. Instead, you should call:
 
 ``` objc
 - (void)beginAppearanceTransition:(BOOL)isAppearing animated:(BOOL)animated;
@@ -162,7 +162,7 @@ A minimal working pattern (fromVC is the currently displayed child controller, t
 
 **Use Cases**
 
-This is the utility method for switching between two child controllers in a "custom container controller" — for example, custom Tab switching, paged content switching, and so on.
+This is the utility method for switching between two child controllers in a "custom container controller" — for example, custom Tab switching, paged content switching, that kind of thing.
 
 **Life Cycle**
 

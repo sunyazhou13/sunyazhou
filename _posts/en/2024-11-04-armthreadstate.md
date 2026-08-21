@@ -94,7 +94,7 @@ Resolving the `pc` (Program Counter) value in the ARM Thread State registers usu
 
  You can use Xcode's debugging tools, or command-line tools such as `atos` (Address to Symbol), to convert the `pc` value into the function name and line number in the source code.
 
-A command-line example using `atos` is as follows:
+Here's a command-line example using `atos`:
 
 ``` bash
 atos -arch arm64 -o YourApp.app.dSYM/Contents/Resources/DWARF/YourApp -l 0xXXXXXXXXXXXXXXXX 0xXXXXXXXXXXXXXXXX   

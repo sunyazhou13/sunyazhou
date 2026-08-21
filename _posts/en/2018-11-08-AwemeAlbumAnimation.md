@@ -295,7 +295,7 @@ Finally, add all the animations to the animation group:
 Then wrap up the method and put everything we did above — the Bezier curve, opacity, gradient, scale, and the animation group — into it:
 
 
-The complete code is as follows:
+Here's the complete code:
 
 ``` objc
 - (void)addNotoAnimation:(NSString *)imageName

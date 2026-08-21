@@ -208,7 +208,7 @@ struct Child {
 }
 ```
 
-The LifeCycleDetail code is as follows.
+Here's the LifeCycleDetail code.
 
 ``` ts
 @Entry
@@ -251,7 +251,7 @@ struct LifeCycleDetail {
   }
 }
 ```
-When we start the preview, the lifecycle functions are as follows:
+When we start the preview, the lifecycle functions run in this order:
 
 ``` sh
 app Log: LiftCycle aboutToAppear
@@ -454,7 +454,7 @@ struct LearnDetail {
 }
 ```
 
-The above is the code for using the @Styles decorator. [Refer to the official @Styles documentation](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-style-0000001630145729-V2)
+That's how you use the @Styles decorator. [Refer to the official @Styles documentation](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-style-0000001630145729-V2)
 
 ### The @Extend Decorator: Defining Extended Component Styles
 
@@ -486,7 +486,7 @@ Here's a covariant call:
 }
 ```
 
-Sample code using @Extend is as follows:
+Here's some sample code using @Extend:
 
 ``` ts
 @Entry
@@ -606,7 +606,7 @@ struct LearnDetailProp1 {
 
 ### The @Link Decorator: Two-Way Parent-Child Synchronization
 
-The sample code is as follows:
+Here's the sample code:
 
 ``` ts
 // @Link装饰状态数据，方便父与子组件之问进行数据传递与同步 父State <--------->prop 双向传递
@@ -737,7 +737,7 @@ The variable decorated with @Provide is in the ancestor component, and can be un
 @Consume('a') c: number;
 ```
 
-Obviously these decorators use a unified identifier and consistent types. According to the documentation, the details are as follows:
+As you can see, these decorators use a unified identifier and consistent types. Here are the details from the documentation:
 
 | @Provide variable decorator | 	Description  |
 | ------| ------ |
@@ -802,7 +802,7 @@ struct  ProvideConsumeDemo2 {
 
 ```
 
-The effect is as follows:
+Here's the effect:
 
 ![](/assets/images/20240119ArkTSBasic/provideconsume.avif)
 
@@ -1024,7 +1024,7 @@ struct LayoutDemo {
 
 ![](/assets/images/20240119ArkTSBasic/LayoutStudy1.avif) 
 
-The usage of `position`, `markAnchor`, and `offset` is as follows.
+Here's the usage of `position`, `markAnchor`, and `offset`.
 
 ``` ts
 @Entry

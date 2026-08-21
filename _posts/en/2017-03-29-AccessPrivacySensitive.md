@@ -35,7 +35,7 @@ Refer to [this great article](https://github.com/ChenYilong/iOS10AdaptationTips)
 	<string>用于保存拍摄完成的视频内容到相册,及选择相册内视频上传</string> 
 
 ```
-The above are commonly used texts that have passed App Store review
+These are commonly used texts that have passed App Store review
 
 Below are privacy description reminders for convenient debugging
 

@@ -98,7 +98,7 @@ Harbin has something famous that seems to be called red sausage, but if you're n
 This is the place in the photo below.
 ![Markdown](http://p1.bqimg.com/584350/b4c23a2cdd0e057b.avif)
 
-From now on, don't ask anyone where to buy the best red sausage. The above are the most authentic places to buy red sausage.
+From now on, don't ask anyone where to buy the best red sausage. The places listed above are the most authentic.
 
 Going Home
 --

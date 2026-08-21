@@ -23,7 +23,7 @@ During development, we often encounter situations where certain entries appear o
 
 ## The Challenges We Face
 
-Based on the background above, the problems we need to solve are as follows
+Given the background above, here are the problems we need to solve:
 
 * Assume the appearance or disappearance timing of the entry views is not sequential, but random.
 * Each entry view has dependencies, or a fixed order — how should this be handled?

@@ -17,7 +17,7 @@ This article is highly personal in tone. If you find it uncomfortable to read, p
 
 ### Background
 
-While studying *Metal.by.Tutorials.4th.2023.12* in 2024, I came across how to use `Unsafe Swift` pointers and interact with C — mainly how to identify C content in memory. Below is the English article introduced in the book. After reading it, I thought I should digest and absorb it, so I organized it into a Chinese version for your reference.
+While studying *Metal by Tutorials (4th edition, 2023)* in 2024, I hit the chapter on using unsafe Swift pointers and interacting with C — mainly how to work with C data in memory. Below is the tutorial the book introduces. After working through it, I put together this write-up to digest the material.
 
 In this tutorial, you'll learn how to access memory directly through various pointer types using unsafe Swift. By Brody Eller.
 
@@ -40,8 +40,13 @@ These features are useful if you need to interact with unsafe languages such as 
 
 This tutorial includes three empty Swift Playground files:
 
+* In the first Playground, you'll use a few short pieces of code to explore memory layout and try using unsafe pointers.
+* In the second Playground, you'll use a low-level C API to perform streaming data compression and wrap it in a Swift-style interface.
+* In the last Playground, you'll create a cross-platform random number generator that replaces `arc4random`. It uses unsafe Swift internally, but hides this detail from users.
+
 ### Explore Unsafe Swift Memory Layout
-First, open the UnsafeSwift Playground. Since all the code in this tutorial is cross-platform, you can choose any platform.
+
+First, open the **UnsafeSwift** Playground. Since all the code in this tutorial is cross-platform, you can choose any platform.
 
 ![](/assets/images/20250222UnsafeSwift/memory1.avif)
 
@@ -53,23 +58,7 @@ An 8-bit byte can store values between 0 and 255. The processor can also access 
 
 For example, on a 64-bit system, a word is 8 bytes (64 bits). To understand this more intuitively, you can use `MemoryLayout` to see the size and alignment of some native Swift types.
 
-Add the following code to your Playground:
-
-* In the first Playground, you'll use a few short pieces of code to explore memory layout and try using unsafe pointers.
-* In the second Playground, you'll use a low-level C API to perform streaming data compression and wrap it in a Swift-style interface.
-* In the last Playground, you'll create a cross-platform random number generator that replaces `arc4random`. It uses unsafe Swift internally, but hides this detail from users.
-
-First, open the **UnsafeSwift** Playground. Since all the code in this tutorial is cross-platform, you can choose any platform.
-
 ![](/assets/images/20250222UnsafeSwift/memory2.avif)
-
-Unsafe Swift interacts directly with the memory system. You can think of memory as a series of boxes — actually billions of boxes — each containing a number.
-
-Each box has a unique memory address. The smallest addressable storage unit is a byte, which is usually made up of 8 bits.
-
-An 8-bit byte can store values between 0 and 255. The processor can also access words in memory efficiently; a word usually consists of multiple bytes.
-
-For example, on a 64-bit system, a word is 8 bytes (64 bits). To understand this more intuitively, you can use `MemoryLayout` to see the size and alignment of some native Swift types.
 
 Add the following code to your Playground:
 
@@ -785,6 +774,6 @@ We hope you enjoyed this tutorial! If you have any questions or experiences you'
 
 # Summary
 
-The above is the technical debt I owed from last year. Today I'm paying it off. The methods and functions for manipulating memory in unsafe Swift introduced here are worth studying in depth. Although the translation feels a bit machine-like, I'll reorganize it when I have the time.
+This was last year's technical debt — finally paid off. The unsafe Swift memory APIs covered here are well worth studying in depth. The write-up still reads a bit mechanical; I'll polish it when I have time.
 
 [Original article: Unsafe Swift: Using Pointers and Interacting With C](https://www.kodeco.com/7181017-)

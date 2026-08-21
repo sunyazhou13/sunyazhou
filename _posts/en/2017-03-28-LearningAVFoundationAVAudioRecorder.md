@@ -64,7 +64,7 @@ Delegate methods of `AVAudioRecorder`:
 How to create an `AVAudioRecorder`
 --
 
-The parameters required to create an `AVAudioRecorder` object are as follows:
+Here are the parameters required to create an `AVAudioRecorder` object:
 
 * The path URL on the local disk where the audio stream is written during recording
 * `settings` recording configuration: a dictionary of key-value parameters such as sample rate, audio format, number of channels, etc.
@@ -478,11 +478,11 @@ Here we need to override the `formattedCurrentTime` getter to obtain a time form
     return [NSString stringWithFormat:format, hours, minutes, seconds];
 }
 ```
-The above roughly covers the process of wrapping `BDRecorder`.
+That roughly covers the process of wrapping `BDRecorder`.
 
 Below is the UI setup for `ViewController`. After setting up the time format, we need to create a timer in `ViewController` to update the recording time on the UI, because `self.recorder.currentTime` is a read-only property and provides no setter, so we can't observe the recorder's property changes via KVO.
 
-The code is as follows:
+Here's the code:
 
 ``` objc
 //

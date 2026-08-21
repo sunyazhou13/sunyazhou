@@ -86,7 +86,7 @@ Refer to the diagram below
 ![](/assets/images/20221207RadialGradientlayer/corners.avif)  
 ![](/assets/images/20221207RadialGradientlayer/LinearHorizontal.avif)
 
-The example code is as follows:
+Here's the example code:
 
 ``` objc
 // Objective C
@@ -143,7 +143,7 @@ gradientLayer.colors =
 The diagram below demonstrates the key gradient location settings.
 ![](/assets/images/20221207RadialGradientlayer/locations.avif)  
 
-The location setting code is as follows:
+Here's the location setting code:
 
 ``` objc
 // ObjC

@@ -62,7 +62,7 @@ SQL: UPDATE msg_10003600 SET chatMsgHeight=? WHERE ((messageId='936542df77de4177
 
 No need to think twice — the condition after `where` in the `SQL` statement was always `true`, which produced this bug so elementary it couldn't get any more elementary.
 
-The corrected code is as follows:
+Here's the corrected code:
 
 ``` objc
 - (BOOL)updateMsgHeight:(SYMessage *)msg toTable:(NSString *)tableName {
@@ -88,7 +88,7 @@ So watch out for this `pitfall`, folks. It was clearly caused by me leaving out 
 
 Fast! Convenient! Clean code!
 
-I migrated all the core modules involved in the chat feature — the conversation list, the message list, and so on — to WCDB.
+I migrated all the core modules involved in the chat feature — the conversation list, the message list, all of it — to WCDB.
 
 Another pitfall worth noting for everyone: when migrating from FMDB to WCDB, always remember — `go all the way or don't go at all`: replace everything in one pass, otherwise queue deadlocks and contention can easily occur. Don't believe me? Try it and see.
 

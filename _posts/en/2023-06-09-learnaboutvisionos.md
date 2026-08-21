@@ -17,7 +17,7 @@ This post carries strong personal opinions. If reading it makes you uncomfortabl
 
 ## Getting to Know visionOS
 
-visionOS can be understood as a new iOS-like system that runs on Apple's headset. In Apple's own words, it's all sorts of highfalutin "spatial technology" and so on. It makes use of the SwiftUI, UIKit, RealityKit, and ARKit frameworks. If you want to develop apps for visionOS, it's best to have experience with these various kits; if you don't, I'd still encourage you to learn them, or simply start with SwiftUI.
+Think of visionOS as a new iOS-like system that runs on Apple's headset — what Apple grandly calls "spatial computing". It's built on the SwiftUI, UIKit, RealityKit, and ARKit frameworks. Prior experience with these frameworks helps a lot; if you don't have it, you can pick it up as you go, or simply start with SwiftUI.
 
 * SwiftUI is like the UIKit of before — a new UI framework system for building UI, used for Swift development
 * UIKit is the original Objective-C UI system
@@ -34,7 +34,7 @@ Learn the building blocks of spatial computing — windows, volumes, and spaces 
 
 ![](/assets/images/20230609LearnAboutVisionOS/visionos0.avif)
 
-The official explanations are as follows:
+Here are the official explanations:
 
 * windows
 You can create one or more windows in your visionOS app. They're built with SwiftUI, contain traditional views and controls, and you can add depth to the experience by adding 3D content.
@@ -43,8 +43,6 @@ You can create one or more windows in your visionOS app. They're built with Swif
 Add depth to your app with a 3D volume. Volumes are SwiftUI scenes that can use RealityKit or Unity to present 3D content, creating experiences viewable from any angle in the Shared Space or an app's Full Space.
 * spaces
 By default, apps launch into the Shared Space, where they exist side by side, like multiple apps on a Mac desktop. Apps can use windows and volumes to display content, and people can reposition these elements wherever they like. For a more immersive experience, an app can open a dedicated Full Space that shows only that app's content. In a Full Space, an app can use windows and volumes, create unbounded 3D content, open portals to different worlds, and even place people fully inside an environment.
-
-Learn the building blocks of spatial computing — windows, volumes, and spaces — and find out how to use these elements to build engaging immersive experiences. We'll walk you through the frameworks used to create apps for visionOS and show you how to design for depth, scale, and immersion. Explore how to use tools from Apple like Xcode and the new Reality Composer Pro, and how to make spatial computing apps that work for everyone.
 
 Here are four videos for learning about this:
 
@@ -62,7 +60,7 @@ Once you're familiar with the basics of visionOS, take a deeper look at the fram
 [Meet SwiftUI for spatial computing](https://developer.apple.com/videos/play/wwdc2023/10109/)
 [Meet UIKit for spatial computing](https://developer.apple.com/videos/play/wwdc2023/111215/)
 
-These two are about UIKit and SwiftKit
+These two sessions cover UIKit and SwiftUI.
 
 ## Exploring SwiftUI and RealityKit
 
@@ -195,11 +193,11 @@ Learn how to run your existing iPad and iPhone apps in visionOS. Explore how iPa
 * [Run your iPad and iPhone apps in the Shared Space](https://developer.apple.com/videos/play/wwdc2023/10090/)
 * [Enhance your iPad and iPhone apps for the Shared Space](https://developer.apple.com/videos/play/wwdc2023/10094/)
 
-The above is a must-watch for any iOS developer
+These are essential viewing for any iOS developer.
 
 
 # Summary 
 
-I've put together a full collection of materials and videos for learning visionOS. I hope everyone can open up new worlds on this new visionOS, just like we did in the early days of iOS.
+I've collected the full set of visionOS learning materials and videos here. I hope you get to build new worlds on this new platform — just like we did back in the early days of iOS.
 
 [Learn about visionOS official page](https://developer.apple.com/visionos/learn/)

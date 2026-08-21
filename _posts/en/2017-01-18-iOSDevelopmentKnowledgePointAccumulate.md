@@ -10,7 +10,7 @@ typora-root-url: ..
 
 > I've been working on iOS development for a long time. In the past, I used my brain to memorize technical articles and the code of technical implementations. But when a person's brain exceeds a certain storage limit, stack overflow occurs (actually, I'm just not that smart). Later, I gradually started to remember which blog was written by whom, or the code of how a technique was implemented... But then I found that not only was the stack overflowing, the heap could barely hold the vast number of iOS technical articles anymore... Sigh. So I kept all the classic article bookmarks and browser URLs in my Chrome. Now I want to organize them and put them in my blog, to make it easy to look up the code of a certain technical implementation (in fact, even my former intern colleagues at Baidu Cloud were amazed at how I could store a certain technique in such detail). OK, let's start the iOS knowledge point technical navigation.
 
-The iOS technical categories are as follows:
+Here are the iOS technical categories:
 
 * Audio
 * Camera & Photos
@@ -66,7 +66,7 @@ __[A Library Covering All iOS Animation Effects](https://github.com/sunyazhou13/
 __[pop](https://github.com/facebook/pop)__
 
 > To learn animation, the most reliable way is to start with the animation posts of [骑滔(Kitten)](http://kittenyang.com/)  
-> The above are general animation posts, 2 of which are from Kitten  
+> Those are the general animation posts, 2 of which are from Kitten  
 > Continually updated
 
 

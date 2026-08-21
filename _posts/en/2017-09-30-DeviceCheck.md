@@ -121,7 +121,7 @@ https://api.development.devicecheck.apple.com/v1/query_two_bits
 
 ```
 
-The JSON definition is as follows:
+Here's the JSON definition:
 
 | Field Key | Type | Description | Required |   
 |:------:|:------:| :------:| :------:| 
@@ -149,7 +149,7 @@ curl -i --verbose -H "Authorization: Bearer <GeneratedJWT>" \
 https://api.development.devicecheck.apple.com/v1/update_two_bits 
 ```
 
-The JSON definition is as follows:
+Here's the JSON definition:
 
 | Field Key | Type | Description | Required |   
 |:------:|:------:| :------:| :------:| 

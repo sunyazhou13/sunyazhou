@@ -33,7 +33,7 @@ There's a class called `UITraitCollection` here that I'd never studied carefully
 > Trait: characteristic, feature
 
 
-Obviously, this class is used in UIKit to store some characteristics of the iPhone and the related UI configuration. Have you ever wondered how we developers handle it when you modify certain system settings in iOS's General, such as (see below) contrast and global font size?
+In short, this UIKit class stores device characteristics and related UI configuration. Have you ever wondered how we developers handle it when you modify certain system settings in iOS's General, such as (see below) contrast and global font size?
 
 ![](/assets/images/20190916UITraitCollection/UITraitCollection2.avif)
 

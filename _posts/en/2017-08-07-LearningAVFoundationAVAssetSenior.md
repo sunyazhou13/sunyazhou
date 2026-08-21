@@ -89,7 +89,7 @@ typedef void(^CompletionHandler)(BOOL complete);
 For the `.m` file, please refer to the source code — there's a lot of it, so I won't go into detail here.
 
 Used when the block completes.
-The media formats currently supported for reading metadata are as follows:
+Here are the media formats currently supported for reading metadata:
 
 * m4a
 * mov
@@ -133,7 +133,7 @@ Looking at the code above, you've probably guessed it — this is exactly the re
 There's a lot here, and some values may be missing, so please do your own checking.
 
 ### MetadataConverter
-This protocol exists to support unified parsing of all multimedia files. For example, mp3 and mp4 are different file formats — although they share many of the same keys, their data structures are definitely different. This requires a unified protocol: for instance, given a URL, return a model. To solve the problem of uneven key-value layouts, this protocol was created.
+This protocol exists to support unified parsing of all multimedia files. For example, mp3 and mp4 are different file formats — although they share many of the same keys, their data structures are definitely different. This requires a unified protocol: for instance, given a URL, return a model. To deal with uneven key-value layouts, this protocol was created.
 
 ``` objc
 @protocol zh <NSObject>
@@ -380,7 +380,7 @@ The standard genres used by digital audio originally came from MP3. The ID3 spec
 ![](/assets/images/20170807LearningAVFoundationAVAssetSenior/gener.avif)
 
 
-Although iTunes uses the predefined genres from the ID3 set, it defines its own genre sets for TV, movies, audiobooks, etc. [Apple's Genre IDs Appendix](https://affiliate.itunes.apple.com/resources/documentation/genre-mapping/)
+Although iTunes uses the predefined genres from the ID3 set, it defines its own genre sets for TV, movies, and audiobooks. [Apple's Genre IDs Appendix](https://affiliate.itunes.apple.com/resources/documentation/genre-mapping/)
 
 The example code already includes these genres, so I won't elaborate further — please refer to the demo.
 

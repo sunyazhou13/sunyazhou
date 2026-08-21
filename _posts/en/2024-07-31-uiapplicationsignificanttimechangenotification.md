@@ -56,9 +56,9 @@ Here is an example of how to register:
 
 ```
 
-This method first confirms that the received notification is the significant time change notification we care about. Then it gets the current date and computes yesterday's date. By comparing the two dates, we can determine whether midnight has been crossed. If so, we can perform any operations needed at the start of a new day, such as data backup, refreshing the user interface, and so on.
+This method first confirms that the received notification is the significant time change notification we care about. Then it gets the current date and computes yesterday's date. By comparing the two dates, we can determine whether midnight has been crossed. If so, we can perform any operations needed at the start of a new day, such as data backup or refreshing the user interface.
 
-The official comment for this notification is as follows:
+Here's the official comment for this notification:
 
 ``` txt
 A notification that posts when there is a significant change in time, for example, change to a new day (midnight), carrier time update, and change to or from daylight savings time.

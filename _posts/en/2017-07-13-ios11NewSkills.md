@@ -134,7 +134,7 @@ As in the following code, if the app uses the same string everywhere, efficiency
     });
 ```
 
-> Honestly speaking, in a project it's unavoidable to have file uploads/downloads or time-consuming tasks. Making everything one queue obviously doesn't fit the business requirements. If you want to keep queues with a single identifier as much as possible, you can only do it based on business categories. It's worth trying when you get the chance
+> Honestly speaking, in a project it's unavoidable to have file uploads/downloads or time-consuming tasks. Making everything one queue clearly doesn't fit the business requirements. If you want to keep queues with a single identifier as much as possible, you can only do it based on business categories. It's worth trying when you get the chance
 
 
 End

@@ -14,7 +14,7 @@ typora-root-url: ..
 
 This post carries strong personal sentiment; if you feel uncomfortable reading it, please close it as soon as possible. This post is only a personal learning record. Reposting or sharing within the license terms is welcome; please respect copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
 
-In [the previous posts](https://www.sunyazhou.com/tags/iOS%E9%9D%A2%E8%AF%95%E9%A2%98/) we covered memory, associated objects, ARC, AutoreleasePool, weak objects, NSNotificationCenter, etc. Today we'll talk about Runloop and KVO.
+In [the previous posts](https://www.sunyazhou.com/tags/iOS%E9%9D%A2%E8%AF%95%E9%A2%98/) we covered memory, associated objects, ARC, AutoreleasePool, weak objects, and NSNotificationCenter. Today we'll talk about Runloop and KVO.
 
 
 The main questions answered in this chapter are:

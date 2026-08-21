@@ -22,7 +22,7 @@ First, let's see what the finished effect looks like,
 
 ![](/assets/images/20240125MPRemoteCommandLikecommand/MPRemoteCommand.avif)
 
-The key API code needed here is as follows:
+Here's the key API code needed here:
 
 ``` objc
 @interface MPFeedbackCommand : MPRemoteCommand
@@ -59,7 +59,7 @@ if (@available(iOS 17.1, *)) {
 }
 ```
 
-The above is all the code needed to implement the favorite animation.
+That's all the code needed to implement the favorite animation.
 
 ## Pitfall Log
 

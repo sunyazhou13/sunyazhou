@@ -106,7 +106,7 @@ extension UIView {
 
 This distinguishes the two approaches before and after iOS 11.
 
-Before iOS 11, we drew a path with a Bezier curve, then created a `CAShapeLayer` to act as a transparent mask on `self.layer.mask`, to solve the problem of rounding different corners.
+Before iOS 11, we drew a path with a Bezier curve, then created a `CAShapeLayer` to act as a transparent mask on `self.layer.mask`, to round different corners.
 
 
 ## Adding Corner Animation
@@ -114,7 +114,7 @@ Before iOS 11, we drew a path with a Bezier curve, then created a `CAShapeLayer`
 
 We add a gesture recognizer to the original `viewDidLoad()` method.
 
-And write the triggered event. The complete code is as follows.
+And write the triggered event. Here's the complete code.
 
 ``` swift
 import UIKit

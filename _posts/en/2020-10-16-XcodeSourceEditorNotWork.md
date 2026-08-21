@@ -21,7 +21,7 @@ These past few days I wanted to align my code and found that the XAlign plugin I
 
 ![](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditor.avif)
 
-After searching online, I found a reliable solution, so I'm recording it here.
+After searching online, I found a reliable solution, so I'm jotting it down here.
 
 Enter the following in the terminal and it will show up:
 

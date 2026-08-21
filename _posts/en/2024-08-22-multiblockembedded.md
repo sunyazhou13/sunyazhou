@@ -17,11 +17,11 @@ This article is strongly personal in tone. If it makes you uncomfortable, please
 
 ## A Problem Encountered in Development
 
-How to correctly use a block's weakSelf and strongSelf in Objective-C across multiple nested blocks
+How to correctly use a block's `weakSelf` and `strongSelf` across multiple nested blocks in Objective-C.
 
-In Objective-C, `weak self` and `strong self` are used to solve the problem of retain cycles. When you use `self` as a parameter of a block, you need to use `__weak typeof(self) weakSelf = self;` to create a weak reference in order to avoid a retain cycle. Then, inside the block, you can use `strongSelf` to obtain a strong reference.
+In Objective-C, `weak self` and `strong self` are used to break retain cycles. When you use `self` as a parameter of a block, you need to use `__weak typeof(self) weakSelf = self;` to create a weak reference in order to avoid a retain cycle. Then, inside the block, you can use `strongSelf` to obtain a strong reference.
 
-The following is an example showing how to use `weak self` and `strong self` in a three-layer nested method:
+Here's an example showing how to use `weak self` and `strong self` in a three-layer nested method:
 
 ``` objc
 - (void)outerMethod {

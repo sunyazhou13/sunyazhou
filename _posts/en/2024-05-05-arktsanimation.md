@@ -349,7 +349,7 @@ function item(item: string, index: number): string {
 
 ```
 
-The core code is as follows:
+Here's the core code:
 
 ``` ts
 Text(item).ft_text()

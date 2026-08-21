@@ -26,7 +26,7 @@ In 2024, technology can't just stay on our lips — actions speak louder than wo
 
 ### The Environment Used Here Is HarmonyOS 4.1
 
-The code is as follows:
+Here's the code:
 
 ``` ts
 import router from '@ohos.router'

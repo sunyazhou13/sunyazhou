@@ -81,7 +81,7 @@ I chose methods 1 and 3 for testing. Here's the code:
 2023-02-13 19:59:11.108141+0800 NSDateSpeedDemo[1837:197213] NSDate (YZUtils)耗时:0.030793
 ```
 
-The full code is as follows:
+Here's the full code:
 
 ``` objc
 - (IBAction)didSysDateClick:(id)sender {

@@ -38,13 +38,13 @@ UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
 > 	[resourceBundle pathForResource:@"power@2x" ofType:@"jpg"];
 > ```
 
-The above clearly doesn't meet our needs.
+That clearly doesn't meet our needs.
 
 ![](/assets/images/20230322PodXCAssets/1.avif)
 
 ## Images all have @2x and @3x versions. How do we retrieve the relevant images from a pod?
 
-At this point we need to do a few things:
+Now we need to do a few things:
 
 * 1. Create an XCAssets
 * 2. Declare the relevant name in the podspec
@@ -71,7 +71,7 @@ The relevant documentation is shown below
 
 This [podspec documentation](https://guides.cocoapods.org/syntax/podspec.html#resource_bundles) doesn't clearly explain how to add XCAssets. You need to study and explore further.
 
-Obviously, this documentation doesn't explain how to add XCAssets at all.
+As it turns out, this documentation doesn't explain how to add XCAssets at all.
 
 ##### Add a category for image retrieval
 
@@ -117,7 +117,7 @@ NSString *kYZToolsAssets = @"YZToolsAssets";
 NS_ASSUME_NONNULL_END
 ```
 
-When using it, the code is as follows:
+Here's the code for using it:
 
 ``` objc
 UIImage *image = [UIImage yzToolsImageNamed:@"power"];

@@ -42,7 +42,7 @@ override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 * 4. If not, let the event continue to propagate.
 
 
-> Note: _the code doesn't check whether theButton.alpha == 0, theButton.userInterface... == YES, or whether it's visible, etc. — add those checks yourself_
+> Note: _the code doesn't check whether theButton.alpha == 0, theButton.userInterface... == YES, or whether it's visible — add those checks yourself_
 
 ## The Second Approach
 

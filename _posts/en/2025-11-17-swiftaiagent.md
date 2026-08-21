@@ -573,7 +573,7 @@ Nimbo：更新了！现在在 3 次错误猜测后，它会给你一个提示，
       游戏跟踪尝试次数并提供鼓励。好多了！
 ```
 
-Even more impressive! The agent:
+Even better — the agent:
 
 1. **Got creative**: added personality to the game without being asked.
 2. **Made good choices**: picked fun emojis, wrote playful strings.

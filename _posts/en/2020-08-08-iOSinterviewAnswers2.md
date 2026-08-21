@@ -36,7 +36,7 @@ Basic content includes:
 Let's start with the conclusion:
 
 * The `weak table` is actually a hash table. The `Key` is the address of the pointed-to object, and the `Value` is an array of `weak` pointer addresses. The implementation principle is that through the old/new table pointer update mechanism, weak objects are stored separately in the `weak_table_t` (type) `weak_table` table within `SideTable` (struct). This is implemented through the `objc_initWeak()` -> `storeWeak()` function using old and new `SideTable` (struct) tables.
-* `SideTable` is a struct with two main members: a reference count table and a weak reference table. What's stored in memory are actually the object's address, reference count, and weak variable addresses — not the object's own data. Its structure is as follows:
+* `SideTable` is a struct with two main members: a reference count table and a weak reference table. What's stored in memory are actually the object's address, reference count, and weak variable addresses — not the object's own data. Here's its structure:
 
 ``` objc
 struct SideTable {
@@ -79,7 +79,7 @@ NSObject *obj = [[NSObject alloc] init];
 id __weak obj1 = obj;
 ```
 
-When we initialize a weak variable, `runtime` calls the `objc_initWeak()` function in `NSObject.mm`. This function's declaration in Clang is as follows:
+When we initialize a weak variable, `runtime` calls the `objc_initWeak()` function in `NSObject.mm`. Here's this function's declaration in Clang:
 
 ``` objc
 id objc_initWeak(id *location, id newObj) {
@@ -211,7 +211,7 @@ struct SideTable {
 
 ##### weak table
 
-The weak reference hash table, a struct of type `weak_table_t`, stores all weak reference information related to a particular instance object. Its definition is as follows:
+The weak reference hash table, a struct of type `weak_table_t`, stores all weak reference information related to a particular instance object. Here's its definition:
 
 ``` objc
 struct weak_table_t {
@@ -223,7 +223,7 @@ struct weak_table_t {
 ```
 This is a global weak reference hash table. It uses the address of an object of unspecified type as the `key`, and a `weak_entry_t` type struct object as the `value`. The `weak_entries` member is the entry point to the weak reference table.
 
-The `weak_entry_t` is an internal struct stored in the weak reference table, responsible for maintaining and storing all weak reference hash tables pointing to an object. Its definition is as follows:
+The `weak_entry_t` is an internal struct stored in the weak reference table, responsible for maintaining and storing all weak reference hash tables pointing to an object. Here's its definition:
 
 ``` objc
 typedef DisguisedPtr<objc_object *> weak_referrer_t;
@@ -260,13 +260,13 @@ So what role do the members `out_of_line`, `num_refs`, `mask`, and `max_hash_dis
 
 > In fact, the value of `out_of_line` is usually zero, so the weak reference table is always a two-dimensional array of `objc_objective` pointers. A one-dimensional `objc_objective` pointer array can form a weak reference hash table. Through the third dimension, multiple hash tables are implemented, and the number of tables is `WEAK_INLINE_COUNT`.
 
-The above is the implementation principle of the weak table.
+That's how the weak table works under the hood.
 
 #### 3. Release
 
 During release, the `clearDeallocating` function is called. The `clearDeallocating` function first gets the array of all `weak` pointer addresses based on the object's address, then iterates through this array setting the data to `nil`, and finally removes this `entry` from the `weak` table, and cleans up the object's record.
 
-##### When the object pointed to by a weak reference is released, how is the weak pointer handled? When an object is released, the basic flow is as follows:
+##### When the object pointed to by a weak reference is released, how is the weak pointer handled? Here's the basic flow when an object is released:
 
 * 1. Call `objc_release`
 * 2. Because the object's reference count is 0, execute `dealloc`
@@ -275,7 +275,7 @@ During release, the `clearDeallocating` function is called. The `clearDeallocati
 * 5. Call `objc_destructInstance`
 * 6. Finally call `objc_clear_deallocating`
 
-Let's focus on the `objc_clear_deallocating` function called when the object is released. This function's implementation is as follows:
+Let's focus on the `objc_clear_deallocating` function called when the object is released. Here's this function's implementation:
 
 ``` objc
 void objc_clear_deallocating(id obj)  
@@ -287,7 +287,7 @@ void objc_clear_deallocating(id obj)
 ```
 It calls `clearDeallocating()`. Tracing through the source code, it ultimately uses an iterator to get the `value` from the `weak` table, then calls `weak_clear_no_lock()` to find the corresponding `value` and set the `weak` pointer to nil.
 
-The `weak_clear_no_lock()` function's implementation is as follows:
+Here's the `weak_clear_no_lock()` function's implementation:
 
 ``` objc
 void weak_clear_no_lock(weak_table_t *weak_table, id referent_id) 
@@ -497,7 +497,7 @@ void _object_set_associative_reference(id object, const void *key, id value, uin
     association.releaseHeldValue();
 }
 ```
-The above code shows the core objects for implementing associated object technology. Let's introduce the internal implementation of each core object separately.
+The code above shows the core objects behind associated objects. Let's walk through the internal implementation of each one.
 
 #####  AssociationsManager
 
@@ -685,7 +685,7 @@ It marks the `has_assoc` flag in the `isa` struct as `true`, indicating that the
 
 ##### `objc_getAssociatedObject()`
 
-The call stack of this function is as follows:
+Here's the call stack of this function:
 
 ``` sh
 id objc_getAssociatedObject(id object, const void *key)
@@ -720,7 +720,7 @@ _object_get_associative_reference(id object, const void *key)
 
 ##### `objc_removeAssociatedObjects()`
 
-The call stack is as follows:
+Here's the call stack:
 
 ``` sh
 void objc_removeAssociatedObjects(id object)
@@ -765,7 +765,7 @@ Through `AssociationsManager` -> `AssociationsHashMap` -> check whether the obje
  
 #### Summary
 
-The general order of associated object applications and how the system implements associated objects is as follows:
+Here's the general order of associated object applications and how the system implements associated objects:
 `AssociationsManager` associated object manager -> `AssociationsHashMap` hash map -> `ObjectAssociationMap` associated object pointer -> `ObjcAssociation` associated object
 
 ## How Are Associated Objects Managed in Memory? How to Implement weak Properties with Associated Objects?
@@ -894,7 +894,7 @@ Under ARC, we use the `@autoreleasepool{}` keyword to wrap the code block that n
 	 <#statements#> //代码块
 }
 ```
-The above code is eventually rewritten by the compiler into the following:
+The compiler eventually rewrites that code into:
 
 ``` c
 void *context = objc_autoreleasePoolPush();
@@ -917,7 +917,7 @@ Both functions are wrappers for `AutoreleasePoolPage`. The core of the autorelea
 *  **AutoreleasePool** corresponds one-to-one by `thread` (thread member variable)
 *  **AutoreleasePoolPage** is the data structure for the autorelease pool to store objects. Each page occupies `4KB` of memory. Its own member variables occupy `56` bytes. The remaining space is used to store the addresses of objects that called the `autorelease` method. A sentinel is also inserted into the page — this sentinel is actually a nil address.
 *  When a page is full, a new `AutoreleasePoolPage` object is created and a sentinel is inserted.
-The specific code is as follows:
+Here's the specific code:
 
 ``` objc
 class AutoreleasePoolPage {
@@ -1197,5 +1197,5 @@ From this, we can see that reference counts are stored in `isa.extra_rc` and `si
 
 # Summary
 
-The above is our discussion of the runtime-related questions and memory management section from this set of interview questions. The next article will wrap up the remaining questions. Thank you all for your support.
+That wraps up the runtime and memory management questions from this set of interview questions. The next article will wrap up the remaining questions. Thank you all for your support.
 

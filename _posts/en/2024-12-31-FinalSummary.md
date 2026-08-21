@@ -53,7 +53,7 @@ The end of the pandemic also marked everyone's return to normal life, and it led
 
 ### How Can a Family Be Revitalized?
 	 
-My thoughts are as follows:   
+Here are my thoughts:
 
 **The real reason a family stays poor is that the whole family lacks a broad-minded guide who goes into business or politics. The elders cannot plan for the ignorant younger generation, and they themselves pay no attention to vision and perspective, spending their entire lives working for others. The elders in the family are selfish, attach no importance to the next generation's education, and when they grow old, they use filial piety to bind their children to obligation. Meanwhile, the children each go their own way, never united, quarreling endlessly over the slightest benefit — like a pile of loose sand, never learning to pool their strengths and resources** — Huang Hongsheng
 
@@ -79,7 +79,7 @@ Whenever I step onto the subway, pull out my phone, open iBook and read Metal by
 
 ## Work
 
-At this point, work is no longer a question of stability; it's a question of when I'll be laid off, collect my "big severance package," and start figuring out what to do next. Every day I struggle and waver between continuing to dig deeper and preparing to job-hunt. I've lost confidence in work — after all, most people's situations are hardly any better than mine. About my current company, all I can say is that I can still cope with the job, because I can't tell which will come first: the company falling apart or me walking away.
+By now, work is no longer a question of stability; it's a question of when I'll be laid off, collect my "big severance package," and start figuring out what to do next. Every day I struggle and waver between continuing to dig deeper and preparing to job-hunt. I've lost confidence in work — after all, most people's situations are hardly any better than mine. About my current company, all I can say is that I can still cope with the job, because I can't tell which will come first: the company falling apart or me walking away.
 
 The quality of coworkers really gets worse year after year. If it weren't a non-core department, maybe the coworker quality would be low — it's very hard to get back to the awesome colleagues I met at Baidu, the ones who taught me to write articles and blogs, practice calligraphy, and write code in their spare time. Those days aren't coming back. It's probably related to the current economic situation.
 
@@ -146,7 +146,7 @@ While studying this book, I had no choice but to pick up some linear algebra alo
 
 At the very beginning, the second-order determinants covered are directly related to the matrix operations we use, because in the 3D world, performing position translation, rotation, and scaling (affine transformations) on an object all requires expressions similar to determinants. You could call this the foundation of graphics: if you don't understand the internal functions when writing shaders later on, you'll be completely lost — linear algebra is the theoretical support behind it all.
 
-The knowledge point — or rather, my blind spot — that impressed me most in this book was my understanding of lighting. It turns out many predecessors did a great deal of research in this area, e.g., the [Phong lighting model](https://www.cs.utexas.edu/~bajaj/graphics2012/cs354/lectures/lect14.pdf) paper, the Fresnel lighting model, and so on.
+The knowledge point — or rather, my blind spot — that impressed me most in this book was my understanding of lighting. It turns out many predecessors did a great deal of research in this area, e.g., the [Phong lighting model](https://www.cs.utexas.edu/~bajaj/graphics2012/cs354/lectures/lect14.pdf) paper, the Fresnel lighting model, and more.
 
 Based on the formulas and theory provided in these papers, you can handle techniques like light reflection and diffusion, as well as ambient occlusion (the code written in shaders is based on these kinds of formulas). For example, lighting models are divided into spotlights, point lights, and directional light (sunlight). On top of these lighting fundamentals were eventually derived `[BPR](物理的渲染技术)` — physically based rendering — and later the ray tracing technology (Ray Tracking) formed by multiple bounces.
 
@@ -198,7 +198,7 @@ Once we wore the label of a "hooligan's game," sweating it out on street corners
 
 This sport has shown me a fairness of competition I had never felt before — pure skill does the talking. It contains a great deal of technique and knowledge. To ordinary people it probably looks like nothing more than a few wooden sticks and a tabletop with green cloth, but in fact there are many opportunities here waiting to be unearthed: for example, the best-quality cushion rubber comes from [China's Zhenhong Rubber](http://www.j-hrubber.com/) (the rubber strips along the table rails); the best cloth makers are China's [Liberwintex](https://www.liberwintex.com/) and [UK's Strachan 6811](https://strachan.co/zh-hans/). Cue brands of every kind are endorsed by professional players, though plenty are good — Peri, Lis Billiard Club, Lankou, and all sorts of brands, as plentiful as cars. There are also companies making cue tips and chalk, such as Xiaomai tips and HR chalk. Without going deep into this industry, you'd never understand its supply chain — even the slate suppliers, and the Aramith TV balls imported from Belgium. In recent years, Huyi Lighting (a company specializing in shadowless lamps above billiard tables) has become quite popular, and there's also Shenglizhe, which specializes in sofas made for billiards.
 
-This is an insider's business. We always say that under the current employment pressure it's hard to find our own second curve. What I want to say is: whatever the curve, it takes time and energy to understand and study in depth — every curve is reserved for those who are prepared.
+This is an insider's business. We always say that under the current employment pressure it's hard to find our own second curve. Here's what I'd say: whatever the curve, it takes time and energy to understand and study in depth — every curve is reserved for those who are prepared.
 
 
 ## Buying a Home

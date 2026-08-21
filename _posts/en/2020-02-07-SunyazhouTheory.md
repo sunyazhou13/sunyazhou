@@ -40,4 +40,4 @@ I hope that years from now, when people bring up this principle, they'll think: 
 
 # Summary
 
-When going home for the New Year, someone always asks about how high the salary is working in Beijing and so on. I just briefly expressed my views and, half-jokingly, formed my own theoretical doctrine.
+When going home for the New Year, someone always asks how much I make working in Beijing — that kind of thing. I just briefly expressed my views and, half-jokingly, formed my own theoretical doctrine.

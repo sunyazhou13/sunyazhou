@@ -19,7 +19,7 @@ This article has a strong personal flavor; if it makes you uncomfortable, please
 
 In my technical understanding, Cocoapods has become one of the essential skills for every iOS developer. Yet, after all these years, just when I thought it had gone out of style, I found that some people still haven't fully mastered it. Today I'm going to share the high-level experience I've accumulated over the years with peers who aren't familiar with this tool.
 
-For most software development teams, a dependency management tool is essential. It installs and manages open-source and private dependencies, thereby improving development efficiency and reducing maintenance costs. Different languages and platforms have their own dependency management tools, such as `npm` for `JavaScript`, `Gradle`, `Maven` for `Jar` packages, `pip` for `Python` packages, `Bundler`, `RubyGems`, and so on. This article focuses on `iOS` and explains the usage and some of the principles behind `CocoaPods`.
+For most software development teams, a dependency management tool is essential. It installs and manages open-source and private dependencies, thereby improving development efficiency and reducing maintenance costs. Different languages and platforms have their own dependency management tools, such as `npm` for `JavaScript`, `Gradle`, `Maven` for `Jar` packages, `pip` for `Python` packages, `Bundler`, `RubyGems`, and more. This article focuses on `iOS` and explains the usage and some of the principles behind `CocoaPods`.
 
 
 ## CocoaPods — Simple and Easy to Use
@@ -299,7 +299,7 @@ end
 
 ## podspec Syntax Specification
 
-podspec = pod Specification, meaning pod specification. It's a Ruby file containing detailed info about a pod's library versions, such as where to get the source, which files to use, which build settings to apply, and so on. It can also be seen as the index file for the entire repository. Understanding it helps a lot in knowing how pod libraries are organized and how they work. The podspec DSL offers great flexibility, and a file can be created with `pod spec create`.
+podspec = pod Specification, meaning pod specification. It's a Ruby file containing detailed info about a pod's library versions, such as where to get the source, which files to use, which build settings to apply. It can also be seen as the index file for the entire repository. Understanding it helps a lot in knowing how pod libraries are organized and how they work. The podspec DSL offers great flexibility, and a file can be created with `pod spec create`.
 
 #### Root
 
@@ -659,7 +659,7 @@ For example: `md5("CJFoundation") => 044d913fdd5a52b303222c357521f744`; `CJFound
 
 #### Create
 
-You can quickly create your own pod with the  `pod lib create [PodName]` command. After filling in info like the platform, language, whether to include a Demo, the test framework, and so on, CocoaPods pulls a pod template from the default Git address. You can also specify a template address with `--template-url=URL`. After it finishes, the whole file structure looks like this:
+You can quickly create your own pod with the  `pod lib create [PodName]` command. After filling in info like the platform, language, whether to include a Demo, or the test framework, CocoaPods pulls a pod template from the default Git address. You can also specify a template address with `--template-url=URL`. After it finishes, the whole file structure looks like this:
 
 ``` swift
 tree CustomPod -L 2
@@ -762,7 +762,7 @@ Pre-release version numbers and build metadata can be appended after `MAJOR.MINO
 
 #### Core Components of CocoaPods
 
-CocoaPods is managed by Ruby, and its core is also divided into individual components. Downloading the source code, you can see the Gemfile as follows — it depends on several `gem`s. Interestingly, the `cp_gem` function uses `SKIP_UNRELEASED_VERSIONS` and `path` to control whether to use local gem paths, enabling switching between DEVELOPMENT and RELEASE environments.
+CocoaPods is managed by Ruby, and its core is also divided into individual components. Downloading the source code, you can see the Gemfile below — it depends on several `gem`s. Interestingly, the `cp_gem` function uses `SKIP_UNRELEASED_VERSIONS` and `path` to control whether to use local gem paths, enabling switching between DEVELOPMENT and RELEASE environments.
 
 ``` ruby
 SKIP_UNRELEASED_VERSIONS = false
@@ -817,7 +817,7 @@ These components are relatively independent and split into separate Gem packages
 Running `pod install --verbose` shows more debugging info during the pod install process. The following mainly references [Getting a holistic view of CocoaPods core components
 ](https://www.desgard.com/2020/08/17/cocoapods-story-2.html).
 
-After message forwarding and CLAide command parsing, the `install!` function in CocoaPods/lib/cocoapods/installer.rb is finally called. The main flow is as follows:
+After message forwarding and CLAide command parsing, the `install!` function in CocoaPods/lib/cocoapods/installer.rb is finally called. Here's the main flow:
 
 ![](/assets/images/20230426CocoaPodsUserGuide/3.avif)
 

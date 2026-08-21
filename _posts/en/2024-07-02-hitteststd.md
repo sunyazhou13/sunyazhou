@@ -46,4 +46,4 @@ This article carries strong personal feelings. If you feel uncomfortable reading
 
 # Summary
 
-Recorded a problem that came up during code review; this is the standard way to write hitTest.
+Noting a problem that came up in code review — this is the standard way to write hitTest.

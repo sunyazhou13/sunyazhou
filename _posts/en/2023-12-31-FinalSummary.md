@@ -55,7 +55,7 @@ This year was truly unbearable to look back on. The three-year pandemic finally 
 
 Because the world situation has been turbulent, our lives have become difficult. Corporate layoffs and employee unemployment have become the theme of this era. Consumption is sluggish, the dollar keeps raising interest rates, currency depreciation is severe, and sky-high housing prices have become a luxury my shallow self wouldn't dare to comment on. All because the world has lost peace, and the economy has stalled. Stagnation would be fine, but Robin has also teamed up with Leg-basin Chicken (Japan), Little Creek, and the Little Kangaroo (Australia) to impose indiscriminate sanctions on us across various international trade fronts, pushing us into economic internal circulation. As for our current standard of living, I can only say, "Peaks clustering, billows raging — all my efforts are worth less than dirt (land finance). Rise, the people suffer; fall, the people suffer." Don't laugh at Zhang Yanghao — I know you suffer too, which is exactly why you wrote "Hill Sheep · Recalling the Past at Tong Pass".
 
-Science used to have no borders; now the competition between great powers has given science borders too. If they say you can't produce the RTX 4090 GPU, you can't; if they say they won't sell us the A100 GPU, they won't. Even Musk said buying a GPU is as hard as buying contraband. Without these high-end GPUs, we may not be able to develop artificial intelligence, autonomous driving, facial recognition, computer vision, and medical image processing quickly — and so on. A single lousy GPU can strangle us by the neck; a single GPU can plunge our lives into an endless swamp.
+Science used to have no borders; now the competition between great powers has given science borders too. If they say you can't produce the RTX 4090 GPU, you can't; if they say they won't sell us the A100 GPU, they won't. Even Musk said buying a GPU is as hard as buying contraband. Without these high-end GPUs, we may not be able to develop artificial intelligence, autonomous driving, facial recognition, computer vision, and medical image processing quickly. A single lousy GPU can strangle us by the neck; a single GPU can plunge our lives into an endless swamp.
 
 I like to look past appearances to the essence. The essence is that we still don't have enough fundamental science to back our technological accumulation; the knowledge we possess is still insufficient to beat the world's best chip-making level. The essence is still our ignorance — we cannot arm ourselves with existing knowledge to become top-chip engineers, and that's the only way to maintain the world's peaceful order.
 
@@ -151,8 +151,8 @@ When the internal reviewers went through the manuscript, they cut it down to not
 
 Sometimes I feel ashamed to be an iOS developer at TME. It makes me feel selfish — we keep taking in knowledge from the internet without ever contributing valuable content outward, with no open-source spirit. The main reason for this problem is that anything valuable you make isn't allowed to be public, purely to maintain this technology's leading position in the industry — though of course this kind of "technology" is limited to content without much technical substance. This kind of closed leading position strikes me as both laughable and pitiful. Laughable because we always emphasize "leading" in trivial skills and details; pitiful because we all grow in a closed-source environment, building behind closed doors — which is exactly what created today's industry involution, and we've never led in fundamental science. We all know deep down that we stand on the shoulders of open-source giants to be where we are today, yet we have to compromise with the reality forced by today's job market. Being open source means giving up your leading position, means not following orders, means being laid off.
 
-At this moment I understand that the biggest enemy preventing me from becoming a developer with an open-source spirit is "poverty of wealth" — in plain terms, being short on money. In essence, it's poverty that forces us to have no right to choose. In other words, we lack the knowledge to solve the problem of being restricted by poverty.
-So I still need to improve my knowledge and awareness through learning, to solve the problem of financial freedom in the future.
+At this moment I understand that the biggest enemy preventing me from becoming a developer with an open-source spirit is "poverty of wealth" — in plain terms, being short on money. In essence, it's poverty that forces us to have no right to choose. In other words, we lack the knowledge to break out of the restrictions poverty imposes.
+So I still need to improve my knowledge and awareness through learning, to work toward financial freedom down the road.
 
 In 2023, I shallowly believe that the basic content of work is exchanging my cheap technical skills for basic life security. There's nothing much to say — it's all kinds of dazed bewilderment. No career planning, no grand ideals, only the tenacity of burying my head in hard work.
 
@@ -167,7 +167,7 @@ Courses I studied in 2023:
 At the beginning of the year, to save Bodian Music, the app whose growth was about to slow down, I was seconded to support Flutter development. The main work was migrating the live-streaming SDK provided by the group and interacting with Flutter. If there was no infrastructure, build infrastructure; no CI/CD, build CI/CD; no routing library, develop and integrate a hybrid navigation stack. Seizing this time, I spent my spare weekends learning Flutter — it took about 6 weekends to finish the whole tutorial and understand what it's all about. The remaining work was doing Flutter work for Bodian.
 
 ![](/assets/images/20231231FinalSummary/flutter.avif)   
-The above is a Flutter tutorial from Bilibili, sharing with everyone — [The latest Dart and Flutter tutorial — take you into the world of Flutter](https://www.bilibili.com/video/BV1KE41117XV?p=1)
+Sharing a Flutter tutorial from Bilibili — [The latest Dart and Flutter tutorial — take you into the world of Flutter](https://www.bilibili.com/video/BV1KE41117XV?p=1)
 
 After studying for a while, I found its framework is too good — it basically does all the work for you.
 
@@ -203,7 +203,7 @@ If you're like me, then congratulations — so far I haven't found an optimal so
 A pile of books I have no time to read — stacked up almost as tall as a PS5!
 ![](/assets/images/20231231FinalSummary/books.avif)  
 
-This year felt very tiring. There's more and more to learn — from Flutter to SwiftUI, from SwiftUI to HarmonyOS, and then a pile of unfinished iBooks. And the drone development direction I like hasn't even started its study plan. Working in the computer industry might just inherently require this much exhaustion. There's always an endless pile of courses, books, articles, tutorials, and so on to learn.
+This year felt very tiring. There's more and more to learn — from Flutter to SwiftUI, from SwiftUI to HarmonyOS, and then a pile of unfinished iBooks. And the drone development direction I like hasn't even started its study plan. Working in the computer industry might just inherently require this much exhaustion. There's always an endless pile of courses, books, articles, and tutorials to learn.
 
 ### A shallow hobby — billiards
 
@@ -299,7 +299,7 @@ Riding a motorcycle is relatively unsafe, so I bought a better helmet. Safety ma
 
 ![](/assets/images/20231231FinalSummary/bags.avif)
 
-To solve the problem of my pockets looking terrible, bulging and anything but elegant from carrying various things every time I went out, and since I'm getting older and gradually caring more about my appearance and image, I bought myself a messenger bag. Actually, I bought three — the other two went to a classmate and a friend. When my father passed away, I borrowed my buddy's car for several days and he wouldn't take a single cent. To express my gratitude, I gave each of them a bag.
+To fix my pockets — which looked terrible, bulging and anything but elegant from all the stuff I carried every time I went out — and since I'm getting older and gradually caring more about my appearance and image, I bought myself a messenger bag. Actually, I bought three — the other two went to a classmate and a friend. When my father passed away, I borrowed my buddy's car for several days and he wouldn't take a single cent. To express my gratitude, I gave each of them a bag.
 
 #### Monitor retrofit
 

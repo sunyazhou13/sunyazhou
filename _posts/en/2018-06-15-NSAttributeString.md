@@ -121,7 +121,7 @@ But this implementation has a bug — when it encounters the same string, the ma
 
 ![](/assets/images/20180615NSAttributeString/NSAttributeStringBug1.avif)
 
-Everyone obviously understands why the error occurs.
+It's obvious why the error occurs.
 
 The ranges of the string "0" become identical, but to solve just this problem, you could simply judge the range, then cut the string and skip forward by length to keep extracting — that works, but it's obviously very verbose. And what if one day you run into a string like "`0小时0分12秒`"? How would you write that?
 

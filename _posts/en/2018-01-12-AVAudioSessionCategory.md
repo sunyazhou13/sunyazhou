@@ -19,7 +19,7 @@ The first post of the 2018 new year. Let me sort out the `Category` of `AVAudioS
 
 Because of the special nature of the `iOS` system, all `Apps` share a single `AVAudioSession`, so this session is a singleton object. (`macOS` supports playing multiple audio files simultaneously.)
 
-When things like `plugging/unplugging headphones`, `incoming calls`, `invoking siri`, and so on happen, the audio session is interrupted by system events, and you'll see behaviors like the following:
+When things like `plugging/unplugging headphones`, `incoming calls`, or `invoking siri` happen, the audio session is interrupted by system events, and you'll see behaviors like the following:
 
 * Should we record or play?
 * What should happen when the system mute switch is toggled?
@@ -347,7 +347,7 @@ But on `iOS9` and below, you can only adjust on the `Category`. In essence it's 
 
 Everything above — `Category`, `Option`, and `Mode` — describes behavior when your app is the playback owner. But suppose something is currently playing and a call suddenly comes in, the alarm goes off, or the user launches another app that affects playback through the methods above — how should our app behave? The most common approach is to pause first, then resume when playback is restored. So how does our app sense this interruption and know when to resume?
 
-`AVAudioSession` provides various `Notifications` for such situations. Incoming calls, alarms, and so on are all categorized as general interruptions.
+`AVAudioSession` provides various `Notifications` for such situations. Incoming calls, alarms, and the like are all categorized as general interruptions.
 
 They are reported via `AVAudioSessionInterruptionNotification`. The `userInfo` returned in the callback mainly contains two keys:
 
@@ -400,7 +400,7 @@ Register for `AVAudioSessionRouteChangeNotification` in `NSNotificationCenter`. 
 
 # Summary
 
-`AVAudioSession` builds the context for an audio usage lifecycle. Whether the current state supports recording, what impact it has on other Apps, whether it responds to the system mute switch, how to detect incoming calls — all of these can be implemented through it. What's especially important is that `AVAudioSession` works not only with `AVAudioPlyaer`/`AVAudioRecorder` in `AVFoundation`, but other recording/playback tools such as `AudioUnit` and `AudioQueueService` also need it to provide the context for recording, muting, and so on.
+`AVAudioSession` builds the context for an audio usage lifecycle. Whether the current state supports recording, what impact it has on other Apps, whether it responds to the system mute switch, how to detect incoming calls — all of these can be implemented through it. What's especially important is that `AVAudioSession` works not only with `AVAudioPlyaer`/`AVAudioRecorder` in `AVFoundation`, but other recording/playback tools such as `AudioUnit` and `AudioQueueService` also need it to provide the context for recording, muting, and the like.
 
 
 [Reference](https://www.jianshu.com/p/3e0a399380df)  

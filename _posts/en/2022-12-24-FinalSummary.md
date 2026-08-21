@@ -185,7 +185,7 @@ This caused the phone to freeze and reboot directly while playing a song. To sol
 
 ## About Learning
 
-In the first half of the year, I got into face recognition and AI, learning some machine learning-related technologies. In the second half, I was working on a music app. Of course, music isn't easy to make — first you need digital signal processing. And when it comes to signal processing, you can't avoid the Fourier transform. Only by understanding these can you build better features: for example, when every song being played is converted to various formats, the format needs to be converted back to raw data samples — say I want to convert AAC or MP3 to lossless quality, which requires converting the containerized format back to PCM (pulse-code modulation), and then wrapping it into other formats through an encoder. In the middle of all this, it's certainly not enough to just know some audio/video technology; you also need to convert data from the frequency domain to the time domain, run an FFT (Fast Fourier Transform), and generate multi-channel signal samples to facilitate audio band animations. There's also the weighted average algorithm, A-weighting algorithm, window-function fitting, filtering, and so on. Most people who aren't in this field would find it rather obscure, and so do I.
+In the first half of the year, I got into face recognition and AI, learning some machine learning-related technologies. In the second half, I was working on a music app. Of course, music isn't easy to make — first you need digital signal processing. And when it comes to signal processing, you can't avoid the Fourier transform. Only by understanding these can you build better features: for example, when every song being played is converted to various formats, the format needs to be converted back to raw data samples — say I want to convert AAC or MP3 to lossless quality, which requires converting the containerized format back to PCM (pulse-code modulation), and then wrapping it into other formats through an encoder. In the middle of all this, it's certainly not enough to just know some audio/video technology; you also need to convert data from the frequency domain to the time domain, run an FFT (Fast Fourier Transform), and generate multi-channel signal samples to facilitate audio band animations. There's also the weighted average algorithm, A-weighting algorithm, window-function fitting, filtering, and more. Most people who aren't in this field would find it rather obscure, and so do I.
 
 #### Digital Signal Processing
 
@@ -193,7 +193,7 @@ So I spent some time on Bilibili and finished a course on digital signal process
 
 ![](/assets/images/20221231FinalSummary/2022F9.avif)
 
-After finishing this course, it felt like I hadn't learned anything, because it was all formula derivations — no code, no tutorials on using tools. It can only serve as a basic reference for getting started: things like low-pass filters, high-pass filters, band-pass filters, band-stop filters, FIR filters, BF half-band filters and various other filtering algorithms; or some Laplace theorems, Hilbert theorems, etc. — all rather academic and fundamental, not at all suitable for a hands-on programmer.
+After finishing this course, it felt like I hadn't learned anything, because it was all formula derivations — no code, no tutorials on using tools. It can only serve as a basic reference for getting started: things like low-pass filters, high-pass filters, band-pass filters, band-stop filters, FIR filters, BF half-band filters and various other filtering algorithms; or some Laplace theorems, Hilbert theorems, and the like — all rather academic and fundamental, not at all suitable for a hands-on programmer.
 
 #### Audio & Video Courses
 
@@ -240,7 +240,7 @@ My ideal is to build a university that solves the chokepoint technologies constr
 
 The Fuyao University of Science and Technology he founded has almost turned my dream into his reality. I admit that it's laughable for a person who can barely make ends meet to think about building a university that solves China's chokepoint technologies. He invested 10 billion yuan. This is exactly a university designed to my standards. Sigh, I admit I'm too useless.
 
-I remember last year I said Xu Jiayin spent a fortune building cars, and I said these rich people may have money but they don't know how to spend it. Wang Sicong has money and doesn't know how to spend it either. When it comes to solving the chokepoint problems constraining China, spending even 1 million yuan on it is far more impressive than Wang Jianlin's "small goal". I have no idea what the rich think or what their world is like.
+I remember last year I said Xu Jiayin spent a fortune building cars, and I said these rich people may have money but they don't know how to spend it. Wang Sicong has money and doesn't know how to spend it either. When it comes to solving the chokepoint problems constraining China, spending even 1 million yuan on it beats Wang Jianlin's "small goal" by a mile. I have no idea what the rich think or what their world is like.
 
 ![](/assets/images/20221231FinalSummary/2022F14.avif)
 

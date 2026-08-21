@@ -40,9 +40,9 @@ UIBezierPath* bezierPath = [UIBezierPath bezierPath];
 In the code above, the UIBezierPath starts at (77.5, 36.5) and uses <code>addCurveToPoint:controlPoint1:controlPoint2</code> to add two cubic Bezier curves. The two curves look like this:
 ![Bezier curve example](/assets/images/20251020InterpolatingPointsIniOSwithUIBezierPath/BezierExample.avif)
 
-I have marked the four control points of the first curve (C1) in red and those of the second curve (C2) in blue. The two curves share a control point (C1's P3 and C2's P0). The first control point of C1 corresponds to the start point of the UIBezierPath, P0=(77.5, 36.5), and its first control point (67.78, 56.83) corresponds to P1, and so on.
+I have marked the four control points of the first curve (C1) in red and those of the second curve (C2) in blue. The two curves share a control point (C1's P3 and C2's P0). The first control point of C1 corresponds to the start point of the UIBezierPath, P0=(77.5, 36.5), and its first control point (67.78, 56.83) corresponds to P1, and so on for the remaining points.
 
-Obviously, a trivial choice of the two curve endpoints (P0 and P3) forces the curve to pass through exactly two interpolation points. Therefore, for a set of <i>N</i> points, we can create <i>N-1</i> curves that pass through every point. In order for the transition between two adjacent curves to be smooth, the adjacent control points (P2 in the first curve and P1 in the second curve) must be at least collinear, and ideally we would also like them to have the same length. If they are not collinear, the UIBezierPath will have cusps. The question is, how do we position these internal control points?
+A trivial choice of the two curve endpoints (P0 and P3) simply forces the curve to pass through exactly two interpolation points. Therefore, for a set of <i>N</i> points, we can create <i>N-1</i> curves that pass through every point. In order for the transition between two adjacent curves to be smooth, the adjacent control points (P2 in the first curve and P1 in the second curve) must be at least collinear, and ideally we would also like them to have the same length. If they are not collinear, the UIBezierPath will have cusps. The question is, how do we position these internal control points?
 
 ## Smooth Interpolation with Hermite and Catmull-Rom Splines
 
@@ -83,6 +83,6 @@ I have created a category on UIBezierPath, <code>UIBezierPath+Interpolation</cod
 
 Both methods accept a flag <code>closed</code> that determines whether the curve is closed or open at its endpoints. In addition, the Catmull-Rom method accepts an alpha value between 0.0 and 1.0. The Hermite interpolation method computes tangents using finite differences.
 
-In addition to the category, I have also created a small iOS application that supports adding points and fitting them with either method, and also allows changing the alpha value of the Catmull-Rom curve. The application allows users to dynamically adjust the values and see their effects.
+Alongside the category, I've also built a small iOS application that supports adding points, fitting them with either method, and changing the alpha value of the Catmull-Rom curve. You can tweak the values dynamically and see the effects right away.
 
 Both the category code and the iOS application can be found in the following public git repository: <a href="https://github.com/jnfisher/ios-curve-interpolation">iOS Curve Interpolation</a>. Ultimately, choosing a fitting technique is more art than science, as the quality of the result is often subjective. I have found the Catmull-Rom results to be reasonable for large datasets.

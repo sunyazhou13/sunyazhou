@@ -17,7 +17,7 @@ This article carries strong personal feelings. If you feel uncomfortable reading
 
 This year is the first year of AI-assisted programming, and also the beginning of AI leading the tide of the times.
 
-I'll try to write about 2025 in a continuous narrative from the perspective of a "social scrap" like myself, starting from a few themes that had a big impact this year, in order to prove whether my superficial understanding is indeed superficial.
+I'll try to write about 2025 in a continuous narrative through the eyes of a "social scrap" like myself, starting from a few themes that had a big impact this year, in order to prove whether my superficial understanding is indeed superficial.
 
 # 2025 in Review
 
@@ -29,7 +29,7 @@ I'll try to write about 2025 in a continuous narrative from the perspective of a
 * Good Finds
 
 
-Finally, what I want to say is: this year, 92-octane gasoline dropped to 6.8 yuan. It means there are signs our lives are returning to the good.
+One last thing: this year, 92-octane gasoline dropped to 6.8 yuan. It means there are signs our lives are returning to the good.
 
 ---
 
@@ -111,7 +111,7 @@ I studied this a few years ago, and this year I reviewed it again. Mainly becaus
 
 ### Linear Algebra
 
-A course I found on Bilibili, because I need to learn to write shaders. To control skeletal animation, I need to understand operations on determinants, vectors, matrices, etc. I had no choice but to review it. Teacher Kong explains it very well — at least it's very down to earth.
+A course I found on Bilibili, because I need to learn to write shaders. To control skeletal animation, I need to understand operations on determinants, vectors, and matrices. I had no choice but to review it. Teacher Kong explains it very well — at least it's very down to earth.
 
 ### Metal by Tutorials (4th Edition, Dec 2023)
 
