@@ -7,7 +7,7 @@ tags: [鸿蒙OS开发, HarmonyOS]
 typora-root-url: ..
 ---
 
-![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/harmonyOS.avif)
+![harmony OS](/assets/images/20240116HarmonyPhoneSendFileTomacOS/harmonyOS.avif)
 
 # Preface
 
@@ -20,7 +20,7 @@ Recently I encountered a problem while learning. I'm using a Mac for HarmonyOS d
 
 For a new phone, transferring files between it and the computer has become a pain point. I frequently need to get mp4 video files and screenshots from the phone's screen recordings. Since HarmonyOS is completely separated from Android, most phone assistant tools can't recognize this phone, including the officially recommended [HiSuite Huawei Phone Assistant](https://consumer.huawei.com/cn/support/hisuite/).
 
-![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/HiSuite.avif)
+![Hi Suite](/assets/images/20240116HarmonyPhoneSendFileTomacOS/HiSuite.avif)
 
 HarmonyOS isn't like Apple, where a universal AirDrop can freely transfer between most devices in its ecosystem. HarmonyOS's current stage can't achieve this yet. HarmonyOS's AirDrop is called "Huawei Share," which also requires devices within the Huawei ecosystem for seamless file transfer. But macOS is obviously not a Huawei ecosystem product. So how do we solve this problem?
 
@@ -36,7 +36,7 @@ hdc (HarmonyOS Device Connector) is a command-line tool provided by HarmonyOS fo
 
 Connect to the Mac via USB cable.
 Here's my computer's configuration:
-![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/systeminfo.avif)
+![systeminfo](/assets/images/20240116HarmonyPhoneSendFileTomacOS/systeminfo.avif)
 
 Then install the hdc environment on your computer. The above documentation covers this, so I won't repeat it here. Assume you've successfully installed and can run it.
 
@@ -123,7 +123,7 @@ Output:
 FileTransfer finish, Size:1823388, File count = 1, time:140ms rate:13024.20kB/s
 ```
 
-![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/file.avif)
+![file](/assets/images/20240116HarmonyPhoneSendFileTomacOS/file.avif)
 
 Through the above steps, we've transferred the corresponding file from the Huawei HarmonyOS phone to our macOS.
 
@@ -139,8 +139,8 @@ For example, uploading files from macOS to the HarmonyOS phone — I won't test 
 In the latest version of DevEco Studio (DevEco Studio NEXT Developer Preview2), a new device information browser tool was added.
 
 It's located in the bottom-right corner of the IDE:
-![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/DeviceFileBrowserEntry.avif),
-![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/DeviceFileBrowser.avif)
+![Device File Browser Entry](/assets/images/20240116HarmonyPhoneSendFileTomacOS/DeviceFileBrowserEntry.avif),
+![Device File Browser](/assets/images/20240116HarmonyPhoneSendFileTomacOS/DeviceFileBrowser.avif)
 
 Here's an example using a screenshot. The above shows the save path for screenshot images.
 

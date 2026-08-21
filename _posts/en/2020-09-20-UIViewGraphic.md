@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
+![i OS Interview Questions Album Cover](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
 
 # Preface
 
@@ -52,11 +52,11 @@ For detailed principles and advanced internals, please refer to teacher Dai Ming
 
 Below is the live performance comparison of automatic layout under iOS12 vs. iOS11 from [WWDC2018 High Performance Auto Layout](https://developer.apple.com/videos/play/wwdc2018/220/).
 
-![](/assets/images/20200920UIViewGraphic/HighPerformanceAutoLayoutiOS11iOS12Compare.avif)
+![High Performance Auto Layouti OS11i OS12Compare](/assets/images/20200920UIViewGraphic/HighPerformanceAutoLayoutiOS11iOS12Compare.avif)
 
 The experiments produced the chart conclusions below:
 
-![](/assets/images/20200920UIViewGraphic/HighPerformanceAutoLayoutResult.avif)
+![High Performance Auto Layout Result](/assets/images/20200920UIViewGraphic/HighPerformanceAutoLayoutResult.avif)
 
 Before iOS12, the impact of view nesting depth on performance grew exponentially; after iOS12's optimization, the impact grows linearly, consuming little performance.
 
@@ -133,7 +133,7 @@ Core Animation is explicit animation, because it can animate layer properties di
 
 ### 8. What is off-screen rendering
 
-![](/assets/images/20200920UIViewGraphic/CoreAnimationPipeline.avif)
+![Core Animation Pipeline](/assets/images/20200920UIViewGraphic/CoreAnimationPipeline.avif)
 
 [An In-Depth Study of iOS Off-Screen Rendering](https://zhuanlan.zhihu.com/p/72653360)
 

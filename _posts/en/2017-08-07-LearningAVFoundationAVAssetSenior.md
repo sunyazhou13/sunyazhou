@@ -8,20 +8,20 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20170807LearningAVFoundationAVAssetSenior/AudioArtwork.avif)
+![Audio Artwork](/assets/images/20170807LearningAVFoundationAVAssetSenior/AudioArtwork.avif)
 
 # Preface
 
 Here's the diagram first.
 
-![](/assets/images/20170807LearningAVFoundationAVAssetSenior/metadata.avif)
+![metadata](/assets/images/20170807LearningAVFoundationAVAssetSenior/metadata.avif)
 
 In this post, **we'll learn how to parse most multimedia file formats with one set of code and turn them into a common model — a normalized metadata key-value space.**
 
 ## Contents
 
 Structure diagram
-![](/assets/images/20170807LearningAVFoundationAVAssetSenior/MetaDataModel.avif)
+![Meta Data Model](/assets/images/20170807LearningAVFoundationAVAssetSenior/MetaDataModel.avif)
  
 --- 
 
@@ -377,7 +377,7 @@ But the logic still exists. Look at the code for the logic — it's basically id
 
 The standard genres used by digital audio originally came from MP3. The ID3 spec defines 80 default genre types plus another 46 WinAmp extensions, for a total of 126 genres. However, these aren't part of any formal format. Because of MP3's clear dominance, iTunes didn't reinvent the wheel — it basically follows the ID3 genre classification, with a small change. **iTunes genre numbers are `1` larger than the corresponding ID3 identifiers.**
 
-![](/assets/images/20170807LearningAVFoundationAVAssetSenior/gener.avif)
+![gener](/assets/images/20170807LearningAVFoundationAVAssetSenior/gener.avif)
 
 
 Although iTunes uses the predefined genres from the ID3 set, it defines its own genre sets for TV, movies, and audiobooks. [Apple's Genre IDs Appendix](https://affiliate.itunes.apple.com/resources/documentation/genre-mapping/)

@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20181231FinalSummary/banner.avif)
+![banner](/assets/images/20181231FinalSummary/banner.avif)
 
 # Preface
 
@@ -17,7 +17,7 @@ typora-root-url: ..
 **It feels like going back to 2013, standing before Beijing Railway Station, looking at the sky.**
 **From the moment I went north to seek my fortune, youth was gone from my life for good.**
 
-![](/assets/images/20181231FinalSummary/yingxiongbense.avif)
+![yingxiongbense](/assets/images/20181231FinalSummary/yingxiongbense.avif)
 
 _If only I could be as carefree as you. Sometimes there are things you can do that I can't. I believe in justice, but nobody believes me..._
 
@@ -66,18 +66,18 @@ Two things at Kuaishou this year made me very happy:
 
 Not long after joining the company, there was a Team Building trip to Hangzhou. I had never been to Hangzhou. The first stop was Haining.
 
-![](/assets/images/20181231FinalSummary/haining.avif)
+![haining](/assets/images/20181231FinalSummary/haining.avif)
 
 > This is where Sun Yat-sen once got off the train to watch the Qiantang River tide.
 
 Xitang. In my hometown I had grown used to 23 years of low, single-story houses and had never seen architectural styles like this. The white walls and tiled roofs of Hui-style architecture carry a distinctive regional Chinese character.
 
-![](/assets/images/20181231FinalSummary/hangzhou2.avif)
+![hangzhou](/assets/images/20181231FinalSummary/hangzhou2.avif)
 > "I've patted the railing and gazed at my sword, yet no one understands my longing to climb high. Don't tell me the perch is worth cooking while the west wind blows and Ji Ying has yet to return..."
 
-![](/assets/images/20181231FinalSummary/hangzhou1.avif)
+![hangzhou](/assets/images/20181231FinalSummary/hangzhou1.avif)
 
-![](/assets/images/20181231FinalSummary/hangzhou3.avif)
+![hangzhou](/assets/images/20181231FinalSummary/hangzhou3.avif)
 
 This was once a water conservancy project built by __Wu Zixu (559 BC–484 BC, roughly the late Spring and Autumn period)__. I still remember the stories of King Fuchai of Wu and King Goujian of Yue from the late Spring and Autumn period, but my knowledge of the customs of the Wu kingdom was limited to what I read in the __Records of the Grand Historian__ at school — I had never been here in person. Though my understanding is shallow, seeing the distinctive charm of Jiangnan still filled me with awe. On the train from Beijing to Hangzhou, we passed Mount Tai in Shandong, the old city of Gusu in Suzhou, and the Yangtze basin of Shanghai. The Yangtze River Delta is truly unlike my native Northeast: freight traffic here far exceeds any highway in the Northeast, and from that alone you can objectively tell that the Jiangsu-Zhejiang region's economy is far more developed than the Northeast's. I barely slept the whole trip; everywhere there was massive construction. As the train passed the outskirts of each city, you could clearly see tower cranes and buildings being erected, construction in full swing.
 
@@ -85,7 +85,7 @@ The Jiangnan scenery really is as picturesque as they say.
 
 __On my Hangzhou trip I passed by the Qiantang River__
 
-![](/assets/images/20181231FinalSummary/qiantangriver.avif)
+![qiantangriver](/assets/images/20181231FinalSummary/qiantangriver.avif)
 
 That scene immediately brought back the poem "Spring Outing at Qiantang Lake" by Bai Juyi that I recited on early mornings in seventh grade.
 
@@ -95,7 +95,7 @@ When I stood there experiencing the Qiantang River in person, I had only one tho
 
 Later this year, Kuaishou solicited opinions from all employees and put up billboards in the hometowns of a group of employees. I was lucky enough to be one of them.
 
-![](/assets/images/20181231FinalSummary/kwaihometown.avif)
+![kwaihometown](/assets/images/20181231FinalSummary/kwaihometown.avif)
 
 I had never imagined that one day I would appear on a billboard in Hailun, becoming one of the faces of Kuaishou. At Baidu, probably not even making it to T8 would have earned me treatment like this! I'm truly grateful to Kuaishou — __this is a company with humanist spirit and artistic temperament.__
 
@@ -108,19 +108,19 @@ This past summer, Wu Bai held a solo concert in Beijing at the Wukesong Arena �
 
 Front grandstand:
 
-![](/assets/images/20181231FinalSummary/chinablue2.avif)
+![chinablue](/assets/images/20181231FinalSummary/chinablue2.avif)
 
-![](/assets/images/20181231FinalSummary/chinablue3.avif)
+![chinablue](/assets/images/20181231FinalSummary/chinablue3.avif)
 
 
 I remember the first time I heard Wu Bai's songs — around 2000. Back then I was living under someone else's roof at my uncle's place in Dongsheng Village, going to Shuangsheng for the first year of middle school. Once, our whole class went to a place called Zhendong to watch a performance. I was sitting in the back of a trailer bed, singing Wu Bai's "White Dove." We didn't even know what an MP3 was then; being able to listen to it on a recorded cassette tape was satisfying enough.
 
-![](/assets/images/20181231FinalSummary/opentheshow.avif)
+![opentheshow](/assets/images/20181231FinalSummary/opentheshow.avif)
 
 
 At Wu Bai's concert, the second song of the opening was that very "White Dove," singing out my middle school memories. We were poor back then; only later did I learn he had another signature song, "Norwegian Forest."
 
-![](/assets/images/20181231FinalSummary/chinablue1.avif)
+![chinablue](/assets/images/20181231FinalSummary/chinablue1.avif)
 
 When the whole arena sang "Norwegian Forest" together, that atmosphere was absolutely better than karaoke. Truly unprecedented. Honestly, the live vocals counted as the raw, real sound. This concert was really worth it.
 
@@ -132,38 +132,38 @@ In the middle, Wu Bai sang a song I felt I'd never heard, but it was beautiful. 
 Strictly speaking, this year my eyes were in pain — at least 14 hours a day facing a monitor. So here I list the books I read and listened to this year.
 
 "The Last Eighteen Years of the Late Qing, Vol. 4"  
-![](/assets/images/20181231FinalSummary/wanqing.avif)
+![wanqing](/assets/images/20181231FinalSummary/wanqing.avif)
 
 "Zeng Guofan"   
-![](/assets/images/20181231FinalSummary/zengguofan.avif)  
+![zengguofan](/assets/images/20181231FinalSummary/zengguofan.avif)  
 
 "Li Hongzhang, Late-Qing Grand Minister"    
-![](/assets/images/20181231FinalSummary/lepetit.avif)
+![lepetit](/assets/images/20181231FinalSummary/lepetit.avif)
 
 
 "Mao Zedong: A Biography"  
-![](/assets/images/20181231FinalSummary/maozedong.avif)
+![maozedong](/assets/images/20181231FinalSummary/maozedong.avif)
 
 "Premier Zhou's Last 600 Days"  
-![](/assets/images/20181231FinalSummary/zhouzongli.avif)
+![zhouzongli](/assets/images/20181231FinalSummary/zhouzongli.avif)
  
 "A Biography of Putin"  
-![](/assets/images/20181231FinalSummary/pujing.avif)
+![pujing](/assets/images/20181231FinalSummary/pujing.avif)
 
 "Xi Jinping's Seven Years as an Educated Youth"  
-![](/assets/images/20181231FinalSummary/xijinping.avif)
+![xijinping](/assets/images/20181231FinalSummary/xijinping.avif)
 
 "The Biography of Steve Jobs"  
-![](/assets/images/20181231FinalSummary/jobs.avif)
+![jobs](/assets/images/20181231FinalSummary/jobs.avif)
 
 "Currency Wars, Parts 1–5"   
-![](/assets/images/20181231FinalSummary/currencyWars.avif)
+![currency Wars](/assets/images/20181231FinalSummary/currencyWars.avif)
 
 "A Biography of Napoleon"  
-![](/assets/images/20181231FinalSummary/Napol%C3%A9onBonaparte.avif)
+![Napoleon Bonaparte](/assets/images/20181231FinalSummary/NapoleonBonaparte.avif)
 
 "A Biography of Li Ka-shing"  
-![](/assets/images/20181231FinalSummary/superlee.avif)
+![superlee](/assets/images/20181231FinalSummary/superlee.avif)
 
 
 #### The Last Eighteen Years of the Late Qing, Part 4
@@ -174,7 +174,7 @@ From part 1 introducing the Beiyang Fleet to introductions of cruisers, destroye
 
 If you insist on a reason for my recommendation, I can only explain with one photograph:
 
-![](/assets/images/20181231FinalSummary/Krupp.avif)
+![Krupp](/assets/images/20181231FinalSummary/Krupp.avif)
 
 This is a field gun made around 1860 by the German company Krupp, which I photographed this October at Xiaozhan Drill Ground in Jinnan District, Tianjin (where Yuan Shikai once trained his troops).
 
@@ -186,27 +186,27 @@ If you ask why I recommend Zeng Guofan so highly, I can only say: I consider him
 
 So, to express my respect for Lord Zeng, I offer him a couplet:
 
-![](/assets/images/20181231FinalSummary/zengguofan1.avif)
+![zengguofan](/assets/images/20181231FinalSummary/zengguofan1.avif)
 
 __Seek loyal ministers at the gates of filial sons__  
 __Every scholar should take the world as his duty__
 
 #### Li Hongzhang, Late-Qing Grand Minister
 
-![](/assets/images/20181231FinalSummary/lepetit1.avif)
+![lepetit](/assets/images/20181231FinalSummary/lepetit1.avif)
 
 This kindly old man changed modern Chinese history. Hailed by Westerners as "the Bismarck of the East," he was the first Chinese person on the cover of TIME magazine, the first in Chinese history to inspect Europe, the first to... In total he created 47 Chinese "firsts."
 
-![](/assets/images/20181231FinalSummary/lepetit2.avif)
+![lepetit](/assets/images/20181231FinalSummary/lepetit2.avif)
 > Li Hongzhang visiting Hong Kong meets Governor Henry Blake; standing to Li's right is Liu Xunxun, July 1900.
 
-![](/assets/images/20181231FinalSummary/ChineseMinisterLi%20HongzhangAndPrinceBismarck.avif)
+![Chinese Minister Li%20Hongzhang And Prince Bismarck](/assets/images/20181231FinalSummary/ChineseMinisterLi%20HongzhangAndPrinceBismarck.avif)
 
 \- To show respect and honor to Li Hongzhang, Bismarck dressed with extreme solemnity, wearing his rarely-worn ceremonial regalia — the jade crown bestowed by the German Emperor, the Grand Cross of the Red Eagle, holding the great jade, sword at his waist. Upon meeting, the two first exchanged pleasantries about each other's health and discussed their physical and mental well-being.
 
 Bismarck was known as Germany's Iron Chancellor — practically identical to Li Hongzhang: he served three German emperors, and through years of bitter struggle amid European turmoil finally achieved German unification.
 
-![](/assets/images/20181231FinalSummary/Bismarck%2COttoF%C3%BCrst_von_und%20LiHungChang.avif)
+![Bismarck Otto Fuerst Von Und Li Hung Chang](/assets/images/20181231FinalSummary/BismarckOttoFuerstVonUndLiHungChang.avif)
 > Li Hongzhang and Bismarck on the balcony of the Chancellor's palace
 
 Why have I used so much space to introduce this late-Qing grand minister? Why do I admire him so?
@@ -235,7 +235,7 @@ The story is told.
 Now let's look at ourselves today. Following Wang Yangming's "unity of knowledge and action," we all admire people with real ability too, don't we?
 If a rich kid — whose parents bought him a house in a first- or second-tier city and smoothed out everything he needs — has no proper job and lives a pampered life every day, would you admire him? Aren't these the kinds of people around us? I believe you definitely wouldn't admire him. What you'd admire is that he has parents who have their act together.
 
-![](/assets/images/20181231FinalSummary/5YearsPlan.avif)
+![5Years Plan](/assets/images/20181231FinalSummary/5YearsPlan.avif)
 
 I set my first five-year plan in 2013. Now it's 2018, and I haven't handed myself a satisfactory answer sheet. Looking at my five-year plan, barely 70% complete — I'm ashamed. I admit I talked big. To everyone who saw my five-year plan, and to my high school teacher, I sincerely apologize. Indeed, I can't hold my head up in front of rich kids — my father didn't have his act together, and I have to build everything from scratch by myself.
 
@@ -251,13 +251,13 @@ This is a voice you need to hear — it was also the first time I heard Premier 
 
 To commemorate this great man, I listened carefully to the account of Premier Zhou's final years. I was honored to find several of the premier's belongings at the National Museum of China, to look upon and reflect on this republican premier's spirit of devotion to the people.
 
-![](/assets/images/20181231FinalSummary/hatOfZhouPrimeMinister1.avif)
+![hat Of Zhou Prime Minister](/assets/images/20181231FinalSummary/hatOfZhouPrimeMinister1.avif)
 
-![](/assets/images/20181231FinalSummary/hatOfZhouPrimeMinister2.avif)
+![hat Of Zhou Prime Minister](/assets/images/20181231FinalSummary/hatOfZhouPrimeMinister2.avif)
 
 This is the formal hat Premier Zhou wore to the Geneva Conference — the one in the photo below that we often saw in our middle and high school history textbooks.
 
-![](/assets/images/20181231FinalSummary/hatOfZhouPrimeMinister3.avif)
+![hat Of Zhou Prime Minister](/assets/images/20181231FinalSummary/hatOfZhouPrimeMinister3.avif)
 
 _Image quoted from Baidu Baike_
 
@@ -289,7 +289,7 @@ Because of his extreme personality and pursuit of perfection, Apple colleagues c
 
 I don't know whether Jobs's life counts as legendary, but I do know that with this Apple keyboard I've typed out a 1M+ RMB apartment building.
 
-![](/assets/images/20181231FinalSummary/applekeyboard.avif)
+![applekeyboard](/assets/images/20181231FinalSummary/applekeyboard.avif)
 
 Yes — I'm an Apple iOS Developer. The little-known sides of this great man are worth learning from.
 
@@ -311,7 +311,7 @@ Finally I must speak of this inspirational great man, Li Ka-shing. "Superman Li"
 
 Here I should mention Jardine Matheson Land. Its predecessor was [Jardine Matheson](https://baike.baidu.com/item/%E6%80%A1%E5%92%8C%E6%B4%8B%E8%A1%8C/5039743?fr=aladdin) (a British firm), founded in Guangzhou, China by two Scotsmen, William Jardine (1784–1843) and James Matheson (1796–1878). Back when Lin Zexu destroyed opium at Humen, smashing the East India Company's opium, it was actually Jardine Matheson pulling the strings behind the scenes — Lin Zexu had harmed Jardine's interests in China, and boss Jardine lobbied before the British Queen, provoking the Opium War of 1840.
 
-![](/assets/images/20181231FinalSummary/yihe.avif)
+![yihe](/assets/images/20181231FinalSummary/yihe.avif)
 
 The former site of Jardine Matheson _image quoted from Baidu Baike_
 
@@ -350,36 +350,36 @@ This year I was quite the spendthrift, buying a pile of junk and spending quite 
 
 __Mechanical keyboard__
 
-![](/assets/images/20181231FinalSummary/keyboard.avif)
+![keyboard](/assets/images/20181231FinalSummary/keyboard.avif)
 
 > This mechanical keyboard is really good — writing code at home on weekends is smooth and comfortable. ¥519
 
 __iPhone X 256G US version__
 
-![](/assets/images/20181231FinalSummary/iPhoneX.avif)
+![i Phone X](/assets/images/20181231FinalSummary/iPhoneX.avif)
 > A colleague bought it for me while visiting the US. As an iOS developer, I put up with an iPhone 6 for four years — it really got unbearably laggy. ¥8000
 
 __Apple Watch 3__
 
-![](/assets/images/20181231FinalSummary/AppleWatch3.avif)
+![Apple Watch](/assets/images/20181231FinalSummary/AppleWatch3.avif)
 
 > This one I consider basically useless — you can wear it on your wrist to check the time, and that's about it; none of the other features are usable. ¥3188
 
 __PC__
 
-![](/assets/images/20181231FinalSummary/PC.avif)
+![PC](/assets/images/20181231FinalSummary/PC.avif)
 > Bought a 1050 Ti to learn machine learning. I hadn't done DIY in a long time — bought and assembled the whole thing myself: 16G DDR4 2400 RAM, 240G+120G two Samsung SSDs, i5 8400 CPU, Gigabyte Z370 motherboard, total cost ¥5547.  
 > I sold off the old one for a little over 200.
 
 __BOSE noise-cancelling headphones__
 
-![](/assets/images/20181231FinalSummary/bose.avif)
+![bose](/assets/images/20181231FinalSummary/bose.avif)
 > For Double 11 I planned to buy the headphones of a programmer's dreams. ¥1888
 
 
 __Niu N1s Sport__
 
-![](/assets/images/20181231FinalSummary/n1s.avif)
+![n1s](/assets/images/20181231FinalSummary/n1s.avif)
 > My commuting vehicle. ¥7399
 
 This year's splurge totaled ¥26,541.
@@ -459,7 +459,7 @@ The truth I've distilled over all these years is: "Parents must have their act t
 
 During this year's National Day holiday I went to Tianjin, back after 11 years away, to see the places I'd been in 2007. Eleven years ago there were no GPS-positioned maps, yet I could still find my way.
 
-![](/assets/images/20181231FinalSummary/sun.avif)
+![sun](/assets/images/20181231FinalSummary/sun.avif)
 
 This is the only surviving handful of photographs of my family from the past hundred years that I found in Tianjin: my great-grandfather, great-grandmother, my father, and my aunt. Seeing them now feels priceless.
 
@@ -471,15 +471,15 @@ But when I searched the map, I found at least 3 possible places.
 
 The first:
 
-![](/assets/images/20181231FinalSummary/hometown1.avif)
+![hometown](/assets/images/20181231FinalSummary/hometown1.avif)
 
 The second:
 
-![](/assets/images/20181231FinalSummary/hometown2.avif)
+![hometown](/assets/images/20181231FinalSummary/hometown2.avif)
 
 The third:
 
-![](/assets/images/20181231FinalSummary/hometown.avif)
+![hometown](/assets/images/20181231FinalSummary/hometown.avif)
 
 
 The most likely is the first, because it's near a river with a river flat transition zone (dianzi). After a century of geographic change, the river's flow may have decreased, the land rose above the water, and over time it formed villages and farmland.

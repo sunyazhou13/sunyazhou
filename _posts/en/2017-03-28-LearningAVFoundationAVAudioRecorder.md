@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/cover.avif)
+![cover](/assets/images/20170328LearningAVFoundationAVAudioRecorder/cover.avif)
 
 Preface
 --
@@ -175,11 +175,11 @@ __The audio queue service consists of 3 parts:__
 
 **1. Below is how the audio queue service works for recording:**
 
-![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/QueueServiceRecord.avif)
+![Queue Service Record](/assets/images/20170328LearningAVFoundationAVAudioRecorder/QueueServiceRecord.avif)
 
 **2. Below is how the audio queue service works for playback:**
 
-![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/QueueServicePlay.avif)
+![Queue Service Play](/assets/images/20170328LearningAVFoundationAVAudioRecorder/QueueServicePlay.avif)
 
 Of course, we don't need to implement this ourselves in C functions. There's an open-source library [FreeStreamer](https://github.com/sunyazhou13/FreeStreamer).
 
@@ -1140,7 +1140,7 @@ Summary
 --
 The learning of `AVAudioRecorder` is now fairly complete. I'll keep recording my learning notes and technical knowledge as I go.
 
-![](/assets/images/20170328LearningAVFoundationAVAudioRecorder/FinalDemo.avif)
+![Final Demo](/assets/images/20170328LearningAVFoundationAVAudioRecorder/FinalDemo.avif)
 
 __Final [Demo](https://github.com/sunyazhou13/AVAudioRecorderDemo)__
 

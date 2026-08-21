@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20201010PodSpec/cocoapods.avif)
+![cocoapods](/assets/images/20201010PodSpec/cocoapods.avif)
 
 # Preface
 
@@ -40,7 +40,7 @@ UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
 
 That clearly doesn't meet our needs.
 
-![](/assets/images/20230322PodXCAssets/1.avif)
+![image](/assets/images/20230322PodXCAssets/1.avif)
 
 ## Images all have @2x and @3x versions. How do we retrieve the relevant images from a pod?
 
@@ -54,7 +54,7 @@ Now we need to do a few things:
 
 ##### As shown below
 
-![](/assets/images/20230322PodXCAssets/2.avif)
+![image](/assets/images/20230322PodXCAssets/2.avif)
 
 
 ##### Declare in podspec
@@ -67,7 +67,7 @@ Here, YZToolsAssets must exactly match 'YZToolsAssets' in spec.resource_bundles 
 
 The relevant documentation is shown below
 
-![](/assets/images/20230322PodXCAssets/6.avif)
+![image](/assets/images/20230322PodXCAssets/6.avif)
 
 This [podspec documentation](https://guides.cocoapods.org/syntax/podspec.html#resource_bundles) doesn't clearly explain how to add XCAssets. You need to study and explore further.
 
@@ -124,7 +124,7 @@ UIImage *image = [UIImage yzToolsImageNamed:@"power"];
 ```  
 The result is shown below:
 
-![](/assets/images/20230322PodXCAssets/3.avif)
+![image](/assets/images/20230322PodXCAssets/3.avif)
 
 Note that what's obtained here is the `mainBundle`.
 
@@ -132,12 +132,12 @@ Note that what's obtained here is the `mainBundle`.
 
 Under the .app/ directory
 
-![](/assets/images/20230322PodXCAssets/4.avif)
+![image](/assets/images/20230322PodXCAssets/4.avif)
 
 ``` sh
 /var/containers/Bundle/Application/F3C2809A-A5E4-4808-A2AA-5962D4BE6AA1/bodianplayer.app/YZToolsAssets.bundle
 ```
-![](/assets/images/20230322PodXCAssets/5.avif)
+![image](/assets/images/20230322PodXCAssets/5.avif)
 
 As you can see, the image assets here have been encrypted and turned into a file called Assets.car, which means our resources have been encrypted and packaged, making it difficult for other apps to find them.
 

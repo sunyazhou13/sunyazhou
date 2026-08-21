@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20221207RadialGradientlayer/RadialCenter.avif)
+![Radial Center](/assets/images/20221207RadialGradientlayer/RadialCenter.avif)
 
 # Preface
 
@@ -16,13 +16,13 @@ This article is strongly personal in tone. If you find it uncomfortable to read,
 
 Let's show the final result first.
 
-![](/assets/images/20221207RadialGradientlayer/final.avif)
+![final](/assets/images/20221207RadialGradientlayer/final.avif)
 
 # Deep Dive into CAGradientLayer
 
 Recently, while developing features, the visual designer on our team was very interested in the fluid gradient animation of QQ Music's desktop lyrics preview and asked us developers to implement this effect.
 
-![](/assets/images/20221207RadialGradientlayer/qqmusicanimation1.avif)
+![qqmusicanimation](/assets/images/20221207RadialGradientlayer/qqmusicanimation1.avif)
 
 Looking closely at the lyrics background — if it weren't for my 5.0 vision in both eyes, the first time I saw the QQ Music effect I'd have thought there was no animation; how naive, I've been schooled — there's a soft-light-like effect that shines and moves like a lamp. The visual designer calls this effect the `fluid transition animation`.
 
@@ -47,7 +47,7 @@ Here I'll use Objective-C as an example.
 #### kCAGradientLayerAxial
 
 This Linear (Axial) Gradient looks like this:
-![](/assets/images/20221207RadialGradientlayer/linear.avif)
+![linear](/assets/images/20221207RadialGradientlayer/linear.avif)
 
 ``` objc
 // Objective C
@@ -83,8 +83,8 @@ To make this gradient horizontal (left to right), refer to the diagram and code 
 
 Refer to the diagram below  
 
-![](/assets/images/20221207RadialGradientlayer/corners.avif)  
-![](/assets/images/20221207RadialGradientlayer/LinearHorizontal.avif)
+![corners](/assets/images/20221207RadialGradientlayer/corners.avif)  
+![Linear Horizontal](/assets/images/20221207RadialGradientlayer/LinearHorizontal.avif)
 
 Here's the example code:
 
@@ -127,7 +127,7 @@ Now that you understand the gradient direction, don't rush off — we also need 
 The gradientLayer's member variable `colors` is an array that can accept multiple color values. Usually we use two colors for a gradient; for more complex cases, you can set multiple.
 
 The code below demonstrates a multi-color gradient.  
-![](/assets/images/20221207RadialGradientlayer/rainbow.avif)  
+![rainbow](/assets/images/20221207RadialGradientlayer/rainbow.avif)  
 
 ``` objc
 gradientLayer.colors =
@@ -141,7 +141,7 @@ gradientLayer.colors =
 ```
 
 The diagram below demonstrates the key gradient location settings.
-![](/assets/images/20221207RadialGradientlayer/locations.avif)  
+![locations](/assets/images/20221207RadialGradientlayer/locations.avif)  
 
 Here's the location setting code:
 
@@ -174,7 +174,7 @@ Now that we understand colors and locations, let's look at what a radial gradien
 
 When we use the `kCAGradientLayerRadial` type, we need to pay attention to the start point and end point required by a radial gradient. The diagram below shows an elliptical gradient layer; it can of course be set to a circle.
 
-![](/assets/images/20221207RadialGradientlayer/RadialCenter.avif)
+![Radial Center](/assets/images/20221207RadialGradientlayer/RadialCenter.avif)
 
 ``` objc
 // Objective C
@@ -213,7 +213,7 @@ gradientLayer.endPoint = CGPoint(x: 0, y: 0.75)
 
 > The conic gradient is only supported on `@available(iOS 12.0, *)`
 
-![](/assets/images/20221207RadialGradientlayer/conic.avif)
+![conic](/assets/images/20221207RadialGradientlayer/conic.avif)
 
 Note the start point and end point positions.
 
@@ -248,17 +248,17 @@ gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
 gradientLayer.endPoint = CGPoint(x: 0.5, y: 0)
 ```
 
-![](/assets/images/20221207RadialGradientlayer/finaldemo.avif)
+![finaldemo](/assets/images/20221207RadialGradientlayer/finaldemo.avif)
 
 #### Approach to Implementing the QQ Music Effect
 
 Let's first observe the QQ Music effect.
 
-![](/assets/images/20221207RadialGradientlayer/qqmusicanimation1.avif)
+![qqmusicanimation](/assets/images/20221207RadialGradientlayer/qqmusicanimation1.avif)
 
 Our approach:
 
-![](/assets/images/20221207RadialGradientlayer/qqmusicanimation2.avif)
+![qqmusicanimation](/assets/images/20221207RadialGradientlayer/qqmusicanimation2.avif)
 
 * Create a radial gradient layer
 * Place it outside the view and use a `CABasicAnimation` to animate `position.x` moving from right to left
@@ -266,7 +266,7 @@ Our approach:
 * The final position must be outside the screen
 
 Below is a schematic of the implementation approach.  
-![](/assets/images/20221207RadialGradientlayer/qqmusicanimation3.avif)
+![qqmusicanimation](/assets/images/20221207RadialGradientlayer/qqmusicanimation3.avif)
 
 Here's the code:
 
@@ -356,7 +356,7 @@ Here I used an iOS 11+ API, `maskedCorners`, which can round corners in differen
 
 Below is the finished effect.
 
-![](/assets/images/20221207RadialGradientlayer/final.avif)
+![final](/assets/images/20221207RadialGradientlayer/final.avif)
 
 ## Summary
 

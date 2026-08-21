@@ -51,11 +51,11 @@ https://music.163.com/outchain/player?type=2&id=34341360&auto=0&height=66
 
 The `id=34341360` in this API is obtained from here:
 
-![](/assets/images/20171227MarkdownAudio/markdownAudio1.avif)
+![markdown Audio](/assets/images/20171227MarkdownAudio/markdownAudio1.avif)
 
 Find `Copy Link`, then open it in a browser.
 
-![](/assets/images/20171227MarkdownAudio/markdownAudio2.avif)
+![markdown Audio](/assets/images/20171227MarkdownAudio/markdownAudio2.avif)
 
 The `id=34341360` at the end is the `id` we need, and then you just replace it in the API.
 

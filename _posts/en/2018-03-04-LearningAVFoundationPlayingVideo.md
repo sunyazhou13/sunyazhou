@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20180304LearningAVFoundationPlayingVideo/5kAirplay.avif)
+![5k Airplay](/assets/images/20180304LearningAVFoundationPlayingVideo/5kAirplay.avif)
 
 # Preface
 
@@ -54,15 +54,15 @@ To create an `AVPlayerLayer`, you instantiate an `AVPlayer` object. `AVPlayerLay
 As shown below:
 
 __AVLayerVideoGravityResizeAspect__ maintains the aspect ratio
-![](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResizeAspect.avif)
+![AV Layer Video Gravity Resize Aspect](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResizeAspect.avif)
 
 __AVLayerVideoGravityResizeAspectFill__ fills the frame
-![](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResizeAspectFill.avif)
+![AV Layer Video Gravity Resize Aspect Fill](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResizeAspectFill.avif)
 
 
 __AVLayerVideoGravityResize__ stretches
 
-![](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResize.avif)
+![AV Layer Video Gravity Resize](/assets/images/20180304LearningAVFoundationPlayingVideo/AVLayerVideoGravityResize.avif)
 
 
 

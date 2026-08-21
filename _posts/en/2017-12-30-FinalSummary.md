@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20171230FinalSummary/2017FinalSummart1.avif)
+![2017Final Summart](/assets/images/20171230FinalSummary/2017FinalSummart1.avif)
 
 # Preface
 
@@ -46,7 +46,7 @@ Since I set up the blog at the beginning of the year, I've published 45 posts so
 
 As my **About** page says, I don't set too high a bar for its quality — I just try to record technical and life lessons that are easy to forget. Even though readers may not pay much attention, I myself treasure them like a collection of prized possessions, because after all, this is a fortune. When I look back at this year-end summary a few years from now, I hope I can say I **didn't regret wasting my years, nor feel ashamed of doing nothing**.
 
-![](/assets/images/20171230FinalSummary/2017FinalSummaryBlog2.avif)
+![2017Final Summary Blog](/assets/images/20171230FinalSummary/2017FinalSummaryBlog2.avif)
 
 I'm a 90s kid who doesn't enjoy playing video games. Only by checking the stats dashboard every day do I get back a bit of motivation to work.
 
@@ -130,7 +130,7 @@ If rural hukou holders want to become Harbin citizens because each of us rural f
 
 #### Planning to Buy During the Spring Festival
 
-![](/assets/images/20171230FinalSummary/HaerbinFuture.avif)
+![Haerbin Future](/assets/images/20171230FinalSummary/HaerbinFuture.avif)
 
 [Clearer original image](/assets/images/20171230FinalSummary/HaerbinFutureBig.avif)
 
@@ -248,23 +248,23 @@ So we paid the deposit cleanly and promptly, went home to handle the marriage fo
 
 > A reminder to everyone at this point: afterward I realized the layout I chose has no balcony — it has bay windows by the look of it.
 
-![](/assets/images/20171230FinalSummary/2017FinalSummaryHouseLayout.avif)
+![2017Final Summary House Layout](/assets/images/20171230FinalSummary/2017FinalSummaryHouseLayout.avif)
 
 Aida 88, Building 1, Unit 1, 12th floor — three bedrooms, two living rooms, one bathroom — `124.7` sqm, at a price of 10,800/sqm then.
 
 
 Here's a photo of the topping-out. Thanks to __Sister Hong__ for providing it:
-![](/assets/images/20171230FinalSummary/Aida88Contructing.avif) 
+![Aida88Contructing](/assets/images/20171230FinalSummary/Aida88Contructing.avif) 
 
 
 In the past few years, my route home was like this:
-![](/assets/images/20171230FinalSummary/HailunPath.avif)
+![Hailun Path](/assets/images/20171230FinalSummary/HailunPath.avif)
 
 From `Beijing by subway` to `Beijing Railway Station` --> `Harbin Station` --> `Hailun Station` --> `coach (bus)` --> `Second Seed Farm`  
 The whole trip is about `1,455` km. To put it bleakly, the bus ride back to the village has no navigation on any map — the route simply doesn't exist. To Hailun, about `40 km` or so.
 
 If we're talking about after the apartment is delivered, my route should be like this:  
-![](/assets/images/20171230FinalSummary/HaerbinPath.avif)  
+![Haerbin Path](/assets/images/20171230FinalSummary/HaerbinPath.avif)  
 From `Beijing by subway` to `Beijing Railway Station` --> `Harbin West Station`, and that's it — a 5-minute walk and I'm home.
 
 > For these `265` km (Harbin minus the distance to rural Hailun), I've been striving for at least `4` years, and I'll keep striving until the mortgage is paid off.
@@ -342,11 +342,11 @@ That's the end of the house-buying story. I believe my future neighbors are no o
 
 #### Leaving the Summit of China's Internet — Baidu
 
-![](/assets/images/20171230FinalSummary/2017FinalSummaryWork1.avif)
+![2017Final Summary Work](/assets/images/20171230FinalSummary/2017FinalSummaryWork1.avif)
 
 If you're a young programmer in need of training, I'd recommend Baidu — there you'll find the soil you need to grow.
 
-![](/assets/images/20171230FinalSummary/2017FinalSummaryWork2.avif)
+![2017Final Summary Work](/assets/images/20171230FinalSummary/2017FinalSummaryWork2.avif)
 
 The photo above is the office environment — honestly, it's really nice.
 
@@ -385,16 +385,16 @@ Work is work — not much more to introduce.
 
 This year I bought two calligraphy brushes, spending about 200+ yuan.
 
-![](/assets/images/20171230FinalSummary/Brush.avif)
+![Brush](/assets/images/20171230FinalSummary/Brush.avif)
 
 
 But they work really well — a fine horse needs a fine saddle, a fine brush needs good felt.
 
-![](/assets/images/20171230FinalSummary/calligraphy.avif)
+![calligraphy](/assets/images/20171230FinalSummary/calligraphy.avif)
 
 I was lucky to meet a calligraphy master at Baidu — my fellow hometown native `Pan Xu`. This guy from Suiling is truly good at everything: he writes code at lightning speed and has excellent calligraphy. He really impresses me, a Hailun native.
 
-![](/assets/images/20171230FinalSummary/Linzexu.avif)
+![Linzexu](/assets/images/20171230FinalSummary/Linzexu.avif)
 
 This is the memorial to the emperor that Lin Zexu wrote back then about destroying opium at Humen. It's my ultimate goal in learning calligraphy.
 
@@ -407,22 +407,22 @@ In literature, I've recorded all the books I read and listened to in 2017, and I
 
 * *The Despicable Saint: Cao Cao*, all parts 1–10 listened to
 
-![](/assets/images/20171230FinalSummary/Novel1.avif)
+![Novel](/assets/images/20171230FinalSummary/Novel1.avif)
 
 * *The Unity of Knowledge and Action: Wang Yangming*
 
-![](/assets/images/20171230FinalSummary/Novel2.avif)
+![Novel](/assets/images/20171230FinalSummary/Novel2.avif)
 
 * *Prime Minister of the Qing Dynasty* — Chen Tingjing   
-![](/assets/images/20171230FinalSummary/Novel3.avif)
+![Novel](/assets/images/20171230FinalSummary/Novel3.avif)
 
 * *The Last Eighteen Years of the Late Qing*, parts 1–3
 
-![](/assets/images/20171230FinalSummary/Novel4.avif)
+![Novel](/assets/images/20171230FinalSummary/Novel4.avif)
 
 * *Learn AV Foundation*
 
-![](/assets/images/20171230FinalSummary/LearnAvFoundation.avif)
+![Learn Av Foundation](/assets/images/20171230FinalSummary/LearnAvFoundation.avif)
 
 
 
@@ -432,13 +432,13 @@ The ones I'd especially recommend are __*Prime Minister of the Qing Dynasty*__ a
 
 #### A Story Worth Learning from *The Last Eighteen Years of the Late Qing*
 
-![](/assets/images/20171230FinalSummary/FuDaoAnZheng.avif)
+![Fu Dao An Zheng](/assets/images/20171230FinalSummary/FuDaoAnZheng.avif)
 
 > Fukushima Yasumasa (1852–1919), a native of Shinshu, Japan. Governor-General of the Kwantung Governor-General's Office, Japan's colonial organ. Army general. Known as the "father of Japanese intelligence warfare." He was a schemer and strategist with far-sighted vision.  
 
 > In 1887, Fukushima Yasumasa was appointed Japanese military attaché to Germany. During his five years in Germany, he conducted a detailed survey of the situation in European countries, and Russia's movements drew his particular attention. Constrained by Britain's check, Russia's traditional southward policy was forced to slow down, and Fukushima correctly predicted that Russia would inevitably turn eastward. Sure enough, in January 1891, Russia announced the plan to build the Trans-Siberian Railway and began construction immediately. This railway — connecting the Russian capital St. Petersburg with Vladivostok (Haishenwai), crossing the Eurasian continent — could be called Russia's greatest weapon for invading Asia. The Trans-Siberian Railway crosses northeast China; a branch extends south from Harbin straight to Lüshun and Dalian, allowing Russia to enter Asia with ease. Fukushima predicted the railway would take about ten years, and he believed those ten years would determine Japan's survival — Japan absolutely could not stand by idly.  
 
-![](/assets/images/20171230FinalSummary/Russia.avif)
+![Russia](/assets/images/20171230FinalSummary/Russia.avif)
 
 > __To learn the actual situation of Russia's eastward policy, Fukushima decided to conduct an on-site reconnaissance along the Trans-Siberian Railway himself. This bold plan immediately received strong support from Vice Chief of General Staff Kawakami Soroku. Since Fukushima's military identity would expose the purpose of the crossing plan, he publicly announced he would undertake an adventure of riding alone across Siberia during the bitter winter. Even native Russians wouldn't dare casually claim they could cross Siberia in deep winter, let alone a foreigner with no experience living in freezing regions. The moment Fukushima made this announcement, the world was in an uproar. Western explorers scoffed at his "crossing" plan, and everyone waited to see this Japanese man make a fool of himself. But Fukushima Yasumasa was extremely resolute — he knew full well what this plan meant for Japan.__  
 > __On February 11, 1892, Fukushima and his beloved horse "Kaisen" set off from Germany on the crossing journey, heading north in the bitter cold of minus 20 degrees Celsius. In late March, after arriving in St. Petersburg, Fukushima sent the Imperial General Headquarters his first intelligence report on the Russian army. By then, the Russian side had vaguely sensed that Fukushima's "trip" was a case of "brandishing the sword at Xiangzhuang while aiming at the Duke of Pei" — his real intentions lay elsewhere. On April 9, Fukushima left St. Petersburg and arrived in Moscow in late April, where he was received and feasted by the Tsar and Tsarina. After careful investigation, Fukushima submitted a report on the Trans-Siberian Railway construction to the Imperial General Headquarters. In late September, Fukushima reached the border mountains between China and Russia — the Altai Mountains, over 3,000 meters above sea level. Looking far into the distance from the Altai Mountains, all he could see was white snow. At this point, Fukushima had traveled 7,000 km — half the journey done.
@@ -454,7 +454,7 @@ Just to gather strategic intelligence, he mapped all the mountains, terrain, lan
 This man's will deeply inspired me. If a country wants to invade another, producing one or two talents like him is about all it takes.
 
 The photo below shows the Northeast Army of the late Qing.
-![](/assets/images/20171230FinalSummary/ManqingDongbeijun.avif)
+![Manqing Dongbeijun](/assets/images/20171230FinalSummary/ManqingDongbeijun.avif)
 
 Most of these books were listened to as audiobooks, a few read on a Kindle. I'll keep it up in 2018.
 
@@ -463,14 +463,14 @@ Most of these books were listened to as audiobooks, a few read on a Kindle. I'll
 ### Sports
 
 This year I kept playing badminton consistently.
-![](/assets/images/20171230FinalSummary/BadmintonTeam2.avif)
+![Badminton Team](/assets/images/20171230FinalSummary/BadmintonTeam2.avif)
 
 I joined Kingsoft's badminton tournament and took third place. Honestly, I was just there for the fun — laugh at me, go ahead.
-![](/assets/images/20171230FinalSummary/Awards1.avif)
-![](/assets/images/20171230FinalSummary/Awards2.avif)  
+![Awards](/assets/images/20171230FinalSummary/Awards1.avif)
+![Awards](/assets/images/20171230FinalSummary/Awards2.avif)  
 
 The Kingsoft folks are a pretty good team.  
-![](/assets/images/20171230FinalSummary/BadmintonTeam1.avif)
+![Badminton Team](/assets/images/20171230FinalSummary/BadmintonTeam1.avif)
 
 --- 
 
@@ -481,7 +481,7 @@ This is the thing I think was most worth doing in 2017 — I finally got my driv
 
 
 Here's a photo of Haidian Driving School.   
-![](/assets/images/20171230FinalSummary/DrivingLicence.avif)
+![Driving Licence](/assets/images/20171230FinalSummary/DrivingLicence.avif)
 
 Let me share my thoughts on getting the license.
 

@@ -10,7 +10,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20220701ReverseList/algorithm.avif)
+![algorithm](/assets/images/20220701ReverseList/algorithm.avif)
 
 # Preface
 
@@ -23,7 +23,7 @@ Given the root node `root` of a binary tree, return its `preorder`, `inorder`, a
 
 #### Example 1
 
-![](/assets/images/20220704BinaryTreeOrder/1.avif)
+![image](/assets/images/20220704BinaryTreeOrder/1.avif)
 
 ``` sh 
 输入：root = [1,null,2,3]

@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20190726LoadingAnimationI/CircleLoadingAnimation.avif)
+![Circle Loading Animation](/assets/images/20190726LoadingAnimationI/CircleLoadingAnimation.avif)
 
 
 # Preface
@@ -17,7 +17,7 @@ typora-root-url: ..
 
 I've been so busy with work lately that I fall asleep on the subway ride home, so my blog hasn't been updated in time. Today I'm squeezing in some time to write about a loading animation. Without further ado, here's the picture.
 
-![](/assets/images/20190726LoadingAnimationI/CircleLoadingAnimation.avif)
+![Circle Loading Animation](/assets/images/20190726LoadingAnimationI/CircleLoadingAnimation.avif)
 
 
 (The colors are fully customizable — it's very simple, even a beginner can change them freely)

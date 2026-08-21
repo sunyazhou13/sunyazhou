@@ -9,7 +9,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20220414BranchManage/git.avif)
+![git](/assets/images/20220414BranchManage/git.avif)
 
 # Preface
 
@@ -18,7 +18,7 @@ This article carries strong personal sentiment. If it makes you uncomfortable, p
 
 ## A Branch Management Model Suitable for Client Development
 
-![](/assets/images/20220414BranchManage/BranchGuide.avif)
+![Branch Guide](/assets/images/20220414BranchManage/BranchGuide.avif)
 
 First, `DEV` represents the development branch  
 First, `RB` represents the release branch

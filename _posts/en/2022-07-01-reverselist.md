@@ -9,7 +9,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20220701ReverseList/algorithm.avif)
+![algorithm](/assets/images/20220701ReverseList/algorithm.avif)
 
 # Preface
 
@@ -18,7 +18,7 @@ This article carries a strong personal tone. If you find it uncomfortable to rea
 # The Problem
 
 Given the head node `head` of a singly linked list, reverse the linked list and return the reversed list.  
-![](/assets/images/20220701ReverseList/1.avif)
+![image](/assets/images/20220701ReverseList/1.avif)
 
 ``` sh
 输入：head = [1,2,3,4,5]

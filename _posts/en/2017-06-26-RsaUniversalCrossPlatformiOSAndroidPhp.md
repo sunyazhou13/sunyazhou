@@ -8,13 +8,13 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20170626RsaUniversalCrossPlatformiOSAndroidPhp/RSALogo.avif)
+![RSA Logo](/assets/images/20170626RsaUniversalCrossPlatformiOSAndroidPhp/RSALogo.avif)
 
 # Preface
 
 First, let me pay tribute to the authors of RSA
 
-![](/assets/images/20170626RsaUniversalCrossPlatformiOSAndroidPhp/RSATeam.avif)
+![RSA Team](/assets/images/20170626RsaUniversalCrossPlatformiOSAndroidPhp/RSATeam.avif)
 
 For the principles of RSA asymmetric encryption and all that..., please Baidu it yourself
 

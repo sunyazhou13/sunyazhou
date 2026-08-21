@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20180308WhatIsThedSYM/homePageLog.avif)
+![home Page Log](/assets/images/20180308WhatIsThedSYM/homePageLog.avif)
 
 # Preface
 
@@ -33,7 +33,7 @@ To quickly and accurately locate the code `position` where a user's app `Crashes
 
 Here's an example:
 
-![](/assets/images/20180308WhatIsThedSYM/stackSymbol.avif)
+![stack Symbol](/assets/images/20180308WhatIsThedSYM/stackSymbol.avif)
 
 
 The image above shows the crash stack calls we resolved using the symbol table.
@@ -42,7 +42,7 @@ The image above shows the crash stack calls we resolved using the symbol table.
 
 On the iOS platform, a `dSYM` file is a target file containing debug information, and the file name is usually `com.companyname.dSYM`. As shown below:
 
-![](/assets/images/20180308WhatIsThedSYM/testdSYM.avif)
+![testd SYM](/assets/images/20180308WhatIsThedSYM/testdSYM.avif)
 
 Generally it has the same name as the target of the Xcode project.
 
@@ -52,9 +52,9 @@ Generally it has the same name as the target of the Xcode project.
 
 In general, after the project is compiled, the `dSYM` file is in the same directory as the `app` file. Below I'll explain in detail how to locate the `dSYM` file using `XCode` as the IDE.
 
-![](/assets/images/20180308WhatIsThedSYM/dSYM1.avif)
+![d SYM](/assets/images/20180308WhatIsThedSYM/dSYM1.avif)
 
-![](/assets/images/20180308WhatIsThedSYM/dSYM2.avif)
+![d SYM](/assets/images/20180308WhatIsThedSYM/dSYM2.avif)
 
 
 > The test here was done in Release mode.
@@ -70,33 +70,33 @@ If you want it in `Debug`, configure Xcode like this:
 `XCode -> Build Settings -> Code Generation -> Generate Debug Symbols -> Yes`  
 `XCode -> Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
 
-![](/assets/images/20180308WhatIsThedSYM/dSYM3.avif)  
-![](/assets/images/20180308WhatIsThedSYM/dSYM4.avif)
+![d SYM](/assets/images/20180308WhatIsThedSYM/dSYM3.avif)  
+![d SYM](/assets/images/20180308WhatIsThedSYM/dSYM4.avif)
 
 #### What to Watch Out For After Enabling Bitcode?
 
 * When uploading to the `App Store` server via `Upload to App Store`, you need to declare the generation of the symbol file (`dSYM` file):
 
-![](/assets/images/20180308WhatIsThedSYM/dSYM5.avif)
+![d SYM](/assets/images/20180308WhatIsThedSYM/dSYM5.avif)
 
 * Before configuring the symbol table file, you need to download the dSYM file for that version from the App Store to your local machine, and then use a symbol table tool to generate and upload the symbol table file.
 
 There are two ways to retrieve the dSYM file for an `ipa` version:
 
 1. Retrieve the dSYM through Xcode's archived files. Open `Xcode` top menu bar -> `Window` -> `Organizer`, as shown below:
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM2.avif)  
+	![Bitcoded SYM](/assets/images/20180308WhatIsThedSYM/BitcodedSYM2.avif)  
 	Open the `Xcode` top menu bar and select the `Archive` tab:   
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM3.avif)  
+	![Bitcoded SYM](/assets/images/20180308WhatIsThedSYM/BitcodedSYM3.avif)  
 	Find the released archive, right-click it and choose `Show in Finder`:  
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM4.avif)
+	![Bitcoded SYM](/assets/images/20180308WhatIsThedSYM/BitcodedSYM4.avif)
 	Right-click the located archive file and choose to show package contents:  
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM5.avif)  
+	![Bitcoded SYM](/assets/images/20180308WhatIsThedSYM/BitcodedSYM5.avif)  
 	Select the `dSYMs` directory; the directory contains the downloaded `dSYM` files:  
-	![](/assets/images/20180308WhatIsThedSYM/BitcodedSYM6.avif)
+	![Bitcoded SYM](/assets/images/20180308WhatIsThedSYM/BitcodedSYM6.avif)
 	
 2. Retrieve it through [iTunes Connect](https://itunesconnect.apple.com/)
 	
-	![](/assets/images/20180308WhatIsThedSYM/itunesConnect.avif)
+	![itunes Connect](/assets/images/20180308WhatIsThedSYM/itunesConnect.avif)
 	
 	In "All Builds", select a version and click "Download dSYM" to download the dSYM file.
 	

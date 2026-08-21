@@ -35,7 +35,7 @@ He laid out a classic audio playback flow (using MP3 as an example)
 7. Repeat steps 1-6 until playback completes
 
 In the iOS system, Apple encapsulated the above process and provided interfaces at different levels
-![](https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/Art/core_audio_layers_2x.avif)  
+![core audio layers](https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/Art/core_audio_layers_2x.avif)  
 > This is the interface hierarchy of CoreAudio  
 
 Below is a functional description of the mid- and high-level interfaces:
@@ -58,7 +58,7 @@ As you can see, Apple provides a very rich set of interfaces that can satisfy al
 * If your app needs to stream audio and store it at the same time, then AudioFileStreamer plus AudioQueue can help you. You can first download the audio data to the local disk, then while downloading, read the local audio file using interfaces like NSFileHandler and hand it to AudioFileStreamer or AudioFile to parse and separate the audio frames. The separated audio frames can then be sent to AudioQueue for decoding and playback. If it's a local file, you can simply read and parse the file directly. (Both of these are fairly straightforward approaches. This kind of requirement can also be implemented using AVFoundation plus a local server. AVAudioPlayer sends the request to the local server, the local server forwards it, obtains the data, stores it, and passes it on to AVAudioPlayer. Another trickier approach is to first download the audio into a file, and once a certain amount of data has been downloaded, give the file path to AVAudioPlayer for playback. Of course, this approach will have problems after seeking in the audio.)
 * If you are developing a professional music player and need to apply audio effects (equalizer, reverb) to the audio, then in addition to reading and parsing data, you also need to use AudioConverter to convert the audio data into PCM data, and then use AudioUnit + AUGraph for audio effects processing and playback (but currently most apps with audio effects develop their own effects modules to process PCM data, because developing this part yourself gives stronger customization and extensibility. After PCM data is processed by the effects processor, it can be played using AudioUnit. Of course, AudioQueue also supports playing PCM data directly.). The diagram below describes the flow of audio playback using AudioFile + AudioConverter + AudioUnit
 
-![](http://msching.github.io/images/iOS-audio/audioUnitPlay.avif)
+![audio Unit Play](http://msching.github.io/images/iOS-audio/audioUnitPlay.avif)
 
 All of the above content is reproduced from [码农人生](http://msching.github.io/blog/2014/07/07/audio-in-ios/). I hope he doesn't mind. If there are any problems, I'll remove it immediately.
 
@@ -75,7 +75,7 @@ The main functions of `AVAudioSession` include the following:
 * Controls and coordinates the app's input/output devices (for example, microphone, headphones, phone speaker, Bluetooth connected external speakers, or AirPlay)
 * Coordinates your app's audio playback with the system and the behavior of other apps (for example, it needs to be interrupted when there's a phone call, resumed when the call ends, and whether the song should also be muted when the mute button is pressed, etc.)
 
-![](https://developer.apple.com/library/content/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Art/aspg_intro_2x.avif)
+![aspg intro](https://developer.apple.com/library/content/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Art/aspg_intro_2x.avif)
 
 *Note: AVAudioSession has been used since iOS 6. Before that it was called AudioSession.*
 
@@ -114,9 +114,9 @@ Here let me talk about `AVAudioSessionCategoryPlayback` in `[session setCategory
 This is a list of the categories; you can take a look
 
 Remember to enable background playback
-![](/assets/images/20170317LearningAVFoundationAVAudioPlayer/BackgounrdPlay.avif)  
+![Backgounrd Play](/assets/images/20170317LearningAVFoundationAVAudioPlayer/BackgounrdPlay.avif)  
 or modify it in the plist
-![](/assets/images/20170317LearningAVFoundationAVAudioPlayer/PlistModify.avif)  
+![Plist Modify](/assets/images/20170317LearningAVFoundationAVAudioPlayer/PlistModify.avif)  
 
 
 The code below creates the audio player
@@ -154,7 +154,7 @@ The code below creates the audio player
 
 > Import the classes of several third-party controls for music playback
 
-![](/assets/images/20170317LearningAVFoundationAVAudioPlayer/Buttons.avif)
+![Buttons](/assets/images/20170317LearningAVFoundationAVAudioPlayer/Buttons.avif)
 
 The three knobs above are from the imported open-source library
 
@@ -464,7 +464,7 @@ That's all the code logic for interruption and route changes
 
 Below I'll introduce something fun
 
-![](/assets/images/20170317LearningAVFoundationAVAudioPlayer/demo.avif)
+![demo](/assets/images/20170317LearningAVFoundationAVAudioPlayer/demo.avif)
 
 The background info displayed earlier is exactly what's shown in the image above, displayed on the lock screen
 

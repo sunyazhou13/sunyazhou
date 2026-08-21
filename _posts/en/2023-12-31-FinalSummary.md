@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20231231FinalSummary/banner.avif)  
+![banner](/assets/images/20231231FinalSummary/banner.avif)  
 <button type="button" class="btn btn-info" data-toggle="popover" title="Magotan1990" data-content="on the way to play billiards">Night view of the bustling Dongsi Shitiao overpass on Beijing's Second Ring Road</button>
 
 
@@ -49,7 +49,7 @@ I've always considered myself a shallow person. If you, dear reader, are generou
 
 ### Peace in the world
 
-![](/assets/images/20231231FinalSummary/peace.avif)
+![peace](/assets/images/20231231FinalSummary/peace.avif)
 
 This year was truly unbearable to look back on. The three-year pandemic finally came to an end, everyone dared to take off their masks, and everyone had antibodies (until now, December 2023, when I'm writing this, everyone has put their masks back on — forced to take precautions against influenza A, influenza B, mycoplasma, and other infections). While the Russia-Ukraine war shows no sign of stopping, the Israel-Palestine conflict has repeated the same mistakes as Russia and Ukraine. Even we, who live in a peaceful country, are not necessarily happy. Perhaps peace truly only exists within the range of cannons, and truth truly only lies between the edges of swords! Peace will ultimately only be achieved through the rise of China.
 
@@ -77,13 +77,13 @@ I hope old Xu hasn't completely lost his conscience and will give the owners who
 
 #### Lifting housing purchase restrictions
 
-![](/assets/images/20231231FinalSummary/policy.avif)
+![policy](/assets/images/20231231FinalSummary/policy.avif)
 
 Beijing finally lifted the restriction of "limiting houses but not loans" — no longer haunted by out-of-town home purchase loan records. Beijing's property de-restriction may have started this year. The capital has few good cards left in its hand. To reverse the economic downturn, the housing provident fund finally achieved "recognizing the house, not the commercial loan" this November. That means someone like me, who bought a house back in my hometown in 2017 and never had the chance to use Beijing's provident fund with a commercial loan, now still counts as a first-time home buyer in Beijing and can enjoy the first-home provident fund loan rate.
 
 This is perhaps the best policy of the year. But it seems to be of little use. People with unstable jobs think the government is just scratching an itch. Jobs are unstable and companies are laying off; nobody dares to buy a house easily. Right — after three years of pandemic consumption, everyone has come to recognize reality: save money, don't consume, consume less, buy only what's sufficient, no need to pursue the best. The consumption mindset has become very pragmatic. This is both good and bad. The good part is everyone understands frugality. The bad part is that with sluggish consumption, economic growth slows, and employment becomes even harder. When one of the "three carriages" of the economy fails, the side effects are very hard for people to bear.
 
-![](/assets/images/20231231FinalSummary/policynew.avif)
+![policynew](/assets/images/20231231FinalSummary/policynew.avif)
 
 Good policies came one after another: the down payment dropped to 30%, and commercial loan rates dropped to 4.2%. In my view, this is because houses won't sell — to stimulate the economy, they're now harvesting leeks down to the roots.
 
@@ -115,8 +115,8 @@ I never expected the little one, only a few months old, to already have the soci
 #### Shared-ownership housing
 
 With the Work & Residence Permit in hand, the first thing on the agenda was Beijing's shared-ownership housing. Public housing in Beijing is the only kind of house someone like me can possibly get on board. The layout and size both require trade-offs, and that goes for future selling and renting as well.
-![](/assets/images/20231231FinalSummary/gongchanfang1.avif)  
-![](/assets/images/20231231FinalSummary/gongchanfang2.avif)  
+![gongchanfang](/assets/images/20231231FinalSummary/gongchanfang1.avif)  
+![gongchanfang](/assets/images/20231231FinalSummary/gongchanfang2.avif)  
 This shared-ownership housing has very strict requirements for buyers. It's not just about having money — you must never have had any housing transaction record in Beijing, and singles must be over 30. Ever since Beijing lifted the "limit houses but not loans" policy, and with the recent policy lowering the down payment ratio to 30%, buyers might have a little more confidence. Non-Beijing-registered buyers are also divided into several groups, mainly based on the number of applicants and the supply of units. In short, there are a lot of rules and restrictions. If you're interested, you can refer to the [Daxing District Yisheng Yue Community shared-ownership housing project application notice](https://www.bjdx.gov.cn/bjsdxqrmzf/zwxx/ztfw/zfbzztfw/tzgg3442/2101376/index.html) to see what shared-ownership housing is all about in Beijing. Basically, there's a high probability that non-Beijing buyers face restrictions like five consecutive years of social insurance, workplace location, social insurance payment district, and whether you're a talent introduced by the district — those go into the priority group. Someone like me whose social insurance is paid in Haidian District can only end up in the last group of non-Beijing-registered buyers for selection. Good houses go to Beijing natives first and to people paying social insurance in the district where the plot is located. The six central districts are basically just there for the show.
 
 Through this shared-ownership housing experience, I discovered two things:
@@ -134,7 +134,7 @@ Going through this shared-ownership housing purchase made me deeply realize one 
 
 ### Hard work
 
-![](/assets/images/20231231FinalSummary/work.avif)  
+![work](/assets/images/20231231FinalSummary/work.avif)  
 
 Over this past year and a half, I've spent almost all of my time working for and surviving at Tencent Music Entertainment's Kuwo Music team. The company used to be in the National Convention Center; this July it moved to Dongsi Shitiao, from outside the 4th Ring Road to inside the 2nd Ring Road. The most direct pain point is that my commute went from a 30-minute motorcycle ride to a 1-hour subway ride. The worst part is I can't ride my motorcycle anymore. Quite sad. But there's a silver lining: with more time on the subway, I now have a lot of time to study. I get about 2 hours of study time each day commuting to and from work, though conditions are tough — it's crowded, and I stand almost the whole way.
 
@@ -145,7 +145,7 @@ The team recently lost two people to layoffs. At work, many colleagues are stepp
 Still, I can do some technical accumulation in certain development areas, preserving that once-passionate love for technology and the drive to increase my influence.
 
 In October, I developed a widget and submitted an article to the Tencent Music technical team's official account introducing some development details.
-![](/assets/images/20231231FinalSummary/article.avif) 
+![article](/assets/images/20231231FinalSummary/article.avif) 
 
 When the internal reviewers went through the manuscript, they cut it down to nothing but details with no technical substance. The core content wasn't allowed to be made public, mainly to maintain the industry-leading position of the tech. I'd like to record here my thoughts on having my submission cut down:
 
@@ -166,13 +166,13 @@ Courses I studied in 2023:
 
 At the beginning of the year, to save Bodian Music, the app whose growth was about to slow down, I was seconded to support Flutter development. The main work was migrating the live-streaming SDK provided by the group and interacting with Flutter. If there was no infrastructure, build infrastructure; no CI/CD, build CI/CD; no routing library, develop and integrate a hybrid navigation stack. Seizing this time, I spent my spare weekends learning Flutter — it took about 6 weekends to finish the whole tutorial and understand what it's all about. The remaining work was doing Flutter work for Bodian.
 
-![](/assets/images/20231231FinalSummary/flutter.avif)   
+![flutter](/assets/images/20231231FinalSummary/flutter.avif)   
 Sharing a Flutter tutorial from Bilibili — [The latest Dart and Flutter tutorial — take you into the world of Flutter](https://www.bilibili.com/video/BV1KE41117XV?p=1)
 
 After studying for a while, I found its framework is too good — it basically does all the work for you.
 
 In the second half of the year, I got the task of developing an iOS 17 widget, and the widget had to use SwiftUI. Right after finishing Flutter, I spent at least 10 or more weekends learning SwiftUI.
-![](/assets/images/20231231FinalSummary/swiftUI.avif)   
+![swift UI](/assets/images/20231231FinalSummary/swiftUI.avif)   
 
 [SwiftUI development tutorial](https://www.bilibili.com/video/BV1pW4y1j7MC/?spm_id_from=333.999.0.0&vd_source=9309f71afe97e633abeadc8407870e76)
 
@@ -196,18 +196,18 @@ I've been learning HarmonyOS for quite a while. My understanding is to just prac
 Bilibili is really great now — you can learn all kinds of courses, no ads, and free. Truly conscientious. I remember finishing the Swift course last year and feeling it was nothing special. But Swift and SwiftUI release a new version every year and I have to study it all over again each time — there are so many changes that I simply can't keep up.
 
 This is how my study time kept getting disrupted. Because my study tasks were so often preempted, I couldn't continuously finish reading this book. Here's my current progress:
-![](/assets/images/20231231FinalSummary/cxxprmerplus.avif) 
+![cxxprmerplus](/assets/images/20231231FinalSummary/cxxprmerplus.avif) 
 Let me explain what `preemptive scheduling` means: originally I planned to read this book during my daily commute. But often, halfway through or at some other point in progress, I'd be interrupted by new technologies like the HarmonyOS development tutorial videos, forcing me to first finish the work-related technical study tasks and then squeeze in time to learn the remaining tasks. Just like that, various preemptive scheduling kept occupying a lot of my spare time.
 If you're like me, then congratulations — so far I haven't found an optimal solution to solve how time gets preempted. I can only say that maybe I'll have one when I achieve financial freedom.
 
 A pile of books I have no time to read — stacked up almost as tall as a PS5!
-![](/assets/images/20231231FinalSummary/books.avif)  
+![books](/assets/images/20231231FinalSummary/books.avif)  
 
 This year felt very tiring. There's more and more to learn — from Flutter to SwiftUI, from SwiftUI to HarmonyOS, and then a pile of unfinished iBooks. And the drone development direction I like hasn't even started its study plan. Working in the computer industry might just inherently require this much exhaustion. There's always an endless pile of courses, books, articles, and tutorials to learn.
 
 ### A shallow hobby — billiards
 
-![](/assets/images/20231231FinalSummary/cueball.avif)  
+![cueball](/assets/images/20231231FinalSummary/cueball.avif)  
 Over this past year, the company had club activities, and I gradually learned billiards with my colleagues. To this day I still organize the company's billiards events. Billiards has a magic that keeps me — a person with no hobbies at all — hooked. My skills have been improving day by day. Every time I see the green felt my eyes feel comfortable, and when I pick up the cue, some of the unhappiness from work and life is forgotten.
 
 Before, my understanding of billiards was only superficial. This year, by watching billiards tutorials and matches on Bilibili, I gradually developed a strong interest in this sport of ball-on-ball impact. From stance retreat, positioning, addressing, posture, grip, aiming, stroke, and power, to shot types — high, middle, low cue ball; left and right spin; control of large, medium, and small power. The 5-point drill, jump shots, english, position play and clearance, and K balls — I've tried and trained on all of them one by one.
@@ -254,61 +254,61 @@ This year I bought fewer frivolous things. With consumption downgrading, I rarel
 
 #### QNAP NAS 464C-8G
 
-![](/assets/images/20231231FinalSummary/nas1.avif)  
-![](/assets/images/20231231FinalSummary/nas2.avif)  
+![nas](/assets/images/20231231FinalSummary/nas1.avif)  
+![nas](/assets/images/20231231FinalSummary/nas2.avif)  
 This gear is enough to store a lifetime of materials, right? It was on JD.com's special promotion before Double 11 — bought at the member price of 1823. After getting it, I added four 4TB Seagate IronWolf NAS-specific hard drives, mainly to store materials and study content. You can set up a git server on it, run a personal blog site as cloud storage, and more — maybe only developers truly understand its value. No more worrying about changing computers: upload local materials from the cloud to the NAS, and other computers can access them easily.
 
 #### Billiards cue
 
-![](/assets/images/20231231FinalSummary/cue.avif) 
+![cue](/assets/images/20231231FinalSummary/cue.avif) 
 
 This cue can be said to give double the joy at half the price. I chose a handmade cue costing a few hundred yuan — not a famous brand, but from a very old handmade cue brand in Taishan, Guangdong: Baisha. The feel and playing experience are excellent. I really love this cue. It has accompanied me through many games with plenty of luck on its side.
 
 
 #### HomePod
 
-![](/assets/images/20231231FinalSummary/homepod.avif)
+![homepod](/assets/images/20231231FinalSummary/homepod.avif)
 
 For Double 12, I'd been stalking the goods for several months; after observing the price drop below its regular level, I decisively pulled the trigger. The sound quality is excellent; the only issue is the high latency — not as low-latency as Bluetooth. This one has poor value for money, so I don't recommend buying it — it's very expensive. Wealthy folks buy several and set them up as stereo. The upside is you can control them individually or as a group, and also split control separately. Controlling it is simple — just say "hi siri..." to it.
 
 #### Apple Watch
 
-![](/assets/images/20231231FinalSummary/applewatch.avif)
+![applewatch](/assets/images/20231231FinalSummary/applewatch.avif)
 
 My old watch's battery was done for, so I bought a battery on PDD. But when I tried to fix it myself, I found the screen coil has an NFC contact circuit, which ended up breaking the old watch. After checking, I found repairing it cost more than buying a used one, so I decisively gave up and bought the cheapest SE on PDD.
 
 #### Apple Trackpad
 
-![](/assets/images/20231231FinalSummary/trackpad.avif)
+![trackpad](/assets/images/20231231FinalSummary/trackpad.avif)
 
 For Apple devices, the trackpad is still the easiest to use. For studying, working, and writing code, the trackpad beats the Magic Mouse by far. So I retired the old Magic Mouse and switched to the trackpad.
 
 #### PS5 game discs
 
-![](/assets/images/20231231FinalSummary/games.avif)
+![games](/assets/images/20231231FinalSummary/games.avif)
 
 As an amateur indulgence, I bought a few DVD-style physical game discs. Consider it a collection!
 
 #### Motorcycle helmet
 
-![](/assets/images/20231231FinalSummary/helmet.avif)
+![helmet](/assets/images/20231231FinalSummary/helmet.avif)
 
 Riding a motorcycle is relatively unsafe, so I bought a better helmet. Safety matters.
 
 #### Messenger bag
 
-![](/assets/images/20231231FinalSummary/bags.avif)
+![bags](/assets/images/20231231FinalSummary/bags.avif)
 
 To fix my pockets — which looked terrible, bulging and anything but elegant from all the stuff I carried every time I went out — and since I'm getting older and gradually caring more about my appearance and image, I bought myself a messenger bag. Actually, I bought three — the other two went to a classmate and a friend. When my father passed away, I borrowed my buddy's car for several days and he wouldn't take a single cent. To express my gratitude, I gave each of them a bag.
 
 #### Monitor retrofit
 
-![](/assets/images/20231231FinalSummary/lcd.avif)
+![lcd](/assets/images/20231231FinalSummary/lcd.avif)
 I had an old Apple computer that was too old and laggy. After taking it apart, I found the screen was still good. I searched online and found you can buy an MVDS driver board to turn it into a monitor. So I spent a bit over 200 yuan on a driver board, installed it, and sure enough it worked great. Turning waste into treasure — putting household electronics to good use.
 
 #### Vegetable grater
 
-![](/assets/images/20231231FinalSummary/grater.avif)
+![grater](/assets/images/20231231FinalSummary/grater.avif)
 
 I believe you won't realize how important this is unless you cook. I cook often and care a lot about kitchen tools. Cutting potato shreds is a real hassle. Unless you're practicing your knife skills, I'd recommend buying the kind of grater restaurants use — the tool in the picture above. After buying it, I found even restaurant chefs seem less impressive — the tool cuts beautifully.
 

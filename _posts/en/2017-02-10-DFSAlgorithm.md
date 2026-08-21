@@ -17,7 +17,7 @@ DFS Background
 	3. How to handle the case where the root-level folder has no files but its directory still needs to be created
 
 For example
-![](/assets/images/20170210DFSAlgorithm/DFS1.avif)
+![DFS](/assets/images/20170210DFSAlgorithm/DFS1.avif)
 
 For a folder like this where `this folder is empty and is a leaf node`, we run the upload logic (just send an HTTP request to create the dir) — what we want is to filter out this path and run the upload logic to create the deepest directory, so that next time we encounter its parent directory `/1/`, we don't need to create it again.
 
@@ -53,7 +53,7 @@ Normally we handle this kind of problem with a recursive algorithm we write ours
     }];
 }
 ```
-![](/assets/images/20170210DFSAlgorithm/DFS2.avif)
+![DFS](/assets/images/20170210DFSAlgorithm/DFS2.avif)
 
 Then:
 
@@ -160,9 +160,9 @@ Next is the core code block:
 > talk is cheap, show me the result.
 
 Below is the result of scanning my local `Downloads` directory
-![](/assets/images/20170210DFSAlgorithm/DFS3.avif)
+![DFS](/assets/images/20170210DFSAlgorithm/DFS3.avif)
 
-![](/assets/images/20170210DFSAlgorithm/Result.avif)
+![Result](/assets/images/20170210DFSAlgorithm/Result.avif)
 
 The result is quite fast.
 

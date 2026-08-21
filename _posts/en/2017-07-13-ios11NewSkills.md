@@ -9,7 +9,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20170713ios11NewSkills/whatisnewsinios11.avif)
+![whatisnewsinios](/assets/images/20170713ios11NewSkills/whatisnewsinios11.avif)
 
 
 ## Availability Checking API
@@ -80,7 +80,7 @@ By default, `API_AVAILABLE()` only takes effect for APIs on `iOS 11` / `tvOS 11`
 
 If your project wants to use this new LLVM feature, you need to modify the `Unguarded availability` in `build settings`, as shown below:
 
-![](/assets/images/20170713ios11NewSkills/availability.avif)
+![availability](/assets/images/20170713ios11NewSkills/availability.avif)
 
 
 ## Static Analysis
@@ -93,12 +93,12 @@ Here I'll talk about the changes
 
 When we mistakenly judge an NSNumber, static analysis gives us a hint
 
-![](/assets/images/20170713ios11NewSkills/error.avif)
+![error](/assets/images/20170713ios11NewSkills/error.avif)
  
 
 In Xcode 9, you can directly change such ignored problems into errors
 
-![](/assets/images/20170713ios11NewSkills/static.avif)
+![static](/assets/images/20170713ios11NewSkills/static.avif)
 
 
 ## Enable LTO and Set It to Incremental Mode
@@ -109,13 +109,13 @@ Link-time optimization (hereafter `LTO`) is an optimization feature of LLVM. Its
 
 For LTO, the improvement Xcode 9 makes is mainly further optimizing the compile speed. The example Apple demonstrated used a large C++ project as a reference: for a full link, Xcode 9 is 35% faster than Xcode 8; for an incremental link, Xcode 9 is nearly 60% faster than Xcode 8.
 
-![](/assets/images/20170713ios11NewSkills/lto1.avif)
+![lto](/assets/images/20170713ios11NewSkills/lto1.avif)
 
-![](/assets/images/20170713ios11NewSkills/lto2.avif)
+![lto](/assets/images/20170713ios11NewSkills/lto2.avif)
 
 Enable LTO
 
-![](/assets/images/20170713ios11NewSkills/LTO.avif)
+![LTO](/assets/images/20170713ios11NewSkills/LTO.avif)
 
 It's said to optimize the package size and runtime speed by about 10%
 

@@ -16,7 +16,7 @@ This post carries strong personal sentiment; if you feel uncomfortable reading i
 
 ## The problem encountered in development
 
-![](/assets/images/20240819dispatchafterNSIntegermax/popup.avif)
+![popup](/assets/images/20240819dispatchafterNSIntegermax/popup.avif)
 
 Recently in development, a QA teammate filed a bug: the bubble on the home page's bottom tab flashed and disappeared instantly. After tracing through the code carefully, I found that the backend had issued `-1` in the configuration, and a client-side colleague replaced this `-1` with NSIntegerMax.
 
@@ -39,7 +39,7 @@ Suppose the code to hide the bubble is called 10 seconds after it shows, but thi
 
 ### Why does it execute immediately?
 
-![](/assets/images/20240819dispatchafterNSIntegermax/NSIntegerMax1.avif)
+![NS Integer Max](/assets/images/20240819dispatchafterNSIntegermax/NSIntegerMax1.avif)
 
  `NSIntegerMax * NSEC_PER_SEC` = -1 billion
 

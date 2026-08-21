@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20170509HowToCreateSymbolicLinkOnMacosInCode/symboliclink.avif)
+![symboliclink](/assets/images/20170509HowToCreateSymbolicLinkOnMacosInCode/symboliclink.avif)
 
 ### Preface
 
@@ -31,11 +31,11 @@ You can create symbolic links using two methods in `NSFileManager`:
 Recently I've been developing a plugin and need to copy the plugin from the project directory to the system plugin directory `~/Library/Internet Plug-Ins/` (here I'm using Lao Tan's plugin as an example: [here](http://www.tanhao.me/pieces/1084.html/))
 
 As shown below:
-![](/assets/images/20170509HowToCreateSymbolicLinkOnMacosInCode/step1.avif)
+![step](/assets/images/20170509HowToCreateSymbolicLinkOnMacosInCode/step1.avif)
 
 I originally wanted to copy it directly, but there might be upgrade issues in the future, and then handling the logic of judging versions and deleting old ones would be troublesome. So I thought of using an alias instead.
 
-![](/assets/images/20170509HowToCreateSymbolicLinkOnMacosInCode/step2.avif)
+![step](/assets/images/20170509HowToCreateSymbolicLinkOnMacosInCode/step2.avif)
 
 Create the alias using this approach:
 
@@ -53,7 +53,7 @@ Create the alias using this approach:
 
 *Note: in the `createSymbolicLinkAtPath:withDestinationPath:error:` method, the first parameter `LinkAtPath` is `desc`, which is the location where the alias is placed. The second parameter `DestinationPath` is `homePath`, representing the original path of the local file. Using the file in the project directory here is just for convenience; be careful not to confuse it with the `copyItem` method.*
 
-![](/assets/images/20170509HowToCreateSymbolicLinkOnMacosInCode/step3.avif)
+![step](/assets/images/20170509HowToCreateSymbolicLinkOnMacosInCode/step3.avif)
 
 ### Summary
 

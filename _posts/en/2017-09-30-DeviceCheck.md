@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20170930DeviceCheck/DeviceCheck.avif)
+![Device Check](/assets/images/20170930DeviceCheck/DeviceCheck.avif)
 
 # Preface
 
@@ -76,11 +76,11 @@ Check whether it is supported. If supported, a `token` (NSData) will be returned
 
 The token is a 2188-byte (a bit over 2 KB) binary stream — quite small
 
-![](/assets/images/20170930DeviceCheck/DCDeviceCode.avif)
+![DC Device Code](/assets/images/20170930DeviceCheck/DCDeviceCode.avif)
 
 I tried various string encodings and still couldn't figure out what's inside, nor print it out successfully
 
-![](/assets/images/20170930DeviceCheck/DCDeviceBinary.avif)
+![DC Device Binary](/assets/images/20170930DeviceCheck/DCDeviceBinary.avif)
 
 If anyone manages to print it out, please share
 

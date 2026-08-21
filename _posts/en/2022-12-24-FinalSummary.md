@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20221231FinalSummary/2022F1.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F1.avif)
 
 
 # Preface
@@ -58,7 +58,7 @@ This is truly the feeling that comes after all kinds of self-denial. It's not a 
 
 Earlier, I promised that once the new pound notes were issued, I'd buy a few to keep as collectibles, in memory of the pioneer who drove the computer industry forward — Alan Turing.
 
-![](/assets/images/20221231FinalSummary/2022F2.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F2.avif)
 
 It was he who inspired my soul, driving me to keep forging ahead and innovating in the development of computer science.
 
@@ -79,10 +79,10 @@ So what's the standard for a good dish?
 Deliciousness is the standard. Now it's trendy to reinvent old dishes. Some say guobaorou tastes best with orange juice sauce, others say with tomato sauce. The most original guobaorou recipe is savory, not sweet-and-sour. Whatever the sauce or flavor, as long as you think it tastes good, that's what matters.
 
 This is what the first attempt looked like.  
-![](/assets/images/20221231FinalSummary/2022F3.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F3.avif)
 
 This is what the second attempt looked like.  
-![](/assets/images/20221231FinalSummary/2022F4.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F4.avif)
 
 ...
 
@@ -99,17 +99,17 @@ Through the above process, I think the most important things are technique and s
 
 Here I recommend everyone buy a starch called Windmill brand
 
-![](/assets/images/20221231FinalSummary/2022F5.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F5.avif)
 
 If you make it often, I suggest buying 2.5KG or more — this dish is extremely starch-hungry. Don't ask why; it's all tuition fees I've paid. Almost no other starch is as pure as this one.
 
 Thanks to my diligent practice, after a fishing activity with colleagues we went out to eat, and among the dishes there was one called `那年秋天的茄子` (The Eggplant of That Autumn)
 
 After eating it I thought it was great, so I decided to go back and replicate it. Here's the restaurant's version.  
-![](/assets/images/20221231FinalSummary/2022F7.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F7.avif)
 
 Here's what mine looked like after replicating it.  
-![](/assets/images/20221231FinalSummary/2022F6.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F6.avif)
 
 This dish is delicious and the cost is dirt cheap. I can tell you very responsibly that the ingredients plus seasonings for this plate cost no more than 10 yuan. The tricky part is how to get the batter into that pullable, thread-drawing state. You'll know once you've eaten it — it's not oily at all. Mine came out greasy, not quite successful, so I still need more practice.
 
@@ -151,7 +151,7 @@ When I worked at Baidu in earlier years, teams were closed off from each other �
 
 At TME, the situation is similar, but with quite a few improvements. We can use QQ Music's features whenever we want; QQ Music provides internal technical support, ensuring technology sharing. I think maybe this is why Tencent is stronger than Baidu!
 
-![](/assets/images/20221231FinalSummary/2022F8.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F8.avif)
 
 This is already the second listed company I've happened to join in my career. I don't hold any stock though. :)
 
@@ -191,7 +191,7 @@ In the first half of the year, I got into face recognition and AI, learning some
 
 So I spent some time on Bilibili and finished a course on digital signal processing.
 
-![](/assets/images/20221231FinalSummary/2022F9.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F9.avif)
 
 After finishing this course, it felt like I hadn't learned anything, because it was all formula derivations — no code, no tutorials on using tools. It can only serve as a basic reference for getting started: things like low-pass filters, high-pass filters, band-pass filters, band-stop filters, FIR filters, BF half-band filters and various other filtering algorithms; or some Laplace theorems, Hilbert theorems, and the like — all rather academic and fundamental, not at all suitable for a hands-on programmer.
 
@@ -202,8 +202,8 @@ After finishing this course, it felt like I hadn't learned anything, because it 
 
 I promise I completed both of these courses 100%. But completing them doesn't mean I've mastered them — I still have to learn while fighting.
 
-![](/assets/images/20221231FinalSummary/2022F10.avif)  
-![](/assets/images/20221231FinalSummary/2022F11.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F10.avif)  
+![2022F](/assets/images/20221231FinalSummary/2022F11.avif)
 
 Keeping the certificates after completing them as a memento, though this doesn't really prove anything.
 
@@ -213,13 +213,13 @@ These two courses are very suitable for iOS developers switching to C/C++ to lea
 
 Hou Jie C++
 
-![](/assets/images/20221231FinalSummary/2022F12.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F12.avif)
 
 Because the entry threshold for audio/video is C/C++, I'm working hard to keep up with the learning in order to align with the technology.
 
 #### Reading
 
-![](/assets/images/20221231FinalSummary/2022Books.avif)
+![2022Books](/assets/images/20221231FinalSummary/2022Books.avif)
 
 I spent the whole year studying these two books. Grandpa Mao's writing is quite good — when I was job hunting I often flipped through it, and it boosted my confidence.
 The other one is a reference book that I consult for details regularly. Nothing much to say — when it comes to a technology, if you haven't mastered it flexibly, never say you know it. Admit it: you don't.
@@ -232,7 +232,7 @@ Put it bluntly: even if you learned C++ once in college, if you haven't used it 
 
 Looking back at my interview preparation, I reviewed algorithms N times. Here's a picture as a memento.
 
-![](/assets/images/20221231FinalSummary/2022F13.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F13.avif)
 
 ## About Ideals
 
@@ -242,7 +242,7 @@ The Fuyao University of Science and Technology he founded has almost turned my d
 
 I remember last year I said Xu Jiayin spent a fortune building cars, and I said these rich people may have money but they don't know how to spend it. Wang Sicong has money and doesn't know how to spend it either. When it comes to solving the chokepoint problems constraining China, spending even 1 million yuan on it beats Wang Jianlin's "small goal" by a mile. I have no idea what the rich think or what their world is like.
 
-![](/assets/images/20221231FinalSummary/2022F14.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F14.avif)
 
 Anyway, I hope Cao Dewang's public image won't collapse, and I hope he runs the university well. If he doesn't, I'll do it myself — within my lifetime I will solve the 34 chokepoint technologies constraining China. [Click here to view the 34 technologies](https://www.sunyazhou.com/2019/12/FinalSummary/)
 
@@ -250,7 +250,7 @@ With Grandpa Cao's current operations, that day is within reach.
 
 Here I have to bring out what Grandpa Cao said
 
-![](/assets/images/20221231FinalSummary/2022F15.avif)
+![2022F](/assets/images/20221231FinalSummary/2022F15.avif)
 
 No spending power +1
 
@@ -259,22 +259,22 @@ No spending power +1
 
 #### MagSafe Magnetic Power Bank  
 
-![](/assets/images/20221231FinalSummary/2022F16.avif)  
+![2022F](/assets/images/20221231FinalSummary/2022F16.avif)  
 If you often go out and own an iPhone 12 or later, I suggest buying one of these. No cumbersome charging cables — it just snaps onto the back of the phone and charges wirelessly. This thing is absolutely useful when you're out.
 
 #### 8BitDo Game Controller
 
-![](/assets/images/20221231FinalSummary/2022F17.avif)  
+![2022F](/assets/images/20221231FinalSummary/2022F17.avif)  
 
 In my spare time I often enjoy playing puzzle games and classic arcade games. There's an emulator called [RetroArch](https://www.retroarch.com/)
 
-![](/assets/images/20221231FinalSummary/2022F18.avif)  
+![2022F](/assets/images/20221231FinalSummary/2022F18.avif)  
 
 This emulator can play games on all kinds of platforms, but it's a hassle to configure — you need to first look up setup tutorials on Xigua Video or Bilibili. Playing games in your spare time is a pretty good thing that's good for your physical and mental health. Of course, work and family matter more; just keep your priorities straight. Manage your time reasonably.
 
 #### The Quark-N Invented by Zhihui Jun
 
-![](/assets/images/20221231FinalSummary/2022F19.avif)  
+![2022F](/assets/images/20221231FinalSummary/2022F19.avif)  
 
 Would you believe this is the smallest card computer? It comes from the genius teenager of Huawei. [Zhihui Jun's Bilibili homepage](https://space.bilibili.com/20259914) — if you like it, click to check it out. It's all Zhihui Jun's work. If I told you he open-sourced all the hardware and original software, including the hardware design drawings and circuits, would you believe it's still hard for you to build one?
 

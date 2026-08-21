@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20191231FinalSummary/AlanTuring.avif)
+![Alan Turing](/assets/images/20191231FinalSummary/AlanTuring.avif)
 
 In 2019, [Alan Turing](https://baike.baidu.com/item/%E8%89%BE%E4%BC%A6%C2%B7%E9%BA%A6%E5%B8%AD%E6%A3%AE%C2%B7%E5%9B%BE%E7%81%B5/3940576?fromtitle=%E9%98%BF%E5%85%B0%C2%B7%E5%9B%BE%E7%81%B5&fromid=10961384) (the pioneer creator of the computer) will appear on the cover of the future 50-pound banknote. This will be a milestone in the history of computer development. It was he who cracked Germany's famous Enigma cipher system and helped the Allies win World War II. Without him, there would be no computers today.
 
@@ -47,8 +47,8 @@ My work was very stable this year; I've been working at Kuaishou all along. Star
 
 One pleasant thing this year was that an article I shared about AVAudioSession earned me a reward, encouraging me to keep learning and studying technology.
 
-![](/assets/images/20191231FinalSummary/share1.avif)
-![](/assets/images/20191231FinalSummary/share2.avif)
+![share](/assets/images/20191231FinalSummary/share1.avif)
+![share](/assets/images/20191231FinalSummary/share2.avif)
 
 > Thanks to the Kuaishou official team for such thoughtful care.
 
@@ -62,7 +62,7 @@ __Kuaishou is my last company in Beijing; no other company is as down-to-earth a
 
 Just as I'm writing this article, the `快手极速版` (Kuaishou Lite) that I helped develop has reached the top of the App Store.
 
-![](/assets/images/20191231FinalSummary/nebula.avif)
+![nebula](/assets/images/20191231FinalSummary/nebula.avif)
 
 My 2019 year-end OKR was to get Kuaishou Lite to the top spot on the App Store. Today, it's done.
 
@@ -74,11 +74,11 @@ The renovation was handled entirely by my girlfriend's parents. All the work was
 
 
 The image below shows the scene after the renovation, when the marble casing was finally installed.   
-![](/assets/images/20191231FinalSummary/decoration1.avif)  
-![](/assets/images/20191231FinalSummary/decoration2.avif)
+![decoration](/assets/images/20191231FinalSummary/decoration1.avif)  
+![decoration](/assets/images/20191231FinalSummary/decoration2.avif)
 
 Below is the final photo after the renovation was completed.  
-![](/assets/images/20191231FinalSummary/decoration3.avif)
+![decoration](/assets/images/20191231FinalSummary/decoration3.avif)
 
 I have a rough idea of the renovation process; here it is in case you renovate later:
 
@@ -115,102 +115,102 @@ After the May Day holiday this year, the live-streaming team had its first team-
 
 Nonstop from Beijing Capital International Airport to Tokyo Haneda Airport in Japan.
 
-![](/assets/images/20191231FinalSummary/japen_travel1.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel1.avif)
 
 > Unexpectedly, the plane flew along the 38th parallel between North and South Korea.
 
 After arriving in Tokyo, we took a bus, and the Japanese license plates shocked me.
 
-![](/assets/images/20191231FinalSummary/japen_travel2.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel2.avif)
 
 A few simple numbers can represent a license plate.
 
 After getting on the bus, I noticed a very practical design: the bus's cup holder.
 
-![](/assets/images/20191231FinalSummary/japen_travel4.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel4.avif)
 
 I'm not saying I'm a foreign-worshipper, but why don't domestic buses have this thing! It has no technical content at all. Such a humanized design is really rare.
 
 
 The port and factories of Tokyo Bay basically explain why Japan is so developed.
 
-![](/assets/images/20191231FinalSummary/japen_travel5.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel5.avif)
 
 Japan is a Commonwealth country; traffic drives on the left, and every truck is polished to a shine.
 
 
-![](/assets/images/20191231FinalSummary/japen_travel6.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel6.avif)
 
 The driver's seat is on the right. I'd only heard that Japanese drivers wear white gloves; this time I actually saw it. I also saw the driver group suitcases by color — that's really something different, making it easy for colorblind tourists to quickly find their own luggage.
 
 
 The first scenic spot we visited was `平和公园` (Heiwa Peace Park). It's a pity I didn't take photos. The air humidity was great. You could tell the environment was nice from the butterflies everywhere.
 
-![](/assets/images/20191231FinalSummary/japen_travel7.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel7.avif)
 
 Arrived at the hot spring hotel in `Yamanashi Prefecture`.
 
-![](/assets/images/20191231FinalSummary/japen_travel9.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel9.avif)
 
 A drugstore in this small prefecture.
 
-![](/assets/images/20191231FinalSummary/japen_travel10.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel10.avif)
 
 The only objective feature that makes me feel capitalism lags behind while socialism thrives is that `utility poles` are everywhere in Japan.
 
 The traffic police station in Yamanashi Prefecture, Japan.
 
-![](/assets/images/20191231FinalSummary/japen_travel8.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel8.avif)
 
 
 Japan's food delivery motorcycles.
 
-![](/assets/images/20191231FinalSummary/japen_travel11.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel11.avif)
 
 Look at this neat fleet. Compared to domestic delivery vehicles, apart from being less environmentally friendly, they're really quite tidy. When our country can equip delivery vehicles this neatly, my motherland will basically have entered the ranks of developed countries. This kind of vehicle is called a `大脚摩托` (big-foot motorcycle) in Japan. It even has split independent suspension in the front. The cargo box can carry meals for at least 20 people, and one tank of gas covers 200 kilometers. It's practically standard equipment for a developed country.
 
 Japanese-style hot spring hotel.
 
-![](/assets/images/20191231FinalSummary/japen_travel12.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel12.avif)
 
 Folding up the bedding and setting down a table lets you eat right there — it saves space and is quite convenient.
 
 The next day we went to Mount Fuji. A glimpse of Mount Fuji.
 
-![](/assets/images/20191231FinalSummary/japen_travel13.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel13.avif)
 
 On the way back, I saw that every house had a few gas canisters in front and behind it.
 
-![](/assets/images/20191231FinalSummary/japen_travel14.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel14.avif)
 
 Japan's residential vehicle, the `K-CAR`, can't exceed 660cc in displacement. It's so small it's very practical.
 
-![](/assets/images/20191231FinalSummary/japen_travel15.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel15.avif)
 
 At Oshino Hakkai, the clear ponds made me think of Chairman Mao's line, **鹰击长空鱼翔浅底** (eagles strike the vast sky, fish glide in the shallow depths).
 
-![](/assets/images/20191231FinalSummary/japen_travel20.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel20.avif)
 
 In the afternoon we arrived in Tokyo and visited the outside of the Imperial Palace.
 
-![](/assets/images/20191231FinalSummary/japen_travel16.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel16.avif)
 
 > His name is [Kusunoki Masashige](https://baike.baidu.com/item/%E6%A5%A0%E6%9C%A8%E6%AD%A3%E6%88%90), the Zhuge Liang of Japan, so to speak. Japan also has a period similar to our Three Kingdoms, called the [Sengoku period](https://baike.baidu.com/item/%E6%A5%A0%E6%9C%A8%E6%AD%A3%E6%88%90), from 1467 to 1585 or 1615. That was the era of Toyotomi Hideyoshi, Oda Nobunaga, and Tokugawa Ieyasu, which ended with the Tokugawa shogunate's final victory and the establishment of the imperial era of today's Japan.
 
 
 On the third day of the trip, we had free time and went to the bustling `Shinjuku` district of Tokyo.
 
-![](/assets/images/20191231FinalSummary/japen_travel19.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel19.avif)
 
 On Japanese streets, crosswalks can go horizontally, vertically, or diagonally.
 
 On the third day of free time, we went to `Roppongi Hills` in the evening to overlook Tokyo Tower and the bustling Tokyo night view.
 
-![](/assets/images/20191231FinalSummary/japen_travel18.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel18.avif)
 
 On the last day, we went to Tokyo Port to see Tokyo Bay, where Japan once signed the instrument of unconditional surrender aboard the American battleship USS Missouri.
 
-![](/assets/images/20191231FinalSummary/japen_travel17.avif)
+![japen_travel](/assets/images/20191231FinalSummary/japen_travel17.avif)
 
 Since this is already quite long, I'll keep the introduction brief and end here.
 
@@ -255,11 +255,11 @@ This year I hardly had much time for reading. The thing I read most was the Mago
 
 I bought the latest edition of Tan Haoqiang's C Programming.
 
-![](/assets/images/20191231FinalSummary/cprogram.avif)
+![cprogram](/assets/images/20191231FinalSummary/cprogram.avif)
 
 I bought Brother Bird's (鸟哥) latest Linux book.
 
-![](/assets/images/20191231FinalSummary/LinuxNew.avif)
+![Linux New](/assets/images/20191231FinalSummary/LinuxNew.avif)
 
 These two books have basically accompanied me through half my career. Now that the renovation is done, these books will be put on the shelf as treasures.
 It's said that the latest version of the Linux book no longer uses CentOS 6, but the CentOS 7 operating system. When I have time, I'll set up a Raspberry Pi; that would be great.
@@ -268,8 +268,8 @@ It's said that the latest version of the Linux book no longer uses CentOS 6, but
 
 In 2019, Beijing introduced a restrictive policy saying that electric bikes that don't meet the standards would be banned from the road in 2 years. So I sold my NIU N1s and switched to a motorcycle for commuting. To ride the motorcycle, I also went to a driving school in Haidian to add the motorcycle license.
 
-![](/assets/images/20191231FinalSummary/motocycle1.avif)
-![](/assets/images/20191231FinalSummary/motocycle2.avif)
+![motocycle](/assets/images/20191231FinalSummary/motocycle1.avif)
+![motocycle](/assets/images/20191231FinalSummary/motocycle2.avif)
 
 A scooter is enough for me. This motorcycle is called a django 150 (Jiangge), manufactured by Jinan Qingqi. So far I've ridden it safely for 3,000 kilometers without any problems. It cost 20,000+ RMB. When I bought it, it happened to coincide with the national tax exemption for motorcycles with displacements under 150cc. I hope to ride this bike back to Harbin, as a memento of these years working in Beijing.
 
@@ -278,10 +278,10 @@ If you don't know much about motorcycles, you can download an app called `哈罗
 To add the motorcycle license, I took everything from Subject 1 to Subject 4. From registration to practice to getting the license took 11 days. Very efficient, though practicing on a motorcycle in summer is really hot.
 
 Motorcycle (2-wheel) Subject 2 practice  
-![](/assets/images/20191231FinalSummary/drivin_license_exam1.avif)
+![drivin_license_exam](/assets/images/20191231FinalSummary/drivin_license_exam1.avif)
 
 Motorcycle (3-wheel) Subject 2 practice  
-![](/assets/images/20191231FinalSummary/drivin_license_exam2.avif)
+![drivin_license_exam](/assets/images/20191231FinalSummary/drivin_license_exam2.avif)
 
 ##### Motorcycle Exam Process
 
@@ -315,20 +315,20 @@ Motorcycle Subject 2 isn't so easy to pass either. During the test, for example,
 
 Even though I'd had my driver's license for over 2 years, I'd never actually driven a car properly. Without a car to practice with, I worried I'd be at a loss when I needed to drive later. Unexpectedly this year, a classmate introduced me to a suitable used car in good condition. So I flew back and bought it.
 
-![](/assets/images/20191231FinalSummary/magotan1.avif)
-![](/assets/images/20191231FinalSummary/magotan2.avif)
-![](/assets/images/20191231FinalSummary/magotan3.avif)
-![](/assets/images/20191231FinalSummary/magotan4.avif)
+![magotan](/assets/images/20191231FinalSummary/magotan1.avif)
+![magotan](/assets/images/20191231FinalSummary/magotan2.avif)
+![magotan](/assets/images/20191231FinalSummary/magotan3.avif)
+![magotan](/assets/images/20191231FinalSummary/magotan4.avif)
 
 It's a `Magotan` B7L, a 7th-generation Magotan manufactured around December 2013 (the latest model is the Magotan B8.5, with letters at the end). Before I took it over, the actual odometer reading was about 80,000 km. It was maintained at the 4S dealership its whole life and had no major issues. It's a 2013 Magotan Deluxe 2.0TSI, and I bought it for 105,000 RMB. After registration, insurance, and maintenance, the total came to about 110,000 RMB.
 
 The first thing I did after buying it was install a flip-out reverse camera — the Volkswagen badge flips open to reveal a camera for the reverse-view image.
 
-![](/assets/images/20191231FinalSummary/magotan5.avif)
+![magotan](/assets/images/20191231FinalSummary/magotan5.avif)
 
 After driving it to Beijing, I wash and wax it on free weekends, and it looks like new.
 
-![](/assets/images/20191231FinalSummary/magotan6.avif)
+![magotan](/assets/images/20191231FinalSummary/magotan6.avif)
 
 Let me tell you about the buying process. The original owner initially thought I wouldn't buy his car, so he didn't take it seriously. Later, he found that I was trading without even looking at the car, so he got serious and brought all the documents. We finished the various insurance by 4 p.m. The next day I had the car fully serviced and bought 1 million RMB of commercial insurance, then drove back to Beijing. During this, I thank my classmate Yao Zhiqiang, who helped handle all the procedures like the license plate registration neatly for me. This middle-school classmate of mine works at a FAW-Volkswagen 4S dealership called Chengjie in Pingfang, Harbin, so having someone there makes things fast and easy. With him at the 4S dealership, there was no reason not to choose Volkswagen. The original owner also gave me a set of winter tires, which is great.
 

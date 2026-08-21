@@ -12,7 +12,7 @@ typora-root-url: ..
 
 Today I ran into a requirement: the PM asked that the input field strip out anything that isn't a letter, number, or Chinese character.
 
-![](/assets/images/20180625FilterString/RegularExpressDemo.avif)
+![Regular Express Demo](/assets/images/20180625FilterString/RegularExpressDemo.avif)
 
 With this question in mind, today's article begins.
 

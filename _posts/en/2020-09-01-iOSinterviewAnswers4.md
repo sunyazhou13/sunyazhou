@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
+![i OS Interview Questions Album Cover](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
 
 # Preface
 
@@ -69,8 +69,8 @@ typedef	struct Obs {
 ```
 Notifications are stored mainly in `key`-`value` form. One key point to emphasize: notifications are stored along two dimensions — `name` and `object` — which correspond to the two different parameters we pass when adding a notification.
 
-![](/assets/images/20200901iOSinterviewAnswers/NCTable.avif)  
-![](/assets/images/20200901iOSinterviewAnswers/NCTable2.avif)  
+![NC Table](/assets/images/20200901iOSinterviewAnswers/NCTable.avif)  
+![NC Table](/assets/images/20200901iOSinterviewAnswers/NCTable2.avif)  
 
 To put it simply, the relationship among `name` & `observer` & `SEL` is: `name` acts as the `key`, `observer` is the observing object, and when the right moment comes, the `observer`'s `SEL` is invoked. This is quite simple. If you think my explanation is imprecise, check the article linked at the beginning.
 
@@ -171,8 +171,8 @@ typedef	struct Obs {
 ```
 Here are the concrete data structures of `nameless` and `named`:
 
-![](/assets/images/20200901iOSinterviewAnswers/NCTable.avif)  
-![](/assets/images/20200901iOSinterviewAnswers/NCTable2.avif)  
+![NC Table](/assets/images/20200901iOSinterviewAnswers/NCTable.avif)  
+![NC Table](/assets/images/20200901iOSinterviewAnswers/NCTable2.avif)  
 
 When adding an observer, we passed in `name` and `object`, so the observer's storage linked list looks like this:
 

@@ -20,7 +20,7 @@ Searching the entire web on this issue, no one explained it clearly. After repea
 
 First, let's see what the finished effect looks like,
 
-![](/assets/images/20240125MPRemoteCommandLikecommand/MPRemoteCommand.avif)
+![MP Remote Command](/assets/images/20240125MPRemoteCommandLikecommand/MPRemoteCommand.avif)
 
 Here's the key API code needed here:
 

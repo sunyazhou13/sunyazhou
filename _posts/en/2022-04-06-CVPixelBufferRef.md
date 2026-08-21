@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20220406CVPixelBufferRef/Cover.avif)
+![Cover](/assets/images/20220406CVPixelBufferRef/Cover.avif)
 
 In iOS, we often see the `CVPixelBufferRef` type. From the data returned by `Camera` capture, we get a `CMSampleBufferRef`, and each `CMSampleBufferRef` contains a `CVPixelBufferRef`. The data returned by hardware video decoding is also a `CVPixelBufferRef`.
 

@@ -10,7 +10,7 @@ typora-root-url: ..
 
 # Preface
 
-![](/assets/images/20230607BatchConvertHEICtoPNG/chatgpt.avif)
+![chatgpt](/assets/images/20230607BatchConvertHEICtoPNG/chatgpt.avif)
 
 This post is strongly colored by personal opinions. If it makes you uncomfortable, please close the page as soon as possible. This post is for personal learning records only. Reposting or sharing within the scope of the license agreement is welcome, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
 
@@ -21,9 +21,9 @@ Recently, the company held an activity that required us to organize our group's 
 ### Write a Script to Convert HEIC to PNG
 
 Let me first show the results before conversion
-![](/assets/images/20230607BatchConvertHEICtoPNG/heic.avif)  
+![heic](/assets/images/20230607BatchConvertHEICtoPNG/heic.avif)  
 The results after conversion
-![](/assets/images/20230607BatchConvertHEICtoPNG/pngs.avif)
+![pngs](/assets/images/20230607BatchConvertHEICtoPNG/pngs.avif)
 
 Now let's write a script to implement it.
 

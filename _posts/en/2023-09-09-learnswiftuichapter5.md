@@ -28,8 +28,8 @@ I've been persisting in learning SwiftUI recently. Over the weekend, when I had 
 
 After building various UIs with SwiftUI, I found that the TabBar view was being obscured,
 
-![](/assets/images/20230805LearnSwiftUIChapter5/before.avif)
-![](/assets/images/20230805LearnSwiftUIChapter5/after.avif)
+![before](/assets/images/20230805LearnSwiftUIChapter5/before.avif)
+![after](/assets/images/20230805LearnSwiftUIChapter5/after.avif)
 
 and you need to use the following function `applyTabbarBackground()` when the app launches.
 

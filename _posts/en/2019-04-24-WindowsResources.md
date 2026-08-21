@@ -34,7 +34,7 @@ First, download a tool for creating the boot drive:
 Download address: link: [http://www.usbrun.com/](http://www.usbrun.com/)
 
 
-![](/assets/images/20190424WindowsResources/1.avif)
+![image](/assets/images/20190424WindowsResources/1.avif)
 
 After downloading the lite version, turn off your antivirus software first!! Double-click to install it on your computer. Once installed, open it. If the software prompts for an update, you can ignore it — no update needed!
 
@@ -44,7 +44,7 @@ Plug in the USB drive
 
 If you can't see the device, unplug and replug the USB drive.
 
-![](/assets/images/20190424WindowsResources/2.avif)
+![image](/assets/images/20190424WindowsResources/2.avif)
 
 Click 一键制作 and wait for it to finish. After it's done, click 模拟启动 to check whether the USB drive can boot. If it can, you're good. Close it.
 
@@ -57,9 +57,9 @@ WIN7 64-bit (B360/B450 Ryzen 2nd gen CPU motherboards not supported)
 System download link: [Link](http://www.jsgho.net/win7/jsy/35178.html) (Technician Clean Edition)
 
 
-![](/assets/images/20190424WindowsResources/3.avif)
+![image](/assets/images/20190424WindowsResources/3.avif)
 
-![](/assets/images/20190424WindowsResources/4.avif)
+![image](/assets/images/20190424WindowsResources/4.avif)
 
 
 ## WIN7~10 64-bit
@@ -72,11 +72,11 @@ ed2k://|file|cn_windows_10_business_edition_version_1803_updated_sep_2018_x64_dv
 
 Download reference:
 
-![](/assets/images/20190424WindowsResources/5.avif)
+![image](/assets/images/20190424WindowsResources/5.avif)
 
 Copy the downloaded system directly to the USB drive you just made — any location is fine.
 
-![](/assets/images/20190424WindowsResources/6.avif)
+![image](/assets/images/20190424WindowsResources/6.avif)
 
 
 ## Setting Up USB Boot
@@ -90,11 +90,11 @@ Below is a reference image of the ASUS motherboard quick boot menu for entering 
 
 > (Note: choose the option without UEFI.)
 
-![](/assets/images/20190424WindowsResources/7.avif)
+![image](/assets/images/20190424WindowsResources/7.avif)
 
 When the USB boot screen appears, choose 启动WIN10 PE X 64 as shown below. Don't select anything else.
 
-![](/assets/images/20190424WindowsResources/8.avif)
+![image](/assets/images/20190424WindowsResources/8.avif)
 
 
 ## Partitioning and Installing the System
@@ -109,17 +109,17 @@ AHCI mode is built into the motherboard; all new motherboards support it. If som
 
 First, open the DG partition toolbox to partition, as shown below:
 
-![](/assets/images/20190424WindowsResources/9.avif)
+![image](/assets/images/20190424WindowsResources/9.avif)
 
 After clicking the partition tool, you'll see your hard drive. Select the new hard drive and click 快速分区 at the top, as shown below:
 
-![](/assets/images/20190424WindowsResources/10.avif)
+![image](/assets/images/20190424WindowsResources/10.avif)
 
 On the new page, you can choose how many partitions to create and how much capacity each one gets — fill in whatever you like. Don't change anything else. In the bottom-right corner is the 4K alignment; just check it, as shown below:
 
 > Note: SSDs need 4K alignment; mechanical hard drives don't need it for now. Choosing it for an HDD will prevent the system from booting.
 
-![](/assets/images/20190424WindowsResources/11.avif)
+![image](/assets/images/20190424WindowsResources/11.avif)
 
 
 After partitioning, close the partition window and proceed to the next step.
@@ -133,12 +133,11 @@ Open 电脑店一键还原 on the desktop, as shown below:
 * ② Select the partition where the system will be installed. [You can identify the partition by its capacity and format info.]
 * ③ Click the execute button, wait for the installation to complete, then restart and unplug the USB drive.
 
-![](/assets/images/20190424WindowsResources/12.avif)
-![](/assets/images/20190424WindowsResources/13.avif)
-![](/assets/images/20190424WindowsResources/14.avif)
-![](/assets/images/20190424WindowsResources/15.avif)
-![](/assets/images/20190424WindowsResources/16.avif)
-![](/assets/images/20190424WindowsResources/17.avif)
+![image](/assets/images/20190424WindowsResources/12.avif)
+![image](/assets/images/20190424WindowsResources/13.avif)
+![image](/assets/images/20190424WindowsResources/15.avif)
+![image](/assets/images/20190424WindowsResources/16.avif)
+![image](/assets/images/20190424WindowsResources/17.avif)
 
 > PS: When the progress bar finishes and it prompts you to restart, be sure to unplug the USB drive before restarting! Then you can proceed into the system installation process normally. Wait about 5-10 minutes for it to finish, restart, and it will work normally.
 

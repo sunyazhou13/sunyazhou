@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/studycover.avif)
+![studycover](/assets/images/20210722iOSLessonsStudyNotes1/studycover.avif)
 
 # 前言
 
@@ -32,24 +32,24 @@ Awesome 系列，就是专门用来搜集各类资料的，其中 [iOS 的 Aweso
 
 iOS 开发者需要掌握的整个基础知识，按照 App 的开发流程（开发、调试测试、发布、上线）进行了划分，如下图所示:
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/basicmodule.avif)
+![basicmodule](/assets/images/20210722iOSLessonsStudyNotes1/basicmodule.avif)
 
 ### 应用开发
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/applicationdevelopmodule.avif)
+![applicationdevelopmodule](/assets/images/20210722iOSLessonsStudyNotes1/applicationdevelopmodule.avif)
 
 ### 原理模块
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/principlemodule.avif)
+![principlemodule](/assets/images/20210722iOSLessonsStudyNotes1/principlemodule.avif)
 
 ### 原生与前端
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/nativeandfemudule.avif)
+![nativeandfemudule](/assets/images/20210722iOSLessonsStudyNotes1/nativeandfemudule.avif)
 
 
 ### 汇总
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/final.avif)
+![final](/assets/images/20210722iOSLessonsStudyNotes1/final.avif)
 
 # 总结
 

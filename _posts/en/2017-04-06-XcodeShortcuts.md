@@ -18,21 +18,21 @@ Preface
 Toggle the Left Panel
 --
 
-![](/assets/images/20170406XcodeShortcuts/Command0.avif)
+![Command](/assets/images/20170406XcodeShortcuts/Command0.avif)
 
 > **command+0**=Show/Hide the left panel
 
 Toggle the Right Panel
 --
 
-![](/assets/images/20170406XcodeShortcuts/CommondOption0.avif)
+![Commond Option](/assets/images/20170406XcodeShortcuts/CommondOption0.avif)
 
 > **command+option+0**=Show/Hide the right panel
 
 Toggle the Debug Area
 --
 
-![](/assets/images/20170406XcodeShortcuts/CommandShiftY.avif)
+![Command Shift Y](/assets/images/20170406XcodeShortcuts/CommandShiftY.avif)
 
 > **command+shift+y**=Show/Hide the debug area at the bottom
 
@@ -40,7 +40,7 @@ Toggle the Debug Area
 Jump to a Specific Line
 --
 
-![](/assets/images/20170406XcodeShortcuts/CommandLine.avif)
+![Command Line](/assets/images/20170406XcodeShortcuts/CommandLine.avif)
 
 > **command + l (L)**=Jump to a specific line. Note: it's lowercase l, not i.
 
@@ -48,7 +48,7 @@ Jump to a Specific Line
 Collapse/Expand a Function Body
 --
 
-![](/assets/images/20170406XcodeShortcuts/CommondOptionLeft.avif)
+![Commond Option Left](/assets/images/20170406XcodeShortcuts/CommondOptionLeft.avif)
 
 > **command+option+⬅︎**=Collapse a function body; `⬅︎` means the left arrow   iOS, macOS, Objective-C
 > **command+option+➡︎**=Expand a function body; `➡︎` means the right arrow
@@ -58,7 +58,7 @@ Collapse/Expand a Function Body
 Move Lines Up/Down
 --
 
-![](/assets/images/20170406XcodeShortcuts/CommondOptionMove.avif)
+![Commond Option Move](/assets/images/20170406XcodeShortcuts/CommondOptionMove.avif)
 
 > **command + option + {**=Move the current line up
 > **command + option + }**=Move the current line down
@@ -66,7 +66,7 @@ Move Lines Up/Down
 Move Lines Left/Right
 --
 
-![](/assets/images/20170406XcodeShortcuts/CommondMove.avif)
+![Commond Move](/assets/images/20170406XcodeShortcuts/CommondMove.avif)
 
 > **command + {**=Move the current line left
 > **command + }**=Move the current line right
@@ -76,7 +76,7 @@ Move Lines Left/Right
 Find a File Across the Whole Project
 --
 
-![](/assets/images/20170406XcodeShortcuts/CommandShiftO.avif)
+![Command Shift O](/assets/images/20170406XcodeShortcuts/CommandShiftO.avif)
 
 > **command + shift + o**=Move the code line forward; o is an uppercase letter O
 
@@ -84,7 +84,7 @@ Find a File Across the Whole Project
 Add a Code Comment / Documentation Comment
 --
 
-![](/assets/images/20170406XcodeShortcuts/CommondOptionQ.avif)
+![Commond Option Q](/assets/images/20170406XcodeShortcuts/CommondOptionQ.avif)
 
 > **command + option + ?**=Automatically add a function documentation comment
 

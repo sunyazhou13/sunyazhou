@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20171215CellAddKVO/UICollectionViewCell.avif)
+![UI Collection View Cell](/assets/images/20171215CellAddKVO/UICollectionViewCell.avif)
 
 
 # Preface
@@ -25,7 +25,7 @@ Since I'm currently developing a [short video](https://github.com/ksvc/KSYMediaE
 
 Doesn't that requirement make you dizzy just listening to it? Here's a screenshot of my finished implementation.
 
-![](/assets/images/20171215CellAddKVO/RecordDemo.avif)
+![Record Demo](/assets/images/20171215CellAddKVO/RecordDemo.avif)
 
 1. Extract the cover image for a finished recording
 2. The one being previewed is always ready to record

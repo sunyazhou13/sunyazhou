@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20240727Magnificationgesture/SwiftUI.avif)
+![Swift UI](/assets/images/20240727Magnificationgesture/SwiftUI.avif)
 
 # Preface
 
@@ -19,7 +19,7 @@ This article is strongly personal in tone. If it makes you uncomfortable, please
 
 `MagnificationGesture` is a gesture recognizer in SwiftUI for handling pinch-to-zoom gestures. It allows users to zoom in or out on elements in a view by pinching (moving two fingers together or apart). This gesture is useful in a wide variety of scenarios, such as image zooming, map zooming, and user interface zooming.
 
-![](/assets/images/20240727Magnificationgesture/MagnificationGesture.avif)
+![Magnification Gesture](/assets/images/20240727Magnificationgesture/MagnificationGesture.avif)
 
 ## Key Features
 

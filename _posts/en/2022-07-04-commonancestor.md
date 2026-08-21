@@ -10,7 +10,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20220701ReverseList/algorithm.avif)
+![algorithm](/assets/images/20220701ReverseList/algorithm.avif)
 
 # Preface
 
@@ -24,7 +24,7 @@ Per [Baidu Baike](https://baike.baidu.com/item/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85
 
 #### Example 1
 
-![](/assets/images/20220704CommonAncestor/1.avif)
+![image](/assets/images/20220704CommonAncestor/1.avif)
 
 ``` sh 
 输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
@@ -35,7 +35,7 @@ Per [Baidu Baike](https://baike.baidu.com/item/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85
 
 #### Example 2
 
-![](/assets/images/20220704CommonAncestor/2.avif)
+![image](/assets/images/20220704CommonAncestor/2.avif)
 
 ``` sh 
 输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4

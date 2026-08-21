@@ -9,7 +9,7 @@ tags: [skills]
 
 # Preface
 
-![](/assets/images/20170929MarkdownTable/table.avif)
+![table](/assets/images/20170929MarkdownTable/table.avif)
 
 I used to always fail to insert tables in markdown. This post shares how to insert tables in markdown.
 

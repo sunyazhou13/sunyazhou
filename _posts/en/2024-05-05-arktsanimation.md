@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/harmonyOS.avif)
+![harmony OS](/assets/images/20240116HarmonyPhoneSendFileTomacOS/harmonyOS.avif)
 
 # Preface
 
@@ -34,7 +34,7 @@ Detailed source: [HarmonyOS Development Documentation - Animation](https://devel
 
 ## Property Animation (animation)
 
-![](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimation.avif)
+![Harmony OS Animation](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimation.avif)
 
 ``` ts
 import { SizeT } from '@ohos.arkui.node';
@@ -103,7 +103,7 @@ CGAffineTransformIdentity;
 
 ```
 
-![](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo.avif)
+![Harmony OS Animate To](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo.avif)
 
 Here's the HarmonyOS ArkUI example code:
 
@@ -159,10 +159,10 @@ struct MTAnimation2 {
 ```
 If you change x, y, z in `.rotate` all to 1 and rotate 625 degrees, it looks like this:
 
-![](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo2.avif)
+![Harmony OS Animate To](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo2.avif)
 
 When we click continuously during the animation, it's very responsive — just like UIView Animation in iOS, if interrupted mid-animation, it directly executes the next explicit animation. The following demo shows the responsive effect:
-![](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo3.avif)
+![Harmony OS Animate To](/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo3.avif)
 
 [For more details, visit the HarmonyOS official documentation - Explicit Animation (animateTo)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-explicit-animation-0000001862687717)
 
@@ -170,7 +170,7 @@ When we click continuously during the animation, it's very responsive — just l
 
 Keyframe animation in HarmonyOS development is implemented using `UIContext`:
 
-![](/assets/images/20240505ArkTSAnimation/HarmonyOSKeyframeAnimation.avif)
+![Harmony OS Keyframe Animation](/assets/images/20240505ArkTSAnimation/HarmonyOSKeyframeAnimation.avif)
 
 ``` ts
 // xxx.ets
@@ -228,7 +228,7 @@ struct KeyframeDemo {
 Component transition animation:
 
 As shown below:
-![](/assets/images/20240505ArkTSAnimation/transition1.avif)
+![transition](/assets/images/20240505ArkTSAnimation/transition1.avif)
 
 Implementation code:
 

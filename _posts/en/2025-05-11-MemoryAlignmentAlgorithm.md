@@ -9,7 +9,7 @@ math: true
 ---
 
 
-![](/assets/images/20240727Magnificationgesture/SwiftUI.avif)
+![Swift UI](/assets/images/20240727Magnificationgesture/SwiftUI.avif)
 
 # Introduction
 
@@ -118,6 +118,6 @@ $$
 \text{AlignedSize} = \text{size} - (\text{size} \ \% \ \text{align}) + \text{align}
 $$
 
-![](/assets/images/20250511MemoryAlignmentAlgorithm/AlignedSize.avif)
+![Aligned Size](/assets/images/20250511MemoryAlignmentAlgorithm/AlignedSize.avif)
 
 Where `%` can be optimized with `& (align - 1)` (when `align` is a power of two).

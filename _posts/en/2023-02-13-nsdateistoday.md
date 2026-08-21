@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20230213NSDateIsToday/date.avif)
+![date](/assets/images/20230213NSDateIsToday/date.avif)
 
 # Preface
 
@@ -74,7 +74,7 @@ Today at work, while reviewing code, we disagreed on the performance cost of che
 
 I chose methods 1 and 3 for testing. Here's the code:
 
-![](/assets/images/20230213NSDateIsToday/result.avif)
+![result](/assets/images/20230213NSDateIsToday/result.avif)
 
 ``` sh
 2023-02-13 19:59:08.855078+0800 NSDateSpeedDemo[1837:197213] NSCalendar耗时:0.011064

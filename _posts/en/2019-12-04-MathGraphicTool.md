@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20191204MathGraphicTool/MathGraphic.avif)
+![Math Graphic](/assets/images/20191204MathGraphicTool/MathGraphic.avif)
 
 # Preface
 
@@ -26,4 +26,4 @@ Recently I found a website dedicated to drawing math graphics.
 
 The math tools here can be used directly — for example, drawing a coordinate system to illustrate an animation's motion trajectory, etc.
 
-![](/assets/images/20191204MathGraphicTool/MathGraphicOverView.avif)
+![Math Graphic Over View](/assets/images/20191204MathGraphicTool/MathGraphicOverView.avif)

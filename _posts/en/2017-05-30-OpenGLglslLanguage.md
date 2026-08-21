@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 # Preface  
-![](/assets/images/20170530OpenGLglslLanguage/OpenglVboShaderGlslVaoGPU.avif)
+![Opengl Vbo Shader Glsl Vao GPU](/assets/images/20170530OpenGLglslLanguage/OpenglVboShaderGlslVaoGPU.avif)
 
 I've been studying OpenGL recently and got battered by all kinds of unfamiliar terminology, so I'm recording some learning points for reference and study.
 
@@ -313,7 +313,7 @@ vec4 toonify(in float intensify)
 
 The `discard` keyword can prevent a fragment from updating the frame buffer. When flow control encounters this keyword, the fragment being processed is marked as discarded.
 
-If you don't understand what "marked as discarded" means, you can refer to [UIView's drawing process](理解UIView的绘制)
+If you don't understand what "marked as discarded" means, you can refer to [UIView's drawing process](/2017/10/UIViewRendering/)
 
 ## Functions
 

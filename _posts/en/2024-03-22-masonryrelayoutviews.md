@@ -17,7 +17,7 @@ This article carries strong personal feelings. If you feel uncomfortable reading
 ## Background
 
 
-![](/assets/images/20240322MasonryRelayoutViews/MasonryRelayout.avif)
+![Masonry Relayout](/assets/images/20240322MasonryRelayoutViews/MasonryRelayout.avif)
 
 During development, we often encounter situations where certain entries appear or disappear not in a specified time order. For example, for the three entries above, the appearance timings don't follow a particular sequence, but the order of appearance is fixed. This creates some difficult problems, such as view A's appearance depending on view B's position; if B isn't there, the dependency continues upward or downward.
 
@@ -264,7 +264,7 @@ Calculating the offset distance of `leadSpace` from the left to the right.
 
 Through the above implementation, we get the following demo
 
-![](/assets/images/20240322MasonryRelayoutViews/MasonryRelayoutDemo.avif)
+![Masonry Relayout Demo](/assets/images/20240322MasonryRelayoutViews/MasonryRelayoutDemo.avif)
 
 The core code here is Masonry's array extension methods
 

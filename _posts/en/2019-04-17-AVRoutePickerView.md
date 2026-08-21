@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20190417AVRoutePickerView/cover_album.avif)
+![cover_album](/assets/images/20190417AVRoutePickerView/cover_album.avif)
 
 
 # Preface
@@ -16,11 +16,11 @@ typora-root-url: ..
 
 Recently I happened to look at AVKit and found a lot of new content inside. Among it is a UI control called `AVRoutePickerView`, which I planned to study. Actually it's very common — you can see it in the system Control Center by swiping down the screen, when you connect headphones or wireless Bluetooth devices.
 
-![](/assets/images/20190417AVRoutePickerView/RouteChange2.avif)
+![Route Change](/assets/images/20190417AVRoutePickerView/RouteChange2.avif)
 
 Here's a real-world example in NetEase Cloud Music:
 
-![](/assets/images/20190417AVRoutePickerView/RouteChange1.avif)
+![Route Change](/assets/images/20190417AVRoutePickerView/RouteChange1.avif)
 
 This control is mainly used for AirPlay casting and audio route switching.
 
@@ -69,7 +69,7 @@ Here I'll use a ViewController as an example:
 
 After adding it, run it and you'll see:
 
-![](/assets/images/20190417AVRoutePickerView/RouteChange3.avif)
+![Route Change](/assets/images/20190417AVRoutePickerView/RouteChange3.avif)
 
 The `AVRoutePickerView` view only exposes two color values in its API — nothing else, and nothing else can be changed. So how do we implement a custom icon like NetEase Cloud Music?
 
@@ -82,7 +82,7 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:routerPickerView.bou
 
 ```
 
-![](/assets/images/20190417AVRoutePickerView/RouteChange4.avif)
+![Route Change](/assets/images/20190417AVRoutePickerView/RouteChange4.avif)
 
 Just add an icon yourself.
 

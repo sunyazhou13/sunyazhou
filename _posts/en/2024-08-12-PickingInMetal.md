@@ -13,7 +13,7 @@ typora-root-url: ..
 This post is strongly colored by personal opinions. If it makes you uncomfortable, please close the page as soon as possible. This post is for personal learning records only. Reposting or sharing within the scope of the license agreement is welcome, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
 
 
-![](/assets/images/20240813PickingAndHitTestinginMetal/picking.avif)
+![picking](/assets/images/20240813PickingAndHitTestinginMetal/picking.avif)
 
 
 # Learning Metal Recently
@@ -22,7 +22,7 @@ When I got to chapter 12, I came across a problem I had long wanted to solve but
 
 In the book Metal.by.Tutorials.4th.2023.12.pdf, I found the answer - `Object Picking`
 
-![](/assets/images/20240813PickingAndHitTestinginMetal/Metal.by.Tutorials.4th.2023.12.avif)
+![Metal.by.Tutorials.4th.2023.](/assets/images/20240813PickingAndHitTestinginMetal/Metal.by.Tutorials.4th.2023.12.avif)
 
 
 ``` sh

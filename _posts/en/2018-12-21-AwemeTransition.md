@@ -13,7 +13,7 @@ typora-root-url: ..
 
 These past few days have been quite busy. Today I bring you the implementation of Douyin's transition animation. Enough talk — here's the picture.
 
-![](/assets/images/20181221AwemeTransition/transition.avif)
+![transition](/assets/images/20181221AwemeTransition/transition.avif)
 
 This requires the swipe up/down [demo](https://github.com/sunyazhou13/AwemeDemo) from my previous post.
 

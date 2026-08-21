@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20180813TapticEngineFeedback/TapticEngine.avif)
+![Taptic Engine](/assets/images/20180813TapticEngineFeedback/TapticEngine.avif)
 
 
 # Preface
@@ -40,7 +40,7 @@ iOS 10 introduced a new way to generate haptic feedback, helping users recognize
 
 > The image below shows enabling Sound & Haptics
 > Phone -- Settings -- Sounds & Haptics -- System Haptics (on)
-> ![](/assets/images/20180813TapticEngineFeedback/setting.avif)
+> ![setting](/assets/images/20180813TapticEngineFeedback/setting.avif)
 
 
 ### Calling the relevant vibration code to implement vibration

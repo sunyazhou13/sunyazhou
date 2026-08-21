@@ -13,18 +13,18 @@ typora-root-url: ..
 Today my friend (Wang Kecheng) discovered that Xcode has a very convenient feature — you can debug and run on a real device wirelessly.
 
 Take a look at this image.  
-![](/assets/images/20170616XcodeDebugViaWireless/debug.avif)
+![debug](/assets/images/20170616XcodeDebugViaWireless/debug.avif)
 
 
 ### Configuration
 
 Step 1: Select the device option
 
-![](/assets/images/20170616XcodeDebugViaWireless/setting1.avif)
+![setting](/assets/images/20170616XcodeDebugViaWireless/setting1.avif)
 
 Step 2: Check the "via network" box
 
-![](/assets/images/20170616XcodeDebugViaWireless/setting2.avif)
+![setting](/assets/images/20170616XcodeDebugViaWireless/setting2.avif)
 
 The remaining work is just unplugging that white data cable that we absolutely hate but have to use, that costs a fortune and always breaks at the connector.
 

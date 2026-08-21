@@ -9,7 +9,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20220916FBMemoryCheckTool/FBMemoryProfiler.avif)
+![FB Memory Profiler](/assets/images/20220916FBMemoryCheckTool/FBMemoryProfiler.avif)
 
 # Preface
 
@@ -86,16 +86,16 @@ I won't go into the rest in detail here.
 
 The search here uses depth-first traversal.
 
-![](/assets/images/20220916FBMemoryCheckTool/retainCycle.avif)
+![retain Cycle](/assets/images/20220916FBMemoryCheckTool/retainCycle.avif)
 
 
 ## How to Use
 
-![](/assets/images/20220916FBMemoryCheckTool/retainCycle1.avif)
+![retain Cycle](/assets/images/20220916FBMemoryCheckTool/retainCycle1.avif)
 
 Example scenario analysis
 
-![](/assets/images/20220916FBMemoryCheckTool/retainCycle2.avif)
+![retain Cycle](/assets/images/20220916FBMemoryCheckTool/retainCycle2.avif)
 
 Example code
 

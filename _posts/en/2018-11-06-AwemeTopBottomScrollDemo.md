@@ -14,7 +14,7 @@ typora-root-url: ..
 I've been studying how Douyin's short video app implements the vertical top-to-bottom swiping. Today I wrote a demo to make it easier to learn the technique and record the knowledge.
 
 
-![](/assets/images/20181106AwemeTopBottomScrollDemo/AwemeDemo1.avif)
+![Aweme Demo](/assets/images/20181106AwemeTopBottomScrollDemo/AwemeDemo1.avif)
 
 
 # Technical Implementation Principle
@@ -38,7 +38,7 @@ _tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT, 0, SCREEN_HEIGHT * 3, 
 
 Let me draw a diagram to demonstrate.
 
-![](/assets/images/20181106AwemeTopBottomScrollDemo/AwemeDemo2.avif)
+![Aweme Demo](/assets/images/20181106AwemeTopBottomScrollDemo/AwemeDemo2.avif)
 
 
 
@@ -140,7 +140,7 @@ Of course we can make the TableView auto-scroll to the top. But how do we interc
 
 Why reset to 0? Take a look at the image below.
 
-![](/assets/images/20181106AwemeTopBottomScrollDemo/AwemeDemo3Error.avif)
+![Aweme Demo3Error](/assets/images/20181106AwemeTopBottomScrollDemo/AwemeDemo3Error.avif)
 
 Even though we can auto-scroll the TableView to the top, we can't intercept the status bar tap event. In the place where this event is handled, we reset the current page index to `0`.
 

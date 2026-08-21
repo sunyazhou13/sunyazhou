@@ -12,7 +12,7 @@ typora-root-url: ..
 
 Hi everyone, it's me again. Today I'm sharing the implementation of the Douyin (TikTok) like animation. Enough talk, let me show you the pictures.
 
-![](/assets/images/20181127LikeAnimation/likeAnimation1.avif)
+![like Animation](/assets/images/20181127LikeAnimation/likeAnimation1.avif)
 
 
 The main technical points covered in this article:
@@ -27,13 +27,13 @@ I usually attach the demo at the bottom of the article after writing it. If you 
 
 First, let's break down this animation in detail
 
-![](/assets/images/20181127LikeAnimation/likeAnimation2.avif)
+![like Animation](/assets/images/20181127LikeAnimation/likeAnimation2.avif)
 > Watch carefully
 
 
 Let's look at a single animation
 
-![](/assets/images/20181127LikeAnimation/likeAnimation3.avif)
+![like Animation](/assets/images/20181127LikeAnimation/likeAnimation3.avif)
 
 > Watch carefully. I set the duration to 10 seconds so everyone can see it clearly
 
@@ -41,7 +41,7 @@ Let's look at a single animation
 
 From the two images above, we can see it's a triangular Bezier curve
 
-![](/assets/images/20181127LikeAnimation/likeAnimation4.avif)
+![like Animation](/assets/images/20181127LikeAnimation/likeAnimation4.avif)
 
 
 Such an animation needs to go through:
@@ -55,7 +55,7 @@ After all that explanation, it's actually just combining a `CABasicAnimation` wi
 
 When it ends, it roughly looks like this
 
-![](/assets/images/20181127LikeAnimation/likeAnimation5.avif)
+![like Animation](/assets/images/20181127LikeAnimation/likeAnimation5.avif)
 
 Actually, at the end, it's a transition from the path where the previous animation finished to a path of three points on a line, until it finally fades away.
 
@@ -112,7 +112,7 @@ UIBezierPath *startPath = [UIBezierPath bezierPath];
 
 After adding this code, the shape looks like this
 
-![](/assets/images/20181127LikeAnimation/likeAnimation4.avif)
+![like Animation](/assets/images/20181127LikeAnimation/likeAnimation4.avif)
 
 Then after creating it, we need to assign the path to layer.path. Remember to convert it to CGPath
 
@@ -167,7 +167,7 @@ The meaning of these lines of code is to transition from the path of our previou
 
 The image below shows the transition animation from start to end.
 
-![](/assets/images/20181127LikeAnimation/likeAnimation5.avif)
+![like Animation](/assets/images/20181127LikeAnimation/likeAnimation5.avif)
 
 The remaining work is just to do an ordinary animation, nothing much else.
 

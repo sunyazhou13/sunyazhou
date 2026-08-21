@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20180515HowToCreateTopBottomRoundedCornersForViews/TopBottomCornerDemo.avif)
+![Top Bottom Corner Demo](/assets/images/20180515HowToCreateTopBottomRoundedCornersForViews/TopBottomCornerDemo.avif)
 
 # Preface
 
@@ -200,7 +200,7 @@ UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animatio
 
 The final effect
 
-![](/assets/images/20180515HowToCreateTopBottomRoundedCornersForViews/TopBottomCornerDemo.avif)
+![Top Bottom Corner Demo](/assets/images/20180515HowToCreateTopBottomRoundedCornersForViews/TopBottomCornerDemo.avif)
 
 
 

@@ -53,7 +53,7 @@ After searching around without finding an optimal solution, I thought of ChatGPT
 
 Through the above operations, we easily added a black-and-white filter to a UIImage to make it appear grayscale.
 
-![](/assets/images/20230614BlackWhiteFilter/BlackWhiteFilter.avif)
+![Black White Filter](/assets/images/20230614BlackWhiteFilter/BlackWhiteFilter.avif)
 
 
 

@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20201231FinalSummary/ShulanServiceArea.avif)
+![Shulan Service Area](/assets/images/20201231FinalSummary/ShulanServiceArea.avif)
 August 2020, Shulan Service Area. On the road home, ending my years of working in Beijing.
 
 # Preface
@@ -47,11 +47,11 @@ This year's events:
 
 ### Pandemic
 
-![](/assets/images/20201231FinalSummary/vaccine.avif)
+![vaccine](/assets/images/20201231FinalSummary/vaccine.avif)
 
-Shortly after I finished writing my 2019 year-end summary, a pandemic disease began spreading rapidly across China. We later learned it was COVID-19. In early 2020, it became even more severe. I remember our X6 team going to [Chunlahao Chongqing Hotpot (Shangdi 7th Street)]() for a hotpot dinner, and the topic of discussion was how to buy masks. On the drive home for the New Year along the Beijing-Harbin Expressway, every service area was filled with anxiety. By the fourth day of the New Year, cities, neighborhoods, and villages began locking down. Masks, disinfectants, disposable gloves, and goggles — medical supplies were in short supply and sold out.
+Shortly after I finished writing my 2019 year-end summary, a pandemic disease began spreading rapidly across China. We later learned it was COVID-19. In early 2020, it became even more severe. I remember our X6 team going to Chunlahao Chongqing Hotpot (Shangdi 7th Street) for a hotpot dinner, and the topic of discussion was how to buy masks. On the drive home for the New Year along the Beijing-Harbin Expressway, every service area was filled with anxiety. By the fourth day of the New Year, cities, neighborhoods, and villages began locking down. Masks, disinfectants, disposable gloves, and goggles — medical supplies were in short supply and sold out.
 
-![](/assets/images/20201231FinalSummary/epidemicpreventionmaterials.avif)
+![epidemicpreventionmaterials](/assets/images/20201231FinalSummary/epidemicpreventionmaterials.avif)
 
 The situation became quite serious. Starting from the eighth day, neighborhoods were fully locked down. And so began a long epidemic prevention battle that lasted the entire year. As of this writing, many countries outside China are still struggling with or even losing control of the pandemic. The US is hit hard, the UK has a mutated virus spreading, frozen food products repeatedly test positive for the virus, and environmental transmission has become a possibility. All these negative developments have severely dragged down industrial production, affecting every aspect of our lives. The direct impacts include shortages of imported goods, rising living costs, increased employment pressure, economic downturn, and a noticeable decrease in per capita income.
 
@@ -77,11 +77,11 @@ In my 2.5 years at Kuaishou, I had 3 different bosses. My longest-held desk at K
 
 The photo below was taken on my first day back at work after the long quarantine:
 
-![](/assets/images/20201231FinalSummary/returntowork1.avif)
+![returntowork](/assets/images/20201231FinalSummary/returntowork1.avif)
 
 Very few people at the office:
 
-![](/assets/images/20201231FinalSummary/returntowork2.avif)
+![returntowork](/assets/images/20201231FinalSummary/returntowork2.avif)
 
 I used to always eat breakfast at the company. During the pandemic, the company distributed isolation shields to everyone, and we had to bring our work meals back to our desks to eat.
 
@@ -93,23 +93,23 @@ This is the only app I've witnessed going from 0 to 50 million DAU. From startin
 
 At the mobilization meeting before taking on the Spring Festival Gala project, I looked like this:
 
-![](/assets/images/20201231FinalSummary/meeting.avif)
+![meeting](/assets/images/20201231FinalSummary/meeting.avif)
 
 During the actual work:
 
-![](/assets/images/20201231FinalSummary/NewYearsDay.avif)
+![New Years Day](/assets/images/20201231FinalSummary/NewYearsDay.avif)
 
 In the end, New Year's Day was quite successful:
 
-![](/assets/images/20201231FinalSummary/meetingresult.avif)
+![meetingresult](/assets/images/20201231FinalSummary/meetingresult.avif)
 
 I hope these photos will withstand the test of time. Even if they're of no use, they serve as indispensable material for the blog.
 
 ### Selling My Motorcycle
 
 After working in Beijing for so many years, I went through N electric bikes — either they kept breaking down or charging was too troublesome. That eventually led me to decide to buy a good motorcycle for commuting, to ease the feeling of repression from Beijing life.  
-![](/assets/images/20201231FinalSummary/motor1.avif)  
-![](/assets/images/20201231FinalSummary/motor2.avif)  
+![motor](/assets/images/20201231FinalSummary/motor1.avif)  
+![motor](/assets/images/20201231FinalSummary/motor2.avif)  
 This motorcycle was the best one I ever bought, bar none. Unfortunately, I only rode it for a bit over 3000 km before selling it, because my hometown doesn't allow motorcycles on the road. I had no way to bring it back. But at least the final selling price didn't lose much money. I can consider it properly taken care of.
 
 ### Leaving My Job and Ending My Beijing Years
@@ -118,14 +118,14 @@ Ever since I started working, I've always had a wish — when could I stop drift
 
 In 2018, I joined Kuaishou, responsible for live streaming iOS development. During my tenure, I met many different colleagues, each technically outstanding. I attended Kuaishou's 13th onboarding training (Kuaishou Middle School), where CEO Su Hua told us about the hardships of starting the business and the unsung investors who silently supported Kuaishou. I clearly remember Hua-ge saying: "Kuaishou wants to be a company with warmth, to let everyone receive universal benefit like sunshine." Hua-ge's simplicity had a personal charm. I hoped to inherit this simplicity from Hua-ge. Even though he was ranked 84th on the 2018 Hurun Rich List, I would sometimes see this CEO in the elevator. No matter how wealthy, he still drove a Buick GL6, a practical business car. Sometimes after work, I'd often see him riding a Mobike bike home on Houchangcun Road. This is also the main reason I often wore Huarui cotton-padded shoes — not to imitate this CEO's low profile, but because I was poor.
 
-Now, restless as I am, I only have one ![](/assets/images/20201231FinalSummary/getrich.avif) thought.
+Now, restless as I am, I only have one ![getrich](/assets/images/20201231FinalSummary/getrich.avif) thought.
 
 
 What impressed me most was when server-side leader Li Weibo gave everyone a sharing session on the process a video goes through from a user's phone to what the viewer sees. This is something every Kuaishou employee should understand — from video production to backend processing, to video consumption. It equipped everyone with the foundational knowledge for working at Kuaishou. I benefited greatly. In my 3 years at Baidu, besides Zhibo briefly explaining the Baidu Netdisk app design to newcomers, no one was willing to explain how a keyword search goes from natural language analysis to the backend search engine processing and then returning the information content the user sees. From this perspective, Baidu should learn from latercomers' experiences.
 
 With the team constantly changing and always being assigned (my skills weren't outstanding enough), thinking about my 7 years of drifting in Beijing, I often couldn't sleep at night. With overtime leaving insufficient time for sleep, my hair started turning gray. Plus, the Beijing government maintained a high-pressure stance against non-locals coming to Beijing for employment — unequal rights, unequal road rights, but equal taxes. Anyway, non-locals had almost none of the equal rights that Beijing locals enjoyed — differential treatment. With all this, housing prices remained stubbornly high, the household registration issue was always hard to resolve, and in Beijing, aside from the dull 996 work, any road trip was a luxury for us. After all, there's no **equivalent exchange** — I acknowledge that, but not even letting us have a car is a bit much. We rent for work, can't enjoy ourselves on holidays, and Beijing drifters are treated as **human batteries**. My biggest worry was having to move and find a new rental every year, and not having a car was genuinely inconvenient. This oppressive life state lasted for years. Finally this year, I could no longer bear Beijing's policy of not allowing non-local vehicles to enter, with only 12 entry permits per year. This tormented me. I still clearly remember playing badminton late after work and not being able to get a ride home. Gradually, various things triggered my **reflections on working in Beijing** — what did I really want? Isn't it just to get the life I want? If this situation continued, the money might be a lot, but it would all be harvested by high housing prices, setting me back to square one. Although everyone in Beijing lives this way, it wasn't the life I wanted. After weighing things for a long time, plus the work changes that disappointed me, I submitted my resignation and started my leave to return home.
 
-![](/assets/images/20201231FinalSummary/JinghaExpressway.avif)  
+![Jingha Expressway](/assets/images/20201231FinalSummary/JinghaExpressway.avif)  
 I had never been as happy as when I left Beijing. That joy was unprecedented.
 
 > Looking back at every step of my Beijing years, I walked each one so alone.
@@ -134,19 +134,19 @@ I had never been as happy as when I left Beijing. That joy was unprecedented.
 
 Along the Beijing-Harbin Expressway, driving my war chariot, heading northeast.
 
-![](/assets/images/20201231FinalSummary/route1.avif)
+![route](/assets/images/20201231FinalSummary/route1.avif)
 
 The first leg of the journey home was to a classmate's home near Beidayaying in Tiexi District, Shenyang, Liaoning Province. After a year of pandemic prevention, residential compounds across the country were strictly controlled, prohibiting outsiders from entering. Before setting off, I confirmed that the compound allowed entry and exit, then started my journey. Liaoning Province truly has beautiful scenery. Passing through service areas like Suizhong, Xingcheng, and Tashan, I recorded the beautiful memories of this journey. Finally, at the Panjin Service Area, I took the photo below. Passing the Tashan Service Area, that twin-tower building spanning the Beijing-Harbin Expressway is perhaps the only landmark on this route!
 
-![](/assets/images/20201231FinalSummary/panjinservicearea.avif)
+![panjinservicearea](/assets/images/20201231FinalSummary/panjinservicearea.avif)
 
 The second leg of the journey home required a detour from the Jilin direction, taking the Jilin-Heilongjiang Expressway, through Shulan and Wuchang, then back to the Ice City of Harbin. Along the way, I passed through Kaiyuan and Tieling service areas — both very nice and modern. If anyone drives through, definitely check out these two service areas.
 
-![](/assets/images/20201231FinalSummary/route2.avif)
+![route](/assets/images/20201231FinalSummary/route2.avif)
 
 Along the way, you'll pass by the beautiful **Rime Island** at the foot of Changbai Mountain. The scenery is great. If I get the chance, I'll definitely drive there for a closer look.
 
-![](/assets/images/20201231FinalSummary/provincialtollstations.avif)
+![provincialtollstations](/assets/images/20201231FinalSummary/provincialtollstations.avif)
 
 Finally, passing through the Xinfa provincial toll station, I entered Harbin. The entire trip took 2 days, covering about 1500 km.
 
@@ -168,7 +168,7 @@ Perhaps my departure revealed the deepest pain in every Beijing drifter's heart.
 
 When you're young, you don't appreciate Jonathan Lee; when you finally understand, you're already past forty. His songs withstand the test of time and sing the pain in my heart.
 
-![](/assets/images/20201231FinalSummary/JonathanLee.avif)
+![Jonathan Lee](/assets/images/20201231FinalSummary/JonathanLee.avif)
 
 Actually, some of his lyrics are so real and poetic that they touch me deeply as a casual fan.
 
@@ -207,7 +207,7 @@ After more than 7 years of work practice, I hereby formally declare that these t
 ##### Calligraphy Desk
 
 During the pandemic, I bought a North American black walnut [calligraphy desk](https://detail.tmall.com/item.htm?id=592669199819&spm=a1z09.2.0.0.248d2e8dpNMOm5&_u=v2qkte5648b&sku_properties=10187648:21959) for studying. I quite like that Taishi chair. It's not comfortable to sit in — a reminder that life is always uncomfortable like this.  
-![](/assets/images/20201231FinalSummary/tablesandchairs.avif)
+![tablesandchairs](/assets/images/20201231FinalSummary/tablesandchairs.avif)
 
 Solid wood furniture can be a bit pricey. The Taishi chair + calligraphy desk cost roughly ¥5000+ RMB.
 
@@ -215,9 +215,9 @@ Solid wood furniture can be a bit pricey. The Taishi chair + calligraphy desk co
 
 Since I bought a cheap car last year, the headlights were terrible at night on the highway — I almost ran over a tire, which was quite dangerous. So I recommend VW owners consider upgrading their headlights. This upgrade is fully compliant with vehicle inspection regulations. [Volkswagen HID headlight upgrade](https://detail.tmall.com/item.htm?id=562699335539&spm=a1z09.2.0.0.248d2e8dCkJmgu&_u=v2qkte5851d&sku_properties=3986737:6070426;122216751:20213). I upgraded with imported Hella 5 lenses, which are very expensive. Plus Osram top-tier D1s 6000K color temperature HID bulbs and a Hella 4 ballast.
 
-![](/assets/images/20201231FinalSummary/autobulb.avif)
+![autobulb](/assets/images/20201231FinalSummary/autobulb.avif)
 
-![](/assets/images/20201231FinalSummary/magotan1990.avif)
+![magotan](/assets/images/20201231FinalSummary/magotan1990.avif)
 
 Upgrading the headlights was absolutely a necessary operation. Although this war chariot is a bit old, it accompanied me on two round trips between home and Beijing. Over 6000+ km of zero-accident safe driving — it never left me stranded on the road, which I'm quite gratified by. This May Day, I replaced all 4 Continental tires and got an MIB 682E head unit. I hope it will take good care of this war chariot's owner in the future.
 
@@ -225,7 +225,7 @@ Upgrading the headlights was absolutely a necessary operation. Although this war
 
 A floor-cleaning godsend that frees your hands. I'm quite lazy and don't like cleaning. As a 3C-loving programmer, an electric robot vacuum is indispensable for home use. Makes it convenient to clean the room.
 
-![](/assets/images/20201231FinalSummary/floormoppingrobot.avif)
+![floormoppingrobot](/assets/images/20201231FinalSummary/floormoppingrobot.avif)
 
 ### Summary
 

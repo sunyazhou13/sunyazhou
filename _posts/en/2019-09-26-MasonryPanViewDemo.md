@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20190926MasonryPanViewDemo/panviewdemo.avif)
+![panviewdemo](/assets/images/20190926MasonryPanViewDemo/panviewdemo.avif)
 
 
 # Preface
@@ -29,9 +29,9 @@ Before diving in, I recommend reading [土土哥's (ttge)](http://tutuge.me/) [I
 
 
 The images below show 土土哥's demo implementation:  
-![](/assets/images/20190926MasonryPanViewDemo/tutugeMasonry1.avif)
+![tutuge Masonry](/assets/images/20190926MasonryPanViewDemo/tutugeMasonry1.avif)
 
-![](/assets/images/20190926MasonryPanViewDemo/tutugeMasonry2.avif)
+![tutuge Masonry](/assets/images/20190926MasonryPanViewDemo/tutugeMasonry2.avif)
 
 
 But my question is: how to ensure that the tip bubble label can move freely left and right, allowing for `margin movement` around the logo image?

@@ -31,11 +31,11 @@ However, in OneV's Den's simplified version of the new [https://github.com/cotes
 
 After emailing OneV's Den to ask,
 
-![](/assets/images/20230202JekyllPost/email.avif)
+![email](/assets/images/20230202JekyllPost/email.avif)
 
 he not only replied, but also said he doesn't write posts very often — he just copies an old one, which isn't much trouble. At the end of the email, he gave a very practical Stack Overflow answer.
 
-![](/assets/images/20230202JekyllPost/answer.avif)
+![answer](/assets/images/20230202JekyllPost/answer.avif)
 
 In my blog, there's a `Gemfile` file.
 
@@ -79,7 +79,7 @@ After generation, it automatically formats the year-month structure.
 bundle exec jekyll post "jekyllpost"
 ```
 
-![](/assets/images/20230202JekyllPost/post.avif)
+![post](/assets/images/20230202JekyllPost/post.avif)
 
 ### A Question
 

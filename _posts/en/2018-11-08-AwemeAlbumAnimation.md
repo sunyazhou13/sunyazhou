@@ -15,11 +15,11 @@ A couple of days ago I shared Douyin's vertical swipe switching. Today I'd like 
 
 Here's what it looks like:
 
-![](/assets/images/20181108AwemeAlbumAnimation/final.avif)
+![final](/assets/images/20181108AwemeAlbumAnimation/final.avif)
 
 And here's the original Douyin one:
 
-![](/assets/images/20181108AwemeAlbumAnimation/AlbumAnimation.avif)
+![Album Animation](/assets/images/20181108AwemeAlbumAnimation/AlbumAnimation.avif)
 
 # Implementation Approach
 
@@ -31,7 +31,7 @@ There's a demo at the bottom of this post:
 2. Background Layer 
 3. Album (UIImageView)
 
-![](/assets/images/20181108AwemeAlbumAnimation/album1.avif)
+![album](/assets/images/20181108AwemeAlbumAnimation/album1.avif)
 
 First, let's write a `MusicAlbumView` that inherits from UIView
 
@@ -139,7 +139,7 @@ When we call the startAnimation: method externally, we add a rotation animation 
 
 After adding it, the effect looks like this:
 
-![](/assets/images/20181108AwemeAlbumAnimation/album2.avif)
+![album](/assets/images/20181108AwemeAlbumAnimation/album2.avif)
 
 
 #### How to implement the arc animation
@@ -148,12 +148,12 @@ OK, we're halfway there. Let's talk about the arc rotation.
 
 Take a close look at the music notes in the animation:
 
-![](/assets/images/20181108AwemeAlbumAnimation/album3.avif)
+![album](/assets/images/20181108AwemeAlbumAnimation/album3.avif)
 
 
 This is a note animation. Its motion trajectory is roughly like this:
 
-![](/assets/images/20181108AwemeAlbumAnimation/bezier1.avif)
+![bezier](/assets/images/20181108AwemeAlbumAnimation/bezier1.avif)
 
 We're actually using a Bezier curve animation. (I'm not a great artist, but you get the idea.)
 
@@ -222,7 +222,7 @@ Let me explain the key variables:
 
 You don't need to understand these details; just look at the image below:
 
-![](/assets/images/20181108AwemeAlbumAnimation/bezier2.avif)
+![bezier](/assets/images/20181108AwemeAlbumAnimation/bezier2.avif)
 
 > `customPath`: the Bezier curve object
 
@@ -256,7 +256,7 @@ layer.frame = CGRectMake(beginPoint.x, beginPoint.y, 10, 10);
 
 Let's see a single note moving along the Bezier curve:
 
-![](/assets/images/20181108AwemeAlbumAnimation/album4.avif)
+![album](/assets/images/20181108AwemeAlbumAnimation/album4.avif)
 
 Now the remaining work is to add the rotation, opacity, and scale animations:
 
@@ -403,7 +403,7 @@ It delays 1 or 2 seconds based on the current time.
 After everything is done, it looks like this:
 
 
-![](/assets/images/20181108AwemeAlbumAnimation/final.avif)
+![final](/assets/images/20181108AwemeAlbumAnimation/final.avif)
 
 
 # Summary

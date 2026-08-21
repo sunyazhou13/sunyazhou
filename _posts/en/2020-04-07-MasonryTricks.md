@@ -18,7 +18,7 @@ This article carries a strong personal tone. If you find it uncomfortable to rea
 
 The safeArea introduced after iOS11 is used to handle the notch screen issue. Handling it yourself can be rather troublesome—you need to check the version and verify API availability. During the Qingming holiday, with nothing to do at home, I wrote a demo to solve how to more quickly handle screen boundary issues—for example, laying out a view below the iOS navigation bar and above the `Home Indicator`. Let's look at the image below first:
 
-![](/assets/images/20200407MasonryTricks/SafeArea1.avif)
+![Safe Area](/assets/images/20200407MasonryTricks/SafeArea1.avif)
 
 How to display a View within the safe area with less code.
 
@@ -55,18 +55,18 @@ Next, let's try using the following APIs without SafeArea.
 1. Top Area
 
 	* `mas_topLayoutGuide` and `mas_topLayoutGuideBottom` both go from the top to the bottom of the notch screen, meaning they're the same as safeAreaTop, as shown below:    
-	![](/assets/images/20200407MasonryTricks/mas_topLayoutGuide&mas_topLayoutGuideBottom.avif)
+	![mas_top Layout Guide&mas_top Layout Guide Bottom](/assets/images/20200407MasonryTricks/mas_topLayoutGuide&mas_topLayoutGuideBottom.avif)
 	
 	* `mas_topLayoutGuideTop` goes to the very top of the screen (ignoring the notch, meaning it's covered by the notch), as shown below:
-	![](/assets/images/20200407MasonryTricks/mas_topLayoutGuideTop.avif)
+	![mas_top Layout Guide Top](/assets/images/20200407MasonryTricks/mas_topLayoutGuideTop.avif)
 
 2. Bottom Area
 
 	* `mas_bottomLayoutGuide` and `mas_bottomLayoutGuideTop` are both above the `Home bar`, as shown below:  
-	![](/assets/images/20200407MasonryTricks/mas_bottomLayoutGuide&mas_bottomLayoutGuideTop.avif)
+	![mas_bottom Layout Guide&mas_bottom Layout Guide Top](/assets/images/20200407MasonryTricks/mas_bottomLayoutGuide&mas_bottomLayoutGuideTop.avif)
 	
 	* `mas_bottomLayoutGuideBottom` pushes straight to the bottom, stretching to the screen edge, as shown below:  
-	![](/assets/images/20200407MasonryTricks/mas_bottomLayoutGuideBottom.avif)
+	![mas_bottom Layout Guide Bottom](/assets/images/20200407MasonryTricks/mas_bottomLayoutGuideBottom.avif)
 	
 
 #### If you want to achieve the same effect as safeArea, you can write it like this
@@ -84,7 +84,7 @@ Next, let's try using the following APIs without SafeArea.
 
 Here's a screenshot of the finished result:
 
-![](/assets/images/20200407MasonryTricks/LayoutGuideFullsceen.avif)
+![Layout Guide Fullsceen](/assets/images/20200407MasonryTricks/LayoutGuideFullsceen.avif)
 
 
 

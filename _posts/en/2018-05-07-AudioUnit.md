@@ -11,7 +11,7 @@ typora-root-url: ..
 
 
 
-![](/assets/images/20180507AudioUnit/auHostApp.avif)
+![au Host App](/assets/images/20180507AudioUnit/auHostApp.avif)
 
 # Preface
 
@@ -26,7 +26,7 @@ Today I'll take you through an in-depth understanding and study of these audio e
 Voice changing generally happens between one end that captures/records audio and the other end that plays it. Ignoring the transcoding in between, you change the voice by adjusting the corresponding audio parameters in the middle of the input/output pipeline.
 
 The following image shows the workflow of AVAudioSession
-![](/assets/images/20180507AudioUnit/ASPGIntro.avif)
+![ASPG Intro](/assets/images/20180507AudioUnit/ASPGIntro.avif)
 
 There are many commonly used voice changing solutions:
 
@@ -47,20 +47,20 @@ Here we choose the audio processing unit `Audio Unit` provided by iOS AVFoundati
 
 The image below shows the KX driver connection diagram on the Windows platform 
 
-![](/assets/images/20180507AudioUnit/kx.avif)
+![kx](/assets/images/20180507AudioUnit/kx.avif)
 
 ## AudioUnit Introduction
 
 
 #### iOS Layered Architecture Diagram
 
-![](/assets/images/20180507AudioUnit/iPhone0sAudioArchitecture.avif)
+![i Phone0s Audio Architecture](/assets/images/20180507AudioUnit/iPhone0sAudioArchitecture.avif)
 
-![](/assets/images/20180507AudioUnit/AboutAudioUnitHosting.avif)
+![About Audio Unit Hosting](/assets/images/20180507AudioUnit/AboutAudioUnitHosting.avif)
 
 > To understand the audio processing flow, you first need to know about `AUGraph`
 
-![](/assets/images/20180507AudioUnit/simpleAuChain.avif)
+![simple Au Chain](/assets/images/20180507AudioUnit/simpleAuChain.avif)
 
 > **audio processing graph**:  A representation of a signal chain comprising an interconnection of audio units. Also called an AUGraph or graph. Core Audio represents such an interconnected network as a software object of typeAUGraph. Audio processing graphs must end in an output unit. See also audio unit.  
 > A representation of a signal chain, including the interconnection of audio units. Also called an AUGraph or graph. Core Audio represents such an interconnected network as a software object of type `AUGraph`.
@@ -69,11 +69,11 @@ The image below shows the KX driver connection diagram on the Windows platform
 
 #### audio unit structure diagram (workflow)
 
-![](/assets/images/20180507AudioUnit/auArchitecture.avif)
+![au Architecture](/assets/images/20180507AudioUnit/auArchitecture.avif)
 
 #### Audio Unit composition diagram
 
-![](/assets/images/20180507AudioUnit/AudioUnitScopes.avif)
+![Audio Unit Scopes](/assets/images/20180507AudioUnit/AudioUnitScopes.avif)
 
 A Unit is generally divided into Element0 and Element1
 
@@ -90,7 +90,7 @@ The RemoteIO unit is the unit related to hardware I/O. It has an input end and a
 > The whole Render process is one RenderCycle
   
 
-![](/assets/images/20180507AudioUnit/IOUnit.avif)
+![IO Unit](/assets/images/20180507AudioUnit/IOUnit.avif)
 
 __At the same time, each Element is divided into an Input Scope and an Output Scope. If we want to use the speaker's playback function, we must connect the `OutputScope` of this Unit's `Element0` to the speaker. If we want to use the microphone for recording, we must connect the `InputScope` of this Unit's `Element1` to the microphone.__
 
@@ -192,7 +192,7 @@ There are two ways to create an AudioUnit:
 
 As shown below: Remote I/O Unit 
 
-![](/assets/images/20180507AudioUnit/IOUnit.avif)
+![IO Unit](/assets/images/20180507AudioUnit/IOUnit.avif)
 
 > The microphone and speaker have corresponding enums in the Audio Unit.  
 > The "monitor return" (`耳返`) used in live streaming does exactly this — it feeds the data captured by the microphone directly to the speaker, so you can hear the microphone in real time with low latency.  
@@ -252,7 +252,7 @@ We generally use AVAudioMixer in the classes for capturing, recording, or editin
 For example: the flow of our voice changing implementation is roughly like this: __AVAudioPlayer -> AVPlayerItem -> AVAudioMixer-> AUGraph -> AUNode + AudioUnit__
 
 
-![](/assets/images/20180507AudioUnit/AVAudioMixClass.avif)
+![AV Audio Mix Class](/assets/images/20180507AudioUnit/AVAudioMixClass.avif)
 
 #### Configuring the microphone input parameters with AudioStreamBasicDescription
 

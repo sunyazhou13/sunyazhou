@@ -69,15 +69,15 @@ read_dir $1
 
 Place this script in the `/assets/images` directory and run it.
 
-![](/assets/images/20230205WebpEnhancement/webp1.avif)
+![webp](/assets/images/20230205WebpEnhancement/webp1.avif)
 
 The remaining work is to find all the post markdown articles and uniformly change the image suffixes.
 
-![](/assets/images/20230205WebpEnhancement/webp2.avif)
+![webp](/assets/images/20230205WebpEnhancement/webp2.avif)
 
 Then use SourceTree to review the changes and make sure nothing was changed incorrectly. This process is fast — although there are many, image suffix changes are simple and easy to identify.
 
-![](/assets/images/20230205WebpEnhancement/webp3.avif)
+![webp](/assets/images/20230205WebpEnhancement/webp3.avif)
 
 Finally, build the blog and deploy to remote.
 

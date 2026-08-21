@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20190916UITraitCollection/UITraitCollection1.avif)
+![UI Trait Collection](/assets/images/20190916UITraitCollection/UITraitCollection1.avif)
 
 # Preface
 
@@ -35,7 +35,7 @@ There's a class called `UITraitCollection` here that I'd never studied carefully
 
 In short, this UIKit class stores device characteristics and related UI configuration. Have you ever wondered how we developers handle it when you modify certain system settings in iOS's General, such as (see below) contrast and global font size?
 
-![](/assets/images/20190916UITraitCollection/UITraitCollection2.avif)
+![UI Trait Collection](/assets/images/20190916UITraitCollection/UITraitCollection2.avif)
 
 
 These system characteristic changes are stored in `UITraitCollection`. This is a class we often use in VCs and Views but easily overlook. Below, I'll briefly record what these characteristics are.

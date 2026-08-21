@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/studycover.avif)
+![studycover](/assets/images/20210722iOSLessonsStudyNotes1/studycover.avif)
 
 # Preface
 
@@ -32,24 +32,24 @@ The Awesome series is dedicated to collecting all kinds of resources. Among them
 
 The entire body of basic knowledge that iOS developers need to master is divided according to the App development process (development, debugging and testing, release, launch), as shown in the figure below:
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/basicmodule.avif)
+![basicmodule](/assets/images/20210722iOSLessonsStudyNotes1/basicmodule.avif)
 
 ### Application Development
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/applicationdevelopmodule.avif)
+![applicationdevelopmodule](/assets/images/20210722iOSLessonsStudyNotes1/applicationdevelopmodule.avif)
 
 ### Principles Module
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/principlemodule.avif)
+![principlemodule](/assets/images/20210722iOSLessonsStudyNotes1/principlemodule.avif)
 
 ### Native and Frontend
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/nativeandfemudule.avif)
+![nativeandfemudule](/assets/images/20210722iOSLessonsStudyNotes1/nativeandfemudule.avif)
 
 
 ### Summary
 
-![](/assets/images/20210722iOSLessonsStudyNotes1/final.avif)
+![final](/assets/images/20210722iOSLessonsStudyNotes1/final.avif)
 
 # Conclusion
 

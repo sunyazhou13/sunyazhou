@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](http://p1.bqimg.com/584350/7df258f2ecddcf81.avif)
+![7df258f2ecddcf81](http://p1.bqimg.com/584350/7df258f2ecddcf81.avif)
 > I practiced regular script calligraphy for a year. Thanks to the help of my fellow townsman **Pan Xu**, my calligraphy has improved significantly.
 
 
@@ -16,7 +16,7 @@ Departure
 --
 
 Standing there with my suitcase, waiting for the subway to go home for the New Year — another year has passed.
-![](http://p1.bqimg.com/584350/035a303723a4b623.avif)
+![035a303723a4b623](http://p1.bqimg.com/584350/035a303723a4b623.avif)
 All these years, I've always felt like I'm no different from a migrant worker — just dressed a bit nicer, but deep down I'm still a migrant worker at heart.
 
 

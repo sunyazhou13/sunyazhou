@@ -15,7 +15,7 @@ I've spent the past few days wrestling with the open-source TikTok (Douyin) demo
 
 Here's the finished result:
 
-![](/assets/images/20181114PlayLoadingAnimation/playloading.avif)
+![playloading](/assets/images/20181114PlayLoadingAnimation/playloading.avif)
 
 
 

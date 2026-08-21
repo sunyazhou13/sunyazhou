@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20211231FinalSummary/2021F1.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F1.avif)
 
 <button type="button" class="btn btn-info" data-toggle="popover" title="Magotan1990" data-content="2021-7-7 The state after being rear-ended on the way to Zhalong Nature Reserve in Qiqihar and then repaired">The Darkest Moment of a New Generation Migrant Worker</button>
 
@@ -52,7 +52,7 @@ Since the last term of `Golden Hair Trump`, the US pandemic has been out of cont
 The elegy of the post-pandemic era continued to ferment endlessly. My life fluctuated with the pandemic, never stable. After returning home, I became reticent, but my passion for technology never waned despite the change in environment.
 
 
-![](/assets/images/20211231FinalSummary/2021F2.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F2.avif)
 
 To respond to the pandemic, the country provided free vaccines. As of the time of writing this article, I have completed all 3 doses of vaccination, protecting the safety of myself and my family.
 
@@ -60,33 +60,33 @@ To respond to the pandemic, the country provided free vaccines. As of the time o
 
 The happiest thing this year was getting the property deed for my new home.
 
-![](/assets/images/20211231FinalSummary/2021F3.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F3.avif)
 
 
 
 After work, throwing my coat on the sofa and starting to make dinner — I never expected the kitchen to be where I spent the most time.
 
-![](/assets/images/20211231FinalSummary/2021F5.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F5.avif)
 
 I was like an alchemist, adding oil and vinegar, managing oil temperature and cooking.
 
-![](/assets/images/20211231FinalSummary/2021F4.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F4.avif)
 
 After dinner, I'd go for a walk at the Haxi Station square near my home and reflect on life.
 
-![](/assets/images/20211231FinalSummary/2021F9.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F9.avif)
 
 As for cooking, I really admire my college teacher Li Yuehui. No matter how I try, I still can't master food plating. Every time I see the teacher cooking during holidays and sharing on WeChat Moments — top-tier skills. I'll ask for advice in person when I get the chance.
 
 In July, I took a trip to Qiqihar's Zhalong Nature Reserve to see my girlfriend's relatives' villa.
 
-![](/assets/images/20211231FinalSummary/2021F6.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F6.avif)
 
 The villa is nice — the vegetable garden became the perfect accent for the villa.
 
 The key is to see the red-crowned cranes!
 
-![](/assets/images/20211231FinalSummary/2021F10.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F10.avif)
 
 Let me share the approximate route and journey for those who want to drive there.
 
@@ -123,7 +123,7 @@ Even though life has been so rough, my body and mind have achieved an unpreceden
 
 To experience what everyone often discusses about civil service exams, I gave it a try. The result was as expected — it requires constant practice, not something achievable overnight. But I gained a lot. For example: in the essay section, describing social phenomena and providing reasonable, publicly acceptable, and practical solutions. Although sometimes we can be unbridled when thinking from an ordinary citizen's perspective, thinking from a civil servant's perspective requires following the first principle of `always serving the people`, articulating and writing feasible measures and optimal solutions. And it requires great challenges in writing ability and logical organization for civil servants. It can almost be said to be `one in a thousand`. The official notices or similar text messages we see in our daily lives — these all need to go through professional training and language organization skills, reviewed N times, before being sent out immediately. That's why when we see them, we can't find any problems. But have you ever thought about who writes these? It's civil service staff. You might think it's just a matter of speaking, but you don't know how much effort goes into being able to just speak. For training to write a single statement draft, I practiced 10+ times, and still couldn't write it perfectly! (Maybe I'm just not good at clerical work.) Honestly, from my high school graduation exam to writing the civil service essay, I hadn't written a 1200+ word essay in over a decade. As for structure, writing skills, and techniques — they've long been handed over to Baidu with the development of the internet. But after the exam, I was quite satisfied with my essay overall. Although it was a Category 3 essay, I scored 57 points, which exceeded my own expectations.
 
-![](/assets/images/20211231FinalSummary/2021F7.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F7.avif)
 
 
 ## About Work
@@ -132,7 +132,7 @@ To experience what everyone often discusses about civil service exams, I gave it
 
 The patents I applied for while working at Kuaishou were finally published in 2021.
 
-![](/assets/images/20211231FinalSummary/2021F8.avif)
+![2021F](/assets/images/20211231FinalSummary/2021F8.avif)
 
 #### Returning to Beijing to Continue the Fight
 
@@ -172,7 +172,7 @@ Back to work.
 
 This year, overall, I need to change and improve in terms of work content and direction. The most important thing is that actions speak louder than words. I can't just talk about improvement every year and then have the second year's year-end summary still say "needs improvement." I need to actually do it — take real action. Be `truth-seeking and pragmatic, seek truth from facts`. No slacking off.
 
-![](/assets/images/20211231FinalSummary/BanTouchFish.avif)
+![Ban Touch Fish](/assets/images/20211231FinalSummary/BanTouchFish.avif)
 
 
 
@@ -185,19 +185,19 @@ This year I took several paid courses and strongly recommend them to everyone. I
 * Swift Core Technologies and Practices
 * HarmonyOS
 
-![](/assets/images/20211231FinalSummary/2021F11iOS.avif)
+![2021F11i OS](/assets/images/20211231FinalSummary/2021F11iOS.avif)
 
 This course is almost entirely practical content. Every iOS developer should take it as essential learning.
 
-![](/assets/images/20211231FinalSummary/2021F11Algorithm.avif)
+![2021F11Algorithm](/assets/images/20211231FinalSummary/2021F11Algorithm.avif)
 
 I also strongly recommend this data structures and algorithms course. Data structures go from `tables` to `trees` to `graphs`, and the algorithms progress from shallow to deep. Think about how many pages you've flipped through after buying Introduction to Algorithms.
 
-![](/assets/images/20211231FinalSummary/2021F11Swift.avif)
+![2021F11Swift](/assets/images/20211231FinalSummary/2021F11Swift.avif)
 
 Swift — I'm learning this for the 3rd time. After Swift 5.x, there are so many changes that I had to learn it again. Currently at 60%+ progress.
 
-![](/assets/images/20211231FinalSummary/2021F11HarmonyOS.avif)
+![2021F11Harmony OS](/assets/images/20211231FinalSummary/2021F11HarmonyOS.avif)
 
 This course is the standard for the domestic operating system. Since Huawei was suppressed by the US, the Chinese people have reflected deeply, starting from basic science research and focusing on bottleneck technologies. To fulfill what I described in my 2019 year-end summary, I must complete this course in 2022.
 
@@ -222,7 +222,7 @@ Missed out on
 
 PS5 — I can't miss this one. If I can afford it, I'll go for it. With the housing provident fund arriving monthly and Double 11 shopping festival, I bought my first proper game console.
 
-![](/assets/images/20211231FinalSummary/2021F12PS5.avif)
+![2021F12PS](/assets/images/20211231FinalSummary/2021F12PS5.avif)
 
 Chinese version, with Hong Kong account backup to play HK region games.
 
@@ -285,59 +285,59 @@ OK, I'll stop listing here. I can basically repair an EA888 engine now. From a c
 
 Let me walk you through these mechanical parts. The following are all parts replaced on my car.
 
-![](/assets/images/20211231FinalSummary/2021F13BrakeDisc.avif)
+![2021F13Brake Disc](/assets/images/20211231FinalSummary/2021F13BrakeDisc.avif)
 
 Front brake discs x2
 
-![](/assets/images/20211231FinalSummary/2021F13BrakeBlock.avif)
+![2021F13Brake Block](/assets/images/20211231FinalSummary/2021F13BrakeBlock.avif)
 
 Brake pads x2
 
-![](/assets/images/20211231FinalSummary/2021F13TireUC6.avif)
+![2021F13Tire UC](/assets/images/20211231FinalSummary/2021F13TireUC6.avif)
 
 Continental tires x4
 
 
-![](/assets/images/20211231FinalSummary/2021F13ThrottleValve.avif)
+![2021F13Throttle Valve](/assets/images/20211231FinalSummary/2021F13ThrottleValve.avif)
 
 Engine throttle valve
 > In winter, the dashboard showed an EPC light flashing, with unstable idling and shaking. After inspection, the throttle valve signal was unreliable. In winter, cold air forms water droplets inside the throttle valve, and the hot-cold alternation causes water droplets in the intake pipe. In cold weather, the low Northeast temperatures easily cause freezing, leading to poor throttle valve opening and closing. Over time, this fatigues the throttle valve motor. I really wanted to take it apart and repair it myself, but this part costs 1700+ RMB. Very expensive, not worth replacing. Later, considering it's a critical part that shouldn't fail on the road, I decided to get a new one!
 
-![](/assets/images/20211231FinalSummary/2021F13DynamoBelt.avif)
+![2021F13Dynamo Belt](/assets/images/20211231FinalSummary/2021F13DynamoBelt.avif)
 
 Alternator belt. I saw this part looking like it was about to fail. After taking it off, it was actually fine, but I replaced it anyway. I kept the old one in the car as a spare in case of problems on the road. The part didn't cost much but is very important.
 
-![](/assets/images/20211231FinalSummary/2021F13Oil-waterSeparator.avif)
+![2021F13Oil-water Separator](/assets/images/20211231FinalSummary/2021F13Oil-waterSeparator.avif)
 
 The part above is called an oil-gas separator or oil-water separator. The engine produces high-temperature gas. Since there's oil inside the engine, the steam from the oil contains water molecules. To separate the oil from water, this part becomes very important. When I replaced it, it wasn't actually broken — the previous part was leaking oil, making the engine covered in oil stains. I thought the engine was leaking oil, but upon inspection, this part was covered in oil. I replaced it with an improved version to reduce oil consumption.
 
 
-![](/assets/images/20211231FinalSummary/2021F13ValveEGR.avif)
+![2021F13Valve EGR](/assets/images/20211231FinalSummary/2021F13ValveEGR.avif)
 
 This part is called the carbon canister solenoid valve, located near the throttle valve. It's mainly responsible for sending the vaporized steam from the fuel tank into the combustion chamber for burning. If this part fails, the most obvious symptom is consistently high fuel consumption (of course, if gasoline evaporates away, how could it not waste fuel?). This part wasn't broken either, but when I went to the 4S dealership, they couldn't tell if it had a problem. After replacing it with a new one, fuel consumption dropped by 30%. So replacing with new parts does make a difference.
 
-![](/assets/images/20211231FinalSummary/2021F13TimingChain.avif)
+![2021F13Timing Chain](/assets/images/20211231FinalSummary/2021F13TimingChain.avif)
 
 Timing chain. Mine is the EA888 Gen 2. This is just a reference photo. This chain must be replaced at 80~100k km. I proactively replaced it at 84,000 km. The timing chain had stretched significantly, almost reaching the preset threshold for replacement. I replaced it early to prevent premature failure. This is a core engine component. Replacing it together with the chain guide and related parts cost 2400 RMB.
 
-![](/assets/images/20211231FinalSummary/2021F13PressureInlet.avif)
+![2021F13Pressure Inlet](/assets/images/20211231FinalSummary/2021F13PressureInlet.avif)
 
 Deep inside the engine, there's a pipe connecting to the turbocharger. Because the oil-gas separator was leaking oil, this pipe was full of oil. I replaced it while I was at it. Actually, this part didn't need replacing, but I didn't want to see my engine covered in oil.
 
-![](/assets/images/20211231FinalSummary/2021F13LeadAcidBattery.avif)
+![2021F13Lead Acid Battery](/assets/images/20211231FinalSummary/2021F13LeadAcidBattery.avif)
 
 Fengfan lead-acid battery (good horse, good saddle; good car, Fengfan). After the EPC light came on in winter and I parked by the road, finding the throttle valve signal unreliable, I also replaced the battery. The old battery hadn't been replaced in years and was bulging. I replaced it with a new one.
 
-![](/assets/images/20211231FinalSummary/2021F13Lights.avif)
+![2021F13Lights](/assets/images/20211231FinalSummary/2021F13Lights.avif)
 
 This is the complete xenon headlight set upgraded in 2020.
 
-![](/assets/images/20211231FinalSummary/2021F13SparkPlug.avif)
+![2021F13Spark Plug](/assets/images/20211231FinalSummary/2021F13SparkPlug.avif)
 
 These are 2.0T spark plugs. I bought them myself from a certain online store — Bosch. I also bought a ratchet wrench toolkit, found a parking lot, and replaced them myself. I'm proud to say that this can be done yourself — 4 spark plugs cost less than 200. The original spark plugs were recommended for replacement by the 4S dealership at 20k km. After 20k km on my car, I replaced them with new ones myself. When I took the old ones out, they had carbon buildup. I soaked them in toilet cleaner for a day and cleaned them thoroughly — they can still be used.
 
 
-![](/assets/images/20211231FinalSummary/2021F13OilFilter.avif)
+![2021F13Oil Filter](/assets/images/20211231FinalSummary/2021F13OilFilter.avif)
 
 Oil filter. Online it costs just over 30 (4S dealership charges 100+). If you catch a sale, brothers with cars should stock up. This is a consumable item, replaced at every 5,000 km maintenance for VW cars. I bought 3 from the Mann-Filter flagship store.
 
@@ -351,13 +351,13 @@ I also stocked up on cabin air filters and engine air filters.
 > For those who don't know cars, don't mix these up — they're two different things.
 > The above 3 filters can all be replaced yourself, though the oil filter requires a special tool.
 
-![](/assets/images/20211231FinalSummary/2021F13PowerFlex.avif)
+![2021F13Power Flex](/assets/images/20211231FinalSummary/2021F13PowerFlex.avif)
 
 This is a polyurethane reinforced bushing. Replacing all of them on my car would cost 7000+. To try out whether these things work, on Chinese New Year's Day 2020, when my classmate's workplace (FAW-VW 4S dealership) was closed and quiet, I took these two bushings to the 4S shop and replaced them myself.
 VW cars nowadays share common chassis parts. Almost all parts are interchangeable. Let's look at the corresponding part numbers and prices for this chassis.
 
-![](/assets/images/20211231FinalSummary/2021F13MQB1.avif)
-![](/assets/images/20211231FinalSummary/2021F13MQB2.avif)
+![2021F13MQB](/assets/images/20211231FinalSummary/2021F13MQB1.avif)
+![2021F13MQB](/assets/images/20211231FinalSummary/2021F13MQB2.avif)
 
 I replaced the rear lower control arm `PFR85-510` bushing because the original had deteriorated badly, making the car feel loose and unnatural to drive. When replacing this, both lower control arms must be replaced together. I have to criticize VW for this — the chassis design has poor extensibility and modification potential. But after replacement, the chassis immediately felt different — tight and firm, like a new car.
 
@@ -365,19 +365,19 @@ I replaced the rear lower control arm `PFR85-510` bushing because the original h
 
 The hardest part of replacing this bushing is pressing out the old one. It's best to have professional equipment, otherwise it's quite difficult to remove. I managed to get it done using the repair shop's press and some socket tools.
 
-![](/assets/images/20211231FinalSummary/2021F13Lining.avif)
+![2021F13Lining](/assets/images/20211231FinalSummary/2021F13Lining.avif)
 
 The trunk bottom in the photo above is a removable interior liner panel. Why replace it? In the summer, I helped relatives in the countryside with a wedding and hauled a trunk full of vegetables. Some liquid leaked into the trunk, causing a terrible smell. This thing can't be washed, so I had to replace it with a new one.
 
-![](/assets/images/20211231FinalSummary/2021F13ClearstorySwitch.avif)
+![2021F13Clearstory Switch](/assets/images/20211231FinalSummary/2021F13ClearstorySwitch.avif)
 
 Sunroof switch. This rarely breaks. My car's sunroof would open on its own while driving and then close. At first, I thought the Magotan had a CO2 concentration sensor that would automatically trigger the sunroof when CO2 levels got too high to circulate air and prevent driver drowsiness. But when I discussed this with my classmate, he said VW should pay me royalties — this is a common issue. Over time, the contacts oxidize and cause poor connection. So I replaced it. FAW-VW, are you listening? I'll apply for a patent, let's see if you pay up.
 
-![](/assets/images/20211231FinalSummary/2021F13ShiftGears.avif)
+![2021F13Shift Gears](/assets/images/20211231FinalSummary/2021F13ShiftGears.avif)
 
 The legendary DSG (Single Dog, Big Fool) shifter knob. The original was worn to a patina, so I got a new one.
 
-![](/assets/images/20211231FinalSummary/2021F13MIB682E.avif)
+![2021F13MIB682E](/assets/images/20211231FinalSummary/2021F13MIB682E.avif)
 
 This MIB head unit system is the component I think most deserves upgrading on this old car. It's expensive — together with the flip-logo reverse camera and CarPlay support, it cost 5500+. The worst thing about old cars is that the head unit is laggy, with limited and outdated features, slow to adopt new technologies. But you can't blame the old car — when it was manufactured, the iPhone 5s didn't exist yet. However, the extensibility is poor. If a car company could produce both hardware and software, and provide a complete integration solution for in-car systems, this would be a great startup direction. Normally, you can't integrate with the car because there are encrypted protocols inside, not universal. The one I bought is a cracked Polish import. After cracking, no password is needed — plug and play. Some features aren't supported by this car, so they don't work. My main goal was to have a good music system with CarPlay support.
 
@@ -388,51 +388,51 @@ The viable solutions to achieve these two goals are:
 
 I chose the head unit because it includes navigation.
 
-![](/assets/images/20211231FinalSummary/2021F13VWlogo.avif)
+![2021F13V Wlogo](/assets/images/20211231FinalSummary/2021F13VWlogo.avif)
 
 Just replacing the head unit isn't enough — the flip-logo reverse camera must also be replaced together. So I replaced the flip-logo reverse camera as well. This is the VW logo on the cover — it's one of Volkswagen's unique designs. When reversing, the logo flips open and extends a camera. Normally, pressing it opens the trunk. Don't worry about it breaking — it's very sturdy.
 
-![](/assets/images/20211231FinalSummary/2021F13PressBar.avif)
+![2021F13Press Bar](/assets/images/20211231FinalSummary/2021F13PressBar.avif)
 
 This is the window chrome trim strip, professionally called window weatherstrip. Why replace it? The rubber on the driver's side had aged and could no longer keep rain out. This part sits right against the window glass, so I replaced it.
 
-![](/assets/images/20211231FinalSummary/2021F13AluminumBase.avif)
+![2021F13Aluminum Base](/assets/images/20211231FinalSummary/2021F13AluminumBase.avif)
 
 Lower control arm aluminum bracket. The rubber where the front lower control arm connects to the body had aged, and the rubber bushing can't be replaced separately — the whole set must be replaced. So I replaced it directly. This is the main reason I say VW cars have poor extensibility — the aluminum bracket was fine, only the rubber aged, causing the steering wheel to have insufficient response while driving. Actually, it would be better to replace just the polyurethane reinforced bushing. Considering cost, replacing either of these separately isn't more expensive than a single polyurethane reinforced bushing.
 
-![](/assets/images/20211231FinalSummary/2021F13EngineShield.avif)
+![2021F13Engine Shield](/assets/images/20211231FinalSummary/2021F13EngineShield.avif)
 
 Engine bottom shield. This is a resin material that protects the engine oil pan from impacts with hard objects. The resin one doesn't make noise, while a steel one can deform and affect chassis stability.
 
-![](/assets/images/20211231FinalSummary/2021F13EngineMounting.avif)
+![2021F13Engine Mounting](/assets/images/20211231FinalSummary/2021F13EngineMounting.avif)
 
 The engine-to-transmission mount. This part started making noises, so I replaced it with a new one. The one in the upper left connects the transmission and engine.
 
-![](/assets/images/20211231FinalSummary/2021F13MudGuard.avif)
+![2021F13Mud Guard](/assets/images/20211231FinalSummary/2021F13MudGuard.avif)
 
 Wheel mud flaps. By the time I bought the car, they were already broken and battered. Replaced directly.
 
-![](/assets/images/20211231FinalSummary/2021F13Studdle.avif)
+![2021F13Studdle](/assets/images/20211231FinalSummary/2021F13Studdle.avif)
 
 Trunk gas struts. These tend to lose elasticity in winter, possibly related to the oil fluid inside. But after 1 year of replacement, the problem persists. I don't plan to replace them anymore.
 
-![](/assets/images/20211231FinalSummary/2021F13TransmissionOil.avif)
+![2021F13Transmission Oil](/assets/images/20211231FinalSummary/2021F13TransmissionOil.avif)
 
 My car requires transmission fluid replacement at 80,000 km, otherwise the warranty is void. The warranty is 10 years or 160k km, with 3 years remaining.
 
-![](/assets/images/20211231FinalSummary/2021F13BrakeOil.avif)
+![2021F13Brake Oil](/assets/images/20211231FinalSummary/2021F13BrakeOil.avif)
 
 Brake fluid. In winter, I noticed my car couldn't brake properly. I went to the shop for inspection and found the brake fluid had too much water content, triggering a red warning. Must be replaced for safety.
 
-![](/assets/images/20211231FinalSummary/2021F13Antifreeze.avif)
+![2021F13Antifreeze](/assets/images/20211231FinalSummary/2021F13Antifreeze.avif)
 
 Coolant. This wasn't replaced when I bought the car. I replaced it early for fear of the radiator being too dirty. I still have half a bottle in the car.
 
-![](/assets/images/20211231FinalSummary/2021F13ShockAbsorbe.avif)
+![2021F13Shock Absorbe](/assets/images/20211231FinalSummary/2021F13ShockAbsorbe.avif)
 
 This summer, the car went over some rough roads and I found all 4 shock absorbers leaking oil. Replaced all 4, along with the shock springs.
 
-![](/assets/images/20211231FinalSummary/2021F13Spring.avif)
+![2021F13Spring](/assets/images/20211231FinalSummary/2021F13Spring.avif)
 
 The shock springs had been compressed by more than 1cm due to stress. Replaced together to ensure safety.
 
@@ -442,7 +442,7 @@ That's the complete list of parts I replaced after buying this used car. Seeing 
 
 ## Summary
 
-![](/assets/images/20211231FinalSummary/final.avif)
+![final](/assets/images/20211231FinalSummary/final.avif)
 
 This year-end summary is scattered and not very technical. This year was quite numb, with less learning content. Actually, I also privately learned Java but still couldn't form a learning system and use it at work. I'll try to build something after learning other frameworks. The experience of returning home changed my perspective and educated me that I should continue to put down roots in Beijing and be a `new generation migrant worker`. Only by working hard from 0 to 1 can I live well.
 

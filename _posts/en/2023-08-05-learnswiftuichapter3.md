@@ -8,7 +8,7 @@ typora-root-url: ..
 math: true
 ---
 
-![](/assets/images/20230604LearnSwiftUIChapter1/swiftuilogo.avif)
+![swiftuilogo](/assets/images/20230604LearnSwiftUIChapter1/swiftuilogo.avif)
 
 # Preface
 
@@ -142,11 +142,11 @@ func maxWidth() -> some View {
 
 Have you noticed? Comments support Markdown out of the box.
 
-![](/assets/images/20230805LearnSwiftUIChapter3/note1.avif)
+![note](/assets/images/20230805LearnSwiftUIChapter3/note1.avif)
 
 The blue jump-intercepted function declaration is `/// - Tag:push`. The `Tag` must be written with exact casing and no spaces; it uses the `x-source-tag` scheme to jump to `push`.
 
-![](/assets/images/20230805LearnSwiftUIChapter3/note2.avif)
+![note](/assets/images/20230805LearnSwiftUIChapter3/note2.avif)
 
 ### How to Write extensions
 
@@ -156,7 +156,7 @@ By convention, **when creating a Swift extension, name the file by appending a +
 
 As shown below:
 
-![](/assets/images/20230805LearnSwiftUIChapter3/extension.avif)
+![extension](/assets/images/20230805LearnSwiftUIChapter3/extension.avif)
 
 # Summary
 

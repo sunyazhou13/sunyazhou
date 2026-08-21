@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20240115HarmonyOSLaunchPage/HarmonyLogo.avif)
+![Harmony Logo](/assets/images/20240115HarmonyOSLaunchPage/HarmonyLogo.avif)
 
 # Preface
 
@@ -22,7 +22,7 @@ In 2024, technology can't just stay on our lips — actions speak louder than wo
 
 ### First, Let's See the Result
 
-![](/assets/images/20240115HarmonyOSLaunchPage/launch.avif)
+![launch](/assets/images/20240115HarmonyOSLaunchPage/launch.avif)
 
 ### The Environment Used Here Is HarmonyOS 4.1
 

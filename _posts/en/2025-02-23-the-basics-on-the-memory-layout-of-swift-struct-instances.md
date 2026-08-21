@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20240727Magnificationgesture/SwiftUI.avif)
+![Swift UI](/assets/images/20240727Magnificationgesture/SwiftUI.avif)
 
 
 # Preface
@@ -18,7 +18,7 @@ This post carries strong personal opinions; if reading it makes you uncomfortabl
 
 ## Background
 
-![](/assets/images/20250223SwiftStructMemoryLayout/VerTexBufferLayout.avif)
+![Ver Tex Buffer Layout](/assets/images/20250223SwiftStructMemoryLayout/VerTexBufferLayout.avif)
 
 While studying "Metal.by.Tutorials.4th.2023.12" in 2024, the book mentioned the memory layout of Swift struct instances, so I put these notes together.
 
@@ -98,7 +98,7 @@ Stride becomes important when you're working with multiple instances in a single
 
 If we had a contiguous array of puppies, each 9 bytes in size, what would that look like in memory?
 
-![](/assets/images/20250223SwiftStructMemoryLayout/stride-nopadding.avif)
+![stride-nopadding](/assets/images/20250223SwiftStructMemoryLayout/stride-nopadding.avif)
 
 Turns out, not like that. ❌
 
@@ -114,7 +114,7 @@ MemoryLayout<Puppy>.stride
 
 So the actual layout looks like this:
 
-![](/assets/images/20250223SwiftStructMemoryLayout/stride-padding.avif)
+![stride-padding](/assets/images/20250223SwiftStructMemoryLayout/stride-padding.avif)
 
 In other words, if you have a byte pointer to the first element and want to move to the second, the stride is how many bytes you need to advance the pointer.
 
@@ -125,17 +125,17 @@ Why would the size and stride differ? That brings us to the last magic number of
 
 Imagine a computer that fetches memory 8 bits (that is, 1 byte) at a time. Fetching byte 1 or byte 7 takes the same amount of time.
 
-![](/assets/images/20250223SwiftStructMemoryLayout/alignment-byte8.avif)
+![alignment-byte](/assets/images/20250223SwiftStructMemoryLayout/alignment-byte8.avif)
 
 Then you upgrade to a 16-bit computer that accesses data in 16-bit words. You still have some old software that wants to access data byte-by-byte, but imagine the magic that could happen here: if the software asks for byte 0 and byte 1, the computer can now access word 0 in one go, then split the 16-bit result.
 
-![](/assets/images/20250223SwiftStructMemoryLayout/alignment-byte16.avif)
+![alignment-byte](/assets/images/20250223SwiftStructMemoryLayout/alignment-byte16.avif)
 
 In this ideal world, byte-wise memory access is twice as fast! 🎉
 
 Now imagine a misbehaving program puts a 16-bit value in like this:
 
-![](/assets/images/20250223SwiftStructMemoryLayout/alignment-misaligned16.avif)
+![alignment-misaligned](/assets/images/20250223SwiftStructMemoryLayout/alignment-misaligned16.avif)
 
 Then you ask the computer to read a 16-bit word starting at byte position 3. The problem is, this value is misaligned. To read it, the computer has to read the word at position 1, cut it in half, read the word at position 2, cut that in half, and stitch the halves together. That means accessing one 16-bit value takes two separate 16-bit memory reads — twice as slow as it should be! 😭
 
@@ -160,13 +160,13 @@ The stride is also 4, which means values in a contiguous buffer are 4 bytes apar
 
 Now back to our `Puppy` struct, which has an `Int` property and a `Bool` property. Consider again the case where values sit right next to each other in a buffer:
 
-![](/assets/images/20250223SwiftStructMemoryLayout/alignment-nopadding-bytes.avif)
+![alignment-nopadding-bytes](/assets/images/20250223SwiftStructMemoryLayout/alignment-nopadding-bytes.avif)
 
 The position of the `Bool` values is no problem, since their alignment is 1 (`alignment=1`). But the second integer is misaligned. It's a 64-bit (8-byte) value with an alignment of 8 (`alignment=8`), and its byte position isn't a multiple of 8. ❌
 
 Remember, the stride of this type is 16, so the buffer actually looks like this:
 
-![](/assets/images/20250223SwiftStructMemoryLayout/alignment-padding-bytes.avif)
+![alignment-padding-bytes](/assets/images/20250223SwiftStructMemoryLayout/alignment-padding-bytes.avif)
 
 We preserve the alignment requirements of all the values inside the struct: the second integer sits at byte 16, a multiple of 8.
 
@@ -216,11 +216,11 @@ MemoryLayout<AlternatePuppy>.size
 
 What?! We only changed the order of the properties. Why is the size different now? It should still be 9, right? A boolean followed by an integer, like this:
 
-![](/assets/images/20250223SwiftStructMemoryLayout/alignment-internal-1.avif)
+![alignment-internal-](/assets/images/20250223SwiftStructMemoryLayout/alignment-internal-1.avif)
 
 Maybe you can see the problem: the 8-byte integer is no longer aligned! It actually looks like this in memory:
 
-![](/assets/images/20250223SwiftStructMemoryLayout/alignment-internal-2.avif)
+![alignment-internal-](/assets/images/20250223SwiftStructMemoryLayout/alignment-internal-2.avif)
 
 The struct itself must be aligned, and the properties inside the struct must also stay aligned. Padding bytes get inserted between elements, and the overall size of the struct grows accordingly.
 
@@ -250,7 +250,7 @@ Say you have an `UnsafeRawPointer` (the equivalent of `void *` in C). You know t
 - **Stride**: the number of bytes to move forward to get to the next item in the buffer.
 - **Alignment**: the "divisible by" number that each instance must sit at. If you're allocating memory to copy data into, you need to specify the correct alignment (for example: `allocate(byteCount: 100, alignment: 4)`).
 
-![](/assets/images/20250223SwiftStructMemoryLayout/size-stride-alignment-summary.avif)
+![size-stride-alignment-summary](/assets/images/20250223SwiftStructMemoryLayout/size-stride-alignment-summary.avif)
 
 
 For most of us, most of the time, we work with high-level collections like arrays and sets and don't need to think about the memory layout underneath.

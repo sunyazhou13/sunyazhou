@@ -25,7 +25,7 @@ Our approach is to find the base address of the dynamic library and start from t
 
 * Enable the symbol table (dSYM) in build settings.
 
-![](/assets/images/20180817CPUThreadDebug/enableDysm.avif)
+![enable Dysm](/assets/images/20180817CPUThreadDebug/enableDysm.avif)
 
 
 
@@ -69,20 +69,20 @@ Then run your program.
 
 Then check the console and filter our log entries by `ASLR`.
 
-![](/assets/images/20180817CPUThreadDebug/consoloDebug.avif)
+![consolo Debug](/assets/images/20180817CPUThreadDebug/consoloDebug.avif)
 
 
 Then click Product in the Xcode project.
 
-![](/assets/images/20180817CPUThreadDebug/products.avif)
+![products](/assets/images/20180817CPUThreadDebug/products.avif)
 
 Right-click and choose "Show in Finder".
 
-![](/assets/images/20180817CPUThreadDebug/productDir.avif)
+![product Dir](/assets/images/20180817CPUThreadDebug/productDir.avif)
 
 Next, open Terminal, `cd` to that directory (you can open Terminal, type `cd` + space, then drag the folder in).
 
-![](/assets/images/20180817CPUThreadDebug/dirFinal.avif)
+![dir Final](/assets/images/20180817CPUThreadDebug/dirFinal.avif)
 
 Then run `pwd` to check.
 
@@ -91,7 +91,7 @@ Then run `pwd` to check.
 
 Find the first base address.
 
-![](/assets/images/20180817CPUThreadDebug/importent.avif)
+![importent](/assets/images/20180817CPUThreadDebug/importent.avif)
 
 > Note: __this step is very important. If it doesn't work, try again a few times.__
 
@@ -107,32 +107,32 @@ Let's test whether it works.
 
 First, click the button at the top of the console panel.
 
-![](/assets/images/20180817CPUThreadDebug/breakpoint1.avif)
+![breakpoint](/assets/images/20180817CPUThreadDebug/breakpoint1.avif)
 
 
 Then type `bt` in the console.
 
-![](/assets/images/20180817CPUThreadDebug/main.avif)
+![main](/assets/images/20180817CPUThreadDebug/main.avif)
 
 
 
 If you see the following, it means you've succeeded.
 
-![](/assets/images/20180817CPUThreadDebug/mainResult.avif)
+![main Result](/assets/images/20180817CPUThreadDebug/mainResult.avif)
 
 ## 4. Run on a Real Device and Find the Unknown Threads
 
 First, click Profile in the Xcode project to run `instruments`. In my case, after running the project, Xcode 9.4 can seamlessly switch to `instruments`.
 
-![](/assets/images/20180817CPUThreadDebug/instruments0.avif)
+![instruments](/assets/images/20180817CPUThreadDebug/instruments0.avif)
 
 We find a relevant thread — no name, we don't even know what the object is, just a hex address.
 
-![](/assets/images/20180817CPUThreadDebug/instruments2.avif)
+![instruments](/assets/images/20180817CPUThreadDebug/instruments2.avif)
 
 Pick an arbitrary address and type it in the terminal.
 
-![](/assets/images/20180817CPUThreadDebug/instruments3.avif)
+![instruments](/assets/images/20180817CPUThreadDebug/instruments3.avif)
 
 
 OK. If you run into problems, delete the product and the symbol table and recompile.

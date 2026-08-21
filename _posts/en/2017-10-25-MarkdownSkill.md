@@ -57,7 +57,7 @@ You can also embed images.
 
 <details>
   <summary>Calligraphy</summary>
-  <p><img src="/assets/images/aboutme/about_read_books.avif" alt=""> </p>
+  <p><img src="/assets/images/aboutme/tsinghua.avif" alt="Calligraphy"> </p>
   <p> </p>
 </details>
 
@@ -65,7 +65,7 @@ You can also embed images.
 ``` html
 <details>
   <summary>书法</summary>
-  <p><img src="/assets/images/aboutme/about_read_books.avif" alt=""> </p>
+  <p><img src="/assets/images/aboutme/tsinghua.avif" alt="Calligraphy"> </p>
   <p> </p>
 </details>
 ```

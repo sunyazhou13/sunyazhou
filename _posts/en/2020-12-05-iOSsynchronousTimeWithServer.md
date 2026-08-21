@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20201206iOSsynchronousTimeWithServer/iOSsynchronousTimeWithServerCover.avif)
+![i O Ssynchronous Time With Server Cover](/assets/images/20201206iOSsynchronousTimeWithServer/iOSsynchronousTimeWithServerCover.avif)
 
 # Preface
 
@@ -73,7 +73,7 @@ it outputs
 
 As you can see, NSDate outputs the absolute UTC time, while Beijing time is in the UTC+8 timezone. Add 8 hours to the above output and it's exactly my current time. So normally `UTC + timezone` is the real date and time. For how to add/subtract timezones, refer to the figure below.
 
-![](/assets/images/20201206iOSsynchronousTimeWithServer/iOSsynchronousTimeWithServerZone.avif)
+![i O Ssynchronous Time With Server Zone](/assets/images/20201206iOSsynchronousTimeWithServer/iOSsynchronousTimeWithServerZone.avif)
 
 
  **Note: NSDate is controlled by the phone's system time. When you modify the time display on your phone, NSDate's output of the current time changes accordingly. When building apps, once you understand this, you know NSDate is unreliable, because users may modify its value.**

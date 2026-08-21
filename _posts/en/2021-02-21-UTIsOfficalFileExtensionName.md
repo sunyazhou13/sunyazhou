@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20210221UTIsOfficalFileExtensionName/UTIs.avif)
+![UT Is](/assets/images/20210221UTIsOfficalFileExtensionName/UTIs.avif)
 
 # Preface
 
@@ -423,7 +423,7 @@ CF_ASSUME_NONNULL_END
 
 I hope this article helps those who need to distinguish between file types.
 
-[Official Documentation: Uniform Type Identifiers Reference](file:///Users/sunyazhou/Downloads/System-Declared%20Uniform%20Type%20Identifiers.htm). 
+[Official Documentation: Uniform Type Identifiers Reference](https://developer.apple.com/documentation/uniformtypeidentifiers/system-declared-uniform-type-identifiers). 
 [How to Set Default File Type Associations on macOS](https://www.file-extensions.org/article/set-default-app-for-opening-files-with-no-extension-on-mac)
 
-[Software URL]()
+Software URL

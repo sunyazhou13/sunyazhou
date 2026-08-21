@@ -25,7 +25,7 @@ HSV stands for Hue, Saturation, Value.
 What does that mean?
 Take a look at this image first.
 
-![](/assets/images/20170704Arc4RandomColor/hsv.avif)
+![hsv](/assets/images/20170704Arc4RandomColor/hsv.avif)
 
 The HSV color space can be represented by the cylinder in the image above.
 Hue represents the different colors from 0° to 360°.

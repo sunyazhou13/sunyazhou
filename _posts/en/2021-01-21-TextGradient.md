@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20210121TextGradient/gradientcover.avif)
+![gradientcover](/assets/images/20210121TextGradient/gradientcover.avif)
 
 # Preface
 
@@ -61,7 +61,7 @@ CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)grad
 
 Below is a demonstration of my implementation logic. The demo will be provided below for you to download.
 
-![](/assets/images/20210121TextGradient/gradienttextscroll.avif)
+![gradienttextscroll](/assets/images/20210121TextGradient/gradienttextscroll.avif)
 
 # Summary
 

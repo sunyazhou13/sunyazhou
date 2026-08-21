@@ -9,21 +9,21 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20190321UIScrollTextDemo/CAGradientCover.avif)
+![CA Gradient Cover](/assets/images/20190321UIScrollTextDemo/CAGradientCover.avif)
 
 # Preface
 
 It's been a long time since I last updated my blog (too many family matters, tight time, and limited working hours). Today I bring you Douyin's scrolling caption — the album name of a music album. Enough talk, here's the picture.
 
 Douyin's version:
-![](/assets/images/20190321UIScrollTextDemo/scrolltextdemo0.avif)
+![scrolltextdemo](/assets/images/20190321UIScrollTextDemo/scrolltextdemo0.avif)
 
 The system's scrolling caption:
 
-![](/assets/images/20190321UIScrollTextDemo/scrolltextdemo4.avif)
+![scrolltextdemo](/assets/images/20190321UIScrollTextDemo/scrolltextdemo4.avif)
 
 After finishing this article, it looks like this:
-![](/assets/images/20190321UIScrollTextDemo/scrolltextdemo5.avif)
+![scrolltextdemo](/assets/images/20190321UIScrollTextDemo/scrolltextdemo5.avif)
 
 
 * Supports adjustable mask gradient blur
@@ -34,7 +34,7 @@ After finishing this article, it looks like this:
 
 The whole implementation is fairly simple — no more than 200 lines of code.
 
-![](/assets/images/20190321UIScrollTextDemo/scrolltextdemo1.avif)
+![scrolltextdemo](/assets/images/20190321UIScrollTextDemo/scrolltextdemo1.avif)
 
 First, we need two CALayers:
 
@@ -159,7 +159,7 @@ At code `3` and `4`, we set the start and end directions of the mask gradient. (
 
 We can remove the mask code and run it to see the effect without the mask, as shown below:
 
-![](/assets/images/20190321UIScrollTextDemo/scrolltextdemo2.avif)
+![scrolltextdemo](/assets/images/20190321UIScrollTextDemo/scrolltextdemo2.avif)
 
 Here I used the cyan-colored area to represent the size of the view; without the mask, the text actually extends beyond the display area.
 
@@ -171,7 +171,7 @@ At code `6`, the corresponding color array is assigned to `gradientLayer.colors`
 
 At code `7`, used together with code `6`, it achieves the gradient-masking effect on both sides.
 
-![](/assets/images/20190321UIScrollTextDemo/scrolltextdemo3.avif)
+![scrolltextdemo](/assets/images/20190321UIScrollTextDemo/scrolltextdemo3.avif)
 
 The image above shows the effect of the code below; we added 4 points:
 
@@ -290,7 +290,7 @@ For computing the text size, I use CoreText here, which supports both multiline 
 The attributed string is handled the same way, so I won't write it out here. I've put the detailed code demo below the article; feel free to download and study it.
 
 Final result:
-![](/assets/images/20190321UIScrollTextDemo/scrolltextdemo5.avif)
+![scrolltextdemo](/assets/images/20190321UIScrollTextDemo/scrolltextdemo5.avif)
 
 # Summary
 

@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20170420UniqueFilenameInSystem/StockPhoto.avif)
+![Stock Photo](/assets/images/20170420UniqueFilenameInSystem/StockPhoto.avif)
 
 ## Preface
 
@@ -35,13 +35,13 @@ Having seen countless times how people always create files using a `timestamp + 
 ```  
 
 Before use
-![](/assets/images/20170420UniqueFilenameInSystem/before.avif)
+![before](/assets/images/20170420UniqueFilenameInSystem/before.avif)
 
 During the process
-![](/assets/images/20170420UniqueFilenameInSystem/after.avif)
+![after](/assets/images/20170420UniqueFilenameInSystem/after.avif)
 
 After completion
-![](/assets/images/20170420UniqueFilenameInSystem/done.avif)
+![done](/assets/images/20170420UniqueFilenameInSystem/done.avif)
 
 
 

@@ -31,7 +31,7 @@ I've been consistently learning SwiftUI lately. Over the weekend, I finished goi
 
 Below is the UI diagram for this SwiftUI framework:
 
-![](/assets/images/20230805LearnSwiftUIChapter4/SwiftUIMap.avif)
+![Swift UI Map](/assets/images/20230805LearnSwiftUIChapter4/SwiftUIMap.avif)
 
 ``` swift
 var body: some View {
@@ -98,7 +98,7 @@ When you declare a variable called `shouldUseDarkMode` in SwiftUI with a default
 @State private var confirmationDialog: Dialog = .inactive
 ```
 
-![](/assets/images/20230805LearnSwiftUIChapter4/darkmode.avif)
+![darkmode](/assets/images/20230805LearnSwiftUIChapter4/darkmode.avif)
 
 The Toggle here is the switch we learned about in UIKit. The value it triggers is directly linked to `@AppStorage("shouldUseDarkMode")`, and it also updates the member variable. All these operations are handled by SwiftUI for us.
 
@@ -118,7 +118,7 @@ var body: some View {
 ```  
 Although this change takes effect immediately, it doesn't apply to global ViewControllers or similar views. This change only affects the top-level VC in the responder chain. If some DetailVC is presented, it won't be controlled by this environment.
 
-![](/assets/images/20230805LearnSwiftUIChapter4/darkmode2.avif)
+![darkmode](/assets/images/20230805LearnSwiftUIChapter4/darkmode2.avif)
 
 To solve this problem, you need to wrap it at the top level using the following code, and use the `preferredColorScheme()` function for the change to take effect globally:
 
@@ -131,7 +131,7 @@ NavigationStack {
 }
 ```
 
-![](/assets/images/20230805LearnSwiftUIChapter4/darkmode3.avif)
+![darkmode](/assets/images/20230805LearnSwiftUIChapter4/darkmode3.avif)
 
 That's the technique covered in this section.
 
@@ -191,7 +191,7 @@ When we hold `command+click` on the Person struct, a list appears:
 
 As shown below:
 
-![](/assets/images/20230805LearnSwiftUIChapter4/RawRepresentable.avif)
+![Raw Representable](/assets/images/20230805LearnSwiftUIChapter4/RawRepresentable.avif)
 
 Clicking "Add Explicit Codable Implementation" will automatically generate the following for Person:
 

@@ -14,7 +14,7 @@ This article contains strong personal opinions. If you find it uncomfortable to 
 
 # Background
 
-![](/assets/images/20260123AudioMetaData/libtagdemo.avif)
+![libtagdemo](/assets/images/20260123AudioMetaData/libtagdemo.avif)
 
 I was recently developing a feature that needed to get raw data from audio files, with support for most common audio formats on the market. After consulting AI, I found a library called `[libtag](https://taglib.org/)`, currently at version 2.1.1. This is a C++ library that requires ObjC++ mixed compilation.
 

@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20230312FlutterLifeCycle/flutter0.avif)
+![flutter](/assets/images/20230312FlutterLifeCycle/flutter0.avif)
 
 
 # Preface
@@ -108,7 +108,7 @@ class ContentWidgetState extends State<ContentWidget>
 
 ```
 
-![](/assets/images/20230312FlutterLifeCycle/flutter1.avif)
+![flutter](/assets/images/20230312FlutterLifeCycle/flutter1.avif)
 
 Here's the output:
 
@@ -132,7 +132,7 @@ The `didUpdateWidget()` method is only called when the parent widget updates.
 
 Each click triggers build to be called every time.
 
-![](/assets/images/20230312FlutterLifeCycle/flutter2.avif)
+![flutter](/assets/images/20230312FlutterLifeCycle/flutter2.avif)
 
 ``` sh
 flutter: ContentWidgetState的 build被调用
@@ -147,7 +147,7 @@ flutter: ContentWidgetState的 build被调用
 
 Here is a diagram of Flutter's lifecycle methods:
 
-![](/assets/images/20230312FlutterLifeCycle/flutter3.avif)
+![flutter](/assets/images/20230312FlutterLifeCycle/flutter3.avif)
 
 > The image is from [Flutter (7) Stateful widgets](https://zhuanlan.zhihu.com/p/83782208). If there are any copyright issues, please contact me.
 

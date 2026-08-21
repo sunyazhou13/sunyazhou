@@ -30,7 +30,7 @@ For macOS apps without sandbox (see below): `~/Library/Preferences/<my app>.plis
 
 For macOS apps with sandbox (see below):  `~/Library/Containers/<my app>/Data/Library/Preferences/<my app>.plist` eg:qq  
 
-![](/assets/images/20170220ClearNSUserDefaultCcontent/SandBoxPermission.avif)
+![Sand Box Permission](/assets/images/20170220ClearNSUserDefaultCcontent/SandBoxPermission.avif)
 
 
 Summary

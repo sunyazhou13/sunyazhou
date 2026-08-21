@@ -376,7 +376,7 @@ Besides other `Apps` and system services, the user's own actions can also affect
 Likewise, `AVAudioSession` also uses `Notifications` for such situations.
 
 Suppose there's an app like this:
-![](/assets/images/20180112AVAudioSessionCategory/RouteChange.avif)
+![Route Change](/assets/images/20180112AVAudioSessionCategory/RouteChange.avif)
 
 At first, when recording, we stop recording when the user plugs in or unplugs the headphones. A `Notification` tells us a new device has appeared or a device was removed, and we control stopping the recording accordingly. Or during playback, when headphones are unplugged, the `Notification` fires and we pause the music, resuming when the headphones are plugged back in.
 

@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20250222UnsafeSwift/banner.avif)
+![banner](/assets/images/20250222UnsafeSwift/banner.avif)
 
 # Preface
 
@@ -48,7 +48,7 @@ This tutorial includes three empty Swift Playground files:
 
 First, open the **UnsafeSwift** Playground. Since all the code in this tutorial is cross-platform, you can choose any platform.
 
-![](/assets/images/20250222UnsafeSwift/memory1.avif)
+![memory](/assets/images/20250222UnsafeSwift/memory1.avif)
 
 Unsafe Swift interacts directly with the memory system. You can think of memory as a series of boxes — actually billions of boxes — each containing a number.
 
@@ -58,7 +58,7 @@ An 8-bit byte can store values between 0 and 255. The processor can also access 
 
 For example, on a 64-bit system, a word is 8 bytes (64 bits). To understand this more intuitively, you can use `MemoryLayout` to see the size and alignment of some native Swift types.
 
-![](/assets/images/20250222UnsafeSwift/memory2.avif)
+![memory](/assets/images/20250222UnsafeSwift/memory2.avif)
 
 Add the following code to your Playground:
 
@@ -160,7 +160,7 @@ You should always choose the most appropriate pointer type for your needs. This 
 
 Unsafe Swift pointers use a predictable naming scheme to describe the pointer's characteristics: mutable or immutable, raw or typed, buffer style or non-buffer style. In total, there are eight pointer combinations. You'll learn more about them in the following sections.
 
-![](/assets/images/20250222UnsafeSwift/pointers1.avif)
+![pointers](/assets/images/20250222UnsafeSwift/pointers1.avif)
 
 ### Using Raw Pointers
 
@@ -678,7 +678,7 @@ macOS provides `arc4random`, which generates cryptographically secure random num
 
 In this section, you'll use what you've learned to read this file and generate type-safe random numbers.
 
-![](/assets/images/20250222UnsafeSwift/hexdump.avif)
+![hexdump](/assets/images/20250222UnsafeSwift/hexdump.avif)
 
 First, create a new Playground named RandomNumbers, or open the starter Playground in the project.
 

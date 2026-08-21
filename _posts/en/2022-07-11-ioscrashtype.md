@@ -9,7 +9,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20220711iOSCrashType/kernel.avif)
+![kernel](/assets/images/20220711iOSCrashType/kernel.avif)
 
 # Preface
 
@@ -29,7 +29,7 @@ This is an environment variable used to debug memory-related issues by tracking 
 
 So, when `NSZombie` is enabled in the app instead of letting it crash directly, an erroneous memory access becomes an unrecognized message sent to the zombie object. The zombie object displays the received message and then jumps into the debugger, so you can see exactly where the problem is. You can set the `NSZombieEnabled` environment variable in the Xcode scheme page. Click `Product` -> `Edit Scheme` to open that page, then check the `Enable Zombie Objects` checkbox, as shown:
 
-![](/assets/images/20220711iOSCrashType/1.avif)
+![image](/assets/images/20220711iOSCrashType/1.avif)
 
 Zombies were very useful before RAC came along. But ever since ARC, if you're careful about object ownership, you usually won't run into memory-related crashes.
 

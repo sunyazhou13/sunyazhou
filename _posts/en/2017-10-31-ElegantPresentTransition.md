@@ -19,7 +19,7 @@ During development, although UI work may seem to lack technical depth, sometimes
 > Click here for the Objective-C [demo](https://github.com/sunyazhou13/SlideInPresentation)
 
 
-![](/assets/images/20171031ElegantPresentTransition/ElegantPresentTransition.avif)
+![Elegant Present Transition](/assets/images/20171031ElegantPresentTransition/ElegantPresentTransition.avif)
 
 
 ### Background
@@ -29,7 +29,7 @@ Transitions are already very familiar in iOS today, but finding a reliable one w
 Either this issue or that issue would make it unsuitable.
 
 
-![](/assets/images/20171031ElegantPresentTransition/demo1.avif)
+![demo](/assets/images/20171031ElegantPresentTransition/demo1.avif)
 
 
 Based on the `Raywenderlich` tutorial, I translated it into an Objective-C version with some minor modifications.

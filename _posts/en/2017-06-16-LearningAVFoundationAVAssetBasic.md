@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20170616LearningAVFoundationAVAssetBasic/AlbumDetail.avif)
+![Album Detail](/assets/images/20170616LearningAVFoundationAVAssetBasic/AlbumDetail.avif)
 
 
 # Preface
@@ -62,7 +62,7 @@ This means that whether you're dealing with `Quick Time` movies, `MPEG-4` video,
 
 `AVAsset` is not itself a media asset. Think of it as a container class that carries `timed media`. It has many media components that describe its own metadata. `AVAssetTrack` is the unified media type that actually stores the media assets, and a corresponding model is built for each asset. The most common forms of `AVAssetTrack` are audio and video streams, but it can also represent media types such as __text__, __subtitles__, __closed captions__, and more. The following diagram illustrates `AVAsset` and `AVAssetTrack`:
 
-![](/assets/images/20170616LearningAVFoundationAVAssetBasic/AVAssetTrack.avif)
+![AV Asset Track](/assets/images/20170616LearningAVFoundationAVAssetBasic/AVAssetTrack.avif)
 
 Here's _**`AVAsset.tracks`**_:
 
@@ -260,18 +260,18 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 	`QuickTime` is a cross-platform media architecture developed by Apple, part of which is the Quick File Format specification that defines the internal structure of .mov files. `QuickTime` files are made up of data structures called `atom`s. The general rule is:
 	an `atom` either contains data describing one aspect of the media asset, or nests other `atom`s — but never both. Sometimes Apple's own method implementations may violate this rule. `atom`s are combined into a complex tree structure that describes the layout, audio sample formats, video frame information, and even the metadata to present (author, copyright, etc.) in detail.
 
-	![](/assets/images/20170616LearningAVFoundationAVAssetBasic/atom.avif)
+	![atom](/assets/images/20170616LearningAVFoundationAVAssetBasic/atom.avif)
 	*To help myself remember `atom`, I jokingly call it `Astro Boy` haha — though it has nothing to do with Astro Boy at all.*
 
 	A good way to learn about `QuickTime` is to open a .mov file in a hex editor. (Common hex editors include Hex Fiend or Synalyze It! Pro.) A typical hex tool will show the raw data of a real `QuickTime` file, but the structure and the relationships between `atom`s aren't very intuitive. Apple provides a tool called `Atom Inspector`. It displays the atom structure in an `NSOutlineView` (a tree UI control similar to UITableView), so the atom's tree structure is clearly visible. The tool also includes a small hex viewer where you can inspect the __actual byte layout__.
 
-	![](/assets/images/20170616LearningAVFoundationAVAssetBasic/AtomInspector.avif)
+	![Atom Inspector](/assets/images/20170616LearningAVFoundationAVAssetBasic/AtomInspector.avif)
 
 	Download: [Atom Inspector — click here](http://adcdownload.apple.com/QuickTime/atom_inspector/atom_inspector.dmg) It seems you need to log in with a developer account.
 	Download center: [Apple official software download center](https://developer.apple.com/download/more/) It seems you need to log in with a developer account.
 
 	The following figure shows the atom format:
-	![](/assets/images/20170616LearningAVFoundationAVAssetBasic/QuickTimeAtomStructureNew.avif)
+	![Quick Time Atom Structure New](/assets/images/20170616LearningAVFoundationAVAssetBasic/QuickTimeAtomStructureNew.avif)
 
 	*atom format*
 
@@ -282,7 +282,7 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 	* __`moov` atom (moo-vee)__ gives a complete description of every detail of the media asset, including the original binary data
 
 	The following figure shows the atoms from a mov file I actually tested:
-	![](/assets/images/20170616LearningAVFoundationAVAssetBasic/QuickTimeAtomStructureReal.avif)
+	![Quick Time Atom Structure Real](/assets/images/20170616LearningAVFoundationAVAssetBasic/QuickTimeAtomStructureReal.avif)
 	*Real measurement*
 
 	When working with QuickTime movies, you'll encounter two types of metadata. Standard `QuickTime` metadata, written by tools like `Final Cut Pro X`, lives in /moov/meta/plist, and almost all of its keys have the com.apple.quicktime prefix. Other types of data are considered `QuickTime` user data and are stored in /moov/udta/. `QuickTime` user data can contain the standard data players need to look up, e.g. the song's artist or copyright information, and can also contain any other information useful to an application. Both types of metadata are readable and writable in `AV Foundation`.
@@ -292,10 +292,10 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 2. __MPEG-4 (MP4) Audio and Video__
 
 	MPEG-4 Part 14 is the specification that defines the MP4 file format. `MP4` is derived directly from the `QuickTime` file format, so the `MP4` file format is very similar to the `QuickTime` file structure. In fact, a tool that can parse one file type will often work with the other. `MP4` files are also composed of data structures called `atom`s. Technically, the `MPEG-4` specification calls them `boxes`, but since most of it comes from `QuickTime`, everyone still calls them `atom`s.
-	![](/assets/images/20170616LearningAVFoundationAVAssetBasic/mp4AtomBook.avif)
+	![mp4Atom Book](/assets/images/20170616LearningAVFoundationAVAssetBasic/mp4AtomBook.avif)
 	*MPEG-4 atom structure*
 
-	![](/assets/images/20170616LearningAVFoundationAVAssetBasic/mp4Atom.avif)
+	![mp4Atom](/assets/images/20170616LearningAVFoundationAVAssetBasic/mp4Atom.avif)
 	*MPEG-4 atom structure — real measurement*
 
 	The metadata of `MPEG-4` files is stored in /moov/udat/meta/ilst. There's no standard for the keys used in the `atom`s; everyone follows the keys defined in Apple's unpublished iTunes metadata specification by convention. Although it was never formally released, the documentation for the iTunes metadata format has long been widely known online (I've always wondered — does that count as a release or not? If it was released, why is it still described as unpublished? If it wasn't released, how did it become so well known?). You can refer to the [mp4v2 library](https://code.google.com/archive/p/mp4v2/wikis/iTunesMetadata.wiki) documentation for more mp4 details.
@@ -312,7 +312,7 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 
 	`MP3` files differ significantly from `MPEG-4 (.mp4)` and `QuickTime (.mov)`: `MP3` doesn't use a container format; it uses __encoded audio data__, and the beginning of the file usually contains an optional block of metadata structures. `mp3` files use a format called ID3v2 to store descriptive information about the audio content, including the artist, performer, album, and genre.
 	`ID3` data is quite simple. The first 10 bytes of an `mp3` file carry the embedded metadata; those 10 bytes define the header of the `ID3` block. The first three of the 10 bytes are always '49 44 33' (ID3), indicating an `ID3v2 tag`; the next two bytes define the major version — `2`, `3`, `4` — and the revision number. The remaining bytes define a set of flags and the size of the ID3 block.
-	![](/assets/images/20170616LearningAVFoundationAVAssetBasic/ID3Header.avif)
+	![ID3Header](/assets/images/20170616LearningAVFoundationAVAssetBasic/ID3Header.avif)
 	*ID3 header*
 
 	The rest of the data in the `ID3` block is made up of frames — key-value pairs describing different metadata. Each frame has a __10-byte header with the actual tag name__, followed by 4 bytes indicating the size, then 2 more bytes defining option flags.
@@ -323,7 +323,7 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 	The remaining bytes of the frame contain the actual metadata value. If the value is a text type, the first byte of the tag contains the actual metadata value. If the value is a text type, the first byte of the tag is used to define the encoding type, e.g. Ox00 represents `ISO-8859-1`, and other encoding types are also supported. The ID3 structure is shown in the figure below.
 	__`AV Foundation` supports reading all versions of `ID3v2` tags, but not writing. The MP3 format is subject to patent restrictions, so `AV Foundation` cannot support encoding MP3 or ID3 data.__ However, I recently heard that the German MP3 patent institute said the patents are going to be revoked, because the `AAC` format will deliver better results compared to MP3. Let's see whether future Apple API changes add support for modifying MP3 data.
 
-	![](/assets/images/20170616LearningAVFoundationAVAssetBasic/ID3Structure.avif)
+	![ID3Structure](/assets/images/20170616LearningAVFoundationAVAssetBasic/ID3Structure.avif)
 	*ID3v2 structure diagram*
 
 > `AV Foundation` supports reading all `ID3v2` tag formats, but `ID3v2` deserves an asterisk. The layout of `ID3v2.2` differs from that of `ID3v2.3` and later versions. Note that some tags consist of 3 characters instead of 4; for example, a song's comment info is stored in the COM frame when the tag is `ID3v2.2`, but when the same song uses an `ID3v2.3` tag or newer, the song's comment info is stored in the COMM frame. The character constants defined by the framework only apply to `ID3v2.3` and later; in the upcoming demo we'll show through code how to remain forward-compatible with `ID3v2.2`.
@@ -339,7 +339,7 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 
 The interfaces for reading specific asset metadata can access the metadata in `QuickTime`, `MPEG-4 atom`, and `ID3` frames through the methods provided by the `AVMetadataItem` class.
 `AVAsset` and `AVAssetTrack` provide two methods for retrieving related metadata, each with its own scope of use. Before understanding the scope, you first need to know what __key space__ means. `AV Foundation` uses the __key space__ as a way to group related keys together, enabling filtering of collections of `AVMetadataItem` instances. Each asset contains at least two key spaces from which metadata can be retrieved.
-![](/assets/images/20170616LearningAVFoundationAVAssetBasic/keyspace.avif)
+![keyspace](/assets/images/20170616LearningAVFoundationAVAssetBasic/keyspace.avif)
 
 The `Common` key space defines keys supported by all media types, including common elements such as title, artist, and artwork information. This provides a degree of metadata standardization across all supported media formats. We can query the `commonMetadata` property of an asset or track from the `Common` key space to get metadata; this property returns an array containing all available metadata.
 

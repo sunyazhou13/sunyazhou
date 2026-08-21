@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20180305ComputerGraphicsRenderingProcess/IvanSutherland.avif)
+![Ivan Sutherland](/assets/images/20180305ComputerGraphicsRenderingProcess/IvanSutherland.avif)
 
 # Preface
 
@@ -22,7 +22,7 @@ The computer's drawing process can be simply explained with a pipeline, and the 
 * Shading specification: Once the coordinate system has generated drawing data with coordinates, it needs to be fed into the shader, which specifies the fill color or texture for these wireframes.
 * Rendering: After the shader adds shading data to the drawing data, it's sent to the renderer. The renderer fills pixels into the described wireframe groups according to the drawing data description and sends them to the frame buffer, which is then sent to the display. The display receives the frame buffer's data and draws to the screen according to the data description.
 
-![](/assets/images/20180305ComputerGraphicsRenderingProcess/render1.avif)
+![render](/assets/images/20180305ComputerGraphicsRenderingProcess/render1.avif)
 
 
 ## Pixels, Points (point), and Dots (dot)
@@ -52,7 +52,7 @@ HiDPI is an Apple drawing technology. With it, a point in the computer's coordin
 Since a pixel is a set of color data, the drawing data only contains it after passing through the shader. For example, before being fed into the shader, the drawing data describes a 100x100 rectangle. After the shader specifies its color attributes, it's fed into a HiDPI system, which adds 200x200 pixels of data to the drawing data. After passing through the renderer, it's equivalent to filling 200x200 pixels into the 100x100 rectangular wireframe.
 
 
-![](/assets/images/20180305ComputerGraphicsRenderingProcess/render2.avif)
+![render](/assets/images/20180305ComputerGraphicsRenderingProcess/render2.avif)
 
 ## Frame Buffer and the Display Screen
 

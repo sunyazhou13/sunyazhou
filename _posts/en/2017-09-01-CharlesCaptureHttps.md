@@ -11,7 +11,7 @@ typora-root-url: ..
 
 # Preface
 
-![](/assets/images/20170901CharlesCaptureHttps/CharlesAlbum.avif)
+![Charles Album](/assets/images/20170901CharlesCaptureHttps/CharlesAlbum.avif)
 
 How to use `charles` to intercept `https` requests on iOS devices
 
@@ -25,7 +25,7 @@ Just [download it from the official website](https://www.charlesproxy.com/downlo
 
 ####  (1) Check your computer's IP
 
-![](/assets/images/20170901CharlesCaptureHttps/WiFiIpmac.avif)
+![Wi Fi Ipmac](/assets/images/20170901CharlesCaptureHttps/WiFiIpmac.avif)
 
 #### (2) Configure HTTP proxy on your phone
 
@@ -33,7 +33,7 @@ Connect your phone to your computer, tap "Settings -> Wi-Fi -> connected WiFi", 
 Server: your computer's IP address, e.g. 192.168.1.108
 Port: 8888
 
-![](/assets/images/20170901CharlesCaptureHttps/WiFiIpPortiPhone.avif)
+![Wi Fi Ip Porti Phone](/assets/images/20170901CharlesCaptureHttps/WiFiIpPortiPhone.avif)
 
 
 Note: *Here I'm using my own computer's IP as an example. The red area — remember to replace it with your own computer's IP*
@@ -41,7 +41,7 @@ Note: *Here I'm using my own computer's IP as an example. The red area — remem
 
 After setting the proxy, open Charles on your computer. When your phone makes a request, the following popup will appear:
 
-![](/assets/images/20170901CharlesCaptureHttps/CharlesAllow.avif)
+![Charles Allow](/assets/images/20170901CharlesCaptureHttps/CharlesAllow.avif)
 
 Click **Allow** and you're done
 
@@ -49,13 +49,13 @@ Click **Allow** and you're done
 
 From the top-left menu, select `SSL Proxying Settings`
 
-![](/assets/images/20170901CharlesCaptureHttps/CharlesStep1.avif)
+![Charles Step](/assets/images/20170901CharlesCaptureHttps/CharlesStep1.avif)
 
 Then check `Enable SSL Proxying`
 
 Next, click `Add`
 
-![](/assets/images/20170901CharlesCaptureHttps/CharlesStep2.avif)
+![Charles Step](/assets/images/20170901CharlesCaptureHttps/CharlesStep2.avif)
 
 Then in
 
@@ -63,49 +63,49 @@ Then in
 
 `Port`: 443 (default port). Click OK when done
  
-![](/assets/images/20170901CharlesCaptureHttps/CharlesStep3.avif)
+![Charles Step](/assets/images/20170901CharlesCaptureHttps/CharlesStep3.avif)
 
 
 Next, click `Help` -> `SSL Proxying` -> Install Root Certificate
 
-![](/assets/images/20170901CharlesCaptureHttps/CharlesStep4.avif)
+![Charles Step](/assets/images/20170901CharlesCaptureHttps/CharlesStep4.avif)
 
 After installing to Keychain, click on Charles's root certificate and select `Use Trust`
 
-![](/assets/images/20170901CharlesCaptureHttps/CharlesCerRootMac.avif)
+![Charles Cer Root Mac](/assets/images/20170901CharlesCaptureHttps/CharlesCerRootMac.avif)
 
 The next step is to install the root certificate on your phone
 
-![](/assets/images/20170901CharlesCaptureHttps/CharlesStep6.avif)
+![Charles Step](/assets/images/20170901CharlesCaptureHttps/CharlesStep6.avif)
 
 
-Now, on the phone with the proxy IP configured (on the iPhone), open the URL directly in Safari: [chls.pro/ssl](chls.pro/ssl)
+Now, on the phone with the proxy IP configured (on the iPhone), open the URL directly in Safari: [chls.pro/ssl](https://chls.pro/ssl)
 
 Your phone will soon show this prompt — click **Allow**
 
 
-![](/assets/images/20170901CharlesCaptureHttps/iPhone1.avif)
+![i Phone](/assets/images/20170901CharlesCaptureHttps/iPhone1.avif)
 
 Then install the certificate
 
-![](/assets/images/20170901CharlesCaptureHttps/iPhone2.avif)
+![i Phone](/assets/images/20170901CharlesCaptureHttps/iPhone2.avif)
 
 After installation, the last step is **very important**
 
 __You must go to General -> About This Phone -> Certificate Trust Settings__ to trust the certificate
 
-![](/assets/images/20170901CharlesCaptureHttps/iPhone3.avif)
+![i Phone](/assets/images/20170901CharlesCaptureHttps/iPhone3.avif)
 
 
 If you don't trust it, you'll see the following issue when capturing:
 
-![](/assets/images/20170901CharlesCaptureHttps/CharlesRootCerError.avif)
+![Charles Root Cer Error](/assets/images/20170901CharlesCaptureHttps/CharlesRootCerError.avif)
 
 > Note: *This seems to be required only for iOS 10.3 and above*
 
 Finally, here's a screenshot of a successful capture (Alipay's API)
 
-![](/assets/images/20170901CharlesCaptureHttps/Result.avif)
+![Result](/assets/images/20170901CharlesCaptureHttps/Result.avif)
 
 
 

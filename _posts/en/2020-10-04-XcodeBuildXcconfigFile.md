@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20201004XcodeBuildXcconfigFile/XcodeBuildConfigrationFile1.avif)
+![Xcode Build Configration File](/assets/images/20201004XcodeBuildXcconfigFile/XcodeBuildConfigrationFile1.avif)
 
 # Preface
 
@@ -26,19 +26,19 @@ Below are the problems I ran into; I'll try to solve them.
 
 ### Creating
 
-![](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig1.avif)
+![xcconfig](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig1.avif)
 
 By default the target is checked here (Xcode doesn't check it by default).
-![](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig2.avif)
+![xcconfig](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig2.avif)
 
 Once created, select our own configuration.
-![](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig3.avif)
+![xcconfig](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig3.avif)
 
 #### First, the Warning Issue
 
 After we're done, let's look at the warning that appears after `pod install`.
 
-![](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig4.avif)
+![xcconfig](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig4.avif)
 
 ``` sh
 [!] CocoaPods did not set the base configuration of your project because your project already has a custom config set. In order for CocoaPods integration to work at all, please either set the base configurations of the target `XcodeConfigDemo` to `Target Support Files/Pods-XcodeConfigDemo/Pods-XcodeConfigDemo.debug.xcconfig` or include the `Target Support Files/Pods-XcodeConfigDemo/Pods-XcodeConfigDemo.debug.xcconfig` in your build configuration (`XcodeConfigDemo/DemoDebug.xcconfig`).
@@ -49,9 +49,9 @@ After we're done, let's look at the warning that appears after `pod install`.
 Let me first explain how to solve it. After generating our own .xcconfig file, the CocoaPods configuration is the default. We changed it to our own but didn't manage CocoaPods, so CocoaPods' build settings might not take effect in the project because of our changes. To solve this, we need to import CocoaPods' xcconfig into our own xcconfig.
 
 
-![](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig5.avif)
+![xcconfig](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig5.avif)
 
-![](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig6.avif)
+![xcconfig](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig6.avif)
 
 
 Here I also declared 2 variables in the debug and release configurations, for testing variable usage in the project below.
@@ -76,7 +76,7 @@ OK. After `pod install`, the warning is gone.
 
 Here I added a common DemoCommon.xcconfig configuration, to export common macro variables.
 
-![](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig7.avif)
+![xcconfig](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig7.avif)
 
 `GCC_PREPROCESSOR_DEFINITIONS` means inheriting the common environment variables and adding them to preprocessing — that is, adding this line so that the related macro definitions can be referenced in code.
 
@@ -93,7 +93,7 @@ The pitfall I hit here was adding 20+ variables and writing a big pile of them. 
 
 #### After Resolving the Warning, Compile-and-Print Issues
 
-![](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig8.avif)
+![xcconfig](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig8.avif)
 
 ``` sh
 Unexpected '@' in program
@@ -114,7 +114,7 @@ SYZ_TEST = @"https:\/\/xxxxx.com/"
 
 ```
 
-![](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig9.avif)
+![xcconfig](/assets/images/20201004XcodeBuildXcconfigFile/xcconfig9.avif)
 
 After the conversion it compiles, but there's still a warning. It's probably not escaped correctly, but the output works. If any expert knows the answer, please leave a comment — thanks!
 

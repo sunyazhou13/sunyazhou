@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20230604LearnSwiftUIChapter1/swiftuilogo.avif)
+![swiftuilogo](/assets/images/20230604LearnSwiftUIChapter1/swiftuilogo.avif)
 
 # Preface
 
@@ -20,7 +20,7 @@ Recently I've been listening to a SwiftUI course taught by a female blogger from
 
 ## Main contents
 
-![](/assets/images/20230604LearnSwiftUIChapter1/finalproject.avif)
+![finalproject](/assets/images/20230604LearnSwiftUIChapter1/finalproject.avif)
 
 1-5 Chapter 1 supplement: some View, layout rules, design details - SwiftUI for beginners
 
@@ -110,9 +110,9 @@ struct ContentView_Previews: PreviewProvider {
 
 There are a few important things here
 
-![](/assets/images/20230604LearnSwiftUIChapter1/ViewSizeType1.avif)
+![View Size Type](/assets/images/20230604LearnSwiftUIChapter1/ViewSizeType1.avif)
 
-![](/assets/images/20230604LearnSwiftUIChapter1/ViewSizeType2.avif)
+![View Size Type](/assets/images/20230604LearnSwiftUIChapter1/ViewSizeType2.avif)
 
 * 1. Dynamic type [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)
 * 2. Screen scale factor [Screen size and Scale factor](https://iosref.com/res

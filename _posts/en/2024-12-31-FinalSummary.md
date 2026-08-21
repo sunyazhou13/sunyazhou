@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20241231FinalSummary/banner.avif)
+![banner](/assets/images/20241231FinalSummary/banner.avif)
 <button type="button" class="btn btn-info" data-toggle="popover" title="Magotan1990" data-content="on the way to play billiards">Trample Every Difficulty Underfoot</button>
 
 # Preface
@@ -95,8 +95,8 @@ Work right now is a sorry state: old age meets poor treatment.
 
 In Q1 this year I won an "Excellence Individual Chasing-the-Light Award" — just barely worth a mention in the year-end summary.
 
-![](/assets/images/20241231FinalSummary/award1.avif)  
-![](/assets/images/20241231FinalSummary/award2.avif)
+![award](/assets/images/20241231FinalSummary/award1.avif)  
+![award](/assets/images/20241231FinalSummary/award2.avif)
 
 The funding given was about 2k; I treated everyone to a meal and got it reimbursed haphazardly. Not much use. Oh, and they gave a bouquet of flowers too. That's it.
 
@@ -108,11 +108,11 @@ I won this award mainly for publishing an article, "Kuwo Music iOS Widget Adapta
 
 A few years ago I bought a pair of AJ1 sneakers on Dewu. Years of wear had caused the leather material on the toe to age. I asked all kinds of shoe repair shops and none of them could fix it. In desperation I found a craftsman specializing in AJ1 sneaker repair on Pinduoduo, and had them fixed for about 150 RMB — the result was great.
 
-![](/assets/images/20241231FinalSummary/aj1.avif)
+![aj](/assets/images/20241231FinalSummary/aj1.avif)
 
 There's also my AirPods Pro, issued during the Kuaishou 2019 Spring Festival Gala live event. After all these years, the internal speaker seemed to have come unglued and detached, and it kept rattling while I studied on the subway. So I found a professional repair craftsman on Pinduoduo who fixed it for 50 RMB. Apple's official answer was either replace it outright, or it can't be repaired.
 
-![](/assets/images/20241231FinalSummary/airpod.avif)
+![airpod](/assets/images/20241231FinalSummary/airpod.avif)
 
 These two personal items perfectly embody my 2024 of patching and mending. There was no way around downgraded consumption: all my wealth was harvested by the government in one go for a house swap. The helplessness of the poor...
 
@@ -120,7 +120,7 @@ These two personal items perfectly embody my 2024 of patching and mending. There
 
 ### Continued Learning of C++
 
-![](/assets/images/20241231FinalSummary/Cplusplus.avif)    
+![Cplusplus](/assets/images/20241231FinalSummary/Cplusplus.avif)    
 
 In fragments of time on the subway, I somehow unexpectedly managed to finish an entire book on C++. The moment I closed it, I felt as if I were standing before the gates of a magnificent palace of knowledge, with countless winding passages behind the door — each leading to deeper learning, each requiring more of my time and energy to explore. I feel as though I'm standing at the root node of a great tree, preparing to follow the branches of the tree, step by step, into every child node, even the leaf nodes at the very tips. Along the way, I have only my predecessors and successors as guides, and they will lead me onward through the world of programming.
 
@@ -128,14 +128,14 @@ In fragments of time on the subway, I somehow unexpectedly managed to finish an 
 
 As soon as I finished the previous book, I moved straight on to the next one: Metal by Tutorials 4th 2023.12 — graphics on the Apple platform.
 
-![](/assets/images/20241231FinalSummary/Metal.avif)    
+![Metal](/assets/images/20241231FinalSummary/Metal.avif)    
 
 When I reached the halfway point of this Metal computer graphics book, I deeply realized that the computer knowledge I learned in university was merely superficial and slapdash — I had never gone deep into the field of graphics at all — which made me feel I had wasted precious time. Only now do I understand: this is the true essence of computer technology. If, in the early days of my career, a mentor had been there to point me in the right direction, perhaps I wouldn't be living with the constant fear of being laid off the way I am now.
 
 To get a clear picture of the APIs Metal provides, I tried writing several pages of notes, working out queue, command buffer, command encoder, pipeline buffer object... 
 
-![](/assets/images/20241231FinalSummary/Metal01.avif)   
-![](/assets/images/20241231FinalSummary/Metal02.avif) 
+![Metal](/assets/images/20241231FinalSummary/Metal01.avif)   
+![Metal](/assets/images/20241231FinalSummary/Metal02.avif) 
 > The drawings are far too scribbly — excuse the embarrassment.
 
 As Newton said, the reason he could see further was that he stood on the shoulders of giants. I long to work hard and become one of those giants, so that more Newtons can see further.
@@ -169,11 +169,11 @@ I'm optimistic about this business for two reasons:
 
 Because the economy is poor right now, income becomes critical when work is unstable. People don't dare to spend, and can only satisfy their need to consume with small amounts of money. This kind of billiards economy fits perfectly with the way people consume under such an economic backdrop: spending a little money brings a lot of happiness.
 
-![](/assets/images/20241231FinalSummary/daiyong.avif)  
+![daiyong](/assets/images/20241231FinalSummary/daiyong.avif)  
 
 Billiards is deeply healing for me. When my work stress is high, this sport is so elegant. After more than two years of practice, I've gained a basic understanding of billiards. When a former colleague came back to China from Singapore, I used billiards to share with him how a person can conquer the loneliness of leaving their hometown with no one to turn to.
 
-![](/assets/images/20241231FinalSummary/wufendian.avif)  
+![wufendian](/assets/images/20241231FinalSummary/wufendian.avif)  
 
 Life is like that white cue ball: in the five-point challenge, three points in a line, aiming at the pocket. When the quality of our stroke is poor, or the contact point on the cue ball is inaccurate, these mistakes all feed back into the trajectory of the white ball. As we keep searching for the correct contact point and correcting our errors, we can adjust the direction of our life and set it back on the right track.
 
@@ -220,7 +220,7 @@ If you buy a home in Beijing with a provident fund loan, you must ensure you don
 
 This system, I think, is something the country should hear feedback on — it is extremely unfriendly to the unemployed. Who can guarantee their job is stable? Nowadays nobody dares to guarantee stability. Who would buy a home in that state — wouldn't that be crazy? With unstable work income, how many people are willing to take the risk for the thrill of it?
 
-![](/assets/images/20241231FinalSummary/gjj.avif)  
+![gjj](/assets/images/20241231FinalSummary/gjj.avif)  
 
 Going through this home purchase left me feeling how close a call it was. For penniless poor people, buying a home in Beijing is truly an enormous challenge. You really don't know whether unemployment or tomorrow comes first! Without parents to catch you in life, and with the state taking away young people's entire income in one go — even emptying parents' wallets — how can there be any consumption left? How could the economy possibly improve? The economy can only stagnate.
 
@@ -237,6 +237,6 @@ That's about it! For 2025, there must be something to look forward to. My hope i
 
 Finally, let me put down the two most useful lines I read in the "Discourses on Salt and Iron"!
 
-![](/assets/images/20241231FinalSummary/yantielun.avif)  
+![yantielun](/assets/images/20241231FinalSummary/yantielun.avif)  
 
 Goodbye, 2024.

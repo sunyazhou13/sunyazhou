@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20230912iOS17WidgetURL/banner.avif)
+![banner](/assets/images/20230912iOS17WidgetURL/banner.avif)
 
 # Preface
 
@@ -45,7 +45,7 @@ HStack(alignment: .bottom) {
 }
 ```
 
-![](/assets/images/20230912iOS17WidgetURL/widget1.avif)
+![widget](/assets/images/20230912iOS17WidgetURL/widget1.avif)
 
 That is, no matter which of the three buttons I clicked, only the last Image would work. I carefully read through the documentation and can only say it's quite a trap.
 

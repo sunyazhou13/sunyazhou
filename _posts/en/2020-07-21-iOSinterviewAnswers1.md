@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
+![i OS Interview Questions Album Cover](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
 
 # Preface
 
@@ -111,7 +111,7 @@ protocols (the list of implemented protocols);
 It also includes an isa pointer, which shows that Class is also an object type, so we call it the class object.
 The isa here points to the metaclass object, which stores all the information about the class methods used to create the class object (Class).
 
-![Objective-C object prototype inheritance chain](/assets/images/20200721iOSinterviewAnswers/class_inherit.avif)  [Objective-C object prototype inheritance chain]()
+![Objective-C object prototype inheritance chain](/assets/images/20200721iOSinterviewAnswers/class_inherit.avif)  Objective-C object prototype inheritance chain
 
 
 As shown in the figure, the `isa` of the root class `NSObject`'s metaclass object points to itself, forming a closed loop.  
@@ -213,7 +213,7 @@ It points to its instance. That is, the instance's isa points to MetaClass, and 
 
 So Smalltalk's inheritance relationship is actually very similar to Objective-C's (the one with "class" at the end is the MetaClass of the former).
 
-![](/assets/images/20200721iOSinterviewAnswers/class_inherit2_smaltalk.avif)
+![class_inherit2_smaltalk](/assets/images/20200721iOSinterviewAnswers/class_inherit2_smaltalk.avif)
 
 ###### An important question arises here: if we remove MetaClass and put class methods into the class itself, is that feasible?
 
@@ -465,7 +465,7 @@ struct class_data_bits_t {
 ```
 This struct has only one `64-bit` member variable `bits`. Let's first look at what information these `64 bits` store:
 
-![](/assets/images/20200721iOSinterviewAnswers/objc_class_bits.avif)
+![objc_class_bits](/assets/images/20200721iOSinterviewAnswers/objc_class_bits.avif)
 
 * `is_swift`: the first bit, indicating whether the class is a Swift class
 * `has_default_rr`: the second bit, indicating whether the current class or its superclass has the default `retain/release/autorelease/retainCount/_tryRetain/_isDeallocating/retainWeakReference/allowsWeakReference` methods
@@ -518,11 +518,11 @@ Every class has a corresponding `class_ro_t` struct and a `class_rw_t` struct. D
 Two figures illustrate this process:
 
 Before the class's `realizeClass` runs:  
-![](/assets/images/20200721iOSinterviewAnswers/before_bits.avif)
+![before_bits](/assets/images/20200721iOSinterviewAnswers/before_bits.avif)
 
 After the class's `realizeClass` runs:
 
-![](/assets/images/20200721iOSinterviewAnswers/after_bits.avif)
+![after_bits](/assets/images/20200721iOSinterviewAnswers/after_bits.avif)
 
 A close look at the member variables of the two structs reveals many similarities: both store the current class's properties, ivars, methods, and protocols. The difference is that `class_ro_t` stores what is determined at compile time, while `class_rw_t` is determined at `runtime`: it first copies the contents of `class_ro_t`, then copies in the properties, methods, etc., from the class's categories. So `class_rw_t` can be said to be a superset of `class_ro_t`. Of course, actually accessing a class's methods and properties accesses the contents of `class_rw_t`.
 
@@ -776,7 +776,7 @@ objc_msgSendSuper   //如果要给超类发送消息
 
 Building on the message-passing mechanism above, in Objective-C, if you send an object a message it can't handle, it enters the Message Forwarding flow described in the figure below:
 
-![](/assets/images/20200721iOSinterviewAnswers/methodforward.avif)
+![methodforward](/assets/images/20200721iOSinterviewAnswers/methodforward.avif)
 
 Message forwarding in objc goes through 3 stages: `resolveInstanceMethod` -> `forwardingTargetForSelectoer` -> `forwardInvocation` -> `message not handled`.  
 
@@ -889,7 +889,7 @@ At this stage you can do much more with an Objective-C message.
 
 ##### Comparison of the Message Forwarding Mechanism with Other Languages' Message Mechanisms
 
-I haven't yet gone deep into the runtime level of other programming languages, such as C's underlying implementation, C++'s, or Java's underlying message passing. Here's [an article about something similar to message forwarding on Android](探索 Android App Bundle)
+I haven't yet gone deep into the runtime level of other programming languages, such as C's underlying implementation, C++'s, or Java's underlying message passing. Here's an article about something similar to message forwarding on Android (探索 Android App Bundle)
 
 
 #### Before Method Lookup -> Dynamic Resolution -> Message Forwarding, What Happens When a Method Is Called

@@ -15,7 +15,7 @@ This post carries a strong personal tone. If you find it uncomfortable to read, 
 
 # Problem
 
-![](/assets/images/20230802swiftuiextention1/WidgetiOS17.avif)
+![Widgeti OS](/assets/images/20230802swiftuiextention1/WidgetiOS17.avif)
 
 Recently I've been developing widgets on iOS 17 using the SwiftUI framework. On my first attempt at building it in a project, I ran into an API availability-checking problem.
 

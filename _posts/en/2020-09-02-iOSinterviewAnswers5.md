@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
+![i OS Interview Questions Album Cover](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
 
 # Preface
 
@@ -43,7 +43,7 @@ As a qualified iOS developer, you must have a deeper understanding of runloop. L
 
 Before answering this question, please read [iOS touch event full set](https://mp.weixin.qq.com/s/9rvSRt4kfpy7e87EJoaJOQ) carefully.
 
-![](/assets/images/20200902iOSinterviewAnswers/runloop_event_receive.avif)
+![runloop_event_receive](/assets/images/20200902iOSinterviewAnswers/runloop_event_receive.avif)
 
 As the figure above shows, the whole flow is: when our app starts, it listens on a machPort by default to receive IOHIDEvent for receiving and processing touch events.
 

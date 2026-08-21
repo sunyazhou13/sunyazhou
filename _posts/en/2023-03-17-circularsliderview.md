@@ -19,7 +19,7 @@ This article carries strong personal feelings. If you feel uncomfortable reading
 Recently I came across an article about drawing a circular Slider simply with SwiftUI. After hands-on practice, it turned out to be really simple. Let me record the code implementation and the effect.
 
 
-![](/assets/images/20230317CircularSliderView/slider.avif)
+![slider](/assets/images/20230317CircularSliderView/slider.avif)
 
 ``` swift
 //

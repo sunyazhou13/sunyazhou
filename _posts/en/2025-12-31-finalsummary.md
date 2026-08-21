@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20251231FinalSummary/banner.avif)
+![banner](/assets/images/20251231FinalSummary/banner.avif)
 
 
 # Preface
@@ -84,13 +84,13 @@ I'm gradually getting used to life as a social scrap in the AI era, and I've als
 This year I achieved some learning results. Using AI-assisted methods, I completed a full read of an English technical book. I translated it once, then asked AI to translate it again. Also, 80% of my time on the subway was spent learning. This habit has become part of my life, and my English ability has improved by a qualitative level. After finishing that English book, I also studied two technical papers.
 
 * 《设计模式之美》(The Beauty of Design Patterns)
-	* ![](/assets/images/20251231FinalSummary/DesignPattern.avif)
+	* ![Design Pattern](/assets/images/20251231FinalSummary/DesignPattern.avif)
 * 《快手 · 移动端音视频开发实战》(Kuaishou · Hands-On Mobile Audio & Video Development)
-	* ![](/assets/images/20251231FinalSummary/AVDev.avif)
+	* ![AV Dev](/assets/images/20251231FinalSummary/AVDev.avif)
 * 《线性代数》(Linear Algebra) 9% learned in 2025
-	* ![](/assets/images/20251231FinalSummary/LinearAlgebra.avif)
+	* ![Linear Algebra](/assets/images/20251231FinalSummary/LinearAlgebra.avif)
 * 《Metal.by.Tutorials.4th.2023.12》
-	* ![](/assets/images/20251231FinalSummary/MetalByTutorials202312.avif)
+	* ![Metal By Tutorials](/assets/images/20251231FinalSummary/MetalByTutorials202312.avif)
 * Two papers
 	* [MipMap progressive distant rendering](https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf)
 	* [On the Parameterization of Catmull-Rom Curves — chord-length parameterization makes Bézier curve interpolation smoother](https://www.cemyuksel.com/research/catmullrom_param/catmullrom.pdf)
@@ -199,12 +199,12 @@ The most memorable thing in 2025 for me was **Zhao Xintong winning the World Cha
 
 In the last few days of the year, Joy (Qiao's) released the Joy Violet Table — Joy Q5, priced at 18,800¥. It brings me one step closer to my dream of opening a billiard hall.
 
-![](/assets/images/20251231FinalSummary/joyq5.avif)
+![joyq](/assets/images/20251231FinalSummary/joyq5.avif)
 
 Previously, Joy's silver-leg tables started at 28,800. Now if you buy this table, the cost instantly drops 35%. I watched a lot of billiards matches this year, but there's a lack of partners to play with around me. I still hold on to my hobby — hobbies naturally have to turn into consumption too.
 
 In 2025, I bought an Osbournez-Zhengtu 3
-![](/assets/images/20251231FinalSummary/archbenz.avif)
+![archbenz](/assets/images/20251231FinalSummary/archbenz.avif)
 This cue is definitely the hit product of 2025. As for why, my understanding is that its grip looks more like Sun Wukong's golden staff, after all, this year the domestic 3A masterpiece "Black Myth: Wukong" broke out, causing most people's wallets to break too.
 
 For a hobby, this investment is worth it. After all, I don't have any bad habits; besides ordering takeout, this is perhaps the only spending for a homebody.
@@ -226,22 +226,22 @@ You can take the exam, get a certificate, and become an athlete or referee. Ther
 Now it's time for the hard goods
 
 * Peugeot Django 4-gen scooter with dashboard navigation, 150cc
-	![](/assets/images/20251231FinalSummary/django1.avif)  
-	![](/assets/images/20251231FinalSummary/django2.avif)  
+	![django](/assets/images/20251231FinalSummary/django1.avif)  
+	![django](/assets/images/20251231FinalSummary/django2.avif)  
 > The essential motorcycle for commuting. The 4th-gen Django 150 features keyless entry, an LCD dashboard, and motorcycle screen casting is also nice. Its looks and practicality are my strong recommendation.  
 * Mac mini M4
-	![](/assets/images/20251231FinalSummary/macminim4.avif)
+	![macminim](/assets/images/20251231FinalSummary/macminim4.avif)
 > A productivity tool — a small, practical home Apple computer, priced at 3000¥ with national subsidy discount.
 * DGX Spark
-	![](/assets/images/20251231FinalSummary/dgxspark0.avif)
-	![](/assets/images/20251231FinalSummary/dgxspark1.avif)
-	![](/assets/images/20251231FinalSummary/dgxspark2.avif)
+	![dgxspark](/assets/images/20251231FinalSummary/dgxspark0.avif)
+	![dgxspark](/assets/images/20251231FinalSummary/dgxspark1.avif)
+	![dgxspark](/assets/images/20251231FinalSummary/dgxspark2.avif)
 > This is an AI supercomputer. AI was the hottest thing in 2025, and in the future AI computers will definitely go into thousands of households and ordinary homes. It's just that its price is around 30k now. One of these can run full-powered DeepSeek directly.
 * Jetson AGX Thor
-	![](/assets/images/20251231FinalSummary/JetsonThor.avif)
+	![Jetson Thor](/assets/images/20251231FinalSummary/JetsonThor.avif)
 > This is basically the heart of a robot, similar to the device above. Both are AI supercomputers from NVIDIA. If you want to develop embodied intelligence, this is a must-have.
 * Huawei Lingxiao Parent-Child Router
-	![](/assets/images/20251231FinalSummary/router.avif)
+	![router](/assets/images/20251231FinalSummary/router.avif)
 > The new house's network is wired throughout. Using this router, WiFi covers almost the whole house, and it must be maxed out to support the latest WiFi 7 protocol.
 
 # Summary

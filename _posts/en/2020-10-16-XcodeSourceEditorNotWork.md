@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditorCover.avif)
+![Xcode Source Editor Cover](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditorCover.avif)
 
 # Preface
 
@@ -19,7 +19,7 @@ This article is highly personal in tone. If you find it uncomfortable to read, p
 
 These past few days I wanted to align my code and found that the XAlign plugin I often use had stopped working. Looking at the settings, I saw that Xcode Source Editor was missing from the extensions.
 
-![](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditor.avif)
+![Xcode Source Editor](/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditor.avif)
 
 After searching online, I found a reliable solution, so I'm jotting it down here.
 

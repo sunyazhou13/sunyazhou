@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20221203TheSunyazhouTheoryII/thesunyazhoutheoryii.avif)
+![thesunyazhoutheoryii](/assets/images/20221203TheSunyazhouTheoryII/thesunyazhoutheoryii.avif)
 
 # Preface
 
@@ -28,7 +28,7 @@ Based on my superficial understanding, this system hasn't appeared yet, so I sho
 
 * `TSTⅡCVLRS` (The Sunyazhou Theory Ⅱ Computer Vision Laser Radar System) — The Sunyazhou Theory II Computer Vision LiDAR System.
 
-![](/assets/images/20221203TheSunyazhouTheoryII/laserladar1.avif)
+![laserladar](/assets/images/20221203TheSunyazhouTheoryII/laserladar1.avif)
 
 
 > Note:  
@@ -47,7 +47,7 @@ Some ideas may be immature and even laughable. I believe in actions over words, 
 Attached: current LiDAR usage among domestic Chinese EV startups
 
 
-![](/assets/images/20221203TheSunyazhouTheoryII/laserladar2.avif)
+![laserladar](/assets/images/20221203TheSunyazhouTheoryII/laserladar2.avif)
 
 
 [Reference: The Chinese market teaches LiDAR companies how to do business](https://www.ithome.com/0/658/343.htm)  

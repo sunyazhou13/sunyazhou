@@ -14,7 +14,7 @@ The holiday is approaching, and I'm worried about not updating articles in time 
 
 Here's the image
 
-![](/assets/images/20180929BreathAnimation/breathAnimation.avif)
+![breath Animation](/assets/images/20180929BreathAnimation/breathAnimation.avif)
 
 It's roughly like this.
 
@@ -152,7 +152,7 @@ If the duration reaches the middle — for example, with a 1-second duration, at
 
 then the second animation has just run halfway, and it looks really weird.
 
-![](/assets/images/20180929BreathAnimation/aniamation.avif)
+![aniamation](/assets/images/20180929BreathAnimation/aniamation.avif)
 
 
 If the __fade animation__ runs for 0.5 seconds, since it repeats, it restarts — which means when the breath folds back, the fade restarts from the beginning too.

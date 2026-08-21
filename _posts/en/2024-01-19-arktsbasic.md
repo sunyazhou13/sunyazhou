@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20240116HarmonyPhoneSendFileTomacOS/harmonyOS.avif)
+![harmony OS](/assets/images/20240116HarmonyPhoneSendFileTomacOS/harmonyOS.avif)
 
 # Preface
 
@@ -123,7 +123,7 @@ aboutToDisappear(): void {
 ```
 
 The lifecycle flow is shown in the figure below, which illustrates the lifecycle of a component decorated with **@Entry (the home page).  
-![](/assets/images/20240119ArkTSBasic/EntryLifeCycle.avif)  
+![Entry Life Cycle](/assets/images/20240119ArkTSBasic/EntryLifeCycle.avif)  
 **From this we can see that the lifecycle methods of a @Component include all the page lifecycle method calls of @Entry in between.**
 
 The sample code demonstrates a LifeCycle that adds a Child subcomponent, and pushes to a new page LifeCycleDetail by tapping a button.
@@ -280,7 +280,7 @@ When deleting Child:
 app Log: Child aboutToDisappear
 ```
 
-![](/assets/images/20240119ArkTSBasic/EntryLifeCycle.avif)
+![Entry Life Cycle](/assets/images/20240119ArkTSBasic/EntryLifeCycle.avif)
 
 [Official documentation on the page and custom component lifecycle](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-page-custom-components-lifecycle-0000001630265125-V2)
 
@@ -523,14 +523,14 @@ struct LearnDetail {
 
 ```
 
-![](/assets/images/20240119ArkTSBasic/extend_example.avif)
+![extend_example](/assets/images/20240119ArkTSBasic/extend_example.avif)
 
 [Refer to the official @Extend documentation](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-extend-0000001580345074-V2)
 
 ### The @Prop Decorator: One-Way Parent-Child Synchronization
 
 Initialization rules diagram  
-![](/assets/images/20240119ArkTSBasic/rules.avif)
+![rules](/assets/images/20240119ArkTSBasic/rules.avif)
 
 Below is sample code for one-way passing.
 
@@ -600,7 +600,7 @@ struct LearnDetailProp1 {
 }
 ```
 
-![](/assets/images/20240119ArkTSBasic/prop.avif)
+![prop](/assets/images/20240119ArkTSBasic/prop.avif)
 
 [@Prop reference documentation](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-prop-0000001580185150-V2)
 
@@ -627,7 +627,7 @@ struct  LearnDetailLink1 {
 
 Effect demonstration
 
-![](/assets/images/20240119ArkTSBasic/link.avif)
+![link](/assets/images/20240119ArkTSBasic/link.avif)
 
 A complete demonstration based on the @Prop code above.
 
@@ -804,7 +804,7 @@ struct  ProvideConsumeDemo2 {
 
 Here's the effect:
 
-![](/assets/images/20240119ArkTSBasic/provideconsume.avif)
+![provideconsume](/assets/images/20240119ArkTSBasic/provideconsume.avif)
 
 [Official documentation on the @Provide and @Consume decorators](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-provide-and-consume-0000001580345078-V2)
 
@@ -819,7 +819,7 @@ didMessageChanged () {  //此方法被触发,代表其它地方修改了 @Watch 
 	console.log("监听到消息发生变化:" + this.num1)
 }
 ```
-![](/assets/images/20240119ArkTSBasic/watch.avif)
+![watch](/assets/images/20240119ArkTSBasic/watch.avif)
 
 Complete sample code:
 
@@ -893,7 +893,7 @@ struct ForEachDemo {
 }
 ```
 
-![](/assets/images/20240119ArkTSBasic/ForEach.avif)
+![For Each](/assets/images/20240119ArkTSBasic/ForEach.avif)
 
 There's a pitfall here: __in `ForEach(this.tags, (tag : string*the type must be annotated here in HarmonyOS 4.1*) => {}`__
 
@@ -902,10 +902,10 @@ If you don't annotate the type, you'll easily get an error:
 ``` sh
 Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) <ArkTSCheck>
 ```
-![](/assets/images/20240119ArkTSBasic/ForEachError.avif)  
+![For Each Error](/assets/images/20240119ArkTSBasic/ForEachError.avif)  
 
 
-[ForEach: Loop Rendering](官方文档)
+ForEach: Loop Rendering (official documentation)
 
 ## Common Component Properties: Click Events
 
@@ -934,7 +934,7 @@ struct UniversalEventDemo {
 
 The `ClickEvent` class can get the following variables:
 
-![](/assets/images/20240119ArkTSBasic/ClickEvent.avif)  
+![Click Event](/assets/images/20240119ArkTSBasic/ClickEvent.avif)  
 
 ## Common Component Properties: Touch Events
 
@@ -971,7 +971,7 @@ struct UniversalEventDemo {
 }
 ```
 
-![](/assets/images/20240119ArkTSBasic/TouchEvent.avif)  
+![Touch Event](/assets/images/20240119ArkTSBasic/TouchEvent.avif)  
 
 ## Learning Common Component Size and Layout
 
@@ -1022,7 +1022,7 @@ struct LayoutDemo {
 }
 ```
 
-![](/assets/images/20240119ArkTSBasic/LayoutStudy1.avif) 
+![Layout Study](/assets/images/20240119ArkTSBasic/LayoutStudy1.avif) 
 
 Here's the usage of `position`, `markAnchor`, and `offset`.
 
@@ -1078,7 +1078,7 @@ struct LayoutDemo2 {
 }
 ```  
 
-![](/assets/images/20240119ArkTSBasic/LayoutStudy2.avif) 
+![Layout Study](/assets/images/20240119ArkTSBasic/LayoutStudy2.avif) 
 
 ``` ts
 //当前 offset
@@ -1097,7 +1097,7 @@ Column({ space: 8}) {
 }
 ```
 
-![](/assets/images/20240119ArkTSBasic/LayoutStudy3.avif) 
+![Layout Study](/assets/images/20240119ArkTSBasic/LayoutStudy3.avif) 
 
 ### Component Alignment
 
@@ -1144,11 +1144,11 @@ struct FlexPage {
 
 The following shows the Column alignment directions.
 
-![](/assets/images/20240119ArkTSBasic/FlexColumn.avif) 
+![Flex Column](/assets/images/20240119ArkTSBasic/FlexColumn.avif) 
 
 The following shows the Row alignment directions.
 
-![](/assets/images/20240119ArkTSBasic/FlexRow.avif) 
+![Flex Row](/assets/images/20240119ArkTSBasic/FlexRow.avif) 
 
 
 # Summary

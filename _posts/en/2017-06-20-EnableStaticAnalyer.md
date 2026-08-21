@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20170620EnableStaticAnalyer/static.avif)
+![static](/assets/images/20170620EnableStaticAnalyer/static.avif)
 
 
 
@@ -30,7 +30,7 @@ Set "Mode of Analysis for `'Analyze'`" in `build settings` to `Deep`
 
 Set "Mode of Analysis for `'Build'`" in `build settings` to `Shallow` (faster)
 
-![](/assets/images/20170620EnableStaticAnalyer/EnableSStaticAnalyer.avif)
+![Enable S Static Analyer](/assets/images/20170620EnableStaticAnalyer/EnableSStaticAnalyer.avif)
 
 The End
 

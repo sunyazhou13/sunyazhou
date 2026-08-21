@@ -10,7 +10,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20201010PodSpec/cocoapods.avif)
+![cocoapods](/assets/images/20201010PodSpec/cocoapods.avif)
 
 # Preface
 
@@ -655,7 +655,7 @@ A Spec Repo is a repository of podspecs, i.e., a place that stores related podsp
 
 For example: `md5("CJFoundation") => 044d913fdd5a52b303222c357521f744`; `CJFoundation` is then in the /Specs/0/4/4 directory.
 
-![](/assets/images/20230426CocoaPodsUserGuide/1.avif)
+![image](/assets/images/20230426CocoaPodsUserGuide/1.avif)
 
 #### Create
 
@@ -802,7 +802,7 @@ end
 
 These components are relatively independent and split into separate Gem packages. In [Core Components](https://guides.cocoapods.org/contributing/components.html), you can find brief descriptions of these components. You can also check the detailed documentation in CocoaPods' GitHub.
 
-![](/assets/images/20230426CocoaPodsUserGuide/2.avif)
+![image](/assets/images/20230426CocoaPodsUserGuide/2.avif)
 
 * `CocoaPods`: command-line support and the installer; it also handles all user interactions with CocoaPods.
 * `cocoapods-core`: parsing of template files such as Podfile, .podspec, etc.
@@ -819,7 +819,7 @@ Running `pod install --verbose` shows more debugging info during the pod install
 
 After message forwarding and CLAide command parsing, the `install!` function in CocoaPods/lib/cocoapods/installer.rb is finally called. Here's the main flow:
 
-![](/assets/images/20230426CocoaPodsUserGuide/3.avif)
+![image](/assets/images/20230426CocoaPodsUserGuide/3.avif)
 
 ``` ruby
 def install!

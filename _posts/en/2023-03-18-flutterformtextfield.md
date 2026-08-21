@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20230312FlutterLifeCycle/flutter0.avif)
+![flutter](/assets/images/20230312FlutterLifeCycle/flutter0.avif)
 
 # Preface
 
@@ -20,7 +20,7 @@ This article is highly personal in tone. If you find it uncomfortable to read, p
 
 While learning how Flutter handles username and password input, I found that Flutter handles it with ease. After studying it, I realized Flutter's built-in capabilities are very powerful. Below is a simple demo I recorded for username/password input.
 
-![](/assets/images/20230318FlutterFormTextfield/flutterInput.avif)
+![flutter Input](/assets/images/20230318FlutterFormTextfield/flutterInput.avif)
 
 ``` dart
 import 'package:flutter/material.dart';

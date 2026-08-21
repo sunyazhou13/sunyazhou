@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20210406WCDBPractice/wcdb.avif)
+![wcdb](/assets/images/20210406WCDBPractice/wcdb.avif)
 
 # Preface
 
@@ -39,13 +39,13 @@ First, let's look at the code and a reproduction of the business problem scenari
 }
 ```
 
-![](/assets/images/20210406WCDBPractice/chatlist.avif)
+![chatlist](/assets/images/20210406WCDBPractice/chatlist.avif)
 
 The `cell` heights look wrong.
 
 After inspecting the database file with the [FLEX tool](https://github.com/FLEXTool/FLEX), I found that the `chatMsgHeight` values in the database were all identical.
 
-![](/assets/images/20210406WCDBPractice/chatlist2.avif)
+![chatlist](/assets/images/20210406WCDBPractice/chatlist2.avif)
 
 After carefully checking all the SQL statements, I found one call like this in the console:
 

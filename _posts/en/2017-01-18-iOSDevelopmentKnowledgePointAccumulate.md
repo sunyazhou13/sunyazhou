@@ -74,7 +74,7 @@ Transition Animation
 --
 
 
-__[WWDC 2013 Session Notes - ViewController Transitions in iOS 7]()__ This post by 喵神 is a must-read
+__WWDC 2013 Session Notes - ViewController Transitions in iOS 7__ This post by 喵神 is a must-read
 
 __[UIPresentationController Tutorial: Getting Started](https://www.raywenderlich.com/139277/uipresentationcontroller-tutorial-getting-started)__ requires a VPN (翻墙)  
 *(By the way, let me explain the term "翻墙" (climbing the wall). The formal term for it is 科学上网 (scientific internet access); in slang it's called 自备梯子 (bring your own ladder), because at first everyone used [云梯VPN](https://www.yuntipub.com/) to access foreign websites. Our country set up a huge local-area network behind a crappy firewall. Although it has hindered the development of world civilization and technology, it also blocks some unhealthy content — for instance, what if one day you build a lathe and make a submachine gun, haha. So getting over that firewall is commonly known as "翻墙" (wall climbing).)*

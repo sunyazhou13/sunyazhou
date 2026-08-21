@@ -8,12 +8,12 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20180615NSAttributeString/richtext.avif)
+![richtext](/assets/images/20180615NSAttributeString/richtext.avif)
 # Preface
 
 Recently I ran into a simple but tricky problem in a development requirement. First, look at the requirement
 
-![](/assets/images/20180615NSAttributeString/NSAttributeString1.avif)
+![NS Attribute String](/assets/images/20180615NSAttributeString/NSAttributeString1.avif)
 
 A `UILabel` displays a string with different sizes and colors. Of course, attributed strings come to mind first, but note: here we need to handle the string after internationalization, which means:
 
@@ -100,7 +100,7 @@ Dragged a label into the project
 
 Let's look at the result
 
-![](/assets/images/20180615NSAttributeString/arrtributestring1.avif)
+![arrtributestring](/assets/images/20180615NSAttributeString/arrtributestring1.avif)
 
 > Looks pretty good, right?
 
@@ -119,7 +119,7 @@ if (@available(iOS 9.0, *)) {
 
 But this implementation has a bug — when it encounters the same string, the matching gets misaligned, as shown in the figure
 
-![](/assets/images/20180615NSAttributeString/NSAttributeStringBug1.avif)
+![NS Attribute String Bug](/assets/images/20180615NSAttributeString/NSAttributeStringBug1.avif)
 
 It's obvious why the error occurs.
 
@@ -178,7 +178,7 @@ So how do we solve this kind of problem without relying on ranges?
 
 Let's look at the result
 
-![](/assets/images/20180615NSAttributeString/attributestring2.avif)
+![attributestring](/assets/images/20180615NSAttributeString/attributestring2.avif)
 
 Perfect implementation
 

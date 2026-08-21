@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 
-![](/assets/images/20180113PythonMySQL/MysqlPython.avif)
+![Mysql Python](/assets/images/20180113PythonMySQL/MysqlPython.avif)
 
 
 # Preface
@@ -47,17 +47,17 @@ In short, you need to install this software to set up the environment.
 
 Let me use `MAMP` as an example
 
-![](/assets/images/20180113PythonMySQL/mamp1.avif)
+![mamp](/assets/images/20180113PythonMySQL/mamp1.avif)
 
 After opening it  
-![](/assets/images/20180113PythonMySQL/mamp2.avif)
+![mamp](/assets/images/20180113PythonMySQL/mamp2.avif)
 
 #### Related configuration during Web service startup
 
 Start the `Apache Server` and `MySQL Server` services (in the upper right corner).
 Then click `Preferences` to configure the local port.
 
-![](/assets/images/20180113PythonMySQL/mamp3.avif)
+![mamp](/assets/images/20180113PythonMySQL/mamp3.avif)
 
 There are two default configurations here (the part highlighted in red)
 
@@ -67,31 +67,31 @@ If you start the services, then open the browser and enter: `localhost:8888` to 
 `8888` is the service port
 
 The image below lets you choose the document root directory
-![](/assets/images/20180113PythonMySQL/mamp4.avif)
+![mamp](/assets/images/20180113PythonMySQL/mamp4.avif)
 
 What does that mean?
 
 It means that if you put the web page files into this folder,
 you can browse them directly in the browser.
 
-![](/assets/images/20180113PythonMySQL/mamp2.avif)
+![mamp](/assets/images/20180113PythonMySQL/mamp2.avif)
 
 In this image, in the middle is `Open Start Page`. 
 
-![](/assets/images/20180113PythonMySQL/sql1.avif)
+![sql](/assets/images/20180113PythonMySQL/sql1.avif)
 
 
 Enter the database configuration
 
 Configure the database name
-![](/assets/images/20180113PythonMySQL/sql2.avif)
+![sql](/assets/images/20180113PythonMySQL/sql2.avif)
 
 Enter the table name
 
-![](/assets/images/20180113PythonMySQL/sql3.avif)
+![sql](/assets/images/20180113PythonMySQL/sql3.avif)
 
 Configure the database table
-![](/assets/images/20180113PythonMySQL/sql4.avif)
+![sql](/assets/images/20180113PythonMySQL/sql4.avif)
 
 After configuring, click Done on the right
 
@@ -122,7 +122,7 @@ pip install MySQL-python
 ```
 I got an error when installing
 
-![](/assets/images/20180113PythonMySQL/PipInstallMysqlPython.avif)
+![Pip Install Mysql Python](/assets/images/20180113PythonMySQL/PipInstallMysqlPython.avif)
 
 Finally, run
 
@@ -135,7 +135,7 @@ How to test whether it succeeded
 
 Enter `python` in the shell
 
-![](/assets/images/20180113PythonMySQL/pythonshell1.avif)
+![pythonshell](/assets/images/20180113PythonMySQL/pythonshell1.avif)
 
 Run
 
@@ -150,14 +150,14 @@ If there is no error, it's OK.
 #### Exporting and importing data with Navicat
 
 Please download this database visualization software yourself  
-![](/assets/images/20180113PythonMySQL/navicat1.avif)
+![navicat](/assets/images/20180113PythonMySQL/navicat1.avif)
 
 
 After opening it, click New Connection in the upper left corner and select MySQL
-![](/assets/images/20180113PythonMySQL/navicat2.avif)
+![navicat](/assets/images/20180113PythonMySQL/navicat2.avif)
 
 Then configure the database information
-![](/assets/images/20180113PythonMySQL/navicat3.avif)
+![navicat](/assets/images/20180113PythonMySQL/navicat3.avif)
 
 The name here is the __database name__
 For `host`, use local; if it's remote, fill in the `ip` or `url`  
@@ -166,12 +166,12 @@ Enter `root` for both the account and password (in the earlier screenshot you ca
 
 Now connect to the database
 
-![](/assets/images/20180113PythonMySQL/navicat4.avif)
+![navicat](/assets/images/20180113PythonMySQL/navicat4.avif)
 
 
 This image below shows
 
-![](/assets/images/20180113PythonMySQL/navicat5.avif)
+![navicat](/assets/images/20180113PythonMySQL/navicat5.avif)
 
 __Database export and import; of course you can also export and import data tables.__
 
@@ -206,7 +206,7 @@ import MySQLdb
 import MySQLdb.cursors
 ```
 
-![](/assets/images/20180113PythonMySQL/Pythoncode1.avif)
+![Pythoncode](/assets/images/20180113PythonMySQL/Pythoncode1.avif)
 
 
 > Note: _test.py is best kept in the same directory as douban_movie_clean.txt so that you don't have to write out the path_
@@ -270,10 +270,10 @@ fr.close()
 
 Use the `cursor` connection instance we obtained to run `cursor.execute()` for `sql` insert operations.
 
-![](/assets/images/20180113PythonMySQL/Pythoncode2.avif)
+![Pythoncode](/assets/images/20180113PythonMySQL/Pythoncode2.avif)
 
 Let's look at the result
-![](/assets/images/20180113PythonMySQL/sqlresult.avif)
+![sqlresult](/assets/images/20180113PythonMySQL/sqlresult.avif)
 
 
 #### Updating Data

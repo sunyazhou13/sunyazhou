@@ -8,7 +8,7 @@ typora-root-url: ..
 
 ---
 # Preface
-![](/assets/images/20170616HowToDeprecatedAMothodInObjC/deprecated.avif)
+![deprecated](/assets/images/20170616HowToDeprecatedAMothodInObjC/deprecated.avif)
 
 
 Recently I've been working on SDK development. Sometimes you can't easily remove an API because some people are still using it. So to keep the relevant method while marking it as deprecated, I use the following code:
@@ -36,7 +36,7 @@ For example, in a controller, I want to indicate that setting a URL can be done 
 
 This way, calling it shows a warning directly, telling you that passing a URL via this method is deprecated.
 
-![](/assets/images/20170616HowToDeprecatedAMothodInObjC/code.avif)
+![code](/assets/images/20170616HowToDeprecatedAMothodInObjC/code.avif)
 
 
 

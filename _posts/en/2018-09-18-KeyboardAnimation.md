@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20180918KeyboardAnimation/keyboard1.avif)
+![keyboard](/assets/images/20180918KeyboardAnimation/keyboard1.avif)
 
 
 # Preface
@@ -19,7 +19,7 @@ It's been a long time since I wrote a technical article. This one records a smal
 
 Here's the image
 
-![](/assets/images/20180918KeyboardAnimation/keyboardAnimation.avif)
+![keyboard Animation](/assets/images/20180918KeyboardAnimation/keyboardAnimation.avif)
 
 
 

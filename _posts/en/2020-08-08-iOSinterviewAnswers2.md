@@ -9,7 +9,7 @@ typora-root-url: ..
 ---
 
 
-![](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
+![i OS Interview Questions Album Cover](/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif)
 
 
 # Preface
@@ -190,7 +190,7 @@ SideTable is a struct with two main members: a reference count table and a weak 
 
 Let's look at the diagram:
 
-![](/assets/images/20200808iOSinterviewAnswers/SideTableStructure.avif)
+![Side Table Structure](/assets/images/20200808iOSinterviewAnswers/SideTableStructure.avif)
 
 > The operating system maintains 64 SideTables. After hashing the object's address and taking modulo 64 (i.e., %64 for the remainder), the specified SideTable is found.
 Each SideTable maintains a RefcountMap reference count table, where the key is the object's address and the value is the object's reference count.
@@ -577,7 +577,7 @@ int main(int argc, const char * argv[]) {
 
 This call to `objc_setAssociatedObject(OBJC_ASSOCIATION_RETAIN_NONATOMIC, @"Hello")` has the following storage structure in memory:
 
-![](/assets/images/20200808iOSinterviewAnswers/AssociationOrder.avif)
+![Association Order](/assets/images/20200808iOSinterviewAnswers/AssociationOrder.avif)
 
 
 ##### `objc_setAssociatedObject()`
@@ -681,7 +681,7 @@ objc_object::setHasAssociatedObjects()
 
 It marks the `has_assoc` flag in the `isa` struct as `true`, indicating that the current object has associated objects. The diagram below shows what each flag bit in `isa` does.
 
-![](/assets/images/20200808iOSinterviewAnswers/isa.avif)
+![isa](/assets/images/20200808iOSinterviewAnswers/isa.avif)
 
 ##### `objc_getAssociatedObject()`
 
@@ -911,7 +911,7 @@ Both functions are wrappers for `AutoreleasePoolPage`. The core of the autorelea
 
 `AutoreleasePoolPage` is a C++ class:
 
-![](/assets/images/20200808iOSinterviewAnswers/autoreleasepoolpage.avif)
+![autoreleasepoolpage](/assets/images/20200808iOSinterviewAnswers/autoreleasepoolpage.avif)
 
 * **AutoreleasePool** doesn't have a separate structure. Instead, it's composed of several `AutoreleasePoolPage` objects in a `doubly linked list` form. As shown in the diagram above, this doubly linked list has `parent predecessor` and `child successor`.
 *  **AutoreleasePool** corresponds one-to-one by `thread` (thread member variable)
@@ -958,7 +958,7 @@ class AutoreleasePoolPage {
 
 Now let's look at the working mechanism diagram:
 
-![](/assets/images/20200808iOSinterviewAnswers/autoreleasepoolworkflow.avif)
+![autoreleasepoolworkflow](/assets/images/20200808iOSinterviewAnswers/autoreleasepoolworkflow.avif)
 
 > This diagram is from my Kuaishou colleague Zhou Xueyun. If the original author sees this, I hope they'll allow me to use it.
 
@@ -966,7 +966,7 @@ Based on the diagram above, we can roughly understand that `AutoreleasePoolPage`
 
 If AutoreleasePools are nested, they're identified by the `sentinel object`. Each time the linked list's next, `predecessor`, and `successor` are updated to complete the creation and destruction of the table.
 
-![](/assets/images/20200808iOSinterviewAnswers/autoreleasepoolpage1.avif)
+![autoreleasepoolpage](/assets/images/20200808iOSinterviewAnswers/autoreleasepoolpage1.avif)
 
 When we send an `autorelease` message to an object, it's actually adding the object to the position pointed to by the current `AutoreleasePoolPage`'s stack top `next` pointer.
 

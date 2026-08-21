@@ -51,7 +51,7 @@ Overall, the process from UIView drawing to rendering involves the following ste
 
 The process from `CPU` to `GPU` described above can be illustrated by the diagram below:
 
-![](/assets/images/20171016UIViewRendering/CPUToGPU.avif)
+![CPU To GPU](/assets/images/20171016UIViewRendering/CPUToGPU.avif)
 
 
 Let's discuss this process in detail.
@@ -72,7 +72,7 @@ Nothing happens at this point. Since UILabel overrides the `drawRect` method, th
 
 Something like this:
 
-![](/assets/images/20171016UIViewRendering/DrawRect.avif)
+![Draw Rect](/assets/images/20171016UIViewRendering/DrawRect.avif)
 
 
 
@@ -146,7 +146,7 @@ Basically, we control the `GPU` through `OpenGL`, but there needs to be a bridge
 Once this correspondence is established, the remaining task is how the `GPU` renders the `Texture` to the screen.  
 Here's the `GPU`'s general working model:
 
-![](/assets/images/20171016UIViewRendering/GPUWorkflow.avif)
+![GPU Workflow](/assets/images/20171016UIViewRendering/GPUWorkflow.avif)
 
 The whole process boils down to one thing:
 
@@ -223,7 +223,7 @@ label.layer.rasterizationScale = label.layer.contentsScale;
 Simply put, this is a `cache` mechanism.  
 Similarly, `GPU` performance can be measured with `instrument`:
 
-![](/assets/images/20171016UIViewRendering/RenderingResult.avif)
+![Rendering Result](/assets/images/20171016UIViewRendering/RenderingResult.avif)
 
 Red indicates the `GPU` needs to do extra work to render the `View`; green indicates the `GPU` can process the `bitmap` without extra work.
 
