@@ -78,11 +78,35 @@ apply_scaffold() {
   cat "$s" >> "$file"
 }
 
+# 将 jekyll-compose 生成的块状数组 front matter 归一化为行内数组风格，
+# 与全站既有文章保持一致，也避免块状 categories 触发 create_pages.sh 的
+# 历史缺陷（"- iOS" 行被当成分类名生成 --ios.html 非法 YAML 页面）
+normalize_front_matter() {
+  local file="$1"
+  ruby -e '
+    path = ARGV[0]
+    content = File.read(path)
+    if content =~ /\A---\n(.*?)\n---\n/m
+      fm = Regexp.last_match(1)
+      body = Regexp.last_match.post_match
+      %w[categories tags].each do |key|
+        fm = fm.gsub(/^#{key}:\n((?:- .*\n)+)/) do
+          items = Regexp.last_match(1).scan(/^- (.*)$/).flatten.map(&:strip)
+          "#{key}: [#{items.join(", ")}]\n"
+        end
+      end
+      File.write(path, "---\n#{fm}\n---\n#{body}")
+    end
+  ' "$file"
+}
+
 FILE=$(create_post)
 if [[ -z "$FILE" || ! -f "$ROOT/$FILE" ]]; then
   echo "错误: 文章创建失败"
   exit 1
 fi
+
+normalize_front_matter "$ROOT/$FILE"
 
 case "$LANG_ARG" in
   zh)

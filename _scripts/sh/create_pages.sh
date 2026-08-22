@@ -25,8 +25,10 @@ _read_yaml() {
 
 read_categories() {
   local _yaml="$(_read_yaml "$1")"
-  local _categories="$(echo "$_yaml" | yq e ".categories | .." -)"
-  local _category="$(echo "$_yaml" | yq e ".category" -)"
+  # 递归取所有字符串值：数组会展开成单个分类名，标量直接取，null/文档分隔符被过滤，
+  # 避免块状 categories 的 "- iOS" 行被当成分类名生成非法 YAML 页面（--ios.html）
+  local _categories="$(echo "$_yaml" | yq e '.categories | .. | select(type == "!!str")' -)"
+  local _category="$(echo "$_yaml" | yq e '.category | select(type == "!!str")' -)"
 
   if [[ -n $_categories ]]; then
     echo "$_categories"
@@ -37,8 +39,8 @@ read_categories() {
 
 read_tags() {
   local _yaml="$(_read_yaml "$1")"
-  local _tags="$(echo "$_yaml" | yq e ".tags | .." -)"
-  local _tag="$(echo "$_yaml" | yq e ".tag" -)"
+  local _tags="$(echo "$_yaml" | yq e '.tags | .. | select(type == "!!str")' -)"
+  local _tag="$(echo "$_yaml" | yq e '.tag | select(type == "!!str")' -)"
 
   if [[ -n $_tags ]]; then
     echo "$_tags"

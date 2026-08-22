@@ -207,10 +207,11 @@ The default mode checks whether `_posts/en/` exists: if so, both Chinese and Eng
 layout: post
 title: My New Post
 date: 2026-08-22 06:06 +0000
-categories:
-- iOS
+categories: [iOS]
 tags: []
 typora-root-url: ".."
+math: true
+mermaid: true
 ---
 
 # Preface
