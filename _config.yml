@@ -40,6 +40,16 @@ lang_from_path: true
 parallel_localization: true
 exclude_from_localization: ["assets", "javascript", "images", "css", "public", "sitemap.xml", "feed.xml", "robots.txt", "404.html"]
 
+# jekyll-compose 新建文章默认 front matter（bundle exec jekyll post 自动注入）
+jekyll_compose:
+  default_front_matter:
+    posts:
+      categories: [iOS]
+      tags: []
+      typora-root-url: ..
+      math: true
+      mermaid: true
+
 google_site_verification: Xo29j227HYVdC-vDA_-qJwvDP3PIo-lC78CFeBvhrDA #已经通过http://www.google.com/webmasters/tools/，将自己网站添加进 google网站管理，有利于googlegoogle的收录。
 
 # Google Analytics (GA4)
