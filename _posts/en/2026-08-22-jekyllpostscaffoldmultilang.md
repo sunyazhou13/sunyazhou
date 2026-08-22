@@ -8,6 +8,8 @@ typora-root-url: ".."
 
 ---
 
+![cover](/assets/images/20260822Jekyllpostscaffoldmultilang/cover.avif)
+
 # Preface
 
 This post reflects strong personal opinions. If you feel uncomfortable while reading, please close it immediately. This article is for personal learning records only. You are welcome to repost or share it under the license terms — please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, consider subscribing via RSS. Thanks for your support!
@@ -198,6 +200,9 @@ bash tools/newpost.sh en "My New Post"
 
 # Force bilingual (creates _posts/en/ if missing)
 bash tools/newpost.sh both "My New Post"
+
+# Also create the image asset directory (--img or -i, flag position is free)
+bash tools/newpost.sh --img "My New Post"
 ```
 
 The default mode checks whether `_posts/en/` exists: if so, both Chinese and English versions are created; if not, only the Chinese one. One command produces:
@@ -220,6 +225,14 @@ This post reflects strong personal opinions. If you feel uncomfortable while rea
 ```
 
 The English version gets the English Preface template automatically. Both files share the same filename, so polyglot recognizes them as translations right away.
+
+With `--img` (or the short form `-i`), the script additionally creates an image asset directory, following the site-wide convention: **date without separators + the post slug with a capitalized first letter**. For example, creating `my-new-post` on 2026-08-22 produces:
+
+``` sh
+assets/images/20260822MyNewPost/
+```
+
+Drop images into that directory and reference them as `![description](/assets/images/20260822MyNewPost/xxx.avif)`. The directory is not created by default — not every post needs images.
 
 # Pitfalls
 

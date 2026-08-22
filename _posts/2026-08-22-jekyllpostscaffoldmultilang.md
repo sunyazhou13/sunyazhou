@@ -8,6 +8,8 @@ typora-root-url: ".."
 
 ---
 
+![cover](/assets/images/20260822Jekyllpostscaffoldmultilang/cover.avif)
+
 # 前言
 
 本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!
@@ -204,6 +206,9 @@ bash tools/newpost.sh en "My New Post"
 
 # 强制双语(_posts/en/ 不存在时也会创建目录)
 bash tools/newpost.sh both "My New Post"
+
+# 同时创建配图资源目录(--img 或 -i, 参数位置随意)
+bash tools/newpost.sh --img "My New Post"
 ```
 
 默认模式的逻辑: 检测 `_posts/en/` 目录, 存在就同时建中英两份, 不存在就只建中文. 一条命令下去, 生成效果:
@@ -226,6 +231,14 @@ mermaid: true
 ```
 
 英文版自动换成英文 Preface 模板, 中英文文件名一致, polyglot 直接识别为互译.
+
+带 `--img`(或简写 `-i`)时, 会额外创建配图资源目录, 命名规则沿用全站惯例: **日期无分隔符 + 文章 slug 首字母大写**, 比如 2026-08-22 创建 `my-new-post` 这篇文章, 对应生成:
+
+``` sh
+assets/images/20260822MyNewPost/
+```
+
+图片直接丢进这个目录, 文章里用 `![描述](/assets/images/20260822MyNewPost/xxx.avif)` 引用即可. 默认不创建这个目录, 毕竟不是每篇文章都有配图.
 
 # 踩坑记录
 

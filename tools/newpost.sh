@@ -7,6 +7,10 @@
 #   bash tools/newpost.sh en "My Post Title"       # 只创建英文文章 (_posts/en/)
 #   bash tools/newpost.sh both "My Post Title"     # 强制创建双语：中文 + 英文副本 (_posts/en/)
 #
+# 可选参数（可放在任意位置）:
+#   --img | -i      同时创建配图资源目录 assets/images/YYYYMMDD+文章名首字母大写
+#                   （默认不创建，如 20260822Jekyllcomposecompleteguide）
+#
 # 正文模板（类似 hexo 的 scaffolds）:
 #   中文模板: tools/scaffolds/post.md       （前言等通用文案）
 #   英文模板: tools/scaffolds/post.en.md
@@ -28,10 +32,22 @@
 set -euo pipefail
 
 usage() {
-  grep '^#' "$0" | sed 's/^# \{0,1\}//'
+  grep '^#' "$0" | grep -v '^#!' | sed 's/^# \{0,1\}//'
   exit 1
 }
 
+[[ $# -ge 1 ]] || usage
+
+# 解析 --img/-i 可选参数（可放在任意位置），其余参数原样保留
+CREATE_IMG_DIR=0
+ARGS=()
+for arg in "$@"; do
+  case "$arg" in
+    --img|-i) CREATE_IMG_DIR=1 ;;
+    *) ARGS+=("$arg") ;;
+  esac
+done
+set -- "${ARGS[@]}"
 [[ $# -ge 1 ]] || usage
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -90,7 +106,8 @@ normalize_front_matter() {
       fm = Regexp.last_match(1)
       body = Regexp.last_match.post_match
       %w[categories tags].each do |key|
-        fm = fm.gsub(/^#{key}:\n((?:- .*\n)+)/) do
+        # (?:\n|$) 兼容最后一行无尾随换行的情况（key 为 front matter 末行时）
+        fm = fm.gsub(/^#{key}:\n((?:- .*(?:\n|$))+)/) do
           items = Regexp.last_match(1).scan(/^- (.*)$/).flatten.map(&:strip)
           "#{key}: [#{items.join(", ")}]\n"
         end
@@ -107,6 +124,16 @@ if [[ -z "$FILE" || ! -f "$ROOT/$FILE" ]]; then
 fi
 
 normalize_front_matter "$ROOT/$FILE"
+
+# 可选创建配图目录（--img/-i）: assets/images/YYYYMMDD+文章名首字母大写
+# （与全站既有惯例一致，如 20260703CrossPlatformDesktopFrameworkComparison）
+IMG_DIR=""
+if [[ "$CREATE_IMG_DIR" -eq 1 ]]; then
+  SLUG="$(basename "$FILE" .md | sed 's/^[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}-//')"
+  IMG_DIR_NAME="$(printf '%s' "$SLUG" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')"
+  IMG_DIR="$ROOT/assets/images/$(date +%Y%m%d)${IMG_DIR_NAME}"
+  mkdir -p "$IMG_DIR"
+fi
 
 case "$LANG_ARG" in
   zh)
@@ -131,3 +158,7 @@ case "$LANG_ARG" in
     echo "请分别编辑两份文件，英文版记得把 title 改成英文。"
     ;;
 esac
+
+if [[ "$CREATE_IMG_DIR" -eq 1 ]]; then
+  echo "配图目录已创建: ${IMG_DIR#"$ROOT"/}"
+fi
