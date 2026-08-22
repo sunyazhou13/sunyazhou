@@ -18,3 +18,17 @@
   description: PNG / JPEG / GIF / BMP / AVIF / HEIC 等互转 WebP / JPEG / PNG，纯本地转换不上传
   path: /tools/webp-heic/
   enabled: true
+
+- id: hash-string
+  title: 字符串 Hash
+  icon: fas fa-hashtag
+  description: 输入字符串点击生成 MD5 / SHA1 / SHA256 / SHA384 / SHA512，支持大小写切换与一键复制，纯本地计算不上传
+  path: /tools/hash-string/
+  enabled: true
+
+- id: base64
+  title: Base64 编码解码
+  icon: fas fa-code
+  description: 文本与 Base64 互转，支持标准与 URL 安全（Base64URL）变体，编码解码、一键复制，纯本地处理不上传
+  path: /tools/base64/
+  enabled: true
