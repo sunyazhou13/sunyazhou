@@ -24,16 +24,16 @@
   path: tabs
   url: tags
 -
-  name: 作品
-  path: tabs
-  url: projects
-  icon: "fas fa-paint-brush"
--
   name: 工具
   path: tabs
   url: tools
   icon: "fas fa-toolbox"
   # hidden: true    # L1 软隐藏：取消注释即从侧边栏隐藏（页面仍可访问）
+-
+  name: 作品
+  path: tabs
+  url: projects
+  icon: "fas fa-paint-brush"
 -
   name: 关于
   icon: "fas fa-info"

@@ -21,16 +21,16 @@
   path: tabs
   url: tags
 -
-  name: Projects
-  path: tabs
-  url: projects
-  icon: "fas fa-paint-brush"
--
   name: Tools
   path: tabs
   url: tools
   icon: "fas fa-toolbox"
   # hidden: true    # L1 soft-hide: uncomment to hide from sidebar
+-
+  name: Projects
+  path: tabs
+  url: projects
+  icon: "fas fa-paint-brush"
 -
   name: About
   icon: "fas fa-info"

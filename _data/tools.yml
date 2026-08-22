@@ -8,6 +8,6 @@
 - id: image-to-avif
   title: 图片转 AVIF
   icon: fas fa-image
-  description: PNG / JPEG / WebP / GIF 批量转 AVIF，纯本地转换不上传，优先浏览器原生编码，自动回退 WASM
+  description: PNG / JPEG / WebP / GIF 批量转 AVIF，动图逐帧转码保留动画，纯本地转换不上传（WASM libaom）
   path: /tools/image-to-avif/
   enabled: true
