@@ -1,0 +1,1359 @@
+[
+ {
+  "number": 109,
+  "title": "2024/12/FinalSummary/",
+  "state": "open",
+  "created_at": "2025-01-13T09:19:03Z",
+  "comments": [
+   {
+    "user": "80boys",
+    "created_at": "2025-01-13T09:19:04Z",
+    "body": "从你这里买 酷狗音乐会员能给打折扣不滴？"
+   },
+   {
+    "user": "Lianghuajian",
+    "created_at": "2025-02-11T03:35:24Z",
+    "body": "写得很好，受益匪浅，继续加油！"
+   }
+  ]
+ },
+ {
+  "number": 108,
+  "title": "2020/12/iOSsynchronousTimeWithServer/",
+  "state": "open",
+  "created_at": "2024-12-12T08:14:49Z",
+  "comments": [
+   {
+    "user": "ondev",
+    "created_at": "2024-12-12T08:14:49Z",
+    "body": "当然用户如果关机,过段时间再开机, 每次打开App的时候重新从服务器获取一次时间A，B\n\n每次用时间的时候获取当前时间C, 然后计算出服务器时间A+C-B\n这样就不会有问题。"
+   },
+   {
+    "user": "ondev",
+    "created_at": "2024-12-12T08:46:08Z",
+    "body": "感觉这儿还是有问题，uptime的获取还是依赖客户端的时间，如果 保存A，B后，修改了系统时间后获取的C-B的间隔就不对了。\n\nuptime还是应该用CACurrentMediaTime来获取。"
+   },
+   {
+    "user": "ondev",
+    "created_at": "2024-12-12T08:51:16Z",
+    "body": "func getUptime() -> TimeInterval {\n    var timebase = mach_timebase_info()\n    mach_timebase_info(&timebase)\n\n    // 获取 `mach_absolute_time` 返回的时钟周期数\n    let machTime = mach_absolute_time()\n\n    // 将时钟周期转换为纳秒\n    let nanos = machTime * UInt64(timebase.numer) / UInt64(timebase.denom)\n\n    // 转换为秒\n    return TimeInterval(nanos) / 1_000_000_000\n}"
+   }
+  ]
+ },
+ {
+  "number": 107,
+  "title": "2023/06/ios16wkwebview/",
+  "state": "closed",
+  "created_at": "2024-07-08T06:27:46Z",
+  "comments": [
+   {
+    "user": "xclidongbo",
+    "created_at": "2024-07-08T06:27:47Z",
+    "body": "我也觉得有什么大病。"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2024-12-02T09:36:26Z",
+    "body": "> 我也觉得有什么大病。\r\n\r\n嗨  这个更新确实很无语"
+   }
+  ]
+ },
+ {
+  "number": 106,
+  "title": "2020/07/iOSinterviewAnswers1/",
+  "state": "closed",
+  "created_at": "2024-06-13T10:03:10Z",
+  "comments": [
+   {
+    "user": "lecai",
+    "created_at": "2024-06-13T10:03:12Z",
+    "body": "老哥，先拜谢了。接下来的面试靠你这博客了，虽然这6-7年一直是移动岗，但是最近几年都是做横向的事情比较多，很久没一直做iOS深入和基础了"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2024-06-14T06:17:34Z",
+    "body": "这个是多年前积累的,面试应该用不上了吧,这套没有正确答案的方法论 希望能帮到你,面试还是要刷刷算法 找找掘金 的文章最新,我的这篇文章怕是帮助性不是很大可以用作参考和佐证 ,祝好 迈腾大队长"
+   },
+   {
+    "user": "lecai",
+    "created_at": "2024-06-14T06:22:06Z",
+    "body": "这几天几个厂的八股基本都在你这里的系列文章可以找到详细解答，有很好的参考意义。有用。也借你吉言"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2024-06-14T14:02:31Z",
+    "body": "> 这几天几个厂的八股基本都在你这里的系列文章可以找到详细解答，有很好的参考意义。有用。也借你吉言\r\n\r\n 真是对这个行业很失望,都2024年了,还在卷这些无用的方法论不知道意义何在. 加油,如果文章哪里有解释不清晰的地方 还望指正, 希望能顺利解决runtime相关的面试问题."
+   },
+   {
+    "user": "lecai",
+    "created_at": "2024-06-15T07:46:35Z",
+    "body": "没办法，人太多机会太少了，待靠一些方式筛选人。八股是一种。\n3年前我觉得纯靠iOS技术路线往上走或者晋升，很难。所以我后面就转型做横向跨客户端到服务端解决业务问题去了。同样没办法，现在要重新找工作，再回头突击八股和算法了。\n另：互相学习。你这写的很好了，点赞"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2024-06-16T13:17:20Z",
+    "body": "> 没办法，人太多机会太少了，待靠一些方式筛选人。八股是一种。 3年前我觉得纯靠iOS技术路线往上走或者晋升，很难。所以我后面就转型做横向跨客户端到服务端解决业务问题去了。同样没办法，现在要重新找工作，再回头突击八股和算法了。 另：互相学习。你这写的很好了，点赞\r\n\r\n感谢支持, 我个人觉得可以考虑别的方向了iOS已经不值得付出这么多时间和精力去研究面试的八股文了 因为这真的学不到什么实用性较强的知识,因为未来面向swift或者SwiftUI可能就不再会有 objc 啥事了,不过 既然能帮到你 我很欣慰"
+   }
+  ]
+ },
+ {
+  "number": 105,
+  "title": "2023/06/learnswiftuichapter1/",
+  "state": "closed",
+  "created_at": "2024-05-07T09:26:56Z",
+  "comments": [
+   {
+    "user": "weqeo",
+    "created_at": "2024-05-07T09:26:57Z",
+    "body": "想进步了，请问是哪位up主"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2024-05-07T09:30:33Z",
+    "body": "哈哈  依然是我 迈腾大队长 "
+   }
+  ]
+ },
+ {
+  "number": 104,
+  "title": "2024/01/mpremotecommandlikecommand/",
+  "state": "closed",
+  "created_at": "2024-02-20T10:27:41Z",
+  "comments": [
+   {
+    "user": "zhangc20",
+    "created_at": "2024-02-20T10:27:42Z",
+    "body": "点赞和点踩，这样理解是不是就对了"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2024-06-16T13:14:51Z",
+    "body": "> 点赞和点踩，这样理解是不是就对了\r\n\r\n对于功能而言都一个球样 没有区别"
+   },
+   {
+    "user": "internelp",
+    "created_at": "2024-11-28T09:33:16Z",
+    "body": "有帮助，感谢。\n> 看这个文章之前我还在死磕 dislike"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2024-12-02T09:38:25Z",
+    "body": "> 有帮助，感谢。\r\n> \r\n> > 看这个文章之前我还在死磕 dislike\r\n\r\n哈哈  善于积累 细节帮到大家我很开心"
+   }
+  ]
+ },
+ {
+  "number": 103,
+  "title": "2023/12/FinalSummary/",
+  "state": "closed",
+  "created_at": "2024-01-25T15:27:47Z",
+  "comments": [
+   {
+    "user": "Lianghuajian",
+    "created_at": "2024-01-25T15:27:48Z",
+    "body": "厉害！"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2024-06-16T13:14:12Z",
+    "body": "> 厉害！\r\n\r\n过奖过奖"
+   }
+  ]
+ },
+ {
+  "number": 102,
+  "title": "2023/09/ios17widgetURL/",
+  "state": "closed",
+  "created_at": "2023-09-19T07:51:01Z",
+  "comments": [
+   {
+    "user": "hhhating",
+    "created_at": "2023-09-19T07:51:03Z",
+    "body": "想问下作者大大在哈尔滨哪家企业工作"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-09-19T07:56:25Z",
+    "body": "哈哈 \r\n\r\n> 想问下作者大大在哈尔滨哪家企业工作\r\n\r\n在腾讯音乐娱乐 哈哈 "
+   },
+   {
+    "user": "hhhating",
+    "created_at": "2023-09-19T07:56:44Z",
+    "body": "看了你 21 年的年度总结，在哈尔滨找了家企业上班，兜兜转转又开始北漂了，是慢收入比较难适应吗🥹"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-09-19T07:58:03Z",
+    "body": "> 看了你 21 年的年度总结，在哈尔滨找了家企业上班，兜兜转转又开始北漂了，是慢收入比较难适应吗🥹\r\n\r\n是呀, 家里的产业发展不行,找不到合适的工作 ，生活所迫 又回到了49城。"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-10-01T19:54:55Z",
+    "body": "> 想问下作者大大在哈尔滨哪家企业工作\r\n\r\n小公司，估计凉凉了，没啥参考价值，还是不说了吧"
+   },
+   {
+    "user": "tangtiancheng",
+    "created_at": "2024-03-19T04:57:14Z",
+    "body": "洲哥您好. 我看了你写的酷我音乐小组件,也下载使用了,想请教一些问题,麻烦您了. \n1.想请问下,酷我APP杀死状态下,然后我看点击小组件中的播放按钮会打开酷我APP,这是用Link跳转的,还是说用了APPIntent,设置了openAppWhenRun为true跳转的? 好像我设置为true点击按钮并没有任何反应 \n2.我看您文章中说了CFNotificationCenter. 那您写的这个酷我小组件数据通讯,是用的AppIntent呢还是您提到的CFNotificationCenter呢?\n 不好意思,话有点多, 确实有些地方不太懂,希望大神能告知下我的疑惑,再次谢谢!"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2024-03-19T05:20:40Z",
+    "body": "> 洲哥您好. 我看了你写的酷我音乐小组件,也下载使用了,想请教一些问题,麻烦您了. 1.想请问下,酷我APP杀死状态下,然后我看点击小组件中的播放按钮会打开酷我APP,这是用Link跳转的,还是说用了APPIntent,设置了openAppWhenRun为true跳转的? 好像我设置为true点击按钮并没有任何反应 2.我看您文章中说了CFNotificationCenter. 那您写的这个酷我小组件数据通讯,是用的AppIntent呢还是您提到的CFNotificationCenter呢? 不好意思,话有点多, 确实有些地方不太懂,希望大神能告知下我的疑惑,再次谢谢!\r\n\r\n你好 \r\n\r\n抱歉 刚才再遛弯,才看到\r\n\r\n回答你第一个问题\r\n1. 这个是appIntent .使用的时候需要根据app状态 使用两种AppIntent来控制是否拉端\r\n\r\n回答你的第二个问题\r\n1.我们用的是AppIntent和CFNotificationCenter,防止苹果哪天不让用的话 我们做了备选,首选AppIntent "
+   }
+  ]
+ },
+ {
+  "number": 101,
+  "title": "2022/12/gradientlayeranimation/",
+  "state": "closed",
+  "created_at": "2023-01-29T08:48:33Z",
+  "comments": [
+   {
+    "user": "Lianghuajian",
+    "created_at": "2023-01-29T08:48:34Z",
+    "body": "做完的效果好像不会动，效果只是渐变色的遮罩图吗，没有动画。"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-10-01T19:55:48Z",
+    "body": "> 做完的效果好像不会动，效果只是渐变色的遮罩图吗，没有会动 颜色不明显你看不太清应该是 可以尝试换换对比强度明显的颜色,抱歉回复较晚 春节假期刚回到工作岗位。我下载了demo试了一下 你需要仔细观察,里面的细节是 颜色不能差异过大否则你看着效果很奇怪.一个简单的移动动画 一定是起作用的只是需要你的5.0钛金眼认真观察一下谢谢 评论"
+   }
+  ]
+ },
+ {
+  "number": 100,
+  "title": "2017/02/macOSsimulateKeyboradNSEvent/",
+  "state": "closed",
+  "created_at": "2022-07-07T15:31:05Z",
+  "comments": [
+   {
+    "user": "apptut",
+    "created_at": "2022-07-07T15:31:07Z",
+    "body": "hello，我模拟这个键盘事件，发不出内容，能够给个联系方式请假下大神。"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2022-07-07T21:41:09Z",
+    "body": "具体哪里发不出来，好多年不写了，没研究具体原因，可也以自己搜一下。本质都大同小异"
+   }
+  ]
+ },
+ {
+  "number": 99,
+  "title": "2021/12/FinalSummary/",
+  "state": "closed",
+  "created_at": "2022-01-07T05:56:35Z",
+  "comments": [
+   {
+    "user": "zhouluyao2020",
+    "created_at": "2022-01-07T05:56:37Z",
+    "body": "我31，孩子马上出生了，在郑州买的房，我目前的想法是在北京再干个四五年，把房贷还个七七八八，孩子上学了就回去，我是觉得生活就应该和自己的孩子、和自己的父母在一起，不知道现在你怎么看这样的问题"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2022-01-18T02:08:42Z",
+    "body": "回不去了,真的,你的圈子限定在了一线城市,除非财务自由了你才有资格选择回去."
+   },
+   {
+    "user": "yizibi",
+    "created_at": "2022-03-14T01:15:30Z",
+    "body": "我回西安快两年了，销售岗，好难，感觉还没缓过来，不知道能不能挺住了"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2022-03-14T01:46:18Z",
+    "body": "西安就业环境还好吧 经济也不错 没问题的"
+   }
+  ]
+ },
+ {
+  "number": 98,
+  "title": "2019/03/UIScrollTextDemo/",
+  "state": "closed",
+  "created_at": "2021-11-09T07:43:34Z",
+  "comments": [
+   {
+    "user": "zilaiyedaren",
+    "created_at": "2021-11-09T07:43:36Z",
+    "body": "有点意思"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-10-01T20:00:07Z",
+    "body": "> 有点意思\r\n\r\n感谢支持"
+   }
+  ]
+ },
+ {
+  "number": 97,
+  "title": "2018/11/LikeAnimation/",
+  "state": "closed",
+  "created_at": "2021-11-09T07:38:34Z",
+  "comments": [
+   {
+    "user": "zilaiyedaren",
+    "created_at": "2021-11-09T07:38:35Z",
+    "body": "可以的"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-10-01T20:00:37Z",
+    "body": "> 可以的\r\n\r\n感谢支持"
+   }
+  ]
+ },
+ {
+  "number": 96,
+  "title": "2018/11/AwemeAlbumAnimation/",
+  "state": "closed",
+  "created_at": "2021-08-14T19:22:16Z",
+  "comments": [
+   {
+    "user": "cplanyu",
+    "created_at": "2021-08-14T19:22:17Z",
+    "body": "大神，这个用纯CSS如何实现？原理看懂了，就是不知道如何改写！"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-10-01T19:53:36Z",
+    "body": "> 大神，这个用纯CSS如何实现？原理看懂了，就是不知道如何改写！\r\n\r\n这个没研究过，不过原理都大同小异没啥区别感觉，没写过css 我也没发给到有效的参考"
+   }
+  ]
+ },
+ {
+  "number": 95,
+  "title": "2018/11/AwemeTopBottomScrollDemo/",
+  "state": "closed",
+  "created_at": "2021-06-30T05:27:20Z",
+  "comments": [
+   {
+    "user": "lizhi0123",
+    "created_at": "2021-06-30T05:27:21Z",
+    "body": "我感觉这样初始化也行的呀，设置 pagingEnabled  就好，设置contentInset ，会一会就绕晕了，tableview 的frame 直接设置  SCREEN_HEIGHT 的高度 ，就够用了吧，本身就有重用\n _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT )];\n    _tableView.pagingEnabled = YES;"
+   },
+   {
+    "user": "lizhi0123",
+    "created_at": "2021-06-30T05:27:38Z",
+    "body": "本文 很好 mark 一下"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-10-01T20:01:20Z",
+    "body": "> 本文 很好 mark 一下\r\n\r\n感谢支持"
+   }
+  ]
+ },
+ {
+  "number": 94,
+  "title": "2019/12/FinalSummary/",
+  "state": "closed",
+  "created_at": "2021-05-05T03:22:36Z",
+  "comments": [
+   {
+    "user": "yizibi",
+    "created_at": "2021-05-05T03:22:38Z",
+    "body": "希望你的第三个梦想能有人看到，未来实验室开到我大西安"
+   },
+   {
+    "user": "zilaiyedaren",
+    "created_at": "2021-11-12T07:37:20Z",
+    "body": "老铁666"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-10-01T20:02:34Z",
+    "body": "> 希望你的第三个梦想能有人看到，未来实验室开到我大西安\r\n\r\n抱歉我2023年才回复，这个梦想现在被曹德旺实现了哈哈哈感谢支持"
+   }
+  ]
+ },
+ {
+  "number": 93,
+  "title": "2020/12/FinalSummary/",
+  "state": "closed",
+  "created_at": "2021-04-21T16:59:06Z",
+  "comments": [
+   {
+    "user": "Richard1900",
+    "created_at": "2021-04-21T16:59:08Z",
+    "body": "写的真好，现在已经在老家工作了么。"
+   },
+   {
+    "user": "zilaiyedaren",
+    "created_at": "2021-11-09T07:29:16Z",
+    "body": "写的很真实，祝作者顺利平安"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2021-11-15T01:25:11Z",
+    "body": "哈哈 见笑了 2021年又回了北京,程序员离不开这个地方.逃离北漂失败 -1024点伤害"
+   }
+  ]
+ },
+ {
+  "number": 92,
+  "title": "2021/04/WCDBPractice/",
+  "state": "closed",
+  "created_at": "2021-04-09T02:47:56Z",
+  "comments": [
+   {
+    "user": "sunyazhou13",
+    "created_at": "2021-04-09T02:47:57Z",
+    "body": "sunyazhou.com test"
+   },
+   {
+    "user": "yizibi",
+    "created_at": "2021-05-05T03:12:45Z",
+    "body": "回家了啊，我也是去年10月从杭州回西安的，可真是不谋而合"
+   },
+   {
+    "user": "lizhi0123",
+    "created_at": "2021-07-13T00:28:14Z",
+    "body": "👍"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2023-10-01T20:04:22Z",
+    "body": "> 回家了啊，我也是去年10月从杭州回西安的，可真是不谋而合\r\n\r\n感谢长期支持，今晚把博客所有评论整理一遍，对不住大家回复这么慢"
+   }
+  ]
+ },
+ {
+  "number": 91,
+  "title": "DFS算法扫描上传文件/文件夹 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-09-18T02:58:47Z",
+  "comments": []
+ },
+ {
+  "number": 90,
+  "title": "阿里、字节：一套高效的iOS面试题之Runloop&KVO | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-09-08T10:18:15Z",
+  "comments": []
+ },
+ {
+  "number": 89,
+  "title": "阿里、字节：一套高效的iOS面试题之我整理的答案之runtime相关问题3 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-09-03T03:26:36Z",
+  "comments": []
+ },
+ {
+  "number": 88,
+  "title": "阿里、字节：一套高效的iOS面试题之NSNotification相关 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-09-03T01:50:46Z",
+  "comments": []
+ },
+ {
+  "number": 87,
+  "title": "阿里、字节：一套高效的iOS面试题之我整理的答案之runtime相关问题2 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-08-08T07:00:00Z",
+  "comments": []
+ },
+ {
+  "number": 86,
+  "title": "阿里、字节：一套高效的iOS面试题之我整理的答案 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-07-21T04:22:29Z",
+  "comments": [
+   {
+    "user": "yizibi",
+    "created_at": "2020-08-31T07:14:09Z",
+    "body": "runtime相关问题\n关联属下？应该是属性吧？笔误，哈哈"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2020-08-31T07:15:21Z",
+    "body": "马上改下\n\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2020年08月31日 15:14，一之笔 写道：\n\nruntime相关问题\n关联属下？应该是属性吧？笔误，哈哈\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or unsubscribe."
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2020-08-31T07:18:16Z",
+    "body": "再试试\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2020年08月31日 15:14，東引甌越 写道：\n马上改下\n\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2020年08月31日 15:14，一之笔 写道：\n\nruntime相关问题\n关联属下？应该是属性吧？笔误，哈哈\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or unsubscribe."
+   }
+  ]
+ },
+ {
+  "number": 85,
+  "title": "(转)深度理解 NSURLProtocol | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-04-10T01:00:08Z",
+  "comments": []
+ },
+ {
+  "number": 84,
+  "title": "Cocoapods清华镜像 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-04-10T00:51:58Z",
+  "comments": []
+ },
+ {
+  "number": 83,
+  "title": "使用Masonry处理UIView的safeArea边界布局问题 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-04-10T00:45:22Z",
+  "comments": []
+ },
+ {
+  "number": 82,
+  "title": "Learning AV Foundation(二)AVAudioPlayer | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-02-24T01:43:45Z",
+  "comments": []
+ },
+ {
+  "number": 81,
+  "title": "Learning AV Foundation(一)汉字语音朗读 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-02-24T01:43:36Z",
+  "comments": []
+ },
+ {
+  "number": 80,
+  "title": "《孙亚洲理论》的诞生 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-02-06T21:06:41Z",
+  "comments": []
+ },
+ {
+  "number": 79,
+  "title": "2019年终总结 | 東引甌越",
+  "state": "closed",
+  "created_at": "2020-01-07T09:31:49Z",
+  "comments": []
+ },
+ {
+  "number": 78,
+  "title": "图形示意绘制工具 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-12-19T02:10:49Z",
+  "comments": []
+ },
+ {
+  "number": 77,
+  "title": "简单了解LLDB调试工具chisel | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-12-07T01:41:23Z",
+  "comments": []
+ },
+ {
+  "number": 76,
+  "title": "计算机图形渲染的流程 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-11-11T06:35:23Z",
+  "comments": []
+ },
+ {
+  "number": 75,
+  "title": "Learning AV Foundation(五)播放视频 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-11-11T06:34:52Z",
+  "comments": []
+ },
+ {
+  "number": 74,
+  "title": "从零学习OpenGLES的纹理渲染 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-10-17T02:01:40Z",
+  "comments": []
+ },
+ {
+  "number": 73,
+  "title": "iOS扩大UIButton的点击的响应范围 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-09-27T07:47:58Z",
+  "comments": []
+ },
+ {
+  "number": 72,
+  "title": "使用Masonry约束实现简单的高级拖拽视图 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-09-26T13:04:53Z",
+  "comments": []
+ },
+ {
+  "number": 71,
+  "title": "DeviceCheck | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-09-20T02:25:46Z",
+  "comments": []
+ },
+ {
+  "number": 70,
+  "title": "iOS键盘动画细节 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-09-18T10:20:45Z",
+  "comments": []
+ },
+ {
+  "number": 69,
+  "title": "UITraitCollection详解 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-09-17T01:39:37Z",
+  "comments": []
+ },
+ {
+  "number": 68,
+  "title": "做一个简单的Loading动画 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-07-26T03:59:01Z",
+  "comments": []
+ },
+ {
+  "number": 67,
+  "title": "iOS生成随机颜色代码 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-07-26T03:16:08Z",
+  "comments": []
+ },
+ {
+  "number": 66,
+  "title": "Webview的NSScrollView禁用滑动功能 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-07-08T07:32:36Z",
+  "comments": []
+ },
+ {
+  "number": 65,
+  "title": "iOS数字倍数动画 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-07-06T03:06:43Z",
+  "comments": []
+ },
+ {
+  "number": 64,
+  "title": "iOS呼吸动画 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-07-05T10:53:45Z",
+  "comments": []
+ },
+ {
+  "number": 63,
+  "title": "iOS所有Animation相关可用的Keypath | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-07-05T10:51:12Z",
+  "comments": []
+ },
+ {
+  "number": 62,
+  "title": "Taptic Engine振动反馈 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-07-02T10:15:14Z",
+  "comments": []
+ },
+ {
+  "number": 61,
+  "title": "CentOS7安装iptables防火墙 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-05-28T02:12:04Z",
+  "comments": []
+ },
+ {
+  "number": 60,
+  "title": "Cleaner For Xcode编译 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-05-17T09:03:05Z",
+  "comments": [
+   {
+    "user": "yizibi",
+    "created_at": "2019-05-20T01:05:54Z",
+    "body": "真的不错，方便很多，以前都是找到对应的文件夹清理的，这个我可以转载不，会注明出处的"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-05-20T01:49:13Z",
+    "body": "> @yizibi\n> 真的不错，方便很多，以前都是找到对应的文件夹清理的，这个我可以转载不，会注明出处的\n\n后来发现一个比这个还好的 腾讯出的 lemon 可以试试"
+   },
+   {
+    "user": "yizibi",
+    "created_at": "2019-05-20T05:42:38Z",
+    "body": "谢谢安利，我下载了，不错"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-05-21T02:19:26Z",
+    "body": "> @yizibi\n> 真的不错，方便很多，以前都是找到对应的文件夹清理的，这个我可以转载不，会注明出处的\n\n可以"
+   },
+   {
+    "user": "niuxinghua",
+    "created_at": "2019-09-27T01:08:20Z",
+    "body": "楼主好人"
+   }
+  ]
+ },
+ {
+  "number": 59,
+  "title": "iOS开发知识点积累 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-05-14T02:12:31Z",
+  "comments": []
+ },
+ {
+  "number": 58,
+  "title": "Windows装机教程 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-04-24T08:56:10Z",
+  "comments": [
+   {
+    "user": "yizibi",
+    "created_at": "2019-05-10T07:25:13Z",
+    "body": "厉害，终于有了win10的教程，我有一个win 7的启动U盘，win10没有的，刚看到开始，技术员那个资源，下意识找了 系统资源书签itellyou，真是个好资源网站，👍"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-05-10T09:14:21Z",
+    "body": "> @yizibi\n> 厉害，终于有了win10的教程，我有一个win 7的启动U盘，win10没有的，刚看到开始，技术员那个资源，下意识找了 系统资源书签itellyou，真是个好资源网站，👍\n\n每次都因为 找不到 纯净的资源而闹心 必须整理一份留着备用"
+   }
+  ]
+ },
+ {
+  "number": 57,
+  "title": "OpenGL编程语言-glsl基础 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-04-17T09:17:24Z",
+  "comments": []
+ },
+ {
+  "number": 56,
+  "title": "AVRoutePickerView | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-04-17T09:04:31Z",
+  "comments": []
+ },
+ {
+  "number": 55,
+  "title": "论一个优雅的模态转场的自我修养 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-04-11T03:36:27Z",
+  "comments": []
+ },
+ {
+  "number": 54,
+  "title": "隐私及敏感数据访问权限(Access privacy-sensitive data) | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-04-09T08:36:26Z",
+  "comments": []
+ },
+ {
+  "number": 53,
+  "title": "AudioUnit | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-03-29T10:28:19Z",
+  "comments": [
+   {
+    "user": "xuandu",
+    "created_at": "2019-07-23T03:07:28Z",
+    "body": "你好，最近在使用audiounit进行音频采集播放的开发。发现频繁开关音频采集播放的时候，会出现audiounit崩溃；我这边采集播放共用audiounit对象采集自己开了足够长的buffer ：1920*2，播放使用的iodata的buffer。崩溃出现在频繁开启关闭的某次开启操作；崩溃信息主要是在采集回调里。recordcallback--audioOutputPCMDataCallback ----ACAudioCapture.mm:207---mobileterminal --libobj.A.dylib  ;不知道能否看出这个是什么操作导致的？崩溃只显示了remoteIO::iothread"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-07-23T03:12:39Z",
+    "body": "> @xuandu\n> 你好，最近在使用audiounit进行音频采集播放的开发。发现频繁开关音频采集播放的时候，会出现audiounit崩溃；我这边采集播放共用audiounit对象采集自己开了足够长的buffer ：1920*2，播放使用的iodata的buffer。崩溃出现在频繁开启关闭的某次开启操作；崩溃信息主要是在采集回调里。recordcallback--audioOutputPCMDataCallback ----ACAudioCapture.mm:207---mobileterminal --libobj.A.dylib  ;不知道能否看出这个是什么操作导致的？崩溃只显示了remoteIO::iothread\n\n看不出来啥问题  貌似 回调的线程读写出错了   \n\n建议 认真检查一下 数据格式和参数 以及ASBD交错 方式等, 有些audiounit需要 被动采集 需要自己创建环形缓冲区 自行主动去取数据.\n\n这个东西由于苹果并没有直观的文档 还需要参考一下大部分网络上的文章 "
+   }
+  ]
+ },
+ {
+  "number": 52,
+  "title": "iOS抖音滚动字幕 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-03-21T03:56:09Z",
+  "comments": []
+ },
+ {
+  "number": 51,
+  "title": "使用NSAttributeString实现不同颜色大小显示 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-03-13T01:30:56Z",
+  "comments": []
+ },
+ {
+  "number": 50,
+  "title": "适配iPhone X | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-03-12T22:21:10Z",
+  "comments": []
+ },
+ {
+  "number": 49,
+  "title": "iOS语言本地化/国际化一些技巧 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-03-12T08:03:02Z",
+  "comments": []
+ },
+ {
+  "number": 48,
+  "title": "Mac上的一些好软件推荐 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-03-09T11:22:41Z",
+  "comments": []
+ },
+ {
+  "number": 47,
+  "title": "Markdown中插入音频文件 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-01-10T09:01:13Z",
+  "comments": []
+ },
+ {
+  "number": 46,
+  "title": "理解UIView的绘制 | 東引甌越",
+  "state": "closed",
+  "created_at": "2019-01-08T03:03:23Z",
+  "comments": [
+   {
+    "user": "xxycode",
+    "created_at": "2019-03-11T09:03:36Z",
+    "body": "25fps不卡一般是针对视频  因为视频有动态模糊 所以会不卡  但是如果APP只有25fps还是会卡的"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-03-11T09:11:46Z",
+    "body": "> @xxycode\n> 25fps不卡一般是针对视频  因为视频有动态模糊 所以会不卡  但是如果APP只有25fps还是会卡的\n\n没错 这里不严谨 见笑 见笑 马上改正  确实 手机屏幕的刷新率 基本 60Hz以上才算得上比较流畅 当然 25FPS针对视频 是因为视频中有有 i  p  b 帧  能经过关键帧和双向预测以及单向预测帧读取上下帧得信息 不用重新 绘制  因为 GPU的索引  可以节省很多绘制资源 "
+   }
+  ]
+ },
+ {
+  "number": 45,
+  "title": "ARKit | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-12-29T08:02:29Z",
+  "comments": []
+ },
+ {
+  "number": 44,
+  "title": "如何使用Charles截获https请求 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-12-29T03:03:53Z",
+  "comments": []
+ },
+ {
+  "number": 43,
+  "title": "2018年终总结 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-12-28T15:17:56Z",
+  "comments": [
+   {
+    "user": "qxuewei",
+    "created_at": "2019-01-10T08:29:19Z",
+    "body": "在 997 的工作节奏里看完大佬总结除了咋舌意外就是敬佩，iOSer 中果然有楼主这种极具人文情怀又虚心向学的有志之士，献上看博客的第一次打赏以表欣赏。向大佬学习！"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-01-10T09:05:35Z",
+    "body": "> @qxuewei\n> 在 997 的工作节奏里看完大佬总结除了咋舌意外就是敬佩，iOSer 中果然有楼主这种极具人文情怀又虚心向学的有志之士，献上看博客的第一次打赏以表欣赏。向大佬学习！\n\n感谢你的打赏 希望互相学习 共同进步  其实总结写的很水  就是想在这个圈子里 有点影响力, 感谢支持 ！"
+   },
+   {
+    "user": "wumenghua",
+    "created_at": "2019-10-15T10:57:32Z",
+    "body": "看了大佬的文章理解了培训机构程序员与正牌大学工程师有多大的区别, 钦佩不已; "
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-10-15T10:59:29Z",
+    "body": "> @wumenghua\n> 看了大佬的文章理解了培训机构程序员与正牌大学工程师有多大的区别, 钦佩不已; \n\n见笑了 学历!=能力   努力就好"
+   },
+   {
+    "user": "wumenghua",
+    "created_at": "2019-10-15T10:59:46Z",
+    "body": "介绍中的 “圣继绝学” 很能体验博主的学习精神与境界, 追赶中;"
+   }
+  ]
+ },
+ {
+  "number": 42,
+  "title": "iOS抖音的转场动画 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-12-21T02:16:31Z",
+  "comments": [
+   {
+    "user": "Wutaotao692732757",
+    "created_at": "2019-08-21T02:02:13Z",
+    "body": "不错"
+   },
+   {
+    "user": "HanFei0813",
+    "created_at": "2020-06-21T04:04:55Z",
+    "body": "播放列表不能及时dealloc"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2020-06-21T04:09:31Z",
+    "body": "check一下performselector\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2020年06月21日 12:05，HanFeizi 写道：\n\n播放列表不能及时dealloc\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or unsubscribe."
+   }
+  ]
+ },
+ {
+  "number": 41,
+  "title": "探测UIPanGesture的滑动方向 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-12-06T06:09:07Z",
+  "comments": []
+ },
+ {
+  "number": 40,
+  "title": "学习macOS开发的路线 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-12-05T10:55:38Z",
+  "comments": [
+   {
+    "user": "neo080",
+    "created_at": "2019-01-19T08:47:08Z",
+    "body": "你好，我正在学习mac os x开发，看了你的《macOS上模拟发送键盘事件》，有一个小问题想请教一下，我的系统是10.14.2，用你的代码运行第一次的时候系统会弹出提示，我在系统编好设置的隐私里允许了控制电脑，代码也运行成功了，但第二次跑的时候就没任何反应。是不是还有哪里没设置好？网上的资料太少了，我也是一个链接一个链接的最后才找到这里。不知道能不能麻烦你一下，非常感谢"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-01-19T08:49:11Z",
+    "body": "没遇到过这种情况，理论上授权一次就行了，查查相关资料google看下吧\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2019年01月19日 16:47，neo080 写道：\n\n你好，我正在学习mac os x开发，看了你的《macOS上模拟发送键盘事件》，有一个小问题想请教一下，我的系统是10.14.2，用你的代码运行第一次的时候系统会弹出提示，我在系统编好设置的隐私里允许了控制电脑，代码也运行成功了，但第二次跑的时候就没任何反应。是不是还有哪里没设置好？网上的资料太少了，我也是一个链接一个链接的最后才找到这里。不知道能不能麻烦你一下，非常感谢\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or mute the thread."
+   },
+   {
+    "user": "neo080",
+    "created_at": "2019-01-19T08:55:35Z",
+    "body": "好的，没想到能这么快回复，感谢了。我再找找其它的资料吧"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-01-19T08:56:49Z",
+    "body": "不可以  很久没写macOS了  \n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2019年01月19日 16:55，neo080 写道：\n\n好的，没想到能这么快回复，感谢了。我再找找其它的资料吧\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or mute the thread."
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-01-19T08:57:07Z",
+    "body": "没关系\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2019年01月19日 16:56，東引甌越 写道：\n不可以  很久没写macOS了  \n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2019年01月19日 16:55，neo080 写道：\n\n好的，没想到能这么快回复，感谢了。我再找找其它的资料吧\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or mute the thread."
+   },
+   {
+    "user": "neo080",
+    "created_at": "2019-01-19T09:00:48Z",
+    "body": "感觉mac开发的资料确实不好找，不像linux那么多。mac用了几年以一直把它当linux用。我先看下你的《学习macOS开发的路线》推荐吧。"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-01-19T09:02:43Z",
+    "body": "嗯这个是个冷门，没人研究，一般都做跨平台，很少写原生的应用不像国外，国内大环境不好\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2019年01月19日 17:00，neo080 写道：\n\n感觉mac开发的资料确实不好找，不像linux那么多。mac用了几年以一直把它当linux用。我先看下你的《学习macOS开发的路线》推荐吧。\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or mute the thread."
+   },
+   {
+    "user": "neo080",
+    "created_at": "2019-01-19T09:08:24Z",
+    "body": "嗯，我也主要是兴趣吧，其实模拟键盘鼠标有更好的办法，但是正好在学这块。用golang或者苹果自己的AppleScript都很容易实现，没想到用原生的oc这么写鼠标键盘事件这么麻烦，老谭的博客我也看了，关于全局键盘监听也是从他那学来的。"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-01-19T09:09:21Z",
+    "body": "老谭那个博客写的不错多学习学习\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2019年01月19日 17:08，neo080 写道：\n\n嗯，我也主要是兴趣吧，其实模拟键盘鼠标有更好的办法，但是正好在学这块。用golang或者苹果自己的AppleScript都很容易实现，没想到用原生的oc这么写鼠标键盘事件这么麻烦，老谭的博客我也看了，关于全局键盘监听也是从他那学来的。\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or mute the thread."
+   },
+   {
+    "user": "neo080",
+    "created_at": "2019-01-19T09:11:34Z",
+    "body": "是啊，只是最后一篇是2017-09-24，可能太忙了又或者换网址了，我没有找到更新文章。"
+   }
+  ]
+ },
+ {
+  "number": 39,
+  "title": "Markdown插入表格语法 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-28T08:38:30Z",
+  "comments": []
+ },
+ {
+  "number": 38,
+  "title": "markdown嵌入折叠标签 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-28T08:37:30Z",
+  "comments": [
+   {
+    "user": "AnshayM",
+    "created_at": "2019-01-15T08:45:13Z",
+    "body": "CSDN的md不支持这种写法，很难受。"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-01-15T09:21:17Z",
+    "body": "> @AnshayM\n> CSDN的md不支持这种写法，很难受。\n\nCSDN只是封装了一下 感觉封装的不是很好 这种就是纯原生的玩法  直接上代码"
+   }
+  ]
+ },
+ {
+  "number": 37,
+  "title": "iOS抖音右下角专辑动画 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-28T03:05:10Z",
+  "comments": []
+ },
+ {
+  "number": 36,
+  "title": "抖音的上下滑实现 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-28T03:05:06Z",
+  "comments": [
+   {
+    "user": "sunyazhou13",
+    "created_at": "2018-12-27T10:28:41Z",
+    "body": "\n\n\n\n为了下次一runloop回来的时候reload 出于场景和性能得考虑 因为要加载视频 视频需要一段时间才能加载出来\n\n\n这个我看开关的其它工程中也是这样写的 \n\n\n\n在 2018-12-27 14:13:38，\"MrzQ\" <notifications@github.com> 写道：\n\n\n[self.view addSubview:self.tableView];\n// self.data = self.awemes;\n[self.tableView reloadData];\n这些为什么写在dispatch里\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or mute the thread."
+   },
+   {
+    "user": "MrzQ",
+    "created_at": "2018-12-28T01:17:53Z",
+    "body": "https://sshiqiao.github.io/document/douyin-objectc.html#3 <https://sshiqiao.github.io/document/douyin-objectc.html#3>\n你这篇的架构和Qiao Shi的好像一样 之后会引入avplayer？\n\n> 在 2018年12月27日，下午6:28，東引甌越 <notifications@github.com> 写道：\n> \n> \n> \n> \n> \n> 为了下次一runloop回来的时候reload 出于场景和性能得考虑 因为要加载视频 视频需要一段时间才能加载出来\n> \n> \n> 这个我看开关的其它工程中也是这样写的 \n> \n> \n> \n> 在 2018-12-27 14:13:38，\"MrzQ\" <notifications@github.com> 写道：\n> \n> \n> [self.view addSubview:self.tableView];\n> // self.data = self.awemes;\n> [self.tableView reloadData];\n> 这些为什么写在dispatch里\n> \n> —\n> You are receiving this because you were mentioned.\n> Reply to this email directly, view it on GitHub, or mute the thread.\n> —\n> You are receiving this because you commented.\n> Reply to this email directly, view it on GitHub <https://github.com/sunyazhou13/gitment-comments/issues/36#issuecomment-450124516>, or mute the thread <https://github.com/notifications/unsubscribe-auth/AJXvQDkfPzrfiwIUa4EJ6wzDF55Gg8STks5u9KDZgaJpZM4Y2xDM>.\n> \n\n"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2018-12-28T01:20:07Z",
+    "body": "是的，要引入播放器，我读了一遍源码  写了几篇文章  惭愧\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2018年12月28日 09:17，MrzQ 写道：\nhttps://sshiqiao.github.io/document/douyin-objectc.html#3 <https://sshiqiao.github.io/document/douyin-objectc.html#3>\n你这篇的架构和Qiao Shi的好像一样 之后会引入avplayer？\n\n> 在 2018年12月27日，下午6:28，東引甌越 <notifications@github.com> 写道：\n>\n>\n>\n>\n>\n> 为了下次一runloop回来的时候reload 出于场景和性能得考虑 因为要加载视频 视频需要一段时间才能加载出来\n>\n>\n> 这个我看开关的其它工程中也是这样写的\n>\n>\n>\n> 在 2018-12-27 14:13:38，\"MrzQ\" <notifications@github.com> 写道：\n>\n>\n> [self.view addSubview:self.tableView];\n> // self.data = self.awemes;\n> [self.tableView reloadData];\n> 这些为什么写在dispatch里\n>\n> —\n> You are receiving this because you were mentioned.\n> Reply to this email directly, view it on GitHub, or mute the thread.\n> —\n> You are receiving this because you commented.\n> Reply to this email directly, view it on GitHub <https://github.com/sunyazhou13/gitment-comments/issues/36#issuecomment-450124516>, or mute the thread <https://github.com/notifications/unsubscribe-auth/AJXvQDkfPzrfiwIUa4EJ6wzDF55Gg8STks5u9KDZgaJpZM4Y2xDM>.\n>\n\n\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or mute the thread."
+   },
+   {
+    "user": "MrzQ",
+    "created_at": "2018-12-28T07:09:45Z",
+    "body": "很棒 很棒 \n拆成几个部分 很容易理解 文章很棒 点赞\n> 在 2018年12月28日，上午9:20，東引甌越 <notifications@github.com> 写道：\n> \n> 是的，要引入播放器，我读了一遍源码 写了几篇文章 惭愧\n> \n> \n> \n> \n> | |\n> 孙亚洲\n> |\n> |\n> 邮箱：sunyazhou13@163.com\n> |\n> \n> 签名由 网易邮箱大师 定制\n> \n> 在2018年12月28日 09:17，MrzQ 写道：\n> https://sshiqiao.github.io/document/douyin-objectc.html#3 <https://sshiqiao.github.io/document/douyin-objectc.html#3>\n> 你这篇的架构和Qiao Shi的好像一样 之后会引入avplayer？\n> \n> > 在 2018年12月27日，下午6:28，東引甌越 <notifications@github.com> 写道：\n> >\n> >\n> >\n> >\n> >\n> > 为了下次一runloop回来的时候reload 出于场景和性能得考虑 因为要加载视频 视频需要一段时间才能加载出来\n> >\n> >\n> > 这个我看开关的其它工程中也是这样写的\n> >\n> >\n> >\n> > 在 2018-12-27 14:13:38，\"MrzQ\" <notifications@github.com> 写道：\n> >\n> >\n> > [self.view addSubview:self.tableView];\n> > // self.data = self.awemes;\n> > [self.tableView reloadData];\n> > 这些为什么写在dispatch里\n> >\n> > —\n> > You are receiving this because you were mentioned.\n> > Reply to this email directly, view it on GitHub, or mute the thread.\n> > —\n> > You are receiving this because you commented.\n> > Reply to this email directly, view it on GitHub <https://github.com/sunyazhou13/gitment-comments/issues/36#issuecomment-450124516>, or mute the thread <https://github.com/notifications/unsubscribe-auth/AJXvQDkfPzrfiwIUa4EJ6wzDF55Gg8STks5u9KDZgaJpZM4Y2xDM>.\n> >\n> \n> \n> \n> —\n> You are receiving this because you were mentioned.\n> Reply to this email directly, view it on GitHub, or mute the thread.\n> —\n> You are receiving this because you commented.\n> Reply to this email directly, view it on GitHub <https://github.com/sunyazhou13/gitment-comments/issues/36#issuecomment-450267295>, or mute the thread <https://github.com/notifications/unsubscribe-auth/AJXvQA0qWx4JSXbRMWvRCxPujdg15Uouks5u9XHIgaJpZM4Y2xDM>.\n> \n\n"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2018-12-28T07:17:55Z",
+    "body": "真的见笑了，我已邮件给原作者，希望能得到他的许可  把开源拆解成不同模块，仔细分析\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2018年12月28日 15:09，MrzQ 写道：\n很棒 很棒\n拆成几个部分 很容易理解 文章很棒 点赞\n> 在 2018年12月28日，上午9:20，東引甌越 <notifications@github.com> 写道：\n>\n> 是的，要引入播放器，我读了一遍源码 写了几篇文章 惭愧\n>\n>\n>\n>\n> | |\n> 孙亚洲\n> |\n> |\n> 邮箱：sunyazhou13@163.com\n> |\n>\n> 签名由 网易邮箱大师 定制\n>\n> 在2018年12月28日 09:17，MrzQ 写道：\n> https://sshiqiao.github.io/document/douyin-objectc.html#3 <https://sshiqiao.github.io/document/douyin-objectc.html#3>\n> 你这篇的架构和Qiao Shi的好像一样 之后会引入avplayer？\n>\n> > 在 2018年12月27日，下午6:28，東引甌越 <notifications@github.com> 写道：\n> >\n> >\n> >\n> >\n> >\n> > 为了下次一runloop回来的时候reload 出于场景和性能得考虑 因为要加载视频 视频需要一段时间才能加载出来\n> >\n> >\n> > 这个我看开关的其它工程中也是这样写的\n> >\n> >\n> >\n> > 在 2018-12-27 14:13:38，\"MrzQ\" <notifications@github.com> 写道：\n> >\n> >\n> > [self.view addSubview:self.tableView];\n> > // self.data = self.awemes;\n> > [self.tableView reloadData];\n> > 这些为什么写在dispatch里\n> >\n> > —\n> > You are receiving this because you were mentioned.\n> > Reply to this email directly, view it on GitHub, or mute the thread.\n> > —\n> > You are receiving this because you commented.\n> > Reply to this email directly, view it on GitHub <https://github.com/sunyazhou13/gitment-comments/issues/36#issuecomment-450124516>, or mute the thread <https://github.com/notifications/unsubscribe-auth/AJXvQDkfPzrfiwIUa4EJ6wzDF55Gg8STks5u9KDZgaJpZM4Y2xDM>.\n> >\n>\n>\n>\n> —\n> You are receiving this because you were mentioned.\n> Reply to this email directly, view it on GitHub, or mute the thread.\n> —\n> You are receiving this because you commented.\n> Reply to this email directly, view it on GitHub <https://github.com/sunyazhou13/gitment-comments/issues/36#issuecomment-450267295>, or mute the thread <https://github.com/notifications/unsubscribe-auth/AJXvQA0qWx4JSXbRMWvRCxPujdg15Uouks5u9XHIgaJpZM4Y2xDM>.\n>\n\n\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or mute the thread."
+   },
+   {
+    "user": "Mamong",
+    "created_at": "2019-09-29T07:32:22Z",
+    "body": "点击状态栏，可以在代理里处理\n\n```\n- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView\n{\n    _currentIndex = 0;\n    return YES;\n}\n```\n"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-09-29T07:34:23Z",
+    "body": "> @Mamong\n> 点击状态栏，可以在代理里处理\n> \n> ```\n> - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView\n> {\n>     _currentIndex = 0;\n>     return YES;\n> }\n> ```\n> \n\n这操作很6 KV0监听直接变化改动 貌似 点击被手势先相应了 如果我没记错"
+   }
+  ]
+ },
+ {
+  "number": 35,
+  "title": "iOS抖音点赞动画实现 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-28T02:55:44Z",
+  "comments": []
+ },
+ {
+  "number": 34,
+  "title": "AVAudioSession-Category各种姿势 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-27T07:59:19Z",
+  "comments": [
+   {
+    "user": "oxweiwei",
+    "created_at": "2019-03-07T08:56:38Z",
+    "body": "你好，请教一个 AVAudioSession 相关的问题，我的需求是：手机连接蓝牙麦克风，APP录制视频，视频使用蓝牙麦克风拾音；我这边的问题是：在iOS12.0 以下版本使用没问题，在iOS12.0 以上版本录制的视频 声音有卡顿；不知道你在使用AVAudioSession的过程中有没有遇到过，可能是什么原因？我设置AVAudioSession的代码：[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionAllowBluetooth error:&setError]; 期待你的回复；"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-03-07T09:08:48Z",
+    "body": "> @oxweiwei\n> 你好，请教一个 AVAudioSession 相关的问题，我的需求是：手机连接蓝牙麦克风，APP录制视频，视频使用蓝牙麦克风拾音；我这边的问题是：在iOS12.0 以下版本使用没问题，在iOS12.0 以上版本录制的视频 声音有卡顿；不知道你在使用AVAudioSession的过程中有没有遇到过，可能是什么原因？我设置AVAudioSession的代码：[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionAllowBluetooth error:&setError]; 期待你的回复；\n\n\n多数都是一些蓝牙耳机 采样不可靠 达不到苹果的 要求\n\n1. 设置一下AVAudioSessionIOTypeAggregated\n2. 检查采集音频得AudioUnit 得数据格式flag组织形式(ASBD结构体中的一个成员变量)\n3. 采用高性能耳机测试一下  蓝牙尽量 按位与上 蓝牙的各种 格式 例如  D2FP  HFS \n\n\n最好拿苹果的官方耳机测试 eg: airpod  或者 beats 再或者 bose以及其它大厂高级耳机做测试\n\n"
+   },
+   {
+    "user": "oxweiwei",
+    "created_at": "2019-03-08T02:03:59Z",
+    "body": "> @sunyazhou13\n好的，谢谢哈，我试一下，"
+   },
+   {
+    "user": "xuwab",
+    "created_at": "2020-03-16T07:11:37Z",
+    "body": "你好，搜音频播放相关问题搜到你的文章，受益匪浅👍，想请教一个音频播放相关问题，\n\n首先我的Category设置是：\n```\n[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback  error:nil];\n```\n\n实现了音频后台播放，但由于拨打电话和微信语音、播放语音条会被中断，因此我监听了`AVAudioSessionInterruptionNotification` ，实现了其他应用播放完继续我的音频:\n```\n[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AVAudioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];\n\n......\n\n- (void)AVAudioSessionInterruptionNotification: (NSNotification *)notificaiton {\n    AVAudioSessionInterruptionType type = [notificaiton.userInfo[AVAudioSessionInterruptionTypeKey] intValue];\n    if (type == AVAudioSessionInterruptionTypeBegan) {\n        [self pauseSpeak];\n    } else {\n        [self continueSpeak];\n    }\n}\n```\n\n但现在的问题是，微信播放语音条或者网易云播放音乐的时候，如果用户手动选择暂停，应用内是不会收到`AVAudioSessionInterruptionNotification` ,导致继续播放功能无法实现。我的需求就是音频被打断后，等待其他应用播放暂停或者终止，我的音频都能恢复播放，请问这个有好的解决办法吗？🙏🙏🙏"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2020-03-16T12:03:55Z",
+    "body": "这是正常的 用户手动点击就是不允许其它地方收到中断结束，苹果就是这样设计的\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2020年03月16日 15:11，Wab Hsu 写道：\n\n你好，搜音频播放相关问题搜到你的文章，受益匪浅👍，想请教一个音频播放相关问题，\n\n首先我的Category设置是：\n\n[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback  error:nil];\n\n\n实现了音频后台播放，但由于拨打电话和微信语音、播放语音条会被中断，因此我监听了AVAudioSessionInterruptionNotification ，实现了其他应用播放完继续我的音频:\n\n[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AVAudioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];\n\n......\n\n- (void)AVAudioSessionInterruptionNotification: (NSNotification *)notificaiton {\n    AVAudioSessionInterruptionType type = [notificaiton.userInfo[AVAudioSessionInterruptionTypeKey] intValue];\n    if (type == AVAudioSessionInterruptionTypeBegan) {\n        [self pauseSpeak];\n    } else {\n        [self continueSpeak];\n    }\n}\n\n\n但现在的问题是，微信播放语音条或者网易云播放音乐的时候，如果用户手动选择暂停，应用内是不会收到AVAudioSessionInterruptionNotification ,导致继续播放功能无法实现。我的需求就是音频被打断后，等待其他应用播放暂停或者终止，我的音频都能恢复播放，请问这个有好的解决办法吗？🙏🙏🙏\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or unsubscribe."
+   }
+  ]
+ },
+ {
+  "number": 33,
+  "title": "UIViewController代码规范 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-23T06:32:14Z",
+  "comments": []
+ },
+ {
+  "number": 32,
+  "title": "2017年终总结 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-22T01:45:22Z",
+  "comments": [
+   {
+    "user": "sz21",
+    "created_at": "2019-03-21T12:09:07Z",
+    "body": "哈哈，亚洲，看到你说涛兄的事了！"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-03-21T12:12:10Z",
+    "body": "> @sz21\n> 哈哈，亚洲，看到你说涛兄的事了！\n\n哈哈 涛哥看到一定很开心哈哈"
+   }
+  ]
+ },
+ {
+  "number": 31,
+  "title": "孙先生的工作笔记 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-16T06:42:23Z",
+  "comments": [
+   {
+    "user": "Maggie22",
+    "created_at": "2019-08-11T09:53:13Z",
+    "body": "无意中发现了您的博客！您的坚持和不浮躁让我很感动。博主继续加油噢！"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2019-08-11T09:53:48Z",
+    "body": "感谢\n\n\n\n\n| |\n孙亚洲\n|\n|\n邮箱：sunyazhou13@163.com\n|\n\n签名由 网易邮箱大师 定制\n\n在2019年08月11日 17:53，Maggie22 写道：\n\n无意中发现了您的博客！您的坚持和不浮躁让我很感动。博主继续加油噢！\n\n—\nYou are receiving this because you were mentioned.\nReply to this email directly, view it on GitHub, or mute the thread."
+   }
+  ]
+ },
+ {
+  "number": 30,
+  "title": "项目作品 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-16T06:42:07Z",
+  "comments": []
+ },
+ {
+  "number": 29,
+  "title": "iOS中CPU线程调试高级技巧 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-16T06:38:36Z",
+  "comments": []
+ },
+ {
+  "number": 28,
+  "title": "如何使用git管理代码 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-15T07:49:54Z",
+  "comments": []
+ },
+ {
+  "number": 27,
+  "title": "iOS视频加载动画 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-15T02:38:09Z",
+  "comments": []
+ },
+ {
+  "number": 26,
+  "title": "船与灯塔 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-14T06:19:52Z",
+  "comments": []
+ },
+ {
+  "number": 25,
+  "title": "iOS视频加载动画 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-14T06:17:24Z",
+  "comments": []
+ },
+ {
+  "number": 24,
+  "title": "iOS所有Animation相关可用的Keypath | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-13T10:50:51Z",
+  "comments": []
+ },
+ {
+  "number": 23,
+  "title": "iOS抖音视频右小角专辑动画技术实现 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-09T03:38:45Z",
+  "comments": []
+ },
+ {
+  "number": 22,
+  "title": "抖音的上下滑实现 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-07T01:27:05Z",
+  "comments": []
+ },
+ {
+  "number": 21,
+  "title": "iOS生成随机颜色代码 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-06T03:49:55Z",
+  "comments": []
+ },
+ {
+  "number": 20,
+  "title": "AudioUnit | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-11-01T04:28:50Z",
+  "comments": []
+ },
+ {
+  "number": 19,
+  "title": "隐私及敏感数据访问权限(Access privacy-sensitive data) | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-31T02:48:49Z",
+  "comments": []
+ },
+ {
+  "number": 18,
+  "title": "AVAudioSession-Category各种姿势 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-31T02:48:18Z",
+  "comments": []
+ },
+ {
+  "number": 17,
+  "title": "iOS数字跳动动画 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-29T10:30:59Z",
+  "comments": []
+ },
+ {
+  "number": 16,
+  "title": "论一个优雅的模态转场的自我修养 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-24T06:56:23Z",
+  "comments": []
+ },
+ {
+  "number": 15,
+  "title": "UICollectionViewCell添加KVO | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-16T09:22:15Z",
+  "comments": []
+ },
+ {
+  "number": 14,
+  "title": "markdown嵌入折叠标签 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-16T09:09:55Z",
+  "comments": []
+ },
+ {
+  "number": 13,
+  "title": "使用NSAttributeString实现不同颜色大小显示 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-15T07:29:35Z",
+  "comments": []
+ },
+ {
+  "number": 12,
+  "title": "Objective-C中使用正则去除非数字字母汉字 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-15T07:29:31Z",
+  "comments": []
+ },
+ {
+  "number": 11,
+  "title": "markdown插入音乐播放器",
+  "state": "closed",
+  "created_at": "2018-10-13T02:46:23Z",
+  "comments": []
+ },
+ {
+  "number": 10,
+  "title": "2017年终总结 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-12T10:31:45Z",
+  "comments": []
+ },
+ {
+  "number": 9,
+  "title": "UIViewController代码规范 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-10-12T07:12:09Z",
+  "comments": []
+ },
+ {
+  "number": 8,
+  "title": "如何使用git管理代码 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-09-30T02:54:43Z",
+  "comments": []
+ },
+ {
+  "number": 7,
+  "title": "呼吸动画 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-09-30T02:08:18Z",
+  "comments": [
+   {
+    "user": "yizibi",
+    "created_at": "2018-10-18T02:17:46Z",
+    "body": "有点像心跳的动画,文中的具体需求,下面这句话:\n\n> 每次放大同时需要背景还有一张图也方法 并且透明\n\n中,`也方法`,还是也放大??:joy:   :joy:"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2018-10-18T02:20:16Z",
+    "body": "> @yizibi\n> 有点像心跳的动画,文中的具体需求,下面这句话:\n> \n> > 每次放大同时需要背景还有一张图也方法 并且透明\n> \n> 中,`也方法`,还是也放大??:joy:   :joy:\n\n已修复 请刷新测试一下 感谢支持"
+   },
+   {
+    "user": "yizibi",
+    "created_at": "2018-10-18T03:29:35Z",
+    "body": "> > @yizibi\r\n> > 有点像心跳的动画,文中的具体需求,下面这句话:\r\n> > > 每次放大同时需要背景还有一张图也方法 并且透明\r\n> > \r\n> > \r\n> > 中,`也方法`,还是也放大??😂   😂\r\n> \r\n> 已修复 请刷新测试一下 感谢支持\r\n\r\n好像你的网站挂掉了!!!"
+   }
+  ]
+ },
+ {
+  "number": 6,
+  "title": "利用UIToolBar做高斯模糊背景 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-09-24T13:19:38Z",
+  "comments": []
+ },
+ {
+  "number": 5,
+  "title": "项目作品 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-09-24T13:11:35Z",
+  "comments": [
+   {
+    "user": "yizibi",
+    "created_at": "2018-10-13T02:47:49Z",
+    "body": "大神,厉害了"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2018-10-13T06:05:31Z",
+    "body": "> @yizibi\n> 大神,厉害了\n\n我是个地道的酱油选手  大神也许都是命中注定的 而我很不幸 没有被注定"
+   }
+  ]
+ },
+ {
+  "number": 4,
+  "title": "孙先生的工作笔记 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-09-24T13:11:25Z",
+  "comments": [
+   {
+    "user": "yizibi",
+    "created_at": "2018-10-13T02:52:20Z",
+    "body": "这是又一个`喵神`诞生的节奏啊,加油!"
+   },
+   {
+    "user": "sunyazhou13",
+    "created_at": "2018-10-13T06:07:05Z",
+    "body": "> @yizibi\n> 这是又一个`喵神`诞生的节奏啊,加油!\n\n惭愧 惭愧 跟喵大 还差的很远"
+   }
+  ]
+ },
+ {
+  "number": 3,
+  "title": "Linux 终端 Bash 常用快捷键介绍及经验 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-09-24T12:40:42Z",
+  "comments": []
+ },
+ {
+  "number": 2,
+  "title": "iOS键盘动画细节 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-09-24T12:01:11Z",
+  "comments": []
+ },
+ {
+  "number": 1,
+  "title": "iOS扩大UIButton的点击的响应范围 | 東引甌越",
+  "state": "closed",
+  "created_at": "2018-09-24T11:55:35Z",
+  "comments": []
+ }
+]
