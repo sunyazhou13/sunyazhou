@@ -5,7 +5,7 @@ date: 2018-03-12 07:37:06
 lang: zh
 ---
 
-![](/assets/images/projects/project_cover.avif)
+<img src="/assets/images/projects/project_cover.avif" alt="项目作品封面">
 
 > 从百度到快手再到腾讯音乐，一路走来，始终深耕 iOS 开发与图形学技术。这里记录了我参与和主导的项目作品。
 
@@ -15,7 +15,7 @@ lang: zh
 
 **酷我音乐** — 2022 至今
 
-![](/assets/images/projects/kwmusic.avif)
+<img src="/assets/images/projects/kwmusic.avif" alt="酷我音乐">
 
 负责酷我音乐 iOS 端核心业务开发，持续优化用户体验与播放性能。
 
@@ -27,7 +27,7 @@ lang: zh
 
 **从 0 到 1 主导开发，DAU 破亿**
 
-![](/assets/images/projects/nebula.avif)
+<img src="/assets/images/projects/nebula.avif" alt="快手极速版">
 
 从项目启动到日活超过一亿，全程负责快手极速版 App 的开发。后期聚焦单列上下滑视频播放等核心业务。
 
@@ -35,7 +35,7 @@ lang: zh
 
 **直播业务开发**
 
-![](/assets/images/projects/kuaishou.avif)
+<img src="/assets/images/projects/kuaishou.avif" alt="快手主App">
 
 参与国民短视频快手主 App 的直播业务开发，涵盖直播间交互、弹幕系统等功能模块。
 
@@ -45,7 +45,7 @@ lang: zh
 
 **金山云直播 & 短视频 SDK** — 2017~2018
 
-![](/assets/images/projects/shortvideo_sdk.avif)
+<img src="/assets/images/projects/shortvideo_sdk.avif" alt="金山云短视频SDK">
 
 负责金山云短视频 SDK 的开发与维护，对外提供视频编辑、特效、音频变声合成等音视频处理能力，同时维护金山云直播 SDK 及 FFmpeg 相关 H264/H265 Codec 基础库。
 
@@ -62,25 +62,25 @@ lang: zh
 
 **职业生涯中投入时间最长、技术提升最大的项目**
 
-![](/assets/images/projects/BDNetDisk.avif)
+<img src="/assets/images/projects/BDNetDisk.avif" alt="百度网盘">
 
 - [百度网盘](https://itunes.apple.com/cn/app/bai-du-wang-pan/id547166701?mt=8) iOS 端 — 上传、下载、传输列表、闪断互传等核心业务
 - 百度云管家 macOS 端
 - 百度云同步盘 macOS 端
 
-![](/assets/images/projects/pan_detail.avif)
+<img src="/assets/images/projects/pan_detail.avif" alt="百度网盘传输详情">
 
 ### 百度 Hi
 
 **内部 IM 聊天工具 macOS 端开发**
 
-![](/assets/images/projects/BaiduHi.avif)
+<img src="/assets/images/projects/BaiduHi.avif" alt="百度Hi">
 
 ### 小度新路由
 
 **智能硬件 — 小度路由 App 开发**
 
-![](/assets/images/projects/newifi.avif)
+<img src="/assets/images/projects/newifi.avif" alt="小度新路由">
 
 ---
 

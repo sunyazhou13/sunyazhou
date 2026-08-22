@@ -16,6 +16,7 @@ description: >-
 url: 'https://www.sunyazhou.com'
 author: 孙亚洲
 avatar: /assets/images/avatar.jpg
+logo: /assets/images/avatar.jpg
 
 github:
   username: sunyazhou13
@@ -125,6 +126,11 @@ permalink: /:year/:month/:title/
 defaults:
   -
     scope:
+      path: ""          # All pages (homepage, posts, tabs, etc.)
+    values:
+      image: /assets/images/avatar.jpg   # Default og:image for jekyll-seo-tag
+  -
+    scope:
       path: ""          # An empty string here means all files in the project
       type: posts
     values:
@@ -182,6 +188,8 @@ defaults:
 sass:
   sass_dir: /assets/css
   style: compressed
+  quiet_deps: true
+  silence_deprecations: ['import']
 
 compress_html:
   clippings: all
@@ -191,6 +199,9 @@ compress_html:
   blanklines: false
   ignore:
     envs: []
+
+include:
+  - .well-known    # Chrome DevTools 请求 /.well-known/appspecific/com.chrome.devtools.json
 
 exclude:
   - vendor        # Avoid Jekyll mistakenly read the vendor directory on Travis-CI's VM .

@@ -11,7 +11,7 @@ layout: default
 
   <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
 
-    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+    <article class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
       <h1 data-toc-skip>{{ page.title }}</h1>
 
@@ -57,10 +57,6 @@ layout: default
         {%- capture img_placehodler -%}
           data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
         {% endcapture%}
-
-        {% if page.image %}
-          <img src="{{ img_placehodler }}" data-src="{{ page.image }}" class="post-preview-img">
-        {% endif %}
 
         {% comment %} Wrap images in <a class="popup"> for GLightbox preview {% endcomment %}
         {% assign _content = content %}
@@ -151,7 +147,7 @@ layout: default
 
       </div><!-- div.post-tail -->
 
-    </div> <!-- .post -->
+    </article> <!-- .post -->
 
 
   </div> <!-- #post-wrapper -->

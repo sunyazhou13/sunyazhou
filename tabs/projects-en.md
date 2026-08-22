@@ -6,7 +6,7 @@ lang: en
 permalink: /tabs/projects/
 ---
 
-![](/assets/images/projects/project_cover.avif)
+<img src="/assets/images/projects/project_cover.avif" alt="Projects cover">
 
 > From Baidu to Kuaishou to Tencent Music, I have stayed focused on iOS development and computer graphics. This page documents the projects I have worked on and led.
 
@@ -16,7 +16,7 @@ permalink: /tabs/projects/
 
 **Kuwo Music** — 2022 to present
 
-![](/assets/images/projects/kwmusic.avif)
+<img src="/assets/images/projects/kwmusic.avif" alt="Kuwo Music">
 
 Core business development for the Kuwo Music iOS app, continuously improving user experience and playback performance.
 
@@ -28,7 +28,7 @@ Core business development for the Kuwo Music iOS app, continuously improving use
 
 **Built from 0 to 1, DAU exceeded 100 million**
 
-![](/assets/images/projects/nebula.avif)
+<img src="/assets/images/projects/nebula.avif" alt="Kuaishou Speed Edition">
 
 Led the development of the Kuaishou Speed Edition app from launch to over 100 million daily active users. Later focused on core features such as the full-screen swipe-up video feed.
 
@@ -36,7 +36,7 @@ Led the development of the Kuaishou Speed Edition app from launch to over 100 mi
 
 **Live streaming development**
 
-![](/assets/images/projects/kuaishou.avif)
+<img src="/assets/images/projects/kuaishou.avif" alt="Kuaishou Main App">
 
 Worked on live streaming features of the main Kuaishou app — one of China's most popular short-video platforms — covering live room interactions, bullet comments (danmaku), and related modules.
 
@@ -46,7 +46,7 @@ Worked on live streaming features of the main Kuaishou app — one of China's mo
 
 **Kingsoft Cloud Live & Short Video SDK** — 2017~2018
 
-![](/assets/images/projects/shortvideo_sdk.avif)
+<img src="/assets/images/projects/shortvideo_sdk.avif" alt="Kingsoft Cloud Short Video SDK">
 
 Developed and maintained the Kingsoft Cloud short video SDK, providing video editing, visual effects, voice-changing and other audio/video processing capabilities; also maintained the Kingsoft Cloud live streaming SDK and FFmpeg-based H264/H265 codec libraries.
 
@@ -63,25 +63,25 @@ Developed and maintained the Kingsoft Cloud short video SDK, providing video edi
 
 **The project I invested the most time in and grew the most from**
 
-![](/assets/images/projects/BDNetDisk.avif)
+<img src="/assets/images/projects/BDNetDisk.avif" alt="Baidu Netdisk">
 
 - [Baidu Netdisk](https://itunes.apple.com/cn/app/bai-du-wang-pan/id547166701?mt=8) iOS app — core features including upload, download, transfer list, and offline peer-to-peer sharing
 - Baidu Cloud Manager (macOS)
 - Baidu Cloud Sync (macOS)
 
-![](/assets/images/projects/pan_detail.avif)
+<img src="/assets/images/projects/pan_detail.avif" alt="Baidu Netdisk transfer details">
 
 ### Baidu Hi
 
 **macOS development of the internal IM chat tool**
 
-![](/assets/images/projects/BaiduHi.avif)
+<img src="/assets/images/projects/BaiduHi.avif" alt="Baidu Hi">
 
 ### Xiaodu New Router
 
 **Smart hardware — router companion app development**
 
-![](/assets/images/projects/newifi.avif)
+<img src="/assets/images/projects/newifi.avif" alt="Xiaodu New Router">
 
 ---
 

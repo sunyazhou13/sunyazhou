@@ -10,7 +10,7 @@ lang: zh
 # MIT License
 ---
 
-![](/assets/images/aboutme/background_th.avif)
+<img src="/assets/images/aboutme/background_th.avif" alt="个人背景">
 
 ## 关于我
 
@@ -27,10 +27,10 @@ lang: zh
 ### 自然
 
 逶迤的小兴安岭上巍然挺拔的红松林：
-![红松](/assets/images/aboutme/hongsong.avif)
+<img src="/assets/images/aboutme/hongsong.avif" alt="红松">
 
 奔流到江千年不休，萧红笔下的呼兰河：
-![呼兰河](/assets/images/aboutme/hulanhe.avif)
+<img src="/assets/images/aboutme/hulanhe.avif" alt="呼兰河">
 
 春天里水天一色播种希望的插秧人，夏日里整齐待发粒粒饱满的鲜玉米，秋天里摇铃的大豆、弯腰的稻谷、飘香的沃野，凛冽冬季飞雪中敬畏天地的那份肃穆和庄严。
 
@@ -45,9 +45,9 @@ lang: zh
 | 邵安林 | 开辟贫铁矿高效开发的鞍钢奠基人 |
 | 孙玉 | 中国第一代原子弹、火箭、洲际导弹遥控设计者 |
 
-![林枫](/assets/images/aboutme/linfeng.avif)
-![于炳然](/assets/images/aboutme/yubingran.avif)
-![人民币一元圆形人物梁军](/assets/images/aboutme/rmb1.avif)
+<img src="/assets/images/aboutme/linfeng.avif" alt="林枫">
+<img src="/assets/images/aboutme/yubingran.avif" alt="于炳然">
+<img src="/assets/images/aboutme/rmb1.avif" alt="人民币一元圆形人物梁军">
 
 ### 文化
 
@@ -84,21 +84,21 @@ lang: zh
 
 ### 🎱 台球
 
-![](/assets/images/aboutme/cue8ball.avif)
+<img src="/assets/images/aboutme/cue8ball.avif" alt="台球">
 
 ### 🏍️ 摩托车
 
-![](/assets/images/aboutme/fixmoto.avif)
+<img src="/assets/images/aboutme/fixmoto.avif" alt="摩托车">
 
 ### 🏸 羽毛球
 
-![](/assets/images/aboutme/badminton.avif)
+<img src="/assets/images/aboutme/badminton.avif" alt="羽毛球">
 
 ---
 
 ## 📚 最近在读
 
-![Metal by Tutorials](/assets/images/aboutme/MetalbyTutorials.avif)
+<img src="/assets/images/aboutme/MetalbyTutorials.avif" alt="Metal by Tutorials">
 
 [**Metal by Tutorials**](https://www.kodeco.com/books/metal-by-tutorials) — 学习 Metal 图形学，探索 GPU 渲染与 Shader 编程的世界。
 

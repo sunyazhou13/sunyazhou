@@ -6,8 +6,8 @@
 * MIT Licensed
 */
 
-@import "_colors/light-syntax";
-@import "_colors/dark-syntax";
+@use "_colors/light-syntax" as *;
+@use "_colors/dark-syntax" as *;
 
 html:not([mode]),
 html[mode=light] {

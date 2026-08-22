@@ -10,7 +10,7 @@ permalink: /tabs/about/
 # MIT License
 ---
 
-![](/assets/images/aboutme/background_th.avif)
+<img src="/assets/images/aboutme/background_th.avif" alt="Personal background">
 
 ## About Me
 
@@ -27,10 +27,10 @@ I'm **Sun Yazhou**, from [Harbin](https://en.wikipedia.org/wiki/Harbin), the Ice
 ### Nature
 
 The towering Korean pine forests along the winding Xiao Hinggan Mountains:
-![Korean pine](/assets/images/aboutme/hongsong.avif)
+<img src="/assets/images/aboutme/hongsong.avif" alt="Korean pine">
 
 The Hulan River, flowing endlessly for a thousand years, immortalized by writer Xiao Hong:
-![Hulan River](/assets/images/aboutme/hulanhe.avif)
+<img src="/assets/images/aboutme/hulanhe.avif" alt="Hulan River">
 
 Farmers transplanting rice seedlings under the spring sky merging with water; rows of plump fresh corn waiting in summer; soybeans rattling, rice bowing, and fragrant fields in autumn; the solemn reverence for heaven and earth in the bitter winter snow.
 
@@ -45,9 +45,9 @@ Farmers transplanting rice seedlings under the spring sky merging with water; ro
 | Shao Anlin | Founder of efficient development of lean iron ore at Ansteel |
 | Sun Yu | Designer of the remote control systems for China's first-generation atomic bombs, rockets, and intercontinental missiles |
 
-![Lin Feng](/assets/images/aboutme/linfeng.avif)
-![Yu Bingran](/assets/images/aboutme/yubingran.avif)
-![Liang Jun, the figure on the 1-yuan RMB](/assets/images/aboutme/rmb1.avif)
+<img src="/assets/images/aboutme/linfeng.avif" alt="Lin Feng">
+<img src="/assets/images/aboutme/yubingran.avif" alt="Yu Bingran">
+<img src="/assets/images/aboutme/rmb1.avif" alt="Liang Jun, the figure on the 1-yuan RMB">
 
 ### Culture
 
@@ -84,21 +84,21 @@ Farmers transplanting rice seedlings under the spring sky merging with water; ro
 
 ### 🎱 Billiards
 
-![](/assets/images/aboutme/cue8ball.avif)
+<img src="/assets/images/aboutme/cue8ball.avif" alt="Billiards">
 
 ### 🏍️ Motorcycles
 
-![](/assets/images/aboutme/fixmoto.avif)
+<img src="/assets/images/aboutme/fixmoto.avif" alt="Motorcycle">
 
 ### 🏸 Badminton
 
-![](/assets/images/aboutme/badminton.avif)
+<img src="/assets/images/aboutme/badminton.avif" alt="Badminton">
 
 ---
 
 ## 📚 Currently Reading
 
-![Metal by Tutorials](/assets/images/aboutme/MetalbyTutorials.avif)
+<img src="/assets/images/aboutme/MetalbyTutorials.avif" alt="Metal by Tutorials">
 
 [**Metal by Tutorials**](https://www.kodeco.com/books/metal-by-tutorials) — Learning Metal graphics, exploring the world of GPU rendering and shader programming.
 
