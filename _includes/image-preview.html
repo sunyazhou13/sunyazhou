@@ -4,5 +4,14 @@
   if (typeof GLightbox === 'undefined') return;
   if (document.querySelector('.popup') === null) return;
   GLightbox({ selector: '.popup' });
+
+  /* Fix Chrome a11y warning: "Blocked aria-hidden on an element because its
+     descendant retained focus". Blur the trigger link *before* GLightbox
+     applies aria-hidden to the page wrapper; capture phase guarantees this
+     runs ahead of GLightbox's own click handler. */
+  document.addEventListener('click', function(e) {
+    var link = e.target && e.target.closest ? e.target.closest('a.popup') : null;
+    if (link && link.blur) link.blur();
+  }, true);
 })();
 </script>
