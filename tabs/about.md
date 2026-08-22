@@ -3,6 +3,7 @@ title: The Mr. Sun's Work Notes
 icon: fas fa-info-circle
 type: about
 lang: zh
+comments: true
 # The About page
 # v2.0
 # https://github.com/sunyazhou13/jekyll-theme-chirpy

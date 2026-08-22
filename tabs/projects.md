@@ -3,6 +3,7 @@ title: 项目作品
 icon: fa-solid fa-paintbrush
 date: 2018-03-12 07:37:06
 lang: zh
+comments: true
 ---
 
 <img src="/assets/images/projects/project_cover.avif" alt="项目作品封面">
