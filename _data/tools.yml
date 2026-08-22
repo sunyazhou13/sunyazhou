@@ -32,3 +32,17 @@
   description: 文本与 Base64 互转，支持标准与 URL 安全（Base64URL）变体，编码解码、一键复制，纯本地处理不上传
   path: /tools/base64/
   enabled: true
+
+- id: base-converter
+  title: 进制转换
+  icon: fas fa-calculator
+  description: 二进制 / 八进制 / 十进制 / 十六进制实时联动互转，支持任意大整数，纯本地计算不上传
+  path: /tools/base-converter/
+  enabled: true
+
+- id: qrcode
+  title: 二维码生成解析
+  icon: fas fa-qrcode
+  description: 文本生成二维码图片（可选纠错级别、下载 PNG），上传二维码图片解析出文本/链接，纯本地处理不上传
+  path: /tools/qrcode/
+  enabled: true
