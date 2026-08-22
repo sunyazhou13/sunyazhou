@@ -56,6 +56,14 @@ google_site_verification: Xo29j227HYVdC-vDA_-qJwvDP3PIo-lC78CFeBvhrDA #已经通
 google_analytics:
   id: G-72CBVB74WB
 
+# 工具模块（/tools/）总开关
+# true  - 正常构建工具 tab 与全部工具页面
+# false - 侧边栏隐藏「工具」入口，且构建产物中移除 tools/ 页面与 tabs/tools.md 落地页
+#         （页面级排除由 _plugins/tools-switch.rb 完成，零残留）
+# 单个工具的开关在 _data/tools.yml 中每个工具的 enabled 字段
+tools:
+  enabled: true
+
 #--------------------------
 
 
@@ -217,7 +225,11 @@ exclude:
   - vendor        # Avoid Jekyll mistakenly read the vendor directory on Travis-CI's VM .
   - Gemfile.lock
   - Gemfile
-  - tools
+  # tools/ 目录同时承载主题开发脚本与博客工具页面（tools/*.md），
+  # 此处只排除开发脚本，工具页面正常构建
+  - tools/*.sh
+  - tools/*.py
+  - tools/scaffolds
   - docs
   - README.md
   - LICENSE
@@ -228,6 +240,7 @@ sitemap_exclude:  # Sitemap will exclude the following items.
   accurate:
     - /norobots/
     - /tabs/
+    - /tools/
     - /categories/
     - /tags/
     - /posts/

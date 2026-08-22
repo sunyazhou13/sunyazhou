@@ -1,0 +1,13 @@
+# 工具注册表
+# 落地页 tabs/tools.md 按此列表渲染卡片，enabled: false 可单独下线某个工具
+# 每个工具约定三处文件（全部互不依赖，可整体删除）：
+#   - tools/<id>.md            工具页面
+#   - assets/tools/<id>/       该工具全部静态资源（JS / CSS / WASM）
+#   - 本文件中的一条注册记录
+
+- id: image-to-avif
+  title: 图片转 AVIF
+  icon: fas fa-image
+  description: PNG / JPEG / WebP / GIF 批量转 AVIF，纯本地转换不上传，优先浏览器原生编码，自动回退 WASM
+  path: /tools/image-to-avif/
+  enabled: true

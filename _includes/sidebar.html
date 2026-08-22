@@ -47,6 +47,14 @@
       {% endif %}
     {% endif %}
 
+    {% comment %}通用 tab 开关：tabs.yml 条目加 hidden: true 即隐藏；
+      工具 tab 另受 _config.yml 的 tools.enabled 总开关控制{% endcomment %}
+    {% assign hide_item = item.hidden %}
+    {% if item.url == 'tools' and site.tools.enabled == false %}
+      {% assign hide_item = true %}
+    {% endif %}
+
+    {% unless hide_item %}
     <li class="nav-item d-flex justify-content-center
       {% if item.url == page_urls.last
         or item.name == page.tab_active
@@ -56,6 +64,7 @@
         <span>{{ item.name | upcase }}</span>
       </a>
     </li> <!-- .nav-item -->
+    {% endunless %}
   {% endfor %}
 
   </ul> <!-- ul.nav.flex-column -->
