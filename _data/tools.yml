@@ -11,3 +11,10 @@
   description: PNG / JPEG / WebP / GIF 批量转 AVIF，动图逐帧转码保留动画，纯本地转换不上传（WASM libaom）
   path: /tools/image-to-avif/
   enabled: true
+
+- id: webp-heic
+  title: 图片格式转换
+  icon: fas fa-exchange-alt
+  description: PNG / JPEG / GIF / BMP / AVIF / HEIC 等互转 WebP / JPEG / PNG，纯本地转换不上传
+  path: /tools/webp-heic/
+  enabled: true
