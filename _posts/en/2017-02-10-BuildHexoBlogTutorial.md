@@ -8,12 +8,11 @@ typora-root-url: ..
 
 ---
 
+> Migrating from Jekyll to Hexo to Build a Personal Blog  
 
-> [Migrating from Jekyll to Hexo to Build a Personal Blog](http://www.ezlippi.com/blog/2016/02/jekyll-to-hexo.html)  
+> Building Your Own Blog System with HEXO + Github
 
-> [Building Your Own Blog System with HEXO + Github](http://www.czhzero.com/2016/06/25/hexoblog/)
-
-> [Building a Personal Blog with Hexo and Github Pages](http://skx926.com/2016/01/26/build-hexo/)
+> Building a Personal Blog with Hexo and Github Pages
 
 ### 1 Basic Features
 
@@ -34,4 +33,4 @@ For the donation/tip feature, just search on Jianshu — there are many articles
 
 ### 3 SSL (Custom Domain with HTTPS Support)
 
-[HTTPS support](https://gbin.me/2017/08/03/Hexo-deployed-in-github-and-coding/)
+HTTPS support

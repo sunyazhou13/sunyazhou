@@ -8,7 +8,6 @@ typora-root-url: ..
 
 ---
 
-
 # Preface
 
 To avoid wasting time reinstalling Windows every time, I decided to write down the whole process in an article for later reference, since I always forget what tools I need when fixing computers.
@@ -33,11 +32,9 @@ First, download a tool for creating the boot drive:
 
 Download address: link: [http://www.usbrun.com/](http://www.usbrun.com/)
 
-
 ![image](/assets/images/20190424WindowsResources/1.avif)
 
 After downloading the lite version, turn off your antivirus software first!! Double-click to install it on your computer. Once installed, open it. If the software prompts for an update, you can ignore it — no update needed!
-
 
 Plug in the USB drive
 > [Note: The USB drive will be formatted. If it has any data, copy it out first to avoid losing it.]
@@ -48,19 +45,16 @@ If you can't see the device, unplug and replug the USB drive.
 
 Click 一键制作 and wait for it to finish. After it's done, click 模拟启动 to check whether the USB drive can boot. If it can, you're good. Close it.
 
-
 ## Downloading the System
 
 Below, choose one system version to download. (If your USB drive is big enough, you can download both systems. This PE supports installing original systems.)
 
 WIN7 64-bit (B360/B450 Ryzen 2nd gen CPU motherboards not supported)
-System download link: [Link](http://www.jsgho.net/win7/jsy/35178.html) (Technician Clean Edition)
-
+System download link: Link (Technician Clean Edition)
 
 ![image](/assets/images/20190424WindowsResources/3.avif)
 
 ![image](/assets/images/20190424WindowsResources/4.avif)
-
 
 ## WIN7~10 64-bit
 
@@ -78,7 +72,6 @@ Copy the downloaded system directly to the USB drive you just made — any locat
 
 ![image](/assets/images/20190424WindowsResources/6.avif)
 
-
 ## Setting Up USB Boot
 
 Plug the prepared USB drive into the computer you want to install the system on. Below are the quick boot keys for common motherboards:
@@ -95,7 +88,6 @@ Below is a reference image of the ASUS motherboard quick boot menu for entering 
 When the USB boot screen appears, choose 启动WIN10 PE X 64 as shown below. Don't select anything else.
 
 ![image](/assets/images/20190424WindowsResources/8.avif)
-
 
 ## Partitioning and Installing the System
 
@@ -121,9 +113,7 @@ On the new page, you can choose how many partitions to create and how much capac
 
 ![image](/assets/images/20190424WindowsResources/11.avif)
 
-
 After partitioning, close the partition window and proceed to the next step.
-
 
 ## Installing the System Image
 
@@ -144,9 +134,7 @@ Open 电脑店一键还原 on the desktop, as shown below:
 Disclaimer
 > (This work is only for users to exchange system installation experience, or to temporarily test PC hardware. Please delete it within 24 hours after installation. If you need long-term use, please purchase genuine systems and software.)
 
-
 ## Activating the System
-
 
 Activation toolbox download links:
 
@@ -160,15 +148,12 @@ Activation toolbox download links:
 
 Tutorial link: [http://note.youdao.com/noteshare?id=40345f63671ea936740aa771cca2d438](http://note.youdao.com/noteshare?id=40345f63671ea936740aa771cca2d438)
 
-
 For other driver issues, it's recommended to go online and download: [驱动精灵 Standard Edition](http://www.drivergenius.com/)
-
 
 # Summary
 
 I always forget some of the steps when installing a system, so I'm recording them here.
 
-
-[Reference: PE Installation Tutorial](https://note.youdao.com/ynoteshare1/index.html?id=e0f8c30393c4f069555d286020f9d394&type=note)
-[U-Disk Burning Tutorial for Installing Original Systems](http://05aebac1.wiz03.com/share/s/05HHH13zK4EY2bE37Q00RO3H1CvO101754vQ2bNyFE2nhALV?tdsourcetag=s_pcqq_aiomsg)
+Reference: PE Installation Tutorial
+U-Disk Burning Tutorial for Installing Original Systems
 [I tell you — a magical image download site, absolutely clean](http://msdn.itellyou.cn/)

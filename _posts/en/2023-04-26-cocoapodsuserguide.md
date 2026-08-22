@@ -6,9 +6,7 @@ categories: [iOS]
 tags: [iOS, macOS, Objective-C, Cocoapods, skills]
 typora-root-url: ..
 
-
 ---
-
 
 ![cocoapods](/assets/images/20201010PodSpec/cocoapods.avif)
 
@@ -16,16 +14,13 @@ typora-root-url: ..
 
 This article has a strong personal flavor; if it makes you uncomfortable, please close it right away. This article is only for personal study notes. You're welcome to repost or share it within the scope of the license agreement, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for the support!
 
-
 In my technical understanding, Cocoapods has become one of the essential skills for every iOS developer. Yet, after all these years, just when I thought it had gone out of style, I found that some people still haven't fully mastered it. Today I'm going to share the high-level experience I've accumulated over the years with peers who aren't familiar with this tool.
 
 For most software development teams, a dependency management tool is essential. It installs and manages open-source and private dependencies, thereby improving development efficiency and reducing maintenance costs. Different languages and platforms have their own dependency management tools, such as `npm` for `JavaScript`, `Gradle`, `Maven` for `Jar` packages, `pip` for `Python` packages, `Bundler`, `RubyGems`, and more. This article focuses on `iOS` and explains the usage and some of the principles behind `CocoaPods`.
 
-
 ## CocoaPods — Simple and Easy to Use
 
 For iOS developers, CocoaPods is no stranger — almost every iOS project has it. CocoaPods is built with Ruby and is the dependency management tool for Swift and Objective-C Cocoa projects. On macOS, it's recommended to install it using the default Ruby (all operations below were done with CocoaPods 1.10.1 and Ruby 2.7.2):
-
 
 ``` objc
 sudo gem install cocoapods
@@ -319,7 +314,6 @@ podspec = pod Specification, meaning pod specification. It's a Ruby file contain
 | `deprecated` | Whether the library has been deprecated  | |
 | `deprecated_in_favor_of` | The library name that this one has been deprecated in favor of    | |
 
-
 ``` ruby
 Pod::Spec.new do |s|
   s.name             = 'CustomPod'
@@ -550,7 +544,6 @@ spec.module_map = 'source/module.modulemap'
 spec.module_map = false
 ```
 
-
 #### Subspecs
 
 `subspec`: a specification for a sub-module. It has double inheritance: the spec automatically inherits all subspecs as dependencies (unless the default spec is specified); subspecs inherit the parent's attributes.
@@ -647,11 +640,9 @@ spec.ios.resources = 'Resources_ios/**/*.png'
 
 After understanding the Podfile and podspec specifications, developing your own pod should be a breeze.
 
-
 #### Spec Repo
 
 A Spec Repo is a repository of podspecs, i.e., a place that stores related podspec files. Local sources are stored in `~/.cocoapods/repos`, pulled from git with the directory structure fully preserved. You may notice that the current directory structure of the Master Specs Repo is a bit special; in earlier versions, the Master Spec Repo had everything in the same directory, but having a large number of files in one directory caused the [slow GitHub download](https://github.com/CocoaPods/CocoaPods/issues/4989#issuecomment-193772935) problem. To solve this, a hash-table-style approach was adopted. Specifically, the name is MD5-hashed to obtain a hash value, and the first three characters are used as the directory prefix to distribute the files. In addition, CocoaPods later adopted CDN and trunk to further speed up downloads. If you're interested, refer to [CocoaPods Source management mechanism](http://chuquan.me/2022/01/07/source-analyze-principle/).
-
 
 For example: `md5("CJFoundation") => 044d913fdd5a52b303222c357521f744`; `CJFoundation` is then in the /Specs/0/4/4 directory.
 
@@ -864,7 +855,6 @@ end
 
 In the prepare phase, the `pod install` environment is prepared, including the directory structure, version consistency, and the `pre_install` hooks.
 
-
 #### 2. Resolving dependency conflicts (resolve dependencies)
 
 ``` ruby
@@ -991,7 +981,6 @@ end
 
 Writes the dependency updates into Podfile.lock and Manifest.lock.
 
-
 #### 7. Completion callbacks (perform post install action)
 
 ``` ruby
@@ -1022,7 +1011,6 @@ As early as 2013, CocoaPods added plugin support, mainly to add features that do
 
 > Many plugins may have been unmaintained for a long time — readers should weigh this carefully before using them.
 
-
 ## Less Common Concepts
 
 CocoaPods' configuration covers almost every aspect of Xcode Build, so there are many less common concepts. Here's an aggregation of links for reference.
@@ -1031,7 +1019,7 @@ CocoaPods' configuration covers almost every aspect of Xcode Build, so there are
 
 * [Modules](https://clang.llvm.org/docs/Modules.html#introduction)
 * [Clang Module](http://chuquan.me/2021/02/11/clang-module/)
-* [Module in LLVM](https://www.stephenw.cc/2017/08/23/llvm-modules/)
+* Module in LLVM
 * Hmap / Xcode Header / CocoaPods Headers
 
 A Header Map is a set of header info mapping tables, indicated by the .hmap suffix, stored overall in Key-Value form; the Key is the header file name, and the Value is the header file's physical address.
@@ -1042,7 +1030,6 @@ Xcode Phases - Headers are divided into public, private, and project in the buil
 * [What are build phases?](https://help.apple.com/xcode/mac/current/#/dev50bab713d)
 * [Xcconfig](https://nshipster.com/xcconfig/): a configuration file used to declare and manage build settings, e.g., to distinguish between different development environments.
 * [On-Demand Resources](https://developer.apple.com/videos/play/wwdc2015/214/): a concept introduced at WWDC 2015 for loading resource files on demand.
-
 
 # Summary
 

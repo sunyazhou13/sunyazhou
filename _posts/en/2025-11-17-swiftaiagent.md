@@ -8,11 +8,9 @@ typora-root-url: ..
 
 ---
 
-
 # Preface
 
 This post carries strong personal opinions; if reading it makes you uncomfortable, please close it right away. This article is only for my personal study notes. You're welcome to repost or share it within the scope of the license — please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
-
 
 # Demystifying AI Coding Agents: Build Your Own Agent with Swift
 
@@ -637,10 +635,10 @@ Next time you use Claude Code or Cursor, you'll know exactly what's happening un
 **Want to go deeper?** Check out:
 
 * [The complete Nimbo source code](https://github.com/gscalzo/Nimbo)
-* [Anthropic's guide to tool use](https://docs.anthropic.com/en/docs/build-with-claude/tool-use)
+* Anthropic's guide to tool use
 * [OpenAI's function calling documentation](https://platform.openai.com/docs/guides/function-calling)
 
-**Questions? Ideas?** Reach out on [Twitter](https://twitter.com/giordanoscalzo) or [LinkedIn](https://linkedin.com/in/giordanoscalzo). I'd love to see what you build!
+**Questions? Ideas?** Reach out on Twitter or LinkedIn. I'd love to see what you build!
 
 ---
 

@@ -11,9 +11,7 @@ typora-root-url: ..
 ![AVAudioSession](/assets/images/20180112AVAudioSessionCategory/ASPGIntro.avif)
 # Preface
 
-
 The first post of the 2018 new year. Let me sort out the `Category` of `AVAudioSession` to solve the various audio development problems where playback gets interrupted or there is no sound on first launch.
-
 
 ## Opening
 
@@ -27,7 +25,6 @@ When things like `plugging/unplugging headphones`, `incoming calls`, or `invokin
 * What should happen after plugging/unplugging headphones?
 * What should happen when a call comes in or the alarm goes off?
 * What should happen when other audio Apps start?
-
 
 ### Default session behavior
 
@@ -110,8 +107,6 @@ AVF_EXPORT NSString *const AVAudioSessionCategoryAudioProcessing NS_DEPRECATED_I
 AVF_EXPORT NSString *const AVAudioSessionCategoryMultiRoute NS_AVAILABLE_IOS(6_0);
 ```
 
-
-
 `AVAudioSession` divides audio usage scenarios into seven categories. By setting the `Session` to different categories, you can control:
 
 * Whether activating the Session interrupts audio from other Apps that don't support mixing
@@ -130,7 +125,6 @@ AVF_EXPORT NSString *const AVAudioSessionCategoryMultiRoute NS_AVAILABLE_IOS(6_0
 | AVAudioSessionCategoryRecord | No | Yes | Recording only |
 | AVAudioSessionCategorySoloAmbient | Yes | Yes | Playback only |
 
-
 You can see that the default is in fact the `AVAudioSessionCategorySoloAmbient` category.  
 From the table we can summarize the following:  
 
@@ -147,7 +141,6 @@ From the table we can summarize the following:
 * _`AVAudioSessionCategoryRecord`: With players, there must be recorders. For example, WeChat voice message recording uses this category. Since you want quiet recording, you certainly don't want QQ Music playing, so other playback is interrupted. Think of the WeChat voice message scenario and you'll know when to use it._
 
 * _`AVAudioSessionCategorySoloAmbient`: Also playback-only, but unlike `AVAudioSessionCategoryAmbient`, with this one you can forget about listening to QQ Music — it's for Apps that don't want QQ Music interference, like Rhythm Master. Likewise, the audio is muted when the user locks the screen or mutes; once the screen is locked, you can't play Rhythm Master anymore._
-
 
 Once we understand these seven categories, we can set the appropriate category according to our needs:
 
@@ -180,13 +173,9 @@ For example, with the following code:
 
 Now when playing music, if you press the mute switch, you'll find that the music keeps playing and isn't muted.
 
-
 ### Category Options
 
-
-
 The seven categories above can be thought of as seven main scenarios, but these seven certainly can't satisfy all developer needs. `CoreAudio`'s approach is: __first pick one of the seven as the baseline, then fine-tune. `CoreAudio` provides a few options for each `Category` to do the fine-tuning.__
-
 
 After setting the category, you can use:
 
@@ -210,7 +199,6 @@ typedef NS_OPTIONS(NSUInteger, AVAudioSessionCategoryOptions)
 } NS_AVAILABLE_IOS(6_0);
 ```
 
-
 | Option | Applicable Categories | Effect | 
 | :------ | :------ | :------: |
 | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryPlayAndRecord, AVAudioSessionCategoryPlayback, and AVAudioSessionCategoryMultiRoute | Whether it can mix with other background Apps |
@@ -225,7 +213,6 @@ typedef NS_OPTIONS(NSUInteger, AVAudioSessionCategoryOptions)
 | AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers  | -- | -- | iOS 9|
 | AVAudioSessionCategoryOptionAllowBluetoothA2DP  | -- | -- | iOS 10|
 | AVAudioSessionCategoryOptionAllowAirPlay  | -- | Supports Bluetooth A2DP headsets and AirPlay | iOS 10|
-
 
 Below I'll explain the effect of each sub-scenario option:
 
@@ -284,7 +271,6 @@ AVF_EXPORT NSString *const AVAudioSessionModeVideoChat NS_AVAILABLE_IOS(7_0);
 AVF_EXPORT NSString *const AVAudioSessionModeSpokenAudio NS_AVAILABLE_IOS(9_0);
 ```
 
-
 We've basically covered the common __main scenarios__. Within each main scenario, you can __fine-tune__ via `Option`. To this end, `CoreAudio` provides seven common fine-tuned sub-scenarios, called `the modes of each category`.
 
 | Mode | Applicable Categories | Scenario | 
@@ -308,9 +294,7 @@ After setting the Category, you can use the following code:
 
 This property shows which modes are supported, for validity checks.
 
-
 Now let me talk about specific use cases:
-
 
 * __`AVAudioSessionModeDefault`: Every category defaults to this mode, so to restore the default, set it back to this mode.__
 
@@ -321,7 +305,6 @@ Now let me talk about specific use cases:
 * __`AVAudioSessionModeGameChat`: Suited to game apps' capture and playback, e.g. the `GKVoiceChat` object; generally no manual setup is needed.__
 
 > The other modes have little to do with audio apps; generally we only need to pay attention to VoIP or video calls.
-
 
 By calling:
 
@@ -367,11 +350,9 @@ Possible values:
 
 * `AVAudioSessionSilenceSecondaryAudioHintTypeEnd`: Indicates that another `App` has started releasing the `Session`.
 
-
 ### Peripheral Changes
 
 Besides other `Apps` and system services, the user's own actions can also affect our `App`. By default, the `AudioSession` picks an optimal output route when the `App` launches — for example, headphones when they're plugged in. But during this, the user might unplug the headphones. How does our app sense this?
-
 
 Likewise, `AVAudioSession` also uses `Notifications` for such situations.
 
@@ -385,7 +366,6 @@ Register for `AVAudioSessionRouteChangeNotification` in `NSNotificationCenter`. 
 * `AVAudioSessionRouteChangeReasonKey`: Indicates the reason for the change
 * `AVAudioSessionSilenceSecondaryAudioHintTypeKey`: Has the same meaning as the interruption above.
 
-
 | Enum Value | Meaning |
 | :------ | :------: | 
 | AVAudioSessionRouteChangeReasonUnknown  | Unknown reason |
@@ -397,13 +377,11 @@ Register for `AVAudioSessionRouteChangeNotification` in `NSNotificationCenter`. 
 | AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory  | No suitable device for the current Category |
 | AVAudioSessionRouteChangeReasonRouteConfigurationChange  | The route configuration changed |
 
-
 # Summary
 
 `AVAudioSession` builds the context for an audio usage lifecycle. Whether the current state supports recording, what impact it has on other Apps, whether it responds to the system mute switch, how to detect incoming calls — all of these can be implemented through it. What's especially important is that `AVAudioSession` works not only with `AVAudioPlyaer`/`AVAudioRecorder` in `AVFoundation`, but other recording/playback tools such as `AudioUnit` and `AudioQueueService` also need it to provide the context for recording, muting, and the like.
 
-
 [Reference](https://www.jianshu.com/p/3e0a399380df)  
-[Reference 2](http://cinvoke.me/?p=37)
+Reference 2
 
 The End

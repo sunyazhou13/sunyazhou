@@ -18,18 +18,15 @@ First, let me pay tribute to the authors of RSA
 
 For the principles of RSA asymmetric encryption and all that..., please Baidu it yourself
 
-
 ## The Detour
 
 Recently my development work involved how to use RSA for authentication and other techniques... Honestly, I searched around and simply couldn't find a single piece of code that truly works across iOS, Android, and the web.
 It wasted several days of development time — there wasn't a single reliable solution that works. So I have to write a blog post
 and share the code that actually works. (Honestly, I really wanted to curse at the time — the results Baidu served up were a pile of garbage.)
 
-
 # Implementation
 
 ## Step 1: Generate a Key Pair
-
 
 ### Generate the raw RSA private key file rsa_private_key.pem
 
@@ -50,8 +47,6 @@ openssl rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem
 ```
 
 > As you can see above, the corresponding public key can be generated from the private key. Therefore, we use the private key `private_key.pem` on the *server side* and distribute the *public key* to frontends such as `android` and `ios`
-> 
-
 
 ## Step 2: PHP Implementation
 
@@ -219,7 +214,6 @@ public class Rsa {
 __*Note:*__ When initializing the `Cipher` object, be sure to specify the `"RSA/ECB/PKCS1Padding"` format, e.g., `Cipher.getInstance("RSA/ECB/PKCS1Padding");`
 Open the `rsa_public_key.pem` file and replace `RSA_PUBLICE` in the code above with its content.
 
-
 ## Step 4: iOS Implementation
 
 iOS doesn't provide a direct API for RSA encryption. Most approaches found online also rely on handling X.509 certificates. However, X.509 certificates are signed — when the `openssl_pkey_get_private` method in PHP obtains the key, the signature must be passed as the second parameter, and implementing X.509 certificate encryption/decryption on Android is not easy either. Here, we take advantage of iOS's compatibility with C programs and use the openssl API to implement RSA encryption and decryption. Here's the code:
@@ -240,7 +234,6 @@ CRSA.h code
 #import <openssl/rsa.h>
 #import <openssl/pem.h>
 #import <openssl/err.h>
-
 
 typedef enum {
     KeyTypePublic,
@@ -267,7 +260,6 @@ typedef enum {
 - (NSString *)decryptByRsa:(NSString*)content withKeyType:(KeyType)keyType;
 
 @end
-
 
 ```
 
@@ -356,7 +348,6 @@ CRSA.m
     
     return NO;
 }
-
 
 - (BOOL)importRSAKeyFromeStringWithType:(KeyType)type andKey:(NSString *)key{
     if (key.length == 0) { return NO; }
@@ -481,7 +472,6 @@ CRSA.m
     return len;
 }
 
-
 //---------------encryption utility methods
 - (NSString *)base64EncodedStringForData:(NSData *)data
 {
@@ -548,12 +538,10 @@ CRSA.m
     return (outputLength >= 4)? result: nil;
 }
 
-
 - (NSData *)base64DecodedDataForString:(NSString *)string
 {
     return [self dataWithBase64EncodedString:string];
 }
-
 
 - (NSData *)dataWithBase64EncodedString:(NSString *)string
 {
@@ -666,9 +654,7 @@ NSString *publicKey = @"-----BEGIN PUBLIC KEY-----\n此处替换生成的公钥 
     // explore the rest yourself, it's not difficult  
 ```
 
-
 The openssl API package can be obtained from the include folder of the openssl tool used in Step 1 to generate the RSA keys.
-
 
 Let me explain how to integrate openssl into an iOS project:
 
@@ -681,7 +667,6 @@ Drag the openssl library _(the folder containing `include` & `lib`)_ into the pr
 
 Then go to project targets -> `Build Settings`
 
-
 * Find **Header Search Paths**, add `"${SRCROOT}/Libraries/openssl/include"` for your project
 * Find **Library Search Paths**, add `"${SRCROOT}/Libraries/openssl/lib"` 
 
@@ -689,9 +674,7 @@ Then it should work. If you run into problems in the middle, check whether the d
 
 --
 
-
 ## Finally, the pitfalls I encountered with RSA encryption
-
 
 When encrypting on iOS and generating the digest for Android, Android couldn't parse it (sometimes the parsed result started with a bunch of garbled characters). This is a base64 problem. I recommend Android use the native one.
 
@@ -714,4 +697,4 @@ One last thing: this is a very simple cross-platform RSA solution. To those who 
 
 The End
 
-[Reference](https://www.lvtao.net/dev/android_ios_php_openssl.html)
+Reference

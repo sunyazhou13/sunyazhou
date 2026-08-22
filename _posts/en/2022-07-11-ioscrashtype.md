@@ -6,7 +6,6 @@ categories: [iOS, Swift]
 tags: [iOS, Swift, Objective-C, skills]
 typora-root-url: ..
 
-
 ---
 
 ![kernel](/assets/images/20220711iOSCrashType/kernel.avif)
@@ -32,7 +31,6 @@ So, when `NSZombie` is enabled in the app instead of letting it crash directly, 
 ![image](/assets/images/20220711iOSCrashType/1.avif)
 
 Zombies were very useful before RAC came along. But ever since ARC, if you're careful about object ownership, you usually won't run into memory-related crashes.
-
 
 ### 2.`SIGSEGV`
 
@@ -72,7 +70,7 @@ This kind of crash is usually easy to identify because the error code is fixed a
 
 # Summary
 
-Crash log types are not limited to the ones above; combined with actual tracking, you'll find the crash information that matters. Take it as a rough guide. If you want more details, please refer to the GNU [source code](http://fxr.watson.org/fxr/source/osfmk/mach/exception_types.h?v=xnu-2050.18.24)
+Crash log types are not limited to the ones above; combined with actual tracking, you'll find the crash information that matters. Take it as a rough guide. If you want more details, please refer to the GNU source code
 
 [Reference](https://zhuanlan.zhihu.com/p/269371735)  
 [Understanding iOS exception types](https://juejin.cn/post/6844903866128039944)  

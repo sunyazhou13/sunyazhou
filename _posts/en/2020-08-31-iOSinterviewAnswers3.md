@@ -23,7 +23,6 @@ Following the previous two posts, this time we'll talk about the remaining memor
 3. What are the introspection methods in iOS? What are their internal implementation principles?
 4. What's the difference between `class`, `objc_getClass`, and `object_getclass`?
 
-
 ## `Method Swizzle` Caveats
 
 1. **Be aware of the side effects after swapping method implementations** — `method_exchangeImplementations()`. The swapped methods end up being called via `objc_msgSend()`, and the side effects are mainly concentrated in the first argument, as shown in the following example:
@@ -31,7 +30,7 @@ Following the previous two posts, this time we'll talk about the remaining memor
 	``` objc
 	objc_msgSend(payment, @selector(quantity))
 	```
-	After the swap, calling the quantity method again may crash. The way to solve this side effect is to use `method_setImplementation()` instead of the swapping approach — that's the most reasonable. For the specific principle, refer to [Objc black magic — some caveats of Method Swizzle](https://www.ctolib.com/topics-103098.html)  
+	After the swap, calling the quantity method again may crash. The way to solve this side effect is to use `method_setImplementation()` instead of the swapping approach — that's the most reasonable. For the specific principle, refer to Objc black magic — some caveats of Method Swizzle  
 
 2. **Avoid swapping parent class methods** 
 
@@ -226,7 +225,7 @@ respondsToSelector:
 				返回IMP结果
 ```
 
-That's the whole message forwarding process, which I won't elaborate on here. If you're interested, take a look at the message forwarding part of [Chapter 2](https://www.sunyazhou.com/2020/08/08/20200808iOSinterviewAnswers/).
+That's the whole message forwarding process, which I won't elaborate on here. If you're interested, take a look at the message forwarding part of [Chapter 2](https://www.sunyazhou.com/2020/08/iOSinterviewAnswers2/).
 
 I've listed some commonly used introspection methods above. The other methods basically have nothing special — they all get the isa and perform various internal operations on functions that fetch the relevant attributes and return the result.
 

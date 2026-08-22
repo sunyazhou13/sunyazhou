@@ -35,7 +35,6 @@ The most common usage pattern is to generate the needed values in the **vertex s
 * Animation effects — keyframe interpolation, particle systems
 * User-programmable anti-aliasing methods
 
-
 ## GLSL Notes
 
 * **GLSL supports function overloading** (i.e., a parent class defines a method, and a subclass overrides it — this is called overloading)
@@ -60,7 +59,7 @@ GLSL has three basic data types:
 ```
 
 __**Note: GLSL does not support pointers. GLSL treats vectors and matrices as basic data types**__  
-[Vector (vector)](http://baike.baidu.com/link?url=XKZL51jLByIFnqrj3vaZ-4cnL-AedjBKiVBcD7pEGQG26Jmb9RYl7QOrX4Mwck-mT0nNlzD8UtzXi4ueVYNGkdO1b2uARr59UAih7ulWRvO): a line segment with a starting position and direction, also called a **vector** (don't be intimidated by these terms — I remember learning about vectors in high school math).
+Vector (vector): a line segment with a starting position and direction, also called a **vector** (don't be intimidated by these terms — I remember learning about vectors in high school math).
 
 ## Vectors
 
@@ -236,9 +235,7 @@ void main(void)
   v_texCoord = a_texCoord0;
 }
 
-
 ```
-
 
 `uniform`: Generally used by the application to set initialization values related to the vertex shader and fragment shader. Initialization at declaration is not allowed. The `uniform` qualifier marks a type of global variable that cannot be changed for a given primitive (`primitive`). It can receive parameters passed from the `OpenGL` application.  
 
@@ -287,7 +284,6 @@ void main()
   lightColor = texture2D(s_lightMap, v_texCoord);
   gl_FragColor = baseColor * (lightColor + 0.25);
 }
-
 
 ```
 
@@ -346,11 +342,9 @@ v4.xxyy;    // Duplicates components
 
 Finally, I recommend a GLSL editing and debugging tool: [OpenGL Shader Builder (Graphics Tools.dmg)](http://adcdownload.apple.com/Developer_Tools/Graphics_Tools_for_Xcode_7.2/Graphics_Tools_for_Xcode_7.2.dmg)
 
-
 # Summary:
 
 Since my memory isn't great and I sometimes can't find things, I've collected some terminology and concepts with explanations to make it easier for future learners to study.
-
 
 References:  
 [GLSL基础](http://www.cnblogs.com/luweimy/p/4208570.html?utm_source=tuicool&utm_medium=referral)

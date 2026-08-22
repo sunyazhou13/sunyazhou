@@ -21,7 +21,6 @@ The question is — which cross-platform framework should I bet on? Qt6's RHI ab
 
 This article is a complete record of my research process. **Starting from an iOS developer's mental model**, it horizontally compares the mainstream solutions on the market with quantitative comparisons.
 
-
 In 2026, AI Agents have moved from proof of concept to full-scale production deployment. The LangChain ecosystem is maturing, MCP (Model Context Protocol) has become the de facto standard for tool integration, and `llama.cpp` makes local inference independent of cloud APIs.
 
 Meanwhile, the definition of "cross-platform" has been completely rewritten. An AI Agent product may need to run on the following **6 platforms**:
@@ -926,7 +925,7 @@ Back to the original question: **if an AI Agent product needs to cover desktop +
 
 | Type | Link |
 |------|------|
-| Official site | <https://taro.jd.com/> |
+| Official site | <> |
 | Installation | `npm install -g @tarojs/cli` |
 | Chinese documentation | <https://taro-docs.jd.com/> |
 | GitHub | <https://github.com/NervJS/taro> |
@@ -943,7 +942,7 @@ Back to the original question: **if an AI Agent product needs to cover desktop +
 | Chinese documentation | <https://reactnative.cn/> |
 | Installation | `npx create-expo-app` |
 | Windows/macOS | <https://microsoft.github.io/react-native-windows/> |
-| HarmonyOS (RN-OH) | <https://gitee.com/openharmony-sig/RNOHDCS> |
+| HarmonyOS (RN-OH) | <> |
 | GitHub | <https://github.com/facebook/react-native> |
 
 > Expo for a quick start. The HarmonyOS adaptation is led by the Huawei Developer Alliance.
@@ -1064,7 +1063,7 @@ Back to the original question: **if an AI Agent product needs to cover desktop +
 | Chinese documentation | <https://doc.qt.ac.cn/> |
 | PySide6 documentation | <https://doc.qt.io/qtforpython-6/> |
 
-> For users in China, the Tsinghua mirror is recommended: `https://mirrors.tuna.tsinghua.edu.cn/qt/`
+> For users in China, the Tsinghua mirror is recommended: `
 
 ---
 
@@ -1144,8 +1143,8 @@ Back to the original question: **if an AI Agent product needs to cover desktop +
 | HarmonyOS Developers | <https://developer.huawei.com/consumer/cn/harmonyos/> | The official HarmonyOS portal |
 | DevEco Studio | <https://developer.huawei.com/consumer/cn/deveco-studio/> | The official HarmonyOS IDE |
 | ArkUI Documentation | <https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkui-overview> | HarmonyOS native UI |
-| WeChat Mini Program Docs | <https://developers.weixin.qq.com/miniprogram/dev/> | Official Mini Program development |
-| WeChat Mini Program AI Capabilities | <https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/ai.html> | Built-in AI for Mini Programs |
+| WeChat Mini Program Docs | <> | Official Mini Program development |
+| WeChat Mini Program AI Capabilities | <> | Built-in AI for Mini Programs |
 | uni-app Plugin Marketplace | <https://ext.dcloud.net.cn/> | uni-app/Taro plugins |
 
 ---

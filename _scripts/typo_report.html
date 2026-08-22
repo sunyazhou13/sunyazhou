@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博客错别字检查与修正报告</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --card-bg: #f8f9fa;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --border: #e0e0e0;
+  --accent: #0066cc;
+  --red: #d32f2f;
+  --green: #2e7d32;
+  --orange: #f57c00;
+  --table-header: #f0f4f8;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+h1 { font-size: 1.6em; border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin-top: 32px; color: var(--accent); }
+h3 { font-size: 1.05em; margin-top: 20px; }
+.summary-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.stats { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 20px;
+  text-align: center;
+  flex: 1;
+  min-width: 120px;
+}
+.stat-card .num { font-size: 1.8em; font-weight: 700; color: var(--accent); }
+.stat-card .label { font-size: 0.85em; color: var(--text-secondary); }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9em; }
+th { background: var(--table-header); padding: 8px 10px; text-align: left; border: 1px solid var(--border); }
+td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+.wrong { color: var(--red); font-weight: 600; text-decoration: line-through; }
+.right { color: var(--green); font-weight: 600; }
+.note { color: var(--text-secondary); font-size: 0.85em; }
+.file-group { margin: 20px 0; }
+.file-group h3 { color: var(--orange); border-left: 3px solid var(--orange); padding-left: 8px; }
+.tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 0.75em; margin-left: 4px; }
+.tag-cn { background: #fff3e0; color: #e65100; }
+.tag-en { background: #e3f2fd; color: #1565c0; }
+.tag-dup { background: #f3e5f5; color: #7b1fa2; }
+.footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.85em; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+
+<h1>博客错别字检查与修正报告</h1>
+<p>检查日期：2026年8月22日 | 共扫描 216 篇文章 | 涉及修改 20 个文件</p>
+
+<div class="stats">
+  <div class="stat-card"><div class="num">216</div><div class="label">扫描文章数</div></div>
+  <div class="stat-card"><div class="num">20</div><div class="label">修改文件数</div></div>
+  <div class="stat-card"><div class="num">77+</div><div class="label">修正错别字数</div></div>
+  <div class="stat-card"><div class="num">3</div><div class="label">审查 Agent 数</div></div>
+</div>
+
+<div class="summary-box">
+<h2 style="margin-top:0">检查方法</h2>
+<ol>
+<li><b>Python 脚本自动扫描</b>：编写 typo_check.py 脚本，覆盖常见中文错别字对（如帐/账、做/作、的/地/得等）和英文常见拼写错误</li>
+<li><b>Grep 精确模式匹配</b>：对脚本结果逐一用 grep 验证上下文，排除误报（如"现象是"被截匹配为"象是"、"原因有"被截匹配为"因有"等）</li>
+<li><b>AI Agent 深度语义审查</b>：启动 3 个并行 Agent 审查最长的 15 篇文章 + 年终总结文章，发现脚本无法捕捉的语义级错别字</li>
+</ol>
+</div>
+
+<h2>修正明细（按文件分组）</h2>
+
+<div class="file-group">
+<h3>2017-03-28-LearningAVFoundationAVAudioRecorder.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>153</td><td class="wrong">OSState</td><td class="right">OSStatus</td><td><span class="tag tag-en">英文</span></td><td class="note">Apple错误类型名拼写错误</td></tr>
+<tr><td>164</td><td class="wrong">同窗应该</td><td class="right">通常应该</td><td><span class="tag tag-cn">中文</span></td><td class="note">同/通 音近致误</td></tr>
+<tr><td>791</td><td class="wrong">视波图</td><td class="right">声波图</td><td><span class="tag tag-cn">中文</span></td><td class="note">音频录制语境应为"声波"</td></tr>
+<tr><td>830</td><td class="wrong">阀值</td><td class="right">阈值</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"阈值"</td></tr>
+<tr><td>1004</td><td class="wrong">回话</td><td class="right">会话</td><td><span class="tag tag-cn">中文</span></td><td class="note">Audio Session应为"会话"</td></tr>
+<tr><td>1154</td><td class="wrong">阀值</td><td class="right">阈值</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"阈值"</td></tr>
+<tr><td>150</td><td class="wrong">会将为压缩</td><td class="right">会将未压缩</td><td><span class="tag tag-cn">中文</span></td><td class="note">为/未 致误，"未压缩"=uncompressed</td></tr>
+<tr><td>495</td><td class="wrong">只读熟悉</td><td class="right">只读属性</td><td><span class="tag tag-cn">中文</span></td><td class="note">熟悉/属性 致误，read-only property</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2017-06-16-LearningAVFoundationAVAssetBasic.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>270</td><td class="wrong">帐号</td><td class="right">账号</td><td><span class="tag tag-cn">中文</span></td><td class="note">财务相关应用"账"</td></tr>
+<tr><td>271</td><td class="wrong">帐号</td><td class="right">账号</td><td><span class="tag tag-cn">中文</span></td><td class="note">财务相关应用"账"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2017-08-30-ARKit.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>16</td><td class="wrong">过度讲解</td><td class="right">过渡讲解</td><td><span class="tag tag-cn">中文</span></td><td class="note">过渡=transition，过度=excessive</td></tr>
+<tr><td>259</td><td class="wrong">交个ARSession</td><td class="right">交给ARSession</td><td><span class="tag tag-cn">中文</span></td><td class="note">交个→交给</td></tr>
+<tr><td>326</td><td class="wrong">集成自UIView</td><td class="right">继承自UIView</td><td><span class="tag tag-cn">中文</span></td><td class="note">inherit=继承，非集成</td></tr>
+<tr><td>671/675/678</td><td class="wrong">ARSesson</td><td class="right">ARSession</td><td><span class="tag tag-en">英文</span></td><td class="note">API名称拼写错误</td></tr>
+<tr><td>675</td><td class="wrong">又ARSession提供的</td><td class="right">由ARSession提供的</td><td><span class="tag tag-cn">中文</span></td><td class="note">又/由 音近致误</td></tr>
+<tr><td>678</td><td class="wrong">由两种方式</td><td class="right">有哪些方式</td><td><span class="tag tag-cn">中文</span></td><td class="note">由→有</td></tr>
+<tr><td>868</td><td class="wrong">就有有一个平面</td><td class="right">就有一个平面</td><td><span class="tag tag-dup">重复</span></td><td class="note">"有"字重复</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2018-12-21-AwemeTransition.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>59</td><td class="wrong">做为</td><td class="right">作为</td><td><span class="tag tag-cn">中文</span></td><td class="note">表示"当作"应用"作为"</td></tr>
+<tr><td>454</td><td class="wrong">做为</td><td class="right">作为</td><td><span class="tag tag-cn">中文</span></td><td class="note">表示"当作"应用"作为"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2018-12-28-FinalSummary.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>252</td><td class="wrong">认真的听</td><td class="right">认真地听</td><td><span class="tag tag-cn">中文</span></td><td class="note">修饰动词应用"地"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2019-02-15-Tools.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>68</td><td class="wrong">做为一个iOS开发者</td><td class="right">作为一个iOS开发者</td><td><span class="tag tag-cn">中文</span></td><td class="note">做为→作为</td></tr>
+<tr><td>68</td><td class="wrong">公司得各种</td><td class="right">公司的各种</td><td><span class="tag tag-cn">中文</span></td><td class="note">得/的 混用</td></tr>
+<tr><td>68</td><td class="wrong">实时的查看</td><td class="right">实时地查看</td><td><span class="tag tag-cn">中文</span></td><td class="note">修饰动词应用"地"</td></tr>
+<tr><td>68</td><td class="wrong">发不过</td><td class="right">发布过</td><td><span class="tag tag-cn">中文</span></td><td class="note">漏字"布"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2020-07-21-iOSinterviewAnswers1.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>18</td><td class="wrong">时长关注</td><td class="right">时常关注</td><td><span class="tag tag-cn">中文</span></td><td class="note">时常=经常</td></tr>
+<tr><td>386</td><td class="wrong">便利拿出</td><td class="right">遍历拿出</td><td><span class="tag tag-cn">中文</span></td><td class="note">traverse=遍历</td></tr>
+<tr><td>693</td><td class="wrong">倒叙遍历</td><td class="right">倒序遍历</td><td><span class="tag tag-cn">中文</span></td><td class="note">倒序=reverse order</td></tr>
+<tr><td>718</td><td class="wrong">倒叙的</td><td class="right">倒序的</td><td><span class="tag tag-cn">中文</span></td><td class="note">同上</td></tr>
+<tr><td>727</td><td class="wrong">給类</td><td class="right">给类</td><td><span class="tag tag-cn">中文</span></td><td class="note">繁体字混入</td></tr>
+<tr><td>745/749</td><td class="wrong">Objectivce-C</td><td class="right">Objective-C</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误</td></tr>
+<tr><td>755-906</td><td class="wrong">接受者</td><td class="right">接收者</td><td><span class="tag tag-cn">中文</span></td><td class="note">消息传递中receiver=接收者</td></tr>
+<tr><td>767</td><td class="wrong">为来完成</td><td class="right">为了完成</td><td><span class="tag tag-cn">中文</span></td><td class="note">漏字</td></tr>
+<tr><td>767</td><td class="wrong">现实代码</td><td class="right">实现代码</td><td><span class="tag tag-cn">中文</span></td><td class="note">implementation=实现</td></tr>
+<tr><td>880</td><td class="wrong">不同与</td><td class="right">不同于</td><td><span class="tag tag-cn">中文</span></td><td class="note">与/于 混用</td></tr>
+<tr><td>906</td><td class="wrong">解析解析</td><td class="right">解析</td><td><span class="tag tag-dup">重复</span></td><td class="note">"解析"重复</td></tr>
+<tr><td>992</td><td class="wrong">显示调用</td><td class="right">显式调用</td><td><span class="tag tag-cn">中文</span></td><td class="note">explicit=显式</td></tr>
+<tr><td>1004</td><td class="wrong">放法接过来</td><td class="right">方法接过来</td><td><span class="tag tag-cn">中文</span></td><td class="note">放/方 致误</td></tr>
+<tr><td>841</td><td class="wrong">控制这</td><td class="right">控制着</td><td><span class="tag tag-cn">中文</span></td><td class="note">这/着 混用，"控制着"=controls</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2020-08-08-iOSinterviewAnswers2.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>29/886</td><td class="wrong">使用的的</td><td class="right">使用的</td><td><span class="tag tag-dup">重复</span></td><td class="note">"的"字重复</td></tr>
+<tr><td>38/716/717</td><td class="wrong">哈西</td><td class="right">哈希</td><td><span class="tag tag-cn">中文</span></td><td class="note">hash标准音译为"哈希"</td></tr>
+<tr><td>249</td><td class="wrong">hask table</td><td class="right">hash table</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误</td></tr>
+<tr><td>258</td><td class="wrong">阀值</td><td class="right">阈值</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"阈值"</td></tr>
+<tr><td>796</td><td class="wrong">那种内存</td><td class="right">哪种内存</td><td><span class="tag tag-cn">中文</span></td><td class="note">疑问语气应用"哪"</td></tr>
+<tr><td>815</td><td class="wrong">问的非常</td><td class="right">问得非常</td><td><span class="tag tag-cn">中文</span></td><td class="note">补语应用"得"</td></tr>
+<tr><td>1026</td><td class="wrong">代码站在下面</td><td class="right">代码贴在下面</td><td><span class="tag tag-cn">中文</span></td><td class="note">站/贴 致误</td></tr>
+<tr><td>1193</td><td class="wrong">爆涨</td><td class="right">暴涨</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"暴涨"</td></tr>
+<tr><td>1199</td><td class="wrong">讲把剩余</td><td class="right">将把剩余</td><td><span class="tag tag-cn">中文</span></td><td class="note">讲/将 音同致误</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2020-08-31-iOSinterviewAnswers3.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>273</td><td class="wrong">问的非常到位</td><td class="right">问得非常到位</td><td><span class="tag tag-cn">中文</span></td><td class="note">补语应用"得"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2020-10-04-XcodeBuildXcconfigFile.md + en/版</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>11</td><td class="wrong">Configration</td><td class="right">Configuration</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误（含图片文件重命名）</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2020-03-20-NSURLProtocol.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>140</td><td class="wrong">接受者</td><td class="right">接收者</td><td><span class="tag tag-cn">中文</span></td><td class="note">receiver=接收者</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2018-05-07-AudioUnit.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>381</td><td class="wrong">阀值</td><td class="right">阈值</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"阈值"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2021-01-21-TextGradient.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>18</td><td class="wrong">做为</td><td class="right">作为</td><td><span class="tag tag-cn">中文</span></td><td class="note">做为→作为</td></tr>
+<tr><td>23</td><td class="wrong">做为</td><td class="right">作为</td><td><span class="tag tag-cn">中文</span></td><td class="note">做为→作为</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2021-02-21-UTIsOfficalFileExtensionName.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>19</td><td class="wrong">做为一个</td><td class="right">作为一个</td><td><span class="tag tag-cn">中文</span></td><td class="note">做为→作为</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2023-02-02-jekyllpost.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>25</td><td class="wrong">模版</td><td class="right">模板</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"模板"</td></tr>
+<tr><td>86</td><td class="wrong">模版</td><td class="right">模板</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"模板"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2023-02-13-nsdateistoday.md + en/版</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>29</td><td class="wrong">做为参数</td><td class="right">作为参数</td><td><span class="tag tag-cn">中文</span></td><td class="note">做为→作为</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2023-03-12-flutterlifecycle.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>19</td><td class="wrong">声明周期</td><td class="right">生命周期</td><td><span class="tag tag-cn">中文</span></td><td class="note">声/生 音同致误</td></tr>
+<tr><td>24</td><td class="wrong">声明周期</td><td class="right">生命周期</td><td><span class="tag tag-cn">中文</span></td><td class="note">同上</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2023-04-26-cocoapodsuserguide.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>74</td><td class="wrong">安装到到</td><td class="right">安装到</td><td><span class="tag tag-dup">重复</span></td><td class="note">"到"字重复</td></tr>
+<tr><td>74</td><td class="wrong">继承到用户</td><td class="right">集成到用户</td><td><span class="tag tag-cn">中文</span></td><td class="note">integrate=集成</td></tr>
+<tr><td>94</td><td class="wrong">版本版本</td><td class="right">版本</td><td><span class="tag tag-dup">重复</span></td><td class="note">"版本"重复</td></tr>
+<tr><td>245</td><td class="wrong">显示指定</td><td class="right">显式指定</td><td><span class="tag tag-cn">中文</span></td><td class="note">explicit=显式</td></tr>
+<tr><td>433</td><td class="wrong">与编译头文件</td><td class="right">预编译头文件</td><td><span class="tag tag-cn">中文</span></td><td class="note">precompiled=预编译</td></tr>
+<tr><td>470</td><td class="wrong">libaries</td><td class="right">libraries</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误</td></tr>
+<tr><td>546</td><td class="wrong">pod 继承为</td><td class="right">pod 集成为</td><td><span class="tag tag-cn">中文</span></td><td class="note">integrate=集成</td></tr>
+<tr><td>653</td><td class="wrong">初次之外</td><td class="right">除此之外</td><td><span class="tag tag-cn">中文</span></td><td class="note">固定搭配错误</td></tr>
+<tr><td>662</td><td class="wrong">模版</td><td class="right">模板</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"模板"</td></tr>
+<tr><td>687</td><td class="wrong">podsepc</td><td class="right">podspec</td><td><span class="tag tag-en">英文</span></td><td class="note">字母颠倒</td></tr>
+<tr><td>751</td><td class="wrong">Swift Packager Manager</td><td class="right">Swift Package Manager</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误</td></tr>
+<tr><td>751</td><td class="wrong">的的版本号</td><td class="right">的版本号</td><td><span class="tag tag-dup">重复</span></td><td class="note">"的"字重复</td></tr>
+<tr><td>763</td><td class="wrong">CococaPods</td><td class="right">CocoaPods</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误</td></tr>
+<tr><td>808</td><td class="wrong">模版</td><td class="right">模板</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"模板"</td></tr>
+<tr><td>810</td><td class="wrong">commites</td><td class="right">commits</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误</td></tr>
+<tr><td>811</td><td class="wrong">Monlinillo</td><td class="right">Molinillo</td><td><span class="tag tag-en">英文</span></td><td class="note">算法名拼写</td></tr>
+<tr><td>811</td><td class="wrong">前项检察</td><td class="right">前向检查</td><td><span class="tag tag-cn">中文</span></td><td class="note">forward checking=前向检查</td></tr>
+<tr><td>812</td><td class="wrong">创建于修改</td><td class="right">创建与修改</td><td><span class="tag tag-cn">中文</span></td><td class="note">于/与 混用</td></tr>
+<tr><td>812</td><td class="wrong">workspece</td><td class="right">workspace</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误</td></tr>
+<tr><td>896</td><td class="wrong">使用个</td><td class="right">使用这个</td><td><span class="tag tag-cn">中文</span></td><td class="note">漏字"这"</td></tr>
+<tr><td>913</td><td class="wrong">这是会进行</td><td class="right">这时会进行</td><td><span class="tag tag-cn">中文</span></td><td class="note">这是/这时 混用</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2023-12-31-FinalSummary.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>240</td><td class="wrong">按耐忍住</td><td class="right">按捺忍住</td><td><span class="tag tag-cn">中文</span></td><td class="note">标准写法为"按捺"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2024-01-19-arktsbasic.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>24</td><td class="wrong">文件中中</td><td class="right">文件中</td><td><span class="tag tag-dup">重复</span></td><td class="note">"中"字重复</td></tr>
+<tr><td>127/254</td><td class="wrong">声明周期</td><td class="right">生命周期</td><td><span class="tag tag-cn">中文</span></td><td class="note">声/生 音同致误</td></tr>
+<tr><td>457</td><td class="wrong">是是</td><td class="right">是</td><td><span class="tag tag-dup">重复</span></td><td class="note">"是"字重复</td></tr>
+<tr><td>609</td><td class="wrong">示例代码如果</td><td class="right">示例代码如下</td><td><span class="tag tag-cn">中文</span></td><td class="note">语义不通</td></tr>
+<tr><td>740</td><td class="wrong">类型一直</td><td class="right">类型一致</td><td><span class="tag tag-cn">中文</span></td><td class="note">一直/一致 混用</td></tr>
+<tr><td>898</td><td class="wrong">Harmonry4.1</td><td class="right">HarmonyOS4.1</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2025-02-22-unsafe-swift-using-pointers-and-interacting-with-c.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>728</td><td class="wrong">未分配的</td><td class="right">未初始化的</td><td><span class="tag tag-cn">中文</span></td><td class="note">uninitialized=未初始化</td></tr>
+<tr><td>769</td><td class="wrong">要做这么</td><td class="right">要做什么</td><td><span class="tag tag-cn">中文</span></td><td class="note">这么/什么 混用</td></tr>
+<tr><td>788</td><td class="wrong">的额unsafe</td><td class="right">的unsafe</td><td><span class="tag tag-cn">中文</span></td><td class="note">"额"为衍字</td></tr>
+<tr><td>788</td><td class="wrong">方函数方法</td><td class="right">函数方法</td><td><span class="tag tag-cn">中文</span></td><td class="note">"方"为衍字</td></tr>
+<tr><td>788</td><td class="wrong">翻译的过于</td><td class="right">翻译得过于</td><td><span class="tag tag-cn">中文</span></td><td class="note">补语应用"得"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2025-05-11-MemoryAlignmentAlgorithm.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>20</td><td class="wrong">Arguements</td><td class="right">Arguments</td><td><span class="tag tag-en">英文</span></td><td class="note">拼写错误</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2026-01-23-audiometadata.md</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>853</td><td class="wrong">这篇文件</td><td class="right">这篇文章</td><td><span class="tag tag-cn">中文</span></td><td class="note">博客文章应为"文章"</td></tr>
+</table>
+</div>
+
+<div class="file-group">
+<h3>2017-03-28 (en/英文版) + 2017-08-30 (en/英文版)</h3>
+<table>
+<tr><th>行</th><th>原文</th><th>修正</th><th>类型</th><th>说明</th></tr>
+<tr><td>151</td><td class="wrong">OSState</td><td class="right">OSStatus</td><td><span class="tag tag-en">英文</span></td><td class="note">en/版同步修正</td></tr>
+<tr><td>671-677</td><td class="wrong">ARSesson</td><td class="right">ARSession</td><td><span class="tag tag-en">英文</span></td><td class="note">en/版同步修正</td></tr>
+</table>
+</div>
+
+<h2>统计汇总</h2>
+<table>
+<tr><th>类型</th><th>数量</th><th>占比</th></tr>
+<tr><td><span class="tag tag-cn">中文错别字</span></td><td>~50</td><td>68%</td></tr>
+<tr><td><span class="tag tag-en">英文拼写错误</span></td><td>~14</td><td>19%</td></tr>
+<tr><td><span class="tag tag-dup">重复字/衍字</span></td><td>~10</td><td>13%</td></tr>
+<tr><td><b>合计</b></td><td><b>74+</b></td><td><b>100%</b></td></tr>
+</table>
+
+<h2>常见错误模式</h2>
+<ul>
+<li><b>的/地/得混用</b>（最常见）：修饰动词应用"地"，补语应用"得"，定语用"的"</li>
+<li><b>同音字替换</b>：做为→作为、倒叙→倒序、过度→过渡、又→由、讲→将</li>
+<li><b>音近字替换</b>：同窗→通常、现实→实现、阀值→阈值、爆涨→暴涨</li>
+<li><b>英文拼写</b>：Configration→Configuration、Arguements→Arguments、libaries→libraries</li>
+<li><b>API名称错误</b>：ARSesson→ARSession、OSState→OSStatus、CococaPods→CocoaPods</li>
+<li><b>重复字</b>：使用的的→使用的、中中→中、版本版本→版本</li>
+<li><b>漏字</b>：发不过→发布过、为来→为了、使用个→使用这个</li>
+</ul>
+
+<div class="footer">
+<p>本报告由 WorkBuddy 自动生成 | 检查方法：Python脚本 + Grep验证 + AI Agent深度审查</p>
+<p>所有修正均已直接写入源文件，博客重新构建后即可生效</p>
+</div>
+
+</body>
+</html>

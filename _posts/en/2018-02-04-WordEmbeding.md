@@ -14,8 +14,6 @@ typora-root-url: ..
 
 Recording some Python code during the learning process
 
-
-
 ``` python
 #!/usr/bin/env python
 # coding:utf8
@@ -23,7 +21,6 @@ Recording some Python code during the learning process
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
-
 
 # Load packages
 from gensim.models import Word2Vec
@@ -57,6 +54,6 @@ model.similarity(u'男人',  u'女人')
    
 Tokenization references:  
 
-[HIT-SCIR LTP Tokenization](https://www.ltp-cloud.com/demo/)  
+HIT-SCIR LTP Tokenization  
 [jieba Tokenization](https://github.com/fxsjy/jieba)  
 [Stanford Tokenization](https://nlp.stanford.edu/software/segmenter.shtml)

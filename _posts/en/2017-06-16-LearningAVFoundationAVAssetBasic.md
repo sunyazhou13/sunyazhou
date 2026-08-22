@@ -10,7 +10,6 @@ typora-root-url: ..
 
 ![Album Detail](/assets/images/20170616LearningAVFoundationAVAssetBasic/AlbumDetail.avif)
 
-
 # Preface
 This chapter covers `AVAsset` metadata (which can be simply understood as the model information of an audio format such as mp3: title: xxxx, artist: Andy Lau, album: Love You for Ten Thousand Years... and the sources of such data). In this sense, the field information is a property of `AVAsset`. `AV Foundation` handles the metadata of various audio formats through the `AVAsset` wrapper, __such as extracting the cover artwork from an mp3 file__. Here's what this chapter covers:
 
@@ -46,8 +45,6 @@ This chapter covers `AVAsset` metadata (which can be simply understood as the mo
 #### __Saving Metadata__
 ---
 
-
-
 ### __Understanding the `AVAsset` Asset__
 `AVAsset` is an immutable abstract class that defines the mixed presentation of media assets. It contains the audio/video **tracks**, **formats**, **duration**, as well as **metadata NSData** (binary bytes).
 
@@ -73,12 +70,9 @@ Here's _**`AVAsset.tracks`**_:
 
 Asset tracks can be accessed through the `tracks` property. This property returns an NSArray whose elements are all the tracks contained in the asset. In addition, `AVAsset` can also find the corresponding track by identifier, media type, or media characteristics. This makes it easy to retrieve the set of tracks we need in more advanced processing later.
 
-
-
 #### __Creating Assets__
 
 When creating an `AVAsset` object for an existing media asset, you do it by initializing it with a URL. Generally it's a local file URL, but it can also be a remote resource URL.
-
 
 ``` objc
     NSURL *assetURL = //....
@@ -88,7 +82,6 @@ When creating an `AVAsset` object for an existing media asset, you do it by init
 > ....
 
 `AVAsset` is an abstract class and cannot be instantiated directly. When you create an instance using the `assetWithURL:` method, you're actually creating `AVURLAsset`, a subclass of `AVAsset`. Sometimes you'll use this class directly, because it allows you to fine-tune how the asset is created by passing a dictionary of options. For example, when creating an asset for use in audio or video editing scenarios, you might want to pass a dictionary of options telling the program to provide more precise duration and timing information, such as:
-
 
 ``` objc
 
@@ -133,7 +126,6 @@ Above is how to get video assets stored in the photo album (this approach was de
 
 A common place to get media is the user's iPod library. The `MediaPlayer` framework provides APIs for querying and retrieving items in the iPod library. When you find the item you want, you can get a stored URL and use it to initialize an asset, as in the following example:
 
-
 ``` objc
     //Artist
     MPMediaPropertyPredicate *artistPredicate = [MPMediaPropertyPredicate predicateWithValue:@"刘德华" forProperty:MPMediaItemPropertyArtist];
@@ -156,15 +148,12 @@ A common place to get media is the user's iPod library. The `MediaPlayer` framew
     }
 ```
 
-
 The `MediaPlayer` framework provides a class called `MPMediaPropertyPredicate` that helps users build the query statements used to find specific content in the iPod library.
 The example above looks up the song `爱你一万年` in `刘德华`'s `真永远` (the "True Eternity" album). After the query completes, it returns the media item's asset URL property (`MPMediaItemPropertyAssetURL`), which is then used to create the `AVAsset`.
 
 ##### macOS iTunes Library
 
 On macOS (formerly OS X), iTunes is the user's media hub. To identify assets in the library, we usually parse the iTunes Music Library.xml file in the iTunes music directory to get the relevant data. However, after Mac OS X 10.8 Mountain Lion, there's a simpler way — the `iTunesLibrary` framework.
-
-
 
 ``` objc 
 ITLibrary *library = [ITLibrary libraryWithAPIVersion:@"1.0" error:nil];
@@ -183,7 +172,6 @@ ITLibrary *library = [ITLibrary libraryWithAPIVersion:@"1.0" error:nil];
     }
     
 ```
-
 
 The `iTunesLibrary` framework doesn't provide concrete query APIs like the `MediaPlayer` framework does. However, developers can use the standard Cocoa `NSPredicate` (predicate) class to build complex queries. After filtering out the desired set of media items, you can use the `location` property of `ITLibMediaItem` to get a URL and create an `AVAsset`.
 
@@ -247,7 +235,6 @@ Here we create an AVAsset from a `QuickTime` movie in the bundle and asynchronou
 > (1) Each call to `loadValuesAsynchronouslyForKeys:completionHandler:` invokes the `completionHandler` block only once; the number of callback invocations is not determined by the number of keys passed to the method.
 > (2) You need to call `statusOfValueForKey:error:` for each requested property; you can't assume all properties return the same status value.
 
-
 ### __Media Metadata__
 
 When building a media application, it's very important to understand how the media is organized. Simply showing a list of file names might be acceptable when there aren't many files, but it becomes a real pain when you need to display large batches of files. What we really need is _a way to describe the media so that users can easily find, identify, and organize it._ The main media formats we work with in `AV Foundation` (*.mp4, *.mp3, *.mov, *.mkv...) can all embed metadata that describes their content. Since each media format describes its content differently, devising a universal strategy for parsing files in various media formats requires some understanding of the underlying technologies. However, `AV Foundation` makes this easy, because it lets developers ignore most format-specific details; for handling media metadata, `AV Foundation` provides a unified approach.
@@ -298,7 +285,7 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 	![mp4Atom](/assets/images/20170616LearningAVFoundationAVAssetBasic/mp4Atom.avif)
 	*MPEG-4 atom structure — real measurement*
 
-	The metadata of `MPEG-4` files is stored in /moov/udat/meta/ilst. There's no standard for the keys used in the `atom`s; everyone follows the keys defined in Apple's unpublished iTunes metadata specification by convention. Although it was never formally released, the documentation for the iTunes metadata format has long been widely known online (I've always wondered — does that count as a release or not? If it was released, why is it still described as unpublished? If it wasn't released, how did it become so well known?). You can refer to the [mp4v2 library](https://code.google.com/archive/p/mp4v2/wikis/iTunesMetadata.wiki) documentation for more mp4 details.
+	The metadata of `MPEG-4` files is stored in /moov/udat/meta/ilst. There's no standard for the keys used in the `atom`s; everyone follows the keys defined in Apple's unpublished iTunes metadata specification by convention. Although it was never formally released, the documentation for the iTunes metadata format has long been widely known online (I've always wondered — does that count as a release or not? If it was released, why is it still described as unpublished? If it wasn't released, how did it become so well known?). You can refer to the mp4v2 library documentation for more mp4 details.
 
 	`mp4` is the standard extension for MPEG-4 media, e.g. `.m4v`, `.m4a`, `.m4p`, `.m4b`. These variants all use the `MPEG-4` container format, and some also include additional extensions.
 	You only need to remember a few points:
@@ -317,7 +304,6 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 
 	The rest of the data in the `ID3` block is made up of frames — key-value pairs describing different metadata. Each frame has a __10-byte header with the actual tag name__, followed by 4 bytes indicating the size, then 2 more bytes defining option flags.
 
-
 	 id3 | version (2 bytes) | revision (remaining bytes) | flag (2 bytes) | size (4 bytes) |
 
 	The remaining bytes of the frame contain the actual metadata value. If the value is a text type, the first byte of the tag contains the actual metadata value. If the value is a text type, the first byte of the tag is used to define the encoding type, e.g. Ox00 represents `ISO-8859-1`, and other encoding types are also supported. The ID3 structure is shown in the figure below.
@@ -328,9 +314,7 @@ Although there are many media formats, the ones we mainly encounter in the Apple
 
 > `AV Foundation` supports reading all `ID3v2` tag formats, but `ID3v2` deserves an asterisk. The layout of `ID3v2.2` differs from that of `ID3v2.3` and later versions. Note that some tags consist of 3 characters instead of 4; for example, a song's comment info is stored in the COM frame when the tag is `ID3v2.2`, but when the same song uses an `ID3v2.3` tag or newer, the song's comment info is stored in the COMM frame. The character constants defined by the framework only apply to `ID3v2.3` and later; in the upcoming demo we'll show through code how to remain forward-compatible with `ID3v2.2`.
 
-
 ### __Using Metadata__
-
 
 `AVAsset` and `AVAssetTrack` can query metadata.
 
@@ -360,9 +344,7 @@ To access metadata for a specific format, call the `metadataForFormat:` method o
         //Process the metadata (AVMetadataItems)
     }];
 
-
 ```
-
 
 ### __Finding Metadata__
 
@@ -395,7 +377,6 @@ Here we use the following method to get the standard objects matching the key an
 ``` objc
 + (NSArray<AVMetadataItem *> *)metadataItemsFromArray:(NSArray<AVMetadataItem *> *)metadataItems withKey:(id)key keySpace:(AVMetadataKeySpace)keySpace;
 ```
-
 
 ### Using AVMetadataItem
 
@@ -456,6 +437,5 @@ To solve this problem, we need to create a category extension for `AVMetadataIte
 ```
 
 That's it for the basics. In the next post, I'll write a demo showing how the different metadata formats can be parsed in a unified way.
-
 
 End of article

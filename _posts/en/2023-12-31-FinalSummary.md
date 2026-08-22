@@ -11,7 +11,6 @@ typora-root-url: ..
 ![banner](/assets/images/20231231FinalSummary/banner.avif)  
 <button type="button" class="btn btn-info" data-toggle="popover" title="Magotan1990" data-content="on the way to play billiards">Night view of the bustling Dongsi Shitiao overpass on Beijing's Second Ring Road</button>
 
-
 # Preface
 
 This post carries strong personal sentiment; if you feel uncomfortable reading it, please close it as soon as possible. This post is only a personal learning record. Reposting or sharing within the license terms is welcome; please respect copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
@@ -156,7 +155,6 @@ So I still need to improve my knowledge and awareness through learning, to work 
 
 In 2023, I shallowly believe that the basic content of work is exchanging my cheap technical skills for basic life security. There's nothing much to say — it's all kinds of dazed bewilderment. No career planning, no grand ideals, only the tenacity of burying my head in hard work.
 
-
 ### Not being good at learning
 
 Courses I studied in 2023:
@@ -186,7 +184,7 @@ There's also HarmonyOS development:
 For HarmonyOS, I only covered the basics.
 
 Official materials:
-ArkUI practice documentation: [https://www.arkui.club/](https://www.arkui.club/)
+ArkUI practice documentation: 
 Developer guide: [https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/start-overview-0000001478061421-V3?catalogVersion=V3](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/start-overview-0000001478061421-V3?catalogVersion=V3)
 
 The unreleased [SDK, IDE, and simulator](https://developer.harmonyos.com/deveco-developer-suite/enabling/kit?currentPage=1&pageSize=100) provided internally by the official side.
@@ -251,7 +249,6 @@ This year I bought fewer frivolous things. With consumption downgrading, I rarel
 * Monitor retrofit controller board
 * Vegetable grater
 
-
 #### QNAP NAS 464C-8G
 
 ![nas](/assets/images/20231231FinalSummary/nas1.avif)  
@@ -263,7 +260,6 @@ This gear is enough to store a lifetime of materials, right? It was on JD.com's 
 ![cue](/assets/images/20231231FinalSummary/cue.avif) 
 
 This cue can be said to give double the joy at half the price. I chose a handmade cue costing a few hundred yuan — not a famous brand, but from a very old handmade cue brand in Taishan, Guangdong: Baisha. The feel and playing experience are excellent. I really love this cue. It has accompanied me through many games with plenty of luck on its side.
-
 
 #### HomePod
 

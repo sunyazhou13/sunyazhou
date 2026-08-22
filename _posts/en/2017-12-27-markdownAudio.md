@@ -60,7 +60,7 @@ Find `Copy Link`, then open it in a browser.
 The `id=34341360` at the end is the `id` we need, and then you just replace it in the API.
 
 For more tips, refer to an article I wrote before:
-[markdown folding](https://www.sunyazhou.com/2017/10/25/20171025markdownSkill/)    
-[markdown table](https://www.sunyazhou.com/2017/09/29/20170929MarkdownTable/)
+[markdown folding](https://www.sunyazhou.com/2017/10/MarkdownSkill/)    
+[markdown table](https://www.sunyazhou.com/2017/09/MarkdownTable/)
 
 End of article.

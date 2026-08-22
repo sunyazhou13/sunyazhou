@@ -8,16 +8,13 @@ typora-root-url: ..
 
 ---
 
-
 # Preface
 
 This article carries strong personal sentiment. If it makes you uncomfortable, please close it as soon as possible. This article is only for personal study records. Reprinting or sharing within the scope of the license is also welcome. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
 
-
 ## The SwiftUI Course
 
 I've been persisting in learning SwiftUI recently. Over the weekend, when I had free time, I finished Chapter 4. What I mean by "watching" is hands-on practice plus tutorial study. Let me record some content that's easy to forget.
-
 
 ### Main Contents
 
@@ -76,8 +73,6 @@ Here I recommend checking out the official WWDC20 video [Formatters: Make data h
 
 The video introduces tools that can format data such as dates, units, numbers, and text according to the user's Locale.
 
-
-
 # Summary
 
 Actually, Chapter 5 talks a lot about the high-level wrapping of property wrappers. I think the content is too long; rather than me writing it all out here, you're better off watching the [tutorial video](https://www.bilibili.com/video/BV1bA411y71h/?spm_id_from=333.788&vd_source=9309f71afe97e633abeadc8407870e76) yourself — the explanations are quite thorough.
@@ -87,7 +82,7 @@ Secondly, a large portion covers unit testing. Since I'm not too keen on writing
 I've been following this course and hope to gain something from it. Below are the course materials I've organized. Please take a look.
 
 # SwiftUI Introductory Course
-Place the related files of [SwiftUI 入門課程](https://www.youtube.com/playlist?list=PLXM8k1EWy5khONZ9M9ytK8mMrcEOXvGsE) here, along with related links and further reading for each chapter.
+Place the related files of SwiftUI 入門課程 here, along with related links and further reading for each chapter.
 
 ### Chapter 1: Basic Introduction
 Introduces the Xcode interface and the basic architecture of SwiftUI.
@@ -129,7 +124,7 @@ Introduces iOS's native data persistence methods and the concept of encoding, an
 * [Modifiers that add Presentation](https://developer.apple.com/documentation/swiftui/view-presentation)
 * The video mentions you can try to **build your own AppStorage property wrapper**. If interested, refer to [this article by SwiftLee](https://www.avanderlee.com/swift/appstorage-explained/
 ), but this is relatively advanced content — you'll need basic Combine concepts and an understanding of ObservableObject and DynamicProperty.
-* When using FileManager, you might need to know [how to get file URLs](https://chaocode.co/blog/getting-url).
+* When using FileManager, you might need to know how to get file URLs.
 
 ---
 
@@ -140,7 +135,7 @@ Introduces basic testing concepts, Xcode's testing interface, implements a test,
 * [WWDC20: Localized formatting tools](https://developer.apple.com/videos/play/wwdc2020/10160/), the video introduces tools that can format data such as dates, units, numbers, and text according to the user's Locale.
 * [WWDC19: Introduction to Testing, Test Plans, and CI/CD](https://developer.apple.com/wwdc19/403)
 * Understanding [Locale](https://developer.apple.com/documentation/foundation/locale) — Locale doesn't refer only to language, but combines language and region to provide more precise conventions. For example, even in the same English language, the order of writing dates still differs between countries.
-    - If your app doesn't support other languages yet, **Locale will be set to your project's base language**. For a detailed introduction, see [this article](https://medium.com/swlh/know-your-language-locale-in-swift-beae4fcc5174), which also provides `methods for getting the user's preferred / currently used language`. Before you do localization, you can try getting these values to force-modify the Locale.
+    - If your app doesn't support other languages yet, **Locale will be set to your project's base language**. For a detailed introduction, see this article, which also provides `methods for getting the user's preferred / currently used language`. Before you do localization, you can try getting these values to force-modify the Locale.
   
 * [Adding a background color to the toolbar in iOS 16](https://sarunw.com/posts/swiftui-tabview-color/): the article focuses on the TabBar, but this `toolbarBackground` modifier can also modify the Navigation Bar.
 * You might notice that the TabBar looks different before iOS 14 🥲. If you want to unify it, you can refer to [the code in this article](https://blog.personal-factory.com/2021/12/29/ios15-transparent-navigationbar-and-tabbar-by-default/) to make the changes.
@@ -164,7 +159,7 @@ The implementation of the new project includes:
 * 6-5 [The website for quickly generating JSON parsing code](https://app.quicktype.io/) used in the video. Remember, when using auto-generated code, always double-check it yourself, no matter how simple the data is.
 * 6-8 [StateObject documentation](https://developer.apple.com/documentation/swiftui/stateobject): this document briefly introduces the three property wrappers used with `ObservableObject` and their update timing. I suggest reading the init and update parts; come back to it when you encounter StateObject being initialized repeatedly or not updating as expected.
 * 6-8 If you have doubts about the difference between **StateObject and ObservedObject**, refer to onevcat's [this article](https://onevcat.com/2020/06/stateobject/).
-* 6-11 [The difference between onAppear and the task modifier](https://byby.dev/swiftui-task-vs-onappear). I think the differences mentioned in this article are all quite important; besides what's mentioned in the video, it also covers using task with an id.
+* 6-11 The difference between onAppear and the task modifier. I think the differences mentioned in this article are all quite important; besides what's mentioned in the video, it also covers using task with an id.
 * 6-11 If you're unsure about when to use `Task` and `Task.detached`, refer to the **When to use unstructured tasks** and **When to use detached tasks** sections of [this article](https://www.donnywals.com/understanding-unstructured-and-detached-tasks-in-swift/).
   ###### Additionally, the mainstream approach nowadays is to avoid using detached — not because it's bad, but because there's no strong reason to use it (i.e., no need to make your code more complex). However, I personally feel that detached's explicitness is very helpful for initially understanding what your code does, and the errors and warnings arising from its lack of inheritance are also helpful for early learning.
 * 6-11 If you want to learn more about when `onAppear` fires, check out this article on [View lifecycle](https://www.vadimbulavin.com/swiftui-view-lifecycle/).

@@ -8,25 +8,19 @@ typora-root-url: ..
 
 ---
 
-
 ![album](/assets/images/20170429CmputerScienceAndTechnologyClassic/album.avif)
 
 # Preface
 > No matter when you graduate or when you start working, this article of mine will be the chapter I recommend to you before you step onto campus or while you're in college. __If you study well, you must keep it up; studying poorly doesn't mean there's no chance in the future__, and if you plan to major in something computer-related, I can tell you everything I've learned and the essential study gear I used, holding nothing back, and it can save you most of your study budget.
 
-
 # Computer Science Study Path
-
 
 [Computer Science Study Path](https://hackway.org/docs/cs/intro)  
 ![learn CS Line](/assets/images/20170429CmputerScienceAndTechnologyClassic/learnCSLine.avif)
 
-
 It is said the site owner is a Peking University student who compiled a computer science study path based on prestigious American universities' CS curricula.
 
 The link above is the most recently updated source for learning CS courses, last updated on 2023/06/30 ↑↑↑.
-
-
 
 ## Three Main Aspects
 
@@ -34,11 +28,10 @@ The link above is the most recently updated source for learning CS courses, last
 * Skills
 * Gear
 
-
 ### Books
 Let's start with books — the classic must-haves for computer science in college.
 
-* [C Programming Language (Tan Haoqiang)](http://baike.baidu.com/link?url=rVNBy5FqKGq6YBb22T6Sj0IrRCeFj_SKf9QLjV7avP1cXIelBdhMza-y9Xu4fBHk0ynNI-RiFxbGySk68agqb1zrrQ2xPBZO9-WiqQe3AJy8IHEtHGBWGnxcwJlf77xiVaN3VdvdSn9_OaHodVRmuSl8MbPLBh5e0JzEhE0ikuNIGivWRklNzsL2WTD6WOJT) __Must-learn__  
+* C Programming Language (Tan Haoqiang) __Must-learn__  
 ![C Language](/assets/images/20170429CmputerScienceAndTechnologyClassic/CLanguage.avif)
 
 * [Tsinghua University Press Computer Science Series: Data Structures (C Language Edition)](https://item.jd.com/11076338.html) __Must-learn__  
@@ -66,10 +59,10 @@ The books above can be bought in print. As for Python, Java, JS, Node.js, machin
 
 * [Free Programming Books Index (Chinese)](https://github.com/sunyazhou13/free-programming-books-zh_CN) This is the reason you don't need to buy books — all the computer-related technical books, video tutorials, blogs, and other resources are all here. Yes, you read that right: one link does it all.
 * Learn how to set up your own blog, so you can record what you learn and boost your influence.
-  For details, refer to my article [How to Build a Hexo Blog](http://localhost:4000/2017/02/10/build-hexo-blog-Tutorial/)
+  For details, refer to my article [How to Build a Hexo Blog](https://www.sunyazhou.com/2017/02/BuildHexoBlogTutorial/)
 * Try to get up one hour earlier each day to read and preview what will be covered in class.
 * Read the blogs of masters in the field.
-* Subscribe to various blogs for new posts (I recommend an app called [Reeder](http://www.0daydown.com/12/436535.html))   
+* Subscribe to various blogs for new posts (I recommend an app called Reeder)   
 ![Reeder](/assets/images/20170429CmputerScienceAndTechnologyClassic/Reeder.avif)
 
 (Beginners probably don't yet know who the masters in each field are; you can figure that out gradually.)
@@ -80,7 +73,6 @@ I'm studying the iOS direction, so here's a GitHub link to learning resources an
 
 Below is my Reeder  
 ![Reeder Detail](/assets/images/20170429CmputerScienceAndTechnologyClassic/ReederDetail.avif)
-
 
 ### Gear
 
@@ -146,7 +138,6 @@ When I grow old, I'll definitely put this in my museum.
   
   
 
-
 ### Summary
 
 It's fair to say that after reading this article, at least you'll know how to study and how to find study materials easily.
@@ -173,7 +164,6 @@ In the end it's still over 8K. But this is already relatively frugal. If you get
 `￥3300` + `￥275` + `￥699` +  `￥558` + `￥1000` = `￥4832`
 
 Yes, 5K is enough — this is actually the most economical option. If you don't buy a phone and don't buy a mouse and keyboard either, it's just over 4K. Whether you're a fresh graduate or a college student, remember to spend money where it counts, and make the most of your gear. Especially during college, you simply don't need anything that fancy — as long as it works. Once you graduate and become self-sufficient, buying whatever you want won't be a problem.
-
 
 **Make your college life a bit more organized.**
 

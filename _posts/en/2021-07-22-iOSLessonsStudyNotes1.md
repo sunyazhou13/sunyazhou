@@ -14,8 +14,7 @@ typora-root-url: ..
 
 This article carries strong personal sentiment. If it makes you uncomfortable, please close it as soon as possible. This article is only for personal study records. Reprinting or sharing within the scope of the license is also welcome. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
 
-First, I'd like to pay tribute to Dai Ming, a developer in the iOS field. I also highly recommend you buy his [course](https://time.geekbang.org/column/intro/161). This article is mainly the notes I took while studying, recording what the master talked about.
-
+First, I'd like to pay tribute to Dai Ming, a developer in the iOS field. I also highly recommend you buy his course. This article is mainly the notes I took while studying, recording what the master talked about.
 
 ## Study Materials
 
@@ -45,7 +44,6 @@ The entire body of basic knowledge that iOS developers need to master is divided
 ### Native and Frontend
 
 ![nativeandfemudule](/assets/images/20210722iOSLessonsStudyNotes1/nativeandfemudule.avif)
-
 
 ### Summary
 

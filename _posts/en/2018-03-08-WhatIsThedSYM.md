@@ -26,7 +26,6 @@ A symbol table is a mapping table between memory addresses and function names, f
 
 `<start address>` `<end address>` `<function>` [`<file name>`:`<line number>`]  
 
-
 ### Why Configure a Symbol Table?
 
 To quickly and accurately locate the code `position` where a user's app `Crashes`, we can use a symbol table to `parse` and `restore` the program's `stack` at the point where the app `Crash` occurred.
@@ -34,7 +33,6 @@ To quickly and accurately locate the code `position` where a user's app `Crashes
 Here's an example:
 
 ![stack Symbol](/assets/images/20180308WhatIsThedSYM/stackSymbol.avif)
-
 
 The image above shows the crash stack calls we resolved using the symbol table.
 
@@ -55,7 +53,6 @@ In general, after the project is compiled, the `dSYM` file is in the same direct
 ![d SYM](/assets/images/20180308WhatIsThedSYM/dSYM1.avif)
 
 ![d SYM](/assets/images/20180308WhatIsThedSYM/dSYM2.avif)
-
 
 > The test here was done in Release mode.
 
@@ -168,8 +165,7 @@ Heaviest stack for the target process:
 References:
 
 [Bugly iOS Symbol Table Configuration](https://bugly.qq.com/docs/user-guide/symbol-configuration-ios/?v=1520478187041#dsym_1)  
-[App Launch Time: Past, Present, and Future](https://techblog.toutiao.com/2017/07/05/session413/)
-
+App Launch Time: Past, Present, and Future
 
 End of article.
   

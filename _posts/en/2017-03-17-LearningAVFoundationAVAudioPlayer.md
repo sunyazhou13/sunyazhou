@@ -15,7 +15,6 @@ Introduction
 Recently I've been learning `AV Foundation`. I want to record what I've learned and also refer to some blog posts.
 The topic of this issue is `AVAudioPlayer`.
 
-
 Audio Basics
 --
 
@@ -35,7 +34,7 @@ He laid out a classic audio playback flow (using MP3 as an example)
 7. Repeat steps 1-6 until playback completes
 
 In the iOS system, Apple encapsulated the above process and provided interfaces at different levels
-![core audio layers](https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/Art/core_audio_layers_2x.avif)  
+![core audio layers](https://developer.apple.com/library/content/documentation/MusicAudio/Conceptual/CoreAudioOverview/Art/core_audio_layers_2x.png)  
 > This is the interface hierarchy of CoreAudio  
 
 Below is a functional description of the mid- and high-level interfaces:
@@ -58,10 +57,7 @@ As you can see, Apple provides a very rich set of interfaces that can satisfy al
 * If your app needs to stream audio and store it at the same time, then AudioFileStreamer plus AudioQueue can help you. You can first download the audio data to the local disk, then while downloading, read the local audio file using interfaces like NSFileHandler and hand it to AudioFileStreamer or AudioFile to parse and separate the audio frames. The separated audio frames can then be sent to AudioQueue for decoding and playback. If it's a local file, you can simply read and parse the file directly. (Both of these are fairly straightforward approaches. This kind of requirement can also be implemented using AVFoundation plus a local server. AVAudioPlayer sends the request to the local server, the local server forwards it, obtains the data, stores it, and passes it on to AVAudioPlayer. Another trickier approach is to first download the audio into a file, and once a certain amount of data has been downloaded, give the file path to AVAudioPlayer for playback. Of course, this approach will have problems after seeking in the audio.)
 * If you are developing a professional music player and need to apply audio effects (equalizer, reverb) to the audio, then in addition to reading and parsing data, you also need to use AudioConverter to convert the audio data into PCM data, and then use AudioUnit + AUGraph for audio effects processing and playback (but currently most apps with audio effects develop their own effects modules to process PCM data, because developing this part yourself gives stronger customization and extensibility. After PCM data is processed by the effects processor, it can be played using AudioUnit. Of course, AudioQueue also supports playing PCM data directly.). The diagram below describes the flow of audio playback using AudioFile + AudioConverter + AudioUnit
 
-![audio Unit Play](http://msching.github.io/images/iOS-audio/audioUnitPlay.avif)
-
 All of the above content is reproduced from [码农人生](http://msching.github.io/blog/2014/07/07/audio-in-ios/). I hope he doesn't mind. If there are any problems, I'll remove it immediately.
-
 
    
 
@@ -75,7 +71,7 @@ The main functions of `AVAudioSession` include the following:
 * Controls and coordinates the app's input/output devices (for example, microphone, headphones, phone speaker, Bluetooth connected external speakers, or AirPlay)
 * Coordinates your app's audio playback with the system and the behavior of other apps (for example, it needs to be interrupted when there's a phone call, resumed when the call ends, and whether the song should also be muted when the mute button is pressed, etc.)
 
-![aspg intro](https://developer.apple.com/library/content/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Art/aspg_intro_2x.avif)
+![aspg intro](https://developer.apple.com/library/content/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Art/aspg_intro_2x.png)
 
 *Note: AVAudioSession has been used since iOS 6. Before that it was called AudioSession.*
 
@@ -85,7 +81,6 @@ How to use `AVAudioPlayer`
 In my blog I try to use code rather than a thousand words
 Before using `AVAudioPlayer`, you need to import `#import <AVFoundation/AVFoundation.h>` in the `AppDelegate`  
 and start the audio session
-
 
 ``` objc  
 
@@ -117,7 +112,6 @@ Remember to enable background playback
 ![Backgounrd Play](/assets/images/20170317LearningAVFoundationAVAudioPlayer/BackgounrdPlay.avif)  
 or modify it in the plist
 ![Plist Modify](/assets/images/20170317LearningAVFoundationAVAudioPlayer/PlistModify.avif)  
-
 
 The code below creates the audio player
 
@@ -197,7 +191,6 @@ Creating it requires an `NSURL` representing the path of the file to be played. 
 Here let me talk about `[audioPlayer prepareToPlay]`
 __Calling this function is to obtain the required audio hardware and preload the buffer of the `Audio Queue`.__ Of course, you can skip this method and call `[audioPlayer play]` directly, but __calling the `play` method also implicitly activates it__. Calling `prepareToPlay` is to reduce the latency between the preset loading when creating the player and hearing the sound output.
 
-
 ``` objc
 
 @implementation ViewController
@@ -222,12 +215,10 @@ __Calling this function is to obtain the required audio hardware and preload the
     
 }
 
-
 ```
 
 > Call the code that creates the player in `initWithNibName` or `awakeFromNib`  
 I'll explain `[self setupNotifications];` later  
-
 
 First, let me add some common method wrappers, such as __play, pause, stop__
 ``` objc 
@@ -314,7 +305,7 @@ If you need to continuously refresh the playback progress bar on the lock screen
 }
 ```
 
-> Reference [iOS background running - background music playback](http://www.iliunian.com/2831.html) 
+> Reference iOS background running - background music playback 
 
 Below we'll introduce  
 `[self setupNotifications];` which registers observers to pause music playback when the audio is unexpectedly interrupted or the headphones are unplugged
@@ -340,11 +331,9 @@ Here's the implementation code:
                object:[AVAudioSession sharedInstance]];
 }
 
-
 ```
 
 *Note: remember to add `[[NSNotificationCenter defaultCenter] removeObserver:self]` in dealloc*
-
 
 Scenarios where the audio is unexpectedly interrupted include receiving a phone call while listening to music, or holding down the Home button to use Siri
 
@@ -384,8 +373,6 @@ Below is the specific method implementation
         }
     }
 }
-
-
 
 ```
 
@@ -458,7 +445,6 @@ Get `NSString *portType = previousOutput.portType`
 If `[portType isEqualToString:AVAudioSessionPortHeadphones]`
 
 If it's headphones `AVAudioSessionPortHeadphones`, then pause playback
-
 
 That's all the code logic for interruption and route changes
 

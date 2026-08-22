@@ -26,7 +26,7 @@ First, let's look at several different implementations of the logic to check whe
 * 1. System NSCalendar
 
 ``` objc
-NSDate *date = [NSDate date]; //这里取当前日期,正常应该做为参数传入NSDate
+NSDate *date = [NSDate date]; //这里取当前日期,正常应该作为参数传入NSDate
 BOOL inToday = [[NSCalendar currentCalendar] isDateInToday:date]
 ```
 

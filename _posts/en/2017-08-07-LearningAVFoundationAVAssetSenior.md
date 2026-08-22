@@ -59,7 +59,6 @@ MediaItem *item = [[MediaItem alloc] initWithURL:self.url];
     NSLog(@"%@",[item modelDescription]);
 }];
 
-
 ```
 
 The implementation part
@@ -126,7 +125,6 @@ I tried the demo on macOS and editing files works fine, but on iOS I couldn't sa
 - (NSArray *)metadataItems;
 @end
 
-
 ```
 Looking at the code above, you've probably guessed it — this is exactly the real model we need, e.g. the model parsed out of an mp3 file.
 
@@ -156,8 +154,6 @@ This protocol exists to support unified parsing of all multimedia files. For exa
                                 withMetadataItem:(AVMetadataItem *)item;
 @end
 ```
-
-
 
 ### MetadataConverterFactory
 
@@ -189,7 +185,6 @@ This class is used to uniformly output models that conform to the `MetadataConve
 @end
 ```
 
-
 ### DefaultMetadataConverter
 
 A simple implementation of the `MetadataConverter` protocol.
@@ -212,9 +207,7 @@ A simple implementation of the `MetadataConverter` protocol.
     return metadataItem;
 }
 
-
 ```
-
 
 ### ArtworkMetadataConverter
 Implements the `MetadataConverter` protocol to extract the album artwork.
@@ -379,8 +372,7 @@ The standard genres used by digital audio originally came from MP3. The ID3 spec
 
 ![gener](/assets/images/20170807LearningAVFoundationAVAssetSenior/gener.avif)
 
-
-Although iTunes uses the predefined genres from the ID3 set, it defines its own genre sets for TV, movies, and audiobooks. [Apple's Genre IDs Appendix](https://affiliate.itunes.apple.com/resources/documentation/genre-mapping/)
+Although iTunes uses the predefined genres from the ID3 set, it defines its own genre sets for TV, movies, and audiobooks. Apple's Genre IDs Appendix
 
 The example code already includes these genres, so I won't elaborate further — please refer to the demo.
 
@@ -422,7 +414,6 @@ The example code already includes these genres, so I won't elaborate further —
         NSLog(@"sessionError:%@",session.error);
     }];
 }
-
 
 - (NSURL *)tempURL {
     // Get the Caches directory path

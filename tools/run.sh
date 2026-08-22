@@ -67,6 +67,11 @@ _init() {
   cp -r ./* "$CONTAINER"
   cp -r ./.git "$CONTAINER"
 
+  # dot directories are not covered by the './*' glob
+  if [[ -d ./.well-known ]]; then
+    cp -r ./.well-known "$CONTAINER"
+  fi
+
   if $docker; then
     local _image_user=$(stat -c "%U" "$JEKYLL_DOCKER_HOME"/.)
 

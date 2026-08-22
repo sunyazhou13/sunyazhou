@@ -20,14 +20,11 @@ Shortly after my previous article was published, WWDC2018 kicked off. What I fou
 * Swift 4.2
 * Use Playground in Xcode
 
-
 ## Generating Random Numbers
 
 In the previous article, we spent most of the time discussing random numbers around the [arc4random()](https://man.openbsd.org/arc4random.3) function. Of course, there are also some variants, e.g., arc4random_uniform(), rand(), random(). But regardless, these are mostly system-level functions.
 
-
 In Swift 4.2, all numeric types (i.e., the numeric types among the basic data types) have a static method `random(in:)`. This method accepts a range (Range) or a closed/open range and returns a uniformly distributed random number. These random functions are included in Swift's standard library, so they're consistent across platforms, unlike the system random functions introduced above.
-
 
 ``` swift
 
@@ -46,7 +43,7 @@ let between0And5 = UInt8.random() % 6
 
 ```
 
-This kind of random number may not be uniformly distributed. This non-uniform distribution is called [`modulo bias`](https://www.quora.com/What-is-modulo-bias).
+This kind of random number may not be uniformly distributed. This non-uniform distribution is called `modulo bias`.
 
 So how do we solve this modulo bias problem?
 
@@ -62,7 +59,6 @@ If we need a random number across the full range of a `numeric data type`, we ca
 ``` swift 
 let between0And255 = UInt8.random(in: .min ... .max) // → 190
 ```
-
 
 ### Random Bool Values
 
@@ -174,14 +170,12 @@ extension Int {
 
 The `generator` parameter always needs to be passed as [`inout`](https://docs.swift.org/swift-book/ReferenceManual/Declarations.html#ID545), because RNGs typically change their state when generating new randomness.
 
-
 Let's see how to call a custom RNG. We need to create a mutable method that satisfies the inout requirement:
 
 ``` swift
 var mersenneTwister = MersenneTwisterRNG(...) // assume this exists
 Int.random(in: 10..<20, using: &mersenneTwister)
 ```
-
 
 ### Generating Random Values in Your Own Types
 
@@ -191,7 +185,6 @@ A custom random protocol needs to satisfy two standard library pattern steps:
 
 * Provide a static random method `random() -> Self` that uses the default RNG. When we need to constrain the random range, this function can take additional parameters to specify the range.
 * Provide a second method `random<T: RandomNumberGenerator>(using generator: inout T) -> Self` — this is the core method for generating random numbers.
-
 
 Here's an example using an enum for a card game, where we can fully utilize the [`Swift 4.2`](https://github.com/apple/swift-evolution/blob/master/proposals/0194-derived-collection-of-enum-cases.md) [allCases](https://developer.apple.com/documentation/swift/caseiterable) property.
 
@@ -219,13 +212,11 @@ let randomSuit = Suit.random() // → clubs
 randomSuit.rawValue // → "♠"
 ```
 
-
 ## Summary
 
 This article supplemented the standard library's random function support in the new Swift 4.2, and also introduced the shuffle function's default uniform random permutation. I hope you found this helpful. Please feel free to point out any issues.
 
 End of article
-
 
 [Reference](https://oleb.net/blog/2018/06/random-numbers-in-swift/)
 

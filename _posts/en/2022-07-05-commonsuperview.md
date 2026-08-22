@@ -6,7 +6,6 @@ categories: [系统理论实践]
 tags: [Algorithm, C++]
 typora-root-url: ..
 
-
 ---
 
 ![algorithm](/assets/images/20220701ReverseList/algorithm.avif)
@@ -16,7 +15,6 @@ typora-root-url: ..
 This post carries strong personal opinions. If reading it makes you uncomfortable, please close it as soon as possible. This article is only for my personal study records; you are also welcome to repost or share it within the scope of the license. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
 
 # Implementation Code
-
 
 ``` objc
 
@@ -55,9 +53,8 @@ This post carries strong personal opinions. If reading it makes you uncomfortabl
 }
 ```
 
-
 # Summary
 
 This problem is similar to finding the nearest common ancestor in a binary tree. For reference, see Masonry's implementation:
 
-[Masonry's Algorithm: The Nearest Common Superview](https://www.todayios.com/ios-masonry-lca-closest-common-superview/)
+Masonry's Algorithm: The Nearest Common Superview

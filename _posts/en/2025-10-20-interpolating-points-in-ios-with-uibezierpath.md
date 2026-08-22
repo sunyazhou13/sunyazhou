@@ -22,7 +22,7 @@ In this article, I will describe two simple and commonly used methods for interp
 
 ## UIBezierPath and Bezier Curves
 
-In iOS, we use <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIBezierPath_class/Reference/Reference.html" title="UIBezierPath">UIBezierPath</a> to draw line segments and curve segments. Adding linear segments via <code>addLineToPoint:</code> is very simple, but how do we draw curved shapes?
+In iOS, we use <a href="" title="UIBezierPath">UIBezierPath</a> to draw line segments and curve segments. Adding linear segments via <code>addLineToPoint:</code> is very simple, but how do we draw curved shapes?
 
 Curved segments can be drawn by adding <i>cubic Bezier curves</i> to the path. A cubic Bezier curve is defined by four control points — the positions of these four points define the shape of the curve. In the image below, each point is a 2D (x,y) point in Euclidean space.
 
@@ -54,7 +54,7 @@ Perhaps the simplest method of interpolation is to use a <a href="https://en.wik
 
 Curves <b>A</b> and <b>B</b> are both created via Hermite interpolation. Curve <b>A</b> looks good — the points are roughly evenly distributed. However, curve <b>B</b> exhibits kinks and self-intersections due to the irregular distribution of its points.
 
-Another option for fitting a curve through points is to use a <a href="https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline">Catmull-Rom spline</a>. Like Hermite curves, Catmull-Rom curves pass through the interpolation points and produce smooth results, but they also provide additional control — a scalar alpha value (between 0.0 and 1.0) that controls the magnitude of the tangents. For details, see this excellent paper titled <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0CCsQFjAA&amp;url=http%3A%2F%2Fwww.cemyuksel.com%2Fresearch%2Fcatmullrom_param%2Fcatmullrom.pdf&amp;ei=FSdcU47DE-mfyQGgzYDYDQ&amp;usg=AFQjCNHa0SzJ9H6nSDAdCt9GD9jAkFnvMg&amp;sig2=hbl_LJtItSnusxWD-nhzKQ&amp;bvm=bv.65397613,d.aWc">On the Parameterization of Catmull-Rom Curves</a>, which discusses the effect of alpha.
+Another option for fitting a curve through points is to use a <a href="https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline">Catmull-Rom spline</a>. Like Hermite curves, Catmull-Rom curves pass through the interpolation points and produce smooth results, but they also provide additional control — a scalar alpha value (between 0.0 and 1.0) that controls the magnitude of the tangents. For details, see this excellent paper titled <a href="">On the Parameterization of Catmull-Rom Curves</a>, which discusses the effect of alpha.
 
 Common alpha values are 0.0, 0.5 and 1.0, corresponding to the <i>uniform</i>, <i>centripetal</i> and <i>chordal</i> parameterizations of the curve respectively.
 ![Uniform, chordal, and centripetal parameterizations](/assets/images/20251020InterpolatingPointsIniOSwithUIBezierPath/UniformChordalCentripetal.avif)

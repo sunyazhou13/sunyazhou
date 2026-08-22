@@ -14,7 +14,6 @@ typora-root-url: ..
 
 Having seen countless times how people always create files using a `timestamp + arc4random()`, I felt deeply frustrated. Doesn't the operating system provide a relevant function? So I found the following code to deal with filename conflicts when creating files.
 
-
 ``` objc
 /* Create a recording file */
     NSString *filePath = [@"~/Movies/AVScreenShackRecording_XXXXXX" stringByStandardizingPath];
@@ -43,8 +42,6 @@ During the process
 After completion
 ![done](/assets/images/20170420UniqueFilenameInSystem/done.avif)
 
-
-
 *__Remember that the file suffix needs to include `XXXXXX`__* — each `X` represents one character of `digits + letters`
 *Note*: It's best to use 6 X's or more. [See Linux reference](http://man7.org/linux/man-pages/man3/mkstemp.3.html)
 
@@ -52,8 +49,7 @@ The key is to understand the following two functions:
 
 [strdup() is a commonly used string copy function in C](http://baike.baidu.com/item/strdup/5522525)
 
-[mkstemp() creates and opens a file with a unique filename in the system](http://baike.baidu.com/link?url=wFhfkOVXafm15-4vGfxEQiQynIG7BG2yYAurwzS4uHKmby2C2lfhiO2T6WAqbdc3nOP9mEOVTMaBqxOc2eZps7_JIAsIWI0p11pEIl7Vku_)
-
+mkstemp() creates and opens a file with a unique filename in the system
 
 OK, hope this helps
 

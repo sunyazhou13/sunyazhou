@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博客外部资源链接检查报告</title>
+<style>
+:root {
+  --bg: #ffffff; --card-bg: #f8f9fa; --text: #1a1a1a; --text-sec: #555;
+  --border: #e0e0e0; --accent: #0066cc; --table-header: #f0f4f8;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  max-width: 1100px; margin: 0 auto; padding: 24px 20px; background: var(--bg); color: var(--text); line-height: 1.7; }
+h1 { font-size: 1.6em; border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
+h2 { font-size: 1.25em; margin-top: 32px; color: var(--accent); }
+h3 { font-size: 1.05em; margin-top: 20px; border-left: 3px solid; padding-left: 8px; }
+.stats { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+.stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px 20px; text-align: center; flex: 1; min-width: 110px; }
+.stat-card .num { font-size: 1.8em; font-weight: 700; color: var(--accent); }
+.stat-card .label { font-size: 0.85em; color: var(--text-sec); }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.85em; }
+th { background: var(--table-header); padding: 8px 10px; text-align: left; border: 1px solid var(--border); }
+td { padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; word-break: break-all; }
+td.url { font-family: ui-monospace, Menlo, monospace; font-size: 0.92em; }
+.note { color: var(--text-sec); font-size: 0.9em; }
+.badge { font-size: 0.7em; font-weight: normal; background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 2px 10px; margin-left: 8px; color: var(--text-sec); }
+.summary-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+.footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.85em; color: var(--text-sec); }
+</style>
+</head>
+<body>
+<h1>博客外部资源链接检查报告</h1>
+<p>检查日期：2026年8月22日 | 扫描 216 篇文章（含英文版） | 提取 853 个唯一 URL / 1921 处引用</p>
+
+<div class="stats">
+  <div class="stat-card"><div class="num">853</div><div class="label">唯一URL</div></div>
+  <div class="stat-card"><div class="num">678</div><div class="label">存活/拦截</div></div>
+  <div class="stat-card"><div class="num">11</div><div class="label">本次已修复</div></div>
+  <div class="stat-card"><div class="num">149</div><div class="label">死链/不可达</div></div>
+</div>
+
+<div class="summary-box">
+<h2 style="margin-top:0">检查方法</h2>
+<ol>
+<li><b>提取</b>：正则扫描全部 .md 文章中的 http/https 链接（Markdown链接、图片、裸URL）</li>
+<li><b>三轮检测</b>：64并发HEAD初检 → 8并发GET复检 → 2并发+0.3s间隔慢速终检（本机代理无法承受高并发，初轮误报已全部排除）</li>
+<li><b>人工复核</b>：GitHub深链、Wikipedia、Apple文档、自域名链接逐个单测验证</li>
+<li><b>误报处理</b>：知乎/简书/LeetCode等反爬站点403视为存活；Wikipedia为大陆网络不可达非死链</li>
+</ol>
+</div>
+
+<h2>附加发现：inspector.js 控制台报错</h2>
+<div class="summary-box">
+<p><b>结论：与博客无关，是浏览器插件注入的脚本。</b></p>
+<ul>
+<li><code>inspector.js</code> 在博客源码与构建产物（_site）中均不存在</li>
+<li>博客全部 JS 资源（jQuery、MathJax、simple-jekyll-search、Chirpy主题脚本）grep 检查 0 处 <code>responseType='arraybuffer'</code> 使用</li>
+<li>该报错是插件A用 arraybuffer 发请求、插件B（inspector.js）钩住 XHR 后错误读 responseText 所致</li>
+<li><b>验证方法</b>：无痕模式（禁用插件）打开 localhost:4000，报错消失即可确认</li>
+</ul>
+</div>
+
+<h2>分类明细</h2>
+<div class="file-group"><h3 style="color:#2e7d32;border-color:#2e7d32">本次已修复（自域名旧链接） <span class="badge">11 个URL / 28 处引用</span></h3>
+<p class="note">Hexo时代旧格式URL，已替换为线上验证200的新地址</p>
+<table>
+<tr><th>URL</th><th>状态</th><th>引用位置</th></tr>
+<tr><td class="url">http://localhost:4000/2017/02/10/build-hexo-blog-Tutorial/</td><td>502</td><td class="note">2017-04-29-CmputerScienceAndTechnologyClassic.md:69, en/2017-04-29-CmputerScienceAndTechnologyClassic.md:69</td></tr>
+<tr><td class="url">http://localhost:4000/2017/03/20/Access-privacy-sensitive-data-private-access-permission/</td><td>502</td><td class="note">2017-03-28-LearningAVFoundationAVAudioRecorder.md:255, en/2017-03-28-LearningAVFoundationAVAudioRecorder.md:246</td></tr>
+<tr><td class="url">http://sunyazhou.com/2017/03/17/Learning-AV-Foundation-AVAudioPlayer/</td><td>404</td><td class="note">2017-03-28-LearningAVFoundationAVAudioRecorder.md:101, 2017-03-28-LearningAVFoundationAVAudioRecorder.md:158, 2017-03-28-LearningAVFoundationAVAudioRecorder.md:253, en/2017-03-28-LearningAVFoundationAVAudioRecorder.md:99 <em>+2处</em></td></tr>
+<tr><td class="url">http://www.sunyazhou.com/2017/06/20/enable-static-analyer/</td><td>404</td><td class="note">2017-07-13-ios11NewSkills.md:88, en/2017-07-13-ios11NewSkills.md:88</td></tr>
+<tr><td class="url">https://www.sunyazhou.com/2017/03/17/Learning-AV-Foundation-AVAudioPlayer/</td><td>404</td><td class="note">2017-12-19-AudioPan.md:33, en/2017-12-19-AudioPan.md:33</td></tr>
+<tr><td class="url">https://www.sunyazhou.com/2017/09/29/20170929MarkdownTable/</td><td>404</td><td class="note">2017-12-27-markdownAudio.md:66, en/2017-12-27-markdownAudio.md:64</td></tr>
+<tr><td class="url">https://www.sunyazhou.com/2017/10/16/20171016UIViewRendering/</td><td>404</td><td class="note">2020-09-20-UIViewGraphic.md:100, 2020-09-20-UIViewGraphic.md:112, en/2020-09-20-UIViewGraphic.md:100, en/2020-09-20-UIViewGraphic.md:112</td></tr>
+<tr><td class="url">https://www.sunyazhou.com/2017/10/25/20171025markdownSkill/</td><td>404</td><td class="note">2017-12-27-markdownAudio.md:65, en/2017-12-27-markdownAudio.md:63</td></tr>
+<tr><td class="url">https://www.sunyazhou.com/2020/08/08/20200808iOSinterviewAnswers/</td><td>404</td><td class="note">2020-08-31-iOSinterviewAnswers3.md:229, en/2020-08-31-iOSinterviewAnswers3.md:229</td></tr>
+<tr><td class="url">https://www.sunyazhou.com/images/logo2.jpg</td><td>404</td><td class="note">2018-11-08-AwemeAlbumAnimation.md:61, en/2018-11-08-AwemeAlbumAnimation.md:61</td></tr>
+<tr><td class="url">https://www.sunyazhou.com/tags/iOS%E9%9D%A2%E8%AF%95%E9%A2%98/</td><td>404</td><td class="note">2020-09-02-iOSinterviewAnswers5.md:17, en/2020-09-02-iOSinterviewAnswers5.md:17</td></tr>
+</table></div>
+<div class="file-group"><h3 style="color:#d32f2f;border-color:#d32f2f">确认死链 (404/410/DNS失败) <span class="badge">56 个URL / 113 处引用</span></h3>
+<p class="note">链接已失效，建议修复或移除</p>
+<table>
+<tr><th>URL</th><th>状态</th><th>引用位置</th></tr>
+<tr><td class="url">http://05aebac1.wiz03.com/share/s/05HHH13zK4EY2bE37Q00RO3H1CvO101754vQ2bNyFE2nhALV?tdso...</td><td>404</td><td class="note">2019-04-24-WindowsResources.md:176, en/2019-04-24-WindowsResources.md:173</td></tr>
+<tr><td class="url">http://adad184.com/atom.xml</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:211, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:213</td></tr>
+<tr><td class="url">http://awhisper.github.io/</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:103, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:103</td></tr>
+<tr><td class="url">http://awhisper.github.io/2016/05/04/AsyncDisplayKit%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A...</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:95, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:95</td></tr>
+<tr><td class="url">http://awhisper.github.io/2016/05/06/AsyncDisplayKit%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:96, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:96</td></tr>
+<tr><td class="url">http://awhisper.github.io/2016/12/16/AysncDisplayKit%E5%88%86%E6%9E%90-%E4%BA%8C/</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:97, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:97</td></tr>
+<tr><td class="url">http://baike.baidu.com/link?url=XKZL51jLByIFnqrj3vaZ-4cnL-AedjBKiVBcD7pEGQG26Jmb9RYl7QO...</td><td>404</td><td class="note">2017-05-30-OpenGLglslLanguage.md:63, en/2017-05-30-OpenGLglslLanguage.md:63</td></tr>
+<tr><td class="url">http://baike.baidu.com/link?url=rVNBy5FqKGq6YBb22T6Sj0IrRCeFj_SKf9QLjV7avP1cXIelBdhMza-...</td><td>404</td><td class="note">2017-04-29-CmputerScienceAndTechnologyClassic.md:41, en/2017-04-29-CmputerScienceAndTechnologyClassic.md:41</td></tr>
+<tr><td class="url">http://baike.baidu.com/link?url=wFhfkOVXafm15-4vGfxEQiQynIG7BG2yYAurwzS4uHKmby2C2lfhiO2...</td><td>404</td><td class="note">2017-04-20-UniqueFilenameInSystem.md:55, en/2017-04-20-UniqueFilenameInSystem.md:55</td></tr>
+<tr><td class="url">http://beyondvincent.com</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:167, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:169</td></tr>
+<tr><td class="url">http://beyondvincent.com/atom.xml</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:167, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:169</td></tr>
+<tr><td class="url">http://fxr.watson.org/fxr/source/osfmk/mach/exception_types.h?v=xnu-2050.18.24</td><td>404</td><td class="note">2022-07-11-ioscrashtype.md:75, en/2022-07-11-ioscrashtype.md:75</td></tr>
+<tr><td class="url">http://hawk0620.github.io/blog/2017/02/17/zpcamera-opensource-share/</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:51, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:51</td></tr>
+<tr><td class="url">http://hufeng825.github.io/atom.xml</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:188, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:190</td></tr>
+<tr><td class="url">http://kittenyang.com/curvelineanimation/</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:64, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:64</td></tr>
+<tr><td class="url">http://kittenyang.com/drawablebubble/</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:63, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:63</td></tr>
+<tr><td class="url">http://koofrank.com/</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:204, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:206</td></tr>
+<tr><td class="url">http://koofrank.com/rss</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:204, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:206</td></tr>
+<tr><td class="url">http://msching.github.io/images/iOS-audio/audioUnitPlay.avif</td><td>404</td><td class="note">2017-03-17-LearningAVFoundationAVAudioPlayer.md:61, en/2017-03-17-LearningAVFoundationAVAudioPlayer.md:61</td></tr>
+<tr><td class="url">http://nshipster.cn</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:168, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:170</td></tr>
+<tr><td class="url">http://nshipster.cn/feed.xml</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:168, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:170</td></tr>
+<tr><td class="url">http://opensource.apple.com/source/CF/CF-855.17/CFRunLoop.c</td><td>404</td><td class="note">2018-04-02-RunLoop.md:65, en/2018-04-02-RunLoop.md:65</td></tr>
+<tr><td class="url">http://reactnative.cn/docs/0.46/getting-started.html</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:92, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:92</td></tr>
+<tr><td class="url">http://vclwei.com/posts.rss</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:183, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:185</td></tr>
+<tr><td class="url">http://wangzz.github.io/atom.xml</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:195, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:197</td></tr>
+<tr><td class="url">http://www.0daydown.com/12/436535.html</td><td>404</td><td class="note">2017-04-29-CmputerScienceAndTechnologyClassic.md:72, en/2017-04-29-CmputerScienceAndTechnologyClassic.md:72</td></tr>
+<tr><td class="url">http://www.jsgho.net/win7/jsy/35178.html</td><td>404</td><td class="note">2019-04-24-WindowsResources.md:57, en/2019-04-24-WindowsResources.md:57</td></tr>
+<tr><td class="url">http://www.programmer.com.cn/8121/</td><td>404</td><td class="note">2018-04-02-RunLoop.md:412, en/2018-04-02-RunLoop.md:412</td></tr>
+<tr><td class="url">https://andelf.github.io/atom.xml</td><td>404</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:209, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:211</td></tr>
+<tr><td class="url">https://api.development.devicecheck.apple.com/v1/query_two_bits**</td><td>404</td><td class="note">2017-09-30-DeviceCheck.md:113, en/2017-09-30-DeviceCheck.md:113</td></tr>
+<tr><td class="url">https://api.development.devicecheck.apple.com/v1/update_two_bits**</td><td>404</td><td class="note">2017-09-30-DeviceCheck.md:144, en/2017-09-30-DeviceCheck.md:144</td></tr>
+<tr><td class="url">https://byby.dev/swiftui-task-vs-onappear</td><td>404</td><td class="note">2023-09-09-learnswiftuichapter5.md:167, en/2023-09-09-learnswiftuichapter5.md:167</td></tr>
+<tr><td class="url">https://chaocode.co/blog/getting-url</td><td>404</td><td class="note">2023-09-09-learnswiftuichapter5.md:132, en/2023-09-09-learnswiftuichapter5.md:132</td></tr>
+<tr><td class="url">https://developer.apple.com/documentation/swift/unsafemutablerawpointer/allocate(byteco...</td><td>404</td><td class="note">2025-02-23-the-basics-on-the-memory-layout-of-swift-struct-instances.md:267, en/2025-02-23-the-basics-on-the-memory-layout-of-swift-struct-instances.md:267</td></tr>
+<tr><td class="url">https://developers.weixin.qq.com/miniprogram/dev/</td><td>404</td><td class="note">2026-07-03-crossplatformdesktopframeworkcomparison.md:1147, en/2026-07-03-crossplatformdesktopframeworkcomparison.md:1147</td></tr>
+<tr><td class="url">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/ai.html</td><td>404</td><td class="note">2026-07-03-crossplatformdesktopframeworkcomparison.md:1148, en/2026-07-03-crossplatformdesktopframeworkcomparison.md:1148</td></tr>
+<tr><td class="url">https://example.com/JSONKit.podspec</td><td>404</td><td class="note">2023-04-26-cocoapodsuserguide.md:123, en/2023-04-26-cocoapodsuserguide.md:123</td></tr>
+<tr><td class="url">https://gavinkg.github.io/ILearnVulkanFromScratch-CN/</td><td>404</td><td class="note">2024-08-12-PickingInMetal.md:53, en/2024-08-12-PickingInMetal.md:53</td></tr>
+<tr><td class="url">https://gitee.com/openharmony-sig/RNOHDCS</td><td>404</td><td class="note">2026-07-03-crossplatformdesktopframeworkcomparison.md:946, en/2026-07-03-crossplatformdesktopframeworkcomparison.md:946</td></tr>
+<tr><td class="url">https://github.com/AFNetworking/AFNetworking/blob/master/AFNetworking%2FAFURLConnection...</td><td>0</td><td class="note">2018-04-02-RunLoop.md:692, en/2018-04-02-RunLoop.md:692</td></tr>
+<tr><td class="url">https://github.com/KhronosGroup/Khronosdotorg/blob/main/api/vulkan/resources.md</td><td>404</td><td class="note">2024-08-12-PickingInMetal.md:50, en/2024-08-12-PickingInMetal.md:50</td></tr>
+<tr><td class="url">https://github.com/XX/CustomPod.git</td><td>404</td><td class="note">2023-04-26-cocoapodsuserguide.md:338, en/2023-04-26-cocoapodsuserguide.md:338</td></tr>
+<tr><td class="url">https://github.com/XXX/CustomPod</td><td>404</td><td class="note">2023-04-26-cocoapodsuserguide.md:332, en/2023-04-26-cocoapodsuserguide.md:332</td></tr>
+<tr><td class="url">https://github.com/XXX/CustomPod.git</td><td>404</td><td class="note">2023-04-26-cocoapodsuserguide.md:702, 2023-04-26-cocoapodsuserguide.md:746, en/2023-04-26-cocoapodsuserguide.md:702, en/2023-04-26-cocoapodsuserguide.md:746</td></tr>
+<tr><td class="url">https://github.com/facebook/AsyncDisplayKit/blob/master/AsyncDisplayKit%2FDetails%2FTra...</td><td>0</td><td class="note">2018-04-02-RunLoop.md:748, en/2018-04-02-RunLoop.md:748</td></tr>
+<tr><td class="url">https://github.com/pybee/cassowary。</td><td>404</td><td class="note">2020-09-20-UIViewGraphic.md:41</td></tr>
+<tr><td class="url">https://mirrors.tuna.tsinghua.edu.cn/qt/`</td><td>404</td><td class="note">2026-07-03-crossplatformdesktopframeworkcomparison.md:1067, en/2026-07-03-crossplatformdesktopframeworkcomparison.md:1067</td></tr>
+<tr><td class="url">https://note.youdao.com/ynoteshare1/index.html?id=e0f8c30393c4f069555d286020f9d394&type...</td><td>404</td><td class="note">2019-04-24-WindowsResources.md:175, en/2019-04-24-WindowsResources.md:172</td></tr>
+<tr><td class="url">https://rolandleth.com/increasing-the-tap-area-of-a-uibutton</td><td>404</td><td class="note">2018-09-20-IncreasingTapAreaOfButton.md:103, en/2018-09-20-IncreasingTapAreaOfButton.md:103</td></tr>
+<tr><td class="url">https://techblog.toutiao.com/2017/07/05/session0-2/</td><td>404</td><td class="note">2017-07-13-ios11NewSkills.md:142, en/2017-07-13-ios11NewSkills.md:142</td></tr>
+<tr><td class="url">https://techblog.toutiao.com/2017/07/05/session413/</td><td>404</td><td class="note">2018-03-08-WhatIsThedSYM.md:179, en/2018-03-08-WhatIsThedSYM.md:171</td></tr>
+<tr><td class="url">https://time.geekbang.org/column/intro/161</td><td>404</td><td class="note">2021-12-23-iOSLessonsStudyNotes1.md:17, en/2021-07-22-iOSLessonsStudyNotes1.md:17</td></tr>
+<tr><td class="url">https://www.fasterthan.life/blog/2017/7/11/i-am-graphics-and-so-can-you-part-1</td><td>404</td><td class="note">2024-08-12-PickingInMetal.md:57, en/2024-08-12-PickingInMetal.md:57</td></tr>
+<tr><td class="url">https://www.ithome.com/0/409/410.htm</td><td>404</td><td class="note">2019-02-15-Tools.md:134, en/2019-02-15-Tools.md:134</td></tr>
+<tr><td class="url">https://www.ltp-cloud.com/demo/</td><td>404</td><td class="note">2018-02-04-WordEmbeding.md:60, en/2018-02-04-WordEmbeding.md:60</td></tr>
+<tr><td class="url">https://www.lvtao.net/dev/android_ios_php_openssl.html</td><td>404</td><td class="note">2017-06-26-RsaUniversalCrossPlatformiOSAndroidPhp.md:718, en/2017-06-26-RsaUniversalCrossPlatformiOSAndroidPhp.md:717</td></tr>
+</table></div>
+<div class="file-group"><h3 style="color:#d32f2f;border-color:#d32f2f">死图床图片 <span class="badge">17 个URL / 34 处引用</span></h3>
+<p class="note">新浪系图床2019年集体关停，文章图片已丢失</p>
+<table>
+<tr><th>URL</th><th>状态</th><th>引用位置</th></tr>
+<tr><td class="url">http://i1.piimg.com/584350/1736e20ba1e625f5.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:85, en/2017-01-28-SpringFestival.md:85</td></tr>
+<tr><td class="url">http://i1.piimg.com/584350/698eb97cae2b2dea.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:38, en/2017-01-28-SpringFestival.md:38</td></tr>
+<tr><td class="url">http://i1.piimg.com/584350/7bf35db34b720d2a.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:76, en/2017-01-28-SpringFestival.md:76</td></tr>
+<tr><td class="url">http://i1.piimg.com/584350/a260c895027dd64c.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:78, en/2017-01-28-SpringFestival.md:78</td></tr>
+<tr><td class="url">http://i1.piimg.com/584350/a9abec8d1c2c56e0.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:75, en/2017-01-28-SpringFestival.md:75</td></tr>
+<tr><td class="url">http://i1.piimg.com/584350/d1115c4e6d7981ab.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:67, en/2017-01-28-SpringFestival.md:67</td></tr>
+<tr><td class="url">http://i1.piimg.com/584350/dc97959821ac8fa2.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:77, en/2017-01-28-SpringFestival.md:77</td></tr>
+<tr><td class="url">http://i1.piimg.com/584350/f894381b5bd3aaee.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:66, en/2017-01-28-SpringFestival.md:66</td></tr>
+<tr><td class="url">http://p1.bpimg.com/584350/40a9d97bdeee2b05.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:87, en/2017-01-28-SpringFestival.md:87</td></tr>
+<tr><td class="url">http://p1.bpimg.com/584350/5addde1fe4d65611.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:28, en/2017-01-28-SpringFestival.md:28</td></tr>
+<tr><td class="url">http://p1.bpimg.com/584350/8f60e12618c08949.avif</td><td>502</td><td class="note">2017-01-28-SpringFestival.md:106, en/2017-01-28-SpringFestival.md:105</td></tr>
+<tr><td class="url">http://p1.bqimg.com/584350/035a303723a4b623.avif</td><td>503</td><td class="note">2017-01-28-SpringFestival.md:19, en/2017-01-28-SpringFestival.md:19</td></tr>
+<tr><td class="url">http://p1.bqimg.com/584350/042feb2337732f5e.avif</td><td>503</td><td class="note">2017-01-28-SpringFestival.md:51, en/2017-01-28-SpringFestival.md:51</td></tr>
+<tr><td class="url">http://p1.bqimg.com/584350/7df258f2ecddcf81.avif</td><td>503</td><td class="note">2017-01-28-SpringFestival.md:11, en/2017-01-28-SpringFestival.md:11</td></tr>
+<tr><td class="url">http://p1.bqimg.com/584350/b4c23a2cdd0e057b.avif</td><td>503</td><td class="note">2017-01-28-SpringFestival.md:100, en/2017-01-28-SpringFestival.md:99</td></tr>
+<tr><td class="url">http://p1.bqimg.com/584350/d449b5d2f5debbed.avif</td><td>503</td><td class="note">2017-01-28-SpringFestival.md:64, en/2017-01-28-SpringFestival.md:64</td></tr>
+<tr><td class="url">http://p1.bqimg.com/584350/fb737f626882c66b.avif</td><td>503</td><td class="note">2017-01-28-SpringFestival.md:43, en/2017-01-28-SpringFestival.md:43</td></tr>
+</table></div>
+<div class="file-group"><h3 style="color:#d32f2f;border-color:#d32f2f">无法连接 <span class="badge">76 个URL / 156 处引用</span></h3>
+<p class="note">服务器无响应或域名失效</p>
+<table>
+<tr><th>URL</th><th>状态</th><th>引用位置</th></tr>
+<tr><td class="url">http://alunblog.duapp.com</td><td>502</td><td class="note">2017-06-26-RsaUniversalCrossPlatformiOSAndroidPhp.md:131, en/2017-06-26-RsaUniversalCrossPlatformiOSAndroidPhp.md:131</td></tr>
+<tr><td class="url">http://answerhuang.duapp.com</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:189, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:191</td></tr>
+<tr><td class="url">http://answerhuang.duapp.com/index.php/feed/</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:189, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:191</td></tr>
+<tr><td class="url">http://blog.callmewhy.com/</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:213, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:215</td></tr>
+<tr><td class="url">http://blog.callmewhy.com/atom.xml</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:213, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:215</td></tr>
+<tr><td class="url">http://blog.cocoabit.com</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:184, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:186</td></tr>
+<tr><td class="url">http://blog.cocoabit.com/atom.xml</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:184, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:186</td></tr>
+<tr><td class="url">http://blog.leezhong.com/</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:169, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:171</td></tr>
+<tr><td class="url">http://blog.t-xx.me</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:175, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:177</td></tr>
+<tr><td class="url">http://blog.t-xx.me/atom.xml</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:175, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:177</td></tr>
+<tr><td class="url">http://blog.xcodev.com</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:173, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:175</td></tr>
+<tr><td class="url">http://blog.xcodev.com/atom.xml</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:173, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:175</td></tr>
+<tr><td class="url">http://chun.tips/</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:212, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:214</td></tr>
+<tr><td class="url">http://chun.tips/atom.xml</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:212, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:214</td></tr>
+<tr><td class="url">http://cinvoke.me/?p=37</td><td>502</td><td class="note">2018-01-12-AVAudioSessionCategory.md:407, en/2018-01-12-AVAudioSessionCategory.md:407</td></tr>
+<tr><td class="url">http://feeds.feedburner.com/lzyy</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:169, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:171</td></tr>
+<tr><td class="url">http://gaosboy.com/feed/atom/</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:196, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:198</td></tr>
+<tr><td class="url">http://helloitworks.com</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:205, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:207</td></tr>
+<tr><td class="url">http://helloitworks.com/feed</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:205, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:207</td></tr>
+<tr><td class="url">http://imi.im/</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:194, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:196</td></tr>
+<tr><td class="url">http://imi.im/feed</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:194, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:196</td></tr>
+<tr><td class="url">http://imkevin.me</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:176, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:178</td></tr>
+<tr><td class="url">http://imkevin.me/rss</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:176, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:178</td></tr>
+<tr><td class="url">http://ivoryxiong.org/</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:210, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:212</td></tr>
+<tr><td class="url">http://ivoryxiong.org/feed.xml</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:210, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:212</td></tr>
+<tr><td class="url">http://joeyio.com</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:191, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:193</td></tr>
+<tr><td class="url">http://joeyio.com/atom.xml</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:191, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:193</td></tr>
+<tr><td class="url">http://nixzhu.me</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:185, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:187</td></tr>
+<tr><td class="url">http://nixzhu.me/feed</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:185, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:187</td></tr>
+<tr><td class="url">http://nonomori.farbox.com</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:179, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:181</td></tr>
+<tr><td class="url">http://nonomori.farbox.com/feed</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:179, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:181</td></tr>
+<tr><td class="url">http://shiningio.com/</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:202, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:204</td></tr>
+<tr><td class="url">http://shiningio.com/atom.xml</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:202, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:204</td></tr>
+<tr><td class="url">http://skx926.com/2016/01/26/build-hexo/</td><td>502</td><td class="note">2017-02-10-BuildHexoBlogTutorial.md:16, en/2017-02-10-BuildHexoBlogTutorial.md:16</td></tr>
+<tr><td class="url">http://tang3w.com</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:180, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:182</td></tr>
+<tr><td class="url">http://tang3w.com/atom.xml</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:180, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:182</td></tr>
+<tr><td class="url">http://underwaysoft.com/writing/books/dsp-develop.html#%E7%BA%BF%E6%80%A7%E5%A3%B0%E5%8...</td><td>502</td><td class="note">2017-12-19-AudioPan.md:40, en/2017-12-19-AudioPan.md:40</td></tr>
+<tr><td class="url">http://webfrogs.me</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:190, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:192</td></tr>
+<tr><td class="url">http://webfrogs.me/feed/</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:190, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:192</td></tr>
+<tr><td class="url">http://wufawei.com/</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:174, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:176</td></tr>
+<tr><td class="url">http://wufawei.com/feed</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:174, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:176</td></tr>
+<tr><td class="url">http://www.czhzero.com/2016/06/25/hexoblog/</td><td>502</td><td class="note">2017-02-10-BuildHexoBlogTutorial.md:14, en/2017-02-10-BuildHexoBlogTutorial.md:14</td></tr>
+<tr><td class="url">http://www.ezlippi.com/blog/2016/02/jekyll-to-hexo.html</td><td>502</td><td class="note">2017-02-10-BuildHexoBlogTutorial.md:12, en/2017-02-10-BuildHexoBlogTutorial.md:12</td></tr>
+<tr><td class="url">http://www.iliunian.com/2831.html</td><td>502</td><td class="note">2017-03-17-LearningAVFoundationAVAudioPlayer.md:316, en/2017-03-17-LearningAVFoundationAVAudioPlayer.md:317</td></tr>
+<tr><td class="url">http://www.imallen.com</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:193, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:195</td></tr>
+<tr><td class="url">http://www.imallen.com/atom.xml</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:193, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:195</td></tr>
+<tr><td class="url">http://www.ios122.com/2015/09/masonry/</td><td>502</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:141, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:143</td></tr>
+<tr><td class="url">http://www.j-hrubber.com/</td><td>502</td><td class="note">2024-12-31-FinalSummary.md:200, en/2024-12-31-FinalSummary.md:199</td></tr>
+<tr><td class="url">http://www.taofengping.com</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:187, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:189</td></tr>
+<tr><td class="url">http://www.taofengping.com/rss.xml</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:187, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:189</td></tr>
+<tr><td class="url">https://affiliate.itunes.apple.com/resources/documentation/genre-mapping/</td><td>0</td><td class="note">2017-08-07-LearningAVFoundationAVAssetSenior.md:388, en/2017-08-07-LearningAVFoundationAVAssetSenior.md:383</td></tr>
+<tr><td class="url">https://api.development.devicecheck.apple.com/v1/query_two_bits</td><td>405</td><td class="note">2017-09-30-DeviceCheck.md:120, en/2017-09-30-DeviceCheck.md:120</td></tr>
+<tr><td class="url">https://api.development.devicecheck.apple.com/v1/update_two_bits</td><td>405</td><td class="note">2017-09-30-DeviceCheck.md:149, en/2017-09-30-DeviceCheck.md:149</td></tr>
+<tr><td class="url">https://chat.openai.com/</td><td>0</td><td class="note">2023-06-07-batchconvertheictopng.md:32, en/2023-06-07-batchconvertheictopng.md:32</td></tr>
+<tr><td class="url">https://chls.pro/ssl</td><td>0</td><td class="note">2017-09-01-CharlesCaptureHttps.md:82, en/2017-09-01-CharlesCaptureHttps.md:82</td></tr>
+<tr><td class="url">https://code.google.com/archive/p/mp4v2/wikis/iTunesMetadata.wiki</td><td>0</td><td class="note">2017-06-16-LearningAVFoundationAVAssetBasic.md:301, en/2017-06-16-LearningAVFoundationAVAssetBasic.md:301</td></tr>
+<tr><td class="url">https://developer.apple.com/library/ios/documentation/uikit/reference/UIBezierPath_clas...</td><td>502</td><td class="note">2025-10-20-interpolating-points-in-ios-with-uibezierpath.md:25, en/2025-10-20-interpolating-points-in-ios-with-uibezierpath.md:25</td></tr>
+<tr><td class="url">https://docs.anthropic.com/en/docs/build-with-claude/tool-use</td><td>0</td><td class="note">2025-11-17-swiftaiagent.md:640, en/2025-11-17-swiftaiagent.md:640</td></tr>
+<tr><td class="url">https://gbin.me/2017/08/03/Hexo-deployed-in-github-and-coding/</td><td>0</td><td class="note">2017-02-10-BuildHexoBlogTutorial.md:37, en/2017-02-10-BuildHexoBlogTutorial.md:37</td></tr>
+<tr><td class="url">https://https://www.sunyazhou.com/</td><td>0</td><td class="note">2022-04-14-BranchManage.md:62, en/2022-04-14-BranchManage.md:62</td></tr>
+<tr><td class="url">https://linkedin.com/in/giordanoscalzo</td><td>999</td><td class="note">2025-11-17-swiftaiagent.md:643, en/2025-11-17-swiftaiagent.md:643</td></tr>
+<tr><td class="url">https://medium.com/swlh/know-your-language-locale-in-swift-beae4fcc5174</td><td>0</td><td class="note">2023-09-09-learnswiftuichapter5.md:143, en/2023-09-09-learnswiftuichapter5.md:143</td></tr>
+<tr><td class="url">https://taro.jd.com/</td><td>0</td><td class="note">2026-07-03-crossplatformdesktopframeworkcomparison.md:929, en/2026-07-03-crossplatformdesktopframeworkcomparison.md:929</td></tr>
+<tr><td class="url">https://twitter.com/giordanoscalzo</td><td>0</td><td class="note">2025-11-17-swiftaiagent.md:643, en/2025-11-17-swiftaiagent.md:643</td></tr>
+<tr><td class="url">https://www.arkui.club/</td><td>0</td><td class="note">2023-12-31-FinalSummary.md:190, en/2023-12-31-FinalSummary.md:189</td></tr>
+<tr><td class="url">https://www.ctolib.com/topics-103098.html</td><td>0</td><td class="note">2020-08-31-iOSinterviewAnswers3.md:34, en/2020-08-31-iOSinterviewAnswers3.md:34</td></tr>
+<tr><td class="url">https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp...</td><td>0</td><td class="note">2025-10-20-interpolating-points-in-ios-with-uibezierpath.md:57, en/2025-10-20-interpolating-points-in-ios-with-uibezierpath.md:57</td></tr>
+<tr><td class="url">https://www.gushiciku.cn/pl/aHa7</td><td>0</td><td class="note">2022-07-11-iosoom.md:331, en/2022-07-11-iosoom.md:331</td></tr>
+<tr><td class="url">https://www.objccn.io/issue-21-9/</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:56, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:56</td></tr>
+<tr><td class="url">https://www.quora.com/What-is-modulo-bias</td><td>0</td><td class="note">2018-06-08-SwiftRandom.md:49, en/2018-06-08-SwiftRandom.md:49</td></tr>
+<tr><td class="url">https://www.stephenw.cc/2017/08/23/llvm-modules/</td><td>0</td><td class="note">2023-04-26-cocoapodsuserguide.md:1035, en/2023-04-26-cocoapodsuserguide.md:1034</td></tr>
+<tr><td class="url">https://www.todayios.com/ios-masonry-lca-closest-common-superview/</td><td>0</td><td class="note">2022-07-05-commonsuperview.md:63, en/2022-07-05-commonsuperview.md:63</td></tr>
+<tr><td class="url">https://www.youtube.com/playlist?list=PLXM8k1EWy5khONZ9M9ytK8mMrcEOXvGsE</td><td>0</td><td class="note">2023-09-09-learnswiftuichapter5.md:90, en/2023-09-09-learnswiftuichapter5.md:90</td></tr>
+<tr><td class="url">https://www.yuntipub.com/</td><td>0</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:80, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:80</td></tr>
+<tr><td class="url">https://xxxxx.com/</td><td>0</td><td class="note">2020-10-04-XcodeBuildXcconfigFile.md:62, 2020-10-04-XcodeBuildXcconfigFile.md:68, 2020-10-04-XcodeBuildXcconfigFile.md:109, en/2020-10-04-XcodeBuildXcconfigFile.md:62 <em>+2处</em></td></tr>
+<tr><td class="url">https://your-mcp-server/agent</td><td>0</td><td class="note">2026-07-03-crossplatformdesktopframeworkcomparison.md:457, en/2026-07-03-crossplatformdesktopframeworkcomparison.md:457</td></tr>
+</table></div>
+<div class="file-group"><h3 style="color:#f57c00;border-color:#f57c00">大陆网络不可达（非死链） <span class="badge">14 个URL / 28 处引用</span></h3>
+<p class="note">Wikipedia被墙，链接本身全球可访问</p>
+<table>
+<tr><th>URL</th><th>状态</th><th>引用位置</th></tr>
+<tr><td class="url">http://en.wikipedia.org/wiki/System_call</td><td>502</td><td class="note">2018-04-02-RunLoop.md:405, en/2018-04-02-RunLoop.md:405</td></tr>
+<tr><td class="url">http://en.wikipedia.org/wiki/Trap_(computing</td><td>502</td><td class="note">2018-04-02-RunLoop.md:405, en/2018-04-02-RunLoop.md:405</td></tr>
+<tr><td class="url">https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline</td><td>0</td><td class="note">2025-10-20-interpolating-points-in-ios-with-uibezierpath.md:57, en/2025-10-20-interpolating-points-in-ios-with-uibezierpath.md:57</td></tr>
+<tr><td class="url">https://en.wikipedia.org/wiki/Cubic_Hermite_spline</td><td>0</td><td class="note">2025-10-20-interpolating-points-in-ios-with-uibezierpath.md:51, en/2025-10-20-interpolating-points-in-ios-with-uibezierpath.md:51</td></tr>
+<tr><td class="url">https://en.wikipedia.org/wiki/Data_structure_alignment</td><td>0</td><td class="note">2025-02-23-the-basics-on-the-memory-layout-of-swift-struct-instances.md:264, en/2025-02-23-the-basics-on-the-memory-layout-of-swift-struct-instances.md:264</td></tr>
+<tr><td class="url">https://en.wikipedia.org/wiki/Event_loop</td><td>0</td><td class="note">2018-04-02-RunLoop.md:54, en/2018-04-02-RunLoop.md:54</td></tr>
+<tr><td class="url">https://zh.wikipedia.org/wiki/%E5%8D%95%E6%8C%87%E4%BB%A4%E6%B5%81%E5%A4%9A%E6%95%B0%E6...</td><td>0</td><td class="note">2017-05-30-OpenGLglslLanguage.md:20, en/2017-05-30-OpenGLglslLanguage.md:20</td></tr>
+<tr><td class="url">https://zh.wikipedia.org/wiki/%E5%A4%A9%E6%B4%A5%E6%95%99%E6%A1%88</td><td>0</td><td class="note">2018-12-28-FinalSummary.md:185, en/2018-12-28-FinalSummary.md:185</td></tr>
+<tr><td class="url">https://zh.wikipedia.org/wiki/%E5%A5%88%E5%A5%8E%E6%96%AF%E7%89%B9%E9%A2%91%E7%8E%87</td><td>0</td><td class="note">2017-03-17-LearningAVFoundationAVAudioPlayer.md:22, en/2017-03-17-LearningAVFoundationAVAudioPlayer.md:22</td></tr>
+<tr><td class="url">https://zh.wikipedia.org/wiki/%E6%9D%8E%E9%B4%BB%E7%AB%A0</td><td>0</td><td class="note">2018-12-28-FinalSummary.md:185, en/2018-12-28-FinalSummary.md:185</td></tr>
+<tr><td class="url">https://zh.wikipedia.org/wiki/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E8%B7%9D%E7%A6%BB</td><td>0</td><td class="note">2021-12-26-FinalSummary.md:157, en/2021-12-26-FinalSummary.md:157</td></tr>
+<tr><td class="url">https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%8B%89%E8%A7%92</td><td>0</td><td class="note">2017-08-30-ARKit.md:866, en/2017-08-30-ARKit.md:865</td></tr>
+<tr><td class="url">https://zh.wikipedia.org/wiki/%E8%84%88%E8%A1%9D%E7%B7%A8%E8%99%9F%E8%AA%BF%E8%AE%8A</td><td>0</td><td class="note">2017-03-17-LearningAVFoundationAVAudioPlayer.md:22, en/2017-03-17-LearningAVFoundationAVAudioPlayer.md:22</td></tr>
+<tr><td class="url">https://zh.wikipedia.org/zh-cn/%E5%B0%A4%E9%87%8C%E5%8D%A1%E6%95%88%E5%BA%94</td><td>0</td><td class="note">2025-12-31-finalsummary.md:118, en/2025-12-31-finalsummary.md:118</td></tr>
+</table></div>
+<div class="file-group"><h3 style="color:#f57c00;border-color:#f57c00">反爬拦截/需登录 (403) <span class="badge">11 个URL / 22 处引用</span></h3>
+<p class="note">站点存活但屏蔽了程序访问</p>
+<table>
+<tr><th>URL</th><th>状态</th><th>引用位置</th></tr>
+<tr><td class="url">http://geeklu.com/</td><td>403</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:199, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:201</td></tr>
+<tr><td class="url">http://geeklu.com/feed/</td><td>403</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:199, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:201</td></tr>
+<tr><td class="url">http://study.163.com/course/courseMain.htm?courseId=1003520028</td><td>403</td><td class="note">2018-01-13-PythonMySQL.md:19, en/2018-01-13-PythonMySQL.md:19</td></tr>
+<tr><td class="url">http://www.yifeiyang.net/</td><td>403</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:203, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:205</td></tr>
+<tr><td class="url">http://www.yifeiyang.net/feed</td><td>403</td><td class="note">2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:203, en/2017-01-18-iOSDevelopmentKnowledgePointAccumulate.md:205</td></tr>
+<tr><td class="url">https://platform.openai.com/docs/guides/function-calling</td><td>403</td><td class="note">2025-11-17-swiftaiagent.md:641, en/2025-11-17-swiftaiagent.md:641</td></tr>
+<tr><td class="url">https://software.intel.com/content/www/us/en/develop/articles/api-without-secrets-intro...</td><td>403</td><td class="note">2024-08-12-PickingInMetal.md:55, en/2024-08-12-PickingInMetal.md:55</td></tr>
+<tr><td class="url">https://uniapp.dcloud.net.cn/tutorial/harmony/</td><td>403</td><td class="note">2026-07-03-crossplatformdesktopframeworkcomparison.md:917, en/2026-07-03-crossplatformdesktopframeworkcomparison.md:917</td></tr>
+<tr><td class="url">https://wails.io/</td><td>403</td><td class="note">2026-07-03-crossplatformdesktopframeworkcomparison.md:1022, en/2026-07-03-crossplatformdesktopframeworkcomparison.md:1022</td></tr>
+<tr><td class="url">https://www.flaticon.com/free-sticker/dinner_7603521</td><td>403</td><td class="note">2023-09-09-learnswiftuichapter5.md:97, en/2023-09-09-learnswiftuichapter5.md:97</td></tr>
+<tr><td class="url">https://zhangbuhuai.com/post/weak-associated-object.html</td><td>403</td><td class="note">2020-08-08-iOSinterviewAnswers2.md:882, en/2020-08-08-iOSinterviewAnswers2.md:883</td></tr>
+</table></div>
+<div class="file-group"><h3 style="color:#555;border-color:#555">示例代码URL（保留） <span class="badge">1 个URL / 2 处引用</span></h3>
+<p class="note">教程中的示例命令，非真实资源</p>
+<table>
+<tr><th>URL</th><th>状态</th><th>引用位置</th></tr>
+<tr><td class="url">https://www.sunyazhou.com/xxproject/Specs.git</td><td>404</td><td class="note">2023-04-03-podcommands.md:21, en/2023-04-03-podcommands.md:21</td></tr>
+</table></div>
+
+
+<div class="footer">
+<p>自域名死链修复明细（11篇文章×中英双语，共28处）：</p>
+<ul class="note">
+<li>Learning-AV-Foundation-AVAudioPlayer（旧slug）→ /2017/03/LearningAVFoundationAVAudioPlayer/</li>
+<li>enable-static-analyer → /2017/06/EnableStaticAnalyer/</li>
+<li>20170929MarkdownTable → /2017/09/MarkdownTable/</li>
+<li>20171016UIViewRendering → /2017/10/UIViewRendering/</li>
+<li>20171025markdownSkill → /2017/10/MarkdownSkill/</li>
+<li>20200808iOSinterviewAnswers → /2020/08/iOSinterviewAnswers2/</li>
+<li>tags/iOS面试题（标签页不存在）→ /2020/07/iOSinterviewAnswers1/</li>
+<li>images/logo2.jpg（演示图失效）→ 文章内真实图片 album1.avif</li>
+<li>localhost:4000 ×2（本地调试残留）→ 线上正式URL</li>
+</ul>
+<p>所有替换URL均已在线上逐一验证返回200。</p>
+</div>
+</body>
+</html>

@@ -6,7 +6,6 @@ categories: [iOS, Swift]
 tags: [Swift, AVFoundation, Git]
 typora-root-url: ..
 
-
 ---
 
 ![git](/assets/images/20220414BranchManage/git.avif)
@@ -14,7 +13,6 @@ typora-root-url: ..
 # Preface
 
 This article carries strong personal sentiment. If it makes you uncomfortable, please close it as soon as possible. This article is only for personal study records. Reprinting or sharing within the scope of the license is also welcome. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
-
 
 ## A Branch Management Model Suitable for Client Development
 
@@ -59,8 +57,7 @@ Every team has its own way of managing branches. No approach is inherently bette
 
 --
 This article was written by  
-[sunyazhou](https://https://www.sunyazhou.com/)   
+sunyazhou   
 [CN] sunyazhou.com   
 This material is protected by copyright
-
 

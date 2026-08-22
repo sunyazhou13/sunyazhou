@@ -1,0 +1,506 @@
+{
+  "total_files": 215,
+  "files_with_typos": 36,
+  "total_typos": 61,
+  "findings": {
+    "2017-03-17-LearningAVFoundationAVAudioPlayer.md": [
+      {
+        "line": 434,
+        "wrong": "因有",
+        "correct": "应有",
+        "note": "应：应有应用'应'",
+        "context": "这需要用`AVAudioSessionRouteChangeReasonKey`取出线路切换的原因`AVAudioSessionRouteChangeReason` 原因有这么多"
+      }
+    ],
+    "2017-03-28-LearningAVFoundationAVAudioRecorder.md": [
+      {
+        "line": 101,
+        "wrong": "在给",
+        "correct": "再给",
+        "note": "再：表示重复应用'再'",
+        "context": "这里的建议调用`[self.recorder prepareToRecord]`方法对录音实例进行预设就像[上一章](http://sunyazhou.com/2017/03/17/Learning-AV-Foundation-AVAudioPlayer/)创建`AVAudioPlayer`类似.都是为了执行底层`Audio Queue`初始化的必要过程.这个`prepareToRecord`方法还在给定的URL参数指定的位置创建一个文件，这样就减少了录制启动时的延时"
+      }
+    ],
+    "2017-06-16-LearningAVFoundationAVAssetBasic.md": [
+      {
+        "line": 270,
+        "wrong": "帐号",
+        "correct": "账号",
+        "note": "账：财务相关应用'账'",
+        "context": "下载地址:[Atom Inspector 猛击这里](http://adcdownload.apple.com/QuickTime/atom_inspector/atom_inspector.dmg)  貌似需要登录开发者帐号"
+      },
+      {
+        "line": 271,
+        "wrong": "帐号",
+        "correct": "账号",
+        "note": "账：财务相关应用'账'",
+        "context": "下载中心:[苹果官方软件下载中心](https://developer.apple.com/download/more/)  貌似需要登录开发者帐号"
+      }
+    ],
+    "2017-12-30-FinalSummary.md": [
+      {
+        "line": 444,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "> __为了掌握俄国东进政策的实际情况，福岛决定亲自沿着西伯利亚铁路进行实地侦察。这个大胆的计划立即得到了参谋次长川上操六的大力支持。由于福岛的军人身份会暴露穿越计划的目的，于是福岛对外宣布要进行一次单骑穿越严寒时期西伯利亚的探险旅行。即使是土生土长的俄国人，也不敢轻言在严冬时期穿越西伯利亚，更何况是一个没有严寒地区生活经历的外国人。福岛此言一出，世界哗然，西方探险家对他的“穿越”计划嗤之以鼻，大家都等着看这个日本人的笑话。但福岛安正极为坚定，他深知这个计划对日本意味着什么__。"
+      }
+    ],
+    "2018-03-04-LearningAVFoundationPlayingVideo.md": [
+      {
+        "line": 126,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "这个结构体最关键的即使`value`(64位整形)和`timescale`(32位整形)."
+      },
+      {
+        "line": 73,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "__这是因为`AVAsset`模型只包含媒体资源的静态信息.这些不变的属性用来描述对象的静态信息.这就意味着仅使用`AVAsset`对象是不能实现播放功能的.如果播放我们需要使用`AVPlayerItem`__"
+      }
+    ],
+    "2018-04-02-RunLoop.md": [
+      {
+        "line": 641,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "`CADisplayLink` 是一个和屏幕刷新率一致的定时器（但实际实现原理更复杂，和 `NSTimer` 并不一样，其内部实际是操作了一个 `Source`）。如果在两次屏幕刷新之间执行了一个长任务，那其中就会有一帧被跳过去（和 `NSTimer` 相似），造成界面卡顿的感觉。在快速滑动`TableView`时，即使一帧的卡顿也会让用户有所察觉。`Facebook` 开源的`AsyncDisplayLink` 就是为了解决界面卡顿的问题，其内部也用到了 `RunLoop`，这个稍后我会再单独写一页博客来分析。"
+      }
+    ],
+    "2018-11-27-LikeAnimation.md": [
+      {
+        "line": 141,
+        "wrong": "在给",
+        "correct": "再给",
+        "note": "再：表示重复应用'再'",
+        "context": "scaleAnim.duration = duration * 0.2f; //注意这里是在给定时长的地方前0.2f的时间里执行缩放"
+      }
+    ],
+    "2018-12-21-AwemeTransition.md": [
+      {
+        "line": 59,
+        "wrong": "做为",
+        "correct": "作为",
+        "note": "作：表示当作应用'作'",
+        "context": "`0` 处代码使我们需要把当前的类做为转场的代理"
+      },
+      {
+        "line": 454,
+        "wrong": "做为",
+        "correct": "作为",
+        "note": "作：表示当作应用'作'",
+        "context": "然后 开始的时候加个蒙版做为view.mask 这样是为了解决tableView 超出contentSize的范围要隐藏"
+      }
+    ],
+    "2018-12-28-FinalSummary.md": [
+      {
+        "line": 252,
+        "wrong": "认真的听",
+        "correct": "认真地听",
+        "note": "地：修饰动词应用'地'",
+        "context": "为了纪念这位伟人,我认真的听完讲解周总理的最后岁月,我很荣幸能在中国国家博物馆里找到总理的几件物品,让我瞻仰一下这位共和国总理的爱戴人民的精神和气质."
+      }
+    ],
+    "2019-02-15-Tools.md": [
+      {
+        "line": 68,
+        "wrong": "做为",
+        "correct": "作为",
+        "note": "作：表示当作应用'作'",
+        "context": "做为一个iOS开发者,如果不能实时了解水果公司得各种产品的积极动向我觉得是一种不积极的工作表现,这个软件可以实时的查看苹果目前的所有发不过的型号等等info."
+      }
+    ],
+    "2019-12-06-Chisel.md": [
+      {
+        "line": 97,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "* `bmessage`：添加一个断点，即使这个函数在子类没有实现（比如说在UIViewController中想在viewWillAppear中打断点，但是很可能没有实现父类方法，就可以通过bmessage [UIViewController viewWillAppear:]添加）"
+      },
+      {
+        "line": 66,
+        "wrong": "以经",
+        "correct": "已经",
+        "note": "已：已经应用'已'",
+        "context": "由于这个文件会被Reveal改动 所以经常会有各种lldb工具修改这个文件"
+      }
+    ],
+    "2019-12-30-FinalSummary.md": [
+      {
+        "line": 359,
+        "wrong": "做出努力",
+        "correct": "作出努力",
+        "note": "作：搭配抽象名词应用'作'",
+        "context": "3. （如果可能)创建一所大学，设立30+个专业并设立实验室，专攻卡中国脖子的35项关键技术！即便不能解决卡脖子技术也要为这些尖端科技培养人才做出努力，一定要建设好我的祖国"
+      }
+    ],
+    "2020-07-21-iOSinterviewAnswers1.md": [
+      {
+        "line": 973,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "* 关于继承：和load不同，即使子类不实现initialize方法，会把父类的实现继承过来调用一遍，就是会沿用父类的+initialize。（沿用父类的方法中，self还是指子类）"
+      }
+    ],
+    "2020-08-08-iOSinterviewAnswers2.md": [
+      {
+        "line": 96,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "可以看出，这个函数仅仅是一个深层函数的调用入口，而一般的入口函数中，都会做一些简单的判断（例如 `objc_msgSend` 中的缓存判断），这里判断了其指针指向的类对象是否有效，无效直接释放，不再往深层调用函数。否则，object将被注册为一个指向value的`__weak`对象。而这事应该是`objc_storeWeak`函数干的."
+      },
+      {
+        "line": 602,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "// 判断本类对象是否允许关联其他对象.如果允许则进入代码块"
+      },
+      {
+        "line": 718,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "3. 剩下的就是更新对象是否初次创建等标记 然后返回对象"
+      },
+      {
+        "line": 739,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "> check对象是否为nil 且 关联对象是否存在"
+      },
+      {
+        "line": 739,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "> check对象是否为nil 且 关联对象是否存在"
+      },
+      {
+        "line": 1009,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "uintptr_t weakly_referenced : 1;//->对象是否被弱引用"
+      },
+      {
+        "line": 1010,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "uintptr_t deallocating      : 1;//->对象是否正在销毁"
+      }
+    ],
+    "2020-09-19-GCD.md": [
+      {
+        "line": 140,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "* 串行NSOperationQueue队列并发数为1的时候 [NSOpertaion start] 启动任务即使同步操作 (NSOperationQueue.maxConcurrentOperationCount = 1)"
+      }
+    ],
+    "2020-09-20-UIViewGraphic.md": [
+      {
+        "line": 165,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "现象是 图形清晰,场景逼真,但是一般arm芯片的GPU 刷新超过60Hz一定会超级费电,手机发热导致降频.FPS降低,因为低能耗电量不足,无法支持GPU高刷新率"
+      }
+    ],
+    "2020-10-04-XcodeBuildXcconfigFile.md": [
+      {
+        "line": 11,
+        "wrong": "Configration",
+        "correct": "configuration",
+        "note": "英文拼写错误: configration -> configuration",
+        "context": "![Xcode Build Configration File](/assets/images/20201004XcodeBuildXcconfigFile/XcodeBuildConfigrationFile1.avif)"
+      }
+    ],
+    "2020-12-05-iOSsynchronousTimeWithServer.md": [
+      {
+        "line": 51,
+        "wrong": "象是",
+        "correct": "像是",
+        "note": "像：像是应用'像'",
+        "context": "`NSDate`对象封装单个时间点,与任何特定的日历系统或时区无关.日期对象是不可变的,表示相对于绝对参考日期（`2001年1月1日00:00:00 UTC`）的不变时间间隔，它是以UTC为标准的。"
+      }
+    ],
+    "2021-01-21-TextGradient.md": [
+      {
+        "line": 18,
+        "wrong": "做为",
+        "correct": "作为",
+        "note": "作：表示当作应用'作'",
+        "context": "最近看到搜狐发表了一篇文章,其中有一段是文本如何添加渐变颜色,使用`非mask`的方式.因为mask的方式非常耗费性能,因为mask会触发离屏渲染.今天的demo中我使用了原来的demo做为例子"
+      },
+      {
+        "line": 23,
+        "wrong": "做为",
+        "correct": "作为",
+        "note": "作：表示当作应用'作'",
+        "context": "核心实现很简单,[带你实现完整的 iOS 视频弹幕系统](https://mp.weixin.qq.com/s/4pWrwmZBEbrca2uxIt3o6w)中并没有给出相关demo.只是把相关弹幕的实现思路大概说说.所以做为一个iOS开发要善于动手写代码实现和验证它的思路. 其实我内心是很讨厌 搜狐的这篇有头没尾的技术文章,无非就是写写思路,代码实现的demo一个也不放出来显然不厚道."
+      }
+    ],
+    "2021-02-21-UTIsOfficalFileExtensionName.md": [
+      {
+        "line": 19,
+        "wrong": "做为",
+        "correct": "作为",
+        "note": "作：表示当作应用'作'",
+        "context": "最近开发过程中遇到了一个很低级的问题,有点类似网盘app里面要区分各种文件类型,然后找出对应的文件归属icon并显示,做为一个极客精神的iOS开发者,我想找到一种文件扩展名集合并不需要自己命名枚举值,这时我想起2015年左右开发百度网盘时调研过的airdrop,其中苹果规定了分享文件到其它手机需要提供的`文件唯一标识(UTI)`,于是我找了一下文档记录一下如下的文件类型列表."
+      }
+    ],
+    "2023-02-02-jekyllpost.md": [
+      {
+        "line": 25,
+        "wrong": "模版",
+        "correct": "模板",
+        "note": "板：模板应用'板'",
+        "context": "的形式 通过模版生成一个markdown文件."
+      },
+      {
+        "line": 86,
+        "wrong": "模版",
+        "correct": "模板",
+        "note": "板：模板应用'板'",
+        "context": "这里生成的markdown没有hexo中的模版那样能自定义,我没找到 如果你感兴趣可以一起研究一下."
+      }
+    ],
+    "2023-02-13-nsdateistoday.md": [
+      {
+        "line": 29,
+        "wrong": "做为",
+        "correct": "作为",
+        "note": "作：表示当作应用'作'",
+        "context": "NSDate *date = [NSDate date]; //这里取当前日期,正常应该做为参数传入NSDate"
+      }
+    ],
+    "2023-04-26-cocoapodsuserguide.md": [
+      {
+        "line": 662,
+        "wrong": "模版",
+        "correct": "模板",
+        "note": "板：模板应用'板'",
+        "context": "只需利用  `pod lib create [PodName] ` 命令便可以快速创建一个自己的 pod 。填写好使用平台、使用语言、是否包含 Demo、测试框架等信息，CocoaPods 会从默认的 Git 地址中拉取一份 pod 模版，同时也可以通过 `--template-url=URL` 指定模版地址。在执行完后，整个文件结构如下："
+      },
+      {
+        "line": 662,
+        "wrong": "模版",
+        "correct": "模板",
+        "note": "板：模板应用'板'",
+        "context": "只需利用  `pod lib create [PodName] ` 命令便可以快速创建一个自己的 pod 。填写好使用平台、使用语言、是否包含 Demo、测试框架等信息，CocoaPods 会从默认的 Git 地址中拉取一份 pod 模版，同时也可以通过 `--template-url=URL` 指定模版地址。在执行完后，整个文件结构如下："
+      },
+      {
+        "line": 808,
+        "wrong": "模版",
+        "correct": "模板",
+        "note": "板：模板应用'板'",
+        "context": "* `cocoapods-core`：对模版文件的解析，如 Podfile、.podspec 等文件。"
+      }
+    ],
+    "2023-12-31-FinalSummary.md": [
+      {
+        "line": 134,
+        "wrong": "在见",
+        "correct": "再见",
+        "note": "再：表示重复应用'再'",
+        "context": "通过此次买共产房的经历让我深刻的领悟到了一件事,首都渐渐地会分为富人区和穷人区,而城市更愿意吸纳高学历高收入的富人,提高房价和一些门槛只为让这些人为城市贡献更多,而剔除无法给与更多贡献的穷人,富人会拥有更好的教育环境和生活环境,在城市形成垄断和资本,享受更多资源,而普通无法立足的人会慢慢淘汰回家乡,回到家乡对当地政府的财政和养老会造成压力和负担,小城市里一家人辛苦培养的高材生,会去发达城市和更好的国家,家乡因为没有更好的资源留住人才,而发展不起来,小城市发展越来越不好,大城市越来越好,形成恶性循环,首都通过福利吸引了全中国的富人和有知识的人来此,形成了垄断和繁荣,全国各地的人才都供应到了首都,城市的银行80%的财务集中在不到5%的人手中,大城市形成牢固的阶层,占据优秀的文化资源和大量的财富,而其它小城市或者小城镇最终成了大城市的陪葬, 北京的抢房经历让我明白,一个城市的繁荣是吸纳了许多不同的人群,他们来自天南海北,为这个城市建设和攫取财富, 当城市失去公平, 形成阶层和垄断, 肆意愚弄和占据他人的权利,最终会得到报应.即使北京成为了国际化的大都市,但旁边安静苍凉的其它省份土地上,一直在见证者这里曾经发生过的一切,我真的希望北京这座特大城市能给予许多奋斗在城市的人们更多的温暖和立足之地,一起享受城市发展的成果, 创造一个公平的现代文明,善待我们这些北漂, 因为这些人是籍籍无名的奋斗者,这些人象征着无数的普通人,不要让我们这些人做了贡献后被赶走变得了却无痕."
+      },
+      {
+        "line": 134,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "通过此次买共产房的经历让我深刻的领悟到了一件事,首都渐渐地会分为富人区和穷人区,而城市更愿意吸纳高学历高收入的富人,提高房价和一些门槛只为让这些人为城市贡献更多,而剔除无法给与更多贡献的穷人,富人会拥有更好的教育环境和生活环境,在城市形成垄断和资本,享受更多资源,而普通无法立足的人会慢慢淘汰回家乡,回到家乡对当地政府的财政和养老会造成压力和负担,小城市里一家人辛苦培养的高材生,会去发达城市和更好的国家,家乡因为没有更好的资源留住人才,而发展不起来,小城市发展越来越不好,大城市越来越好,形成恶性循环,首都通过福利吸引了全中国的富人和有知识的人来此,形成了垄断和繁荣,全国各地的人才都供应到了首都,城市的银行80%的财务集中在不到5%的人手中,大城市形成牢固的阶层,占据优秀的文化资源和大量的财富,而其它小城市或者小城镇最终成了大城市的陪葬, 北京的抢房经历让我明白,一个城市的繁荣是吸纳了许多不同的人群,他们来自天南海北,为这个城市建设和攫取财富, 当城市失去公平, 形成阶层和垄断, 肆意愚弄和占据他人的权利,最终会得到报应.即使北京成为了国际化的大都市,但旁边安静苍凉的其它省份土地上,一直在见证者这里曾经发生过的一切,我真的希望北京这座特大城市能给予许多奋斗在城市的人们更多的温暖和立足之地,一起享受城市发展的成果, 创造一个公平的现代文明,善待我们这些北漂, 因为这些人是籍籍无名的奋斗者,这些人象征着无数的普通人,不要让我们这些人做了贡献后被赶走变得了却无痕."
+      }
+    ],
+    "2024-08-19-dispatchafternsintegermax.md": [
+      {
+        "line": 104,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "使用 `int64_t` 类型可以确保这个常量足够大，即使在 32 位系统上也能正确表示一天的总秒数。`LL` 后缀确保了这个数字被解释为长长整型（`long long`）常量。"
+      }
+    ],
+    "2024-10-28-swiftuiimage.md": [
+      {
+        "line": 133,
+        "wrong": "板图",
+        "correct": "版图",
+        "note": "版：版图应用'版'",
+        "context": "* 19.`foregroundColor(color:)`:设置图片的前景色，通常用于模板图片。"
+      }
+    ],
+    "2024-12-31-FinalSummary.md": [
+      {
+        "line": 77,
+        "wrong": "在想",
+        "correct": "再想",
+        "note": "再：表示重复应用'再'",
+        "context": "每当我踏上地铁,拿出手机打开iBook看《Metal by Tutorials 4th 2023》时,看着大家都前所未闻的图形图像技术专业书籍,对着冰冷的技术点和着色器代码.我时常在想 身边真有像我这样的人每天研究奇奇怪怪的晦涩难懂的函数的人吗?他们这个时候都在干啥? 那时候感觉自己 无比孤独, 也许就像《北派盗墓笔记》中 秦西达说项云峰:\"强者注定孤独...\""
+      },
+      {
+        "line": 58,
+        "wrong": "在给",
+        "correct": "再给",
+        "note": "再：表示重复应用'再'",
+        "context": "**一个家族贫穷的真正原因是整个家族没有一个格局大的引路人从商或者从政.老人没有办法为懵懂的下一代做规划,自己也不注重格局,一辈子都在给别人打工,家族里的长辈自私自利,不重视下一代的教育,等老了又利用孝道来绑架子女,而子女之间也是各干各的,彼此之间不团结,一点利益就争吵不休,犹如一盘散沙,不懂得整合优势资源**——黄宏升"
+      },
+      {
+        "line": 179,
+        "wrong": "确时",
+        "correct": "确实",
+        "note": "实：确实应用'实'",
+        "context": "人生如同那颗白色的母球，在五分点的挑战中，三点一线，瞄准袋口。当我们击球的质量不佳，或是击球点不准确时，这些失误都会反馈到白球的轨迹上。随着我们不断寻找正确的击球点，纠正自己的错误，我们就能调整正确的生活方向，使人生重回正轨。"
+      },
+      {
+        "line": 166,
+        "wrong": "因有",
+        "correct": "应有",
+        "note": "应：应有应用'应'",
+        "context": "这门生意我看好的原因有两个"
+      }
+    ],
+    "2025-02-22-unsafe-swift-using-pointers-and-interacting-with-c.md": [
+      {
+        "line": 132,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "有趣的是，步长（`stride`）为 1。这是因为即使 `EmptyStruct` 的大小为零，你创建的每个 `EmptyStruct` 都必须有一个唯一的内存地址。"
+      },
+      {
+        "line": 388,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "你绝不应该让指针逃逸出 `withUnsafeBytes(of:)` 闭包。即使你的代码现在可以运行，未来也可能会导致奇怪的错误。"
+      }
+    ],
+    "2025-02-23-the-basics-on-the-memory-layout-of-swift-struct-instances.md": [
+      {
+        "line": 260,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "正如我们所见，即使是计算大小，也没有看起来那么简单——每个属性的大小和对齐方式之间存在相互作用，这决定了结构体的整体大小。因此，理解这三者意味着你正在成为内存管理的高手。"
+      }
+    ],
+    "2025-05-11-MemoryAlignmentAlgorithm.md": [
+      {
+        "line": 20,
+        "wrong": "Arguements",
+        "correct": "arguments",
+        "note": "英文拼写错误: arguements -> arguments",
+        "context": "在学习《Metal》 GPU着色器编程中 有一章讲解GPU资源堆(Resource Heap)的参数缓冲(Arguements Buffer)中需要从CPU送资源到GPU时遇到一段代码计算资源的内存占用的算法,很有意思,在此记录下来."
+      }
+    ],
+    "2025-10-20-interpolating-points-in-ios-with-uibezierpath.md": [
+      {
+        "line": 62,
+        "wrong": "在给",
+        "correct": "再给",
+        "note": "再：表示重复应用'再'",
+        "context": "改变 alpha 值对曲线形状有显著影响，尤其是在高曲率区域。需要注意的是，表示 Catmull-Rom 曲线的分段三次贝塞尔曲线在给定插值点<i>Pn</i>处的计算考虑了点<i>Pn-1、Pn、Pn+1 和 Pn+2</i>，因此生成的三次贝塞尔曲线不会穿过第一个和最后一个拟合点。可以添加额外的点，或者将曲线创建为闭合环。"
+      }
+    ],
+    "2025-11-17-swiftaiagent.md": [
+      {
+        "line": 382,
+        "wrong": "在想",
+        "correct": "再想",
+        "note": "再：表示重复应用'再'",
+        "context": "一个简单的请求就有四条消息！现在想象："
+      },
+      {
+        "line": 544,
+        "wrong": "在想",
+        "correct": "再想",
+        "note": "再：表示重复应用'再'",
+        "context": "print(\"🎮 我在想这个集合中的一个表情符号: \\(emojiSet.joined())\")"
+      }
+    ],
+    "2025-12-31-finalsummary.md": [
+      {
+        "line": 49,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "梁文峰：在颠覆性的技术面前，闭源形成的护城河是短暂的，即使OpenAI闭源也无法阻止被别人赶超。所以我们把价值沉淀在团队上，我们的同事在这个过程中得到成长，积累很多，形成可以创新的组织和文化就是我们的护城河。开源发论文其实并没有失去什么，对于技术人员来说，被follow是很有成就感的事。其实开源更像一个文化行为而非商业行为，给予其实是一种额外的荣誉，一个公司这么做也会有文化的吸引力。"
+      },
+      {
+        "line": 200,
+        "wrong": "兰球",
+        "correct": "篮球",
+        "note": "篮：篮球应用'篮'",
+        "context": "就在年末这几天 乔氏发布了 乔氏紫罗兰球台-乔氏Q5. 18800¥. 距离我开球房的梦想又近了一步."
+      }
+    ],
+    "2026-03-16-magicalparticleeffectswithswiftuicanvas.md": [
+      {
+        "line": 75,
+        "wrong": "在来",
+        "correct": "再来",
+        "note": "再：表示重复应用'再'",
+        "context": "现在来让粒子运动。"
+      }
+    ],
+    "2026-07-01-LLVMAttributeCompleteGuide.md": [
+      {
+        "line": 167,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "// 即使提前 return / break 也会调用！"
+      },
+      {
+        "line": 631,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "// 强制编译器内联，即使在 Debug 模式下"
+      },
+      {
+        "line": 649,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "// 即使是 static 且只调用一次，编译器也不内联"
+      },
+      {
+        "line": 792,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "// 即使没有任何地方显式调用，也不被 LTO 删除"
+      },
+      {
+        "line": 1016,
+        "wrong": "即使",
+        "correct": "即使",
+        "note": "既/即：即使应为'即使'",
+        "context": "// 即使抛出异常，作用域内的 cleanup 变量也会被调用"
+      }
+    ],
+    "2026-08-20-cmu15.md": [
+      {
+        "line": 363,
+        "wrong": "部步",
+        "correct": "步骤",
+        "note": "步：步骤应用'步'",
+        "context": "- 局部步骤：每顶点的最优 $R_i$ 由 SVD 得到；全局步骤：解线性系统"
+      }
+    ]
+  }
+}

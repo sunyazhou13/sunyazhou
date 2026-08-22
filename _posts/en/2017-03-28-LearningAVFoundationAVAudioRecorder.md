@@ -96,7 +96,7 @@ Like this:
 }
 ```
 
-Here it is recommended to call the `[self.recorder prepareToRecord]` method to pre-configure the recording instance, similar to creating an `AVAudioPlayer` in the [previous chapter](http://sunyazhou.com/2017/03/17/Learning-AV-Foundation-AVAudioPlayer/). Both are necessary steps to run the low-level `Audio Queue` initialization. This `prepareToRecord` method also creates a file at the location specified by the given URL parameter, which reduces the latency when recording starts.
+Here it is recommended to call the `[self.recorder prepareToRecord]` method to pre-configure the recording instance, similar to creating an `AVAudioPlayer` in the [previous chapter](https://www.sunyazhou.com/2017/03/LearningAVFoundationAVAudioPlayer/). Both are necessary steps to run the low-level `Audio Queue` initialization. This `prepareToRecord` method also creates a file at the location specified by the given URL parameter, which reduces the latency when recording starts.
 
 Audio Format
 --
@@ -148,12 +148,12 @@ CF_ENUM(AudioFormatID)
 Here `kAudioFormatLinearPCM` writes the uncompressed audio stream to the file. This is the raw data, offering the highest fidelity but also the largest file size. Choosing formats like ACC`kAudioFormatMPEG4AAC` or AppleIMA4`kAudioFormatAppleLossless` will significantly reduce the file size while still maintaining audio quality.
 > *Note:*
 > *The specified audio format must match the file type of the URL you write to. If you record a xxx.wav file, it must follow the Waveform Audio File Format (WAVE) requirements, i.e., little-endian LinearPCM. If the value specified for `AVFormatIDKey` is not `kAudioFormatLinearPCM`, an error will occur. NSError will return an error like the following:*
-> *The operation couldn't be completed. (OSState error 1718449215.)*
+> *The operation couldn't be completed. (OSStatus error 1718449215.)*
 
 Sample Rate
 --
 
-In the code above, `AVSampleRateKey` is used to define the sample rate of the recorder. **The sample rate defines the number of samples taken per second of the input analog audio signal.** Using a **low sample rate**, such as 8kHz, results in a coarse, AM radio-like recording quality, though the file size is smaller; using a **44.1kHz sample rate (CD-quality sample rate)** yields very high quality content, but the file is larger. There are no strict rules about which sample rate to use, but developers should try to stick to **standard sample rates, such as 8000Hz, 16000Hz (16kHz), 22050Hz (22.05kHz), or 44100Hz (44.1kHz), and of course 48000Hz and 96000Hz** (kHz stands for kilohertz). Sample rates above 48000 or 96000 are meaningless to the human ear. Ultimately, it's our ears that do the judging. (The [previous chapter](http://sunyazhou.com/2017/03/17/Learning-AV-Foundation-AVAudioPlayer/) mentioned that **the audible frequency range of the human ear starts from a low of 20Hz up to a high of 20kHz**, so recording is best done at 2x that frequency.)
+In the code above, `AVSampleRateKey` is used to define the sample rate of the recorder. **The sample rate defines the number of samples taken per second of the input analog audio signal.** Using a **low sample rate**, such as 8kHz, results in a coarse, AM radio-like recording quality, though the file size is smaller; using a **44.1kHz sample rate (CD-quality sample rate)** yields very high quality content, but the file is larger. There are no strict rules about which sample rate to use, but developers should try to stick to **standard sample rates, such as 8000Hz, 16000Hz (16kHz), 22050Hz (22.05kHz), or 44100Hz (44.1kHz), and of course 48000Hz and 96000Hz** (kHz stands for kilohertz). Sample rates above 48000 or 96000 are meaningless to the human ear. Ultimately, it's our ears that do the judging. (The [previous chapter](https://www.sunyazhou.com/2017/03/LearningAVFoundationAVAudioPlayer/) mentioned that **the audible frequency range of the human ear starts from a low of 20Hz up to a high of 20kHz**, so recording is best done at 2x that frequency.)
 
 Number of Channels
 --
@@ -241,9 +241,9 @@ In `AppDelegate`, import `#import <AVFoundation/AVFoundation.h>` and add the fol
 }
 ```
 
-This `AVAudioSessionCategoryPlayAndRecord` is one of those categories described in the [previous chapter](http://sunyazhou.com/2017/03/17/Learning-AV-Foundation-AVAudioPlayer/). We need the **record + play** functionality.
+This `AVAudioSessionCategoryPlayAndRecord` is one of those categories described in the [previous chapter](https://www.sunyazhou.com/2017/03/LearningAVFoundationAVAudioPlayer/). We need the **record + play** functionality.
 
-Next, configure the permission information in the plist file. You can refer to the article [Access privacy-sensitive data](http://localhost:4000/2017/03/20/Access-privacy-sensitive-data-private-access-permission/) and fill in the required access permission information.
+Next, configure the permission information in the plist file. You can refer to the article [Access privacy-sensitive data](https://www.sunyazhou.com/2017/03/AccessPrivacySensitive/) and fill in the required access permission information.
 
 ![plist1](/assets/images/20170328LearningAVFoundationAVAudioRecorder/FillInfo.avif)
 

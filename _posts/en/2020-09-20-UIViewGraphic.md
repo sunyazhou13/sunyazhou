@@ -97,7 +97,7 @@ I've mentioned the following article more than once in earlier posts when discus
 3. Setting a UIView's contentMode or Frame immediately triggers the system to call `drawRect:`
 4. Directly calling `setNeedsDisplay` to set the flag, or `setNeedsDisplayInRect:`, triggers `drawRect:`
 
-> Knowledge expansion: when we manipulate the drawRect method, we're actually operating on the backingStore region in memory that holds the view, for subsequent graphics rendering operations. If this is unclear, see [The rendering process of UIView](https://www.sunyazhou.com/2017/10/16/20171016UIViewRendering/).
+> Knowledge expansion: when we manipulate the drawRect method, we're actually operating on the backingStore region in memory that holds the view, for subsequent graphics rendering operations. If this is unclear, see [The rendering process of UIView](https://www.sunyazhou.com/2017/10/UIViewRendering/).
 
 ### 5. How UI refreshing works
 
@@ -109,7 +109,7 @@ iOS's `MainRunloop` is a 60fps callback — that is, the screen is drawn once ev
 * Drawing of the view's content (if drawRect is overridden)
 * Receiving and processing system touch events
 
-The UI graphics we see are actually the result of continuous cooperation between the CPU and GPU. After [the rendering process of UIView](https://www.sunyazhou.com/2017/10/16/20171016UIViewRendering/), our UI continuously receives the events the system gives us.
+The UI graphics we see are actually the result of continuous cooperation between the CPU and GPU. After [the rendering process of UIView](https://www.sunyazhou.com/2017/10/UIViewRendering/), our UI continuously receives the events the system gives us.
 
 Because the main thread's runloop keeps callback-ing, our UI gets the window for refreshing. Whether rendering or handling events, it's all the result of the runloop working non-stop. In earlier posts we learned that the main thread's runloop is started by default, because we respond to interaction.
 

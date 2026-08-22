@@ -6,11 +6,9 @@ categories: [iOS]
 tags: [iOS, macOS, Objective-C]
 typora-root-url: ..
 
-
 ---
 
 ![whatisnewsinios](/assets/images/20170713ios11NewSkills/whatisnewsinios11.avif)
-
 
 ## Availability Checking API
 
@@ -29,7 +27,6 @@ Like the following code
 In Xcode 9, the compiler adds Objective-C version of API availability checking
 
 ##### Mark method availability with the `API_AVAILABLE` macro
-
 
 ``` objc
 @interface ViewController : UIViewController
@@ -82,10 +79,9 @@ If your project wants to use this new LLVM feature, you need to modify the `Ungu
 
 ![availability](/assets/images/20170713ios11NewSkills/availability.avif)
 
-
 ## Static Analysis
 
-In an earlier article I talked about [Static Analysis](http://www.sunyazhou.com/2017/06/20/enable-static-analyer/)
+In an earlier article I talked about [Static Analysis](https://www.sunyazhou.com/2017/06/EnableStaticAnalyer/)
 
 Here I'll talk about the changes
 
@@ -99,7 +95,6 @@ When we mistakenly judge an NSNumber, static analysis gives us a hint
 In Xcode 9, you can directly change such ignored problems into errors
 
 ![static](/assets/images/20170713ios11NewSkills/static.avif)
-
 
 ## Enable LTO and Set It to Incremental Mode
 
@@ -119,9 +114,7 @@ Enable LTO
 
 It's said to optimize the package size and runtime speed by about 10%
 
-
 ## GCD Unified Queue Identifier
-
 
 The unified queue identifier refers to queues created in various places scattered around the project. If the queue identifiers are the same, they will be bound together in the kernel, which can improve efficiency by 30%. Apple hasn't told us how the kernel does this, but it provides this suggestion: if a category of operations are similar in importance or other attributes, or if the developer wants scattered code in the project to be controlled in the same queue, then we can specify a common identifier when creating the queue. The system will then bind queues with the same identifier together in the kernel for management
 
@@ -136,7 +129,6 @@ As in the following code, if the app uses the same string everywhere, efficiency
 
 > Honestly speaking, in a project it's unavoidable to have file uploads/downloads or time-consuming tasks. Making everything one queue clearly doesn't fit the business requirements. If you want to keep queues with a single identifier as much as possible, you can only do it based on business categories. It's worth trying when you get the chance
 
-
 End
 
-[Reference](https://techblog.toutiao.com/2017/07/05/session0-2/)
+Reference

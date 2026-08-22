@@ -8,7 +8,6 @@ typora-root-url: ..
 
 ---
 
-
 ![banner](/assets/images/20241231FinalSummary/banner.avif)
 <button type="button" class="btn btn-info" data-toggle="popover" title="Magotan1990" data-content="on the way to play billiards">Trample Every Difficulty Underfoot</button>
 
@@ -75,7 +74,6 @@ This bitter life experience is not my fault, and yet it also seems to be. Not my
 ### What Are the Old Friends and Classmates Doing Now?
 
 Whenever I step onto the subway, pull out my phone, open iBook and read Metal by Tutorials 4th 2023 — looking at professional graphics and imaging books that no one around has ever heard of, staring at cold technical points and shader code — I often wonder: are there really people around me like this, people who study strange, obscure functions every day? What are they all doing at this moment? At those times I feel utterly lonely. Perhaps, as Qin Xida says to Xiang Yunfeng in "Northern School Tomb-Raiding Notes": "The strong are destined to be lonely..."
-
 
 ## Work
 
@@ -193,13 +191,11 @@ Finally, without hobbies, I can't help but ask: do we live to endure the bittern
 
 Once we wore the label of a "hooligan's game," sweating it out on street corners and in alleyways, while we could only look up at high-born snooker and nine-ball, sighing in vain. We were like grass in the cracks of stone, weighed down by the crushing pressure of barely being able to break through — humble, small, cold-shouldered and despised, even nearly strangled without mercy. Ding Junhui has his own villa, and Pan Xiaoting's sports car is quite luxurious too. But we had nothing — only bitter practice after work, drifting from place to place. We used ourselves to prove this sport's existence, tasting all the sour and sweet of the human world. Because of love, we could not let go; because of dreams, our hearts grew immensely strong. We gritted our teeth and persevered, practicing alone — moving how many people to tears and fire. A certain "uncle" heard our anguished cries: Joy took up the great banner and fought side by side with us. Joy filled us with endless hope, and we fought hard for Joy, never giving up, never falling. A band of rebels who refused to bow to fate finally breathed a sigh of pride. Every stroke swung under crushing pressure was a silent strike against fate. And this old man pushed this sport onto the world's Olympic stage, a feat that became a much-told tale. Only then did I learn that billiards could be this great. The Joy Chinese Eight-Ball Masters is already 18 years old; it will surely venture forth into the world's sporting events, wiping away that "hooligan's game" label for us humble billiards lovers while leaving the glory of this sport under the spotlight of the world billiard stage.
 
-
 ### The Future of Billiards
 
-This sport has shown me a fairness of competition I had never felt before — pure skill does the talking. It contains a great deal of technique and knowledge. To ordinary people it probably looks like nothing more than a few wooden sticks and a tabletop with green cloth, but in fact there are many opportunities here waiting to be unearthed: for example, the best-quality cushion rubber comes from [China's Zhenhong Rubber](http://www.j-hrubber.com/) (the rubber strips along the table rails); the best cloth makers are China's [Liberwintex](https://www.liberwintex.com/) and [UK's Strachan 6811](https://strachan.co/zh-hans/). Cue brands of every kind are endorsed by professional players, though plenty are good — Peri, Lis Billiard Club, Lankou, and all sorts of brands, as plentiful as cars. There are also companies making cue tips and chalk, such as Xiaomai tips and HR chalk. Without going deep into this industry, you'd never understand its supply chain — even the slate suppliers, and the Aramith TV balls imported from Belgium. In recent years, Huyi Lighting (a company specializing in shadowless lamps above billiard tables) has become quite popular, and there's also Shenglizhe, which specializes in sofas made for billiards.
+This sport has shown me a fairness of competition I had never felt before — pure skill does the talking. It contains a great deal of technique and knowledge. To ordinary people it probably looks like nothing more than a few wooden sticks and a tabletop with green cloth, but in fact there are many opportunities here waiting to be unearthed: for example, the best-quality cushion rubber comes from China's Zhenhong Rubber (the rubber strips along the table rails); the best cloth makers are China's [Liberwintex](https://www.liberwintex.com/) and [UK's Strachan 6811](https://strachan.co/zh-hans/). Cue brands of every kind are endorsed by professional players, though plenty are good — Peri, Lis Billiard Club, Lankou, and all sorts of brands, as plentiful as cars. There are also companies making cue tips and chalk, such as Xiaomai tips and HR chalk. Without going deep into this industry, you'd never understand its supply chain — even the slate suppliers, and the Aramith TV balls imported from Belgium. In recent years, Huyi Lighting (a company specializing in shadowless lamps above billiard tables) has become quite popular, and there's also Shenglizhe, which specializes in sofas made for billiards.
 
 This is an insider's business. We always say that under the current employment pressure it's hard to find our own second curve. Here's what I'd say: whatever the curve, it takes time and energy to understand and study in depth — every curve is reserved for those who are prepared.
-
 
 ## Buying a Home
 
@@ -223,7 +219,6 @@ This system, I think, is something the country should hear feedback on — it is
 ![gjj](/assets/images/20241231FinalSummary/gjj.avif)  
 
 Going through this home purchase left me feeling how close a call it was. For penniless poor people, buying a home in Beijing is truly an enormous challenge. You really don't know whether unemployment or tomorrow comes first! Without parents to catch you in life, and with the state taking away young people's entire income in one go — even emptying parents' wallets — how can there be any consumption left? How could the economy possibly improve? The economy can only stagnate.
-
 
 # Summary
 

@@ -29,7 +29,7 @@ Now let's write a script to implement it.
 
 As someone who hasn't really studied scripting for many years, I felt quite numb facing this sudden requirement. Miao Shen (the "Cat God") once said: "When many people first encounter a technology they're not good at, they feel a sense of fear, and this fear comes from the unknown!" So how do you solve technical problems you don't understand? -- `ChatGPT`
 
-First open [ChatGPT](https://chat.openai.com/) and enter the following:
+First open ChatGPT and enter the following:
 
 ``` txt
 写个shell脚本 指定 Mac  中Downloads目录下的所有HEIC格式一次批量转成png

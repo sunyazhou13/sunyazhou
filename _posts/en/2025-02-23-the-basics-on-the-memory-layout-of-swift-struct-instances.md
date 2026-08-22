@@ -10,11 +10,9 @@ typora-root-url: ..
 
 ![Swift UI](/assets/images/20240727Magnificationgesture/SwiftUI.avif)
 
-
 # Preface
 
 This post carries strong personal opinions; if reading it makes you uncomfortable, please close it right away. This article is only for my personal study notes. You're welcome to repost or share it within the scope of the license — please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!
-
 
 ## Background
 
@@ -23,7 +21,6 @@ This post carries strong personal opinions; if reading it makes you uncomfortabl
 While studying "Metal.by.Tutorials.4th.2023.12" in 2024, the book mentioned the memory layout of Swift struct instances, so I put these notes together.
 
 ## Size, Stride, Alignment
-
 
 The basics of the memory layout of Swift struct instances
 > March 12, 2018 ∙ Swift Internals ∙ By Greg Heo
@@ -81,7 +78,6 @@ struct Puppy {
 
 the size of the struct should match the sizes of its properties:
 
-
 ``` swift
 MemoryLayout<Int>.size + MemoryLayout<Bool>.size
 // returns 9, from 8 + 1
@@ -119,7 +115,6 @@ So the actual layout looks like this:
 In other words, if you have a byte pointer to the first element and want to move to the second, the stride is how many bytes you need to advance the pointer.
 
 Why would the size and stride differ? That brings us to the last magic number of memory layout.
-
 
 ## Alignment
 
@@ -252,7 +247,6 @@ Say you have an `UnsafeRawPointer` (the equivalent of `void *` in C). You know t
 
 ![size-stride-alignment-summary](/assets/images/20250223SwiftStructMemoryLayout/size-stride-alignment-summary.avif)
 
-
 For most of us, most of the time, we work with high-level collections like arrays and sets and don't need to think about the memory layout underneath.
 
 In other cases, you might need to use low-level APIs on the platform, or interoperate with C code. If you have an array of Swift structs and need C code to read it (or vice versa), then you need to worry about allocating buffers with the correct alignment, ensuring the padding bytes inside the structs line up, and making sure you have the right stride values so the data is interpreted correctly.
@@ -264,8 +258,7 @@ Interested in going deeper?
 - ["Data structure alignment" on Wikipedia](https://en.wikipedia.org/wiki/Data_structure_alignment)  
 - The ["Type Layout" article in the Swift docs](https://github.com/apple/swift/blob/master/docs/ABI/TypeLayout.rst), which explains how the size, stride, and alignment of a struct are computed.  
 - [The `getAlignOf` source in LLVM](https://github.com/apple/swift-llvm/blob/stable/lib/IR/Constants.cpp#L1800-L1811)
-- [Swift's `UnsafeMutableRawPointer.allocate(byteCount:alignment:)`, which takes size and alignment parameters](https://developer.apple.com/documentation/swift/unsafemutablerawpointer/allocate(bytecount:alignment:))
-
+- [Swift's `UnsafeMutableRawPointer.allocate(byteCount:alignment:)`, which takes size and alignment parameters](:))
 
 # Summary
 
