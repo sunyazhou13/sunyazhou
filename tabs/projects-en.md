@@ -3,6 +3,7 @@ title: Projects
 icon: fa-solid fa-paintbrush
 date: 2018-03-12 07:37:06
 lang: en
+comments: true
 permalink: /tabs/projects/
 ---
 
