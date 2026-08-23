@@ -440,23 +440,26 @@
     var p = iloc.off + iloc.hdr;
     var ver = dv.getUint8(p);
     p += 4; // fullbox
-    if (ver >= 2) throw new Error('不支持的 iloc 版本（' + ver + '），当前仅支持 0/1');
+    if (ver >= 3) throw new Error('不支持的 iloc 版本（' + ver + '），当前仅支持 0/1/2');
     var sizes1 = dv.getUint8(p);
     var sizes2 = dv.getUint8(p + 1);
     p += 2;
     var offsetSize = sizes1 >> 4, lengthSize = sizes1 & 15;
     var baseOffsetSize = sizes2 >> 4, indexSize = sizes2 & 15;
-    var idBytes = ver === 0 ? 2 : 4;
-    var count = ver === 0 ? dv.getUint16(p, false) : dv.getUint32(p, false);
-    p += ver === 0 ? 2 : 4;
+    var idBytes = ver >= 3 ? 4 : 2; // item_ID 仅 v3 起 32 位
+    var count = ver >= 2 ? dv.getUint32(p, false) : dv.getUint16(p, false);
+    p += ver >= 2 ? 4 : 2;
+    // 苹果 HEIC iloc(v1) header 常把 base_offset_size 写为 0，但每个 entry 实际固定多 2 字节 base_offset
+    var baseSize = baseOffsetSize > 0 ? baseOffsetSize : 2;
     var entries = [];
     var i, j;
     for (i = 0; i < count; i++) {
       var id = idBytes === 2 ? dv.getUint16(p, false) : dv.getUint32(p, false);
       p += idBytes;
+      var dref = dv.getUint16(p, false);
       p += 2; // data_reference_index
-      var base = baseOffsetSize ? intFrom(dv, p, baseOffsetSize) : 0;
-      p += baseOffsetSize;
+      var base = baseSize ? intFrom(dv, p, baseSize) : 0;
+      p += baseSize;
       var extCount = dv.getUint16(p, false);
       p += 2;
       var exts = [];
@@ -468,26 +471,28 @@
         p += lengthSize;
         exts.push([base + eo, el]);
       }
-      entries.push({ id: id, base: base, exts: exts });
+      entries.push({ id: id, dref: dref, base: base, exts: exts });
     }
     return { ver: ver, offsetSize: offsetSize, lengthSize: lengthSize, baseOffsetSize: baseOffsetSize, indexSize: indexSize, entries: entries };
   }
 
   // 重建 iloc（保留原始 ver/sizes，重写条目与偏移）
-  function buildIloc(ilocInfo, entries) {
+  // 重建 iloc：保留原始头部(含 ver/sizes 字节)逐字节不动——Apple 解码器要求 header 原样，
+  // 仅重写 entry_count 与各条目(含 extent 偏移重算)
+  function buildIloc(ilocInfo, entries, rawHead) {
     var ver = ilocInfo.ver;
-    var idBytes = ver === 0 ? 2 : 4;
-    var head = [0, 0, 0, 0, 105, 108, 111, 99]; // size 占位 + 'iloc'
-    var body = [0, 0, 0, 0]; // fullbox
-    body.push((ilocInfo.offsetSize << 4) | ilocInfo.lengthSize);
-    body.push((ilocInfo.baseOffsetSize << 4) | ilocInfo.indexSize);
-    if (ver === 0) push16(body, entries.length); else push32(body, entries.length);
+    var idBytes = ver >= 3 ? 4 : 2;
+    var baseSize = ilocInfo.baseOffsetSize > 0 ? ilocInfo.baseOffsetSize : 2;
+    // rawHead 为原始 iloc 的 box 头 + fullbox + sizes（共 14 字节），原样复用
+    var head = Array.prototype.slice.call(rawHead);
+    var body = [];
+    if (ver >= 2) push32(body, entries.length); else push16(body, entries.length);
     var i, j;
     for (i = 0; i < entries.length; i++) {
       var e = entries[i];
       if (idBytes === 2) push16(body, e.id); else push32(body, e.id);
-      push16(body, 0); // data_reference_index
-      if (ilocInfo.baseOffsetSize) pushInt(body, e.base, ilocInfo.baseOffsetSize);
+      push16(body, typeof e.dref === 'number' ? e.dref : 0); // data_reference_index（保留原值，idat 引用必须为 1）
+      if (baseSize) pushInt(body, e.base, baseSize);
       push16(body, e.exts.length);
       for (j = 0; j < e.exts.length; j++) {
         if (ilocInfo.indexSize) pushInt(body, 0, ilocInfo.indexSize);
@@ -518,16 +523,26 @@
     return out;
   }
 
-  // iref 引用子 box 是否涉及 Exif（匹配 16 位 iinf 序号或 32 位 item id）
-  function refTargetsExif(bytes, child, ordinal, exifId) {
-    var c = bytes.subarray(child.off + child.hdr, child.off + child.size);
-    var i;
-    for (i = 0; i + 2 <= c.length; i++) {
-      if (((c[i] << 8) | c[i + 1]) === ordinal) return true;
+  // iref 引用子 box 是否涉及 Exif：结构化解析 from_item_ID / to_item_ID 列表，
+  // 仅当 from 或任一 to 等于 Exif 的 item_ID 时才视为命中（避免字节流扫描误删 dimg/cdsc）
+  function refTargetsExif(bytes, dv, child, exifId) {
+    var iv = dv.getUint8(child.off + child.hdr); // reference box version
+    var idS = iv === 1 ? 4 : 2;
+    var end = child.off + child.size;
+    var p = child.off + child.hdr + 4;
+    var from, cnt, j;
+    if (idS === 2) {
+      from = dv.getUint16(p, false); p += 2;
+      cnt = dv.getUint16(p, false); p += 2;
+    } else {
+      from = dv.getUint32(p, false); p += 4;
+      cnt = dv.getUint16(p, false); p += 2;
     }
-    for (i = 0; i + 4 <= c.length; i++) {
-      if (c[i] === (exifId >>> 24) && c[i + 1] === ((exifId >>> 16) & 255) &&
-        c[i + 2] === ((exifId >>> 8) & 255) && c[i + 3] === (exifId & 255)) return true;
+    if (from === exifId) return true;
+    for (j = 0; j < cnt; j++) {
+      var to = idS === 2 ? dv.getUint16(p, false) : dv.getUint32(p, false);
+      p += idS;
+      if (to === exifId) return true;
     }
     return false;
   }
@@ -539,7 +554,7 @@
     var parts = [new Uint8Array(head)];
     var i;
     for (i = 0; i < refs.length; i++) {
-      if (refTargetsExif(bytes, refs[i], ordinal, exifId)) continue;
+      if (refTargetsExif(bytes, dv, refs[i], exifId)) continue;
       parts.push(bytes.subarray(refs[i].off, refs[i].off + refs[i].size));
     }
     var out = concatU8(parts);
@@ -587,8 +602,9 @@
   // HEIC 剥离：删 Exif infe/iloc 条目/iref 引用，物理挖除 mdat 中 Exif 数据，
   // 重算保留 extent 偏移并重建 meta/mdat。返回新 ArrayBuffer；无 Exif 时返回 null。
   function stripHeic(buffer) {
-    var bytes = new Uint8Array(buffer);
-    var dv = new DataView(buffer);
+    // 兼容传入 Uint8Array 或 ArrayBuffer（浏览器上传路径传 Uint8Array，内部测试传 ArrayBuffer）
+    var bytes = buffer instanceof Uint8Array ? new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength) : new Uint8Array(buffer);
+    var dv = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
     var tops = walkBoxes(bytes, dv, 0, bytes.byteLength);
     var i, j, k;
     var ftyp = null, meta = null, mdat = null;
@@ -648,7 +664,9 @@
     for (i = 0; i < ilocInfo.entries.length; i++)
       if (ilocInfo.entries[i].id !== exifItem.id) keptEntries.push(ilocInfo.entries[i]);
     // 5) 先占位构建 iloc 得长度，再推算新绝对偏移
-    var dummyIloc = buildIloc(ilocInfo, keptEntries);
+    // rawIlocHead：原始 iloc 的 box头8 + fullbox4 + sizes2（Apple 解码器要求 header 逐字节原样）
+    var rawIlocHead = bytes.subarray(iloc.off, iloc.off + iloc.hdr + 2 + 4);
+    var dummyIloc = buildIloc(ilocInfo, keptEntries, rawIlocHead);
     var metaHead = bytes.subarray(meta.off, meta.off + meta.hdr + 4); // header(8)+fullbox(4)
     var baseParts = [new Uint8Array(metaHead)];
     for (i = 0; i < children.length; i++) {
@@ -691,9 +709,9 @@
         }
         nx.push([newAbs - e.base, el]);
       }
-      newKept.push({ id: e.id, base: e.base, exts: nx });
+      newKept.push({ id: e.id, dref: e.dref, base: e.base, exts: nx });
     }
-    var newIloc = buildIloc(ilocInfo, newKept);
+    var newIloc = buildIloc(ilocInfo, newKept, rawIlocHead);
     // 6) 组装 meta（iloc 插回原位置）
     var finalParts = [new Uint8Array(metaHead)];
     for (i = 0; i < children.length; i++) {
@@ -847,7 +865,7 @@
         try {
           heicResult = stripHeic(bytes);
         } catch (e2) {
-          note('HEIC 抹除失败：' + (e2 && e2.message || e2));
+          note('HEIC 抹除失败：' + (e2 && e2.stack || e2));
           return;
         }
         if (!heicResult) { note('该 HEIC 未发现可抹除的 EXIF 元数据'); return; }
