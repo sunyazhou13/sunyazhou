@@ -92,3 +92,51 @@
   description: XML 树形浏览、格式化、压缩、复制与下载
   category: 数据处理
   enabled: true
+
+- id: exif-stripper
+  title: 图片隐私脱敏器
+  icon: fas fa-eye-slash
+  description: 上传图片展示全部 EXIF 元数据（GPS 坐标、设备型号、拍摄时间等），一键抹除后下载，对比擦除前后文件大小与 metadata 占比，纯本地解析 JPEG/PNG 不上传
+  path: /tools/exif-stripper/
+  category: 图片与图像
+  enabled: true
+
+- id: grid-crop
+  title: 九宫格切图
+  icon: fas fa-th-large
+  description: 上传图片按 3×3 切成 9 张，主体锚点保护自动调整网格避免人物被拦腰切断，支持平移微调，预览后打包下载全部 9 张，纯本地处理不上传
+  path: /tools/grid-crop/
+  category: 图片与图像
+  enabled: true
+
+- id: url-encode
+  title: URL 编码解码
+  icon: fas fa-link
+  description: 文本与 URL 编码（%20%2F）互转，支持 encodeURIComponent 与 encodeURI 两种模式，双向一键互换、一键复制，纯本地处理不上传
+  path: /tools/url-encode/
+  category: 编码转换
+  enabled: true
+
+- id: jwt-parser
+  title: JWT 在线解析器
+  icon: fas fa-user-secret
+  description: 粘贴 JWT 自动解码 Header 与 Payload 为 JSON 树，高亮过期时间并计算剩余天数，内置 HMAC-SHA256 签名校验、篡改演示，纯本地解析不上传
+  path: /tools/jwt-parser/
+  category: 编码转换
+  enabled: true
+
+- id: uuid-ulid
+  title: UUID / ULID 生成器
+  icon: fas fa-fingerprint
+  description: 一键批量生成 1 / 10 / 100 个 UUID v4 与 ULID，支持复制单个或全部、换一批，纯本地生成不上传
+  path: /tools/uuid-ulid/
+  category: 编码转换
+  enabled: true
+
+- id: regex-tester
+  title: 正则表达式测试器
+  icon: fas fa-terminal
+  description: 输入正则与测试文本实时高亮所有匹配项，展示捕获分组与匹配数量，提供回溯 / 复杂度监控并对灾难性回溯写法给出警示，纯本地计算不上传
+  path: /tools/regex-tester/
+  category: 编码转换
+  enabled: true
