@@ -614,7 +614,7 @@
     '{',
     '  "site": "sunyazhou.com",',
     '  "author": "孙亚洲",',
-    '  "logo": "https://sunyazhou.com/assets/img/favicon.png",',
+    '  "avatar": "https://www.sunyazhou.com/assets/img/avatar.jpg",',
     '  "tags": ["ios", "swift", "jekyll"],',
     '  "meta": {',
     '    "framework": "Jekyll + Chirpy",',

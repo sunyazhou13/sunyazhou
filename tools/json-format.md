@@ -34,7 +34,7 @@ icon: fas fa-file-code
     <button type="button" class="jf-btn" id="jf-download">下载 .json</button>
   </div>
 
-  <textarea id="jf-input" class="jf-input" rows="8" spellcheck="false" autocomplete="off" placeholder='{"host":"sunyazhou.com","avatar":"https://...png"}'></textarea>
+  <textarea id="jf-input" class="jf-input" rows="8" spellcheck="false" autocomplete="off" placeholder='{"host":"sunyazhou.com","avatar":"https://www.sunyazhou.com/assets/img/avatar.jpg"}'></textarea>
 
   <div class="jf-status" id="jf-status" aria-hidden="true"></div>
 

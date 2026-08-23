@@ -1,4 +1,4 @@
-I"X[<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
+I"�Z<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
 
 <h1 id="前言">前言</h1>
 
@@ -26,11 +26,11 @@
 
 <h3 id="第一步-gemfile-添加依赖">第一步: Gemfile 添加依赖</h3>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
-</pre></td> --><td class="rouge-code"><pre><span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
+</pre></td><td class="rouge-code"><pre><span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
   <span class="c1"># ... 其他 gem</span>
   <span class="n">gem</span> <span class="s2">"jekyll-tabs"</span>
 <span class="k">end</span>
@@ -38,15 +38,15 @@
 
 <p>然后执行安装:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td> --><td class="rouge-code"><pre>bundle <span class="nb">install</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>bundle <span class="nb">install</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="第二步-_configyml-声明插件">第二步: _config.yml 声明插件</h3>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td> --><td class="rouge-code"><pre><span class="na">plugins</span><span class="pi">:</span>
+</pre></td><td class="rouge-code"><pre><span class="na">plugins</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">jekyll-tabs</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
@@ -54,17 +54,17 @@
 
 <p>在 <code class="language-plaintext highlighter-rouge">_includes/js-selector.html</code> 的 post 部分加入:</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
-</pre></td> --><td class="rouge-code"><pre>{% elsif page.layout == 'post' %}
+</pre></td><td class="rouge-code"><pre>{% elsif page.layout == 'post' %}
   <span class="nt">&lt;script </span><span class="na">async</span> <span class="na">src=</span><span class="s">"{{ '/assets/js/post.min.js' | relative_url }}"</span><span class="nt">&gt;&lt;/script&gt;</span>
   <span class="nt">&lt;script </span><span class="na">defer</span> <span class="na">src=</span><span class="s">"{{ '/assets/AISource/jekyll-tabs/tabs.js' | relative_url }}"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>JS 初始化配置(在 <code class="language-plaintext highlighter-rouge">tabs.js</code> 末尾):</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -77,7 +77,7 @@
 11
 12
 13
-</pre></td> --><td class="rouge-code"><pre><span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">load</span><span class="dl">'</span><span class="p">,</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">load</span><span class="dl">'</span><span class="p">,</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">jekyllTabs</span><span class="p">.</span><span class="nf">init</span><span class="p">({</span>
     <span class="na">syncTabsWithSameLabels</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>   <span class="c1">// 同名 Tab 跨组联动</span>
     <span class="na">activateTabFromUrl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>       <span class="c1">// 关闭 URL hash,避免点击跳顶</span>
@@ -96,9 +96,9 @@
 
 <p>在 <code class="language-plaintext highlighter-rouge">_includes/head.html</code> 加入:</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td> --><td class="rouge-code"><pre><span class="c">&lt;!-- Jekyll Tabs --&gt;</span>
+</pre></td><td class="rouge-code"><pre><span class="c">&lt;!-- Jekyll Tabs --&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{{ '/assets/AISource/jekyll-tabs/tabs.css' | relative_url }}"</span><span class="nt">&gt;</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
@@ -106,11 +106,11 @@
 
 <p>所有资源统一放在 <code class="language-plaintext highlighter-rouge">assets/AISource/jekyll-tabs/</code> 目录下:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
-</pre></td> --><td class="rouge-code"><pre>assets/AISource/
+</pre></td><td class="rouge-code"><pre>assets/AISource/
 └── jekyll-tabs/
     ├── tabs.js   <span class="c"># 官方 JS + 初始化配置</span>
     └── tabs.css  <span class="c"># 融合博客主题变量的自定义样式</span>
@@ -120,7 +120,7 @@
 
 <p>在文章 Markdown 中使用如下语法:</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -135,7 +135,7 @@
 13
 14
 15
-</pre></td> --><td class="rouge-code"><pre>{% tabs 组名 %}
+</pre></td><td class="rouge-code"><pre>{% tabs 组名 %}
 
 {% tab 组名 标签名 %}
 <span class="p">```</span><span class="nl">语言
@@ -160,7 +160,7 @@
 
 <h2 id="示例一-swift-vs-objective-c-打印-hello-world">示例一: Swift vs Objective-C 打印 Hello World</h2>
 
-<ul id="hello-world" class="tab" data-tab="7bea5cbd-ac1d-4f92-b725-86310edea28b" data-name="hello-world">
+<ul id="hello-world" class="tab" data-tab="50fb383e-8734-476e-ad2e-aac8997e7226" data-name="hello-world">
   
       <li class="active" id="hello-world-swift">
           <a href="#">Swift </a>
@@ -171,20 +171,20 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="7bea5cbd-ac1d-4f92-b725-86310edea28b" data-name="hello-world">
+<ul class="tab-content" id="50fb383e-8734-476e-ad2e-aac8997e7226" data-name="hello-world">
   
       <li class="active">
-<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td> --><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">greeting</span> <span class="o">=</span> <span class="s">"Hello, World!"</span>
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">greeting</span> <span class="o">=</span> <span class="s">"Hello, World!"</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">greeting</span><span class="p">)</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 </li>
   
       <li>
-<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td> --><td class="rouge-code"><pre><span class="n">NSString</span> <span class="o">*</span><span class="n">greeting</span> <span class="o">=</span> <span class="s">@"Hello, World!"</span><span class="p">;</span>
+</pre></td><td class="rouge-code"><pre><span class="n">NSString</span> <span class="o">*</span><span class="n">greeting</span> <span class="o">=</span> <span class="s">@"Hello, World!"</span><span class="p">;</span>
 <span class="n">NSLog</span><span class="p">(</span><span class="s">@"%@"</span><span class="p">,</span> <span class="n">greeting</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 </li>
@@ -193,7 +193,7 @@
 
 <h2 id="示例二-单例模式">示例二: 单例模式</h2>
 
-<ul id="singleton" class="tab" data-tab="7c7acfa1-8340-44b6-be6a-075eb8eb2320" data-name="singleton">
+<ul id="singleton" class="tab" data-tab="0ce0e67c-ba98-4fe3-8774-2ae7a693a706" data-name="singleton">
   
       <li class="active" id="singleton-swift">
           <a href="#">Swift </a>
@@ -204,10 +204,10 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="7c7acfa1-8340-44b6-be6a-075eb8eb2320" data-name="singleton">
+<ul class="tab-content" id="0ce0e67c-ba98-4fe3-8774-2ae7a693a706" data-name="singleton">
   
       <li class="active">
-<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -218,7 +218,7 @@
 9
 10
 11
-</pre></td> --><td class="rouge-code"><pre><span class="kd">class</span> <span class="kt">NetworkManager</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="kt">NetworkManager</span> <span class="p">{</span>
     <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span> <span class="o">=</span> <span class="kt">NetworkManager</span><span class="p">()</span>
     <span class="kd">private</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{}</span>
 
@@ -233,7 +233,7 @@
 </li>
   
       <li>
-<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -257,7 +257,7 @@
 22
 23
 24
-</pre></td> --><td class="rouge-code"><pre><span class="k">@interface</span> <span class="nc">NetworkManager</span> <span class="p">:</span> <span class="nc">NSObject</span>
+</pre></td><td class="rouge-code"><pre><span class="k">@interface</span> <span class="nc">NetworkManager</span> <span class="p">:</span> <span class="nc">NSObject</span>
 <span class="k">+</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="n">sharedManager</span><span class="p">;</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">requestWithURL</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">url</span><span class="p">;</span>
 <span class="k">@end</span>
@@ -288,7 +288,7 @@
 
 <h2 id="示例三-gcd-异步执行">示例三: GCD 异步执行</h2>
 
-<ul id="gcd" class="tab" data-tab="81e25690-ca2e-4dfa-8910-837bdd460dc6" data-name="gcd">
+<ul id="gcd" class="tab" data-tab="cf845326-a170-4803-85aa-2346f23612be" data-name="gcd">
   
       <li class="active" id="gcd-swift">
           <a href="#">Swift </a>
@@ -299,10 +299,10 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="81e25690-ca2e-4dfa-8910-837bdd460dc6" data-name="gcd">
+<ul class="tab-content" id="cf845326-a170-4803-85aa-2346f23612be" data-name="gcd">
   
       <li class="active">
-<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -311,7 +311,7 @@
 7
 8
 9
-</pre></td> --><td class="rouge-code"><pre><span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">global</span><span class="p">(</span><span class="nv">qos</span><span class="p">:</span> <span class="o">.</span><span class="n">background</span><span class="p">)</span><span class="o">.</span><span class="k">async</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">global</span><span class="p">(</span><span class="nv">qos</span><span class="p">:</span> <span class="o">.</span><span class="n">background</span><span class="p">)</span><span class="o">.</span><span class="k">async</span> <span class="p">{</span>
     <span class="c1">// 后台执行耗时任务</span>
     <span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="nf">heavyTask</span><span class="p">()</span>
     
@@ -324,7 +324,7 @@
 </li>
   
       <li>
-<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -333,7 +333,7 @@
 7
 8
 9
-</pre></td> --><td class="rouge-code"><pre><span class="n">dispatch_async</span><span class="p">(</span><span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">^</span><span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="n">dispatch_async</span><span class="p">(</span><span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">^</span><span class="p">{</span>
     <span class="c1">// 后台执行耗时任务</span>
     <span class="n">NSString</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nf">heavyTask</span><span class="p">];</span>
     
@@ -349,7 +349,7 @@
 
 <h2 id="示例四-三种语言对比">示例四: 三种语言对比</h2>
 
-<ul id="greet" class="tab" data-tab="dd526171-b355-4e39-a7c6-b53ad03c8454" data-name="greet">
+<ul id="greet" class="tab" data-tab="9718c2eb-53a6-4b3a-9ea7-7376a0b7959b" data-name="greet">
   
       <li class="active" id="greet-swift">
           <a href="#">Swift </a>
@@ -364,15 +364,15 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="dd526171-b355-4e39-a7c6-b53ad03c8454" data-name="greet">
+<ul class="tab-content" id="9718c2eb-53a6-4b3a-9ea7-7376a0b7959b" data-name="greet">
   
       <li class="active">
-<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-</pre></td> --><td class="rouge-code"><pre><span class="kd">func</span> <span class="nf">greet</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">func</span> <span class="nf">greet</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s">"你好, </span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s">!"</span>
 <span class="p">}</span>
 
@@ -381,11 +381,11 @@
 </li>
   
       <li>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
-</pre></td> --><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">return</span> <span class="sa">f</span><span class="sh">"</span><span class="s">你好, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">!</span><span class="sh">"</span>
 
 <span class="nf">print</span><span class="p">(</span><span class="nf">greet</span><span class="p">(</span><span class="sh">"</span><span class="s">孙亚洲</span><span class="sh">"</span><span class="p">))</span>
@@ -393,12 +393,12 @@
 </li>
   
       <li>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-</pre></td> --><td class="rouge-code"><pre><span class="kd">function</span> <span class="nf">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nf">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s2">`你好, </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">!`</span><span class="p">;</span>
 <span class="p">}</span>
 
