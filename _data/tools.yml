@@ -1,5 +1,5 @@
 # 工具注册表
-# 落地页 tabs/tools.md 按此列表渲染卡片，enabled: false 可单独下线某个工具
+# 落地页 tabs/tools.md 按 category 分组渲染卡片，enabled: false 可单独下线某个工具
 # 每个工具约定三处文件（全部互不依赖，可整体删除）：
 #   - tools/<id>.md            工具页面
 #   - assets/tools/<id>/       该工具全部静态资源（JS / CSS / WASM）
@@ -10,6 +10,7 @@
   icon: fas fa-image
   description: PNG / JPEG / WebP / GIF 批量转 AVIF，动图逐帧转码保留动画，纯本地转换不上传（WASM libaom）
   path: /tools/image-to-avif/
+  category: 图片与图像
   enabled: true
 
 - id: webp-heic
@@ -17,27 +18,7 @@
   icon: fas fa-exchange-alt
   description: PNG / JPEG / GIF / BMP / AVIF / HEIC 等互转 WebP / JPEG / PNG，纯本地转换不上传
   path: /tools/webp-heic/
-  enabled: true
-
-- id: hash-string
-  title: 字符串 Hash
-  icon: fas fa-hashtag
-  description: 输入字符串点击生成 MD5 / SHA1 / SHA256 / SHA384 / SHA512，支持大小写切换与一键复制，纯本地计算不上传
-  path: /tools/hash-string/
-  enabled: true
-
-- id: base64
-  title: Base64 编码解码
-  icon: fas fa-code
-  description: 文本与 Base64 互转，支持标准与 URL 安全（Base64URL）变体，编码解码、一键复制，纯本地处理不上传
-  path: /tools/base64/
-  enabled: true
-
-- id: base-converter
-  title: 进制转换
-  icon: fas fa-calculator
-  description: 二进制 / 八进制 / 十进制 / 十六进制实时联动互转，支持任意大整数，纯本地计算不上传
-  path: /tools/base-converter/
+  category: 图片与图像
   enabled: true
 
 - id: qrcode
@@ -45,6 +26,39 @@
   icon: fas fa-qrcode
   description: 文本生成二维码图片（可选纠错级别、下载 PNG），上传二维码图片解析出文本/链接，纯本地处理不上传
   path: /tools/qrcode/
+  category: 图片与图像
+  enabled: true
+
+- id: base64
+  title: Base64 编码解码
+  icon: fas fa-code
+  description: 文本与 Base64 互转，支持标准与 URL 安全（Base64URL）变体，编码解码、一键复制，纯本地处理不上传
+  path: /tools/base64/
+  category: 编码转换
+  enabled: true
+
+- id: base-converter
+  title: 进制转换
+  icon: fas fa-calculator
+  description: 二进制 / 八进制 / 十进制 / 十六进制实时联动互转，支持任意大整数，纯本地计算不上传
+  path: /tools/base-converter/
+  category: 编码转换
+  enabled: true
+
+- id: hash-string
+  title: 字符串 Hash
+  icon: fas fa-hashtag
+  description: 输入字符串点击生成 MD5 / SHA1 / SHA256 / SHA384 / SHA512，支持大小写切换与一键复制，纯本地计算不上传
+  path: /tools/hash-string/
+  category: 编码转换
+  enabled: true
+
+- id: 3d-viewer
+  title: 3D 模型多视口分析
+  icon: fas fa-cube
+  description: 单渲染器四视口分析 3D 模型：线框看骨架、UV 棋盘格看皮囊、PBR 看光影、法线/深度看异常，四视口相机联动，支持 GLB/glTF/OBJ/FBX/STL/USDZ 加载与格式导出、点对点测距、截图标注，纯本地渲染不上传
+  path: /tools/3d-viewer/
+  category: 3D 模型
   enabled: true
 
 - id: json-format
@@ -52,4 +66,5 @@
   icon: fas fa-file-code
   description: JSON 常用处理一条龙：树形浏览（展开/折叠、搜索、图片链接 hover 预览）、格式化/压缩/按键排序、宽容解析自动修复（尾逗号/单引号/无引号键/注释）、复制与下载 .json，错误定位行列，纯本地不上传
   path: /tools/json-format/
+  category: 数据处理
   enabled: true

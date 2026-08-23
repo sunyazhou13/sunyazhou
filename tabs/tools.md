@@ -8,6 +8,7 @@ title: 工具
 <div class="tools-landing">
 
 {% assign enabled_tools = site.data.tools | where: "enabled", true %}
+{% assign tool_categories = "图片与图像,3D 模型,编码转换,数据处理,其他" | split: "," %}
 
 {% if enabled_tools.size == 0 %}
 
@@ -15,18 +16,26 @@ title: 工具
 
 {% else %}
 
-<div class="tools-grid">
-{% for tool in enabled_tools %}
-<a class="tools-card" href="{{ tool.path }}">
-  <span class="tools-card-head">
-    <i class="{{ tool.icon }}"></i>
-    <span class="tools-card-title">{{ tool.title }}</span>
-  </span>
-  <span class="tools-card-desc">{{ tool.description }}</span>
-  <span class="tools-card-cta">打开工具 <i class="fas fa-angle-right"></i></span>
-</a>
-{% endfor %}
+{% for cat in tool_categories %}
+  {% assign cat_tools = enabled_tools | where: "category", cat %}
+  {% if cat_tools.size > 0 %}
+<div class="tools-cat">
+  <div class="tools-cat-title">{{ cat }}</div>
+  <div class="tools-grid">
+    {% for tool in cat_tools %}
+    <a class="tools-card" href="{{ tool.path }}">
+      <span class="tools-card-head">
+        <i class="{{ tool.icon }}"></i>
+        <span class="tools-card-title">{{ tool.title }}</span>
+      </span>
+      <span class="tools-card-desc">{{ tool.description }}</span>
+      <span class="tools-card-cta">打开工具 <i class="fas fa-angle-right"></i></span>
+    </a>
+    {% endfor %}
+  </div>
 </div>
+  {% endif %}
+{% endfor %}
 
 {% endif %}
 
@@ -34,6 +43,16 @@ title: 工具
 
 <style>
 .tools-landing { margin-top: 1rem; }
+.tools-cat { margin-bottom: 1.8rem; }
+.tools-cat:last-child { margin-bottom: 0; }
+.tools-cat-title {
+  margin: 0 0 0.7rem;
+  padding-left: 0.55rem;
+  border-left: 3px solid #2f6fde;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -72,6 +91,7 @@ title: 工具
   font-size: 0.85rem;
   color: #2f6fde;
 }
+[mode='dark'] .tools-cat-title { border-left-color: #5b8ff0; }
 [mode='dark'] .tools-card:hover { border-color: #5b8ff0; }
 [mode='dark'] .tools-card-head i,
 [mode='dark'] .tools-card-cta { color: #5b8ff0; }
