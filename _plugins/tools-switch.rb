@@ -17,14 +17,15 @@ Jekyll::Hooks.register :site, :post_read do |site|
   tools_config = site.config['tools']
   next unless tools_config.is_a?(Hash) && tools_config['enabled'] == false
 
-  landing = 'tabs/tools.md'
+  landing = ['tabs/tools.md', 'tabs/tools-en.md']
 
   removed = site.pages.reject! do |page|
-    page.path == landing || page.path.to_s.start_with?('tools/')
+    landing.include?(page.path) || page.path.to_s.start_with?('tools/')
   end
 
   # 清空工具注册表，防止其它模板意外引用
   site.data['tools'] = [] if site.data.is_a?(Hash)
+  site.data['tools_en'] = [] if site.data.is_a?(Hash)
 
   Jekyll.logger.info('ToolsSwitch:', '已禁用（tools.enabled=false），工具页面不参与构建') if removed
 end

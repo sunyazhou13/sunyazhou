@@ -1,0 +1,110 @@
+<!--
+  工具落地页卡片模板（中英共用），由 tabs/tools.md 与 tabs/tools-en.md 引用。
+  语言由 jekyll-polyglot 的 site.active_lang 决定：
+    - zh：读 _data/tools.yml + 中文分类表
+    - en：显式读 _data/tools_en.yml（polyglot 不会自动覆盖 site.data.tools，
+      同 _includes/sidebar.html 手动切换 site.data.tabs_en 的做法）+ 英文分类表
+  注意：本文件中的英文分类名需与 _data/tools_en.yml 的 category 值保持一致。
+-->
+
+{% assign tools_data = site.data.tools %}
+{% assign tool_cats = "图片与图像,3D 模型,编码转换,数据处理,其他" | split: "," %}
+{% assign tools_empty = "暂无可用工具。" %}
+{% assign tools_cta = "打开工具" %}
+{% if site.active_lang == "en" %}
+  {% assign tools_data = site.data.tools_en %}
+  {% assign tool_cats = "Images & Graphics,3D Models,Encoding & Conversion,Data Processing,Others" | split: "," %}
+  {% assign tools_empty = "No tools available yet." %}
+  {% assign tools_cta = "Open tool" %}
+{% endif %}
+
+<div class="tools-landing">
+
+{% assign enabled_tools = tools_data | where: "enabled", true %}
+
+{% if enabled_tools.size == 0 %}
+
+<p>{{ tools_empty }}</p>
+
+{% else %}
+
+{% for cat in tool_cats %}
+  {% assign cat_tools = enabled_tools | where: "category", cat %}
+  {% if cat_tools.size > 0 %}
+<div class="tools-cat">
+  <div class="tools-cat-title">{{ cat }}</div>
+  <div class="tools-grid">
+    {% for tool in cat_tools %}
+    <a class="tools-card" href="{{ tool.path }}">
+      <span class="tools-card-head">
+        <i class="{{ tool.icon }}"></i>
+        <span class="tools-card-title">{{ tool.title }}</span>
+      </span>
+      <span class="tools-card-desc">{{ tool.description }}</span>
+      <span class="tools-card-cta">{{ tools_cta }} <i class="fas fa-angle-right"></i></span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+  {% endif %}
+{% endfor %}
+
+{% endif %}
+
+</div>
+
+<style>
+.tools-landing { margin-top: 1rem; }
+.tools-cat { margin-bottom: 1.8rem; }
+.tools-cat:last-child { margin-bottom: 0; }
+.tools-cat-title {
+  margin: 0 0 0.7rem;
+  padding-left: 0.55rem;
+  border-left: 3px solid #2f6fde;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.tools-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.tools-card:hover {
+  border-color: #2f6fde;
+  box-shadow: 0 2px 12px rgba(47, 111, 222, 0.15);
+}
+.tools-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.tools-card-head i { color: #2f6fde; }
+.tools-card-desc {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  line-height: 1.6;
+}
+.tools-card-cta {
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: #2f6fde;
+}
+[mode='dark'] .tools-cat-title { border-left-color: #5b8ff0; }
+[mode='dark'] .tools-card:hover { border-color: #5b8ff0; }
+[mode='dark'] .tools-card-head i,
+[mode='dark'] .tools-card-cta { color: #5b8ff0; }
+</style>

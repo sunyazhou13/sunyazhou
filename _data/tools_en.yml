@@ -1,0 +1,70 @@
+# 工具注册表（English）
+# polyglot 不会自动用本文件覆盖 site.data.tools —— 落地页模板
+# _includes/tools-landing.html 在 active_lang 为 en 时显式读取 site.data.tools_en，
+# 机制同 _includes/sidebar.html 手动切换 site.data.tabs_en。
+# 注意：category 值需与 _includes/tools-landing.html 中
+# 英文分类列表一致，否则该分类卡片不会渲染。
+
+- id: image-to-avif
+  title: Image to AVIF
+  icon: fas fa-image
+  description: Convert PNG / JPEG / WebP / GIF to AVIF in batch, animated images transcoded frame by frame, 100% local in-browser conversion, nothing uploaded (WASM libaom)
+  path: /tools/image-to-avif/
+  category: Images & Graphics
+  enabled: true
+
+- id: webp-heic
+  title: Image Format Converter
+  icon: fas fa-exchange-alt
+  description: Convert PNG / JPEG / GIF / BMP / AVIF / HEIC etc. to WebP / JPEG / PNG, 100% local in-browser conversion, nothing uploaded
+  path: /tools/webp-heic/
+  category: Images & Graphics
+  enabled: true
+
+- id: qrcode
+  title: QR Code Generator & Parser
+  icon: fas fa-qrcode
+  description: Generate QR code images from text (selectable error-correction level, download as PNG) and parse QR images back to text or links, 100% local processing, nothing uploaded
+  path: /tools/qrcode/
+  category: Images & Graphics
+  enabled: true
+
+- id: base64
+  title: Base64 Encode / Decode
+  icon: fas fa-code
+  description: Convert text to and from Base64, supports standard and URL-safe (Base64URL) variants, encode, decode, one-click copy, 100% local processing, nothing uploaded
+  path: /tools/base64/
+  category: Encoding & Conversion
+  enabled: true
+
+- id: base-converter
+  title: Number Base Converter
+  icon: fas fa-calculator
+  description: Real-time linked conversion between binary / octal / decimal / hexadecimal, arbitrary big integers supported, 100% local computation, nothing uploaded
+  path: /tools/base-converter/
+  category: Encoding & Conversion
+  enabled: true
+
+- id: hash-string
+  title: String Hash
+  icon: fas fa-hashtag
+  description: Enter a string and generate MD5 / SHA1 / SHA256 / SHA384 / SHA512 on click, with case toggle and one-click copy, 100% local computation, nothing uploaded
+  path: /tools/hash-string/
+  category: Encoding & Conversion
+  enabled: true
+
+- id: 3d-viewer
+  title: 3D Model Multi-Viewport Inspector
+  icon: fas fa-cube
+  description: "Analyze 3D models with four linked viewports in one renderer: wireframe for structure, UV checker for texture mapping, PBR for lighting, normal/depth for anomalies. Supports GLB/glTF/OBJ/FBX/STL/USDZ loading and format export, point-to-point measurement, screenshot annotation, 100% local rendering, nothing uploaded"
+  path: /tools/3d-viewer/
+  category: 3D Models
+  enabled: true
+
+- id: json-format
+  title: JSON Tools
+  icon: fas fa-file-code
+  description: "All-in-one JSON toolkit: tree viewer (expand/collapse, search, image-link hover preview), format/minify/sort by key, lenient parsing with auto-repair (trailing commas/single quotes/unquoted keys/comments), copy and download .json, precise error position. 100% local, nothing uploaded"
+  path: /tools/json-format/
+  category: Data Processing
+  enabled: true
