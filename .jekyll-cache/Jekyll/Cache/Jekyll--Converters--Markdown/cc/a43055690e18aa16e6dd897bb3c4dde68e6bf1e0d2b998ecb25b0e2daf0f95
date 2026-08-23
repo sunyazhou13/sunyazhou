@@ -1,0 +1,128 @@
+I"ù<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+</pre></td> --><td class="rouge-code"><pre><span class="cp">#import "BDRowView.h"
+</span>
+
+<span class="cp">#define k_NORMAL_COLOR [NSColor colorFromInt:0xfcfdfe]
+#define k_SELECTED_COLOR [NSColor colorFromInt:0xeff1f3]
+</span>
+<span class="k">@interface</span> <span class="nc">BDRowView</span> <span class="p">()</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">strong</span><span class="p">)</span> <span class="n">NSTrackingArea</span> <span class="o">*</span><span class="n">trackingArea</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">isHovering</span><span class="p">;</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">BDRowView</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">drawRect</span><span class="p">:(</span><span class="n">NSRect</span><span class="p">)</span><span class="nv">dirtyRect</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">drawRect</span><span class="p">:</span><span class="n">dirtyRect</span><span class="p">];</span>
+<span class="p">}</span>
+
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">drawSelectionInRect</span><span class="p">:(</span><span class="n">NSRect</span><span class="p">)</span><span class="nv">dirtyRect</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">selectionHighlightStyle</span> <span class="o">!=</span> <span class="n">NSTableViewSelectionHighlightStyleNone</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">NSRect</span> <span class="n">selectionRect</span> <span class="o">=</span> <span class="n">NSInsetRect</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">bounds</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">[</span><span class="n">k_SELECTED_COLOR</span> <span class="nf">setStroke</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">k_SELECTED_COLOR</span> <span class="nf">setFill</span><span class="p">];</span>
+        <span class="n">NSBezierPath</span> <span class="o">*</span><span class="n">selectionPath</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSBezierPath</span> <span class="nf">bezierPathWithRoundedRect</span><span class="p">:</span><span class="n">selectionRect</span> <span class="nf">xRadius</span><span class="p">:</span><span class="mi">0</span> <span class="n">yRadius</span><span class="o">:</span><span class="mi">0</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">selectionPath</span> <span class="nf">fill</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">selectionPath</span> <span class="nf">stroke</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">updateTrackingAreas</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">trackingArea</span> <span class="o">!=</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span> <span class="nf">removeTrackingArea</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">trackingArea</span><span class="p">];</span>
+    <span class="p">}</span>
+    
+    <span class="kt">int</span> <span class="n">opts</span> <span class="o">=</span> <span class="p">(</span><span class="n">NSTrackingMouseEnteredAndExited</span> <span class="o">|</span> <span class="n">NSTrackingMouseMoved</span> <span class="o">|</span> <span class="n">NSTrackingActiveAlways</span><span class="p">);</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">trackingArea</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="n">NSTrackingArea</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithRect</span><span class="p">:[</span><span class="n">self</span> <span class="nf">bounds</span><span class="p">]</span>
+                                                      <span class="nl">options:</span><span class="n">opts</span>
+                                                        <span class="nl">owner:</span><span class="n">self</span>
+                                                     <span class="nl">userInfo:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">addTrackingArea</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">trackingArea</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mouseEntered</span><span class="p">:(</span><span class="n">NSEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">theEvent</span> <span class="p">{</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">isHovering</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">setBackgroundColor</span><span class="p">:[</span><span class="n">self</span> <span class="nf">getBackgroundColor</span><span class="p">:</span><span class="nb">YES</span><span class="p">]];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mouseExited</span><span class="p">:(</span><span class="n">NSEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">theEvent</span> <span class="p">{</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">isHovering</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">setBackgroundColor</span><span class="p">:[</span><span class="n">self</span> <span class="nf">getBackgroundColor</span><span class="p">:</span><span class="nb">NO</span><span class="p">]];</span>
+<span class="p">}</span>
+
+<span class="k">-</span><span class="p">(</span><span class="n">NSColor</span><span class="o">*</span><span class="p">)</span><span class="nf">getBackgroundColor</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">isSelected</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">isSelected</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">k_SELECTED_COLOR</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span> <span class="n">k_NORMAL_COLOR</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+:ET

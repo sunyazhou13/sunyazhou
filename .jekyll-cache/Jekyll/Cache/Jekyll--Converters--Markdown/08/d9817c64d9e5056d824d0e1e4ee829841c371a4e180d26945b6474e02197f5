@@ -1,0 +1,534 @@
+I"��<p><img src="/assets/images/20221207RadialGradientlayer/RadialCenter.avif" alt="Radial Center" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article is strongly personal in tone. If you find it uncomfortable to read, please close it as soon as possible. This article is only a personal learning record. You are welcome to repost or share it within the scope of the license agreement, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<p>Let’s show the final result first.</p>
+
+<p><img src="/assets/images/20221207RadialGradientlayer/final.avif" alt="final" /></p>
+
+<h1 id="deep-dive-into-cagradientlayer">Deep Dive into CAGradientLayer</h1>
+
+<p>Recently, while developing features, the visual designer on our team was very interested in the fluid gradient animation of QQ Music’s desktop lyrics preview and asked us developers to implement this effect.</p>
+
+<p><img src="/assets/images/20221207RadialGradientlayer/qqmusicanimation1.avif" alt="qqmusicanimation" /></p>
+
+<p>Looking closely at the lyrics background — if it weren’t for my 5.0 vision in both eyes, the first time I saw the QQ Music effect I’d have thought there was no animation; how naive, I’ve been schooled — there’s a soft-light-like effect that shines and moves like a lamp. The visual designer calls this effect the <code class="language-plaintext highlighter-rouge">fluid transition animation</code>.</p>
+
+<p>To research this effect, I studied <code class="language-plaintext highlighter-rouge">CAGradientLayer</code> in depth and found a few important types I’d like to introduce.</p>
+
+<p><code class="language-plaintext highlighter-rouge">CAGradientLayer</code> has a member variable called <code class="language-plaintext highlighter-rouge">type</code>.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">@property</span><span class="p">(</span><span class="n">copy</span><span class="p">)</span> <span class="n">CAGradientLayerType</span> <span class="n">type</span><span class="p">;</span> <span class="c1">//objc中的成员变量</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kd">open</span> <span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">CAGradientLayerType</span>  <span class="c1">//swift中的成员变量</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Here I’ll use Objective-C as an example.</p>
+
+<ul>
+  <li>kCAGradientLayerAxial: This is called an axial gradient or linear gradient</li>
+  <li>kCAGradientLayerRadial: This is called a radial gradient</li>
+  <li>kCAGradientLayerConic: This is called a conic gradient</li>
+</ul>
+
+<h4 id="kcagradientlayeraxial">kCAGradientLayerAxial</h4>
+
+<p>This Linear (Axial) Gradient looks like this:
+<img src="/assets/images/20221207RadialGradientlayer/linear.avif" alt="linear" /></p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="c1">// Objective C</span>
+
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">kCAGradientLayerAxial</span><span class="p">;</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">colors</span> <span class="o">=</span>
+<span class="p">@[</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithRed</span><span class="p">:</span> <span class="mi">48</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="nf">green</span><span class="p">:</span> <span class="mi">35</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">blue</span><span class="o">:</span> <span class="mi">174</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">alpha</span><span class="o">:</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithRed</span><span class="p">:</span> <span class="mi">200</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="nf">green</span><span class="p">:</span> <span class="mi">109</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">blue</span><span class="o">:</span> <span class="mi">215</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">alpha</span><span class="o">:</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">].</span><span class="n">CGColor</span>
+<span class="p">];</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">// Swift</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">axial</span><span class="p">;</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span>
+<span class="p">[</span>
+    <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">48.0</span><span class="sr">/255.0, green: 35.0/255.0, blue: 174.0/</span><span class="mf">255.0</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span><span class="p">,</span>
+    <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">200.0</span><span class="sr">/255.0, green: 109.0/255.0, blue: 215.0/</span><span class="mf">255.0</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span>
+<span class="p">]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Before studying the differences among these types, let’s review the start point and end point of a gradient layer.</p>
+
+<h5 id="start-point-and-end-point">Start Point and End Point</h5>
+
+<p>The start point and end point can change the gradient direction.
+Default<br />
+<code class="language-plaintext highlighter-rouge">startPoint = (0.5, 0)</code>,<code class="language-plaintext highlighter-rouge">endPoint = (0.5, 1.0)</code></p>
+
+<p>To make this gradient horizontal (left to right), refer to the diagram and code below.</p>
+
+<p>Refer to the diagram below</p>
+
+<p><img src="/assets/images/20221207RadialGradientlayer/corners.avif" alt="corners" /><br />
+<img src="/assets/images/20221207RadialGradientlayer/LinearHorizontal.avif" alt="Linear Horizontal" /></p>
+
+<p>Here’s the example code:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="c1">// Objective C</span>
+
+<span class="c1">// Set type (Axial is already the default value)</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">kCAGradientLayerAxial</span><span class="p">;</span>
+<span class="c1">// Set the colors (these need to be CGColor's, not UIColor's)</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">colors</span> <span class="o">=</span>
+<span class="p">@[</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithRed</span><span class="p">:</span> <span class="mi">48</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="nf">green</span><span class="p">:</span> <span class="mi">35</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">blue</span><span class="o">:</span> <span class="mi">174</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">alpha</span><span class="o">:</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithRed</span><span class="p">:</span> <span class="mi">200</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="nf">green</span><span class="p">:</span> <span class="mi">109</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">blue</span><span class="o">:</span> <span class="mi">215</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">alpha</span><span class="o">:</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">].</span><span class="n">CGColor</span>
+<span class="p">];</span>
+<span class="c1">// Set the start and end points</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">startPoint</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">endPoint</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="c1">// Swift</span>
+
+<span class="c1">// Set type (Axial is already the default value)</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="kt">CAGradientLayerType</span><span class="o">.</span><span class="n">axial</span>
+<span class="c1">// Set the colors (these need to be CGColor's, not UIColor's)</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span>
+<span class="p">[</span>
+    <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">48.0</span><span class="sr">/255.0, green: 35.0/255.0, blue: 174.0/</span><span class="mf">255.0</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span><span class="p">,</span>
+    <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">200.0</span><span class="sr">/255.0, green: 109.0/255.0, blue: 215.0/</span><span class="mf">255.0</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span>
+<span class="p">]</span>
+<span class="c1">// Set the start and end points</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">startPoint</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">endPoint</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h5 id="multiple-colors-and-location-control">Multiple Colors and Location Control</h5>
+
+<p>Now that you understand the gradient direction, don’t rush off — we also need to understand how multiple colors are controlled and how the positions of the gradient stops are set.</p>
+
+<p>The gradientLayer’s member variable <code class="language-plaintext highlighter-rouge">colors</code> is an array that can accept multiple color values. Usually we use two colors for a gradient; for more complex cases, you can set multiple.</p>
+
+<p>The code below demonstrates a multi-color gradient.<br />
+<img src="/assets/images/20221207RadialGradientlayer/rainbow.avif" alt="rainbow" /></p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="n">gradientLayer</span><span class="p">.</span><span class="n">colors</span> <span class="o">=</span>
+<span class="p">@[</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">blueColor</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">orangeColor</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">greenColor</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">purpleColor</span><span class="p">].</span><span class="n">CGColor</span>
+<span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The diagram below demonstrates the key gradient location settings.
+<img src="/assets/images/20221207RadialGradientlayer/locations.avif" alt="locations" /></p>
+
+<p>Here’s the location setting code:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">// ObjC</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">locations</span> <span class="o">=</span> <span class="p">@[</span>
+    <span class="mi">@0</span><span class="p">,</span>   <span class="c1">// blueColor</span>
+    <span class="mf">@0.1</span><span class="p">,</span> <span class="c1">// orangeColor</span>
+    <span class="mf">@0.6</span><span class="p">,</span> <span class="c1">// greenColor</span>
+    <span class="mf">@0.7</span><span class="p">,</span> <span class="c1">// redColor</span>
+    <span class="mi">@1</span>    <span class="c1">// purpleColor</span>
+<span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">// Swift</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">locations</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>   <span class="c1">// blueColor</span>
+    <span class="mf">0.1</span><span class="p">,</span> <span class="c1">// orangeColor</span>
+    <span class="mf">0.6</span><span class="p">,</span> <span class="c1">// greenColor</span>
+    <span class="mf">0.7</span><span class="p">,</span> <span class="c1">// redColor</span>
+    <span class="mi">1</span>    <span class="c1">// purpleColor</span>
+<span class="p">]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>Simply put, <code class="language-plaintext highlighter-rouge">locations</code> actually controls the position/size of the gradient stops, as distances relative to those before and after (in any direction).</p>
+
+<h4 id="radial-gradients">Radial Gradients</h4>
+
+<p>Now that we understand colors and locations, let’s look at what a radial gradient is.</p>
+
+<p>When we use the <code class="language-plaintext highlighter-rouge">kCAGradientLayerRadial</code> type, we need to pay attention to the start point and end point required by a radial gradient. The diagram below shows an elliptical gradient layer; it can of course be set to a circle.</p>
+
+<p><img src="/assets/images/20221207RadialGradientlayer/RadialCenter.avif" alt="Radial Center" /></p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="c1">// Objective C</span>
+
+<span class="c1">// Set the type</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">kCAGradientLayerRadial</span><span class="p">;</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">colors</span> <span class="o">=</span>
+<span class="p">@[</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithRed</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="nf">green</span><span class="p">:</span> <span class="mi">101</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">blue</span><span class="o">:</span> <span class="mi">255</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">alpha</span><span class="o">:</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithRed</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="nf">green</span><span class="p">:</span> <span class="mi">40</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">blue</span><span class="o">:</span> <span class="mi">101</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">alpha</span><span class="o">:</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">].</span><span class="n">CGColor</span>
+<span class="p">];</span>
+<span class="c1">// Start in the center</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">startPoint</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">);</span>
+<span class="c1">// End at the outer edge of the view</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">endPoint</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="c1">// Swift</span>
+
+<span class="c1">// Set type to radial</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="kt">CAGradientLayerType</span><span class="o">.</span><span class="n">radial</span>
+<span class="c1">// Set the colors</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span>
+<span class="p">[</span>
+    <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">0.0</span><span class="sr">/255.0, green: 101.0/255.0, blue: 255.0/</span><span class="mf">255.0</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span><span class="p">,</span>
+    <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">0.0</span><span class="sr">/255.0, green: 40.0/255.0, blue: 101.0/</span><span class="mf">255.0</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span>
+<span class="p">]</span>
+<span class="c1">// Start point of first color in the middle of the view</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">startPoint</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="c1">// End points to the edges of the view</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">endPoint</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="conic-gradient-kcagradientlayerconic">Conic Gradient kCAGradientLayerConic</h4>
+
+<blockquote>
+  <p>The conic gradient is only supported on <code class="language-plaintext highlighter-rouge">@available(iOS 12.0, *)</code></p>
+</blockquote>
+
+<p><img src="/assets/images/20221207RadialGradientlayer/conic.avif" alt="conic" /></p>
+
+<p>Note the start point and end point positions.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="c1">// Objective C</span>
+
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">kCAGradientLayerConic</span><span class="p">;</span>
+<span class="c1">// Set the colors</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">colors</span> <span class="o">=</span>
+<span class="p">@[</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">blueColor</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithRed</span><span class="p">:</span> <span class="mi">50</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="nf">green</span><span class="p">:</span> <span class="mi">251</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">blue</span><span class="o">:</span> <span class="mi">255</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="n">alpha</span><span class="o">:</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">blackColor</span><span class="p">].</span><span class="n">CGColor</span>
+<span class="p">];</span>
+<span class="c1">// Start point of first color in the middle of the view</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">startPoint</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">);</span>
+<span class="c1">// End points to the edges of the view</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">endPoint</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="c1">// Swift</span>
+
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="kt">CAGradientLayerType</span><span class="o">.</span><span class="n">conic</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span>
+<span class="p">[</span>
+    <span class="kt">UIColor</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+    <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">50.0</span><span class="sr">/255.0, green: 251.0/255.0, blue: 255.0/</span><span class="mf">255.0</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span><span class="p">,</span>
+    <span class="kt">UIColor</span><span class="o">.</span><span class="n">black</span>
+<span class="p">]</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">startPoint</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">gradientLayer</span><span class="o">.</span><span class="n">endPoint</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/assets/images/20221207RadialGradientlayer/finaldemo.avif" alt="finaldemo" /></p>
+
+<h4 id="approach-to-implementing-the-qq-music-effect">Approach to Implementing the QQ Music Effect</h4>
+
+<p>Let’s first observe the QQ Music effect.</p>
+
+<p><img src="/assets/images/20221207RadialGradientlayer/qqmusicanimation1.avif" alt="qqmusicanimation" /></p>
+
+<p>Our approach:</p>
+
+<p><img src="/assets/images/20221207RadialGradientlayer/qqmusicanimation2.avif" alt="qqmusicanimation" /></p>
+
+<ul>
+  <li>Create a radial gradient layer</li>
+  <li>Place it outside the view and use a <code class="language-plaintext highlighter-rouge">CABasicAnimation</code> to animate <code class="language-plaintext highlighter-rouge">position.x</code> moving from right to left</li>
+  <li>Mind the color configuration</li>
+  <li>The final position must be outside the screen</li>
+</ul>
+
+<p>Below is a schematic of the implementation approach.<br />
+<img src="/assets/images/20221207RadialGradientlayer/qqmusicanimation3.avif" alt="qqmusicanimation" /></p>
+
+<p>Here’s the code:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td><td class="rouge-code"><pre>
+<span class="k">var</span> <span class="nv">backgroundView</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span>
+<span class="k">var</span> <span class="nv">gradientLayer</span><span class="p">:</span> <span class="kt">CAGradientLayer</span><span class="o">!</span>
+
+<span class="o">...</span>
+
+<span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span> <span class="o">=</span> <span class="kt">UIView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">bgColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">231.0</span><span class="sr">/255, green: 223.0/255, blue: 239.0/255, alpha: 1) //</span><span class="n">要想过渡自然必须保证背景颜色和渐变主颜色一致</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="n">bgColor</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">snp</span><span class="o">.</span><span class="n">makeConstraints</span> <span class="p">{</span> <span class="n">make</span> <span class="k">in</span>
+        <span class="n">make</span><span class="o">.</span><span class="n">centerX</span><span class="o">.</span><span class="nf">equalTo</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span>
+        <span class="n">make</span><span class="o">.</span><span class="n">centerY</span><span class="o">.</span><span class="nf">equalTo</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span>
+        <span class="n">make</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="nf">equalTo</span><span class="p">(</span><span class="kt">CGSize</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">360</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">70</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="c1">// Radial gradient layer</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span> <span class="o">=</span> <span class="kt">CAGradientLayer</span><span class="p">()</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">360</span> <span class="o">*</span> <span class="mf">1.15</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">360</span> <span class="o">*</span> <span class="mf">1.15</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">70</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">contentsScale</span> <span class="o">=</span> <span class="kt">UIScreen</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">scale</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">startPoint</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">endPoint</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">radial</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">locations</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">203.0</span><span class="sr">/255, green: 190.0/255, blue: 224.0/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span><span class="p">,</span> <span class="n">bgColor</span><span class="o">.</span><span class="n">cgColor</span><span class="p">]</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="nf">addSublayer</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">maskedCorners</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="n">layerMinXMinYCorner</span><span class="p">,</span><span class="o">.</span><span class="n">layerMinXMaxYCorner</span><span class="p">,</span><span class="o">.</span><span class="n">layerMaxXMinYCorner</span><span class="p">,</span><span class="o">.</span><span class="n">layerMaxXMaxYCorner</span><span class="p">];</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Adding the animation effect:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="kd">private</span> <span class="kd">func</span> <span class="nf">addPositionAnimation</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="nf">animationKeys</span><span class="p">()?</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="s">"kAnimationKey"</span><span class="p">))</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">let</span> <span class="nv">width</span> <span class="o">=</span> <span class="kt">CGRectGetWidth</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">gradientWidth</span> <span class="o">=</span> <span class="kt">CGRectGetWidth</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">locationAniamtion</span><span class="p">:</span> <span class="kt">CABasicAnimation</span> <span class="o">=</span> <span class="kt">CABasicAnimation</span><span class="p">(</span><span class="nv">keyPath</span><span class="p">:</span> <span class="s">"position.x"</span><span class="p">)</span>
+    <span class="n">locationAniamtion</span><span class="o">.</span><span class="n">fromValue</span> <span class="o">=</span> <span class="n">gradientWidth</span> <span class="o">+</span> <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">anchorPoint</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">width</span>
+    <span class="n">locationAniamtion</span><span class="o">.</span><span class="n">toValue</span> <span class="o">=</span> <span class="o">-</span><span class="n">gradientWidth</span>
+    <span class="n">locationAniamtion</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">7</span>
+    <span class="n">locationAniamtion</span><span class="o">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="kt">Float</span><span class="o">.</span><span class="n">infinity</span>
+    <span class="n">locationAniamtion</span><span class="o">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="o">.</span><span class="n">forwards</span><span class="p">;</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">locationAniamtion</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"kAnimationKey"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The implementation took no more than 80 lines of code; after removing the redundant code, it’s just about 40 lines.</p>
+
+<h5 id="problems-encountered">Problems Encountered</h5>
+
+<ul>
+  <li>
+    <ol>
+      <li>The different colors look weird</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>Need to clip it when it goes out of bounds</li>
+    </ol>
+  </li>
+</ul>
+
+<h5 id="solving-problem-1-the-different-colors-look-weird">Solving Problem 1: The Different Colors Look Weird</h5>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">bgColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">231.0</span><span class="sr">/255, green: 223.0/255, blue: 239.0/255, alpha: 1) //</span><span class="n">要想过渡自然必须保证背景颜色和渐变主颜色一致</span>
+<span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="n">bgColor</span>
+
+<span class="o">...</span>
+
+<span class="k">self</span><span class="o">.</span><span class="n">gradientLayer</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">203.0</span><span class="sr">/255, green: 190.0/255, blue: 224.0/</span><span class="mi">255</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span><span class="p">,</span> <span class="n">bgColor</span><span class="o">.</span><span class="n">cgColor</span><span class="p">]</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h5 id="solving-problem-2-clipping-when-it-goes-out-of-bounds">Solving Problem 2: Clipping When It Goes Out of Bounds</h5>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1">//设置倒角半径</span>
+<span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">maskedCorners</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="n">layerMinXMinYCorner</span><span class="p">,</span><span class="o">.</span><span class="n">layerMinXMaxYCorner</span><span class="p">,</span><span class="o">.</span><span class="n">layerMaxXMinYCorner</span><span class="p">,</span><span class="o">.</span><span class="n">layerMaxXMaxYCorner</span><span class="p">];</span> <span class="c1">//设置圆角方向</span>
+<span class="k">self</span><span class="o">.</span><span class="n">backgroundView</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="kc">true</span> <span class="c1">//超出屏幕截掉</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Here I used an iOS 11+ API, <code class="language-plaintext highlighter-rouge">maskedCorners</code>, which can round corners in different directions. Many people wonder whether setting the corner radius and <code class="language-plaintext highlighter-rouge">masksToBounds</code> easily triggers offscreen rendering and causes extra overhead. If you have this question, please refer to my article on <a href="https://www.sunyazhou.com/2018/05/HowToCreateTopBottomRoundedCornersForViews/">rounding different corners of a UIView</a>.</p>
+
+<p>Below is the finished effect.</p>
+
+<p><img src="/assets/images/20221207RadialGradientlayer/final.avif" alt="final" /></p>
+
+<h2 id="summary">Summary</h2>
+
+<p>First, let me be clear: this isn’t about showing off. This technique doesn’t have much technical depth — what’s missing is our spirit of continuously exploring. In this example, we learned how to use radial gradients to achieve a fluid-light-like effect in 2D. I hope everyone can pick up some useful technical knowledge along the way. Alright, that’s the end of the article. I’ve put the Demo and references in the links below — check them out if you’re interested. Thanks for watching.</p>
+
+<p><a href="https://github.com/sunyazhou13/RadialGradientDemo">This article’s Demo</a></p>
+
+<p><a href="https://ikyle.me/blog/2020/cagradientlayer-explained">Reference: CAGradientLayer Explained</a><br />
+<a href="https://www.cnblogs.com/YouXianMing/p/3793913.html">Reference: Location</a></p>
+:ET

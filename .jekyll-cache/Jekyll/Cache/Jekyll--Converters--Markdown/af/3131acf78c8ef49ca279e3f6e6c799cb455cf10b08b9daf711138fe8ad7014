@@ -1,0 +1,23 @@
+I"	<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="c1">//Get the sandbox home directory path</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">homeDir</span> <span class="o">=</span> <span class="n">NSHomeDirectory</span><span class="p">();</span>
+<span class="c1">//Get the Documents directory path</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">docDir</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="n">NSDocumentDirectory</span><span class="p">,</span> <span class="n">NSUserDomainMask</span><span class="p">,</span> <span class="nb">YES</span><span class="p">)</span> <span class="nf">firstObject</span><span class="p">];</span>
+<span class="c1">//Get the Library directory path</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">libDir</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="n">NSLibraryDirectory</span><span class="p">,</span> <span class="n">NSUserDomainMask</span><span class="p">,</span> <span class="nb">YES</span><span class="p">)</span> <span class="nf">lastObject</span><span class="p">];</span>
+<span class="c1">//Get the Caches directory path</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">cachesDir</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSSearchPathForDirectoriesInDomains</span><span class="p">(</span><span class="n">NSCachesDirectory</span><span class="p">,</span> <span class="n">NSUserDomainMask</span><span class="p">,</span> <span class="nb">YES</span><span class="p">)</span> <span class="nf">firstObject</span><span class="p">];</span>
+<span class="c1">//Get the tmp directory path</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">tmpDir</span> <span class="o">=</span>  <span class="n">NSTemporaryDirectory</span><span class="p">();</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+:ET

@@ -1,0 +1,98 @@
+I""<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
+
+<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<p>主要是使用 <code class="language-plaintext highlighter-rouge">CTFramesetterSuggestFrameSizeWithConstraints</code> 计算文本的高度和宽度，记得要给<code class="language-plaintext highlighter-rouge">CTFramesetterRef</code> 设置相关的属性（行间距和自动换行）。以下是使用 CoreText 绘制并计算文本高度的 Objective-C 代码示例:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre></td> --><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">calculatedHeight</span><span class="p">:(</span><span class="n">CGSize</span><span class="p">)</span><span class="nv">bounds</span>
+<span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">text</span> <span class="o">=</span> <span class="s">@"This</span><span class="se">\n</span><span class="s">is</span><span class="se">\n</span><span class="s">some</span><span class="se">\n</span><span class="s">multi-line</span><span class="se">\n</span><span class="s">sample</span><span class="se">\n</span><span class="s">text."</span><span class="p">;</span>
+    <span class="n">UIFont</span>   <span class="o">*</span><span class="n">uiFont</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nf">fontWithName</span><span class="p">:</span><span class="s">@"Helvetica"</span> <span class="nf">size</span><span class="p">:</span><span class="mi">17</span><span class="p">.</span><span class="mi">0</span><span class="p">];</span>
+    <span class="n">CTFontRef</span> <span class="n">ctFont</span> <span class="o">=</span> <span class="n">CTFontCreateWithName</span><span class="p">((</span><span class="n">CFStringRef</span><span class="p">)</span> <span class="n">uiFont</span><span class="p">.</span><span class="n">fontName</span><span class="p">,</span> <span class="n">uiFont</span><span class="p">.</span><span class="n">pointSize</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="c1">// 设置行间距</span>
+    <span class="n">CGFloat</span> <span class="n">leading</span> <span class="o">=</span> <span class="n">uiFont</span><span class="p">.</span><span class="n">lineHeight</span> <span class="o">-</span> <span class="n">uiFont</span><span class="p">.</span><span class="n">ascender</span> <span class="o">+</span> <span class="n">uiFont</span><span class="p">.</span><span class="n">descender</span><span class="p">;</span>
+    <span class="n">CTParagraphStyleSetting</span> <span class="n">LineSpacing</span><span class="p">;</span>
+        
+    <span class="n">LineSpacing</span><span class="p">.</span><span class="n">spec</span> <span class="o">=</span> <span class="n">kCTParagraphStyleSpecifierLineSpacingAdjustment</span><span class="p">;</span>
+    <span class="n">LineSpacing</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">leading</span><span class="p">;</span>
+    <span class="n">LineSpacing</span><span class="p">.</span><span class="n">valueSize</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">CGFloat</span><span class="p">);</span>
+        
+    <span class="c1">// 设置换行模式</span>
+    <span class="n">CTParagraphStyleSetting</span> <span class="n">lineBreakMode</span><span class="p">;</span>
+    <span class="n">CTLineBreakMode</span> <span class="n">lineBreak</span> <span class="o">=</span> <span class="n">kCTLineBreakByCharWrapping</span><span class="p">;</span>
+    <span class="n">lineBreakMode</span><span class="p">.</span><span class="n">spec</span> <span class="o">=</span> <span class="n">kCTParagraphStyleSpecifierLineBreakMode</span><span class="p">;</span>
+    <span class="n">lineBreakMode</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">lineBreak</span><span class="p">;</span>
+    <span class="n">lineBreakMode</span><span class="p">.</span><span class="n">valueSize</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">CTLineBreakMode</span><span class="p">);</span>
+
+    <span class="n">CTParagraphStyleSetting</span> <span class="n">paragraphSettings</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="n">lineBreakMode</span><span class="p">,</span><span class="n">LineSpacing</span><span class="p">};</span>
+
+    <span class="n">CTParagraphStyleRef</span>  <span class="n">paragraphStyle</span> <span class="o">=</span> <span class="n">CTParagraphStyleCreate</span><span class="p">(</span><span class="n">paragraphSettings</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">CFRange</span> <span class="n">textRange</span> <span class="o">=</span> <span class="n">CFRangeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">text</span><span class="p">.</span><span class="n">length</span><span class="p">);</span>
+
+    <span class="n">CFMutableAttributedStringRef</span> <span class="n">string</span> <span class="o">=</span> <span class="n">CFAttributedStringCreateMutable</span><span class="p">(</span><span class="n">kCFAllocatorDefault</span><span class="p">,</span> <span class="n">text</span><span class="p">.</span><span class="n">length</span><span class="p">);</span>
+    <span class="n">CFAttributedStringReplaceString</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">CFRangeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">CFStringRef</span><span class="p">)</span> <span class="n">text</span><span class="p">);</span>
+
+    <span class="c1">// 设置字体行间距和大小</span>
+    <span class="n">CFAttributedStringSetAttribute</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">textRange</span><span class="p">,</span> <span class="n">kCTFontAttributeName</span><span class="p">,</span> <span class="n">ctFont</span><span class="p">);</span>
+    <span class="n">CFAttributedStringSetAttribute</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">textRange</span><span class="p">,</span> <span class="n">kCTParagraphStyleAttributeName</span><span class="p">,</span> <span class="n">paragraphStyle</span><span class="p">);</span>
+
+    <span class="n">CTFramesetterRef</span> <span class="n">framesetter</span> <span class="o">=</span> <span class="n">CTFramesetterCreateWithAttributedString</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+    <span class="n">CFRange</span> <span class="n">fitRange</span><span class="p">;</span>
+
+    <span class="c1">// 计算文本需要的高度</span>
+    <span class="n">CGSize</span> <span class="n">frameSize</span> <span class="o">=</span> <span class="n">CTFramesetterSuggestFrameSizeWithConstraints</span><span class="p">(</span><span class="n">framesetter</span><span class="p">,</span> <span class="n">textRange</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">fitRange</span><span class="p">);</span>
+
+    <span class="n">CFRelease</span><span class="p">(</span><span class="n">framesetter</span><span class="p">);</span>
+    <span class="n">CFRelease</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="总结">总结</h1>
+
+<p>记录一些容易遗忘的代码</p>
+:ET

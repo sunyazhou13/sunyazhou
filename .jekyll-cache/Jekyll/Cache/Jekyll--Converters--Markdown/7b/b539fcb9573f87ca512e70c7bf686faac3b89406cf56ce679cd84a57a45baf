@@ -1,0 +1,146 @@
+I"6,<h1 id="preface">Preface</h1>
+
+<p>Today I ran into a requirement: the PM asked that the input field strip out anything that isn’t a letter, number, or Chinese character.</p>
+
+<p><img src="/assets/images/20180625FilterString/RegularExpressDemo.avif" alt="Regular Express Demo" /></p>
+
+<p>With this question in mind, today’s article begins.</p>
+
+<h1 id="preparation">Preparation</h1>
+
+<p>Create a demo with the following code:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="k">@interface</span> <span class="nc">ViewController</span> <span class="p">()</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">IBOutlet</span> <span class="n">UITextField</span> <span class="o">*</span><span class="n">input</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">IBOutlet</span> <span class="n">UILabel</span> <span class="o">*</span><span class="n">label</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">ViewController</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">viewDidLoad</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">viewDidLoad</span><span class="p">];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">input</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">input</span> <span class="nf">addTarget</span><span class="p">:</span><span class="n">self</span> <span class="nf">action</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">textChange</span><span class="o">:</span><span class="p">)</span> <span class="n">forControlEvents</span><span class="o">:</span><span class="n">UIControlEventEditingChanged</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="c1">// Called when the text content changes</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">textChange</span><span class="p">:(</span><span class="n">UITextField</span> <span class="o">*</span><span class="p">)</span><span class="nv">textField</span>
+<span class="p">{</span>
+    <span class="c1">// Call the relevant method here to filter the string and display it</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="c1">//...;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>After searching around online, most solutions use predicates to check whether something is included, but very few actually process the string.</p>
+
+<p>I found 3 ways to process the string:</p>
+
+<ul>
+  <li>Approach 1: filter with a predicate</li>
+  <li>Approach 2: filter with a regular expression, increasing the length of the string being matched</li>
+  <li>Approach 3: filter the string with a streamlined regular expression</li>
+</ul>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="err">方案</span><span class="mi">1</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">filterString1</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">str</span> <span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">regex</span> <span class="o">=</span> <span class="s">@"^[a-zA-Z0-9\u4e00-\u9fa5]+"</span><span class="p">;</span>
+    <span class="n">NSPredicate</span> <span class="o">*</span><span class="n">pred</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSPredicate</span> <span class="nf">predicateWithFormat</span><span class="p">:</span><span class="s">@"SELF MATCHES %@"</span><span class="p">,</span> <span class="n">regex</span><span class="p">];</span>
+    <span class="n">NSMutableString</span> <span class="o">*</span> <span class="n">retStr</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableString</span> <span class="nf">string</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="p">[</span><span class="n">str</span> <span class="nf">length</span><span class="p">];</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">NSRange</span> <span class="n">range</span> <span class="o">=</span> <span class="n">NSMakeRange</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">NSString</span> <span class="o">*</span><span class="n">character</span> <span class="o">=</span> <span class="p">[</span><span class="n">str</span> <span class="nf">substringWithRange</span><span class="p">:</span><span class="n">range</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">([</span><span class="n">pred</span> <span class="nf">evaluateWithObject</span><span class="p">:</span><span class="n">character</span><span class="p">])</span>
+        <span class="p">{</span>
+            <span class="p">[</span><span class="n">retStr</span> <span class="nf">appendString</span><span class="p">:</span><span class="n">character</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">retStr</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>This approach works, but the code is a bit verbose; still, it gets the job done.</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">// Approach 2</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">filterString2</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">str</span> <span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">regex</span> <span class="o">=</span> <span class="s">@"[^a-zA-Z0-9\u4e00-\u9fa5]"</span><span class="p">;</span>
+    <span class="n">NSMutableString</span> <span class="o">*</span><span class="n">mstr</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableString</span> <span class="nf">stringWithFormat</span><span class="p">:</span><span class="s">@"%@"</span><span class="p">,</span> <span class="n">str</span><span class="p">];</span>
+    <span class="n">NSUInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="p">[</span><span class="n">mstr</span> <span class="nf">replaceOccurrencesOfString</span><span class="p">:</span><span class="n">regex</span> <span class="nf">withString</span><span class="p">:</span><span class="s">@""</span> <span class="n">options</span><span class="o">:</span><span class="n">NSRegularExpressionSearch</span> <span class="n">range</span><span class="o">:</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">mstr</span><span class="p">.</span><span class="n">length</span><span class="p">)];</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">NSString</span> <span class="nf">stringWithFormat</span><span class="p">:</span><span class="s">@"%@-长度:%zd"</span><span class="p">,</span><span class="n">mstr</span><span class="p">,</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>The same approach uses the <code class="language-plaintext highlighter-rouge">replaceOccurrencesOfString:withString:options:range:</code> method to replace strings with a regular expression.</p>
+</blockquote>
+
+<p>Below we streamline it to two lines of code:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="c1">// Approach 3</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">filterString3</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">str</span> <span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">regex</span> <span class="o">=</span> <span class="s">@"[^a-zA-Z0-9\u4e00-\u9fa5]"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">str</span> <span class="nf">stringByReplacingOccurrencesOfString</span><span class="p">:</span><span class="n">regex</span> <span class="nf">withString</span><span class="p">:</span><span class="s">@""</span> <span class="n">options</span><span class="o">:</span><span class="n">NSRegularExpressionSearch</span> <span class="n">range</span><span class="o">:</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">)];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>In the end, Approach 3 gives good expected results; it’s recommended.</p>
+</blockquote>
+
+<h1 id="summary">Summary</h1>
+
+<p>Some problems are encountered at work, and I hope to record and share them here to learn together.</p>
+
+<p>The end.</p>
+
+<p><a href="https://github.com/sunyazhou13/RegularExpressDemo">Demo here</a></p>
+:ET

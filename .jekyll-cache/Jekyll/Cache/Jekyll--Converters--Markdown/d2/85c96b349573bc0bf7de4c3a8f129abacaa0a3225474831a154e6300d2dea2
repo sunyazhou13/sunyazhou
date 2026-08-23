@@ -1,0 +1,70 @@
+I"o<p><img src="/assets/images/20220701ReverseList/algorithm.avif" alt="algorithm" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article carries a strong personal tone. If you find it uncomfortable to read, please close it immediately. This article is intended only as a personal study record. You are welcome to repost or share it within the scope of the license—please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h1 id="the-problem">The Problem</h1>
+
+<p>Given the head node <code class="language-plaintext highlighter-rouge">head</code> of a singly linked list, reverse the linked list and return the reversed list.<br />
+<img src="/assets/images/20220701ReverseList/1.avif" alt="image" /></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>输入：head <span class="o">=</span> <span class="o">[</span>1,2,3,4,5]
+输出：[5,4,3,2,1]
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="answer">Answer</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="rouge-code"><pre><span class="c1">//Definition for singly-linked list.</span>
+<span class="k">struct</span> <span class="nc">ListNode</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+    <span class="n">ListNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+    <span class="n">ListNode</span><span class="p">()</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">next</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="n">next</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+ 
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">reverseList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ListNode</span> <span class="o">*</span><span class="n">prev</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+        <span class="n">ListNode</span> <span class="o">*</span><span class="n">curr</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">curr</span><span class="p">){</span>
+            <span class="n">ListNode</span> <span class="o">*</span><span class="n">next</span> <span class="o">=</span> <span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">prev</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><a href="https://leetcode-cn.com/problems/reverse-linked-list/">206. Reverse Linked List</a><br />
+<a href="https://codetop.cc/home">Quoted from codetop</a></p>
+:ET

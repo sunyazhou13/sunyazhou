@@ -1,0 +1,156 @@
+I"'/<p><img src="/assets/images/20180918KeyboardAnimation/keyboard1.avif" alt="keyboard" /></p>
+
+<h1 id="前言">前言</h1>
+
+<p>很久没写技术文章里,本篇记录了一下一个键盘弹出的小细节动画,像微信一样流程</p>
+
+<p>上图</p>
+
+<p><img src="/assets/images/20180918KeyboardAnimation/keyboardAnimation.avif" alt="keyboard Animation" /></p>
+
+<h1 id="动画细节代码">动画细节代码</h1>
+
+<p>细节核心主要是通知中的一些key</p>
+
+<ul>
+  <li>动画时长</li>
+  <li>动画的出现方式</li>
+</ul>
+
+<p>…</p>
+
+<p>下面的通知是接收 键盘将要出现的通知<code class="language-plaintext highlighter-rouge">UIKeyboardWillShowNotification</code></p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="p">[[</span><span class="n">NSNotificationCenter</span> <span class="nf">defaultCenter</span><span class="p">]</span> <span class="nf">addObserver</span><span class="p">:</span><span class="n">self</span>
+                                             <span class="nl">selector:</span><span class="k">@selector</span><span class="p">(</span><span class="nf">didReceiveKeyboardShowNotification</span><span class="p">:)</span>
+                                                 <span class="n">name</span><span class="o">:</span><span class="n">UIKeyboardWillShowNotification</span>
+                                               <span class="n">object</span><span class="o">:</span><span class="nb">nil</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>然后是实现的核心代码</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">didReceiveKeyboardShowNotification</span><span class="p">:(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">noti</span> <span class="p">{</span>
+    <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">userInfo</span> <span class="o">=</span> <span class="n">noti</span><span class="p">.</span><span class="n">userInfo</span><span class="p">;</span>
+    <span class="n">NSTimeInterval</span> <span class="n">animationDuration</span><span class="p">;</span>
+    <span class="n">UIViewAnimationCurve</span> <span class="n">animationCurve</span><span class="p">;</span>
+    <span class="n">CGRect</span> <span class="n">keyboardFrame</span><span class="p">;</span>
+    <span class="p">[[</span><span class="n">userInfo</span> <span class="nf">objectForKey</span><span class="p">:</span><span class="n">UIKeyboardAnimationCurveUserInfoKey</span><span class="p">]</span> <span class="nf">getValue</span><span class="p">:</span><span class="o">&amp;</span><span class="n">animationCurve</span><span class="p">];</span>
+    <span class="p">[[</span><span class="n">userInfo</span> <span class="nf">objectForKey</span><span class="p">:</span><span class="n">UIKeyboardAnimationDurationUserInfoKey</span><span class="p">]</span> <span class="nf">getValue</span><span class="p">:</span><span class="o">&amp;</span><span class="n">animationDuration</span><span class="p">];</span>
+    <span class="p">[[</span><span class="n">userInfo</span> <span class="nf">objectForKey</span><span class="p">:</span><span class="n">UIKeyboardFrameEndUserInfoKey</span><span class="p">]</span> <span class="nf">getValue</span><span class="p">:</span><span class="o">&amp;</span><span class="n">keyboardFrame</span><span class="p">];</span>
+    
+    <span class="n">UIViewAnimationOptions</span> <span class="n">animationOptions</span> <span class="o">=</span> <span class="n">animationCurve</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">;</span>
+    
+    <span class="n">self</span><span class="p">.</span><span class="n">bottomConstrains</span><span class="p">.</span><span class="n">offset</span> <span class="o">=</span> <span class="o">-</span><span class="n">CGRectGetHeight</span><span class="p">(</span><span class="n">keyboardFrame</span><span class="p">);</span>
+    <span class="p">[</span><span class="n">UIView</span> <span class="nf">animateWithDuration</span><span class="p">:</span><span class="n">animationDuration</span> <span class="nf">delay</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span> <span class="n">options</span><span class="o">:</span><span class="n">animationOptions</span> <span class="n">animations</span><span class="o">:^</span><span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">setNeedsUpdateConstraints</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">layoutIfNeeded</span><span class="p">];</span>
+    <span class="p">}</span> <span class="n">completion</span><span class="o">:^</span><span class="p">(</span><span class="n">BOOL</span> <span class="n">finished</span><span class="p">)</span> <span class="p">{</span>
+        
+    <span class="p">}];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>self.bottomConstrains.offset = -CGRectGetHeight(keyboardFrame); 是我写的约束 详细请参考demo</p>
+</blockquote>
+
+<p>键盘消失也是一样的 <code class="language-plaintext highlighter-rouge">UIKeyboardWillHideNotification</code> 接收这个key</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="p">[[</span><span class="n">NSNotificationCenter</span> <span class="nf">defaultCenter</span><span class="p">]</span> <span class="nf">addObserver</span><span class="p">:</span><span class="n">self</span>
+                                             <span class="nl">selector:</span><span class="k">@selector</span><span class="p">(</span><span class="nf">didReceiveKeyboardHideNotification</span><span class="p">:)</span>
+                                                 <span class="n">name</span><span class="o">:</span><span class="n">UIKeyboardWillHideNotification</span>
+                                               <span class="n">object</span><span class="o">:</span><span class="nb">nil</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>消失的时候 把约束偏移量设置<code class="language-plaintext highlighter-rouge">0</code>即可</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">didReceiveKeyboardHideNotification</span><span class="p">:(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">noti</span> <span class="p">{</span>
+    <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">userInfo</span> <span class="o">=</span> <span class="n">noti</span><span class="p">.</span><span class="n">userInfo</span><span class="p">;</span>
+    <span class="n">NSTimeInterval</span> <span class="n">animationDuration</span><span class="p">;</span>
+    <span class="n">UIViewAnimationCurve</span> <span class="n">animationCurve</span><span class="p">;</span>
+    <span class="n">CGRect</span> <span class="n">keyboardFrame</span><span class="p">;</span>
+    <span class="p">[[</span><span class="n">userInfo</span> <span class="nf">objectForKey</span><span class="p">:</span><span class="n">UIKeyboardAnimationCurveUserInfoKey</span><span class="p">]</span> <span class="nf">getValue</span><span class="p">:</span><span class="o">&amp;</span><span class="n">animationCurve</span><span class="p">];</span>
+    <span class="p">[[</span><span class="n">userInfo</span> <span class="nf">objectForKey</span><span class="p">:</span><span class="n">UIKeyboardAnimationDurationUserInfoKey</span><span class="p">]</span> <span class="nf">getValue</span><span class="p">:</span><span class="o">&amp;</span><span class="n">animationDuration</span><span class="p">];</span>
+    <span class="p">[[</span><span class="n">userInfo</span> <span class="nf">objectForKey</span><span class="p">:</span><span class="n">UIKeyboardFrameEndUserInfoKey</span><span class="p">]</span> <span class="nf">getValue</span><span class="p">:</span><span class="o">&amp;</span><span class="n">keyboardFrame</span><span class="p">];</span>
+    
+    <span class="n">UIViewAnimationOptions</span> <span class="n">animationOptions</span> <span class="o">=</span> <span class="n">animationCurve</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">;</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">bottomConstrains</span><span class="p">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">UIView</span> <span class="nf">animateWithDuration</span><span class="p">:</span><span class="n">animationDuration</span> <span class="nf">delay</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span> <span class="n">options</span><span class="o">:</span><span class="n">animationOptions</span> <span class="n">animations</span><span class="o">:^</span><span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">setNeedsUpdateConstraints</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">layoutIfNeeded</span><span class="p">];</span>
+    <span class="p">}</span> <span class="n">completion</span><span class="o">:^</span><span class="p">(</span><span class="n">BOOL</span> <span class="n">finished</span><span class="p">)</span> <span class="p">{</span>
+        
+    <span class="p">}];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>self.bottomConstrains.offset = 0; //设置偏移量会原来位置</p>
+</blockquote>
+
+<p>利用Masonry做的动画</p>
+
+<p>最后 别忘记移除通知</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dealloc</span> <span class="p">{</span>
+    <span class="p">[[</span><span class="n">NSNotificationCenter</span> <span class="nf">defaultCenter</span><span class="p">]</span> <span class="nf">removeObserver</span><span class="p">:</span><span class="n">self</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="总结">总结</h1>
+
+<p>键盘弹出这个微小的细节 很容易被大家忽视,写这篇文章是为了记录知识和技巧,希望各位多多指教</p>
+
+<p><a href="https://github.com/sunyazhou13/KeyboardAnimation">Demo点击这里下载</a></p>
+
+<p>全文完</p>
+
+:ET

@@ -1,0 +1,179 @@
+I"DV<p><img src="/assets/images/20220406CVPixelBufferRef/Cover.avif" alt="Cover" /></p>
+
+<p>在iOS里，我们经常能看到<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>这个类型，在<code class="language-plaintext highlighter-rouge">Camera</code>采集返回的数据里得到一个<code class="language-plaintext highlighter-rouge">CMSampleBufferRef</code>,而每个<code class="language-plaintext highlighter-rouge">CMSampleBufferRef</code>里则包含一个<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>,在视频硬解码的返回数据里也是一个<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>。</p>
+
+<p>顾名思义,<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>是一种像素图片类型，由于<code class="language-plaintext highlighter-rouge">CV</code>开头，所以它是属于<code class="language-plaintext highlighter-rouge">CoreVideo</code>模块的。</p>
+
+<p>iOS喜欢在对象命名前面用缩写表示它属于的模块，比如<code class="language-plaintext highlighter-rouge">CF</code>代表<code class="language-plaintext highlighter-rouge">CoreFoundation</code>,<code class="language-plaintext highlighter-rouge">CG</code>代表<code class="language-plaintext highlighter-rouge">CoreGraphic</code>，<code class="language-plaintext highlighter-rouge">CM</code>代表 <code class="language-plaintext highlighter-rouge">CoreMedia</code>。既然属于<code class="language-plaintext highlighter-rouge">CoreVideo</code>那么它就和视频处理相关了。</p>
+
+<p>它是一个<code class="language-plaintext highlighter-rouge">C</code>对象，而不是<code class="language-plaintext highlighter-rouge">Objective-C</code>对象，所以它不是一个类，而是一个类似<code class="language-plaintext highlighter-rouge">Handle</code>的东西。从代码头文件的定义来看</p>
+
+<p><code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>就是用<code class="language-plaintext highlighter-rouge">CVBufferRef</code> <code class="language-plaintext highlighter-rouge">typedef</code>而来的，而<code class="language-plaintext highlighter-rouge">CVBufferRef</code>本质上就是一个<code class="language-plaintext highlighter-rouge">void *</code>，至于这个<code class="language-plaintext highlighter-rouge">void *</code>具体指向什么数据只有系统才知道了。</p>
+
+<p>所以我们看到 所有对<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>进行操作的函数都是纯<code class="language-plaintext highlighter-rouge">C</code>函数，这很符合iOS <code class="language-plaintext highlighter-rouge">CoreXXXX</code>系列<code class="language-plaintext highlighter-rouge">API</code> 的风格。</p>
+
+<p>比如<code class="language-plaintext highlighter-rouge">CVPixelBufferGetWidth</code>,<code class="language-plaintext highlighter-rouge">CVPixelBufferGetBytesPerRow</code></p>
+
+<p>通过API可以看出来，<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>里包含很多图片相关属性，比较重要的有<code class="language-plaintext highlighter-rouge">width</code>，<code class="language-plaintext highlighter-rouge">height</code>，<code class="language-plaintext highlighter-rouge">PixelFormatType</code>等。</p>
+
+<p>由于可以有不同的<code class="language-plaintext highlighter-rouge">PixelFormatType</code>，说明他可以支持多种位图格式，除了常见的<code class="language-plaintext highlighter-rouge">RGB32</code>以外，还可以支持比如<code class="language-plaintext highlighter-rouge">kCVPixelFormatType_420YpCbCr8BiPlanarFullRange</code>，这种<code class="language-plaintext highlighter-rouge">YUV</code>多平面的数据格式，这个类型里 <code class="language-plaintext highlighter-rouge">BiPlanar</code>表示双平面，说明它是一个<code class="language-plaintext highlighter-rouge">NV12</code>的<code class="language-plaintext highlighter-rouge">YUV</code>，包含一个Y平面和一个UV平面。通过<code class="language-plaintext highlighter-rouge">CVPixelBufferGetBaseAddressOfPlane</code>可以得到每个平面的数据指针。在得到<code class="language-plaintext highlighter-rouge">Address</code>之前需要调用<code class="language-plaintext highlighter-rouge">CVPixelBufferLockBaseAddress</code>，这说明<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>的内部存储不仅是内存也可能是其它外部存储，比如现存，所以在访问前要<code class="language-plaintext highlighter-rouge">lock</code>下来实现地址映射，同时<code class="language-plaintext highlighter-rouge">lock</code>也保证了没有读写冲突。</p>
+
+<p>由于是C对象，它是不受 ARC 管理的，就是说要开发者自己来管理引用计数，控制对象的生命周期，可以用<code class="language-plaintext highlighter-rouge">CVPixelBufferRetain</code>，<code class="language-plaintext highlighter-rouge">CVPixelBufferRelease</code>函数用来加减引用计数，其实和<code class="language-plaintext highlighter-rouge">CFRetain</code>和<code class="language-plaintext highlighter-rouge">CFRelease</code>是等效的，所以可以用<code class="language-plaintext highlighter-rouge">CFGetRetainCount</code>来查看当前引用计数。</p>
+
+<p>如果要显示<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>里的内容，通常有以下几个思路。</p>
+
+<p>把<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>转换成<code class="language-plaintext highlighter-rouge">UIImage</code>，就可以直接赋值给<code class="language-plaintext highlighter-rouge">UIImageView</code>的<code class="language-plaintext highlighter-rouge">image</code>属性，显示在UIImageView上，示例代码</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td> --><td class="rouge-code"><pre><span class="k">+</span> <span class="p">(</span><span class="n">UIImage</span><span class="o">*</span><span class="p">)</span><span class="nf">uiImageFromPixelBuffer</span><span class="p">:(</span><span class="n">CVPixelBufferRef</span><span class="p">)</span><span class="nv">p</span> <span class="p">{</span>
+    <span class="n">CIImage</span><span class="o">*</span> <span class="n">ciImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">CIImage</span> <span class="nf">imageWithCVPixelBuffer</span><span class="p">:</span><span class="n">p</span><span class="p">];</span>
+    <span class="n">CIContext</span><span class="o">*</span> <span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="n">CIContext</span> <span class="nf">contextWithOptions</span><span class="p">:@{</span><span class="n">kCIContextUseSoftwareRenderer</span> <span class="o">:</span> <span class="err">@</span><span class="p">(</span><span class="nb">YES</span><span class="p">)}];</span>
+    <span class="n">CGRect</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">CVPixelBufferGetWidth</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">CVPixelBufferGetHeight</span><span class="p">(</span><span class="n">p</span><span class="p">));</span>
+    <span class="n">CGImageRef</span> <span class="n">videoImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">context</span> <span class="nf">createCGImage</span><span class="p">:</span><span class="n">ciImage</span> <span class="nf">fromRect</span><span class="p">:</span><span class="n">rect</span><span class="p">];</span>
+    <span class="n">UIImage</span><span class="o">*</span> <span class="n">image</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIImage</span> <span class="nf">imageWithCGImage</span><span class="p">:</span><span class="n">videoImage</span><span class="p">];</span>
+    <span class="n">CGImageRelease</span><span class="p">(</span><span class="n">videoImage</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">image</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>从代码可以看出来，这个转换有点复杂，中间经历了多个步骤，所以性能是很差的，只适合偶尔转换一张图片，用于调试截图等，用于显示视频肯定是不行的。</p>
+
+<p>另一个思路是用OpenGL来渲染，<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>是可以转换成一个<code class="language-plaintext highlighter-rouge">openGL texture</code>的，方法如下：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td> --><td class="rouge-code"><pre><span class="n">CVOpenGLESTextureRef</span> <span class="n">pixelBufferTexture</span><span class="p">;</span>
+<span class="n">CVOpenGLESTextureCacheCreateTextureFromImage</span><span class="p">(</span><span class="n">kCFAllocatorDefault</span><span class="p">,</span>
+                                             <span class="n">_textureCache</span><span class="p">,</span>
+                                             <span class="n">pixelBuffer</span><span class="p">,</span>
+                                             <span class="nb">NULL</span><span class="p">,</span>
+                                             <span class="n">GL_TEXTURE_2D</span><span class="p">,</span>
+                                             <span class="n">GL_RGBA</span><span class="p">,</span>
+                                             <span class="n">width</span><span class="p">,</span>
+                                             <span class="n">height</span><span class="p">,</span>
+                                             <span class="n">GL_BGRA</span><span class="p">,</span>
+                                             <span class="n">GL_UNSIGNED_BYTE</span><span class="p">,</span>
+                                             <span class="mi">0</span><span class="p">,</span>
+                                             <span class="o">&amp;</span><span class="n">pixelBufferTexture</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>其中，<code class="language-plaintext highlighter-rouge">_textureCache</code>代表一个<code class="language-plaintext highlighter-rouge">Texture</code>缓存，每次生产的<code class="language-plaintext highlighter-rouge">Texture</code>都是从缓存获取的，这样可以省掉反复创建<code class="language-plaintext highlighter-rouge">Texture</code>的开销，<code class="language-plaintext highlighter-rouge">_textureCache</code>要实现创建好，创建方法如下</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre><span class="n">CVOpenGLESTextureCacheCreate</span><span class="p">(</span><span class="n">kCFAllocatorDefault</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_context</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">_textureCache</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>其中<code class="language-plaintext highlighter-rouge">_context</code>是<code class="language-plaintext highlighter-rouge">openGL</code>的 <code class="language-plaintext highlighter-rouge">context</code>，在<code class="language-plaintext highlighter-rouge">iOS</code>里就是 <code class="language-plaintext highlighter-rouge">EAGLContext *</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">pixelBufferTexture</code>还不是<code class="language-plaintext highlighter-rouge">openGL</code>的<code class="language-plaintext highlighter-rouge">Texture</code>，调用<code class="language-plaintext highlighter-rouge">CVOpenGLESTextureGetName</code>才能获得在<code class="language-plaintext highlighter-rouge">openGL</code>可以使用的<code class="language-plaintext highlighter-rouge">Texture ID</code>。</p>
+
+<p>当获得了 <code class="language-plaintext highlighter-rouge">Texture ID</code>后就可以用<code class="language-plaintext highlighter-rouge">openGL</code>来绘制了，这里推荐用 <code class="language-plaintext highlighter-rouge">GLKView</code>来做绘制</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre><span class="n">glUseProgram</span><span class="p">(</span><span class="n">_shaderProgram</span><span class="p">);</span>
+<span class="n">glActiveTexture</span><span class="p">(</span><span class="n">GL_TEXTURE0</span><span class="p">);</span>
+<span class="n">glBindTexture</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">textureId</span><span class="p">);</span>
+<span class="n">glTexParameterf</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_S</span><span class="p">,</span> <span class="n">GL_CLAMP_TO_EDGE</span><span class="p">);</span>
+<span class="n">glTexParameterf</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_T</span><span class="p">,</span> <span class="n">GL_CLAMP_TO_EDGE</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_MIN_FILTER</span><span class="p">,</span> <span class="n">GL_LINEAR</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_MAG_FILTER</span><span class="p">,</span> <span class="n">GL_LINEAR</span><span class="p">);</span>
+<span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_TRIANGLE_FAN</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>当然这不是全部代码，完整的绘制<code class="language-plaintext highlighter-rouge">openGL</code>代码还有很多，<code class="language-plaintext highlighter-rouge">openGL</code>是著名的啰嗦冗长，还有<code class="language-plaintext highlighter-rouge">openGL</code> <code class="language-plaintext highlighter-rouge">Context</code>创建<code class="language-plaintext highlighter-rouge">shader</code>编译<code class="language-plaintext highlighter-rouge">DataBuffer</code>加载等。</p>
+
+<p>本质上这段代码是为了把<code class="language-plaintext highlighter-rouge">Texture</code>的内容绘制到 <code class="language-plaintext highlighter-rouge">openGL的frame buffer</code>里，然后再把<code class="language-plaintext highlighter-rouge">frame buffer</code>贴到 <code class="language-plaintext highlighter-rouge">CAEAGLayer</code>。</p>
+
+<p>这个从<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>获取的<code class="language-plaintext highlighter-rouge">texture</code>，和原来的<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>对象共享同一个存储，就是说如果改变了<code class="language-plaintext highlighter-rouge">Texture</code>的内容，那么<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>的内容也会改变。利用这一点我们就可可以用<code class="language-plaintext highlighter-rouge">openGL</code>的绘制方法向<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>对象输出内容了。比如可以给<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>的内容加图形特效打水印等。</p>
+
+<p>除了从系统API里获得<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>外，我们也可以自己创建<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code></p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre></td> --><td class="rouge-code"><pre><span class="k">+</span><span class="p">(</span><span class="n">CVPixelBufferRef</span><span class="p">)</span><span class="nf">createPixelBufferWithSize</span><span class="p">:(</span><span class="n">CGSize</span><span class="p">)</span><span class="nv">size</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">keys</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kCVPixelBufferOpenGLESCompatibilityKey</span><span class="p">,</span>
+        <span class="n">kCVPixelBufferIOSurfacePropertiesKey</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">values</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">(</span><span class="n">__bridge</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)([</span><span class="n">NSNumber</span> <span class="nf">numberWithBool</span><span class="p">:</span><span class="nb">YES</span><span class="p">]),</span>
+        <span class="p">(</span><span class="n">__bridge</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)([</span><span class="n">NSDictionary</span> <span class="nf">dictionary</span><span class="p">])</span>
+    <span class="p">};</span>
+    
+    <span class="n">OSType</span> <span class="n">bufferPixelFormat</span> <span class="o">=</span> <span class="n">kCVPixelFormatType_32BGRA</span><span class="p">;</span>
+    
+    <span class="n">CFDictionaryRef</span> <span class="n">optionsDictionary</span> <span class="o">=</span> <span class="n">CFDictionaryCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    
+    <span class="n">CVPixelBufferRef</span> <span class="n">pixelBuffer</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">CVPixelBufferCreate</span><span class="p">(</span><span class="n">kCFAllocatorDefault</span><span class="p">,</span>
+                        <span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span>
+                        <span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>
+                        <span class="n">bufferPixelFormat</span><span class="p">,</span>
+                        <span class="n">optionsDictionary</span><span class="p">,</span>
+                        <span class="o">&amp;</span><span class="n">pixelBuffer</span><span class="p">);</span>
+    
+    <span class="n">CFRelease</span><span class="p">(</span><span class="n">optionsDictionary</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="n">pixelBuffer</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>创建一个<code class="language-plaintext highlighter-rouge">BGRA</code>格式的<code class="language-plaintext highlighter-rouge">PixelBuffer</code>，注意<code class="language-plaintext highlighter-rouge">kCVPixelBufferOpenGLESCompatibilityKey</code>和<code class="language-plaintext highlighter-rouge">kCVPixelBufferIOSurfacePropertiesKey</code>这两个属性，这是为了实现和<code class="language-plaintext highlighter-rouge">openGL</code>兼容，另外有些地方要求<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>必须是<code class="language-plaintext highlighter-rouge">IO Surface</code>。</p>
+
+<p><code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>是iOS视频采集处理编码流程的重要中间数据媒介和纽带，理解`CVPixelBufferRef有助于写出高性能可靠的视频处理。</p>
+
+<p>要进一步理解<code class="language-plaintext highlighter-rouge">CVPixelBufferRef</code>还需要学习<code class="language-plaintext highlighter-rouge">YUV</code>，<code class="language-plaintext highlighter-rouge">color range</code>，<code class="language-plaintext highlighter-rouge">openGL</code>等知识。</p>
+
+<p>引用自<a href="https://zhuanlan.zhihu.com/p/24762605?utm_source=ZHShareTargetIDMore&amp;utm_medium=social&amp;utm_oi=28280635785216">深入理解CVPixelBufferRef</a></p>
+
+:ET

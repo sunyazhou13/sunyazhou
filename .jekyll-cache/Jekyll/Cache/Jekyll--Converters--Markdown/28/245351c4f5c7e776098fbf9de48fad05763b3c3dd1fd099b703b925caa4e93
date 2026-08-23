@@ -1,0 +1,99 @@
+I"�<h1 id="前言">前言</h1>
+
+<p>写了一个简单的利用 透明度和 缩放 实现的 数字倍数动画</p>
+
+<p><img src="/assets/images/20181029LabelDanceAnimation/danceLabel.avif" alt="demo" /></p>
+
+<h1 id="实现思路">实现思路</h1>
+
+<p>上代码 看比较清晰</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre></td><td class="rouge-code"><pre><span class="c1">// 数字跳动动画</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">labelDanceAnimation</span><span class="p">:(</span><span class="n">NSTimeInterval</span><span class="p">)</span><span class="nv">duration</span> <span class="p">{</span>
+    <span class="c1">//透明度</span>
+    <span class="n">CABasicAnimation</span> <span class="o">*</span><span class="n">opacityAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="n">CABasicAnimation</span> <span class="nf">animationWithKeyPath</span><span class="p">:</span><span class="s">@"opacity"</span><span class="p">];</span>
+    <span class="n">opacityAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4</span> <span class="o">*</span> <span class="n">duration</span><span class="p">;</span>
+    <span class="n">opacityAnimation</span><span class="p">.</span><span class="n">fromValue</span> <span class="o">=</span> <span class="mf">@0.f</span><span class="p">;</span>
+    <span class="n">opacityAnimation</span><span class="p">.</span><span class="n">toValue</span> <span class="o">=</span> <span class="mf">@1.f</span><span class="p">;</span>
+    
+    <span class="c1">//缩放</span>
+    <span class="n">CAKeyframeAnimation</span> <span class="o">*</span><span class="n">scaleAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAKeyframeAnimation</span> <span class="nf">animationWithKeyPath</span><span class="p">:</span><span class="s">@"transform.scale"</span><span class="p">];</span>
+    <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span><span class="p">;</span>
+    <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@3.f</span><span class="p">,</span> <span class="mf">@1.f</span><span class="p">,</span> <span class="mf">@1.2f</span><span class="p">,</span> <span class="mf">@1.f</span><span class="p">];</span>
+    <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">keyTimes</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@0.f</span><span class="p">,</span> <span class="mf">@0.16f</span><span class="p">,</span> <span class="mf">@0.28f</span><span class="p">,</span> <span class="mf">@0.4f</span><span class="p">];</span>
+    <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">removedOnCompletion</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+    <span class="n">scaleAnimation</span><span class="p">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
+    
+    <span class="n">CAAnimationGroup</span> <span class="o">*</span><span class="n">animationGroup</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAAnimationGroup</span> <span class="nf">animation</span><span class="p">];</span>
+    <span class="n">animationGroup</span><span class="p">.</span><span class="n">animations</span> <span class="o">=</span> <span class="p">@[</span><span class="n">opacityAnimation</span><span class="p">,</span> <span class="n">scaleAnimation</span><span class="p">];</span>
+    <span class="n">animationGroup</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span><span class="p">;</span>
+    <span class="n">animationGroup</span><span class="p">.</span><span class="n">removedOnCompletion</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+    <span class="n">animationGroup</span><span class="p">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
+    
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">comboLabel</span><span class="p">.</span><span class="n">layer</span> <span class="nf">addAnimation</span><span class="p">:</span><span class="n">animationGroup</span> <span class="nf">forKey</span><span class="p">:</span><span class="s">@"kComboAnimationKey"</span><span class="p">];</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>利用一个透明度从 0 ~ 1之间的alpha,然后缩放 之后加到动画组实现一下就好了</p>
+
+<blockquote>
+  <p>切记动画完成最好移除 否则可能引起动画内存问题</p>
+</blockquote>
+
+<p>这里设置斜体字体</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">self</span><span class="p">.</span><span class="n">comboLabel</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nf">fontWithName</span><span class="p">:</span><span class="s">@"AvenirNext-BoldItalic"</span> <span class="nf">size</span><span class="p">:</span><span class="mi">50</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>看着比较明显</p>
+
+<p>最后按钮点击的时候调用</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="n">IBAction</span><span class="p">)</span><span class="nf">clickAction</span><span class="p">:(</span><span class="n">UIButton</span> <span class="o">*</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">danceCount</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">labelDanceAnimation</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">comboLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nf">stringWithFormat</span><span class="p">:</span><span class="s">@"+  %tu"</span><span class="p">,</span><span class="n">self</span><span class="p">.</span><span class="n">danceCount</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>如果实现 dozen动画的话很简单, <strong>danceCount % 10 == 0</strong> 求模就行了.</p>
+
+<h1 id="总结">总结</h1>
+
+<p>这个动画比较适合 有些直播场景的点击操作计数相关.感谢观看</p>
+
+<p><a href="https://github.com/sunyazhou13/LiveComboLabel">Demo在这里</a></p>
+
+:ET

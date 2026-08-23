@@ -1,0 +1,263 @@
+I"<f<p><img src="/assets/images/20171016UIViewRendering/UIViewRendering.avif" alt="UIView渲染" /></p>
+
+<h1 id="前言">前言</h1>
+
+<p>最近研究OpenGL ES相关和 GPU 相关 发现这篇文章很具有参考的入门价值.</p>
+
+<h3 id="理解-uiview-的绘制-uiview-是如何显示到-screen-上的">理解 UIView 的绘制, UIView 是如何显示到 Screen 上的?</h3>
+
+<p>首先要从<code class="language-plaintext highlighter-rouge">Runloop</code>开始说,iOS 的<code class="language-plaintext highlighter-rouge">MainRunloop</code> 是一个60fps 的回调,也就是说16.7ms(毫秒)会绘制一次屏幕,这个时间段内要完成:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">view</code>的缓冲区创建</li>
+  <li><code class="language-plaintext highlighter-rouge">view</code>内容的绘制(如果重写了 drawRect)</li>
+</ul>
+
+<p>这些 <code class="language-plaintext highlighter-rouge">CPU</code>的工作.</p>
+
+<p>然后将这个缓冲区交给<code class="language-plaintext highlighter-rouge">GPU</code>渲染, 这个过程又包含:</p>
+
+<ul>
+  <li>多个<code class="language-plaintext highlighter-rouge">view</code>的拼接(compositing)</li>
+  <li>纹理的渲染(Texture)等.</li>
+</ul>
+
+<p>最终现实在屏幕上.因此,如果在16.7ms 内完不成这些操作, eg: CPU做了太多的工作, 或者<code class="language-plaintext highlighter-rouge">view</code>层次过于多,图片过于大,导致<code class="language-plaintext highlighter-rouge">GPU</code>压力太大,就会导致”卡”的现象,也就是 <strong>丢帧</strong>,<strong>掉帧</strong>.</p>
+
+<p>苹果官方给出的最佳帧率是:<strong>60fps</strong>(60Hz),也就是一帧不丢, 当然这是理想中的绝佳体验.</p>
+
+<h3 id="这个60fps该怎么理解呢">这个<code class="language-plaintext highlighter-rouge">60fps</code>该怎么理解呢？</h3>
+
+<p>一般来说如果帧率达到 <code class="language-plaintext highlighter-rouge">60+fps</code>(fps &gt;= 60帧以上,如果帧率fps &gt; 50,人眼就基本感觉不到卡顿了,因此,如果你能让你的 iOS 程序__稳定__保持在<code class="language-plaintext highlighter-rouge">60fps</code>已经很不错了, 注释,是”稳定”在60fps,而不是, <code class="language-plaintext highlighter-rouge">10fps</code>,<code class="language-plaintext highlighter-rouge">40fps</code>,<code class="language-plaintext highlighter-rouge">20fps</code>这样的跳动,如果帧频不稳就会有卡的感觉,<code class="language-plaintext highlighter-rouge">60fps</code>真的很难达到, 尤其是在 iPhone 4/4s等 32bit 位机上,不过现在苹果已经全面放弃32位,支持最低64位会好很多.</p>
+
+<blockquote>
+  <p>fps 代表的是刷新频率,单位赫兹Hz,因为电子工程中考虑到能耗和视觉以及其它方面,60Hz是一个比较理想的刷新频率,所以家用电器也经常会出现60Hz的字样.
+视频中帧率FPS &gt;= 25 才不会人眼察觉有卡顿,因为视频中视频模糊视频中的i p b帧能够给予前后帧一些需要的像素信息方便GPU的离屏渲染,GPU的索引可以节省很多性能.</p>
+</blockquote>
+
+<p>总的来说, UIView从绘制到Render的过程有如下几步：</p>
+
+<ul>
+  <li>每一个<code class="language-plaintext highlighter-rouge">UIView</code>都有一个<code class="language-plaintext highlighter-rouge">layer</code></li>
+  <li>每一个<code class="language-plaintext highlighter-rouge">layer</code>都有个<code class="language-plaintext highlighter-rouge">content</code>,这个<code class="language-plaintext highlighter-rouge">content</code>指向的是一块缓存,叫做__<code class="language-plaintext highlighter-rouge">backing store</code>__.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">UIView</code>的绘制和渲染是两个过程:</p>
+
+<ul>
+  <li>当<code class="language-plaintext highlighter-rouge">UIView</code>被绘制时,CPU执行<code class="language-plaintext highlighter-rouge">drawRect</code>，通过<code class="language-plaintext highlighter-rouge">context</code>将数据写入__<code class="language-plaintext highlighter-rouge">backing store</code>__</li>
+  <li>当__<code class="language-plaintext highlighter-rouge">backing store</code>__写完后，通过render server交给GPU去渲染，将backing store中的bitmap数据显示在屏幕上.</li>
+</ul>
+
+<p>上面提到的从<code class="language-plaintext highlighter-rouge">CPU</code>到<code class="language-plaintext highlighter-rouge">GPU</code>的过程可用下图表示:</p>
+
+<p><img src="/assets/images/20171016UIViewRendering/CPUToGPU.avif" alt="CPU To GPU" /></p>
+
+<p>下面具体来讨论下这个过程</p>
+
+<ul>
+  <li>CPU bound:</li>
+</ul>
+
+<p>假设我们创建一个 UILabel</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="n">UILabel</span><span class="o">*</span> <span class="n">label</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UILabel</span> <span class="nf">alloc</span><span class="p">]</span><span class="nf">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">14</span><span class="p">)];</span>
+<span class="n">label</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">whiteColor</span><span class="p">];</span>
+<span class="n">label</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nf">systemFontOfSize</span><span class="p">:</span><span class="mi">14</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">];</span>
+<span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">@"test"</span><span class="p">;</span>
+<span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">label</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这个时候不会发生任何操作, 由于 UILabel 重写了<code class="language-plaintext highlighter-rouge">drawRect</code>方法,因此,这个 <code class="language-plaintext highlighter-rouge">View</code>会被 <code class="language-plaintext highlighter-rouge">marked as "dirty"</code>:</p>
+
+<p>类似这个样子:</p>
+
+<p><img src="/assets/images/20171016UIViewRendering/DrawRect.avif" alt="Draw Rect" /></p>
+
+<p>然后一个新的<code class="language-plaintext highlighter-rouge">Runloop</code>到来，上面说道在这个<code class="language-plaintext highlighter-rouge">Runloop</code>中需要将界面渲染上去，对于<code class="language-plaintext highlighter-rouge">UIKit</code>的渲染，Apple用的是它的<code class="language-plaintext highlighter-rouge">Core Animation</code>。
+做法是在Runloop开始的时候调用：</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">CATransaction</span> <span class="nf">begin</span><span class="p">]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>在<code class="language-plaintext highlighter-rouge">Runloop</code>结束的时候调用</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>
+<span class="p">[</span><span class="n">CATransaction</span> <span class="nf">commit</span><span class="p">]</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>在<code class="language-plaintext highlighter-rouge">begin</code>和<code class="language-plaintext highlighter-rouge">commit</code>之间做的事情是将<code class="language-plaintext highlighter-rouge">view</code>增加到<code class="language-plaintext highlighter-rouge">view hierarchy</code>中，这个时候也不会发生任何绘制的操作。
+当<code class="language-plaintext highlighter-rouge">[CATransaction commit]</code>执行完后，<code class="language-plaintext highlighter-rouge">CPU</code>开始绘制这个<code class="language-plaintext highlighter-rouge">view</code>:</p>
+
+<p><img src="/assets/images/20171016UIViewRendering/CATransactionCommit.avif" alt="CPU绘制图" /></p>
+
+<p>首先<code class="language-plaintext highlighter-rouge">CPU</code>会为<code class="language-plaintext highlighter-rouge">layer</code>分配一块内存用来绘制<code class="language-plaintext highlighter-rouge">bitmap</code>，叫做__<code class="language-plaintext highlighter-rouge">backing store</code>__<br />
+创建指向这块<code class="language-plaintext highlighter-rouge">bitmap</code>缓冲区的指针，叫做<code class="language-plaintext highlighter-rouge">CGContextRef</code><br />
+通过<code class="language-plaintext highlighter-rouge">Core Graphic</code>的<code class="language-plaintext highlighter-rouge">api</code>，也叫<code class="language-plaintext highlighter-rouge">Quartz2D</code>，绘制<code class="language-plaintext highlighter-rouge">bitmap</code><br />
+将<code class="language-plaintext highlighter-rouge">layer</code>的<code class="language-plaintext highlighter-rouge">content</code>指向生成的<code class="language-plaintext highlighter-rouge">bitmap</code><br />
+清空<code class="language-plaintext highlighter-rouge">dirty flag</code>标记<br />
+这样<code class="language-plaintext highlighter-rouge">CPU</code>的绘制基本上就完成了.<br />
+通过<code class="language-plaintext highlighter-rouge">time profiler</code>可以完整的看到个过程：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>
+Running Time Self Symbol Name
+2.0ms 1.2% 0.0 +[CATransaction flush]
+2.0ms 1.2% 0.0 CA::Transaction::commit<span class="o">()</span>
+2.0ms 1.2% 0.0 CA::Context::commit_transaction<span class="o">(</span>CA::Transaction<span class="k">*</span><span class="o">)</span>
+1.0ms 0.6% 0.0 CA::Layer::layout_and_display_if_needed<span class="o">(</span>CA::Transaction<span class="k">*</span><span class="o">)</span>
+1.0ms 0.6% 0.0 CA::Layer::display_if_needed<span class="o">(</span>CA::Transaction<span class="k">*</span><span class="o">)</span>
+1.0ms 0.6% 0.0 -[CALayer display]
+1.0ms 0.6% 0.0 CA::Layer::display<span class="o">()</span>
+1.0ms 0.6% 0.0 -[CALayer _display]
+1.0ms 0.6% 0.0 CA::Layer::display_<span class="o">()</span>
+1.0ms 0.6% 0.0 CABackingStoreUpdate_
+1.0ms 0.6% 0.0 backing_callback<span class="o">(</span>CGContext<span class="k">*</span>, void<span class="k">*</span><span class="o">)</span>
+1.0ms 0.6% 0.0 -[CALayer drawInContext:]
+1.0ms 0.6% 0.0 -[UIView<span class="o">(</span>CALayerDelegate<span class="o">)</span> drawLayer:inContext:]
+1.0ms 0.6% 0.0 -[UILabel drawRect:]
+1.0ms 0.6% 0.0 -[UILabel drawTextInRect:]  
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>假如某个时刻修改了<code class="language-plaintext highlighter-rouge">label</code>的<code class="language-plaintext highlighter-rouge">text</code>:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">@"hello world"</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>由于内容变了,<code class="language-plaintext highlighter-rouge">layer</code>的<code class="language-plaintext highlighter-rouge">content</code>的<code class="language-plaintext highlighter-rouge">bitmap</code>的尺寸也要变化，因此这个时候当新的<code class="language-plaintext highlighter-rouge">Runloop</code>到来时，<code class="language-plaintext highlighter-rouge">CPU</code>要为<code class="language-plaintext highlighter-rouge">layer</code>重新创建一个<code class="language-plaintext highlighter-rouge">backing store</code>，重新绘制<code class="language-plaintext highlighter-rouge">bitmap</code>.<br />
+<code class="language-plaintext highlighter-rouge">CPU</code>这一块最耗时的地方往往在<code class="language-plaintext highlighter-rouge">Core Graphic</code>的绘制上，关于<code class="language-plaintext highlighter-rouge">Core Graphic</code>的性能优化是另一个话题了，又会牵扯到很多东西，就不在这里讨论了.</p>
+
+<p>GPU bound：</p>
+
+<p><code class="language-plaintext highlighter-rouge">CPU</code>完成了它的任务：将<code class="language-plaintext highlighter-rouge">view</code>变成了<code class="language-plaintext highlighter-rouge">bitmap</code>，然后就是<code class="language-plaintext highlighter-rouge">GPU</code>的工作了，<code class="language-plaintext highlighter-rouge">GPU</code>处理的单位是<code class="language-plaintext highlighter-rouge">Texture</code>.    <br />
+基本上我们控制<code class="language-plaintext highlighter-rouge">GPU</code>都是通过<code class="language-plaintext highlighter-rouge">OpenGL</code>来完成的，但是从<code class="language-plaintext highlighter-rouge">bitmap</code>到<code class="language-plaintext highlighter-rouge">Texture</code>之间需要一座桥梁，<code class="language-plaintext highlighter-rouge">Core Animation</code>正好充当了这个角色：<br />
+<code class="language-plaintext highlighter-rouge">Core Animation</code>对<code class="language-plaintext highlighter-rouge">OpenGL</code>的<code class="language-plaintext highlighter-rouge">api</code>有一层封装，当我们要渲染的<code class="language-plaintext highlighter-rouge">layer</code>已经有了<code class="language-plaintext highlighter-rouge">bitmap content</code>的时候，这个<code class="language-plaintext highlighter-rouge">content</code>一般来说是一个<code class="language-plaintext highlighter-rouge">CGImageRef</code>，<code class="language-plaintext highlighter-rouge">CoreAnimation</code>会创建一个<code class="language-plaintext highlighter-rouge">OpenGL</code>的<code class="language-plaintext highlighter-rouge">Texture</code>并将<code class="language-plaintext highlighter-rouge">CGImageRef（bitmap）</code>和这个<code class="language-plaintext highlighter-rouge">Texture</code>绑定，通过<code class="language-plaintext highlighter-rouge">TextureID</code>来标识。<br />
+这个对应关系建立起来之后，剩下的任务就是<code class="language-plaintext highlighter-rouge">GPU</code>如何将<code class="language-plaintext highlighter-rouge">Texture</code>渲染到屏幕上了。
+<code class="language-plaintext highlighter-rouge">GPU</code>大致的工作模式如下：</p>
+
+<p><img src="/assets/images/20171016UIViewRendering/GPUWorkflow.avif" alt="GPU Workflow" /></p>
+
+<p>整个过程也就是一件事：</p>
+
+<p><code class="language-plaintext highlighter-rouge">CPU</code>将准备好的<code class="language-plaintext highlighter-rouge">bitmap</code>放到<code class="language-plaintext highlighter-rouge">RAM</code>里，<code class="language-plaintext highlighter-rouge">GPU</code>去搬这快内存到<code class="language-plaintext highlighter-rouge">VRAM</code>中处理。 
+而这个过程<code class="language-plaintext highlighter-rouge">GPU</code>所能承受的极限大概在16.7ms完成一帧的处理，所以最开始提到的60fps其实就是GPU能处理的最高频率.<br />
+因此，<code class="language-plaintext highlighter-rouge">GPU</code>的挑战有两个：</p>
+
+<ul>
+  <li>将数据从<code class="language-plaintext highlighter-rouge">RAM</code>搬到<code class="language-plaintext highlighter-rouge">VRAM</code>中</li>
+  <li>将<code class="language-plaintext highlighter-rouge">Texture</code>渲染到屏幕上</li>
+</ul>
+
+<p>这两个中瓶颈基本在第二点上。渲染<code class="language-plaintext highlighter-rouge">Texture</code>基本要处理这么几个问题：</p>
+
+<ul>
+  <li>Compositing:</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Compositing</code>是指将多个纹理拼到一起的过程，对应<code class="language-plaintext highlighter-rouge">UIKit</code>，是指处理多个<code class="language-plaintext highlighter-rouge">view</code>合到一起的情况，如:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">addsubview</span> <span class="p">:</span> <span class="n">subview</span><span class="p">]</span><span class="err">。</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>如果<code class="language-plaintext highlighter-rouge">view</code>之间没有叠加，那么<code class="language-plaintext highlighter-rouge">GPU</code>只需要做普通渲染即可.<br />
+如果多个<code class="language-plaintext highlighter-rouge">view</code>之间有叠加部分，<code class="language-plaintext highlighter-rouge">GPU</code>需要做<code class="language-plaintext highlighter-rouge">blending</code>.</p>
+
+<p>加入两个<code class="language-plaintext highlighter-rouge">view</code>大小相同，一个叠加在另一个上面，那么计算公式如下：</p>
+
+<p><code class="language-plaintext highlighter-rouge">R</code> = <code class="language-plaintext highlighter-rouge">S</code>+<code class="language-plaintext highlighter-rouge">D</code>*(<code class="language-plaintext highlighter-rouge">1</code>-<code class="language-plaintext highlighter-rouge">Sa</code>)</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">R</code>: 为最终的像素值<br />
+<code class="language-plaintext highlighter-rouge">S</code>: 代表 上面的Texture（Top Texture）<br />
+<code class="language-plaintext highlighter-rouge">D</code>: 代表下面的Texture(lower Texture)</p>
+</blockquote>
+
+<p>其中<code class="language-plaintext highlighter-rouge">S</code>,<code class="language-plaintext highlighter-rouge">D</code>都已经<code class="language-plaintext highlighter-rouge">pre-multiplied</code>各自的<code class="language-plaintext highlighter-rouge">alpha</code>值。<br />
+<code class="language-plaintext highlighter-rouge">Sa</code>代表<code class="language-plaintext highlighter-rouge">Texture</code>的<code class="language-plaintext highlighter-rouge">alpha</code>值。</p>
+
+<p>假如<code class="language-plaintext highlighter-rouge">Top Texture</code>（上层<code class="language-plaintext highlighter-rouge">view</code>）的<code class="language-plaintext highlighter-rouge">alpha</code>值为<code class="language-plaintext highlighter-rouge">1</code>，即不透明。那么它会遮住下层的<code class="language-plaintext highlighter-rouge">Texture</code>.<br />
+即,<code class="language-plaintext highlighter-rouge">R</code> = <code class="language-plaintext highlighter-rouge">S</code>。是合理的。</p>
+
+<p>假如<code class="language-plaintext highlighter-rouge">Top Texture</code>（上层<code class="language-plaintext highlighter-rouge">view</code>）的<code class="language-plaintext highlighter-rouge">alpha</code>值为<code class="language-plaintext highlighter-rouge">0.5</code>，<br />
+<code class="language-plaintext highlighter-rouge">S</code>为<code class="language-plaintext highlighter-rouge">(1,0,0)</code>，乘以<code class="language-plaintext highlighter-rouge">alpha</code>后为<code class="language-plaintext highlighter-rouge">(0.5,0,0）</code>。<br />
+<code class="language-plaintext highlighter-rouge">D</code>为<code class="language-plaintext highlighter-rouge">(0，0，1)</code>。<br />
+得到的<code class="language-plaintext highlighter-rouge">R</code>为<code class="language-plaintext highlighter-rouge">（0.5，0，0.5）</code>。</p>
+
+<p>基本上每个像素点都需要这么计算一次。</p>
+
+<p>因此，<code class="language-plaintext highlighter-rouge">view</code>的层级很复杂，或者<code class="language-plaintext highlighter-rouge">view</code>都是半透明的（<code class="language-plaintext highlighter-rouge">alpha</code>值不为<code class="language-plaintext highlighter-rouge">1</code>）都会带来<code class="language-plaintext highlighter-rouge">GPU</code>额外的计算工作。</p>
+
+<ul>
+  <li>Size</li>
+</ul>
+
+<p>这个问题，主要是处理<code class="language-plaintext highlighter-rouge">image</code>带来的，假如内存里有一张<code class="language-plaintext highlighter-rouge">400x400</code>的图片，要放到<code class="language-plaintext highlighter-rouge">100x100</code>的<code class="language-plaintext highlighter-rouge">imageview</code>里，如果不做任何处理，直接丢进去，问题就大了，这意味着，<code class="language-plaintext highlighter-rouge">GPU</code>需要对大图进行缩放到小的区域显示，需要做像素点的<code class="language-plaintext highlighter-rouge">sampling</code>，这种<code class="language-plaintext highlighter-rouge">smapling</code>的代价很高，又需要兼顾<code class="language-plaintext highlighter-rouge">pixel alignment</code>。  计算量会飙升。</p>
+
+<ul>
+  <li>Offscreen Rendering And Mask</li>
+</ul>
+
+<p>如果我们对<code class="language-plaintext highlighter-rouge">layer</code>做这样的操作：</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="n">label</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">5</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">;</span>
+<span class="n">label</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>会产生<code class="language-plaintext highlighter-rouge">offscreen rendering</code>,它带来的最大的问题是，当渲染这样的<code class="language-plaintext highlighter-rouge">layer</code>的时候，需要额外开辟内存，绘制好<code class="language-plaintext highlighter-rouge">radius，mask</code>，然后再将绘制好的<code class="language-plaintext highlighter-rouge">bitmap</code>重新赋值给<code class="language-plaintext highlighter-rouge">layer</code>。<br />
+因此继续性能的考虑，<code class="language-plaintext highlighter-rouge">Quartz</code>提供了优化的<code class="language-plaintext highlighter-rouge">api</code>：</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="n">label</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">5</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">;</span>
+<span class="n">label</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">masksToBounds</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="n">label</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">shouldRasterize</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="n">label</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">rasterizationScale</span> <span class="o">=</span> <span class="n">label</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">contentsScale</span><span class="p">;</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>简单的说，这是一种<code class="language-plaintext highlighter-rouge">cache</code>机制。<br />
+同样<code class="language-plaintext highlighter-rouge">GPU</code>的性能也可以通过<code class="language-plaintext highlighter-rouge">instrument</code>去衡量：</p>
+
+<p><img src="/assets/images/20171016UIViewRendering/RenderingResult.avif" alt="Rendering Result" /></p>
+
+<p>红色代表<code class="language-plaintext highlighter-rouge">GPU</code>需要做额外的工作来渲染<code class="language-plaintext highlighter-rouge">View</code>，绿色代表<code class="language-plaintext highlighter-rouge">GPU</code>无需做额外的工作来处理<code class="language-plaintext highlighter-rouge">bitmap</code>。</p>
+
+<p>全文完</p>
+:ET

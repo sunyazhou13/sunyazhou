@@ -1,0 +1,176 @@
+I" <p><img src="/assets/images/aboutme/background_th.avif" alt="个人背景" /></p>
+
+<h2 id="关于我">关于我</h2>
+
+<blockquote>
+  <p>我们的一生像一个操作系统中的进程，日常活动是其中的线程，在时间片轮转调度中运行于队列 <code class="language-plaintext highlighter-rouge">com.sunyazhou.self.queue.serial</code>。我总结自己的学习经历为 <strong>一个孤独的线程</strong>——总是串行执行：<code class="language-plaintext highlighter-rouge">英语</code>、<code class="language-plaintext highlighter-rouge">数学</code>、<code class="language-plaintext highlighter-rouge">各种……</code>。为了记录那些容易遗忘的内容，我创建了这份 <strong>孙先生的工作笔记</strong>，它像一个开源工具箱，时常翻阅，也共享给需要的人。</p>
+</blockquote>
+
+<p>我是 <strong>孙亚洲</strong>，来自祖国的北国冰城 <a href="https://baike.baidu.com/item/%E5%93%88%E5%B0%94%E6%BB%A8/177863">哈尔滨</a>。长期从事 iOS 应用开发，也搞过一段 macOS 开发，这是我所有技能中最擅长的领域。</p>
+
+<hr />
+
+<h2 id="️-我的家乡--绥化">🏔️ 我的家乡 — 绥化</h2>
+
+<blockquote>
+  <p>千里冰川坦荡如砥的松嫩平原，每形成一厘米厚的黑土需要四百年的星霜荏苒。</p>
+</blockquote>
+
+<h3 id="自然">自然</h3>
+
+<p>逶迤的小兴安岭上巍然挺拔的红松林：
+<img src="/assets/images/aboutme/hongsong.avif" alt="红松" /></p>
+
+<p>奔流到江千年不休，萧红笔下的呼兰河：
+<img src="/assets/images/aboutme/hulanhe.avif" alt="呼兰河" /></p>
+
+<p>春天里水天一色播种希望的插秧人，夏日里整齐待发粒粒饱满的鲜玉米，秋天里摇铃的大豆、弯腰的稻谷、飘香的沃野，凛冽冬季飞雪中敬畏天地的那份肃穆和庄严。</p>
+
+<h3 id="人物">人物</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">人物</th>
+      <th style="text-align: left">简介</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="https://baike.baidu.com/item/%E6%9E%97%E6%9E%AB/60298">林枫</a></td>
+      <td style="text-align: left">一二九抗日救亡运动的主要领导者</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://baike.baidu.com/item/%E4%BA%8E%E7%82%B3%E7%84%B6/5862027">于炳然</a></td>
+      <td style="text-align: left">党对敌斗争隐蔽战线上的杰出战士</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">梁军</td>
+      <td style="text-align: left">新中国第一位女拖拉机手，一元人民币原型人物</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">麻扶摇</td>
+      <td style="text-align: left">唱响世界的《中国人民志愿军战歌》词作者</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">邵安林</td>
+      <td style="text-align: left">开辟贫铁矿高效开发的鞍钢奠基人</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">孙玉</td>
+      <td style="text-align: left">中国第一代原子弹、火箭、洲际导弹遥控设计者</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/assets/images/aboutme/linfeng.avif" alt="林枫" />
+<img src="/assets/images/aboutme/yubingran.avif" alt="于炳然" />
+<img src="/assets/images/aboutme/rmb1.avif" alt="人民币一元圆形人物梁军" /></p>
+
+<h3 id="文化">文化</h3>
+
+<p>帝王将相一人扮、才子佳人双手提的 <strong>皮影</strong>，妙手挥天地情洒沃土间的 <strong>剪纸画</strong>，板上刀风劲稻菽暗香来的 <strong>版画</strong>。</p>
+
+<blockquote>
+  <p>不要做一个在这生活一辈子却对它的人文和历史了解甚少的无知者。沿着前辈们留下的路继续前行。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-技术栈">💻 技术栈</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">领域</th>
+      <th style="text-align: left">技术关键词</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>开发语言</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Objective-C</code> <code class="language-plaintext highlighter-rouge">Swift</code> <code class="language-plaintext highlighter-rouge">Python</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>平台 &amp; 框架</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">iOS</code> <code class="language-plaintext highlighter-rouge">UIKit</code> <code class="language-plaintext highlighter-rouge">App 开发</code> <code class="language-plaintext highlighter-rouge">CocoaPods</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>音视频</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">FFmpeg</code> <code class="language-plaintext highlighter-rouge">H264/H265</code> <code class="language-plaintext highlighter-rouge">音视频</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>图形学</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Metal</code> <code class="language-plaintext highlighter-rouge">GPU 渲染</code> <code class="language-plaintext highlighter-rouge">Shader</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>AI &amp; 其他</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">NLP</code> <code class="language-plaintext highlighter-rouge">Git</code> <code class="language-plaintext highlighter-rouge">Markdown</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>博客</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Jekyll</code> <code class="language-plaintext highlighter-rouge">Hexo</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>我打算将来每学会一门技术或技巧就在这上面打上 tag，看看退休的时候自己都学了哪些东西。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-人生格言">✨ 人生格言</h2>
+
+<blockquote>
+  <p><strong>人还得用实力去赢得别人的尊重。</strong></p>
+
+  <p><strong>不断学习，与时俱进。</strong></p>
+</blockquote>
+
+<hr />
+
+<h2 id="-爱好">🎯 爱好</h2>
+
+<h3 id="-台球">🎱 台球</h3>
+
+<p><img src="/assets/images/aboutme/cue8ball.avif" alt="台球" /></p>
+
+<h3 id="️-摩托车">🏍️ 摩托车</h3>
+
+<p><img src="/assets/images/aboutme/fixmoto.avif" alt="摩托车" /></p>
+
+<h3 id="-羽毛球">🏸 羽毛球</h3>
+
+<p><img src="/assets/images/aboutme/badminton.avif" alt="羽毛球" /></p>
+
+<hr />
+
+<h2 id="-最近在读">📚 最近在读</h2>
+
+<p><img src="/assets/images/aboutme/MetalbyTutorials.avif" alt="Metal by Tutorials" /></p>
+
+<p><a href="https://www.kodeco.com/books/metal-by-tutorials"><strong>Metal by Tutorials</strong></a> — 学习 Metal 图形学，探索 GPU 渲染与 Shader 编程的世界。</p>
+
+<hr />
+
+<h2 id="-为什么写博客">📝 为什么写博客</h2>
+
+<p>写博客源于一段知识的存储演进：</p>
+
+<p><strong>栈 → 堆 → 引用 → 关键字索引 → 博客</strong></p>
+
+<p>起初大脑像空栈，不断压入知识直到栈溢出；改用堆存储后发现内存也 <a href="https://cs.wikipedia.org/wiki/Out_of_memory">OOM</a>；再转用引用标签存储，浏览器标签页密密麻麻像中毒了似的；最后只记关键字去搜索，却发现很多文章已被作者删除。加上自己也有技术积累需要分享，于是决定开博记录。</p>
+
+<blockquote>
+  <p>即便我的种种观点充满狭隘的理论和稚嫩的论证，也要知今是而昨非地做下去。否则会因虚度年华而悔恨，也会因碌碌无为而羞耻。</p>
+</blockquote>
+
+<p>博客让我更沉静、不趋于浮躁地专注于自己的领域。偶尔分享技术和生活，不对品质苛求——毕竟也要花时间在工作上好好生活下去。</p>
+
+<hr />
+
+<h2 id="-联系我">📬 联系我</h2>
+
+<p>邮箱：<strong>sunyazhou@111.com</strong> — 欢迎在技术领域内沟通交流。</p>
+:ET

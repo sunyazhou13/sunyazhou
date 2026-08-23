@@ -1,0 +1,218 @@
+I"rN<h1 id="preface">Preface</h1>
+
+<p>The holiday is approaching, and I’m worried about not updating articles in time during the National Day holiday. So I’m finishing this one early to keep up my two-articles-a-month output. Today I bring you a breath animation — it’s not particularly well done.</p>
+
+<p>Here’s the image</p>
+
+<p><img src="/assets/images/20180929BreathAnimation/breathAnimation.avif" alt="breath Animation" /></p>
+
+<p>It’s roughly like this.</p>
+
+<h1 id="requirements-and-implementation-approach">Requirements and Implementation Approach</h1>
+
+<p>The specific requirements</p>
+
+<ul>
+  <li>The avatar inside breathes — scales up and down, looping infinitely</li>
+  <li>Each time it scales up, a background image also scales up and fades out</li>
+  <li>Tapping scales the entire background view down</li>
+</ul>
+
+<h2 id="implementation-approach">Implementation Approach</h2>
+
+<p>First, we need to create a Layer to hold the first infinitely scaling breathing image.<br />
+The background also needs a Layer with an animation group for scale-up + opacity fade, and it holds an image that scales up and fades.</p>
+
+<p>Finally, tapping triggers it — just add a one-time scale animation.</p>
+
+<h3 id="the-breath-animation-layer-and-animation">The breath animation layer and animation</h3>
+
+<p>The breath layer</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="n">CALayer</span> <span class="o">*</span><span class="n">layer</span> <span class="o">=</span> <span class="p">[</span><span class="n">CALayer</span> <span class="nf">layer</span><span class="p">];</span>
+<span class="n">layer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="n">kHeartSizeWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">,</span> <span class="n">kHeartSizeHeight</span><span class="o">/</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">);</span>
+<span class="n">layer</span><span class="p">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">kHeartSizeWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">,</span> <span class="n">kHeartSizeHeight</span><span class="o">/</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">);</span>
+<span class="n">layer</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">clearColor</span><span class="p">].</span><span class="n">CGColor</span><span class="p">;</span>
+<span class="n">layer</span><span class="p">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">(</span><span class="n">__bridge</span> <span class="n">id</span> <span class="n">_Nullable</span><span class="p">)([</span><span class="n">UIImage</span> <span class="nf">imageNamed</span><span class="p">:</span><span class="s">@"breathImage"</span><span class="p">].</span><span class="n">CGImage</span><span class="p">);</span>
+<span class="n">layer</span><span class="p">.</span><span class="n">contentsGravity</span> <span class="o">=</span> <span class="n">kCAGravityResizeAspect</span><span class="p">;</span>
+<span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">heartView</span><span class="p">.</span><span class="n">layer</span> <span class="nf">addSublayer</span><span class="p">:</span><span class="n">layer</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<blockquote>
+  <p>kHeartSizeHeight and kHeartSizeWidth are constants — set to 100 in the demo</p>
+</blockquote>
+
+<p>Adding the keyframe animation</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="n">CAKeyframeAnimation</span> <span class="o">*</span><span class="n">animation</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAKeyframeAnimation</span> <span class="nf">animationWithKeyPath</span><span class="p">:</span><span class="s">@"transform.scale"</span><span class="p">];</span>
+<span class="n">animation</span><span class="p">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@1.f</span><span class="p">,</span> <span class="mf">@1.4f</span><span class="p">,</span> <span class="mf">@1.f</span><span class="p">];</span>
+<span class="n">animation</span><span class="p">.</span><span class="n">keyTimes</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@0.f</span><span class="p">,</span> <span class="mf">@0.5f</span><span class="p">,</span> <span class="mf">@1.f</span><span class="p">];</span>
+<span class="n">animation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//1000ms</span>
+<span class="n">animation</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">FLT_MAX</span><span class="p">;</span>
+<span class="n">animation</span><span class="p">.</span><span class="n">timingFunction</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAMediaTimingFunction</span> <span class="nf">functionWithName</span><span class="p">:</span><span class="n">kCAMediaTimingFunctionEaseInEaseOut</span><span class="p">];</span>
+<span class="p">[</span><span class="n">animation</span> <span class="nf">setValue</span><span class="p">:</span><span class="n">kBreathAnimationKey</span> <span class="nf">forKey</span><span class="p">:</span><span class="n">kBreathAnimationName</span><span class="p">];</span>
+<span class="p">[</span><span class="n">layer</span> <span class="nf">addAnimation</span><span class="p">:</span><span class="n">animation</span> <span class="nf">forKey</span><span class="p">:</span><span class="n">kBreathAnimationKey</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>The timing function can also be customized, for example:</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>
+<span class="p">[</span><span class="n">CAMediaTimingFunction</span> <span class="nf">functionWithControlPoints</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">33</span> <span class="o">:</span><span class="mi">0</span> <span class="o">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">67</span> <span class="o">:</span><span class="mi">1</span><span class="p">]</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Here I set the duration to 1 second.</p>
+
+<h3 id="the-scale-up--fade-animation-group">The scale-up + fade animation group</h3>
+
+<p>Creating a new layer</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="n">CALayer</span> <span class="o">*</span><span class="n">breathLayer</span> <span class="o">=</span> <span class="p">[</span><span class="n">CALayer</span> <span class="nf">layer</span><span class="p">];</span>
+<span class="n">breathLayer</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">layer</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
+<span class="n">breathLayer</span><span class="p">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">layer</span><span class="p">.</span><span class="n">bounds</span><span class="p">;</span>
+<span class="n">breathLayer</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">clearColor</span><span class="p">].</span><span class="n">CGColor</span><span class="p">;</span>
+<span class="n">breathLayer</span><span class="p">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">(</span><span class="n">__bridge</span> <span class="n">id</span> <span class="n">_Nullable</span><span class="p">)([</span><span class="n">UIImage</span> <span class="nf">imageNamed</span><span class="p">:</span><span class="s">@"breathImage"</span><span class="p">].</span><span class="n">CGImage</span><span class="p">);</span>
+<span class="n">breathLayer</span><span class="p">.</span><span class="n">contentsGravity</span> <span class="o">=</span> <span class="n">kCAGravityResizeAspect</span><span class="p">;</span>
+<span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">heartView</span><span class="p">.</span><span class="n">layer</span> <span class="nf">insertSublayer</span><span class="p">:</span><span class="n">breathLayer</span> <span class="nf">below</span><span class="p">:</span><span class="n">layer</span><span class="p">];</span>
+<span class="c1">//[self.heartView.layer addSublayer:breathLayer];</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>Here it’s placed behind the breath layer. If you want it in front, just uncomment the line inside and comment out the insertSublayer line.</p>
+</blockquote>
+
+<p>The animation group contains scale-up and fade</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre></td><td class="rouge-code"><pre><span class="c1">//Scale</span>
+<span class="n">CAKeyframeAnimation</span> <span class="o">*</span><span class="n">scaleAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAKeyframeAnimation</span> <span class="nf">animationWithKeyPath</span><span class="p">:</span><span class="s">@"transform.scale"</span><span class="p">];</span>
+<span class="n">scaleAnimation</span><span class="p">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@1.f</span><span class="p">,</span> <span class="mf">@2.4f</span><span class="p">];</span>
+<span class="n">scaleAnimation</span><span class="p">.</span><span class="n">keyTimes</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@0.f</span><span class="p">,</span><span class="mf">@1.f</span><span class="p">];</span>
+<span class="n">scaleAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">animation</span><span class="p">.</span><span class="n">duration</span><span class="p">;</span>
+<span class="n">scaleAnimation</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">FLT_MAX</span><span class="p">;</span>
+<span class="n">scaleAnimation</span><span class="p">.</span><span class="n">timingFunction</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAMediaTimingFunction</span> <span class="nf">functionWithName</span><span class="p">:</span><span class="n">kCAMediaTimingFunctionEaseIn</span><span class="p">];</span>
+<span class="c1">//Opacity</span>
+<span class="n">CAKeyframeAnimation</span> <span class="o">*</span><span class="n">opacityAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAKeyframeAnimation</span> <span class="nf">animation</span><span class="p">];</span>
+<span class="n">opacityAnimation</span><span class="p">.</span><span class="n">keyPath</span> <span class="o">=</span> <span class="s">@"opacity"</span><span class="p">;</span>
+<span class="n">opacityAnimation</span><span class="p">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@1.f</span><span class="p">,</span> <span class="mf">@0.f</span><span class="p">];</span>
+<span class="n">opacityAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="p">;</span>
+<span class="n">opacityAnimation</span><span class="p">.</span><span class="n">keyTimes</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@0.f</span><span class="p">,</span> <span class="mf">@1.f</span><span class="p">];</span>
+<span class="n">opacityAnimation</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">FLT_MAX</span><span class="p">;</span>
+<span class="n">opacityAnimation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">animation</span><span class="p">.</span><span class="n">duration</span><span class="p">;</span>
+<span class="n">opacityAnimation</span><span class="p">.</span><span class="n">timingFunction</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAMediaTimingFunction</span> <span class="nf">functionWithName</span><span class="p">:</span><span class="n">kCAMediaTimingFunctionEaseIn</span><span class="p">];</span>
+
+<span class="c1">//Animation group</span>
+<span class="n">CAAnimationGroup</span> <span class="o">*</span><span class="n">scaleOpacityGroup</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAAnimationGroup</span> <span class="nf">animation</span><span class="p">];</span>
+<span class="n">scaleOpacityGroup</span><span class="p">.</span><span class="n">animations</span> <span class="o">=</span> <span class="p">@[</span><span class="n">scaleAnimation</span><span class="p">,</span> <span class="n">opacityAnimation</span><span class="p">];</span>
+<span class="n">scaleOpacityGroup</span><span class="p">.</span><span class="n">removedOnCompletion</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="n">scaleOpacityGroup</span><span class="p">.</span><span class="n">fillMode</span> <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
+<span class="n">scaleOpacityGroup</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">animation</span><span class="p">.</span><span class="n">duration</span><span class="p">;</span>
+<span class="n">scaleOpacityGroup</span><span class="p">.</span><span class="n">repeatCount</span> <span class="o">=</span> <span class="n">FLT_MAX</span><span class="p">;</span>
+<span class="p">[</span><span class="n">breathLayer</span> <span class="nf">addAnimation</span><span class="p">:</span><span class="n">scaleOpacityGroup</span> <span class="nf">forKey</span><span class="p">:</span><span class="n">kBreathScaleName</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="the-tap-scale-animation">The tap scale animation</h3>
+
+<p>Same as the first one, except it runs once by default and that’s it.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">shakeAnimation</span> <span class="p">{</span>
+    <span class="n">CAKeyframeAnimation</span> <span class="o">*</span><span class="n">animation</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAKeyframeAnimation</span> <span class="nf">animationWithKeyPath</span><span class="p">:</span><span class="s">@"transform.scale"</span><span class="p">];</span>
+    <span class="n">animation</span><span class="p">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@1.0f</span><span class="p">,</span> <span class="mf">@0.8f</span><span class="p">,</span> <span class="mf">@1.f</span><span class="p">];</span>
+    <span class="n">animation</span><span class="p">.</span><span class="n">keyTimes</span> <span class="o">=</span> <span class="p">@[</span><span class="mf">@0.f</span><span class="p">,</span><span class="mf">@0.5f</span><span class="p">,</span> <span class="mf">@1.f</span><span class="p">];</span>
+    <span class="n">animation</span><span class="p">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">35</span><span class="n">f</span><span class="p">;</span>
+    <span class="n">animation</span><span class="p">.</span><span class="n">timingFunctions</span> <span class="o">=</span> <span class="p">@[[</span><span class="n">CAMediaTimingFunction</span> <span class="nf">functionWithName</span><span class="p">:</span><span class="n">kCAMediaTimingFunctionEaseInEaseOut</span><span class="p">],[</span><span class="n">CAMediaTimingFunction</span> <span class="nf">functionWithName</span><span class="p">:</span><span class="n">kCAMediaTimingFunctionEaseInEaseOut</span><span class="p">]];</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">heartView</span><span class="p">.</span><span class="n">layer</span> <span class="nf">addAnimation</span><span class="p">:</span><span class="n">animation</span> <span class="nf">forKey</span><span class="p">:</span><span class="s">@""</span><span class="p">];</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>When the gesture triggers, call it.</p>
+
+<h3 id="problems-encountered">Problems Encountered</h3>
+
+<p>While developing the animation, I ran into the issue that a breath animation needs to run.</p>
+
+<p>If the duration reaches the middle — for example, with a 1-second duration, at 0.5 seconds it needs to fold back —</p>
+
+<p>then the second animation has just run halfway, and it looks really weird.</p>
+
+<p><img src="/assets/images/20180929BreathAnimation/aniamation.avif" alt="aniamation" /></p>
+
+<p>If the <strong>fade animation</strong> runs for 0.5 seconds, since it repeats, it restarts — which means when the breath folds back, the fade restarts from the beginning too.</p>
+
+<h4 id="how-to-solve-it">How to solve it?</h4>
+
+<p>We add the 0.5-second animation into the animation group, and set the group’s duration to match the breath animation. That way, during the remaining 0.5 seconds the fade animation won’t restart.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>I haven’t played with animations for a long time and had basically forgotten everything. From now on I need to practice more, publish more articles and demos, and record more knowledge and techniques.</p>
+
+<p>A blog is like a car — only with regular maintenance can it go further and record more of the good things.</p>
+
+<p>End of article</p>
+
+<p><a href="https://github.com/sunyazhou13/BreathAnimation">Download the Demo here</a></p>
+:ET

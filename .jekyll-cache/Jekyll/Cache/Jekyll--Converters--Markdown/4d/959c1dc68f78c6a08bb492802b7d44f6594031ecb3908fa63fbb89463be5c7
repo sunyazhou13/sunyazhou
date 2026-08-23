@@ -1,0 +1,149 @@
+I"�-<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h1 id="问题">问题</h1>
+
+<p><img src="/assets/images/20230802swiftuiextention1/WidgetiOS17.avif" alt="Widgeti OS" /></p>
+
+<p>最近在开发iOS17上的小组件使用SwiftUI框架,第一次进行工程化遇到一个 api可用性检测问题</p>
+
+<p>之前的小组件是锁屏小组件,在iOS16上运行,最近iOS17更新了新内容,导致运行起来之后被提示需要增加</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre><span class="nf">containerBackground</span><span class="p">(</span><span class="o">.</span><span class="n">red</span><span class="o">.</span><span class="n">gradient</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">widget</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这样的适配容器,这就导致 在iOS16上的api <code class="language-plaintext highlighter-rouge">some View</code>要使用iOS17的API</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td> --><td class="rouge-code"><pre><span class="kt">ZStack</span><span class="p">(</span><span class="nv">alignment</span><span class="p">:</span> <span class="o">.</span><span class="n">bottomTrailing</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">Image</span><span class="p">(</span><span class="s">"widget_clock"</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">resizable</span><span class="p">()</span>
+            <span class="o">.</span><span class="nf">aspectRatio</span><span class="p">(</span><span class="nv">contentMode</span><span class="p">:</span> <span class="o">.</span><span class="n">fill</span><span class="p">)</span>
+        
+        <span class="kt">VStack</span><span class="p">(</span><span class="nv">spacing</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">Text</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">entry</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">hour</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+            <span class="kt">Text</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">entry</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="o">.</span><span class="nf">font</span><span class="p">(</span><span class="o">.</span><span class="nf">system</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="nv">weight</span><span class="p">:</span> <span class="o">.</span><span class="n">bold</span><span class="p">))</span>
+        <span class="o">.</span><span class="nf">foregroundColor</span><span class="p">(</span><span class="o">.</span><span class="n">white</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="o">.</span> <span class="k">if</span> <span class="k">#available</span><span class="p">(</span><span class="n">iOSApplicationExtension</span> <span class="mf">17.0</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">//这行代码报错 告知我不能这样做 不识别if </span>
+            <span class="nv">$0</span><span class="o">.</span><span class="nf">containerBackground</span><span class="p">(</span><span class="o">.</span><span class="n">red</span><span class="o">.</span><span class="n">gradient</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">widget</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// Fallback on earlier versions</span>
+        <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>研究半天 发现还得给view扩展一个返回自己的函数来链式配置.</p>
+
+<p>这写法真是不太明白咋写合适最终只能 给View写个extension</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td> --><td class="rouge-code"><pre><span class="kd">import</span> <span class="kt">Foundation</span>
+<span class="kd">import</span> <span class="kt">SwiftUI</span>
+
+<span class="kd">public</span> <span class="kd">extension</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="n">modify</span><span class="o">&lt;</span><span class="kt">Content</span><span class="o">&gt;</span><span class="p">(</span><span class="kd">@ViewBuilder</span> <span class="n">_</span> <span class="nv">transform</span><span class="p">:</span> <span class="p">(</span><span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Content</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Content</span> <span class="p">{</span>
+        <span class="nf">transform</span><span class="p">(</span><span class="k">self</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>然后使用的时候</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td> --><td class="rouge-code"><pre><span class="o">.</span><span class="n">modify</span><span class="p">{</span>
+    <span class="k">if</span> <span class="k">#available</span><span class="p">(</span><span class="n">iOSApplicationExtension</span> <span class="mf">17.0</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$0</span><span class="o">.</span><span class="nf">containerBackground</span><span class="p">(</span><span class="o">.</span><span class="n">red</span><span class="o">.</span><span class="n">gradient</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">widget</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// Fallback on earlier versions</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这样在swiftUI的 body 里面才能顺利编译通过</p>
+
+<p>完整的测试代码如下</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">MomentsWidget</span><span class="p">:</span> <span class="kt">Widget</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt">WidgetType</span><span class="o">.</span><span class="n">moments</span><span class="o">.</span><span class="n">kind</span>
+    
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">WidgetConfiguration</span> <span class="p">{</span>
+        <span class="kt">IntentConfiguration</span><span class="p">(</span><span class="nv">kind</span><span class="p">:</span> <span class="n">kind</span><span class="p">,</span> <span class="nv">intent</span><span class="p">:</span> <span class="kt">ConfigurationIntent</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">provider</span><span class="p">:</span> <span class="kt">MomentsWidgetProvider</span><span class="p">())</span> <span class="p">{</span> <span class="n">entry</span> <span class="k">in</span>
+            <span class="kt">MomentsWidgetEntryView</span><span class="p">(</span><span class="nv">entry</span><span class="p">:</span> <span class="n">entry</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">modify</span><span class="p">{</span>  <span class="c1">//这里是适配代码</span>
+                    <span class="k">if</span> <span class="k">#available</span><span class="p">(</span><span class="n">iOSApplicationExtension</span> <span class="mf">17.0</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nv">$0</span><span class="o">.</span><span class="nf">containerBackground</span><span class="p">(</span><span class="o">.</span><span class="n">white</span><span class="o">.</span><span class="n">gradient</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">widget</span><span class="p">)</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="c1">// Fallback on earlier versions</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 这里定义的就是小组件弹出界面中的标题与副标题</span>
+        <span class="o">.</span><span class="nf">configurationDisplayName</span><span class="p">(</span><span class="s">"好友动态"</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">description</span><span class="p">(</span><span class="s">"通过该组件可以创建好友动态列表"</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">supportedFamilies</span><span class="p">([</span><span class="o">.</span><span class="n">systemLarge</span><span class="p">])</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="总结">总结</h1>
+
+<p>1.写swiftUI感觉像是第一次接触UIKit时候那样 一开始比较困难时因为对它缺少认知<br />
+2.swiftUI的框架设计应该把这种问题考虑进去 提供一个专用的API,或者至少不要让Xcode的提示出错吧,Xcode提供的东西都出错只能说明这个东西还不成熟.</p>
+
+<p><a href="https://stackoverflow.com/questions/76595240/widget-on-ios-17-beta-device-adopt-containerbackground-api">参考stackoverflow</a></p>
+:ET

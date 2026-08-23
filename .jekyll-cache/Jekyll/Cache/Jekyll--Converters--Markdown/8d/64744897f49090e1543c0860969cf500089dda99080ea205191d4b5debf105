@@ -1,0 +1,60 @@
+I" <h1 id="preface">Preface</h1>
+
+<p>This post is strongly colored by personal opinions. If it makes you uncomfortable, please close the page as soon as possible. This post is for personal learning records only. Reposting or sharing within the scope of the license agreement is welcome, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h2 id="a-piece-of-code-to-solve-an-ios-text-layout-issue">A Piece of Code to Solve an iOS Text Layout Issue</h2>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre></td> --><td class="rouge-code"><pre><span class="n">CFAttributedStringRef</span> <span class="n">attributedString</span><span class="p">;</span>
+<span class="n">CTTypesetterRef</span> <span class="n">typesetter</span> <span class="o">=</span> <span class="n">CTTypesetterCreateWithAttributedString</span><span class="p">(</span><span class="n">attributedString</span><span class="p">);</span>
+<span class="n">CTLineRef</span> <span class="n">line</span> <span class="o">=</span> <span class="n">CTTypesetterCreateLine</span><span class="p">(</span><span class="n">typesetter</span><span class="p">,</span> <span class="n">CFRangeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="n">NSArray</span> <span class="o">*</span><span class="n">runs</span> <span class="o">=</span> <span class="p">(</span><span class="n">__bridge</span> <span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="n">CTLineGetGlyphRuns</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+
+<span class="n">CTRunRef</span> <span class="n">run</span> <span class="o">=</span> <span class="p">(</span><span class="n">__bridge</span> <span class="n">CTRunRef</span><span class="p">)</span><span class="n">runs</span><span class="p">[</span><span class="nf">runIdx</span><span class="p">];</span>
+
+<span class="k">const</span> <span class="n">CFIndex</span> <span class="n">glyphCount</span> <span class="o">=</span> <span class="n">CTRunGetGlyphCount</span><span class="p">(</span><span class="n">run</span><span class="p">);</span>
+<span class="n">CGPoint</span> <span class="o">*</span><span class="n">glyphPositions</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">CGPoint</span><span class="p">)</span> <span class="o">*</span> <span class="n">glyphCount</span><span class="p">);</span>
+<span class="n">CTRunGetPositions</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="n">CFRangeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">glyphPositions</span><span class="p">);</span>
+
+<span class="n">CGRect</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">CTRunGetImageBounds</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CFRangeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+
+<span class="n">CGGlyph</span> <span class="o">*</span><span class="n">glyphs</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">CGGlyph</span><span class="p">)</span> <span class="o">*</span> <span class="n">glyphCount</span><span class="p">);</span>
+<span class="n">CTRunGetGlyphs</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="n">CFRangeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">glyphs</span><span class="p">);</span>
+
+<span class="n">NSDictionary</span> <span class="o">*</span><span class="n">runAttributes</span> <span class="o">=</span> <span class="p">(</span><span class="n">__bridge</span> <span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">CTRunGetAttributes</span><span class="p">(</span><span class="n">run</span><span class="p">);</span>
+<span class="n">CTFontRef</span> <span class="n">font</span> <span class="o">=</span> <span class="p">(</span><span class="n">__bridge</span> <span class="n">CTFontRef</span><span class="p">)</span><span class="n">runAttributes</span><span class="p">[</span><span class="nf">NSFontAttributeName</span><span class="p">];</span>
+
+<span class="n">CGSize</span> <span class="n">size</span><span class="p">;</span>
+<span class="n">CTFontGetAdvancesForGlyphs</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">glyphs</span><span class="p">[</span><span class="nf">glyphIdx</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            
+<span class="n">CTFontGetBoundingRectsForGlyphs</span><span class="p">()</span>
+
+<span class="n">CTRunGetPositions</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="n">CFRangeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">glyphPositions</span><span class="p">);</span><span class="c1">//这个应该拿到的就是带Kerning信息的position</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>This code still needs a demo to verify.</p>
+:ET

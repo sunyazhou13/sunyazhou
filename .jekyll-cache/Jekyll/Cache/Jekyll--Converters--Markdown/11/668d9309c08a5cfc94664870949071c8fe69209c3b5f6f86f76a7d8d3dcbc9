@@ -1,0 +1,19 @@
+I"/
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="n">UIColor</span> <span class="o">*</span><span class="p">)</span><span class="n">randomColor</span>
+<span class="p">{</span>
+    <span class="n">CGFloat</span> <span class="n">hue</span> <span class="o">=</span> <span class="p">(</span> <span class="n">arc4random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">256</span> <span class="o">/</span> <span class="mi">256</span><span class="p">.</span><span class="mi">0</span> <span class="p">);</span>  <span class="c1">//  0.0 to 1.0</span>
+    <span class="n">CGFloat</span> <span class="n">saturation</span> <span class="o">=</span> <span class="p">(</span> <span class="n">arc4random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span> <span class="o">/</span> <span class="mi">256</span><span class="p">.</span><span class="mi">0</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span>  <span class="c1">//  0.5 to 1.0, away from white</span>
+    <span class="n">CGFloat</span> <span class="n">brightness</span> <span class="o">=</span> <span class="p">(</span> <span class="n">arc4random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span> <span class="o">/</span> <span class="mi">256</span><span class="p">.</span><span class="mi">0</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span>  <span class="c1">//  0.5 to 1.0, away from black</span>
+    <span class="n">UIColor</span> <span class="o">*</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">colorWithHue</span><span class="p">:</span><span class="n">hue</span> <span class="nf">saturation</span><span class="p">:</span><span class="n">saturation</span> <span class="n">brightness</span><span class="o">:</span><span class="n">brightness</span> <span class="n">alpha</span><span class="o">:</span><span class="mi">1</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">color</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+:ET

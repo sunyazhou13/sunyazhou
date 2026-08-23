@@ -1,0 +1,154 @@
+I"�F<p><img src="/assets/images/20190926MasonryPanViewDemo/panviewdemo.avif" alt="panviewdemo" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article carries a strong personal tone. If you find it uncomfortable to read, please close it immediately. This article is intended only as a personal study record. You are welcome to repost or share it within the scope of the license—please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h2 id="background">Background</h2>
+
+<p>Recently, I encountered a requirement shown in the image above: create a widget that can be dragged in all directions and occasionally displays a tip bubble <code class="language-plaintext highlighter-rouge">Label</code>. I wanted to implement this with as little code as possible. As an iOS developer, I must carefully scrutinize this requirement. It’s clearly a bit troublesome—I, being habitually lazy, really don’t want to calculate which edge, which corner, or where it slides to in terms of <code class="language-plaintext highlighter-rouge">frame</code>. Calculating frame sounds laughable and feels devoid of technical substance. To minimize code while meeting the requirement, I chose to use Masonry to implement this feature.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Before diving in, I recommend reading <a href="http://tutuge.me/">土土哥’s (ttge)</a> <a href="http://tutuge.me/tags/Masonry/">Interesting Autolayout Examples 1~5 Masonry Implementation article</a>. This article was also written with reference to 土土哥’s article. Please bear with me—personally, I think 土土哥’s articles are practically the standard tutorial for Masonry auto layout. I strongly recommend that beginners and experts alike practice it frequently.</p>
+
+<p>The images below show 土土哥’s demo implementation:<br />
+<img src="/assets/images/20190926MasonryPanViewDemo/tutugeMasonry1.avif" alt="tutuge Masonry" /></p>
+
+<p><img src="/assets/images/20190926MasonryPanViewDemo/tutugeMasonry2.avif" alt="tutuge Masonry" /></p>
+
+<p>But my question is: how to ensure that the tip bubble label can move freely left and right, allowing for <code class="language-plaintext highlighter-rouge">margin movement</code> around the logo image?</p>
+
+<h2 id="implementing-margin-movement">Implementing Margin Movement</h2>
+
+<p>First, let’s create a demo—a simple VC demo will do. Create the green background view, the imageView, and the tipLabel bubble view. I’ve pasted the code below, so I won’t go into detail about creating the other views—just drag them in the xib.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td> --><td class="rouge-code"><pre><span class="cp">#import "ViewController.h"
+#import &lt;Masonry/Masonry.h&gt;
+</span>
+<span class="k">@interface</span> <span class="nc">ViewController</span> <span class="p">()</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">nonatomic</span>  <span class="p">)</span> <span class="n">IBOutlet</span> <span class="n">UIView</span>        <span class="o">*</span><span class="n">greenView</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">nonatomic</span>  <span class="p">)</span> <span class="n">IBOutlet</span> <span class="n">UIImageView</span>   <span class="o">*</span><span class="n">widgetView</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">nonatomic</span>  <span class="p">)</span> <span class="n">IBOutlet</span> <span class="n">UILabel</span>       <span class="o">*</span><span class="n">bubbleTitleLabel</span><span class="p">;</span>
+
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">MASConstraint</span> <span class="o">*</span><span class="n">leftConstraint</span><span class="p">;</span> <span class="c1">//左侧约束变量</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">MASConstraint</span> <span class="o">*</span><span class="n">topConstraint</span><span class="p">;</span>  <span class="c1">//顶部约束变量</span>
+
+<span class="k">@end</span>
+
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Here you can see two constraint global variables: <code class="language-plaintext highlighter-rouge">leftConstraint</code> and <code class="language-plaintext highlighter-rouge">topConstraint</code>. These are used to change the constraint offsets during dragging to implement the functionality. Here’s the specific code:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td> --><td class="rouge-code"><pre><span class="n">CGFloat</span> <span class="n">screenWidth</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIScreen</span> <span class="nf">mainScreen</span><span class="p">].</span><span class="n">bounds</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">;</span>
+<span class="n">CGFloat</span> <span class="n">screenHeight</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIScreen</span> <span class="nf">mainScreen</span><span class="p">].</span><span class="n">bounds</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">;</span>
+<span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">widgetView</span> <span class="nf">mas_makeConstraints</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">MASConstraintMaker</span> <span class="o">*</span><span class="n">make</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Set boundary constraints to ensure content visibility, priority 1000</span>
+    <span class="n">make</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">greaterThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span><span class="p">.</span><span class="n">mas_left</span><span class="p">);</span>
+    <span class="n">make</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">lessThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span><span class="p">.</span><span class="n">mas_right</span><span class="p">);</span>
+    <span class="n">make</span><span class="p">.</span><span class="n">top</span><span class="p">.</span><span class="n">greaterThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span><span class="p">.</span><span class="n">mas_top</span><span class="p">);</span>
+    <span class="n">make</span><span class="p">.</span><span class="n">bottom</span><span class="p">.</span><span class="n">lessThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span><span class="p">.</span><span class="n">mas_bottom</span><span class="p">);</span>
+    
+    <span class="n">self</span><span class="p">.</span><span class="n">leftConstraint</span> <span class="o">=</span> <span class="n">make</span><span class="p">.</span><span class="n">centerX</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span><span class="p">.</span><span class="n">mas_left</span><span class="p">).</span><span class="n">with</span><span class="p">.</span><span class="n">offset</span><span class="p">(</span><span class="n">screenWidth</span> <span class="o">-</span> <span class="mi">20</span><span class="p">).</span><span class="n">priorityHigh</span><span class="p">();</span> <span class="c1">// 优先级要比边界条件低</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">topConstraint</span> <span class="o">=</span> <span class="n">make</span><span class="p">.</span><span class="n">centerY</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span><span class="p">.</span><span class="n">mas_top</span><span class="p">).</span><span class="n">with</span><span class="p">.</span><span class="n">offset</span><span class="p">(</span><span class="n">screenHeight</span> <span class="o">-</span> <span class="mi">100</span><span class="p">).</span><span class="n">priorityHigh</span><span class="p">();</span> <span class="c1">// 优先级要比边界条件低</span>
+    <span class="n">make</span><span class="p">.</span><span class="n">width</span><span class="p">.</span><span class="n">height</span><span class="p">.</span><span class="n">mas_equalTo</span><span class="p">(</span><span class="mi">@100</span><span class="p">);</span>
+<span class="p">}];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">greaterThanOrEqualTo</code> and <code class="language-plaintext highlighter-rouge">lessThanOrEqualTo</code> above limit the draggable range of the widget, while the final <code class="language-plaintext highlighter-rouge">make.centerX/Y.equalTo</code> sets the default position of the widget. I set it to default at the bottom-right corner, so it’s moved there via the offset.</p>
+
+<blockquote>
+  <p>Note: There’s a pitfall here—since this thing can be dragged in all directions, you basically need to lock <code class="language-plaintext highlighter-rouge">left</code> and <code class="language-plaintext highlighter-rouge">top</code>. I found that only by moving via offset can the initial position be determined. If you directly write equalTo to xxxview’s bottom or right, it won’t slide. Think carefully about Masonry and you’ll understand why.</p>
+</blockquote>
+
+<p>Then add a gesture recognizer and implement the relevant slide events to enable dragging</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td> --><td class="rouge-code"><pre><span class="n">UIPanGestureRecognizer</span> <span class="o">*</span><span class="n">pan</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIPanGestureRecognizer</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithTarget</span><span class="p">:</span><span class="n">self</span> <span class="nf">action</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">panWithGesture</span><span class="o">:</span><span class="p">)];</span>
+<span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span> <span class="nf">addGestureRecognizer</span><span class="p">:</span><span class="n">pan</span><span class="p">];</span>
+
+<span class="p">...</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">panWithGesture</span><span class="p">:(</span><span class="n">UIPanGestureRecognizer</span> <span class="o">*</span><span class="p">)</span><span class="nv">pan</span> <span class="p">{</span>
+    <span class="n">CGPoint</span> <span class="n">touchPoint</span> <span class="o">=</span> <span class="p">[</span><span class="n">pan</span> <span class="nf">locationInView</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span><span class="p">];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">leftConstraint</span><span class="p">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">touchPoint</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">topConstraint</span><span class="p">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">touchPoint</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+        
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="constraints-for-the-margin-label">Constraints for the Margin Label</h4>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">bubbleTitleLabel</span> <span class="nf">mas_remakeConstraints</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">MASConstraintMaker</span> <span class="o">*</span><span class="n">make</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">make</span><span class="p">.</span><span class="n">height</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="mi">@26</span><span class="p">);</span>
+	<span class="n">make</span><span class="p">.</span><span class="n">bottom</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">widgetView</span><span class="p">.</span><span class="n">mas_top</span><span class="p">);</span>
+	<span class="n">make</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">greaterThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span><span class="p">.</span><span class="n">mas_left</span><span class="p">).</span><span class="n">offset</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+	<span class="n">make</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">lessThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">greenView</span><span class="p">.</span><span class="n">mas_right</span><span class="p">).</span><span class="n">offset</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+	<span class="n">make</span><span class="p">.</span><span class="n">centerX</span><span class="p">.</span><span class="n">lessThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">widgetView</span><span class="p">.</span><span class="n">mas_right</span><span class="p">).</span><span class="n">offset</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+	<span class="n">make</span><span class="p">.</span><span class="n">centerX</span><span class="p">.</span><span class="n">greaterThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">widgetView</span><span class="p">.</span><span class="n">mas_left</span><span class="p">).</span><span class="n">offset</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>To implement margin movement, you need to add more constraint restrictions.</p>
+
+<p>Here, the following were added:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre><span class="n">make</span><span class="p">.</span><span class="n">centerX</span><span class="p">.</span><span class="n">lessThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">widgetView</span><span class="p">.</span><span class="n">mas_right</span><span class="p">).</span><span class="n">offset</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">make</span><span class="p">.</span><span class="n">centerX</span><span class="p">.</span><span class="n">greaterThanOrEqualTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">widgetView</span><span class="p">.</span><span class="n">mas_left</span><span class="p">).</span><span class="n">offset</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>This way, even when sliding beyond the left/right boundaries, the tip label’s left/right movement range is still controlled.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>Through real-world problems encountered at work, I learned some Masonry techniques and hope to share them with everyone. I’ve uploaded the demo below—feel free to download and study it.</p>
+
+<p><a href="https://github.com/sunyazhou13/PanViewDemo">Download demo</a></p>
+:ET

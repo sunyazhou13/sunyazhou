@@ -1,0 +1,107 @@
+I")<h1 id="前言">前言</h1>
+
+<p>年前买了本<a href="https://objccn.io/products/advanced-swift/">Swift 进阶</a>(swift4.0),过完年回来正在一点点学习,不得不说喵神写的东西还是不错的,￥69元对广大程序员来说已经不算啥了.如果感兴趣可以买一本,真心不错</p>
+
+<p>当我从头来学习数组的时候发现好多函数真的太有用了</p>
+
+<h2 id="swift-40-中的可变数组技巧">Swift 4.0 中的可变数组技巧</h2>
+
+<p>我们可用 Xcode 创建playground 来进行练习</p>
+
+<p><strong>首先创建个数组</strong></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">array</span> <span class="o">=</span> <span class="kt">NSMutableArray</span><span class="p">(</span><span class="nv">array</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>for in 循环遍历</strong></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">array</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>打印</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>1 2 3 4 5 6
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>想要扣除第一个元素剩余的元素进行迭代遍历呢？</strong></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">array</span><span class="o">.</span><span class="nf">dropFirst</span><span class="p">(){</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>打印</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>2 3 4 5 6
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>dropFirst() 函数参数是可以添加数值的  for x in array.dropFirst(3) 打印:4 5 6.</p>
+</blockquote>
+
+<p>有 <code class="language-plaintext highlighter-rouge">first</code> 的地方基本就有<code class="language-plaintext highlighter-rouge">last</code></p>
+
+<p><strong>想要扣除最后 3 个元素以外的元素进行遍历？</strong></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">array</span><span class="o">.</span><span class="nf">dropLast</span><span class="p">(</span><span class="mi">3</span><span class="p">){</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>打印</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>1 2 3
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>带下标和数组元素遍历</strong></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">for</span> <span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span> <span class="k">in</span> <span class="n">array</span><span class="o">.</span><span class="nf">enumerated</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>打印 左边下标 右边元素</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>0 1
+1 2
+2 3
+3 4
+4 5
+5 6
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>左边下标 右边元素</p>
+</blockquote>
+
+<p>全文完</p>
+
+:ET

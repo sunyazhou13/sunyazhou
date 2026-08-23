@@ -1,0 +1,1793 @@
+I"��<div id="archives" class="pl-xl-2">
+
+
+  
+  <span class="lead">2026</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2026/08/jekyllcomposecompleteguide/">A Complete Guide to jekyll-compose - Seven Commands You May Not Know</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2026/08/jekyllpostscaffoldmultilang/">Jekyll Blog with Hexo-style Post Scaffolds and Multi-language Creation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">20</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2026/08/cmu15/">CMU 15-462/662 Computer Graphics: Complete Algorithms &amp; Formulas</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">19</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2026/08/mathformula/">Math Formula Render</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">03</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2026/07/crossplatformdesktopframeworkcomparison/">Cross-Platform Desktop Framework Selection Deep Dive: An iOS Developer's Qt6 Journey</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">02</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2026/07/35ChokePointTechnologies/">A Progress Review of the 35 "Choke Point" Technologies</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2026/07/LLVMAttributeCompleteGuide/">The Complete Guide to LLVM `__attribute__`</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2026/03/avoidspacersinswiftuistacks/">Avoid Using Spacer in SwiftUI Stacks</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2026/03/magicalparticleeffectswithswiftuicanvas/">Creating Magical Particle Effects with SwiftUI Canvas</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2026/03/JekyllTabsCodeBlock/">Adding Tabbed Code Blocks to Your Jekyll Blog</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">23</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2026/01/audiometadata/">Getting Audio Metadata Using the libtag Library</a>
+      </div>
+    </li>
+  
+  </ul>
+
+  
+  <span class="lead">2025</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">31</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2025/12/finalsummary/">2025 Year-End Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">17</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/2025/11/swiftaiagent/">Demystifying AI Coding Agents: Build Your Own Agent with Swift</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">20</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2025/10/interpolating-points-in-ios-with-uibezierpath/">Interpolating Points in iOS with UIBezierPath</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">11</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2025/05/MemoryAlignmentAlgorithm/">GPU Memory Alignment Algorithm</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">23</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2025/02/the-basics-on-the-memory-layout-of-swift-struct-instances/">The Basics on the Memory Layout of Swift Struct Instances</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2025/02/unsafe-swift-using-pointers-and-interacting-with-c/">How to Use Unsafe Swift Pointer Types to Access Memory Directly and Interact with C</a>
+      </div>
+    </li>
+  
+  </ul>
+
+  
+  <span class="lead">2024</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">31</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2024/12/FinalSummary/">2024 Year-End Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/2024/11/coretextcalculatedheight/">How to Calculate the Font Height Needed When Rendering with CoreText?</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/2024/11/armthreadstate/">What Registers Are in the ARM Thread State of an iOS dSYM?</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">28</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2024/10/swiftuiimage/">What Image Modifiers (View Modifiers) Are Available in SwiftUI?</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2024/10/hangmonitor/">iOS Hang Monitor Code</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2024/10/uiimagemirror/">UIImage Mirroring</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">02</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2024/09/cfnotificationprocesscommunication/">CFNotification Inter-Process Communication</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2024/08/multiblockembedded/">How to Use weak self and strong self in Nested Blocks in Objective-C</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">19</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2024/08/dispatchafternsintegermax/">NSIntegerMax Integer Overflow Issue Record</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">12</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2024/08/PickingInMetal/">Picking In Metal</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">11</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2024/08/docatchinswift/">do-catch in Swift</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">31</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2024/07/uiapplicationsignificanttimechangenotification/">How to Handle Date Changes Across Days in iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">27</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2024/07/magnificationgesture/">Adding a Magnification Gesture in SwiftUI</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">26</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2024/07/UIViewrepresentable/">Bridging UIKit Views in SwiftUI Using UIViewRepresentable</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">18</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2024/07/kerning/">Kerning Text Layout Calculation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">02</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2024/07/hitteststd/">The Standard Way to Write hitTest</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">15</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2024/05/smoothstep/">The Smoothstep Function</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">05</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2024/05/arktsanimation/">HarmonyOS Animation Categories</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">02</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2024/04/keepimagescale/">A Calculation Method to Keep the Original UIImage Scale Ratio</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2024/03/masonryrelayoutviews/">Using Masonry Advanced Methods to Lay Out Subviews Uniformly</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">21</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2024/02/MotionShake/">Motion Sensor Shake Detection</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">25</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2024/01/mpremotecommandlikecommand/">The likeCommand Animation for the iOS Control Center Favorite Button</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">19</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2024/01/arktsbasic/">ArkTS and ArkUI Basic Syntax</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2024/01/HarmonyPhoneSendFileTomacOS/">Solving How to Transfer Files from HarmonyOS Phone to macOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">15</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2024/01/harmonyoslaunchpage/">HarmonyOS Launch Page Development</a>
+      </div>
+    </li>
+  
+  </ul>
+
+  
+  <span class="lead">2023</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">31</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2023/12/FinalSummary/">2023 Year-End Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">31</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2023/10/sqlstandard/">The Standard of SQL Statements</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">12</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2023/09/ios17widgetURL/">Solving the widgetURL Issue in iOS Widget Development</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">09</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2023/09/learnswiftuichapter5/">SwiftUI Chapter 5 Study Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">03</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2023/09/learnswiftuichapter4/">SwiftUI Chapter 4 Study Notes</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">05</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2023/08/learnswiftuichapter3/">SwiftUI Chapter 3 Study Notes</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2023/08/ios17widget/">Developing iOS 17 Widgets</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">02</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2023/08/swiftuiextention1/">SwiftUI Availability Checking, Solving the iOS17 Available Issue for Widgets</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">18</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2023/06/learnswiftuichapter2/">SwiftUI Chapter 2 Study Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">15</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2023/06/ios16wkwebview/">Solving the iOS16 WKWebView Debugging Issue</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">14</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2023/06/blackwhitefilter/">UIImage Black-and-White Filter</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">09</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2023/06/learnaboutvisionos/">Learning How to Develop Apps for visionOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">07</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2023/06/batchconvertheictopng/">Shell Script to Batch Convert HEIC to PNG and WebP</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2023/06/learnswiftuichapter1/">SwiftUI Chapter 1 Learning Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">26</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2023/04/cocoapodsuserguide/">The Complete CocoaPods Usage Guide</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">03</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2023/04/podcommands/">Common Commands for Pod Repositories</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2023/03/podxcassets/">How to Use XCAssets in a Pod's Podspec</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">18</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2023/03/flutterformtextfield/">The Form Widget in Flutter</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">17</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2023/03/circularsliderview/">Drawing a Circular Slider with SwiftUI</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">12</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2023/03/flutterlifecycle/">The Lifecycle of Flutter's Stateful Widgets</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">08</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2023/03/whimsical/">Whimsical Module Design</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2023/03/safecast/">Type-Safe Casting in Objective-C</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">13</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2023/02/nsdateistoday/">Checking Whether an NSDate Is Today in iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">05</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2023/02/webpenhancement/">Blog Image Resource Optimization</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">02</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2023/02/jekyllpost/">How to Publish a Post with Jekyll</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2023/02/swift-defer/">Swift defer Keyword</a>
+      </div>
+    </li>
+  
+  </ul>
+
+  
+  <span class="lead">2022</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">24</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2022/12/FinalSummary/">2022 Year-End Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">07</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2022/12/gradientlayeranimation/">Replicating the QQ Music Radial Gradient Animation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">03</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2022/12/thesunyazhoutheoryii/">The Birth of "The Sunyazhou Theory II"</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">25</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/2022/11/swiftuipropertywrapper/">SwiftUI Property Wrappers: State, Binding, ObservableObject, EnvironmentObject</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2022/09/howtousensoptions/">Using NS_OPTIONS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2022/09/fbmemorychecktool/">Sharing the FB Memory Detection Tool</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2022/08/nsstringenum/">String Enums in iOS Development</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2022/08/checkcellscrolloutscreen/">Check Whether a Cell Has Scrolled Off Screen</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">14</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/iosinterviewproblems/">iOS Interview Questions Record</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">11</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/iosoom/">OOM in iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">11</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/ioscrashtype/">Crash Types in iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">05</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/commonsuperview/">iOS - Finding the Nearest Common Superclass of Two UIViews</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/binarytreeorder/">Preorder, Inorder and Postorder Traversal of a Binary Tree</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/islandscount/">Number of Islands</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/longestpalindrome/">Longest Palindromic Substring</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/mergesortarray/">Merge Two Sorted Arrays</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/commonancestor/">Lowest Common Ancestor of a Binary Tree</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/searchrotatearray/">Search in Rotated Sorted Array</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/zigzaglevelorder/">Binary Tree Zigzag Level Order Traversal</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/cyclelinktable/">Linked List Cycle</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/binarytreelevelorder/">Binary Tree Level Order Traversal</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/twosum/">Two Sum</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/mergetwolists/">Merging Two Sorted Lists</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/maxsubarray/">Maximum Subarray</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/threesum/">3Sum</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/kthlargest/">Kth Largest Element in an Array</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/lrucache/">LRU Cache</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/longestsubstring/">Longest Substring Without Repeating Characters</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2022/07/reverselist/">Reverse Linked List</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">25</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2022/04/Mos/">macOS Mouse Software MOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">14</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2022/04/BranchManage/">Development Branch Management Model</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">13</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2022/04/YZ3DMenu/">Open-Source YZ3DMenu Navigation Menu</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2022/04/CVPixelBufferRef/">Understanding CVPixelBufferRef in Depth</a>
+      </div>
+    </li>
+  
+  </ul>
+
+  
+  <span class="lead">2021</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">26</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2021/12/FinalSummary/">2021 Year-End Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">23</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2021/12/iOSLessonsStudyNotes1/">iOS Development Master Class 01 - Build Your Own iOS Development Knowledge System</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">12</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2021/12/WordFrepuency/">How to Calculate the Frequency of Certain Words in a Text</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2021/10/SwiftSubSets/">Finding Subsets of a Set in Swift</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">23</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2021/06/CheckNSStringIsPureInteger/">How to Determine Whether an NSString Is Pure Numeric</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2021/04/WCDBPractice/">WCDB Practice Notes</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">21</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2021/02/UTIsOfficalFileExtensionName/">UTIs: Apple's Official File Extension Name Collection</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">21</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2021/01/TextGradient/">Adding Gradient Colors to Scrolling Text</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">18</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2021/01/SafeAreaEdges/">Getting UIWindow Edge Insets</a>
+      </div>
+    </li>
+  
+  </ul>
+
+  
+  <span class="lead">2020</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">30</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2020/12/FinalSummary/">2020 Year-End Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">05</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2020/12/iOSsynchronousTimeWithServer/">Solving the Problem of the iOS System Time Being Modified</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">27</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2020/10/WebviewSystemLanguage/">Fixing iOS System Photo Album Not Showing Chinese</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2020/10/XcodeSourceEditorNotWork/">Fixing Xcode Source Editor Not Showing Up in macOS Extensions</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">10</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2020/10/PodSpec/">Pod spec: Work Notes on Integrating Third-Party Frameworks and .a Libraries</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2020/10/XcodeBuildXcconfigFile/">Using Xcode Configuration Files to Manage Different Environment Settings</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2020/09/iOSinterviewPerformanceOptimization/">Alibaba &amp; ByteDance: A Set of Efficient iOS Interview Questions - Performance Optimization</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">20</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2020/09/UIViewGraphic/">Alibaba &amp; ByteDance: An Efficient Set of iOS Interview Questions — Views &amp; Graphics</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">19</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2020/09/GCD/">Alibaba, ByteDance: A Set of Efficient iOS Interview Questions — Multithreading</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">17</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2020/09/Block/">A Set of Efficient iOS Interview Questions from Alibaba and Bytedance — Block</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">02</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2020/09/iOSinterviewAnswers5/">Alibaba, ByteDance: A Set of Effective iOS Interview Questions — Runloop &amp; KVO</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2020/09/iOSinterviewAnswers4/">Alibaba &amp; ByteDance: A Set of Efficient iOS Interview Questions - NSNotification</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">31</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2020/08/iOSinterviewAnswers3/">A Set of Efficient iOS Interview Questions from Alibaba and Bytedance — Runtime Related Questions Part 3</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">08</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2020/08/iOSinterviewAnswers2/">Alibaba, ByteDance: An Efficient Set of iOS Interview Questions - Runtime Related Issues Part 2</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2020/07/iOSinterviewAnswers1/">Alibaba &amp; ByteDance: An Efficient Set of iOS Interview Questions — Runtime Related Questions 1</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">10</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2020/04/CocoapodsProblems/">CocoaPods Tsinghua Mirror</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">07</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2020/04/MasonryTricks/">Using Masonry to Handle UIView's safeArea Boundary Layout</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">20</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2020/03/NSURLProtocol/">(Reproduced) Deep Dive into NSURLProtocol</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">07</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2020/02/SunyazhouTheory/">The Birth of "The Sunyazhou Theory"</a>
+      </div>
+    </li>
+  
+  </ul>
+
+  
+  <span class="lead">2019</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">30</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2019/12/FinalSummary/">2019 Year-End Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2019/12/Chisel/">A Quick Look at the LLDB Debugging Tool Chisel</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2019/12/MathGraphicTool/">Graphical Diagram Drawing Tool</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">26</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2019/09/MasonryPanViewDemo/">Using Masonry Constraints to Implement a Simple Advanced Draggable View</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2019/09/UITraitCollection/">UITraitCollection in Detail</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2019/09/OpenGLESDemo1/">Learning OpenGLES Texture Rendering from Scratch</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">26</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2019/07/LoadingAnimationI/">Create a Simple Loading Animation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">28</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2019/05/CentosIptables/">Installing the iptables Firewall on CentOS7</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">17</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2019/05/CleanerForXcodeBuild/">Compiling Cleaner For Xcode</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">24</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2019/04/WindowsResources/">Windows Installation Tutorial</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">17</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2019/04/AVRoutePickerView/">AVRoutePickerView</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">21</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2019/03/UIScrollTextDemo/">iOS Douyin Scrolling Caption</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">15</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2019/02/Tools/">Recommended Software for Mac</a>
+      </div>
+    </li>
+  
+  </ul>
+
+  
+  <span class="lead">2018</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">28</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2018/12/FinalSummary/">2018 Year-End Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">21</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2018/12/AwemeTransition/">iOS Douyin Transition Animation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2018/12/DetectingPanGestureDirection/">Detecting the Direction of a UIPanGesture</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">27</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/2018/11/LikeAnimation/">iOS Douyin Like Animation Implementation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">14</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/2018/11/PlayLoadingAnimation/">iOS Video Loading Animation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">13</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/2018/11/AllKeypathOfCALayer/">All Animatable Keypaths in iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">08</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/2018/11/AwemeAlbumAnimation/">iOS Douyin Bottom-Right Album Animation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/2018/11/AwemeTopBottomScrollDemo/">iOS Implementation of Douyin's Vertical Swiping</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">29</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2018/10/LabelDanceAnimation/">iOS Number Multiple Animation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">29</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2018/09/BreathAnimation/">iOS Breath Animation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">20</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2018/09/IncreasingTapAreaOfButton/">Expanding the Tap Area of a UIButton on iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">18</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2018/09/KeyboardAnimation/">iOS Keyboard Animation Details</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">02</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2018/09/Beacon/">The Boat and the Lighthouse</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">17</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2018/08/CPUThreadDebug/">Advanced CPU and Thread Debugging Techniques in iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">13</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2018/08/TapticEngineFeedback/">Taptic Engine Haptic Feedback</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">23</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2018/07/ToolBarBlur/">Using UIToolbar for a Gaussian Blur Background</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">18</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2018/07/LinuxBash/">Linux Terminal Bash Shortcut Keys: Introduction and Experience</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">25</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2018/06/FilterString/">Using Regular Expressions in Objective-C to Remove Non-Alphanumeric and Non-Chinese Characters</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">15</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2018/06/NSAttributeString/">Using NSAttributedString to Display Different Colors and Sizes</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">08</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2018/06/SwiftRandom/">Random Numbers in Swift 4.2</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2018/06/Random/">Random Numbers in Swift</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">15</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2018/05/HowToCreateTopBottomRoundedCornersForViews/">Rounded Corners on Different Sides of a UIView</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">08</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2018/05/ManualControlUIViewControllerLifeCycle/">Manually Managing the Life Cycle of UIViewController</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">07</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2018/05/AudioUnit/">AudioUnit</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">02</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2018/04/RunLoop/">Understanding RunLoop in Depth</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">14</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2018/03/Swft4ArraySkills/">Array Techniques in Swift 4</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">08</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2018/03/WhatIsThedSYM/">What Is a Symbol Table?</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">05</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2018/03/ComputerGraphicsRenderingProcess/">The Computer Graphics Rendering Process</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2018/03/LearningAVFoundationPlayingVideo/">Learning AV Foundation (5) Playing Video</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2018/02/WordEmbeding/">NLP Tokenization Word Embedding</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">13</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2018/01/PythonMySQL/">Using Python to Operate the MySQL Database</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">12</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2018/01/AVAudioSessionCategory/">AVAudioSession-Category: All the Ways to Use It</a>
+      </div>
+    </li>
+  
+  </ul>
+
+  
+  <span class="lead">2017</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        <span class="date day">31</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2017/12/FinalSummary/">2017 Year-End Summary</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">27</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2017/12/markdownAudio/">Inserting Audio Files in Markdown</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">19</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2017/12/AudioPan/">Audio Pan Value for Left/Right Channel Balance</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">15</span>
+        <span class="date month small text-muted">Dec</span>
+        <a href="/2017/12/CellAddKVO/">Adding KVO to a UICollectionViewCell</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">31</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2017/10/ElegantPresentTransition/">On the Self-Cultivation of an Elegant Modal Transition</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">25</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2017/10/MarkdownSkill/">Embedding Collapsible Tags in Markdown</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Oct</span>
+        <a href="/2017/10/UIViewRendering/">Understanding UIView Drawing</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">30</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2017/09/DeviceCheck/">DeviceCheck</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">29</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2017/09/MarkdownTable/">Markdown Table Syntax</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">01</span>
+        <span class="date month small text-muted">Sep</span>
+        <a href="/2017/09/CharlesCaptureHttps/">How to Use Charles to Intercept HTTPS Requests</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">30</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2017/08/ARKit/">ARKit</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">07</span>
+        <span class="date month small text-muted">Aug</span>
+        <a href="/2017/08/LearningAVFoundationAVAssetSenior/">Learning AV Foundation (4) AVAsset Metadata (Advanced)</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">13</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2017/07/ios11NewSkills/">What's New in iOS 11</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">04</span>
+        <span class="date month small text-muted">Jul</span>
+        <a href="/2017/07/Arc4RandomColor/">Generating Random UIColor Colors in iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">26</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2017/06/GetSandboxPathios/">Getting Paths of Various Directories in iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">26</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2017/06/RsaUniversalCrossPlatformiOSAndroidPhp/">iOS Android Php RSA Encryption Decryption Universal Solution</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">20</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2017/06/EnableStaticAnalyer/">Enable Static Analyzer in Xcode</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2017/06/HowToDeprecatedAMothodInObjC/">How to Deprecate a Method in Objective-C</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2017/06/XcodeDebugViaWireless/">Xcode9 New Feature Wireless Debugging on a Real Device</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">16</span>
+        <span class="date month small text-muted">Jun</span>
+        <a href="/2017/06/LearningAVFoundationAVAssetBasic/">Learning AV Foundation (4) AVAsset Metadata (Basics)</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">30</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2017/05/OpenGLglslLanguage/">OpenGL Programming Language - GLSL Basics</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">10</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2017/05/NSTableRowViewMouseTrackColor/">自定义NSTableRowView实现鼠标跟踪动态显示选中/非选中颜色</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">09</span>
+        <span class="date month small text-muted">May</span>
+        <a href="/2017/05/HowToCreateSymbolicLinkOnMacosInCode/">How to Create Alias Files on macOS/MAC OS X</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">29</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2017/04/CmputerScienceAndTechnologyClassic/">Must-Learn Classics for Those Aspiring to Computer Science Majors</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">20</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2017/04/UniqueFilenameInSystem/">How to Create Unique Filenames When Creating Files in iOS/macOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">06</span>
+        <span class="date month small text-muted">Apr</span>
+        <a href="/2017/04/XcodeShortcuts/">Xcode Shortcuts</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">29</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2017/03/AccessPrivacySensitive/">Access privacy-sensitive data</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">28</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2017/03/LearningAVFoundationAVAudioRecorder/">Learning AV Foundation(Chapter 3)AVAudioRecorder</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">23</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2017/03/CheckNSWindowisFullScreen/">判断NSWindow是否全屏</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">17</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2017/03/LearningAVFoundationAVAudioPlayer/">Learning AV Foundation (2): AVAudioPlayer</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">11</span>
+        <span class="date month small text-muted">Mar</span>
+        <a href="/2017/03/LearningAVFoundationAVSpeechSynthesizer/">Learning AV Foundation (Part 1) Chinese Text-to-Speech</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">22</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2017/02/macOSsimulateKeyboradNSEvent/">Simulating Keyboard Events on macOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">20</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2017/02/ClearNSUserDefaultCcontent/">Delete NSUserDefaults Content Using the Terminal</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">18</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2017/02/ScanBoundsTracking/">How to Make the QR Code/Barcode Scanning Frame Follow the QR Code on iOS</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">17</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2017/02/iOSInternationalizationLanguageSkills/">Some Tips for iOS Language Localization/Internationalization</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">10</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2017/02/BuildHexoBlogTutorial/">Tutorial for Building a Hexo Blog</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">10</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2017/02/DFSAlgorithm/">DFS Algorithm for Scanning Uploaded Files/Folders</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">09</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2017/02/HowToUseGitManageCode/">How to Use Git to Manage Code</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">09</span>
+        <span class="date month small text-muted">Feb</span>
+        <a href="/2017/02/HowtToDisableWebviewNSScrollViewScroll/">Disabling Scroll in Webview's NSScrollView</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">18</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2017/01/iOSDevelopmentKnowledgePointAccumulate/">iOS Development Knowledge Accumulation</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">13</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2017/01/LearningmacOSdevelopmentShortcut/">Learning macOS Development Path</a>
+      </div>
+    </li>
+  
+    <li>
+      <div>
+        <span class="date day">13</span>
+        <span class="date month small text-muted">Jan</span>
+        <a href="/2017/01/UIViewControllerCodeStandard/">UIViewController Code Standards</a>
+      </div>
+    </li>
+  
+  </ul>
+
+</div>
+:ET

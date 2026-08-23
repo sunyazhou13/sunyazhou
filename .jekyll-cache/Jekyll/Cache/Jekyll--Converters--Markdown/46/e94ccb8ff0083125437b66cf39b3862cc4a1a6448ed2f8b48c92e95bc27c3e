@@ -1,0 +1,312 @@
+I"#Q<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This post carries strong personal opinions; if reading it makes you uncomfortable, please close it right away. This article is only for my personal study notes. You’re welcome to repost or share it within the scope of the license — please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h2 id="background">Background</h2>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/VerTexBufferLayout.avif" alt="Ver Tex Buffer Layout" /></p>
+
+<p>While studying “Metal.by.Tutorials.4th.2023.12” in 2024, the book mentioned the memory layout of Swift struct instances, so I put these notes together.</p>
+
+<h2 id="size-stride-alignment">Size, Stride, Alignment</h2>
+
+<p>The basics of the memory layout of Swift struct instances</p>
+<blockquote>
+  <p>March 12, 2018 ∙ Swift Internals ∙ By Greg Heo</p>
+</blockquote>
+
+<p>When working with Swift types in memory, there are three properties to consider: size, stride, and alignment.</p>
+
+<h2 id="size">Size</h2>
+
+<p>Let’s illustrate with two structs:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">Year</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">year</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">YearWithMonth</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">year</span><span class="p">:</span> <span class="kt">Int</span>
+  <span class="k">let</span> <span class="nv">month</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>My intuition says an instance of YearWithMonth is bigger than an instance of Year — it takes up more space in memory. But we’re scientists; how do we verify intuition with hard data?</p>
+
+<h2 id="memory-layout">Memory Layout</h2>
+
+<p>We can use the <code class="language-plaintext highlighter-rouge">MemoryLayout</code> type to inspect some properties of our types in memory.</p>
+
+<p>To find the size of a struct, use the size property with a generic parameter:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">size</span> <span class="o">=</span> <span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Year</span><span class="o">&gt;.</span><span class="n">size</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>If you have an instance of a type, use the <code class="language-plaintext highlighter-rouge">size(ofValue:)</code> static function:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">instance</span> <span class="o">=</span> <span class="kt">Year</span><span class="p">(</span><span class="nv">year</span><span class="p">:</span> <span class="mi">1984</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">size</span> <span class="o">=</span> <span class="kt">MemoryLayout</span><span class="o">.</span><span class="nf">size</span><span class="p">(</span><span class="nv">ofValue</span><span class="p">:</span> <span class="n">instance</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>In both cases, the size is reported as <strong>8 bytes</strong>.</p>
+
+<p>Unsurprisingly, the size of our struct <code class="language-plaintext highlighter-rouge">YearWithMonth</code> is <strong>16 bytes</strong>.</p>
+
+<h2 id="back-to-size">Back to Size</h2>
+
+<p>The size of a struct seems straightforward — add up the size of each property. For a struct like this:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">Puppy</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span>
+  <span class="k">let</span> <span class="nv">isTrained</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>the size of the struct should match the sizes of its properties:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre><span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;.</span><span class="n">size</span> <span class="o">+</span> <span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;.</span><span class="n">size</span>
+<span class="c1">// returns 9, from 8 + 1</span>
+
+<span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Puppy</span><span class="o">&gt;.</span><span class="n">size</span>
+<span class="c1">// returns 9</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Looks fine! [Aside: is it really? 😈]</p>
+
+<h2 id="stride">Stride</h2>
+
+<p>Stride becomes important when you’re working with multiple instances in a single buffer, like an array.</p>
+
+<p>If we had a contiguous array of puppies, each 9 bytes in size, what would that look like in memory?</p>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/stride-nopadding.avif" alt="stride-nopadding" /></p>
+
+<p>Turns out, not like that. ❌</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">stride</code> determines the distance between two elements, and it’s usually greater than or equal to the size.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre><span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Puppy</span><span class="o">&gt;.</span><span class="n">size</span>
+<span class="c1">// returns 9</span>
+
+<span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Puppy</span><span class="o">&gt;.</span><span class="n">stride</span>
+<span class="c1">// returns 16</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>So the actual layout looks like this:</p>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/stride-padding.avif" alt="stride-padding" /></p>
+
+<p>In other words, if you have a byte pointer to the first element and want to move to the second, the stride is how many bytes you need to advance the pointer.</p>
+
+<p>Why would the size and stride differ? That brings us to the last magic number of memory layout.</p>
+
+<h2 id="alignment">Alignment</h2>
+
+<p>Imagine a computer that fetches memory 8 bits (that is, 1 byte) at a time. Fetching byte 1 or byte 7 takes the same amount of time.</p>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/alignment-byte8.avif" alt="alignment-byte" /></p>
+
+<p>Then you upgrade to a 16-bit computer that accesses data in 16-bit words. You still have some old software that wants to access data byte-by-byte, but imagine the magic that could happen here: if the software asks for byte 0 and byte 1, the computer can now access word 0 in one go, then split the 16-bit result.</p>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/alignment-byte16.avif" alt="alignment-byte" /></p>
+
+<p>In this ideal world, byte-wise memory access is twice as fast! 🎉</p>
+
+<p>Now imagine a misbehaving program puts a 16-bit value in like this:</p>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/alignment-misaligned16.avif" alt="alignment-misaligned" /></p>
+
+<p>Then you ask the computer to read a 16-bit word starting at byte position 3. The problem is, this value is misaligned. To read it, the computer has to read the word at position 1, cut it in half, read the word at position 2, cut that in half, and stitch the halves together. That means accessing one 16-bit value takes two separate 16-bit memory reads — twice as slow as it should be! 😭</p>
+
+<p>On some systems, misaligned access isn’t just slow — it’s outright not allowed, and it will crash your program.</p>
+
+<h2 id="simple-swift-types">Simple Swift Types</h2>
+
+<p>In Swift, the alignment of simple types like <code class="language-plaintext highlighter-rouge">Int</code> and <code class="language-plaintext highlighter-rouge">Double</code> is the same as their size. A 32-bit (4-byte) integer has a size of 4 bytes and needs to be aligned to 4 bytes.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td> --><td class="rouge-code"><pre><span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Int32</span><span class="o">&gt;.</span><span class="n">size</span>
+<span class="c1">// returns 4</span>
+<span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Int32</span><span class="o">&gt;.</span><span class="n">alignment</span>
+<span class="c1">// returns 4</span>
+<span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Int32</span><span class="o">&gt;.</span><span class="n">stride</span>
+<span class="c1">// returns 4</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The stride is also 4, which means values in a contiguous buffer are 4 bytes apart. No padding needed.</p>
+
+<h2 id="compound-types">Compound Types</h2>
+
+<p>Now back to our <code class="language-plaintext highlighter-rouge">Puppy</code> struct, which has an <code class="language-plaintext highlighter-rouge">Int</code> property and a <code class="language-plaintext highlighter-rouge">Bool</code> property. Consider again the case where values sit right next to each other in a buffer:</p>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/alignment-nopadding-bytes.avif" alt="alignment-nopadding-bytes" /></p>
+
+<p>The position of the <code class="language-plaintext highlighter-rouge">Bool</code> values is no problem, since their alignment is 1 (<code class="language-plaintext highlighter-rouge">alignment=1</code>). But the second integer is misaligned. It’s a 64-bit (8-byte) value with an alignment of 8 (<code class="language-plaintext highlighter-rouge">alignment=8</code>), and its byte position isn’t a multiple of 8. ❌</p>
+
+<p>Remember, the stride of this type is 16, so the buffer actually looks like this:</p>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/alignment-padding-bytes.avif" alt="alignment-padding-bytes" /></p>
+
+<p>We preserve the alignment requirements of all the values inside the struct: the second integer sits at byte 16, a multiple of 8.</p>
+
+<p>That’s why a struct’s stride can be larger than its size: enough padding is added to satisfy alignment requirements.</p>
+
+<h2 id="computing-alignment">Computing Alignment</h2>
+
+<p>So, at the end of our journey, what’s the alignment of the <code class="language-plaintext highlighter-rouge">Puppy</code> struct type?</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre><span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">Puppy</span><span class="o">&gt;.</span><span class="n">alignment</span>
+<span class="c1">// returns 8</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The alignment of a struct type is the largest alignment among all its properties. Between <code class="language-plaintext highlighter-rouge">Int</code> and <code class="language-plaintext highlighter-rouge">Bool</code>, <code class="language-plaintext highlighter-rouge">Int</code> has the larger alignment of 8, so the struct uses that.</p>
+
+<p>The stride, then, is the size rounded up to the next multiple of the alignment. In our case:</p>
+
+<ul>
+  <li>The size is 9</li>
+  <li>9 is not a multiple of 8</li>
+  <li>The next multiple of 8 after 9 is 16</li>
+  <li>So the stride is 16</li>
+</ul>
+
+<h2 id="one-last-complication">One Last Complication</h2>
+
+<p>Consider our original <code class="language-plaintext highlighter-rouge">Puppy</code> and compare it with <code class="language-plaintext highlighter-rouge">AlternatePuppy</code>:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">Puppy</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span>
+  <span class="k">let</span> <span class="nv">isTrained</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span> <span class="c1">// Int, Bool</span>
+
+<span class="kd">struct</span> <span class="kt">AlternatePuppy</span> <span class="p">{</span> 
+  <span class="k">let</span> <span class="nv">isTrained</span><span class="p">:</span> <span class="kt">Bool</span>
+  <span class="k">let</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span> <span class="c1">// Bool, Int</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">AlternatePuppy</code> struct still has an alignment of 8 and a stride of 16, but:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre><span class="kt">MemoryLayout</span><span class="o">&lt;</span><span class="kt">AlternatePuppy</span><span class="o">&gt;.</span><span class="n">size</span>
+<span class="c1">// returns 16</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>What?! We only changed the order of the properties. Why is the size different now? It should still be 9, right? A boolean followed by an integer, like this:</p>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/alignment-internal-1.avif" alt="alignment-internal-" /></p>
+
+<p>Maybe you can see the problem: the 8-byte integer is no longer aligned! It actually looks like this in memory:</p>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/alignment-internal-2.avif" alt="alignment-internal-" /></p>
+
+<p>The struct itself must be aligned, and the properties inside the struct must also stay aligned. Padding bytes get inserted between elements, and the overall size of the struct grows accordingly.</p>
+
+<p>In this case the stride is still 16, so the real change from <code class="language-plaintext highlighter-rouge">Puppy</code> to <code class="language-plaintext highlighter-rouge">AlternatePuppy</code> is the position of the padding bytes. What about these structs?</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">CertifiedPuppy1</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span>
+  <span class="k">let</span> <span class="nv">isTrained</span><span class="p">:</span> <span class="kt">Bool</span>
+  <span class="k">let</span> <span class="nv">isCertified</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span> <span class="c1">// Int, Bool, Bool</span>
+
+<span class="kd">struct</span> <span class="kt">CertifiedPuppy2</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">isTrained</span><span class="p">:</span> <span class="kt">Bool</span>
+  <span class="k">let</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span>
+  <span class="k">let</span> <span class="nv">isCertified</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span> <span class="c1">// Bool, Int, Bool</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>What are the size, stride, and alignment of these two structs? 🤔 (Hint.)</p>
+
+<h2 id="closing-brace">Closing Brace</h2>
+
+<p>Say you have an <code class="language-plaintext highlighter-rouge">UnsafeRawPointer</code> (the equivalent of <code class="language-plaintext highlighter-rouge">void *</code> in C). You know the type it points to. What role do size, stride, and alignment play here?</p>
+
+<ul>
+  <li><strong>Size</strong>: the number of bytes to read from the pointer to get all the data.</li>
+  <li><strong>Stride</strong>: the number of bytes to move forward to get to the next item in the buffer.</li>
+  <li><strong>Alignment</strong>: the “divisible by” number that each instance must sit at. If you’re allocating memory to copy data into, you need to specify the correct alignment (for example: <code class="language-plaintext highlighter-rouge">allocate(byteCount: 100, alignment: 4)</code>).</li>
+</ul>
+
+<p><img src="/assets/images/20250223SwiftStructMemoryLayout/size-stride-alignment-summary.avif" alt="size-stride-alignment-summary" /></p>
+
+<p>For most of us, most of the time, we work with high-level collections like arrays and sets and don’t need to think about the memory layout underneath.</p>
+
+<p>In other cases, you might need to use low-level APIs on the platform, or interoperate with C code. If you have an array of Swift structs and need C code to read it (or vice versa), then you need to worry about allocating buffers with the correct alignment, ensuring the padding bytes inside the structs line up, and making sure you have the right stride values so the data is interpreted correctly.</p>
+
+<p>As we’ve seen, even computing the size isn’t as simple as it looks — there’s an interplay between the sizes and alignments of each property that determines the overall size of the struct. So understanding all three means you’re on your way to becoming a master of memory management.</p>
+
+<p>Interested in going deeper?</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Data_structure_alignment">“Data structure alignment” on Wikipedia</a></li>
+  <li>The <a href="https://github.com/apple/swift/blob/master/docs/ABI/TypeLayout.rst">“Type Layout” article in the Swift docs</a>, which explains how the size, stride, and alignment of a struct are computed.</li>
+  <li><a href="https://github.com/apple/swift-llvm/blob/stable/lib/IR/Constants.cpp#L1800-L1811">The <code class="language-plaintext highlighter-rouge">getAlignOf</code> source in LLVM</a></li>
+  <li><a href=":">Swift’s <code class="language-plaintext highlighter-rouge">UnsafeMutableRawPointer.allocate(byteCount:alignment:)</code>, which takes size and alignment parameters</a>)</li>
+</ul>
+
+<h1 id="summary">Summary</h1>
+
+<p>When getting started with Metal, you need to manipulate memory with Swift types. My understanding of type memory layout and alignment in Swift wasn’t very clear, so I put this article together — hope it helps you too.</p>
+
+<p><a href="https://swiftunboxed.com/internals/size-stride-alignment/">Original article: The basics on the memory layout of Swift struct instances.
+</a></p>
+:ET

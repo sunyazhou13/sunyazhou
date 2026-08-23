@@ -1,0 +1,41 @@
+I"
+<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h2 id="cocoapod疑难杂症">Cocoapod疑难杂症</h2>
+
+<p>这几天开发 总遇到疑难杂症 是因为我的cocoapods升级到了1.9.1,导致各种问题 然后还被和谐,无奈找到如下解决cocoapods各种问题的解决方式</p>
+
+<p>对于旧版的 CocoaPods 可以使用如下方法使用 tuna 的镜像：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre><span class="nv">$ </span>pod repo remove master
+<span class="nv">$ </span>pod repo add master https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git
+<span class="nv">$ </span>pod repo update
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>新版的 CocoaPods 不允许用<code class="language-plaintext highlighter-rouge">pod repo add</code>直接添加master库了，但是依然可以：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/.cocoapods/repos 
+<span class="nv">$ </span>pod repo remove master
+<span class="nv">$ </span>git clone https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git master
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>最后进入自己的工程，在自己工程的<code class="language-plaintext highlighter-rouge">PodFile</code>第一行加上：</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre><span class="n">source</span> <span class="s1">'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="总结">总结</h1>
+
+<p>折腾了很久不如找对地方</p>
+
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/CocoaPods/">参考CocoaPods 镜像使用帮助</a></p>
+:ET

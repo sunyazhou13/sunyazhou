@@ -1,0 +1,20 @@
+I"�<p>在<code class="language-plaintext highlighter-rouge">webview</code>的<code class="language-plaintext highlighter-rouge">WebFrameLoadDelegate</code>代理里面实现如下代码</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td> --><td class="rouge-code"><pre>
+<span class="cp">#pragma mark -
+#pragma mark - WebViewDelegate
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">webView</span><span class="p">:(</span><span class="n">WebView</span> <span class="o">*</span><span class="p">)</span><span class="nv">sender</span> <span class="nf">didFinishLoadForFrame</span><span class="p">:(</span><span class="n">WebFrame</span> <span class="o">*</span><span class="p">)</span><span class="nv">frame</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">sender</span> <span class="nf">stringByEvaluatingJavaScriptFromString</span><span class="p">:</span><span class="s">@"document.documentElement.style.overflow='hidden'"</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>以上代码属于<code class="language-plaintext highlighter-rouge">macOS</code>上的开发内容.</p>
+:ET

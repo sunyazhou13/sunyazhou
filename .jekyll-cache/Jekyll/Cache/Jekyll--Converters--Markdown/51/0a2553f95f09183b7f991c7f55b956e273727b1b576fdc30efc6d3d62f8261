@@ -1,0 +1,490 @@
+I"�m<h1 id="preface">Preface</h1>
+<p><img src="/assets/images/20170530OpenGLglslLanguage/OpenglVboShaderGlslVaoGPU.avif" alt="Opengl Vbo Shader Glsl Vao GPU" /></p>
+
+<p>I’ve been studying OpenGL recently and got battered by all kinds of unfamiliar terminology, so I’m recording some learning points for reference and study.</p>
+
+<h2 id="what-is-glsl">What is GLSL?</h2>
+
+<p>GLSL (OpenGL Shading Language) is OpenGL’s shader language — a pure computer language that deals directly with the GPU. It can be understood as a variant of C specifically designed for OpenGL programming, without support for pointers and some other C features. (Terminology: Shader)</p>
+
+<p><strong>GPU is a multi-threaded parallel processor</strong>, and GLSL is directly oriented towards the <a href="https://zh.wikipedia.org/wiki/%E5%8D%95%E6%8C%87%E4%BB%A4%E6%B5%81%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%B5%81">Single Instruction, Multiple Data (SIMD)</a> model of multi-threaded computation.
+Shader functions written in GLSL are executed simultaneously on each piece of data.
+Each vertex is processed by the algorithm in the vertex shader, and each pixel is processed by the algorithm in the <strong>fragment shader (also called fragment shader)</strong>.
+When beginners write their own shaders, they need to consider the concurrent nature of SIMD and think in terms of parallel computation. This is GLSL.</p>
+
+<p>The most common usage pattern is to generate the needed values in the <strong>vertex shader</strong>, then pass them to the <strong>fragment shader</strong> for use.</p>
+
+<h2 id="what-glsl-can-do">What GLSL Can Do</h2>
+
+<ul>
+  <li>Increasingly realistic materials — metal, rock, wood, paint, etc.</li>
+  <li>Increasingly realistic lighting effects — area lights and soft shadows</li>
+  <li>Non-photorealistic materials — artistic effects, pen and ink, ink wash, and simulation of illustration techniques</li>
+  <li>New uses for texture memory</li>
+  <li>Fewer texture accesses</li>
+  <li>Image processing — selection, edge sharpening masking and complex blending</li>
+  <li>Animation effects — keyframe interpolation, particle systems</li>
+  <li>User-programmable anti-aliasing methods</li>
+</ul>
+
+<h2 id="glsl-notes">GLSL Notes</h2>
+
+<ul>
+  <li><strong>GLSL supports function overloading</strong> (i.e., a parent class defines a method, and a subclass overrides it — this is called overloading)</li>
+  <li><strong>GLSL does not have automatic type promotion</strong> (i.e., no automatic type upcasting, e.g., float to double). Types must strictly match.</li>
+  <li><strong>GLSL does not support pointers, strings, or characters. It is fundamentally a language for processing numeric data</strong></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>**GLSL does not support unions (union), enumerated types (enum), struct bit fields (» or « left/right shift), or bitwise operators (</td>
+          <td>or &amp; bitwise AND)** (this removes troublesome C operations, making it more purely for processing graphics data)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="glsl-data-types">GLSL Data Types</h2>
+
+<p>GLSL has three basic data types:</p>
+
+<ul>
+  <li>float</li>
+  <li>int</li>
+  <li>double</li>
+  <li>Arrays[] or structs composed of float, int, double</li>
+</ul>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="mi">42</span>   <span class="c1">// Decimal  </span>
+<span class="mo">042</span>  <span class="c1">// Octal  </span>
+<span class="mh">0x2A</span> <span class="c1">// Hexadecimal</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>**Note: GLSL does not support pointers. GLSL treats vectors and matrices as basic data types**</strong><br />
+Vector (vector): a line segment with a starting position and direction, also called a <strong>vector</strong> (don’t be intimidated by these terms — I remember learning about vectors in high school math).</p>
+
+<h2 id="vectors">Vectors</h2>
+
+<p>Vectors can perform addition, subtraction, multiplication, and division with scalars and even matrices (must follow certain rules, otherwise it will cause errors)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>vec2,  vec3,  vec4  // Vectors containing 2/3/4 floats (float type)
+ivec2, ivec3, ivec4 // Vectors containing 2/3/4 integers (integer type, the 'i' prefix stands for integer)
+bvec2, bvec3, bvec4 // Vectors containing 2/3/4 booleans (bool, self-explanatory)
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Those are the GLSL data types. Simply put, <code class="language-plaintext highlighter-rouge">vec+number</code> represents an array with that many elements (they’re all between vec2~vec4; I’ve never seen vec5 or above, or anything below vec2 — this probably represents the number of coordinate dimensions). The default element type is float; the <code class="language-plaintext highlighter-rouge">i</code> prefix means <code class="language-plaintext highlighter-rouge">integer</code>, and <code class="language-plaintext highlighter-rouge">b</code> means <code class="language-plaintext highlighter-rouge">bool</code>.</p>
+
+<h3 id="how-to-declare-and-use-vec">How to declare and use vec?</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>vec3 v; 	 // Declare a 3-dimensional float vector v
+v[1] = 3.0;  // Assign a value to the second element of vector v (arrays are 0-indexed, so index 1 is the second element)
+
+// The following two are equivalent
+vec3 v = vec3(0.6); // The array is contiguous memory, equivalent to all other elements being filled with 0.6
+vec3 v = vec3(0.6,0.6,0.6); 
+</pre></td></tr></tbody></table></code></pre></div></div>
+<blockquote>
+  <p><em>Note: In addition to indexing, you can also use the swizzle operator to access vector components. The swizzle operator uses conventional lowercase Latin letter names for each element of the vector (up to 4). Depending on what the vector represents, you can use the following swizzle operators:</em></p>
+</blockquote>
+
+<ul>
+  <li>For vertices: (x, y, z, w)  (coordinate system)</li>
+  <li>For colors: (r, g, b, a)  (color values with alpha)</li>
+  <li>For texture coordinates: (s, t, p, q)  <br />
+Any of the three can be used interchangeably — they all have the same effect. So if <code class="language-plaintext highlighter-rouge">v</code> is a vector, then:</li>
+  <li><code class="language-plaintext highlighter-rouge">v[0]</code></li>
+  <li><code class="language-plaintext highlighter-rouge">v.x</code></li>
+  <li><code class="language-plaintext highlighter-rouge">v.r</code></li>
+  <li><code class="language-plaintext highlighter-rouge">v.s</code><br />
+all refer to the first element of vector v.<br />
+For example:</li>
+</ul>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="c1">// Declare and initialize a 4-dimensional float vector using a constructor</span>
+<span class="kt">vec4</span> <span class="n">v1</span> <span class="o">=</span> <span class="kt">vec4</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span> 
+<span class="kt">vec4</span> <span class="n">v2</span><span class="p">;</span>  
+<span class="n">v2</span><span class="p">.</span><span class="n">xy</span><span class="o">=</span><span class="n">v1</span><span class="p">.</span><span class="n">yz</span><span class="p">;</span>  <span class="c1">// Copy the second and third elements of v1 to the first and second elements of v2</span>
+<span class="n">v2</span><span class="p">.</span><span class="n">z</span><span class="o">=</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>  	  <span class="c1">// Assign a value to the third element of v2  </span>
+<span class="n">v2</span><span class="p">.</span><span class="n">xy</span><span class="o">=</span><span class="n">v1</span><span class="p">.</span><span class="n">yx</span><span class="p">;</span>  <span class="c1">// Swap the first two elements of v1, then copy to the first two elements of v2</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="matrix">Matrix</h2>
+
+<p>The following types for matrices all start with mat</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">mat2</code> represents a 2x2 matrix</li>
+  <li><code class="language-plaintext highlighter-rouge">mat3</code> represents a 3x3 matrix</li>
+  <li><code class="language-plaintext highlighter-rouge">mat4</code> represents a 4x4 matrix<br />
+<em><strong>Note: Matrices are organized in column-major order, columns first</strong></em></li>
+</ul>
+
+<p>As in the following code:</p>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="kt">mat4</span> <span class="n">m</span><span class="p">;</span>		 <span class="c1">// Declare a 4-dimensional float square matrix m  </span>
+<span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span> <span class="c1">// Assign a value to the element at column 3, row 4 of the matrix </span>
+
+<span class="c1">// The following two are equivalent, initializing the matrix diagonal</span>
+<span class="kt">mat2</span> <span class="n">m</span> <span class="o">=</span> <span class="kt">mat2</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span>
+<span class="kt">mat2</span> <span class="n">m</span> <span class="o">=</span> <span class="kt">mat2</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="sampler">Sampler</h2>
+
+<p>Texture lookup requires specifying which texture or texture unit to use for the lookup.</p>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="kt">sampler1D</span>        <span class="c1">// Access a 1D texture</span>
+<span class="kt">sampler2D</span>        <span class="c1">// Access a 2D texture           </span>
+<span class="kt">sampler3D</span>        <span class="c1">// Access a 3D texture</span>
+<span class="kt">samplerCube</span>      <span class="c1">// Access a cube map texture</span>
+<span class="kt">sampler1DShadow</span>  <span class="c1">// Access a 1D depth texture with comparison</span>
+<span class="kt">sampler2DShadow</span>  <span class="c1">// Access a 2D depth texture with comparison</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">uniform</span> <span class="kt">sampler2D</span> <span class="n">grass</span><span class="p">;</span>
+
+<span class="n">vcc2</span> <span class="n">coord</span> <span class="o">=</span> <span class="kt">vec2</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="kt">vec4</span> <span class="n">color</span> <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">grass</span><span class="p">,</span> <span class="n">coord</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>If a shader uses multiple textures in a program, you can use a sampler array.</p>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">const</span> <span class="kt">int</span> <span class="n">tex_nums</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="k">uniform</span> <span class="kt">sampler2D</span> <span class="n">textures</span><span class="p">[</span><span class="n">tex_nums</span><span class="p">];</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tex_nums</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">sampler2D</span> <span class="n">tex</span> <span class="o">=</span> <span class="n">textures</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="c1">// todo ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="struct">Struct</h2>
+
+<p>This is the only user-defined type available</p>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">struct</span> <span class="n">light</span>  
+<span class="p">{</span>  
+    <span class="kt">vec3</span> <span class="n">position</span><span class="p">;</span>  
+    <span class="kt">vec3</span> <span class="n">color</span><span class="p">;</span>  
+<span class="p">};</span>  
+
+<span class="n">light</span> <span class="n">ceiling_light</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="array">Array</h2>
+
+<p>Array indices start from 0, and there is no pointer concept</p>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">// Create an array with 10 elements  </span>
+<span class="kt">vec4</span> <span class="n">points</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>  
+
+<span class="c1">// Create an array without specifying size</span>
+<span class="kt">vec4</span> <span class="n">points</span><span class="p">[];</span> 
+<span class="n">points</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="kt">vec4</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>  <span class="c1">// points now has size 3</span>
+<span class="n">points</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="kt">vec4</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>  <span class="c1">// points now has size 8</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="void">void</h2>
+
+<p>Can only be used to declare function return types</p>
+
+<h2 id="type-conversion">Type Conversion</h2>
+
+<p>Type conversion must be done explicitly; there is no automatic type promotion</p>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">2</span><span class="p">.</span><span class="mi">3</span><span class="p">;</span> 
+<span class="kt">bool</span> <span class="n">b</span> <span class="o">=</span> <span class="kt">bool</span><span class="p">(</span><span class="n">f</span><span class="p">);</span> <span class="c1">// b is true</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="qualifiers">Qualifiers</h2>
+
+<p><strong>GLSL has 4 variable qualifiers that can be used. They define the “scope” in which the marked variable cannot be changed.</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">const</code></li>
+  <li><code class="language-plaintext highlighter-rouge">attribute</code></li>
+  <li><code class="language-plaintext highlighter-rouge">uniform</code></li>
+  <li><code class="language-plaintext highlighter-rouge">varying</code></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">const</code>: Similar to C++, defines immutable constants.
+Means the qualified variable cannot be modified at compile time.</p>
+
+<p><code class="language-plaintext highlighter-rouge">attribute</code>: Used by the application to pass values to the vertex shader.
+Initialization at declaration is not allowed.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">attribute</code> qualifier marks a type of global variable that is read-only in the vertex shader. This variable is used to pass parameters from the OpenGL application to the vertex shader, so this qualifier can only be used in vertex shaders.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>attribute variables can only be used in the vertex shader
+They cannot be declared as attribute variables in the fragment shader,
+nor can they be used in the fragment shader)
+In the application, the function glBindAttribLocation() is generally used to bind
+the location of each attribute variable, then the function
+glVertexAttribPointer() is used to assign values to each attribute variable.
+Here is an example:
+uniform mat4 u_matViewProjection;
+attribute vec4 a_position;
+attribute vec2 a_texCoord0;
+varying vec2 v_texCoord;
+void main(void)
+{
+  gl_Position = u_matViewProjection * a_position;
+  v_texCoord = a_texCoord0;
+}
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">uniform</code>: Generally used by the application to set initialization values related to the vertex shader and fragment shader. Initialization at declaration is not allowed. The <code class="language-plaintext highlighter-rouge">uniform</code> qualifier marks a type of global variable that cannot be changed for a given primitive (<code class="language-plaintext highlighter-rouge">primitive</code>). It can receive parameters passed from the <code class="language-plaintext highlighter-rouge">OpenGL</code> application.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>uniform variables are passed from external programs to the shader.
+They are assigned using the glUniform**() function.
+They are read-only variables in the shader and cannot be modified by the shader.
+uniform variables are generally used to represent: transformation matrices, materials,
+lighting parameters, colors, and other information.
+uniform mat4 viewProjMatrix; // Projection + view matrix
+uniform mat4 viewMatrix;        // View matrix
+uniform vec3 lightPosition;     // Light source position
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">varying</code>: Used to pass values from the vertex shader to the fragment shader. It provides a way to pass data from the vertex shader to the fragment shader. The varying qualifier allows you to define a variable in the vertex shader, then pass it to the rasterizer. The rasterizer interpolates the data and then passes the interpolated value for each fragment to the fragment shader.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre>varying variables are used for data transfer between vertex and fragment shaders.
+Generally, the vertex shader modifies the varying variable's value,
+then the fragment shader uses that varying variable's value.
+Therefore, the declaration of varying variables must be consistent
+between the vertex and fragment shaders.
+The application cannot use this variable.
+Here is an example:
+// Vertex shaderuniform 
+mat4 u_matViewProjection;
+attribute vec4 a_position;
+attribute vec2 a_texCoord0;
+varying vec2 v_texCoord; // Varying in vertex shader
+void main(void)
+{  
+  gl_Position = u_matViewProjection * a_position;
+  v_texCoord = a_texCoord0;
+}
+// Fragment shaderprecision 
+mediump float;
+varying vec2 v_texCoord; // Varying in fragment shader
+uniform sampler2D s_baseMap;
+uniform sampler2D s_lightMap;
+void main()
+{
+  vec4 baseColor;
+  vec4 lightColor;
+  baseColor = texture2D(s_baseMap, v_texCoord);
+  lightColor = texture2D(s_lightMap, v_texCoord);
+  gl_FragColor = baseColor * (lightColor + 0.25);
+}
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><em><strong>Note: These qualifiers are very important</strong></em></p>
+
+<h2 id="restrictions">Restrictions</h2>
+
+<ul>
+  <li>Variables cannot be declared inside if-else statements</li>
+  <li>Conditions used for branching must be of bool type (if, while, for…)</li>
+  <li>The two arguments after the (?:) operator must be of the same type</li>
+  <li>switch statements are not supported</li>
+</ul>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="kt">vec4</span> <span class="nf">toonify</span><span class="p">(</span><span class="k">in</span> <span class="kt">float</span> <span class="n">intensify</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="kt">vec4</span> <span class="n">color</span><span class="p">;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="kt">vec4</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">8</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">color</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="discard">discard</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">discard</code> keyword can prevent a fragment from updating the frame buffer. When flow control encounters this keyword, the fragment being processed is marked as discarded.</p>
+
+<p>If you don’t understand what “marked as discarded” means, you can refer to <a href="/2017/10/UIViewRendering/">UIView’s drawing process</a></p>
+
+<h2 id="functions">Functions</h2>
+
+<ul>
+  <li>Function names can be overloaded by parameter type, but this is unrelated to return type</li>
+  <li>All parameters must match exactly; parameters are not automatically converted</li>
+  <li>Functions cannot be called recursively</li>
+  <li>Function return values cannot be arrays</li>
+</ul>
+
+<p>Function parameter qualifiers:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">in</code>: Parameter copied into the function but not returned (default)</li>
+  <li><code class="language-plaintext highlighter-rouge">out</code>: Parameter not copied into the function but returned</li>
+  <li><code class="language-plaintext highlighter-rouge">inout</code>: Copied into the function and returned</li>
+</ul>
+
+<h2 id="swizzle-operations">Swizzle Operations</h2>
+
+<p>By listing component names after the selector (.), you can select these components</p>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="kt">vec4</span> <span class="n">v4</span><span class="p">;</span>
+<span class="n">v4</span><span class="p">.</span><span class="n">rgba</span><span class="p">;</span>    <span class="c1">// Gets vec4</span>
+<span class="n">v4</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>     <span class="c1">// Gets vec3</span>
+<span class="n">v4</span><span class="p">.</span><span class="n">b</span><span class="p">;</span>       <span class="c1">// Gets float</span>
+<span class="n">v4</span><span class="p">.</span><span class="n">xy</span><span class="p">;</span>      <span class="c1">// Gets vec2</span>
+<span class="n">v4</span><span class="p">.</span><span class="n">xgba</span><span class="p">;</span>    <span class="c1">// Error! Component names are not from the same set</span>
+
+<span class="n">v4</span><span class="p">.</span><span class="n">wxyz</span><span class="p">;</span>    <span class="c1">// Scrambles the original component order</span>
+<span class="n">v4</span><span class="p">.</span><span class="n">xxyy</span><span class="p">;</span>    <span class="c1">// Duplicates components</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Finally, I recommend a GLSL editing and debugging tool: <a href="http://adcdownload.apple.com/Developer_Tools/Graphics_Tools_for_Xcode_7.2/Graphics_Tools_for_Xcode_7.2.dmg">OpenGL Shader Builder (Graphics Tools.dmg)</a></p>
+
+<h1 id="summary">Summary:</h1>
+
+<p>Since my memory isn’t great and I sometimes can’t find things, I’ve collected some terminology and concepts with explanations to make it easier for future learners to study.</p>
+
+<p>References:<br />
+<a href="http://www.cnblogs.com/luweimy/p/4208570.html?utm_source=tuicool&amp;utm_medium=referral">GLSL基础</a></p>
+
+<p><a href="http://www.jianshu.com/p/ee597b2bd399">iOS开发-OpenGL ES入门教程2</a></p>
+
+<p>End of article</p>
+:ET

@@ -1,0 +1,125 @@
+I"l<p>这里收录一些纯前端小工具。所有处理都在你的浏览器本地完成，<strong>文件不会被上传到任何服务器</strong>。</p>
+
+<div class="tools-landing">
+
+
+
+
+
+<div class="tools-grid">
+
+<a class="tools-card" href="/tools/image-to-avif/">
+  <span class="tools-card-head">
+    <i class="fas fa-image"></i>
+    <span class="tools-card-title">图片转 AVIF</span>
+  </span>
+  <span class="tools-card-desc">PNG / JPEG / WebP / GIF 批量转 AVIF，动图逐帧转码保留动画，纯本地转换不上传（WASM libaom）</span>
+  <span class="tools-card-cta">打开工具 <i class="fas fa-angle-right"></i></span>
+</a>
+
+<a class="tools-card" href="/tools/webp-heic/">
+  <span class="tools-card-head">
+    <i class="fas fa-exchange-alt"></i>
+    <span class="tools-card-title">图片格式转换</span>
+  </span>
+  <span class="tools-card-desc">PNG / JPEG / GIF / BMP / AVIF / HEIC 等互转 WebP / JPEG / PNG，纯本地转换不上传</span>
+  <span class="tools-card-cta">打开工具 <i class="fas fa-angle-right"></i></span>
+</a>
+
+<a class="tools-card" href="/tools/hash-string/">
+  <span class="tools-card-head">
+    <i class="fas fa-hashtag"></i>
+    <span class="tools-card-title">字符串 Hash</span>
+  </span>
+  <span class="tools-card-desc">输入字符串点击生成 MD5 / SHA1 / SHA256 / SHA384 / SHA512，支持大小写切换与一键复制，纯本地计算不上传</span>
+  <span class="tools-card-cta">打开工具 <i class="fas fa-angle-right"></i></span>
+</a>
+
+<a class="tools-card" href="/tools/base64/">
+  <span class="tools-card-head">
+    <i class="fas fa-code"></i>
+    <span class="tools-card-title">Base64 编码解码</span>
+  </span>
+  <span class="tools-card-desc">文本与 Base64 互转，支持标准与 URL 安全（Base64URL）变体，编码解码、一键复制，纯本地处理不上传</span>
+  <span class="tools-card-cta">打开工具 <i class="fas fa-angle-right"></i></span>
+</a>
+
+<a class="tools-card" href="/tools/base-converter/">
+  <span class="tools-card-head">
+    <i class="fas fa-calculator"></i>
+    <span class="tools-card-title">进制转换</span>
+  </span>
+  <span class="tools-card-desc">二进制 / 八进制 / 十进制 / 十六进制实时联动互转，支持任意大整数，纯本地计算不上传</span>
+  <span class="tools-card-cta">打开工具 <i class="fas fa-angle-right"></i></span>
+</a>
+
+<a class="tools-card" href="/tools/qrcode/">
+  <span class="tools-card-head">
+    <i class="fas fa-qrcode"></i>
+    <span class="tools-card-title">二维码生成解析</span>
+  </span>
+  <span class="tools-card-desc">文本生成二维码图片（可选纠错级别、下载 PNG），上传二维码图片解析出文本/链接，纯本地处理不上传</span>
+  <span class="tools-card-cta">打开工具 <i class="fas fa-angle-right"></i></span>
+</a>
+
+<a class="tools-card" href="/tools/json-format/">
+  <span class="tools-card-head">
+    <i class="fas fa-diagram-project"></i>
+    <span class="tools-card-title">JSON 工具</span>
+  </span>
+  <span class="tools-card-desc">JSON 常用处理一条龙：树形浏览（展开/折叠、搜索、图片链接 hover 预览）、格式化/压缩/按键排序、宽容解析自动修复（尾逗号/单引号/无引号键/注释）、复制与下载 .json，错误定位行列，纯本地不上传</span>
+  <span class="tools-card-cta">打开工具 <i class="fas fa-angle-right"></i></span>
+</a>
+
+</div>
+
+
+
+</div>
+
+<style>
+.tools-landing { margin-top: 1rem; }
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.tools-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.tools-card:hover {
+  border-color: #2f6fde;
+  box-shadow: 0 2px 12px rgba(47, 111, 222, 0.15);
+}
+.tools-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.tools-card-head i { color: #2f6fde; }
+.tools-card-desc {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  line-height: 1.6;
+}
+.tools-card-cta {
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: #2f6fde;
+}
+[mode='dark'] .tools-card:hover { border-color: #5b8ff0; }
+[mode='dark'] .tools-card-head i,
+[mode='dark'] .tools-card-cta { color: #5b8ff0; }
+</style>
+
+:ET

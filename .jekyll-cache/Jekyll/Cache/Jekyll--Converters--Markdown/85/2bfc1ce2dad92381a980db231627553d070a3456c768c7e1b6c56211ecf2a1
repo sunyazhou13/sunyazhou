@@ -1,0 +1,153 @@
+I"c-<p><img src="/assets/images/20170713ios11NewSkills/whatisnewsinios11.avif" alt="whatisnewsinios" /></p>
+
+<h2 id="availability-checking-api">Availability Checking API</h2>
+
+<p>In Swift code, you often see that a certain API is available since iOS 10.0</p>
+
+<p>Like the following code</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>	<span class="k">if</span> <span class="p">(</span><span class="kd">@available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">,</span> <span class="o">*</span><span class="p">))</span> <span class="p">{</span>
+		<span class="c1">//Available on iOS 11</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="c1">//Legacy API</span>
+	<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>In Xcode 9, the compiler adds Objective-C version of API availability checking</p>
+
+<h5 id="mark-method-availability-with-the-api_available-macro">Mark method availability with the <code class="language-plaintext highlighter-rouge">API_AVAILABLE</code> macro</h5>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">@interface</span> <span class="nc">ViewController</span> <span class="p">:</span> <span class="nc">UIViewController</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">xxxMethodA</span> <span class="nf">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mi">11</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">xxxMethodB</span> <span class="nf">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mi">8</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">macos</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">10</span><span class="p">),</span> <span class="n">watchos</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">tvos</span><span class="p">(</span><span class="mi">9</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+<span class="k">@end</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>Remember that <code class="language-plaintext highlighter-rouge">macos</code>, <code class="language-plaintext highlighter-rouge">ios</code>, <code class="language-plaintext highlighter-rouge">watchos</code>, <code class="language-plaintext highlighter-rouge">tvos</code> must all be lowercase</p>
+</blockquote>
+
+<p>By using this approach for availability checks, the editor won’t produce warnings, and at runtime the corresponding code is executed based on the iOS system version.</p>
+
+<h5 id="mark-the-availability-of-an-entire-class-with-the-api_available-macro">Mark the availability of an entire <code class="language-plaintext highlighter-rouge">class</code> with the <code class="language-plaintext highlighter-rouge">API_AVAILABLE</code> macro</h5>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="n">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mi">11</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span>
+<span class="k">@interface</span> <span class="nc">A</span> <span class="p">:</span> <span class="nc">NSObject</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">xxxMothod</span><span class="p">;</span>
+<span class="k">@end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Looking at this, you might think it’s all for Objective-C code. Is there anything for C/C++? There certainly is</p>
+
+<h5 id="cc-code-can-use-">C/C++ code can use ``</h5>
+
+<p>To check availability</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>
+<span class="k">if</span> <span class="p">(</span><span class="n">__builtin_available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">,</span> <span class="n">macOS</span> <span class="mf">10.13</span><span class="p">,</span> <span class="o">*</span><span class="p">))</span> <span class="p">{</span>
+     <span class="n">xxxxFunc</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">// Import the header file</span>
+<span class="cp">#include</span> <span class="cpf">&lt;os/availability.h&gt;</span><span class="c1"> </span><span class="cp">
+</span>
+<span class="c1">// Availability check for declaring functions</span>
+<span class="kt">void</span> <span class="nf">myFunctionForiOS11OrNewer</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="n">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mf">11.0</span><span class="p">),</span> <span class="n">macos</span><span class="p">(</span><span class="mf">10.13</span><span class="p">));</span>  
+
+<span class="c1">// Availability check for class XXXClassA</span>
+<span class="k">class</span> <span class="nc">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mf">11.0</span><span class="p">),</span> <span class="n">macos</span><span class="p">(</span><span class="mf">10.13</span><span class="p">))</span> <span class="n">XXXClassA</span><span class="p">;</span>  
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>By default, <code class="language-plaintext highlighter-rouge">API_AVAILABLE()</code> only takes effect for APIs on <code class="language-plaintext highlighter-rouge">iOS 11</code> / <code class="language-plaintext highlighter-rouge">tvOS 11</code> / <code class="language-plaintext highlighter-rouge">macOS 10.13</code> / <code class="language-plaintext highlighter-rouge">watchOS 4</code> and later</p>
+
+<p>If your project wants to use this new LLVM feature, you need to modify the <code class="language-plaintext highlighter-rouge">Unguarded availability</code> in <code class="language-plaintext highlighter-rouge">build settings</code>, as shown below:</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/availability.avif" alt="availability" /></p>
+
+<h2 id="static-analysis">Static Analysis</h2>
+
+<p>In an earlier article I talked about <a href="https://www.sunyazhou.com/2017/06/EnableStaticAnalyer/">Static Analysis</a></p>
+
+<p>Here I’ll talk about the changes</p>
+
+<h3 id="nsnumbercfnumberred-static-analysis-delay">NSNumber/CFNumberRed Static Analysis Delay</h3>
+
+<p>When we mistakenly judge an NSNumber, static analysis gives us a hint</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/error.avif" alt="error" /></p>
+
+<p>In Xcode 9, you can directly change such ignored problems into errors</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/static.avif" alt="static" /></p>
+
+<h2 id="enable-lto-and-set-it-to-incremental-mode">Enable LTO and Set It to Incremental Mode</h2>
+
+<p>Link-time optimization (hereafter <code class="language-plaintext highlighter-rouge">LTO</code>) is an optimization feature of LLVM. Its main principle is:</p>
+
+<p><em>Use the intermediate format obtained from some optimizations of object files to perform deep optimization at the link stage, including analysis at the code logic level, removing functions, variables, and even local code fragments that aren’t actually used, thereby reducing the installation package size while improving runtime efficiency.</em></p>
+
+<p>For LTO, the improvement Xcode 9 makes is mainly further optimizing the compile speed. The example Apple demonstrated used a large C++ project as a reference: for a full link, Xcode 9 is 35% faster than Xcode 8; for an incremental link, Xcode 9 is nearly 60% faster than Xcode 8.</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/lto1.avif" alt="lto" /></p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/lto2.avif" alt="lto" /></p>
+
+<p>Enable LTO</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/LTO.avif" alt="LTO" /></p>
+
+<p>It’s said to optimize the package size and runtime speed by about 10%</p>
+
+<h2 id="gcd-unified-queue-identifier">GCD Unified Queue Identifier</h2>
+
+<p>The unified queue identifier refers to queues created in various places scattered around the project. If the queue identifiers are the same, they will be bound together in the kernel, which can improve efficiency by 30%. Apple hasn’t told us how the kernel does this, but it provides this suggestion: if a category of operations are similar in importance or other attributes, or if the developer wants scattered code in the project to be controlled in the same queue, then we can specify a common identifier when creating the queue. The system will then bind queues with the same identifier together in the kernel for management</p>
+
+<p>As in the following code, if the app uses the same string everywhere, efficiency can be improved by 30%</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>	<span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_queue_create</span><span class="p">(</span><span class="s">"com.sunyazhou.demo.queue"</span><span class="p">,</span> <span class="n">DISPATCH_QUEUE_CONCURRENT</span><span class="p">);</span>
+    <span class="n">dispatch_async</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+       <span class="c1">//Write asynchronous code here</span>
+    <span class="p">});</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>Honestly speaking, in a project it’s unavoidable to have file uploads/downloads or time-consuming tasks. Making everything one queue clearly doesn’t fit the business requirements. If you want to keep queues with a single identifier as much as possible, you can only do it based on business categories. It’s worth trying when you get the chance</p>
+</blockquote>
+
+<p>End</p>
+
+<p>Reference</p>
+:ET

@@ -1,0 +1,32 @@
+I"<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="k">@interface</span> <span class="nc">NSWindow</span> <span class="p">(</span><span class="nl">FullScreen</span><span class="p">)</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">mn_isFullScreen</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">NSWindow</span> <span class="p">(</span><span class="nl">FullScreen</span><span class="p">)</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">mn_isFullScreen</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(([</span><span class="n">self</span> <span class="nf">styleMask</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">NSFullScreenWindowMask</span><span class="p">)</span> <span class="o">==</span> <span class="n">NSFullScreenWindowMask</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>refs:<a href="http://stackoverflow.com/questions/6815917/how-to-know-if-a-nswindow-is-fullscreen-in-mac-os-x-lion">How to know if a NSWindow is fullscreen in Mac OS X Lion?</a></p>
+:ET

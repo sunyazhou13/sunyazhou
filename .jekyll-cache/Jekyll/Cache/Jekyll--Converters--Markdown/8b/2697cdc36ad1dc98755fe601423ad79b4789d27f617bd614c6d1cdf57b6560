@@ -1,0 +1,97 @@
+I"y<p><img src="/assets/images/20201010PodSpec/cocoapods.avif" alt="cocoapods" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This post carries strong personal sentiment; if you feel uncomfortable reading it, please close it as soon as possible. This post is only a personal learning record. Reposting or sharing within the license terms is welcome; please respect copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<p>Recently in development, when integrating third-party projects into my project using CocoaPods, I keep forgetting how to link third-party libraries and how to write podspec. So I’m recording this easily forgotten content.</p>
+
+<h2 id="creating-a-podspec">Creating a podspec</h2>
+
+<p>In the test project directory, create a directory called demoframeworks, then run the following inside it:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre>pod spec create spec名称
+</pre></td></tr></tbody></table></code></pre></div></div>
+<blockquote>
+  <p>Give the <code class="language-plaintext highlighter-rouge">spec</code> a name of your own.</p>
+</blockquote>
+
+<p>A spec template will be generated locally.
+Then edit the spec file with a text editor. Here we’ll use Agora’s SDK as an example.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td> --><td class="rouge-code"><pre><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">spec</span><span class="o">|</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">name</span>         <span class="o">=</span> <span class="s2">"specdemo"</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">version</span>      <span class="o">=</span> <span class="s2">"0.0.1"</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">summary</span>      <span class="o">=</span> <span class="s2">"test pod spec"</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">description</span>  <span class="o">=</span> <span class="s2">"demo test测试"</span>
+
+  <span class="n">spec</span><span class="p">.</span><span class="nf">homepage</span>     <span class="o">=</span> <span class="s2">"https://www.sunyazhou.com/"</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">license</span>      <span class="o">=</span> <span class="s2">"MIT"</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">author</span>             <span class="o">=</span> <span class="p">{</span> <span class="s2">"東引甌越"</span> <span class="o">=&gt;</span> <span class="s2">"https://www.sunyazhou.com/"</span> <span class="p">}</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">source</span>       <span class="o">=</span> <span class="p">{</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">"git@gitee.com:sunyazhou/sunyazhou13.github.io-images.git"</span><span class="p">}</span>
+  <span class="c1">#How to load third-party frameworks</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">vendored_frameworks</span> <span class="o">=</span> <span class="s1">'AgoraRtcCryptoLoader.framework'</span><span class="p">,</span><span class="s1">'AgoraRtcEngineKit.framework'</span><span class="p">,</span><span class="s1">'AgoraRtmKit.framework'</span><span class="p">,</span><span class="s1">'AgoraSigKit.framework'</span>
+  <span class="c1">#How to load third-party .a libraries</span>
+  <span class="c1">#spec.vendored_libraries = 'libProj4.a', 'libJavaScriptCore.a'</span>
+  <span class="c1">#Dependencies on system built-in dynamic frameworks</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">frameworks</span> <span class="o">=</span> <span class="s1">'Photos'</span><span class="p">,</span><span class="s1">'PhotosUI'</span><span class="p">,</span><span class="s1">'CoreMedia'</span><span class="p">,</span><span class="s1">'Foundation'</span><span class="p">,</span><span class="s1">'CoreGraphics'</span><span class="p">,</span><span class="s1">'CoreMotion'</span><span class="p">,</span><span class="s1">'QuartzCore'</span><span class="p">,</span><span class="s1">'MobileCoreServices'</span><span class="p">,</span><span class="s1">'Security'</span><span class="p">,</span><span class="s1">'CoreText'</span><span class="p">,</span><span class="s1">'VideoToolbox'</span><span class="p">,</span><span class="s1">'CoreTelephony'</span><span class="p">,</span><span class="s1">'AudioToolbox'</span><span class="p">,</span><span class="s1">'SystemConfiguration'</span><span class="p">,</span><span class="s1">'AVFoundation'</span><span class="p">,</span> <span class="s1">'CoreLocation'</span><span class="p">,</span><span class="s1">'AdSupport'</span><span class="p">,</span><span class="s1">'OpenGLES'</span><span class="p">,</span><span class="s1">'CoreML'</span>
+  <span class="c1">#Dependencies on built-in static libraries</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">libraries</span> <span class="o">=</span> <span class="s2">"iconv"</span><span class="p">,</span> <span class="s2">"c++"</span><span class="p">,</span> <span class="s2">"z.1.1.3"</span> <span class="p">,</span><span class="s2">"z"</span><span class="p">,</span><span class="s2">"resolv"</span> <span class="p">,</span><span class="s2">"sqlite3"</span><span class="p">,</span><span class="s2">"icucore"</span><span class="p">,</span><span class="s2">"z.1.2.5"</span>  
+<span class="k">end</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>Then add this to the Podfile content:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td> --><td class="rouge-code"><pre>target <span class="s1">'PodSpecDemo'</span> <span class="k">do</span>
+  <span class="c"># Comment the next line if you don't want to use dynamic frameworks</span>
+  use_frameworks!
+
+  <span class="c"># Add this line</span>
+  pod <span class="s1">'specdemo'</span>, :path<span class="o">=&gt;</span><span class="s1">'./demoframeworks'</span>
+end
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Note: <code class="language-plaintext highlighter-rouge">specdemo</code> here is the name we give the local pod being integrated; it’s best to keep it consistent with the name of the created spec.</p>
+
+<p>Then run pod install.</p>
+
+<p>Finally the project becomes exactly what we want.</p>
+
+<p><img src="/assets/images/20201010PodSpec/cocoapods1.avif" alt="cocoapods" /></p>
+
+<h1 id="summary">Summary</h1>
+
+<p>A record of knowledge points I often forget, to avoid scrambling around when in a hurry. For more podspec syntax, <a href="https://guides.cocoapods.org/syntax/podspec.html#vendored_libraries">see the official API</a>.</p>
+
+<p><a href="https://github.com/sunyazhou13/PodSpecDemo">Download the demo project here</a></p>
+
+<p>The framework was removed from the project because GitHub doesn’t allow uploading files over 100 MB. It’s quite annoying — just download it and take a look at how it’s written.</p>
+:ET

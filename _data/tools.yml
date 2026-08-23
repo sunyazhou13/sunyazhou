@@ -46,3 +46,10 @@
   description: 文本生成二维码图片（可选纠错级别、下载 PNG），上传二维码图片解析出文本/链接，纯本地处理不上传
   path: /tools/qrcode/
   enabled: true
+
+- id: json-format
+  title: JSON 工具
+  icon: fas fa-diagram-project
+  description: JSON 常用处理一条龙：树形浏览（展开/折叠、搜索、图片链接 hover 预览）、格式化/压缩/按键排序、宽容解析自动修复（尾逗号/单引号/无引号键/注释）、复制与下载 .json，错误定位行列，纯本地不上传
+  path: /tools/json-format/
+  enabled: true

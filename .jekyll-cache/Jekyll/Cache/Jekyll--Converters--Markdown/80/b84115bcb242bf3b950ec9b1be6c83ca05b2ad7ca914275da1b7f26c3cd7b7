@@ -1,0 +1,122 @@
+I"�<h1 id="前言">前言</h1>
+
+<p>开发过程中经常遇到<code class="language-plaintext highlighter-rouge">UIButton</code>点击区域太小 又不想 改动按钮的大小.</p>
+
+<p>今天的文章和大家分享一下解决这种问题的代码</p>
+
+<h1 id="实现思路">实现思路</h1>
+
+<ul>
+  <li>子类话UIButton 复写 它的<code class="language-plaintext highlighter-rouge">hitTest:</code>方法</li>
+  <li>子类话UIButton 复写 point:inside:withEvent: 方法</li>
+</ul>
+
+<h2 id="第一种方式">第一种方式</h2>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">override</span> <span class="kd">func</span> <span class="nf">hitTest</span><span class="p">(</span><span class="n">_</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="n">with</span> <span class="nv">event</span><span class="p">:</span> <span class="kt">UIEvent</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">?</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="nv">biggerButtonFrame</span> <span class="o">=</span> <span class="n">theButton</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="nf">insetBy</span><span class="p">(</span><span class="nv">dx</span><span class="p">:</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="nv">dy</span><span class="p">:</span> <span class="o">-</span><span class="mi">30</span><span class="p">)</span> <span class="c1">// 1	</span>
+	<span class="k">if</span> <span class="n">biggerButtonFrame</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="n">point</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 2</span>
+		<span class="k">return</span> <span class="n">theButton</span> <span class="c1">// 3</span>
+	<span class="p">}</span>		
+	<span class="k">return</span> <span class="k">super</span><span class="o">.</span><span class="nf">hitTest</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="c1">// 4</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>
+    <ol>
+      <li>让theButton的 x 扩大 30, y 扩大 30 (正数为缩小 负数为放大. 然后宽高 分别是2 * 30和 2 * 30)</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>判断点击的位置是否在放大完的frame内.</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>如果是 就返回button</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>不是的话让事件继续传递</li>
+    </ol>
+  </li>
+</ul>
+
+<blockquote>
+  <p>注意:<em>这里没判断 theButton.alpha == 0 和 theButton.userInterface.. ==  YES 还有它是否可见之类的,请自行判断</em></p>
+</blockquote>
+
+<h2 id="第二种方式">第二种方式</h2>
+
+<p>复写UIView的point:方法</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">override</span> <span class="kd">func</span> <span class="nf">point</span><span class="p">(</span><span class="n">inside</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="n">with</span> <span class="nv">event</span><span class="p">:</span> <span class="kt">UIEvent</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="nv">biggerFrame</span> <span class="o">=</span> <span class="n">bounds</span><span class="o">.</span><span class="nf">insetBy</span><span class="p">(</span><span class="nv">dx</span><span class="p">:</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="nv">dy</span><span class="p">:</span> <span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="n">biggerFrame</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>OC的版本是这样</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">pointInside</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">point</span> <span class="nf">withEvent</span><span class="p">:(</span><span class="n">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span> <span class="p">{</span>
+	<span class="c1">//这里写上 </span>
+	
+	<span class="n">CGRectInset</span><span class="p">(</span><span class="o">&lt;</span><span class="err">#</span><span class="n">CGRect</span> <span class="n">rect</span><span class="err">#</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="err">#</span><span class="n">CGFloat</span> <span class="n">dx</span><span class="err">#</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="err">#</span><span class="n">CGFloat</span> <span class="n">dy</span><span class="err">#</span><span class="o">&gt;</span><span class="p">)</span>
+	<span class="p">...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>但是 第二种方式 其实 是 hitTest:方法调用之前UIView的判断,它判断当前点击的point是否在这个UIView上.</p>
+
+<p>不过 还是推荐第一种方式</p>
+
+<h2 id="核心代码">核心代码</h2>
+
+<p>其实 最核心的代码是</p>
+
+<p>CGRectInset(&lt;#CGRect rect#&gt;, &lt;#CGFloat dx#&gt;, &lt;#CGFloat dy#&gt;)</p>
+
+<blockquote>
+  <p>CGRect CGRectOffset(CGRect rect, CGFloat dx, CGFloat dy)是以rect为中心，根据dx和dy来实现缩小。</p>
+</blockquote>
+
+<p>如果dx 和 dy是负数 则放大 ,正数则缩小</p>
+
+<p>但是大家可能很疑惑 那宽度和高度怎么 缩小放大</p>
+
+<p>首先: 我们明确 这个API的含义 只要传入正数 它就缩放 那么 宽高也会适当前传入的dx和dy来决定 缩放比</p>
+
+<p>因为是中心点缩放 所以宽高 <strong>要 X 2</strong>,因为有两侧嘛,左侧缩小30右侧也需要缩小30,上部和底部是一样的.</p>
+
+<p>大家可自行查阅google看下</p>
+
+<p>参考Increasing the tap area of a UIButton<br />
+<a href="https://mp.weixin.qq.com/s/9rvSRt4kfpy7e87EJoaJOQ">参考 iOS触摸事件全家桶</a></p>
+
+<p>全文完</p>
+
+:ET

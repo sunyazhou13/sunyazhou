@@ -1,0 +1,81 @@
+I"�<p><img src="/assets/images/20220701ReverseList/algorithm.avif" alt="algorithm" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This post carries a strong personal flavor — if it makes you uncomfortable, please close it quickly. This article is only for personal study notes, but you’re welcome to repost or share it within the scope of the license agreement. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h1 id="the-problem">The Problem</h1>
+
+<p>You are given two integer arrays <code class="language-plaintext highlighter-rouge">nums1</code> and <code class="language-plaintext highlighter-rouge">nums2</code>, sorted in <code class="language-plaintext highlighter-rouge">non-decreasing order</code>, and two integers <code class="language-plaintext highlighter-rouge">m</code> and <code class="language-plaintext highlighter-rouge">n</code>, representing the number of elements in <code class="language-plaintext highlighter-rouge">nums1</code> and <code class="language-plaintext highlighter-rouge">nums2</code> respectively.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Merge</code> <code class="language-plaintext highlighter-rouge">nums2</code> into <code class="language-plaintext highlighter-rouge">nums1</code> so that the merged array is also sorted in <code class="language-plaintext highlighter-rouge">non-decreasing order</code>.</p>
+
+<blockquote>
+  <p>Note: the merged array should not be returned by the function, but instead be stored in the array <code class="language-plaintext highlighter-rouge">nums1</code>. To accommodate this, <code class="language-plaintext highlighter-rouge">nums1</code> has an initial length of <code class="language-plaintext highlighter-rouge">m + n</code>, where the first <code class="language-plaintext highlighter-rouge">m</code> elements denote the elements that should be merged, and the last <code class="language-plaintext highlighter-rouge">n</code> elements are set to <code class="language-plaintext highlighter-rouge">0</code> and should be ignored. <code class="language-plaintext highlighter-rouge">nums2</code> has a length of <code class="language-plaintext highlighter-rouge">n</code>.</p>
+</blockquote>
+
+<h4 id="example-1">Example 1</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre>输入：nums1 <span class="o">=</span> <span class="o">[</span>1,2,3,0,0,0], m <span class="o">=</span> 3, nums2 <span class="o">=</span> <span class="o">[</span>2,5,6], n <span class="o">=</span> 3
+输出：[1,2,2,3,5,6]
+解释：需要合并 <span class="o">[</span>1,2,3] 和 <span class="o">[</span>2,5,6] 。
+合并结果是 <span class="o">[</span>1,2,2,3,5,6] ，其中斜体加粗标注的为 nums1 中的元素。
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="example-2">Example 2</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre>输入：nums1 <span class="o">=</span> <span class="o">[</span>1], m <span class="o">=</span> 1, nums2 <span class="o">=</span> <span class="o">[]</span>, n <span class="o">=</span> 0
+输出：[1]
+解释：需要合并 <span class="o">[</span>1] 和 <span class="o">[]</span> 。
+合并结果是 <span class="o">[</span>1] 。
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="example-3">Example 3</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre>输入：nums1 <span class="o">=</span> <span class="o">[</span>0], m <span class="o">=</span> 0, nums2 <span class="o">=</span> <span class="o">[</span>1], n <span class="o">=</span> 1
+输出：[1]
+解释：需要合并的数组是 <span class="o">[]</span> 和 <span class="o">[</span>1] 。
+合并结果是 <span class="o">[</span>1] 。
+注意，因为 m <span class="o">=</span> 0 ，所以 nums1 中没有元素。nums1 中仅存的 0 仅仅是为了确保合并结果可以顺利存放到 nums1 中.
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="implementation">Implementation</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td> --><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">merge</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums2</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nums1</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">nums1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">nums1</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><a href="https://leetcode.cn/problems/merge-sorted-array/">88. Merge Sorted Array</a><br />
+<a href="https://codetop.cc/home">From codetop</a></p>
+:ET

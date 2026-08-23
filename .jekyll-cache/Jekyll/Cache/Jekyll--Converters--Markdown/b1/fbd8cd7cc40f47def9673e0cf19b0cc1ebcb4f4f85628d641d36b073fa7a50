@@ -1,0 +1,176 @@
+I"�"<p><img src="/assets/images/aboutme/background_th.avif" alt="Personal background" /></p>
+
+<h2 id="about-me">About Me</h2>
+
+<blockquote>
+  <p>Our lives are like processes in an operating system: daily activities are the threads, running on round-robin scheduling in the queue <code class="language-plaintext highlighter-rouge">com.sunyazhou.self.queue.serial</code>. I sum up my learning journey as <strong>a lonely thread</strong> — always executing serially: <code class="language-plaintext highlighter-rouge">English</code>, <code class="language-plaintext highlighter-rouge">Math</code>, <code class="language-plaintext highlighter-rouge">all sorts of things...</code>. To record what is easily forgotten, I created <strong>The Mr. Sun’s Work Notes</strong> — an open-source toolbox of sorts, to revisit often and to share with those who need it.</p>
+</blockquote>
+
+<p>I’m <strong>Sun Yazhou</strong>, from <a href="https://en.wikipedia.org/wiki/Harbin">Harbin</a>, the Ice City of northern China. I’ve long been an iOS application developer with a stint in macOS development — the field I’m best at among all my skills.</p>
+
+<hr />
+
+<h2 id="️-my-hometown--suihua">🏔️ My Hometown — Suihua</h2>
+
+<blockquote>
+  <p>On the vast Songnen Plain, where a single centimeter of fertile black soil takes four hundred years to form.</p>
+</blockquote>
+
+<h3 id="nature">Nature</h3>
+
+<p>The towering Korean pine forests along the winding Xiao Hinggan Mountains:
+<img src="/assets/images/aboutme/hongsong.avif" alt="Korean pine" /></p>
+
+<p>The Hulan River, flowing endlessly for a thousand years, immortalized by writer Xiao Hong:
+<img src="/assets/images/aboutme/hulanhe.avif" alt="Hulan River" /></p>
+
+<p>Farmers transplanting rice seedlings under the spring sky merging with water; rows of plump fresh corn waiting in summer; soybeans rattling, rice bowing, and fragrant fields in autumn; the solemn reverence for heaven and earth in the bitter winter snow.</p>
+
+<h3 id="notable-figures">Notable Figures</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Figure</th>
+      <th style="text-align: left">Introduction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="https://baike.baidu.com/item/%E6%9E%97%E6%9E%AB/60298">Lin Feng</a></td>
+      <td style="text-align: left">A principal leader of the December 9th Anti-Japanese National Salvation Movement</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://baike.baidu.com/item/%E4%BA%8E%E7%82%B3%E7%84%B6/5862027">Yu Bingran</a></td>
+      <td style="text-align: left">An outstanding fighter on the covert front of the Party’s struggle against the enemy</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Liang Jun</td>
+      <td style="text-align: left">The first female tractor driver of New China, the figure on the 1-yuan RMB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Ma Fuyao</td>
+      <td style="text-align: left">Lyricist of the “Chinese People’s Volunteer Army Battle Song” sung around the world</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Shao Anlin</td>
+      <td style="text-align: left">Founder of efficient development of lean iron ore at Ansteel</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Sun Yu</td>
+      <td style="text-align: left">Designer of the remote control systems for China’s first-generation atomic bombs, rockets, and intercontinental missiles</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/assets/images/aboutme/linfeng.avif" alt="Lin Feng" />
+<img src="/assets/images/aboutme/yubingran.avif" alt="Yu Bingran" />
+<img src="/assets/images/aboutme/rmb1.avif" alt="Liang Jun, the figure on the 1-yuan RMB" /></p>
+
+<h3 id="culture">Culture</h3>
+
+<p><strong>Shadow puppetry</strong>, where one performer plays emperors and generals with both hands; <strong>paper-cutting art</strong>, where deft hands scatter affection across the fertile land; <strong>woodblock prints</strong>, where knife winds sweep the board and the subtle fragrance of rice lingers.</p>
+
+<blockquote>
+  <p>Never be someone who lives here a lifetime yet knows little of its culture and history. Keep walking the path our predecessors left behind.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-tech-stack">💻 Tech Stack</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Field</th>
+      <th style="text-align: left">Keywords</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Languages</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Objective-C</code> <code class="language-plaintext highlighter-rouge">Swift</code> <code class="language-plaintext highlighter-rouge">Python</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Platforms &amp; Frameworks</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">iOS</code> <code class="language-plaintext highlighter-rouge">UIKit</code> <code class="language-plaintext highlighter-rouge">App Development</code> <code class="language-plaintext highlighter-rouge">CocoaPods</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Audio &amp; Video</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">FFmpeg</code> <code class="language-plaintext highlighter-rouge">H264/H265</code> <code class="language-plaintext highlighter-rouge">Audio/Video</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Computer Graphics</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Metal</code> <code class="language-plaintext highlighter-rouge">GPU Rendering</code> <code class="language-plaintext highlighter-rouge">Shaders</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>AI &amp; Others</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">NLP</code> <code class="language-plaintext highlighter-rouge">Git</code> <code class="language-plaintext highlighter-rouge">Markdown</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Blogging</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Jekyll</code> <code class="language-plaintext highlighter-rouge">Hexo</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>My plan is to tag every new technology or trick I learn on this page, and see how much I’ve accumulated by the time I retire.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-life-mottos">✨ Life Mottos</h2>
+
+<blockquote>
+  <p><strong>Respect is earned through competence.</strong></p>
+
+  <p><strong>Keep learning, keep pace with the times.</strong></p>
+</blockquote>
+
+<hr />
+
+<h2 id="-hobbies">🎯 Hobbies</h2>
+
+<h3 id="-billiards">🎱 Billiards</h3>
+
+<p><img src="/assets/images/aboutme/cue8ball.avif" alt="Billiards" /></p>
+
+<h3 id="️-motorcycles">🏍️ Motorcycles</h3>
+
+<p><img src="/assets/images/aboutme/fixmoto.avif" alt="Motorcycle" /></p>
+
+<h3 id="-badminton">🏸 Badminton</h3>
+
+<p><img src="/assets/images/aboutme/badminton.avif" alt="Badminton" /></p>
+
+<hr />
+
+<h2 id="-currently-reading">📚 Currently Reading</h2>
+
+<p><img src="/assets/images/aboutme/MetalbyTutorials.avif" alt="Metal by Tutorials" /></p>
+
+<p><a href="https://www.kodeco.com/books/metal-by-tutorials"><strong>Metal by Tutorials</strong></a> — Learning Metal graphics, exploring the world of GPU rendering and shader programming.</p>
+
+<hr />
+
+<h2 id="-why-i-blog">📝 Why I Blog</h2>
+
+<p>Blogging grew out of the evolution of how I store knowledge:</p>
+
+<p><strong>Stack → Heap → References → Keyword Index → Blog</strong></p>
+
+<p>At first my brain was an empty stack, pushing knowledge in until stack overflow; switching to heap storage, I ran out of <a href="https://en.wikipedia.org/wiki/Out_of_memory">memory</a>; then I tried reference-tag storage, until my browser tabs multiplied like a virus; finally I kept only keywords to search with, only to find many articles had been deleted by their authors. Meanwhile I had my own technical experience worth sharing, so I decided to start this blog.</p>
+
+<blockquote>
+  <p>Even if my views are full of narrow theories and naive arguments, I’ll keep doing it, knowing today is right where yesterday was wrong. Otherwise I’d regret the wasted years and be ashamed of accomplishing nothing.</p>
+</blockquote>
+
+<p>Blogging keeps me calm and focused on my own field, away from restlessness. I share technology and life occasionally, without obsessing over quality — after all, I also need to spend time working and living well.</p>
+
+<hr />
+
+<h2 id="-contact-me">📬 Contact Me</h2>
+
+<p>Email: <strong>sunyazhou@111.com</strong> — Feel free to reach out about anything technical.</p>
+:ET

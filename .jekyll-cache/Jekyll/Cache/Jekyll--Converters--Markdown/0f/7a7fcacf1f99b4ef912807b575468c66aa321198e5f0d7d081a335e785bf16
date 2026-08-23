@@ -1,0 +1,175 @@
+I"�3<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h1 id="ios17关于小组件的wwdc">iOS17关于小组件的WWDC</h1>
+
+<p><a href="https://developer.apple.com/wwdc23/">WWDC23</a>中提供了一些关于小组件的视频,最近开发小组件遇到了一些问题,在这里解读一下视频中的内容</p>
+
+<h2 id="bring-widgets-to-new-places">Bring widgets to new places</h2>
+
+<p><a href="https://developer.apple.com/videos/play/wwdc2023/10027/?time=180">Bring widgets to new places</a></p>
+
+<p>The widget ecosystem is expanding: Discover how you can use the latest WidgetKit APIs to make your widget look great everywhere. We’ll show you how to identify your widget’s background, adjust layout dynamically, and prepare colors for vibrant rendering so that your widget can sit seamlessly in any environment.</p>
+
+<p>小部件生态系统正在扩展:了解如何使用最新的WidgetKit api使您的小部件在任何地方看起来都很棒。我们将向您展示如何识别小部件的背景，动态调整布局，并为充满活力的渲染准备颜色，以便您的小部件可以在任何环境中无缝地运行。</p>
+
+<h3 id="transition-to-content-margins">Transition to content margins</h3>
+
+<p><a href="https://developer.apple.com/videos/play/wwdc2023/10027/?time=104"> Transition to content margins</a></p>
+
+<p>从 ios14 引入桌面小组件，后又在 ios16 增加锁屏小组件，现在，它可以扩展到：mac 桌面、pad 锁屏、iphone StandBy 以及 iwatch 的 new Smart Stack。所以确保一次编码后在各个位置都能表现出色是件很重要的事。我的理解就是iOS, iPadOS, WatchOS, macOS 全苹果平台通用适配.也就是说编码一次小组件可以运行到所有苹果的系统上.</p>
+
+<p>以 watchOS 的 safe area 为例:</p>
+
+<ul>
+  <li>watchOS9 and below: 使用了system-defined 的 safe area 以避免小组件太贴边。但开发者可以通过<code class="language-plaintext highlighter-rouge">Color.blue.ignoresSafeArea()</code> 来忽略它</li>
+  <li>watchOS10 and above: 方法<code class="language-plaintext highlighter-rouge">ignoresSafeArea()</code>不在起作用，而应该对 <code class="language-plaintext highlighter-rouge">widget configuration</code> 应用 <code class="language-plaintext highlighter-rouge">contentMarginsDisabled</code>修改器来实现这一目的</li>
+</ul>
+
+<p><img src="/assets/images/20230804iOS17Widget/widget1.avif" alt="widget" /></p>
+
+<p><img src="/assets/images/20230804iOS17Widget/widget2.avif" alt="widget" />
+<img src="/assets/images/20230804iOS17Widget/widget3.avif" alt="widget" /></p>
+
+<h3 id="add-a-removable-background">Add a removable background</h3>
+
+<p>现有的 accessory family 小组件可以自动适配到 ipad 的锁屏上。ipad can also show system small widgets right alongside them。 但会有一个半透明的背景，如果想去掉它，可以使用：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="kt">ZStack</span> <span class="p">{</span>
+    <span class="c1">// TODO</span>
+<span class="p">}</span><span class="o">.</span><span class="nf">containerBackground</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">widget</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">Color</span><span class="o">.</span><span class="n">gameBackground</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这样系统就可以根据显示的位置来自动决定是否要显示背景。对于，watchOS 上的组件也一样，系统会默认给予一个半透明背景，也可以通过这种方式交给系统来进行处理背景，以展示丰富多彩的样式。</p>
+
+<p>如果确实不想系统对某些组件(如：ios上的桌面照片组件)使用可移除的背景，可以在小组件的 widget configuration 上应用 <code class="language-plaintext highlighter-rouge">containerBackgroundRemovable(false)</code> 修改器。</p>
+
+<h3 id="dynamically-adjust-layout">Dynamically adjust layout</h3>
+
+<p>当使用 StandBy mode 时，小组件会被放大，并且会移除背景。可以通过使用以下代码来检查背景是否被移除来进行适配：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kd">@Environment</span><span class="p">(\</span><span class="o">.</span><span class="n">showsWidgetContainerBackground</span><span class="p">)</span> <span class="k">var</span> <span class="nv">showsWidgetBackground</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="prepare-for-vibrant-rendering">Prepare for vibrant rendering</h3>
+
+<p>在 ipad lock screen 上的小组件，系统可能会根据需要调整饱和度(desaturate)，也就是说小组件可能需要根据实际情况进行不同的色彩、背景等样式微调，此时可以通过以下代码来检查渲染是否为 .vibrant 来进行适配：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kd">@Environment</span><span class="p">(\</span><span class="o">.</span><span class="n">widgetRenderingMode</span><span class="p">)</span> <span class="k">var</span> <span class="nv">widgetRender</span> 
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="adding-interactivity-to-widgets-and-live-activities">Adding interactivity to widgets and Live Activities</h2>
+
+<p><a href="https://developer.apple.com/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities">Adding interactivity to widgets and Live Activities
+</a></p>
+
+<h3 id="appintent">AppIntent</h3>
+
+<p>这可能是此次WWDC中小组件开发最感兴趣的内容之一了，它简化了交互式小组件的现有实现方式，同时也对现有的交互效果有了明显的改善。</p>
+
+<p>从 iOS 17, iPadOS 17, 以及 macOS 14 开始，widgets 和 Live Activities 可以使用 buttons 和 toggles 在不启动主 app 的情况下提供一些特殊功能。</p>
+<blockquote>
+  <p>注意：仅仅 Button 和 Toggle 组件支持，需要引入import AppIntents模块</p>
+</blockquote>
+
+<p>以下类型的小组件在新版本 sdk 中包含此特性的 Button 和 Toggle：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="kt">WidgetFamily</span><span class="o">.</span><span class="n">systemSmall</span>
+<span class="kt">WidgetFamily</span><span class="o">.</span><span class="n">systemMedium</span>
+<span class="kt">WidgetFamily</span><span class="o">.</span><span class="n">systemLarge</span>
+<span class="kt">WidgetFamily</span><span class="o">.</span><span class="n">systemExtraLarge</span>
+<span class="kt">WidgetFamily</span><span class="o">.</span><span class="n">accessoryCircular</span> <span class="n">on</span> <span class="n">iPhone</span> <span class="n">and</span> <span class="n">iPad</span>
+<span class="kt">WidgetFamily</span><span class="o">.</span><span class="n">accessoryRectangular</span> <span class="n">on</span> <span class="n">iPhone</span> <span class="n">and</span> <span class="n">iPad</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>在具体开发过程中需要实现自己的 AppIntent 对象：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">MyIntent</span> <span class="p">:</span> <span class="kt">AppIntent</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">LocalizedStringResource</span> <span class="o">=</span> <span class="s">"title"</span>
+
+    <span class="kd">func</span> <span class="nf">perform</span><span class="p">()</span> <span class="k">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kd">some</span> <span class="kt">IntentResult</span> <span class="p">{</span>
+        <span class="k">await</span> <span class="kt">MyActionWhichMaybeAsync</span><span class="p">()</span>
+        <span class="k">return</span> <span class="o">.</span><span class="nf">result</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这里需要说明的是：</p>
+
+<ul>
+  <li>当 perform() 返回后，系统会立即触发 timeline 更新</li>
+  <li>所以 perform 中如果是异步操作时，需要 await 异步操作结束</li>
+  <li>需要在 perform 中更新小组件数据并持久化</li>
+</ul>
+
+<p>AppIntent 工作的本质就是由系统触发 timeline 来实现小组件视图(不可变对象)更新。具体的使用方式可以参考<a href="https://developer.apple.com/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities">官方代码示例</a>。</p>
+
+<h3 id="preview">Preview</h3>
+
+<p>这里有个有趣的地方就是更新了 preview 的方式：相比原来的：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">MyWidgetView_Previews</span><span class="p">:</span> <span class="kt">PreviewProvider</span> <span class="p">{</span>
+   <span class="kd">static</span> <span class="k">var</span> <span class="nv">previews</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+       <span class="kt">MyWidgetView</span><span class="p">()</span><span class="o">.</span><span class="nf">previewContext</span><span class="p">(</span><span class="kt">WidgetPreviewContext</span><span class="p">(</span><span class="nv">family</span><span class="p">:</span> <span class="o">.</span><span class="n">systemLarge</span><span class="p">))</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>增加了 timeline 的支持，可以方便的观察动画效果等：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="cp">#Preview(as: WidgetFamily.systemLarge) {</span>
+    <span class="c1">// TODO：view</span>
+<span class="p">}</span> <span class="nv">timeline</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// TODO：timeline list</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="animating-data-updates-in-widgets-and-live-activities">Animating data updates in widgets and Live Activities</h3>
+
+<p><a href="https://developer.apple.com/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities">Animating data updates in widgets and Live Activities</a></p>
+
+<p>把 Live Activity 中的效果扩展到了 Widget 上，Live Activity 中的 timer 类型 Text 自带翻页特效，如果不想使用的话可以使用以下方式去掉：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kt">Text</span><span class="p">(</span><span class="kt">Date</span><span class="o">.</span><span class="n">now</span><span class="p">,</span> <span class="nv">style</span><span class="p">:</span> <span class="o">.</span><span class="n">timer</span><span class="p">)</span><span class="o">.</span><span class="nf">contentTransition</span><span class="p">(</span><span class="o">.</span><span class="n">identity</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="总结">总结</h1>
+
+<p>iOS小组件有一些细微改动的,经过WWDC分析 我们还是需要认真学习的.</p>
+
+:ET

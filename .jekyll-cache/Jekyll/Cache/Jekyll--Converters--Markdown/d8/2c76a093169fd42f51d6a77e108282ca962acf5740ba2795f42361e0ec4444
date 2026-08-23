@@ -1,0 +1,389 @@
+I"�c<p><img src="/assets/images/20260822Jekyllpostscaffoldmultilang/cover.avif" alt="cover" /></p>
+
+<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h1 id="背景">背景</h1>
+
+<p>写博客这几年,建文章的流程一直有点别扭. 本站基于 Jekyll + Chirpy 主题,创建文章用的是 <a href="https://github.com/jekyll/jekyll-compose">jekyll-compose</a> 提供的命令:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre>bundle <span class="nb">exec </span>jekyll post <span class="s2">"My New Post"</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>之前从 Hexo 转过来的朋友都知道, Hexo 有个非常好用的机制: <code class="language-plaintext highlighter-rouge">hexo new</code> 会从 <code class="language-plaintext highlighter-rouge">scaffolds/post.md</code> 模板创建文章,模板里的通用文案(比如本站每篇文章开头那段”前言”声明)自动带出来,不用每次手打或复制.</p>
+
+<p>而 Jekyll 这边有两个痛点:</p>
+
+<ol>
+  <li><strong>没有正文模板</strong>: jekyll-compose 只生成 front matter,正文空的,每篇文章开头那段声明要手动粘贴</li>
+  <li><strong>多语言不友好</strong>: 本站用 <a href="https://github.com/untra/polyglot">jekyll-polyglot</a> 做了中英双语,中文文章放 <code class="language-plaintext highlighter-rouge">_posts/</code>,英文文章放 <code class="language-plaintext highlighter-rouge">_posts/en/</code>,但 <code class="language-plaintext highlighter-rouge">jekyll post</code> 命令只往 <code class="language-plaintext highlighter-rouge">_posts/</code> 里建,英文版要手动复制改名</li>
+</ol>
+
+<p>这次把这两个问题一起解决了, 用一个包装脚本实现了类 Hexo 的模板机制 + 一条命令创建多语言文章.</p>
+
+<h1 id="现状分析">现状分析</h1>
+
+<p>动手之前先翻了 jekyll-compose 0.12.0 的源码,确认了两件事:</p>
+
+<h2 id="路径写死无法指定语言目录">路径写死,无法指定语言目录</h2>
+
+<p><code class="language-plaintext highlighter-rouge">lib/jekyll/commands/post.rb</code> 里:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">PostFileInfo</span> <span class="o">&lt;</span> <span class="no">Compose</span><span class="o">::</span><span class="no">FileInfo</span>
+  <span class="k">def</span> <span class="nf">path</span>
+    <span class="s2">"_posts/</span><span class="si">#{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>创建路径硬编码为 <code class="language-plaintext highlighter-rouge">_posts/</code>,没有任何参数或配置可以指定子目录. 想让命令直接建到 <code class="language-plaintext highlighter-rouge">_posts/en/</code> 是不可能的,只能创建后移动.</p>
+
+<h2 id="不支持正文模板">不支持正文模板</h2>
+
+<p><code class="language-plaintext highlighter-rouge">lib/jekyll-compose/file_info.rb</code> 里:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="n">custom_front_matter</span> <span class="o">=</span> <span class="p">{})</span>
+  <span class="n">front_matter</span> <span class="o">=</span> <span class="no">YAML</span><span class="p">.</span><span class="nf">dump</span><span class="p">({</span>
+    <span class="s2">"layout"</span> <span class="o">=&gt;</span> <span class="n">params</span><span class="p">.</span><span class="nf">layout</span><span class="p">,</span>
+    <span class="s2">"title"</span>  <span class="o">=&gt;</span> <span class="n">params</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span>
+  <span class="p">}.</span><span class="nf">merge</span><span class="p">(</span><span class="n">custom_front_matter</span><span class="p">))</span>
+
+  <span class="n">front_matter</span> <span class="o">+</span> <span class="s2">"---</span><span class="se">\n</span><span class="s2">"</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">content</code> 方法只输出 YAML front matter 就结束了, 没有任何读取模板文件注入正文的逻辑. 也就是说插件层面根本不提供这个能力, 只能在脚本层做.</p>
+
+<p>唯一可配置的是 <code class="language-plaintext highlighter-rouge">default_front_matter</code>, 往 front matter 里合并自定义字段, 这个后面会用到.</p>
+
+<h2 id="多语言的识别机制">多语言的识别机制</h2>
+
+<p>本站的 polyglot 配置:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre><span class="na">languages</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">zh"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">en"</span><span class="pi">]</span>
+<span class="na">default_lang</span><span class="pi">:</span> <span class="s2">"</span><span class="s">zh"</span>
+<span class="na">lang_from_path</span><span class="pi">:</span> <span class="kc">true</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">lang_from_path: true</code> 表示从路径推断语言: <code class="language-plaintext highlighter-rouge">_posts/</code> 根目录是默认语言中文, <code class="language-plaintext highlighter-rouge">_posts/en/</code> 下的文章自动识别为英文, <strong>不需要</strong>在 front matter 里手写 <code class="language-plaintext highlighter-rouge">lang: en</code>.</p>
+
+<p>还有一个关键点: 中英文两个版本必须<strong>文件名完全一致</strong>, polyglot 才会把它们识别为同一篇文章的互译, 生成 hreflang 标签和语言切换链接.</p>
+
+<h1 id="实现方案">实现方案</h1>
+
+<p>整体思路很直接: 写一个 <code class="language-plaintext highlighter-rouge">tools/newpost.sh</code> 包装脚本, 调用 jekyll-compose 创建文章后, 自动处理目录移动和模板注入.</p>
+
+<h2 id="目录结构">目录结构</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre>tools/
+├── newpost.sh              <span class="c"># 文章创建脚本</span>
+└── scaffolds/              <span class="c"># 正文模板目录(类 hexo scaffolds)</span>
+    ├── post.md             <span class="c"># 中文模板</span>
+    └── post.en.md          <span class="c"># 英文模板</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="正文模板">正文模板</h2>
+
+<p><code class="language-plaintext highlighter-rouge">tools/scaffolds/post.md</code>, 就是本站每篇文章的标准开头:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre><span class="gh"># 前言</span>
+
+本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">tools/scaffolds/post.en.md</code> 是对应的英文版. 想改通用文案, 直接改模板文件即可, 对之后所有新文章生效, 和 Hexo 改 <code class="language-plaintext highlighter-rouge">scaffolds/post.md</code> 一个体验.</p>
+
+<h2 id="front-matter-模板">front matter 模板</h2>
+
+<p>jekyll-compose 原生支持在 <code class="language-plaintext highlighter-rouge">_config.yml</code> 里配置默认 front matter:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td> --><td class="rouge-code"><pre><span class="na">jekyll_compose</span><span class="pi">:</span>
+  <span class="na">default_front_matter</span><span class="pi">:</span>
+    <span class="na">posts</span><span class="pi">:</span>
+      <span class="na">categories</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">iOS</span><span class="pi">]</span>
+      <span class="na">tags</span><span class="pi">:</span> <span class="pi">[]</span>
+      <span class="na">typora-root-url</span><span class="pi">:</span> <span class="s">..</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>注意这里有个坑</strong>: 配置键必须是 <code class="language-plaintext highlighter-rouge">posts</code>(复数), 写成 <code class="language-plaintext highlighter-rouge">post</code> 会静默不生效. 源码里写死了 <code class="language-plaintext highlighter-rouge">front_matter_defaults_for("posts")</code>, 不翻源码根本发现不了.</p>
+
+<h2 id="创建脚本">创建脚本</h2>
+
+<p><code class="language-plaintext highlighter-rouge">tools/newpost.sh</code> 核心逻辑:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+</pre></td> --><td class="rouge-code"><pre><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">ROOT</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">cd</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">dirname</span> <span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span><span class="si">)</span><span class="s2">/.."</span> <span class="o">&amp;&amp;</span> <span class="nb">pwd</span><span class="si">)</span><span class="s2">"</span>
+<span class="nv">EN_DIR</span><span class="o">=</span><span class="s2">"</span><span class="nv">$ROOT</span><span class="s2">/_posts/en"</span>
+
+<span class="c"># 解析参数: 第一个参数若是 zh/en/both 且后面还有标题, 则按显式模式; 否则视为标题</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">==</span> zh <span class="o">||</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">==</span> en <span class="o">||</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">==</span> both <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="o">[[</span> <span class="nv">$# </span><span class="nt">-ge</span> 2 <span class="o">]]</span><span class="p">;</span> <span class="k">then
+  </span><span class="nv">LANG_ARG</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+  <span class="nv">TITLE</span><span class="o">=</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
+<span class="k">else
+  </span><span class="nv">TITLE</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+  <span class="c"># 默认模式: _posts/en/ 存在则双语, 否则只建中文</span>
+  <span class="k">if</span> <span class="o">[[</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$EN_DIR</span><span class="s2">"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nv">LANG_ARG</span><span class="o">=</span><span class="s2">"both"</span>
+  <span class="k">else
+    </span><span class="nv">LANG_ARG</span><span class="o">=</span><span class="s2">"zh"</span>
+  <span class="k">fi
+fi
+
+</span>create_post<span class="o">()</span> <span class="o">{</span>
+  <span class="c"># 输出形如 "New post created at \e[36m_posts/xxx.md\e[0m "</span>
+  <span class="c"># 需去掉前缀和 ANSI 颜色码, 否则路径判断会失败</span>
+  bundle <span class="nb">exec </span>jekyll post <span class="s2">"</span><span class="nv">$TITLE</span><span class="s2">"</span> 2&gt;&amp;1 <span class="se">\</span>
+    | <span class="nb">grep</span> <span class="s2">"New post created at"</span> <span class="se">\</span>
+    | <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">$'s/</span><span class="se">\x</span><span class="s1">1b</span><span class="se">\\</span><span class="s1">[[0-9;]*m//g'</span> <span class="se">\</span>
+          <span class="nt">-e</span> <span class="s1">'s/^New post created at //'</span> <span class="se">\</span>
+          <span class="nt">-e</span> <span class="s1">'s/[[:space:]]*$//'</span>
+<span class="o">}</span>
+
+<span class="c"># 将模板内容追加到文章正文</span>
+apply_scaffold<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">local </span><span class="nv">file</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="nv">lang</span><span class="o">=</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span> s
+  <span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$lang</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"en"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nv">s</span><span class="o">=</span><span class="s2">"</span><span class="nv">$ROOT</span><span class="s2">/tools/scaffolds/post.en.md"</span>
+  <span class="k">else
+    </span><span class="nv">s</span><span class="o">=</span><span class="s2">"</span><span class="nv">$ROOT</span><span class="s2">/tools/scaffolds/post.md"</span>
+  <span class="k">fi</span>
+  <span class="o">[[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$s</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">||</span> <span class="k">return </span>0
+  <span class="nb">printf</span> <span class="s1">'\n'</span> <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span>
+  <span class="nb">cat</span> <span class="s2">"</span><span class="nv">$s</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="nv">FILE</span><span class="o">=</span><span class="si">$(</span>create_post<span class="si">)</span>
+
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$LANG_ARG</span><span class="s2">"</span> <span class="k">in
+  </span>zh<span class="p">)</span>
+    apply_scaffold <span class="s2">"</span><span class="nv">$ROOT</span><span class="s2">/</span><span class="nv">$FILE</span><span class="s2">"</span> zh
+    <span class="p">;;</span>
+  en<span class="p">)</span>
+    <span class="o">[[</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$EN_DIR</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">||</span> <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$EN_DIR</span><span class="s2">"</span>
+    <span class="nb">mv</span> <span class="s2">"</span><span class="nv">$ROOT</span><span class="s2">/</span><span class="nv">$FILE</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$EN_DIR</span><span class="s2">/"</span>
+    apply_scaffold <span class="s2">"</span><span class="nv">$EN_DIR</span><span class="s2">/</span><span class="si">$(</span><span class="nb">basename</span> <span class="s2">"</span><span class="nv">$FILE</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span> en
+    <span class="p">;;</span>
+  both<span class="p">)</span>
+    <span class="o">[[</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$EN_DIR</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">||</span> <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$EN_DIR</span><span class="s2">"</span>
+    <span class="c"># 先复制干净的英文版(未注入中文模板), 再分别注入各自模板</span>
+    <span class="nb">cp</span> <span class="s2">"</span><span class="nv">$ROOT</span><span class="s2">/</span><span class="nv">$FILE</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$EN_DIR</span><span class="s2">/</span><span class="si">$(</span><span class="nb">basename</span> <span class="s2">"</span><span class="nv">$FILE</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span>
+    apply_scaffold <span class="s2">"</span><span class="nv">$ROOT</span><span class="s2">/</span><span class="nv">$FILE</span><span class="s2">"</span> zh
+    apply_scaffold <span class="s2">"</span><span class="nv">$EN_DIR</span><span class="s2">/</span><span class="si">$(</span><span class="nb">basename</span> <span class="s2">"</span><span class="nv">$FILE</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span> en
+    <span class="p">;;</span>
+<span class="k">esac</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="使用方法">使用方法</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td> --><td class="rouge-code"><pre><span class="c"># 最常用: 直接传标题, 默认创建双语</span>
+bash tools/newpost.sh <span class="s2">"My New Post"</span>
+
+<span class="c"># 只建中文</span>
+bash tools/newpost.sh zh <span class="s2">"My New Post"</span>
+
+<span class="c"># 只建英文(自动建到 _posts/en/)</span>
+bash tools/newpost.sh en <span class="s2">"My New Post"</span>
+
+<span class="c"># 强制双语(_posts/en/ 不存在时也会创建目录)</span>
+bash tools/newpost.sh both <span class="s2">"My New Post"</span>
+
+<span class="c"># 同时创建配图资源目录(--img 或 -i, 参数位置随意)</span>
+bash tools/newpost.sh <span class="nt">--img</span> <span class="s2">"My New Post"</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>默认模式的逻辑: 检测 <code class="language-plaintext highlighter-rouge">_posts/en/</code> 目录, 存在就同时建中英两份, 不存在就只建中文. 一条命令下去, 生成效果:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td> --><td class="rouge-code"><pre><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">My New Post</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">2026-08-22 06:06 +0000</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">iOS</span><span class="pi">]</span>
+<span class="na">tags</span><span class="pi">:</span> <span class="pi">[]</span>
+<span class="na">typora-root-url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">.."</span>
+<span class="na">math</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="na">mermaid</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="nn">---</span>
+
+<span class="gh"># 前言</span>
+
+本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>英文版自动换成英文 Preface 模板, 中英文文件名一致, polyglot 直接识别为互译.</p>
+
+<p>带 <code class="language-plaintext highlighter-rouge">--img</code>(或简写 <code class="language-plaintext highlighter-rouge">-i</code>)时, 会额外创建配图资源目录, 命名规则沿用全站惯例: <strong>日期无分隔符 + 文章 slug 首字母大写</strong>, 比如 2026-08-22 创建 <code class="language-plaintext highlighter-rouge">my-new-post</code> 这篇文章, 对应生成:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre>assets/images/20260822MyNewPost/
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>图片直接丢进这个目录, 文章里用 <code class="language-plaintext highlighter-rouge">![描述](/assets/images/20260822MyNewPost/xxx.avif)</code> 引用即可. 默认不创建这个目录, 毕竟不是每篇文章都有配图.</p>
+
+<h1 id="踩坑记录">踩坑记录</h1>
+
+<p>这次踩的坑都记录一下, 每一个都是翻源码才定位到的:</p>
+
+<ol>
+  <li><strong>ANSI 颜色码污染输出</strong>: jekyll 输出的 <code class="language-plaintext highlighter-rouge">New post created at</code> 后面带着 <code class="language-plaintext highlighter-rouge">\e[36m</code> 颜色转义序列, 直接 sed 去前缀后路径前面残留转义符, <code class="language-plaintext highlighter-rouge">-f</code> 判断永远失败, 解析时必须先把 <code class="language-plaintext highlighter-rouge">\x1b\[[0-9;]*m</code> 剥掉</li>
+  <li><strong>配置键复数</strong>: <code class="language-plaintext highlighter-rouge">jekyll_compose.default_front_matter</code> 下面的键是 <code class="language-plaintext highlighter-rouge">posts</code> 不是 <code class="language-plaintext highlighter-rouge">post</code>, 写错没有任何报错, 静默不生效</li>
+  <li><strong>同一篇文章不能建两次</strong>: 双语版必须”先建一份再复制”, 连续跑两次 <code class="language-plaintext highlighter-rouge">jekyll post</code> 同名会报文件已存在</li>
+  <li><strong>标题只能用英文</strong>: jekyll-compose 的 slug 化会丢弃所有非 ASCII 字符, 中文标题会生成只有日期的文件名. 习惯是传英文标题, 建完再把 front matter 里的 <code class="language-plaintext highlighter-rouge">title</code> 改成中文</li>
+</ol>
+
+<h1 id="总结">总结</h1>
+
+<p>整个改动只涉及三个文件, 不动主题不改插件, 完全脚本层解决:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>文件</th>
+      <th>改动内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tools/newpost.sh</code></td>
+      <td>新增, 包装 jekyll-compose 的创建脚本</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tools/scaffolds/post.md</code></td>
+      <td>新增, 中文正文模板</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tools/scaffolds/post.en.md</code></td>
+      <td>新增, 英文正文模板</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_config.yml</code></td>
+      <td>新增 <code class="language-plaintext highlighter-rouge">jekyll_compose.default_front_matter.posts</code> 配置</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>从 Hexo 迁移到 Jekyll 快九年了, scaffolds 这个机制一直是念叨的缺失项, 这次算是补齐了. 建文章从”跑命令 + 手动复制改名 + 粘贴前言”变成一条命令, 双语文章文件名一致性也有保证了.</p>
+:ET

@@ -1,0 +1,164 @@
+I"<p><img src="/assets/images/projects/project_cover.avif" alt="Projects cover" /></p>
+
+<blockquote>
+  <p>From Baidu to Kuaishou to Tencent Music, I have stayed focused on iOS development and computer graphics. This page documents the projects I have worked on and led.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-tencent-music-entertainment-group">🎵 Tencent Music Entertainment Group</h2>
+
+<p><strong>Kuwo Music</strong> — 2022 to present</p>
+
+<p><img src="/assets/images/projects/kwmusic.avif" alt="Kuwo Music" /></p>
+
+<p>Core business development for the Kuwo Music iOS app, continuously improving user experience and playback performance.</p>
+
+<hr />
+
+<h2 id="-kuaishou">📹 Kuaishou</h2>
+
+<h3 id="kuaishou-speed-edition-nebula">Kuaishou Speed Edition (Nebula)</h3>
+
+<p><strong>Built from 0 to 1, DAU exceeded 100 million</strong></p>
+
+<p><img src="/assets/images/projects/nebula.avif" alt="Kuaishou Speed Edition" /></p>
+
+<p>Led the development of the Kuaishou Speed Edition app from launch to over 100 million daily active users. Later focused on core features such as the full-screen swipe-up video feed.</p>
+
+<h3 id="kuaishou-main-app">Kuaishou Main App</h3>
+
+<p><strong>Live streaming development</strong></p>
+
+<p><img src="/assets/images/projects/kuaishou.avif" alt="Kuaishou Main App" /></p>
+
+<p>Worked on live streaming features of the main Kuaishou app — one of China’s most popular short-video platforms — covering live room interactions, bullet comments (danmaku), and related modules.</p>
+
+<hr />
+
+<h2 id="-kingsoft-cloud">🎬 Kingsoft Cloud</h2>
+
+<p><strong>Kingsoft Cloud Live &amp; Short Video SDK</strong> — 2017~2018</p>
+
+<p><img src="/assets/images/projects/shortvideo_sdk.avif" alt="Kingsoft Cloud Short Video SDK" /></p>
+
+<p>Developed and maintained the Kingsoft Cloud short video SDK, providing video editing, visual effects, voice-changing and other audio/video processing capabilities; also maintained the Kingsoft Cloud live streaming SDK and FFmpeg-based H264/H265 codec libraries.</p>
+
+<details>
+  <summary>▶ Short video effects demo</summary>
+  <p><img src="/assets/images/projects/fireworkmv_app.avif" alt="Short video effects demo" /></p>
+</details>
+
+<hr />
+
+<h2 id="️-baidu">☁️ Baidu</h2>
+
+<h3 id="baidu-netdisk">Baidu Netdisk</h3>
+
+<p><strong>The project I invested the most time in and grew the most from</strong></p>
+
+<p><img src="/assets/images/projects/BDNetDisk.avif" alt="Baidu Netdisk" /></p>
+
+<ul>
+  <li><a href="https://itunes.apple.com/cn/app/bai-du-wang-pan/id547166701?mt=8">Baidu Netdisk</a> iOS app — core features including upload, download, transfer list, and offline peer-to-peer sharing</li>
+  <li>Baidu Cloud Manager (macOS)</li>
+  <li>Baidu Cloud Sync (macOS)</li>
+</ul>
+
+<p><img src="/assets/images/projects/pan_detail.avif" alt="Baidu Netdisk transfer details" /></p>
+
+<h3 id="baidu-hi">Baidu Hi</h3>
+
+<p><strong>macOS development of the internal IM chat tool</strong></p>
+
+<p><img src="/assets/images/projects/BaiduHi.avif" alt="Baidu Hi" /></p>
+
+<h3 id="xiaodu-new-router">Xiaodu New Router</h3>
+
+<p><strong>Smart hardware — router companion app development</strong></p>
+
+<p><img src="/assets/images/projects/newifi.avif" alt="Xiaodu New Router" /></p>
+
+<hr />
+
+<h2 id="-work-experience">📋 Work Experience</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Company</th>
+      <th style="text-align: left">Period</th>
+      <th style="text-align: left">Role &amp; Responsibilities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Tencent Music Entertainment</strong></td>
+      <td style="text-align: left">2022 ~ present</td>
+      <td style="text-align: left">Core business development and continuous optimization for the Kuwo Music iOS app</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Kuaishou</strong></td>
+      <td style="text-align: left">2018 ~ 2021</td>
+      <td style="text-align: left">Led <a href="https://apps.apple.com/cn/app/%E5%BF%AB%E6%89%8B%E6%9E%81%E9%80%9F%E7%89%88/id1472502819">Kuaishou Speed Edition</a> from 0 to 1, DAU 100M+; 2018.3~2019.6: live streaming development on the <a href="https://apps.apple.com/cn/app/%E5%BF%AB%E6%89%8B/id440948110">Kuaishou</a> main app</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Kingsoft Cloud</strong></td>
+      <td style="text-align: left">2017 ~ 2018</td>
+      <td style="text-align: left">Short video SDK (video editing, effects, voice changing); maintained live streaming SDK and FFmpeg codec libraries</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Baidu</strong></td>
+      <td style="text-align: left">~ 2017</td>
+      <td style="text-align: left">BP&amp;IT: Baidu Hi macOS; Personal Cloud: Baidu Netdisk iOS/macOS; Cloud Devices: Xiaodu router app</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-honors--achievements">🏆 Honors &amp; Achievements</h2>
+
+<ul>
+  <li>🥇 Kuaishou live streaming team <strong>5-million business breakthrough award</strong></li>
+  <li>🎓 Speaker certificate for the AVAudioSession tech talk</li>
+  <li>📜 <strong>3+ utility model patents</strong> granted for my employers</li>
+  <li>📚 <strong>3 consecutive years</strong> of national encouragement scholarships &amp; “Model Student” awards in college; passed CET-4/CET-6 English exams</li>
+</ul>
+
+<hr />
+
+<h2 id="-open-source">🔧 Open Source</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Project</th>
+      <th style="text-align: left">Description</th>
+      <th style="text-align: left">Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>YZDebugTools</strong></td>
+      <td style="text-align: left">iOS shake-to-debug toolkit for inspecting view hierarchy and runtime info</td>
+      <td style="text-align: left"><a href="https://github.com/sunyazhou13/YZDebugTools">GitHub</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>YZ3DMenu</strong></td>
+      <td style="text-align: left">3D navigation menu component with cool interactions for iOS apps</td>
+      <td style="text-align: left"><a href="https://github.com/sunyazhou13/YZ3DMenu">GitHub</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-blog-history">🏗️ Blog History</h2>
+
+<p>I first encountered Git and blogging in 2016, stumbled through several attempts and pitfalls, and finally got online with help from friends. From 2017 I wrote technical articles with Hexo, then migrated to the Jekyll Chirpy theme and have maintained it ever since.</p>
+
+<blockquote>
+  <p><em>Keep learning, keep pace with the times.</em></p>
+</blockquote>
+:ET

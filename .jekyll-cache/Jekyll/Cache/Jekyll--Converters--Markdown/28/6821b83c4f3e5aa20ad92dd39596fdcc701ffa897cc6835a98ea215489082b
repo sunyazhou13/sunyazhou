@@ -1,0 +1,96 @@
+I"_<h1 id="preface">Preface</h1>
+
+<p>This article carries strong personal sentiments. If you find it uncomfortable to read, please close it. This article is for personal learning records only. You’re welcome to repost or share it within the scope of the license — please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h2 id="background">Background</h2>
+
+<p>Recently I had some free time on weekends, so I did a comprehensive optimization of the blog’s image resources. After optimization, the image resources were reduced by half. Otherwise, at my current writing pace, the total resources would soon exceed 1G in a few years. If it exceeds 1G, GitHub Pages would stop supporting the repository, and I’d need to purchase additional repository space.</p>
+
+<p>A while ago, I noticed that my blog had too many images, making it slow to run and load. Optimizing resource files became an urgent task.</p>
+
+<p>Then I compared WebP images with PNG and found it was a total game-changer. The same image was 27k in WebP but 80k+ in PNG — a geometric-level optimization. Looking at the image quality, although the colors weren’t as vibrant as before, these weren’t important images, so there was no need for high resolution. This gave me the idea to optimize the blog resources.</p>
+
+<p>With the idea in mind, the challenge was that I had years of resources — was I going to replace them one by one?</p>
+
+<p>As a proper engineer, I had to use a script to batch process all images and convert them to WebP.</p>
+
+<p>So I used brew to install the libwebp library:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>brew <span class="nb">install </span>jpeg-turbo
+brew <span class="nb">install </span>libpng
+brew <span class="nb">install </span>libtiff
+brew <span class="nb">install </span>webp
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>After some work, the webp command was finally installed.</p>
+
+<p>To convert other images to WebP, use the <code class="language-plaintext highlighter-rouge">cwebp</code> command (encoder); conversely, <code class="language-plaintext highlighter-rouge">dwebp</code> is the decoder.</p>
+
+<p>With the tools ready, let’s get to work.</p>
+
+<p><code class="language-plaintext highlighter-rouge">touch</code> a <code class="language-plaintext highlighter-rouge">webp.sh</code></p>
+
+<p>Iterate through all resource directories, perform the conversion, and then delete the original <code class="language-plaintext highlighter-rouge">png</code>, <code class="language-plaintext highlighter-rouge">jpg</code>, etc.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="c">#!/bin/sh</span>
+
+<span class="k">for </span><span class="nb">dir </span><span class="k">in</span> <span class="sb">`</span><span class="nb">ls</span> .<span class="sb">`</span> 
+<span class="k">do   
+    if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="nv">$dir</span> <span class="o">]</span>   
+    <span class="k">then     
+        </span><span class="nb">echo</span> <span class="nv">$dir</span>     
+        <span class="nb">cd</span> <span class="nv">$dir</span>     
+            <span class="sb">`</span><span class="k">for </span>file <span class="k">in</span> <span class="k">*</span>.png <span class="k">*</span>.jp<span class="k">*</span>g <span class="k">*</span>.PNG <span class="p">;</span> <span class="k">do </span>cwebp <span class="nt">-q</span> 80 <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span> <span class="nt">-o</span> <span class="s2">"</span><span class="k">${</span><span class="nv">file</span><span class="p">%.*</span><span class="k">}</span><span class="s2">.avif"</span><span class="p">;</span> <span class="k">done</span><span class="sb">`</span>
+            <span class="nb">rm</span> <span class="nt">-rf</span> <span class="k">*</span>.png <span class="k">*</span>.jp<span class="k">*</span>g 
+        <span class="nb">cd</span> ..   
+    <span class="k">fi
+done</span>
+
+<span class="c">#读取第一个参数</span>
+read_dir <span class="nv">$1</span>
+
+<span class="c">#for file in *.png *.jp*g *.PNG ; do cwebp -q 80 "$file" -o "${file%.*}.avif"; done</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Place this script in the <code class="language-plaintext highlighter-rouge">/assets/images</code> directory and run it.</p>
+
+<p><img src="/assets/images/20230205WebpEnhancement/webp1.avif" alt="webp" /></p>
+
+<p>The remaining work is to find all the post markdown articles and uniformly change the image suffixes.</p>
+
+<p><img src="/assets/images/20230205WebpEnhancement/webp2.avif" alt="webp" /></p>
+
+<p>Then use SourceTree to review the changes and make sure nothing was changed incorrectly. This process is fast — although there are many, image suffix changes are simple and easy to identify.</p>
+
+<p><img src="/assets/images/20230205WebpEnhancement/webp3.avif" alt="webp" /></p>
+
+<p>Finally, build the blog and deploy to remote.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>For this particular case, manual changes would be exhausting and purely manual labor. You must learn to harness technology and use it to solve real problems.</p>
+:ET

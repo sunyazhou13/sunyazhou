@@ -1,0 +1,13 @@
+I"�
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nf">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">`你好, </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">!`</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">greet</span><span class="p">(</span><span class="dl">"</span><span class="s2">孙亚洲</span><span class="dl">"</span><span class="p">));</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+:ET

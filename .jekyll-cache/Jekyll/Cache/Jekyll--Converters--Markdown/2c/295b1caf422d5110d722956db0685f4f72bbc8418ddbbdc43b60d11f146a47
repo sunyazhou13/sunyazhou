@@ -1,0 +1,96 @@
+I"6<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article contains strong personal opinions. If you find it uncomfortable to read, please close it immediately. This article is for personal learning records only. You are welcome to reproduce or share it within the scope of the license agreement. Please respect copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thank you for your support!</p>
+
+<h1 id="the-do-catch-statement-in-swift">The do-catch Statement in Swift</h1>
+
+<p>In Swift, the <code class="language-plaintext highlighter-rouge">do-catch</code> statement is a mechanism for error handling. It allows you to execute code that might throw errors (in the <code class="language-plaintext highlighter-rouge">do</code> block) and catch those errors (in the <code class="language-plaintext highlighter-rouge">catch</code> block) for handling. This is an elegant way to handle runtime errors in Swift.</p>
+
+<h2 id="example">Example</h2>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">do</span> <span class="p">{</span>
+    <span class="c1">// Code to try executing, which might throw an error here</span>
+    <span class="k">let</span> <span class="nv">number</span> <span class="o">=</span> <span class="s">"这不是一个数字"</span>
+    <span class="k">let</span> <span class="nv">myNumber</span> <span class="o">=</span> <span class="kt">Int</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="c1">// This line might throw an error due to conversion failure</span>
+    
+    <span class="c1">// If the above code doesn't throw an error, the code here will execute</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"转换成功: </span><span class="se">\(</span><span class="n">myNumber</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="k">let</span> <span class="nv">error</span> <span class="k">as</span> <span class="kt">NSError</span> <span class="p">{</span>
+    <span class="c1">// Catch and handle the error</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"发生错误: </span><span class="se">\(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="explanation">Explanation</h2>
+
+<ol>
+  <li><strong>do block</strong>
+    <ul>
+      <li>In the <code class="language-plaintext highlighter-rouge">do</code> block, you place code that might throw errors.</li>
+      <li>The example tries to convert a string <code class="language-plaintext highlighter-rouge">"这不是一个数字"</code> to <code class="language-plaintext highlighter-rouge">Int</code> type, which typically fails and throws an error.</li>
+    </ul>
+  </li>
+  <li><strong>catch block</strong>
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">catch</code> block follows immediately after the <code class="language-plaintext highlighter-rouge">do</code> block.</li>
+      <li>It is used to catch errors thrown in the <code class="language-plaintext highlighter-rouge">do</code> block.</li>
+      <li>You can catch different types of errors based on their specific types (through pattern matching). In the example, we catch all errors that conform to the <code class="language-plaintext highlighter-rouge">NSError</code> type.</li>
+      <li>Once an error is caught, you can write code in the <code class="language-plaintext highlighter-rouge">catch</code> block to handle it.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="notes">Notes</h2>
+
+<ul>
+  <li>Starting from Swift 2, the use of <code class="language-plaintext highlighter-rouge">NSError</code> was replaced by Swift’s error handling mechanism, but it’s still used in the example because it demonstrates how to catch and handle errors.</li>
+  <li>In the latest Swift versions, you’re more likely to see error handling using the <code class="language-plaintext highlighter-rouge">Error</code> protocol instead of <code class="language-plaintext highlighter-rouge">NSError</code>.</li>
+</ul>
+
+<h2 id="simplified-catch-block">Simplified catch Block</h2>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">do</span> <span class="p">{</span>
+    <span class="c1">// Code to try executing</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">// Catch all errors</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"发生错误"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>In this simplified version, we don’t specify a particular error type, so it catches any type of error thrown in the <code class="language-plaintext highlighter-rouge">do</code> block.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>I encountered previously forgotten content while working on a Metal learning demo, so I’m writing it down here.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">do</span> <span class="p">{</span>
+	<span class="n">pipelineState</span> <span class="o">=</span> <span class="k">try</span> <span class="n">device</span><span class="o">.</span><span class="nf">makeRenderPipelineState</span><span class="p">(</span><span class="nv">descriptor</span><span class="p">:</span> <span class="n">pipelineDescriptor</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+  	<span class="nf">fatalError</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+:ET

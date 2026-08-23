@@ -1,0 +1,105 @@
+I"P'<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h1 id="枚举">枚举</h1>
+
+<p>在<code class="language-plaintext highlighter-rouge">Objective-C</code>中并没有一个专门的类型来定义字符串枚举.我们常用的枚举都是整形,并且自动伸长累加+1.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">,</span> <span class="n">YZAnimationType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">YZAnimationTypeDefault</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">YZAnimationType1</span>       <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">YZAnimationType2</span>       <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">YZAnimationType3</span>       <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">YZAnimationType4</span>       <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">YZAnimationTypeCount</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>在C++中有专门的枚举类,但是在iOS的objc中并没有C++中的专门枚举类,今天就来学习一个常量字符串字面量定义的枚举类型</p>
+
+<p>我们新建一个class, 就叫<code class="language-plaintext highlighter-rouge">YZEnumConst.h</code>,然后 写上以下代码</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="cp">#import &lt;Foundation/Foundation.h&gt;
+</span>
+<span class="k">typedef</span> <span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">kComponentMessage</span> <span class="n">NS_STRING_ENUM</span><span class="p">;</span>
+<span class="n">FOUNDATION_EXPORT</span> <span class="n">kComponentMessage</span> <span class="k">const</span> <span class="n">kComponentMessageXXXXX</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>在<code class="language-plaintext highlighter-rouge">YZEnumConst.m</code>中 写上</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="n">kComponentMessage</span> <span class="k">const</span> <span class="n">kComponentMessageXXXXX</span> <span class="o">=</span> <span class="s">@"ComponentMessageXXXXX"</span><span class="p">;</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这样通过类型别名的形式就构成了 objc中的字符串枚举类型.</p>
+
+<blockquote>
+  <p>注意: 声明必须在<code class="language-plaintext highlighter-rouge">.h</code>中,实现必须在<code class="language-plaintext highlighter-rouge">.m</code>中,这样才不会造成找不到符号编译报错.</p>
+</blockquote>
+
+<p>这里大家会注意到有个关键字 <code class="language-plaintext highlighter-rouge">NS_STRING_ENUM </code>和<code class="language-plaintext highlighter-rouge">FOUNDATION_EXPORT</code></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">NS_STRING_ENUM </code>代表 类型 专用于枚举字符串</li>
+  <li><code class="language-plaintext highlighter-rouge">FOUNDATION_EXPORT</code>代表 对外暴漏声明 的字符串常量.</li>
+</ul>
+
+<p>结合以上使用规则我们可以参考一下苹果内部的定义,例如动画常用的差时器常量.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">typedef</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">CAMediaTimingFunctionName</span> <span class="n">NS_TYPED_ENUM</span><span class="p">;</span>
+<span class="n">CA_EXTERN</span> <span class="n">CAMediaTimingFunctionName</span> <span class="k">const</span> <span class="n">kCAMediaTimingFunctionLinear</span>
+    <span class="nf">API_AVAILABLE</span><span class="p">(</span><span class="n">macos</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">5</span><span class="p">),</span> <span class="n">ios</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">watchos</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">tvos</span><span class="p">(</span><span class="mi">9</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">CA_EXTERN</span> <span class="n">CAMediaTimingFunctionName</span> <span class="k">const</span> <span class="n">kCAMediaTimingFunctionEaseIn</span>
+    <span class="nf">API_AVAILABLE</span><span class="p">(</span><span class="n">macos</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">5</span><span class="p">),</span> <span class="n">ios</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">watchos</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">tvos</span><span class="p">(</span><span class="mi">9</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">CA_EXTERN</span> <span class="n">CAMediaTimingFunctionName</span> <span class="k">const</span> <span class="n">kCAMediaTimingFunctionEaseOut</span>
+    <span class="nf">API_AVAILABLE</span><span class="p">(</span><span class="n">macos</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">5</span><span class="p">),</span> <span class="n">ios</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">watchos</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">tvos</span><span class="p">(</span><span class="mi">9</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">CA_EXTERN</span> <span class="n">CAMediaTimingFunctionName</span> <span class="k">const</span> <span class="n">kCAMediaTimingFunctionEaseInEaseOut</span>
+    <span class="nf">API_AVAILABLE</span><span class="p">(</span><span class="n">macos</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">5</span><span class="p">),</span> <span class="n">ios</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">watchos</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">tvos</span><span class="p">(</span><span class="mi">9</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">CA_EXTERN</span> <span class="n">CAMediaTimingFunctionName</span> <span class="k">const</span> <span class="n">kCAMediaTimingFunctionDefault</span>
+    <span class="nf">API_AVAILABLE</span><span class="p">(</span><span class="n">macos</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">6</span><span class="p">),</span> <span class="n">ios</span><span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">watchos</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">tvos</span><span class="p">(</span><span class="mi">9</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">CA_EXTERN </code>定义在<code class="language-plaintext highlighter-rouge">&lt;CoreGraphics/CGBase.h&gt;</code>中</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="cp">#ifndef CA_EXTERN
+# define CA_EXTERN extern __attribute__((visibility("default")))
+#endif
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这里的实现是参照苹果的差时器字符串枚举实现的.</p>
+
+<h1 id="总结">总结</h1>
+
+<p>开发过程中记录一些有价值的知识点,当使用时才能更加快速的完成工作,提高工作效率.</p>
+
+<p><a href="https://juejin.cn/post/6844903638226173966">参考 初探 <code class="language-plaintext highlighter-rouge">NS_STRING_ENUM</code></a></p>
+:ET

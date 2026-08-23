@@ -1,0 +1,164 @@
+I"�<p><img src="/assets/images/projects/project_cover.avif" alt="项目作品封面" /></p>
+
+<blockquote>
+  <p>从百度到快手再到腾讯音乐，一路走来，始终深耕 iOS 开发与图形学技术。这里记录了我参与和主导的项目作品。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-腾讯音乐娱乐集团">🎵 腾讯音乐娱乐集团</h2>
+
+<p><strong>酷我音乐</strong> — 2022 至今</p>
+
+<p><img src="/assets/images/projects/kwmusic.avif" alt="酷我音乐" /></p>
+
+<p>负责酷我音乐 iOS 端核心业务开发，持续优化用户体验与播放性能。</p>
+
+<hr />
+
+<h2 id="-快手">📹 快手</h2>
+
+<h3 id="快手极速版">快手极速版</h3>
+
+<p><strong>从 0 到 1 主导开发，DAU 破亿</strong></p>
+
+<p><img src="/assets/images/projects/nebula.avif" alt="快手极速版" /></p>
+
+<p>从项目启动到日活超过一亿，全程负责快手极速版 App 的开发。后期聚焦单列上下滑视频播放等核心业务。</p>
+
+<h3 id="快手主-app">快手主 App</h3>
+
+<p><strong>直播业务开发</strong></p>
+
+<p><img src="/assets/images/projects/kuaishou.avif" alt="快手主App" /></p>
+
+<p>参与国民短视频快手主 App 的直播业务开发，涵盖直播间交互、弹幕系统等功能模块。</p>
+
+<hr />
+
+<h2 id="-金山云">🎬 金山云</h2>
+
+<p><strong>金山云直播 &amp; 短视频 SDK</strong> — 2017~2018</p>
+
+<p><img src="/assets/images/projects/shortvideo_sdk.avif" alt="金山云短视频SDK" /></p>
+
+<p>负责金山云短视频 SDK 的开发与维护，对外提供视频编辑、特效、音频变声合成等音视频处理能力，同时维护金山云直播 SDK 及 FFmpeg 相关 H264/H265 Codec 基础库。</p>
+
+<details>
+  <summary>▶ 查看短视频特效 Demo</summary>
+  <p><img src="/assets/images/projects/fireworkmv_app.avif" alt="短视频特效演示" /></p>
+</details>
+
+<hr />
+
+<h2 id="️-百度">☁️ 百度</h2>
+
+<h3 id="百度网盘">百度网盘</h3>
+
+<p><strong>职业生涯中投入时间最长、技术提升最大的项目</strong></p>
+
+<p><img src="/assets/images/projects/BDNetDisk.avif" alt="百度网盘" /></p>
+
+<ul>
+  <li><a href="https://itunes.apple.com/cn/app/bai-du-wang-pan/id547166701?mt=8">百度网盘</a> iOS 端 — 上传、下载、传输列表、闪断互传等核心业务</li>
+  <li>百度云管家 macOS 端</li>
+  <li>百度云同步盘 macOS 端</li>
+</ul>
+
+<p><img src="/assets/images/projects/pan_detail.avif" alt="百度网盘传输详情" /></p>
+
+<h3 id="百度-hi">百度 Hi</h3>
+
+<p><strong>内部 IM 聊天工具 macOS 端开发</strong></p>
+
+<p><img src="/assets/images/projects/BaiduHi.avif" alt="百度Hi" /></p>
+
+<h3 id="小度新路由">小度新路由</h3>
+
+<p><strong>智能硬件 — 小度路由 App 开发</strong></p>
+
+<p><img src="/assets/images/projects/newifi.avif" alt="小度新路由" /></p>
+
+<hr />
+
+<h2 id="-工作经历">📋 工作经历</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">公司</th>
+      <th style="text-align: left">时间</th>
+      <th style="text-align: left">角色 &amp; 职责</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>腾讯音乐娱乐</strong></td>
+      <td style="text-align: left">2022 ~ 至今</td>
+      <td style="text-align: left">负责酷我音乐 iOS 端核心业务开发与持续优化</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>快手</strong></td>
+      <td style="text-align: left">2018 ~ 2021</td>
+      <td style="text-align: left">主导 <a href="https://apps.apple.com/cn/app/%E5%BF%AB%E6%89%8B%E6%9E%81%E9%80%9F%E7%89%88/id1472502819">快手极速版</a> 从 0 到 1 开发，DAU 破亿；2018.3~2019.6：参与 <a href="https://apps.apple.com/cn/app/%E5%BF%AB%E6%89%8B/id440948110">快手</a> 主 App 直播业务开发</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>金山云</strong></td>
+      <td style="text-align: left">2017 ~ 2018</td>
+      <td style="text-align: left">开发短视频 SDK（视频编辑、特效、音频变声合成），维护直播 SDK 及 FFmpeg Codec 基础库</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>百度</strong></td>
+      <td style="text-align: left">~ 2017</td>
+      <td style="text-align: left">BP&amp;IT 部：百度 Hi macOS 端开发；个人云部：百度网盘 iOS/macOS 端开发；云设备部：小度新路由 App 开发</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-荣誉与成就">🏆 荣誉与成就</h2>
+
+<ul>
+  <li>🥇 快手直播团队 <strong>500 万业务突破奖</strong></li>
+  <li>🎓 AVAudioSession 技术分享 <strong>讲师证书</strong></li>
+  <li>📜 工作期间为公司成功申请 <strong>3+ 实用新型技术专利</strong></li>
+  <li>📚 大学连续 <strong>3 年励志奖学金</strong> &amp; <strong>学习标兵</strong> 称号，通过英语四六级考试</li>
+</ul>
+
+<hr />
+
+<h2 id="-开源作品">🔧 开源作品</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">项目</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>YZDebugTools</strong></td>
+      <td style="text-align: left">iOS 摇一摇调试工具，快速查看视图层级与运行时信息</td>
+      <td style="text-align: left"><a href="https://github.com/sunyazhou13/YZDebugTools">GitHub</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>YZ3DMenu</strong></td>
+      <td style="text-align: left">3D 导航菜单组件，为 iOS 应用提供炫酷的交互体验</td>
+      <td style="text-align: left"><a href="https://github.com/sunyazhou13/YZ3DMenu">GitHub</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-博客搭建历程">🏗️ 博客搭建历程</h2>
+
+<p>从 2016 年初识 Git 与博客搭建，历经多次尝试与填坑，最终在朋友的帮助下成功上线。2017 年起使用 Hexo 撰写技术文章，后迁移至 Jekyll Chirpy 主题持续维护至今。</p>
+
+<blockquote>
+  <p><em>不断学习，与时俱进。</em></p>
+</blockquote>
+:ET

@@ -1,0 +1,103 @@
+I"�#<h1 id="preface">Preface</h1>
+
+<p>This article carries strong personal feelings. If you feel uncomfortable reading it, please close it as soon as possible. This article is only for personal learning records. Reposting or sharing within the scope of the license is welcome. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you think this site can help you, you can subscribe to this site via RSS. Thanks for your support!</p>
+
+<h2 id="background">Background</h2>
+
+<p>In recent development, the product required adding a favorite button to the audio playback control center. I checked QQ Music and NetEase Cloud Music and found they both already have this button. However, on Kuwo Music’s app, after switching to the background and locking the screen, this button didn’t appear. After checking the code, I found the button wasn’t added, so I added it, but then found there was no animation effect.</p>
+
+<p>Searching the entire web on this issue, no one explained it clearly. After repeated testing, I found that Apple provides us with a new API that we hadn’t noticed.</p>
+
+<p>First, let’s see what the finished effect looks like,</p>
+
+<p><img src="/assets/images/20240125MPRemoteCommandLikecommand/MPRemoteCommand.avif" alt="MP Remote Command" /></p>
+
+<p>Here’s the key API code needed here:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">@interface</span> <span class="nc">MPFeedbackCommand</span> <span class="p">:</span> <span class="nc">MPRemoteCommand</span>
+
+<span class="c1">/// Whether the feedback command is in an "active" state. An example of when a</span>
+<span class="c1">/// feedback command would be active is if the user already "liked" a particular</span>
+<span class="c1">/// content item.</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">assign</span><span class="p">,</span> <span class="n">getter</span> <span class="o">=</span> <span class="n">isActive</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">active</span><span class="p">;</span>   <span class="c1">//就是这个</span>
+<span class="p">...</span>  
+<span class="k">@end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>Below is the complete code for adding this feature.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="k">if</span> <span class="p">(</span><span class="err">@available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">17</span><span class="p">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">MPRemoteCommandCenter</span> <span class="o">*</span><span class="n">center</span> <span class="o">=</span> <span class="p">[</span><span class="n">MPRemoteCommandCenter</span> <span class="nf">sharedCommandCenter</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">center</span><span class="p">.</span><span class="n">likeCommand</span> <span class="nf">setEnabled</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">center</span><span class="p">.</span><span class="n">likeCommand</span> <span class="nf">setLocalizedTitle</span><span class="p">:</span><span class="s">@"收藏"</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">center</span><span class="p">.</span><span class="n">likeCommand</span> <span class="nf">setLocalizedShortTitle</span><span class="p">:</span><span class="s">@"收藏此歌曲"</span><span class="p">];</span>
+    <span class="c1">//TODO: check 是否 已收藏</span>
+    <span class="p">[</span><span class="n">center</span><span class="p">.</span><span class="n">likeCommand</span> <span class="nf">setActive</span><span class="p">:</span><span class="nb">NO</span><span class="p">];</span> <span class="c1">//假设默认此歌曲没有被收藏的效果是没有 电量喜欢</span>
+    <span class="p">[</span><span class="n">center</span><span class="p">.</span><span class="n">likeCommand</span> <span class="nf">addTargetWithHandler</span><span class="p">:</span><span class="o">^</span><span class="n">MPRemoteCommandHandlerStatus</span><span class="p">(</span><span class="n">MPRemoteCommandEvent</span> <span class="o">*</span> <span class="n">_Nonnull</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ... 处理收藏歌曲逻辑的代码 此处省略</span>
+        <span class="k">if</span> <span class="p">(</span><span class="err">@available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">17</span><span class="p">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">MPFeedbackCommand</span> <span class="o">*</span><span class="n">likeCommand</span> <span class="o">=</span> <span class="p">(</span><span class="n">MPFeedbackCommand</span> <span class="o">*</span><span class="p">)</span><span class="n">event</span><span class="p">.</span><span class="n">command</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">likeCommand</span> <span class="o">&amp;&amp;</span> <span class="n">likeCommand</span><span class="p">.</span><span class="n">isEnabled</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">BOOL</span> <span class="n">lastActive</span> <span class="o">=</span> <span class="n">likeCommand</span><span class="p">.</span><span class="n">isActive</span><span class="p">;</span>
+                <span class="p">[</span><span class="n">likeCommand</span> <span class="nf">setActive</span><span class="p">:</span><span class="o">!</span><span class="n">lastActive</span><span class="p">];</span> <span class="c1">//TODO: 此处代码模拟已收藏和取消收藏,这里得到结果后 再次设置Active将会出现动画效果</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">MPRemoteCommandHandlerStatusSuccess</span><span class="p">;</span> <span class="c1">//如果点击收藏成功可以返回这个状态</span>
+    <span class="p">}];</span>
+<span class="p">}];</span>
+<span class="err">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>That’s all the code needed to implement the favorite animation.</p>
+
+<h2 id="pitfall-log">Pitfall Log</h2>
+
+<p>Note that in <code class="language-plaintext highlighter-rouge">MPRemoteCommandCenter</code> there is the following code</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="c1">// Feedback Commands</span>
+<span class="c1">// These are generalized to three distinct actions. Your application can provide</span>
+<span class="c1">// additional context about these actions with the localizedTitle property in</span>
+<span class="c1">// MPFeedbackCommand.</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">MPFeedbackCommand</span> <span class="o">*</span><span class="n">likeCommand</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">MPFeedbackCommand</span> <span class="o">*</span><span class="n">dislikeCommand</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>At first I tried using the dislikeCommand button, but it had no effect. I really can’t understand Apple’s approach here. If you want one button to solve two states, why not provide a selectable state for that button? Why create two buttons to confuse developers? After reading the docs, I still couldn’t understand why one button can produce an animation but two buttons can’t. This is a button that could be deprecated; keeping it serves little purpose. I suggest Apple remove it if they see this! At least it would save developers from taking a detour.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>In development, weird APIs always show up. Be good at accumulating, diligent in practicing, record the process, solve problems. That’s all for this chapter.</p>
+:ET

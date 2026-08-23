@@ -1,0 +1,32 @@
+I"�<p><img src="/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditorCover.avif" alt="Xcode Source Editor Cover" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article is highly personal in tone. If you find it uncomfortable to read, please close it as soon as possible. This article is only a personal learning record. Reposts and sharing are welcome within the scope of the license agreement. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h2 id="problem-description">Problem Description</h2>
+
+<p>These past few days I wanted to align my code and found that the XAlign plugin I often use had stopped working. Looking at the settings, I saw that Xcode Source Editor was missing from the extensions.</p>
+
+<p><img src="/assets/images/20201016XcodeSourceEditorNotWork/XcodeSourceEditor.avif" alt="Xcode Source Editor" /></p>
+
+<p>After searching online, I found a reliable solution, so I’m jotting it down here.</p>
+
+<p>Enter the following in the terminal and it will show up:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre><span class="nv">$ PATH</span><span class="o">=</span>/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support:<span class="s2">"</span><span class="nv">$PATH</span><span class="s2">"</span>
+<span class="nv">$ </span>lsregister <span class="nt">-f</span> /Applications/Xcode.app
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The cause</p>
+
+<p>When multiple copies of Xcode are on the same machine, extensions may stop working entirely. In this case, Apple Developer Relations suggests re-registering your primary copy of Xcode with Launch Services (the easiest way is to temporarily add lsregister’s location to PATH):</p>
+
+<p>Reference <a href="https://nshipster.com/xcode-source-extensions/">https://nshipster.com/xcode-source-extensions/</a></p>
+
+<h1 id="summary">Summary</h1>
+
+<p>Recording a commonly encountered problem.</p>
+:ET

@@ -1,0 +1,108 @@
+I"p<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h1 id="如何控制一个值-在某个区间内使其不超过最大区间极限和最小区间的极限">如何控制一个值 在某个区间内,使其不超过最大区间极限和最小区间的极限？</h1>
+
+<h2 id="在开发中我们经常计算一些区间值如下">在开发中我们经常计算一些区间值,:如下</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="err">某个输入值</span>
+<span class="kt">float</span> <span class="n">maxValue</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1">//check  0 &lt; a &lt;极限值 假设maxValue   = 1</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">maxValue</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">a</span> <span class="o">=</span> <span class="n">maxValue</span>	
+<span class="p">}</span>
+
+<span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>显然这是刚学C语言时候的我写出来的毫无技术含量的代码.</p>
+
+<h2 id="工作多年后的写法">工作多年后的写法</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">//引入标准库头文件 这里省略导入头文件过程...</span>
+
+<span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="err">某个输入值</span>
+<span class="kt">float</span> <span class="n">maxValue</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1">//优雅永不过时</span>
+<span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span> <span class="n">maxValue</span><span class="p">);</span> <span class="c1">// 0 &lt;= a &lt;= 1</span>
+<span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这种写法虽然一行代码搞定,显得NB多了,控制了这个值的最小和最大区间不超过范围.</p>
+
+<p>曾经还因为这个问题问过前公司的所有技术同学,我的提问如下</p>
+
+<p><strong>有没有一个函数能把min + max 合成一下 控制一个值在某个区间范围内.</strong></p>
+
+<p>答复是很多人都不清楚.擦</p>
+
+<h2 id="smoothste-埃尔米特hermite平滑插值函数">smoothste() 埃尔米特(Hermite)平滑插值函数</h2>
+
+<p>然而多年后 我发现自己并不优雅. 标准库中有很多函数需要自己提高认知才知道它是做什么的.</p>
+
+<p>当我阅读到 <code class="language-plaintext highlighter-rouge">Metal by Tutorials</code>,这本书时有一段片元着色器的代码引起了我的注意.</p>
+
+<pre><code class="language-txt">“smoothstep
+
+smoothstep(edge0, edge1, x) returns a smooth Hermite interpolation between 0 and 1.
+
+
+Note: edge1 must be greater than edge0, and x should be edge0 &lt;= x &lt;= edge1.”
+
+摘录来自
+Metal by Tutorials
+此材料可能受版权保护。
+</code></pre>
+
+<p>以下是片元着色器的代码.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">color</span> <span class="o">=</span> <span class="n">smoothstep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">in</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<span class="k">return</span> <span class="nf">float4</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>是的 这么多年我用的这个函数它其实叫做 <code class="language-plaintext highlighter-rouge">平滑阶梯函数</code>.</p>
+
+<h1 id="总结">总结</h1>
+
+<p>显然 接下来的操作是: 定义一个全局内联函数 封装 smoothstep()</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="kr">inline</span> <span class="nf">xx_smoothstep</span><span class="p">(</span><span class="n">T</span> <span class="n">minEdge</span><span class="p">,</span> <span class="n">T</span> <span class="n">maxEdge</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">smoothstep</span><span class="p">(</span><span class="n">minEdge</span><span class="p">,</span> <span class="n">maxEdge</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span> 
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>这种思路解决工程中所以范围值问题.原来这么多年追求的技术源于认知的提升.</p>
+
+:ET

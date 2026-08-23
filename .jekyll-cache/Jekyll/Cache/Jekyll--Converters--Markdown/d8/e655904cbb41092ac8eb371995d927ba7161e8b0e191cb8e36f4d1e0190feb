@@ -1,0 +1,121 @@
+I" <h1 id="preface">Preface</h1>
+
+<p>First post of the new year. Let me record the tools I’ve found most useful.</p>
+
+<h2 id="snipaste-for-screenshots">Snipaste for Screenshots</h2>
+
+<p>Whenever there’s no internet access, or when I get a new Mac, there’s no screenshot software installed, so I had to use the built-in screenshot feature of QQ or WeChat. That forced me to install these two apps. With Snipaste, say goodbye to that.</p>
+
+<p><img src="/assets/images/20190215Tools/snipaste.avif" alt="snipaste" /></p>
+
+<p>Snipaste is a small but powerful screenshot tool. You can directly blur, annotate, and share screenshots without having to save them to disk first.</p>
+
+<p>To use it, hold down <code class="language-plaintext highlighter-rouge">Fn</code>+<code class="language-plaintext highlighter-rouge">F1</code> and the screenshot UI appears. Give it a try.</p>
+
+<p><a href="https://www.snipaste.com/">Download</a></p>
+
+<h2 id="cheatsheet--shortcut-viewer">CheatSheet — Shortcut Viewer</h2>
+
+<p>CheatSheet quickly brings up the keyboard shortcuts supported by the current app. Just press and hold the command key. Simple and practical.</p>
+
+<p><img src="/assets/images/20190215Tools/CheatSheet.avif" alt="Cheat Sheet" /></p>
+
+<blockquote>
+  <p>Before using it, you must grant it access permission in Privacy &amp; Security settings. There are image prompts — just follow them.</p>
+</blockquote>
+
+<p><a href="https://www.mediaatelier.com/CheatSheet/">Download</a></p>
+
+<h2 id="folx--download-tool">Folx — Download Tool</h2>
+
+<p>An alternative to Thunder (Xunlei). It supports BT downloads. When you encounter resources Thunder can’t download, give Folx a try — the free version covers the basic needs.</p>
+
+<p><img src="/assets/images/20190215Tools/Folx.avif" alt="Folx" /></p>
+
+<p>As a programmer who once “moved bricks” at Baidu Netdisk, I had to be really good at the most basic business of file upload and download. Back then, Thunder intended to invite me to an interview, but I declined — mainly because the company was too far from where I lived. And from its download throttling strategy, I don’t think Thunder is sufficient to drive the internet forward. Third-party tools like Folx have completely replaced Thunder for me.</p>
+
+<p><a href="https://mac.eltima.com/cn/torrent-client.html">Download</a></p>
+
+<h2 id="iina--video-player">IINA — Video Player</h2>
+
+<p>IINA is widely considered the most powerful video player on Mac. Clean, ad-free, and feature-rich, it even supports online subtitles. Worth a try.</p>
+
+<p><img src="/assets/images/20190215Tools/IINA.avif" alt="IINA" /></p>
+
+<p>Works well for all kinds of use.</p>
+
+<p><a href="https://iina.io/">Download</a></p>
+
+<h2 id="mactracker">Mactracker</h2>
+
+<p>Mactracker provides all the information on Apple’s full product lineup, including performance specs, prices, and more. You can search, and there’s also a chronological release timeline, making it convenient to browse. This app also has an iOS version.</p>
+
+<p><img src="/assets/images/20190215Tools/Mactracker.avif" alt="Mactracker" /></p>
+
+<p>As an iOS developer, I think not staying up to date on the fruit company’s various products is a sign of being unproactive at work. This app lets you check all of Apple’s currently released models and other info in real time.</p>
+
+<p><a href="https://itunes.apple.com/cn/app/mactracker/id430255202?mt=12">Download on iTunes</a></p>
+
+<h2 id="photobulk--batch-watermark-tool">PhotoBulk — Batch Watermark Tool</h2>
+
+<p>PhotoBulk can batch-process images, such as adding watermarks in bulk. Once you’ve set the watermark content, size, and position, you can generate watermarked images in one click. Very convenient.</p>
+
+<p><img src="/assets/images/20190215Tools/PhotoBulk.avif" alt="Photo Bulk" /></p>
+
+<p><a href="https://itunes.apple.com/cn/app/photobulk-watermark-in-batch/id537211143?mt=12">Download (paid software)</a></p>
+
+<h2 id="archive-utilities">Archive Utilities</h2>
+
+<p>Mac’s support for archive formats is lacking — it only supports zip. The Unarchiver fills this gap: it supports common formats like zip, rar, and 7z, and can handle compression and decompression.</p>
+
+<p><img src="/assets/images/20190215Tools/TheUnarchiver.avif" alt="The Unarchiver" /></p>
+
+<p><a href="https://itunes.apple.com/cn/app/the-unarchiver/id425424353?mt=12">Download</a></p>
+
+<h2 id="handshaker--android-file-manager-for-mac">HandShaker — Android File Manager for Mac</h2>
+
+<p>A file management app from Smartisan Technology for managing Android phone content on a Mac. It’s powerful, supporting file transfer between devices and categorized management.</p>
+
+<p><img src="/assets/images/20190215Tools/HandShaker.avif" alt="Hand Shaker" /></p>
+
+<p><a href="https://www.smartisan.com/apps/#/handshaker">Download</a></p>
+
+<h2 id="gif-brewery-3--video-to-gif-for-mac">GIF Brewery 3 — Video to GIF for Mac</h2>
+
+<p>The most powerful GIF tool on Mac. It converts videos to GIF and lets you set the dimensions, file size, and start/end points. It used to be paid software but is now free.</p>
+
+<p><img src="/assets/images/20190215Tools/GIFBrewery3.avif" alt="GIF Brewery" /></p>
+
+<blockquote>
+  <p>This is a great tool. When writing blog posts, I often record .mov clips and convert them to GIFs for illustrations.</p>
+</blockquote>
+
+<p>Download</p>
+
+<h2 id="background-music--per-app-volume-control">Background Music — Per-App Volume Control</h2>
+
+<p>Background Music’s function is very simple: it controls the volume of different apps separately on a MacBook, just like on Android phones and Windows PCs.</p>
+
+<p><img src="/assets/images/20190215Tools/BackgroundMusic.avif" alt="Background Music" /></p>
+
+<p>I often use enterprise IM, and the chat app’s notifications are often too loud, hurting the experience. I never expected there to be such a finely tuned app specifically solving this pain point.</p>
+
+<p><a href="https://github.com/kyleneideck/BackgroundMusic/releases">Download</a></p>
+
+<h2 id="third-party-netease-cloud-music">Third-Party NetEase Cloud Music</h2>
+
+<p>A third-party NetEase Cloud Music player with a redesigned interface. If you like it, give it a try.</p>
+
+<p><img src="/assets/images/20190215Tools/ieaseMusic.avif" alt="iease Music" /></p>
+
+<p>This third-party one is too flashy and not practical. Better not to install it.</p>
+
+<p><a href="https://github.com/trazyn/ieaseMusic">Download</a></p>
+
+<h1 id="summary">Summary</h1>
+
+<p>Many apps haven’t been organized in time. I’ll update sporadically when I have time. Thanks for your support.</p>
+
+<p><a href="https://onevcat.com/apps/">OneV’s tool collection</a><br />
+Reference: ithome</p>
+:ET

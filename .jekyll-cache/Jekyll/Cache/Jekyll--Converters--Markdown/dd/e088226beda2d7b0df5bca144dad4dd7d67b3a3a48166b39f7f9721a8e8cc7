@@ -1,0 +1,37 @@
+I"�<h2 id="前言">前言</h2>
+<blockquote>
+  <p>大家对<code class="language-plaintext highlighter-rouge">NSUserDefaults</code>非常熟悉 今天给大家讲一下如何用终端清理<code class="language-plaintext highlighter-rouge">NSUserDefaults</code>的信息</p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">NSUserDefaults</code>和<code class="language-plaintext highlighter-rouge">win</code>开发的注册表一样 用于存储一些标记位
+最近开发用到的比较多是如何不运行代码的情况下清理<code class="language-plaintext highlighter-rouge">NSUserDefaults </code>信息</p>
+
+<p><strong>$ defaults delete + 包名</strong>  eg: com.baidu.demo</p>
+
+<p>下面这样会删除所有以<code class="language-plaintext highlighter-rouge">com.baidu.demo</code>为包名的文件</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre><span class="nv">$ </span>defaults delete com.baidu.demo
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>实际的的路径(把 my app和前后剪头 换成自己的应用的包名)</p>
+</blockquote>
+
+<p>macOS应用非沙盒权限(如下图) <code class="language-plaintext highlighter-rouge">~/Library/Preferences/&lt;my app&gt;.plist  &lt;my app&gt;</code>  eg:QQ
+<img src="/assets/images/20170220ClearNSUserDefaultCcontent/NonSandBoxPermission.avif" alt="非沙盒路径" /></p>
+
+<p>macOS应用沙盒权限(如下图)  <code class="language-plaintext highlighter-rouge">~/Library/Containers/&lt;my app&gt;/Data/Library/Preferences/&lt;my app&gt;.plist</code> eg:qq</p>
+
+<p><img src="/assets/images/20170220ClearNSUserDefaultCcontent/SandBoxPermission.avif" alt="Sand Box Permission" /></p>
+
+<h2 id="总结">总结</h2>
+
+<blockquote>
+  <p>defaults 还有其它指令还可以为某个<code class="language-plaintext highlighter-rouge">key</code>设置<code class="language-plaintext highlighter-rouge">value</code> 大家可自行google</p>
+</blockquote>
+
+<p>谢谢大家</p>
+
+<p>全文完</p>
+:ET

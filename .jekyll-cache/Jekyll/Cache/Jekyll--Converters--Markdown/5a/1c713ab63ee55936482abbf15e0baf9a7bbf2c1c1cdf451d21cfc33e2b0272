@@ -1,0 +1,77 @@
+I"�<p><img src="/assets/images/20220701ReverseList/algorithm.avif" alt="algorithm" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article carries a strong personal flavor. If it makes you uncomfortable, please close it as soon as possible. This article is for personal study notes only. You’re welcome to repost or share it within the bounds of the license agreement — please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h1 id="problem-statement">Problem Statement</h1>
+
+<p>Given an array of integers <code class="language-plaintext highlighter-rouge">nums</code> and an integer target value <code class="language-plaintext highlighter-rouge">target</code>, find the <code class="language-plaintext highlighter-rouge">two</code> integers in the array whose <code class="language-plaintext highlighter-rouge">sum equals the target value</code> <code class="language-plaintext highlighter-rouge">target</code>, and return their array indices.</p>
+
+<p>You may assume that each input would have exactly one solution. However, the same element in the array may not appear twice in the answer.</p>
+
+<p>You may return the answer in any order.</p>
+
+<h4 id="example-1">Example 1</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>输入：nums <span class="o">=</span> <span class="o">[</span>2,7,11,15], target <span class="o">=</span> 9
+输出：[0,1]
+解释：因为 nums[0] + nums[1] <span class="o">==</span> 9 ，返回 <span class="o">[</span>0, 1] 。
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="example-2">Example 2</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>输入：nums <span class="o">=</span> <span class="o">[</span>3,2,4], target <span class="o">=</span> 6
+输出：[1,2]
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="example-3">Example 3</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>输入：nums <span class="o">=</span> <span class="o">[</span>3,3], target <span class="o">=</span> 6
+输出：[0,1]
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="answer">Answer</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">twoSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">};</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">{};</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><a href="https://leetcode.cn/problems/two-sum/">1. Two Sum</a><br />
+<a href="https://codetop.cc/home">Source: codetop</a></p>
+:ET

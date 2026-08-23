@@ -1,0 +1,228 @@
+I"pJ<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article contains strong personal opinions. If you find it uncomfortable to read, please close it immediately. This article is for personal learning records only. You are welcome to reproduce or share it within the scope of the license agreement. Please respect copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thank you for your support!</p>
+
+<p>In SwiftUI, the Image view can be used to display image resources. You can change the appearance and behavior of an Image through various modifiers (i.e., view modifiers). Here are some commonly used Image modifiers:</p>
+
+<ul>
+  <li>
+    <p>1.<code class="language-plaintext highlighter-rouge">interpolation</code>: Sets the interpolation method for the image, used to define rendering quality when the image is scaled.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">interpolation</span><span class="p">(</span><span class="o">.</span><span class="n">medium</span><span class="p">)</span>	
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>2.<code class="language-plaintext highlighter-rouge">resizable</code>: Makes the image stretchable, typically used with <code class="language-plaintext highlighter-rouge">.aspectRatio</code> to maintain the image’s original aspect ratio.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">resizable</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>3.<code class="language-plaintext highlighter-rouge">aspectRatio</code>: Sets the aspect ratio of the image, which can be a fixed value or inherited from the image itself.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">aspectRatio</span><span class="p">(</span><span class="nv">contentMode</span><span class="p">:</span> <span class="o">.</span><span class="n">fit</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>4.<code class="language-plaintext highlighter-rouge">frame</code>: Sets a fixed size for the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+		<span class="o">.</span><span class="nf">frame</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>5.<code class="language-plaintext highlighter-rouge">clipped</code>: Determines whether to clip the image to fit the specified size.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">clipped</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>6.<code class="language-plaintext highlighter-rouge">antialiased</code>: Sets whether to apply anti-aliasing to the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+ 		<span class="o">.</span><span class="nf">antialiased</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>7.<code class="language-plaintext highlighter-rouge">renderingMode</code>: Changes the rendering mode of the image, such as <code class="language-plaintext highlighter-rouge">.original</code>, <code class="language-plaintext highlighter-rouge">.template</code>, etc.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">renderingMode</span><span class="p">(</span><span class="o">.</span><span class="n">template</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>8.<code class="language-plaintext highlighter-rouge">opacity</code>: Sets the transparency of the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">opacity</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>9.<code class="language-plaintext highlighter-rouge">overlay</code>: Overlays another view on top of the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">overlay</span><span class="p">(</span><span class="kt">Circle</span><span class="p">()</span><span class="o">.</span><span class="nf">foregroundColor</span><span class="p">(</span><span class="o">.</span><span class="n">red</span><span class="p">))</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>10.<code class="language-plaintext highlighter-rouge">background</code>: Sets a background color or another view behind the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>	
+      <span class="o">.</span><span class="nf">background</span><span class="p">(</span><span class="kt">Color</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>11.<code class="language-plaintext highlighter-rouge">clipShape</code>: Clips the image into a specific shape, such as a circle, rectangle, etc.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">clipShape</span><span class="p">(</span><span class="kt">Circle</span><span class="p">())</span>	
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>12.<code class="language-plaintext highlighter-rouge">mask(shape:)</code>: Uses the shape of another view to clip the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">mask</span><span class="p">(</span><span class="kt">Circle</span><span class="p">())</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>13.<code class="language-plaintext highlighter-rouge">padding</code>: Adds padding around the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">padding</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>14.<code class="language-plaintext highlighter-rouge">contentShape</code>: Specifies an implicit outline for the image, useful in interaction design.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">contentShape</span><span class="p">(</span><span class="kt">Rectangle</span><span class="p">())</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>15.<code class="language-plaintext highlighter-rouge">onTapGesture</code>: Adds a tap gesture recognizer to the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">onTapGesture</span> <span class="p">{</span>
+      	<span class="nf">print</span><span class="p">(</span><span class="s">"Image tapped"</span><span class="p">)</span>
+  	<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>16.<code class="language-plaintext highlighter-rouge">scaledToFit()</code>: Scales the image to fit its parent view while maintaining its aspect ratio.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">resizable</span><span class="p">()</span>
+      <span class="o">.</span><span class="nf">frame</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>17.<code class="language-plaintext highlighter-rouge">scaledToFill()</code>: Scales the image to fill its parent view, which may crop parts of the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">resizable</span><span class="p">()</span>
+      <span class="o">.</span><span class="nf">scaledToFill</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>18.<code class="language-plaintext highlighter-rouge">cornerRadius(radius:)</code>: Adds rounded corners to the image.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>	
+      <span class="o">.</span><span class="nf">cornerRadius</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>19.<code class="language-plaintext highlighter-rouge">foregroundColor(color:)</code>: Sets the foreground color of the image, typically used for template images.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">renderingMode</span><span class="p">(</span><span class="o">.</span><span class="n">template</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">foregroundColor</span><span class="p">(</span><span class="o">.</span><span class="n">blue</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>20.<code class="language-plaintext highlighter-rouge">symbolRenderingMode(mode:)</code>: Used for system icons, sets the rendering mode of the icon.
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="nv">systemName</span><span class="p">:</span> <span class="s">"wifi"</span><span class="p">)</span>	
+      <span class="o">.</span><span class="nf">symbolRenderingMode</span><span class="p">(</span><span class="o">.</span><span class="n">hierarchical</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">foregroundColor</span><span class="p">(</span><span class="o">.</span><span class="n">blue</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>21.<code class="language-plaintext highlighter-rouge">foregroundStyle(style:)</code>: Used for system icons, sets multi-layer colors for the icon.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="nv">systemName</span><span class="p">:</span> <span class="s">"wifi"</span><span class="p">)</span>
+      <span class="o">.</span><span class="nf">foregroundStyle</span><span class="p">(</span><span class="kt">Color</span><span class="o">.</span><span class="n">pink</span><span class="p">,</span> <span class="kt">Color</span><span class="o">.</span><span class="n">green</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>22.<code class="language-plaintext highlighter-rouge">visualEffect(effect:)</code>: Directly uses the view’s GeometryProxy in a closure without disrupting the current layout, applying specific modifiers to the view.</p>
+
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre>  <span class="kt">Image</span><span class="p">(</span><span class="s">"example"</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">visualEffect</span> <span class="p">{</span> <span class="n">content</span><span class="p">,</span> <span class="n">geometryProxy</span> <span class="k">in</span>
+      		<span class="n">content</span><span class="o">.</span><span class="nf">offset</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">geometryProxy</span><span class="o">.</span><span class="nf">frame</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="o">.</span><span class="n">global</span><span class="p">)</span><span class="o">.</span><span class="n">origin</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+  	<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="summary">Summary</h1>
+
+<p>These are some of the most commonly used modifiers for the Image view. Just recording them here.</p>
+
+:ET

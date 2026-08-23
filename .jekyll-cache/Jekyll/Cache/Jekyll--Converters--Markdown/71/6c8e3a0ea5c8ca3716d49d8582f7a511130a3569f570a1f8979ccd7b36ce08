@@ -1,0 +1,84 @@
+I"<p><img src="/assets/images/20180204WordEmbeding/wordembeding.avif" alt="wordembeding" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>Recording some Python code during the learning process</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre><span class="c1">#!/usr/bin/env python
+# coding:utf8
+</span>
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="nf">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="n">sys</span><span class="p">.</span><span class="nf">setdefaultencoding</span><span class="p">(</span><span class="sh">'</span><span class="s">utf8</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Load packages
+</span><span class="kn">from</span> <span class="n">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="kn">from</span> <span class="n">gensim.models.word2vec</span> <span class="kn">import</span> <span class="n">LineSentence</span>
+
+<span class="c1"># Train model
+# sentences = LineSentence('wiki.zh.word.text')
+# size: dimension of word vectors
+# window: context window size
+# min_count: ignore words with frequency below min_count
+# model = Word2Vec(sentences, size=128, window=5, min_count=5, workers=4)
+</span>
+<span class="c1"># Save model
+# model.save('word_embedding_128')
+</span>
+<span class="c1"># If the model has already been saved, you can load it directly
+# The training and saving code above can all be skipped
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="sh">"</span><span class="s">word_embedding_128</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># Use the model
+# Returns multiple most similar words and their corresponding similarity scores
+</span><span class="n">items</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">most_similar</span><span class="p">(</span><span class="sa">u</span><span class="sh">'</span><span class="s">中国</span><span class="sh">'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+	<span class="c1"># Word content, word similarity
+</span>	<span class="k">print</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Returns the similarity between two words
+</span><span class="n">model</span><span class="p">.</span><span class="nf">similarity</span><span class="p">(</span><span class="sa">u</span><span class="sh">'</span><span class="s">男人</span><span class="sh">'</span><span class="p">,</span>  <span class="sa">u</span><span class="sh">'</span><span class="s">女人</span><span class="sh">'</span><span class="p">)</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Tokenization references:</p>
+
+<p>HIT-SCIR LTP Tokenization<br />
+<a href="https://github.com/fxsjy/jieba">jieba Tokenization</a><br />
+<a href="https://nlp.stanford.edu/software/segmenter.shtml">Stanford Tokenization</a></p>
+:ET

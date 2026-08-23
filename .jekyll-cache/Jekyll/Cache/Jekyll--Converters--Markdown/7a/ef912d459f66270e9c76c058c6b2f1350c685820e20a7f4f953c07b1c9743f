@@ -1,0 +1,211 @@
+I"2G<p>Before you access the camera, contacts, and other privacy-sensitive data, you must request authorization. Otherwise, your app will crash when you try to access that private data. Xcode will log something like this:</p>
+<blockquote>
+  <p>This app has crashed because it attempted to access privacy-sensitive data without a usage description. The app’s Info.plist must contain an NSContactsUsageDescription key with a string value explaining to the user how the app uses this data.</p>
+</blockquote>
+
+<p>Open the file named <code class="language-plaintext highlighter-rouge">info.plist</code> in your project, right-click and select <code class="language-plaintext highlighter-rouge">opening as Source Code</code>, then paste the code below into it. Alternatively, you can open <code class="language-plaintext highlighter-rouge">info.plist</code> with the default <code class="language-plaintext highlighter-rouge">Property List</code> editor, click the add button, and when you type <code class="language-plaintext highlighter-rouge">Privacy</code> — Xcode will give you autocomplete suggestions; use the up and down arrow keys to select.</p>
+
+<p>The list of frameworks for private data is quite a big one:</p>
+<blockquote>
+  <p>Contacts Calendars Reminders Photos Bluetooth Sharing Headphones Camera Location Health HomeKit Media Library Motion CallKit Speech Recognition SiriKit TV Provider</p>
+</blockquote>
+
+<p>Refer to <a href="https://github.com/ChenYilong/iOS10AdaptationTips">this great article</a></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td> --><td class="rouge-code"><pre>	&lt;<span class="o">!</span><span class="nt">--</span> 📷 Camera <span class="nt">--</span><span class="o">&gt;</span>
+	&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+	&lt;string&gt;用于拍照捕捉视频内容,及拍摄短视频时访问相机&lt;/string&gt;
+	&lt;<span class="o">!</span><span class="nt">--</span> 🎤 Microphone <span class="nt">--</span><span class="o">&gt;</span>
+	&lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;
+	&lt;string&gt;用于拍摄短视频时访问麦克风收录视频声音&lt;/string&gt;
+	&lt;<span class="o">!</span><span class="nt">--</span> 🏞 Photo Library iOS11 new <span class="nt">--</span><span class="o">&gt;</span>
+	&lt;key&gt;NSPhotoLibraryAddUsageDescription&lt;/key&gt;
+	&lt;string&gt;用于保存拍摄完成的视频内容到相册,及选择相册内视频上传&lt;/string&gt;
+	&lt;<span class="o">!</span><span class="nt">--</span> 🖼 Photo Library <span class="nt">--</span><span class="o">&gt;</span>
+	&lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;
+	&lt;string&gt;用于保存拍摄完成的视频内容到相册,及选择相册内视频上传&lt;/string&gt; 
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>These are commonly used texts that have passed App Store review</p>
+
+<p>Below are privacy description reminders for convenient debugging</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+</pre></td> --><td class="rouge-code"><pre>    <span class="o">&lt;!--</span> <span class="err">🖼</span> <span class="n">Photo</span> <span class="n">Library</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSPhotoLibraryUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">photo</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+    
+    <span class="o">&lt;!--</span> <span class="err">🏞</span> <span class="n">Photo</span> <span class="n">Library</span> <span class="n">iOS11</span> <span class="n">new</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSPhotoLibraryAddUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">photo</span> <span class="n">album</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">📷</span> <span class="n">Camera</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSCameraUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">camera</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">🎤</span> <span class="n">Microphone</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSMicrophoneUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">microphone</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">📍</span> <span class="n">Location</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSLocationUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">location</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">📍</span> <span class="n">Location</span> <span class="n">When</span> <span class="n">In</span> <span class="n">Use</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSLocationWhenInUseUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">location</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">📍</span> <span class="n">Location</span> <span class="n">Always</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSLocationAlwaysUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">always</span> <span class="n">uses</span> <span class="n">location</span> <span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">📆</span> <span class="n">Calendars</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSCalendarsUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">calendar</span> <span class="n">events</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">⏰</span> <span class="n">Reminders</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSRemindersUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">reminder</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">📒</span> <span class="n">Contacts</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSContactsUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">contact</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">🏊</span> <span class="n">Motion</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSMotionUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">motion</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">💊</span> <span class="n">Health</span> <span class="n">Update</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSHealthUpdateUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">heath</span> <span class="n">update</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">💊</span> <span class="n">Health</span> <span class="n">Share</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSHealthShareUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">heath</span> <span class="n">share</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">ᛒ🔵</span> <span class="n">Bluetooth</span> <span class="n">Peripheral</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSBluetoothPeripheralUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">Bluetooth</span> <span class="n">Peripheral</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">🎵</span> <span class="n">Media</span> <span class="n">Library</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSAppleMusicUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">media</span> <span class="n">library</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">📱</span> <span class="n">Siri</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSSiriUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">siri</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">🏡</span> <span class="n">HomeKit</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSHomeKitUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">home</span> <span class="n">kit</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">📻</span> <span class="n">SpeechRecognition</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSSpeechRecognitionUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">speech</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;!--</span> <span class="err">📺</span> <span class="n">VideoSubscriber</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSVideoSubscriberAccountUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">tvProvider</span> <span class="n">use</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+    
+    <span class="o">&lt;!--</span> <span class="err">📟</span> <span class="n">NFC</span> <span class="n">reader</span> <span class="n">iOS11</span>  <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NFCReaderUsageDescription</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="err">$</span><span class="p">(</span><span class="n">PRODUCT_NAME</span><span class="p">)</span> <span class="n">use</span> <span class="n">the</span> <span class="n">device</span><span class="err">’</span><span class="n">s</span> <span class="n">NFC</span> <span class="n">reader</span><span class="o">&lt;/</span><span class="n">string</span><span class="o">&gt;</span>
+    
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>Note: <em>Be sure to replace them with friendly descriptions before going live.</em></p>
+</blockquote>
+:ET

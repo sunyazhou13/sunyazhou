@@ -1,0 +1,84 @@
+I"i<h2 id="代码获取国际化语言数组">代码获取国际化语言数组</h2>
+<p>获取当前app使用的语言</p>
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre>    <span class="n">NSArray</span> <span class="o">*</span><span class="n">langArr1</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSUserDefaults</span> <span class="nf">standardUserDefaults</span><span class="p">]</span> <span class="nf">valueForKey</span><span class="p">:</span><span class="s">@"AppleLanguages"</span><span class="p">];</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">language1</span> <span class="o">=</span> <span class="n">langArr1</span><span class="p">.</span><span class="n">firstObject</span><span class="p">;</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"模拟器语言：%@"</span><span class="p">,</span><span class="n">language1</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>切换语言 <code class="language-plaintext highlighter-rouge">en</code>代表 英语, <code class="language-plaintext highlighter-rouge">zh-Hans</code> 简体中文, <code class="language-plaintext highlighter-rouge">zh-Hant</code> 繁体中文.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>    <span class="n">NSArray</span> <span class="o">*</span><span class="n">lans</span> <span class="o">=</span> <span class="p">@[</span><span class="s">@"en"</span><span class="p">];</span>
+    <span class="p">[[</span><span class="n">NSUserDefaults</span> <span class="nf">standardUserDefaults</span><span class="p">]</span> <span class="nf">setObject</span><span class="p">:</span><span class="n">lans</span> <span class="nf">forKey</span><span class="p">:</span><span class="s">@"AppleLanguages"</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>修改scheme切换启动语言
+–</p>
+
+<p><img src="/assets/images/20170217iOSInternationalizationLanguageSkills/AppleLanguages1.avif" alt="图1" /></p>
+
+<p><img src="/assets/images/20170217iOSInternationalizationLanguageSkills/AppleLanguages2.avif" alt="图2" /></p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">-AppleLanguages (zh-Hans)</code> 代表简体中文<br />
+<code class="language-plaintext highlighter-rouge">-AppleLanguages (zh-Hant)</code> 代表繁体中文<br />
+<code class="language-plaintext highlighter-rouge">-AppleLanguages (en)</code> 代表英文<br />
+其它小伙伴们自己总结一下也可以 注意 <strong>空格</strong></p>
+</blockquote>
+
+<h2 id="国际化取不同图片代码">国际化取不同图片代码</h2>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td> --><td class="rouge-code"><pre><span class="cp">#import "ViewController.h"
+</span>
+<span class="k">@interface</span> <span class="nc">ViewController</span> <span class="p">()</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">IBOutlet</span> <span class="n">UIImageView</span> <span class="o">*</span><span class="n">imageView</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">ViewController</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">viewDidLoad</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">viewDidLoad</span><span class="p">];</span>
+    <span class="c1">//xxx 是国际化 图片的名字 例如xxx.png </span>
+    <span class="c1">//如果是 xxx.jpg 必须写把xxx 替换成xxx.jpg</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">imageName</span> <span class="o">=</span> <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">@"xxx"</span><span class="p">,</span> <span class="nb">nil</span><span class="p">);</span> 
+    <span class="n">self</span><span class="p">.</span><span class="n">imageView</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIImage</span> <span class="nf">imageNamed</span><span class="p">:</span><span class="n">imageName</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>下面是我写的一个<a href="https://github.com/sunyazhou13/LocalizedDemo/tree/master">demo</a><br />
+主要完成 如下内容</p>
+<ol>
+  <li>工程名称配置plist 国际化</li>
+  <li>字符串国际化</li>
+  <li>自定义字符串国际化</li>
+  <li>图片国际化</li>
+</ol>
+
+<p>参考 <a href="http://www.jianshu.com/p/88c1b65e3ddb">VV木公子</a></p>
+
+<p>全文完</p>
+:ET

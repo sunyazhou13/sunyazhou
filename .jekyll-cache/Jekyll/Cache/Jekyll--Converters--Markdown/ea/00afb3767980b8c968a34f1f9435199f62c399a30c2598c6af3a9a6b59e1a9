@@ -1,0 +1,76 @@
+I"�<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
+
+<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h1 id="magnificationgesture-介绍">MagnificationGesture 介绍</h1>
+
+<p><code class="language-plaintext highlighter-rouge">MagnificationGesture</code> 是SwiftUI中用于处理缩放手势的手势识别器。它允许用户通过捏合（即两个手指靠近或远离）的手势来放大或缩小视图中的元素。这种手势在多种应用场景中都非常有用，如图片缩放、地图缩放、用户界面缩放等。</p>
+
+<p><img src="/assets/images/20240727Magnificationgesture/MagnificationGesture.avif" alt="Magnification Gesture" /></p>
+
+<h2 id="主要特点">主要特点</h2>
+
+<ul>
+  <li><strong>缩放手势识别</strong>：<code class="language-plaintext highlighter-rouge">MagnificationGesture</code> 能够识别用户的捏合手势，并根据手势的方向（靠近或远离）来放大或缩小视图。</li>
+  <li><strong>实时响应</strong>：在用户进行缩放手势时，<code class="language-plaintext highlighter-rouge">MagnificationGesture</code> 能够实时地调整视图的大小，提供流畅的交互体验。</li>
+  <li><strong>可定制性</strong>：开发者可以通过设置不同的参数和监听器来定制<code class="language-plaintext highlighter-rouge">MagnificationGesture</code>的行为，以满足不同的应用需求。</li>
+</ul>
+
+<h2 id="使用场景">使用场景</h2>
+
+<ol>
+  <li><strong>图片缩放</strong>：在图片查看应用中，用户可以使用<code class="language-plaintext highlighter-rouge">MagnificationGesture</code>来放大或缩小图片，以便更清晰地查看图片的细节。</li>
+  <li><strong>地图缩放</strong>：在地图应用中，<code class="language-plaintext highlighter-rouge">MagnificationGesture</code>允许用户通过捏合手势来放大或缩小地图，以便查看不同层级的地理信息。</li>
+  <li><strong>用户界面缩放</strong>：在需要自定义界面大小的应用中，<code class="language-plaintext highlighter-rouge">MagnificationGesture</code>可以用于实现用户界面的缩放功能，提升用户的个性化体验。</li>
+</ol>
+
+<h2 id="示例代码">示例代码</h2>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="kd">import</span> <span class="kt">SwiftUI</span>
+
+<span class="kd">struct</span> <span class="kt">MagnificationGestureDemo</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="kd">@GestureState</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">scalingRatio</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">Image</span><span class="p">(</span><span class="s">"exampleImage"</span><span class="p">)</span> <span class="c1">// 替换为实际图片名称</span>
+            <span class="o">.</span><span class="nf">resizable</span><span class="p">()</span>
+            <span class="o">.</span><span class="nf">frame</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">scaleEffect</span><span class="p">(</span><span class="n">scalingRatio</span><span class="p">)</span> <span class="c1">// 应用缩放效果</span>
+            <span class="o">.</span><span class="nf">gesture</span><span class="p">(</span>
+                <span class="kt">MagnificationGesture</span><span class="p">()</span>
+                    <span class="o">.</span><span class="nf">updating</span><span class="p">(</span><span class="n">$scalingRatio</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="p">{</span> <span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">_</span> <span class="k">in</span>
+                        <span class="n">state</span> <span class="o">=</span> <span class="n">value</span> <span class="c1">// 更新缩放比例</span>
+                    <span class="p">})</span>
+            <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>在上面的示例中，<code class="language-plaintext highlighter-rouge">MagnificationGesture</code>被添加到了一个图片视图上，并通过<code class="language-plaintext highlighter-rouge">.updating</code>修饰符来更新一个名为<code class="language-plaintext highlighter-rouge">scalingRatio</code>的<code class="language-plaintext highlighter-rouge">@GestureState</code>变量，该变量记录了当前的缩放比例。当用户进行缩放手势时，<code class="language-plaintext highlighter-rouge">scalingRatio</code>的值会实时更新，并通过<code class="language-plaintext highlighter-rouge">.scaleEffect</code>修饰符应用到图片上，从而实现图片的缩放效果。</p>
+
+<h1 id="总结">总结</h1>
+
+<p><code class="language-plaintext highlighter-rouge">MagnificationGesture</code>是SwiftUI中一个非常实用的手势识别器，它允许开发者通过简单的代码实现复杂的缩放手势交互效果。在开发需要缩放功能的应用时，<code class="language-plaintext highlighter-rouge">MagnificationGesture</code>是一个不可或缺的工具。</p>
+:ET

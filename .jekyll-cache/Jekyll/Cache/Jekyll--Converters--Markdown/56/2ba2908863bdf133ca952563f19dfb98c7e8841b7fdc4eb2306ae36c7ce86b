@@ -1,0 +1,21 @@
+I"
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">global</span><span class="p">(</span><span class="nv">qos</span><span class="p">:</span> <span class="o">.</span><span class="n">background</span><span class="p">)</span><span class="o">.</span><span class="k">async</span> <span class="p">{</span>
+    <span class="c1">// 后台执行耗时任务</span>
+    <span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="nf">heavyTask</span><span class="p">()</span>
+    
+    <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="k">async</span> <span class="p">{</span>
+        <span class="c1">// 回到主线程更新 UI</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">result</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+:ET

@@ -1,0 +1,2723 @@
+I"��<p><img src="/assets/images/20260703CrossPlatformDesktopFrameworkComparison/banner.avif" alt="banner" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article is strongly personal in tone. If you find it uncomfortable to read, please close it as soon as possible. This article is only a personal learning record. You are welcome to repost or share it within the scope of the license agreement, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h2 id="background">Background</h2>
+
+<p>I’m an iOS developer who works with Swift, Objective-C, Metal, and SwiftUI every day. Recently I started systematically learning Qt6, and my motivation is clear: <strong>use AI Agents to empower a batch of aging enterprise-grade native desktop apps</strong>. These apps commonly embed custom graphics rendering pipelines (CAD preview, data visualization, video processing, etc.), but their architectures are stuck in the MFC/WinForms era of more than a decade ago.</p>
+
+<p>The question is — which cross-platform framework should I bet on? Qt6’s RHI abstraction layer and its affinity with the Metal backend naturally appeal to me, but Tauri’s 3MB package, Flutter’s Impeller engine, and Electron’s AI ecosystem (LangChain.js / Vercel AI SDK) are each tempting in their own way.</p>
+
+<p>This article is a complete record of my research process. <strong>Starting from an iOS developer’s mental model</strong>, it horizontally compares the mainstream solutions on the market with quantitative comparisons.</p>
+
+<p>In 2026, AI Agents have moved from proof of concept to full-scale production deployment. The LangChain ecosystem is maturing, MCP (Model Context Protocol) has become the de facto standard for tool integration, and <code class="language-plaintext highlighter-rouge">llama.cpp</code> makes local inference independent of cloud APIs.</p>
+
+<p>Meanwhile, the definition of “cross-platform” has been completely rewritten. An AI Agent product may need to run on the following <strong>6 platforms</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Platform</th>
+      <th>Typical Scenario</th>
+      <th style="text-align: center">Necessity in the Chinese Market</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Desktop</strong> (Win/Mac/Linux)</td>
+      <td>Enterprise back-office, IDE plugins, desktop chat assistants</td>
+      <td style="text-align: center">★★★</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>iOS</strong></td>
+      <td>Agent Apps on iPhone/iPad</td>
+      <td style="text-align: center">★★★★</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Android</strong></td>
+      <td>The domestic Android ecosystem</td>
+      <td style="text-align: center">★★★★★</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>H5/Web</strong></td>
+      <td>Browser-based Agents, zero-install experience</td>
+      <td style="text-align: center">★★★★</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>HarmonyOS</strong></td>
+      <td>Huawei devices, government and enterprise customers, central SOE requirements</td>
+      <td style="text-align: center">★★★★★ (since 2026)</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>WeChat Mini Programs</strong></td>
+      <td>The shortest path to reach consumers</td>
+      <td style="text-align: center">★★★★★</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This article focuses on an upgraded question: <strong>if you’re building an AI Agent app covering desktop + mobile + Mini Programs + HarmonyOS, which cross-platform tech stack should you choose?</strong></p>
+
+<p>It horizontally compares the mainstream cross-platform frameworks across the four battlefields of Desktop, mobile, Mini Programs, and HarmonyOS, with quantitative comparisons one by one.</p>
+
+<hr />
+
+<h2 id="6-new-faces-worth-watching-in-2026-">6 New Faces Worth Watching in 2026 <code class="language-plaintext highlighter-rouge">★</code></h2>
+
+<h3 id="1-deno-desktop--what-electron-should-have-looked-like">1. Deno Desktop — “What Electron Should Have Looked Like”</h3>
+
+<p>Deno v2.9 has a built-in <code class="language-plaintext highlighter-rouge">deno desktop</code> command that <strong>reduces TypeScript desktop development from an “engineering problem” to a “configuration problem”</strong>. Zero IPC boilerplate, automatic frontend framework detection, and hot reload out of the box. The package size is about 30MB, one-fifth of Electron’s.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre># 一行命令，把任何 Deno 项目打包为桌面应用
+deno desktop
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Best for: TypeScript full-stack teams, rapid prototyping, AI Agent conversation orchestration layers.
+Bottleneck: v2.9 is the initial release; toolchain maturity lags Electron. <strong>Desktop only.</strong></p>
+
+<hr />
+
+<h3 id="2-uni-app-x--one-codebase-for-15-platforms">2. uni-app X — “One Codebase for 15+ Platforms”</h3>
+
+<p>The next-generation uni-app from DCloud, which uses UTS (a TypeScript superset) and compiles to native code. <strong>It is currently the only mainstream framework covering iOS, Android, HarmonyOS, Web, and WeChat Mini Programs at the same time.</strong></p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td> --><td class="rouge-code"><pre><span class="c">&lt;!-- 一套代码 → 15+ 个端 --&gt;</span>
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;view</span> <span class="na">class=</span><span class="s">"agent-chat"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;scroll-view</span> <span class="na">:scroll-into-view=</span><span class="s">"lastId"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;text</span> <span class="na">v-for=</span><span class="s">"msg in messages"</span> <span class="na">:key=</span><span class="s">"msg.id"</span><span class="nt">&gt;&lt;/text&gt;</span>
+    <span class="nt">&lt;/scroll-view&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"prompt"</span> <span class="err">@</span><span class="na">confirm=</span><span class="s">"sendToAgent"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/view&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+<span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span> <span class="na">lang=</span><span class="s">"uts"</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="kd">const</span> <span class="nx">messages</span> <span class="o">=</span> <span class="nx">ref</span><span class="o">&lt;</span><span class="nb">Array</span><span class="o">&lt;</span><span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="nx">string</span><span class="p">,</span><span class="na">content</span><span class="p">:</span><span class="nx">string</span><span class="p">}</span><span class="o">&gt;&gt;</span><span class="p">([])</span>
+<span class="c1">// 通过 uni.request 调用 MCP Server 或 LLM API</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Best for: consumer-facing products, teams that need to cover Mini Programs + HarmonyOS.
+Bottleneck: weak support for traditional desktop (Win/Mac/Linux); AI ecosystem weaker than Python’s.</p>
+
+<hr />
+
+<h3 id="3-taro--the-react-based-king-of-cross-platform-mini-programs">3. Taro — “The React-Based King of Cross-Platform Mini Programs”</h3>
+
+<p>Created by JD.com, write one codebase with React syntax and compile to multiple Mini Program platforms including WeChat/Alipay/Baidu/Douyin, while also supporting H5 and React Native for mobile.</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td> --><td class="rouge-code"><pre><span class="c1">// Taro + LangChain.js → AI Agent 小程序</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useLoad</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@tarojs/taro</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ChatOpenAI</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@langchain/openai</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">AgentChat</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nf">useLoad</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// 小程序环境直接跑 LangChain.js</span>
+    <span class="kd">const</span> <span class="nx">llm</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ChatOpenAI</span><span class="p">({</span> <span class="na">modelName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">gpt-4o-mini</span><span class="dl">'</span> <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Best for: consumer AI Agent products with Mini Programs as the primary entry point.
+Bottleneck: no native desktop support; DeepSeek/local model integration requires a backend proxy.</p>
+
+<hr />
+
+<h3 id="4-dioxus--react-in-rust">4. Dioxus — React in Rust</h3>
+
+<p>Syntax closely resembles React Hooks and compiles to machine code. One codebase covers Web (WASM), desktop (Blitz self-rendered), mobile, and TUI. Rust’s compile-time type safety; package size ~12MB. Suited to long-term bets on a Rust full stack. Still at v0.6, <strong>not recommended for production use in 2026 for now.</strong></p>
+
+<hr />
+
+<h3 id="5-electrobun--electron-with-bun">5. Electrobun — “Electron with Bun”</h3>
+
+<p>Replaces Node.js with Bun and writes the low-level layer in Zig; package size <strong>~12MB</strong>. Very early stage. Keep an eye on it.</p>
+
+<hr />
+
+<h3 id="6-tauri-20--3mb--mobile-ga">6. Tauri 2.0 — 3MB + Mobile GA</h3>
+
+<p>Tauri 2.0 was stably released in 2025, with <strong>mobile (iOS/Android) officially GA</strong>. Rust backend + Web frontend + system WebView, with a package size of only 3MB. Suited to a hybrid architecture of frontend teams + Rust inference engines. <strong>No Mini Program/HarmonyOS support.</strong></p>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">New Face</th>
+      <th style="text-align: center">Language</th>
+      <th>Platforms Covered</th>
+      <th style="text-align: center">Maturity</th>
+      <th>AI Agent Fit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Deno Desktop</td>
+      <td style="text-align: center">TypeScript</td>
+      <td>Desktop</td>
+      <td style="text-align: center">v2.9 initial release</td>
+      <td>TS full-stack desktop Agent</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">uni-app X</td>
+      <td style="text-align: center">UTS (TS superset)</td>
+      <td>iOS/Android/HarmonyOS/H5/Mini Programs</td>
+      <td style="text-align: center">Production-ready</td>
+      <td>Consumer-facing all-platform Agent</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Taro</td>
+      <td style="text-align: center">React/Vue</td>
+      <td>Multi Mini Program/H5/RN</td>
+      <td style="text-align: center">Production-ready</td>
+      <td>Mini Program AI Agent</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Dioxus</td>
+      <td style="text-align: center">Rust</td>
+      <td>Desktop/Web/Mobile</td>
+      <td style="text-align: center">v0.6</td>
+      <td>Long-term Rust full-stack bet</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Electrobun</td>
+      <td style="text-align: center">TypeScript</td>
+      <td>Desktop</td>
+      <td style="text-align: center">Proof of concept</td>
+      <td>Electron replacement reserve</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Tauri 2.0</td>
+      <td style="text-align: center">Rust + JS</td>
+      <td>Desktop/iOS/Android</td>
+      <td style="text-align: center">Stable release</td>
+      <td>Lightweight desktop + mobile Agent</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="0-all-platform-coverage-matrix-who-truly-supports-write-once-run-everywhere">0. All-Platform Coverage Matrix: Who Truly Supports “Write Once, Run Everywhere”</h2>
+
+<p>This is the most important table in this article. <strong>Desktop frameworks</strong> and <strong>all-platform frameworks</strong> are two different species.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Framework</th>
+      <th style="text-align: center">Desktop</th>
+      <th style="text-align: center">iOS</th>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">H5/Web</th>
+      <th style="text-align: center">HarmonyOS</th>
+      <th style="text-align: center">WeChat Mini Program</th>
+      <th style="text-align: center"><strong>Platforms Covered</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>uni-app X</strong></td>
+      <td style="text-align: center">⚠️</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center"><strong>6/6</strong> 🏆</td>
+    </tr>
+    <tr>
+      <td><strong>Flutter</strong></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅(community)</td>
+      <td style="text-align: center">⚠️</td>
+      <td style="text-align: center"><strong>5.5/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>React Native</strong></td>
+      <td style="text-align: center">✅(Win/Mac)</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅(community)</td>
+      <td style="text-align: center">⚠️</td>
+      <td style="text-align: center"><strong>5.5/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Taro</strong></td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">⚠️(RN)</td>
+      <td style="text-align: center">⚠️(RN)</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center"><strong>4.5/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Qt6</strong></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">⚠️(WASM)</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center"><strong>3.5/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Kotlin Multiplatform</strong></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅(Wasm)</td>
+      <td style="text-align: center">⚠️(early)</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center"><strong>4/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Tauri 2.0</strong></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center"><strong>3/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>.NET MAUI</strong></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center"><strong>3/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Electron</strong></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center"><strong>1/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Deno Desktop</strong></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center"><strong>1/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Wails</strong></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center"><strong>1/6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Dioxus</strong></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">⚠️</td>
+      <td style="text-align: center">⚠️</td>
+      <td style="text-align: center">✅(Wasm)</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center"><strong>2.5/6</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td>✅ Official/community production-ready</td>
+        <td>⚠️ Partial support or requires third-party adaptation</td>
+        <td>❌ Not supported or unavailable</td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<p><strong>Key Insights</strong>:</p>
+<ul>
+  <li><strong>uni-app X is the only framework with full 6/6 coverage</strong>; support for WeChat Mini Programs and HarmonyOS is its unique advantage</li>
+  <li>Flutter and React Native follow closely, covering 5-5.5 platforms with the most mature ecosystems</li>
+  <li>Electron/Tauri/Deno are essentially “desktop frameworks,” not “all-platform frameworks” — choosing them means giving up mobile and Mini Programs</li>
+  <li>If you need to cover WeChat Mini Programs, <strong>only uni-app and Taro are reliable options</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="1-the-core-capability-model-for-ai-agent-development">1. The Core Capability Model for AI Agent Development</h2>
+
+<p>Traditional cross-platform comparisons focus on package size and rendering performance, but in AI Agent scenarios, the following dimensions are decisive:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Capability Dimension</th>
+      <th>Why It Matters</th>
+      <th>Typical Requirements</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>LLM SDK Ecosystem</strong></td>
+      <td>The core of Agent logic</td>
+      <td>LangChain / LlamaIndex / Vercel AI SDK / OpenAI SDK</td>
+    </tr>
+    <tr>
+      <td><strong>All-Platform Coverage</strong></td>
+      <td>Reach all users with one codebase</td>
+      <td>Desktop + iOS + Android + H5 + HarmonyOS + WeChat Mini Programs</td>
+    </tr>
+    <tr>
+      <td><strong>Local Model Deployment</strong></td>
+      <td>Offline operation, data security, low latency</td>
+      <td>llama.cpp / ONNX Runtime / MLX / GGUF formats</td>
+    </tr>
+    <tr>
+      <td><strong>Tool Calling</strong></td>
+      <td>The key to Agent-system interaction</td>
+      <td>File I/O, Shell execution, API calls, browser control</td>
+    </tr>
+    <tr>
+      <td><strong>Agent Orchestration Frameworks</strong></td>
+      <td>Multi-step reasoning, memory management, multi-Agent collaboration</td>
+      <td>LangGraph / CrewAI / AutoGen / Semantic Kernel</td>
+    </tr>
+    <tr>
+      <td><strong>Desktop Integration Depth</strong></td>
+      <td>Native desktop experience</td>
+      <td>System tray, global shortcuts, notifications, auto-launch, window management</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Core takeaway: <strong>In 2026, building an AI Agent product for the desktop alone is not enough.</strong> WeChat Mini Programs are the shortest path to consumer reach, and HarmonyOS is the entry ticket to government and enterprise projects. Technology selection must factor in “how many platforms can be covered” from day one.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="2-core-framework-comparison-overview">2. Core Framework Comparison Overview</h2>
+
+<p>Here’s a quantitative comparison from a pure AI Agent development perspective. It drops the graphics rendering dimension and adds Agent-specific dimensions such as local model deployment and Tool Calling.</p>
+
+<h3 id="21-explanation-of-the-quantitative-scoring-system">2.1 Explanation of the Quantitative Scoring System</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dimension</th>
+      <th style="text-align: center">Weight</th>
+      <th>Scoring Criteria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>AI Ecosystem Maturity</strong></td>
+      <td style="text-align: center">×2.5</td>
+      <td>LLM SDKs, Agent frameworks (LangChain/LangGraph), RAG libraries, vector database integration</td>
+    </tr>
+    <tr>
+      <td><strong>All-Platform Coverage</strong></td>
+      <td style="text-align: center">×2.0</td>
+      <td>Degree of coverage across Desktop + iOS + Android + H5 + HarmonyOS + WeChat Mini Programs</td>
+    </tr>
+    <tr>
+      <td><strong>Local Model Deployment</strong></td>
+      <td style="text-align: center">×2.0</td>
+      <td>Local inference engines (llama.cpp/ONNX/MLX), model hot reloading, quantization support, GPU acceleration</td>
+    </tr>
+    <tr>
+      <td><strong>Developer Experience &amp; Toolchain</strong></td>
+      <td style="text-align: center">×1.5</td>
+      <td>Language barrier, IDE support, debugging, hot reload, type hints, AI-assisted coding</td>
+    </tr>
+    <tr>
+      <td><strong>Desktop Integration Depth</strong></td>
+      <td style="text-align: center">×1.5</td>
+      <td>System tray, global shortcuts, notifications, file system, process management, window control</td>
+    </tr>
+    <tr>
+      <td><strong>Package Size &amp; Performance</strong></td>
+      <td style="text-align: center">×1.0</td>
+      <td>Empty package size, cold start speed, runtime memory (including memory peaks after model loading)</td>
+    </tr>
+    <tr>
+      <td><strong>Enterprise Readiness</strong></td>
+      <td style="text-align: center">×1.5</td>
+      <td>LTS support, documentation quality, production cases, community activity, domestic ecosystem</td>
+    </tr>
+    <tr>
+      <td><strong>Learning Curve (Beginner Friendliness)</strong></td>
+      <td style="text-align: center">×0.5</td>
+      <td>Estimated time from zero to a deliverable first-version Agent (lower is easier to learn; already reverse-scored)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="22-the-main-battlefield-horizontal-comparison-from-an-all-platform-ai-agent-perspective">2.2 The Main Battlefield: Horizontal Comparison from an All-Platform AI Agent Perspective</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Framework</th>
+      <th>Language</th>
+      <th style="text-align: center">AI Ecosystem ★</th>
+      <th style="text-align: center">All-Platform ★</th>
+      <th style="text-align: center">Local Deployment ★</th>
+      <th style="text-align: center">Dev Experience ★</th>
+      <th style="text-align: center">Desktop Integration ★</th>
+      <th style="text-align: center">Size MB</th>
+      <th style="text-align: center">Enterprise Readiness</th>
+      <th style="text-align: center">Beginner Friendly</th>
+      <th style="text-align: center"><strong>Overall Score</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Qt6 (Python)</strong></td>
+      <td>Python / QML</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">3.5</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">~35</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">7.5</td>
+      <td style="text-align: center"><strong>72.1</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Flutter</strong></td>
+      <td>Dart</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">7.5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">~20</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center"><strong>65.2</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Electron</strong></td>
+      <td>JS/TS</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">1.5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">9.5</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">~150</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center"><strong>64.4</strong></td>
+    </tr>
+    <tr>
+      <td><strong>React Native</strong></td>
+      <td>JS/TS</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">~15</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center"><strong>64.0</strong></td>
+    </tr>
+    <tr>
+      <td><strong>uni-app X</strong></td>
+      <td>UTS (TS superset)</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">~10</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">8.5</td>
+      <td style="text-align: center"><strong>63.0</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Qt6 (C++)</strong></td>
+      <td>C++ / QML</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">3.5</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">9.5</td>
+      <td style="text-align: center">~25</td>
+      <td style="text-align: center">9.5</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center"><strong>62.9</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Taro</strong></td>
+      <td>React/Vue/TS</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">~5</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center"><strong>57.6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Tauri 2.0</strong></td>
+      <td>Rust + JS</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">~3</td>
+      <td style="text-align: center">6.5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center"><strong>59.4</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Kotlin Multiplatform</strong></td>
+      <td>Kotlin</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">6.5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">~18</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center"><strong>55.6</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Deno Desktop</strong> ✦</td>
+      <td>TS</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">1.5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">~30</td>
+      <td style="text-align: center">4.5</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center"><strong>54.9</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Wails</strong></td>
+      <td>Go + JS</td>
+      <td style="text-align: center">6.5</td>
+      <td style="text-align: center">1.5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">~10</td>
+      <td style="text-align: center">5.5</td>
+      <td style="text-align: center">6.5</td>
+      <td style="text-align: center"><strong>52.0</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Avalonia</strong></td>
+      <td>C#</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">~15</td>
+      <td style="text-align: center">7.5</td>
+      <td style="text-align: center">6.5</td>
+      <td style="text-align: center"><strong>53.1</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Dioxus</strong></td>
+      <td>Rust</td>
+      <td style="text-align: center">5.5</td>
+      <td style="text-align: center">3.5</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">~12</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center"><strong>47.0</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>✦ Marked as emerging frameworks worth special attention in 2026.</p>
+</blockquote>
+
+<blockquote>
+  <p>Overall score = Σ(dimension score × weight), normalized to a maximum of 112.5. Scores are based on the ecosystem status as of mid-2026.</p>
+</blockquote>
+
+<p><strong>Ranking Analysis</strong>:</p>
+
+<ol>
+  <li><strong>Qt6 Python remains at the top</strong> — its absolute advantage in the AI ecosystem (the entire LangChain family available) outweighs the shortcoming in platform coverage</li>
+  <li><strong>Flutter jumps to second place</strong> — all-platform capability + Impeller rendering; Dart’s AI ecosystem is weak but can go through HTTP calls</li>
+  <li><strong>Electron drops from second to third</strong> — only 1 platform; in the all-platform era this is a fatal flaw</li>
+  <li><strong>React Native and uni-app X break into the top five</strong> — mobile + Mini Program coverage brings huge strategic value</li>
+  <li><strong>Deno Desktop falls from 60.5 to 54.9</strong> — the desktop-only single platform’s competitiveness has plummeted in 2026</li>
+</ol>
+
+<h3 id="23-detailed-breakdown-the-ai-agent-profile-of-each-framework">2.3 Detailed Breakdown: The AI Agent Profile of Each Framework</h3>
+
+<hr />
+
+<h4 id="qt6-python-route-pyside6--758-points-">Qt6 (Python Route: PySide6) — 75.8 Points 🏆</h4>
+
+<p><strong>Positioning: the optimal solution for AI Agent desktop development.</strong></p>
+
+<p>The Python ecosystem is the absolute home turf of AI Agent development. A single line — <code class="language-plaintext highlighter-rouge">from langchain.agents import create_react_agent</code> — can run an Agent, and PySide6 gives you the full desktop capability in the same process.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td> --><td class="rouge-code"><pre><span class="c1"># 一个进程：LangChain Agent + 原生桌面窗口
+</span><span class="kn">from</span> <span class="n">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">QObject</span><span class="p">,</span> <span class="n">Signal</span><span class="p">,</span> <span class="n">Slot</span><span class="p">,</span> <span class="n">QThread</span>
+<span class="kn">from</span> <span class="n">langgraph.graph</span> <span class="kn">import</span> <span class="n">StateGraph</span>
+<span class="kn">from</span> <span class="n">langchain_community.tools</span> <span class="kn">import</span> <span class="n">ShellTool</span><span class="p">,</span> <span class="n">FileSystemTool</span>
+
+<span class="k">class</span> <span class="nc">DesktopAIAgent</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+    <span class="n">responseReady</span> <span class="o">=</span> <span class="nc">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">toolProgress</span> <span class="o">=</span> <span class="nc">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>  <span class="c1"># tool_name, status
+</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="c1"># 直接使用 LangGraph 做 Agent 编排
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">graph</span> <span class="o">=</span> <span class="nc">StateGraph</span><span class="p">(</span><span class="n">AgentState</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">graph</span><span class="p">.</span><span class="nf">add_node</span><span class="p">(</span><span class="sh">"</span><span class="s">llm</span><span class="sh">"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">call_llm</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">graph</span><span class="p">.</span><span class="nf">add_node</span><span class="p">(</span><span class="sh">"</span><span class="s">tools</span><span class="sh">"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">execute_tool</span><span class="p">)</span>
+        <span class="c1"># 注册系统级 Tool
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">shell</span> <span class="o">=</span> <span class="nc">ShellTool</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fs</span> <span class="o">=</span> <span class="nc">FileSystemTool</span><span class="p">()</span>
+
+    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># Agent 循环：LLM → Tool Calling → 结果返回
+</span>        <span class="n">result</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">graph</span><span class="p">.</span><span class="nf">invoke</span><span class="p">({</span><span class="sh">"</span><span class="s">input</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">})</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">responseReady</span><span class="p">.</span><span class="nf">emit</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="sh">"</span><span class="s">output</span><span class="sh">"</span><span class="p">])</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Core Advantages:</strong></p>
+
+<ul>
+  <li><strong>LangChain / LangGraph / CrewAI / AutoGen</strong> can all be imported directly with zero adaptation</li>
+  <li><strong>MCP protocol support</strong>: <code class="language-plaintext highlighter-rouge">pip install mcp</code> is enough to connect to any MCP Server</li>
+  <li><strong>Complete RAG ecosystem</strong>: ChromaDB / FAISS / Qdrant local vector stores + direct reads from the desktop file system</li>
+  <li><strong>The ceiling of Tool Calling</strong>: Python can directly call any system API, read/write files, execute Shell commands, and control the browser (Playwright)</li>
+  <li><strong>Local model deployment</strong>: ONNX Runtime / PyTorch / llama-cpp-python are all available, with GPU acceleration support</li>
+</ul>
+
+<p><strong>Costs:</strong></p>
+<ul>
+  <li>Python’s GIL becomes a bottleneck with concurrent Agent calls; you need <code class="language-plaintext highlighter-rouge">QThread</code> + subprocess isolation</li>
+  <li>The learning curve of QML declarative UI is not friendly to pure backend developers</li>
+  <li>Package size 35MB+, model files counted separately (GGUF quantized models are usually 4-8GB)</li>
+</ul>
+
+<p><strong>Best for:</strong></p>
+<ul>
+  <li>AI Agents that need complex Tool Calling (system calls, file operations, chained API calls)</li>
+  <li>Those that need local model inference + RAG</li>
+  <li>Teams with Python experience</li>
+</ul>
+
+<p><strong>Not suitable for:</strong></p>
+<ul>
+  <li>Pure chat UIs (Electron is faster)</li>
+  <li>Teams without Python experience that don’t want to learn it</li>
+</ul>
+
+<hr />
+
+<h4 id="electron--720-points">Electron — 72.0 Points</h4>
+
+<p><strong>Positioning: the desktop framework with the most complete AI ecosystem, but local inference is a weak point.</strong></p>
+
+<p>Electron’s AI development ecosystem is unrivaled:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td> --><td class="rouge-code"><pre><span class="c1">// LangChain.js + Electron = AI Agent 桌面应用</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ChatOpenAI</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@langchain/openai</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">AgentExecutor</span><span class="p">,</span> <span class="nx">createOpenAIFunctionsAgent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">langchain/agents</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserWindow</span><span class="p">,</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">Tray</span><span class="p">,</span> <span class="nx">globalShortcut</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">electron</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// 系统级 Tool：全局快捷键 → 唤起 Agent</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">whenReady</span><span class="p">().</span><span class="nf">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">globalShortcut</span><span class="p">.</span><span class="nf">register</span><span class="p">(</span><span class="dl">"</span><span class="s2">CommandOrControl+Shift+A</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">agentWindow</span><span class="p">.</span><span class="nf">show</span><span class="p">();</span>
+    <span class="nx">agent</span><span class="p">.</span><span class="nf">invoke</span><span class="p">({</span> <span class="na">input</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Ready to assist</span><span class="dl">"</span> <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@langchain/core</code> + <code class="language-plaintext highlighter-rouge">@langchain/community</code> run directly in Node.js</li>
+  <li>Vercel AI SDK, OpenAI Node SDK, and Anthropic SDK with zero configuration</li>
+  <li>Use Chrome DevTools for Agent debugging (you can set breakpoints on the LLM’s input/output)</li>
+  <li><strong>The only solution that can build desktop Agents with the Web frontend ecosystem</strong></li>
+</ul>
+
+<p><strong>But local model deployment is a real pain point:</strong></p>
+<ul>
+  <li>Node.js’s llama.cpp bindings (node-llama-cpp) perform far worse than native</li>
+  <li>WebAssembly inference speed is only 20-30% of native</li>
+  <li>GPU acceleration for large models is basically unavailable</li>
+</ul>
+
+<blockquote>
+  <p>Verdict: Electron is the <strong>best solution for the “cloud LLM + local desktop” scenario</strong>. If the Agent doesn’t need to run models locally (e.g., using the OpenAI API / Anthropic API), Electron’s development efficiency crushes everything else.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="qt6-c-route--678-points">Qt6 (C++ Route) — 67.8 Points</h4>
+
+<p><strong>Positioning: the performance ceiling for local inference, but low AI ecosystem development efficiency.</strong></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td> --><td class="rouge-code"><pre><span class="c1">// llama.cpp C++ API → 本地推理的最高性能</span>
+<span class="cp">#include</span> <span class="cpf">"llama.h"</span><span class="cp">
+</span>
+<span class="n">llama_model_params</span> <span class="n">model_params</span> <span class="o">=</span> <span class="n">llama_model_default_params</span><span class="p">();</span>
+<span class="n">llama_model</span> <span class="o">*</span><span class="n">model</span> <span class="o">=</span> <span class="n">llama_load_model_from_file</span><span class="p">(</span><span class="s">"qwen2-7b.Q4_K_M.gguf"</span><span class="p">,</span> <span class="n">model_params</span><span class="p">);</span>
+<span class="n">llama_context</span> <span class="o">*</span><span class="n">ctx</span> <span class="o">=</span> <span class="n">llama_new_context_with_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">llama_context_default_params</span><span class="p">());</span>
+
+<span class="c1">// 推理速度是 Python 绑定的 1.5-2 倍</span>
+<span class="n">llama_decode</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">batch</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Advantages:</strong></p>
+<ul>
+  <li>The C++ APIs of llama.cpp / whisper.cpp are the performance ceiling</li>
+  <li>Precise memory management, no OOM like Python</li>
+  <li>QML provides a modern desktop UI, ten times better than MFC/WinForms</li>
+</ul>
+
+<p><strong>Disadvantages:</strong></p>
+<ul>
+  <li>LangChain has no C++ bindings; Agent orchestration must be written from scratch or via a Python subprocess</li>
+  <li>Extremely low Tool Calling development efficiency</li>
+  <li>Prototype validation cycles are 3-5 times longer than Python</li>
+</ul>
+
+<blockquote>
+  <p>Verdict: only choose this path when local inference performance is the absolute bottleneck (for example, needing 7B+ models to respond in real time on a laptop). 90% of AI Agent scenarios don’t need this level of optimization.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="tauri--630-points">Tauri — 63.0 Points</h4>
+
+<p><strong>Positioning: the “dark horse” of lightweight Agents + Rust inference engines.</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre>// Tauri 2.0：Rust 本地推理 + JS 前端 UI
+#[tauri::command]
+async fn run_agent(prompt: String, app: tauri::AppHandle) -&gt; Result&lt;String, String&gt; {
+    // Rust 直接跑 candle / burn 推理
+    let model = load_quantized_model("mistral-7b.Q4_K_M.gguf")?;
+    let response = model.generate(&amp;prompt, 512)?;
+    Ok(response)
+}
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Advantages:</strong></p>
+<ul>
+  <li>3MB package + model files, the lightest distribution</li>
+  <li>Rust ML frameworks like candle (HuggingFace) and burn are maturing quickly</li>
+  <li>React/Vue frontend with low learning costs</li>
+</ul>
+
+<p><strong>Disadvantages:</strong></p>
+<ul>
+  <li>LangChain has no Rust bindings; Agent orchestration must be implemented yourself</li>
+  <li>No official Rust SDK for the MCP protocol</li>
+  <li>The ecosystem is an order of magnitude weaker than Python</li>
+</ul>
+
+<blockquote>
+  <p>Verdict: 2026 is still not the right time to bet on Tauri as your primary AI Agent framework. But if you’re planning your 2027 tech stack, it’s worth preparing for early.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="deno-desktop--549-points--2026-new-star">Deno Desktop — 54.9 Points <code class="language-plaintext highlighter-rouge">★ 2026 New Star</code></h4>
+
+<p><strong>Positioning: Electron minus 80% of the glue code and 80% of the package size. Desktop only.</strong></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre><span class="c1">// deno.json — 零配置 AI Agent 桌面应用</span>
+<span class="p">{</span>
+  <span class="dl">"</span><span class="s2">desktop</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CodeBuddy Agent</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">width</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span> <span class="dl">"</span><span class="s2">height</span><span class="dl">"</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">autoUpdate</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hotReload</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Core selling points: zero IPC boilerplate, ~30MB package size, automatic frontend framework detection, and hot reload out of the box.</p>
+
+<p><strong>Best for:</strong> TS full-stack AI Agents (cloud LLM + local Agent orchestration), frontend teams tired of Electron’s complexity.
+<strong>Not suitable for:</strong> those needing multi-platform coverage (desktop only), going to production in 2026 (v2.9 just released).
+<strong>Fatal flaw: 1/6 platform coverage.</strong> In the “all-platform” era, this is a strategic shortcoming.</p>
+
+<hr />
+
+<h4 id="flutter--652-points">Flutter — 65.2 Points</h4>
+
+<p>The Impeller engine matured in 2026. Dart’s AI ecosystem is weak (no LangChain, no llama.cpp bindings), but <strong>all-platform coverage of 5.5/6 (including the HarmonyOS community edition)</strong> is a huge strategic advantage.</p>
+
+<p>If the Agent is a “cloud brain + local thin client,” Flutter is the most balanced all-platform UI choice. The HarmonyOS adaptation is officially maintained by Huawei’s OpenHarmony SIG.</p>
+
+<hr />
+
+<h4 id="react-native--640-points--new">React Native — 64.0 Points <code class="language-plaintext highlighter-rouge">★ New</code></h4>
+
+<p><strong>Positioning: the king of cross-platform mobile in the JS/TS ecosystem, with desktop also closing in.</strong></p>
+
+<p>React Native is no longer a “pure mobile framework” in 2026:</p>
+<ul>
+  <li><strong>iOS/Android</strong>: the new Fabric architecture + Hermes engine bring a big performance boost</li>
+  <li><strong>Windows/macOS</strong>: Microsoft officially maintains <code class="language-plaintext highlighter-rouge">react-native-windows</code>; v0.84 has been released</li>
+  <li><strong>HarmonyOS</strong>: the RN-OH project is led by the Huawei Developer Alliance</li>
+  <li><strong>Mini Programs</strong>: indirectly supported via Taro or expo</li>
+</ul>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre><span class="c1">// React Native + LangChain.js → 全平台 AI Agent</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ChatOpenAI</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@langchain/openai</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Platform</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-native</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">llm</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ChatOpenAI</span><span class="p">({</span>
+  <span class="na">modelName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">gpt-4o-mini</span><span class="dl">'</span><span class="p">,</span>
+  <span class="c1">// iOS 用 CoreML 加速，Android 用 NNAPI</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Advantages:</strong> the largest npm ecosystem, zero learning cost for frontend teams, and <code class="language-plaintext highlighter-rouge">@langchain/core</code> runs directly in the Hermes engine.
+<strong>Disadvantages:</strong> desktop maturity is below Electron; local large-model inference needs a backend proxy.
+<strong>Key verdict:</strong> if you need iOS/Android + desktop + Web, React Native is the all-platform choice second only to Flutter.</p>
+
+<hr />
+
+<h4 id="uni-app-x--630-points--new">uni-app X — 63.0 Points <code class="language-plaintext highlighter-rouge">★ New</code></h4>
+
+<p><strong>Positioning: the only framework with full 6/6 all-platform coverage; WeChat Mini Programs and HarmonyOS are its unique trump cards.</strong></p>
+
+<p>uni-app X uses UTS (a TypeScript superset) and compiles to native code for each platform. It no longer depends on WebView; the uvue rendering engine generates native UI directly.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td> --><td class="rouge-code"><pre><span class="c">&lt;!-- 一套代码 → 16 个平台 --&gt;</span>
+<span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span> <span class="na">lang=</span><span class="s">"uts"</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="c1">// 通过 uni.request 调用 LLM API 或 MCP Server</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">callAgent</span><span class="p">(</span><span class="nx">prompt</span><span class="p">:</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">uni</span><span class="p">.</span><span class="nf">request</span><span class="p">({</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://your-mcp-server/agent</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="nx">prompt</span> <span class="p">}</span>
+  <span class="p">})</span>
+  <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>The actual pattern for AI Agent development</strong>: uni-app handles the UI layer → connects to the backend Python Agent service over HTTP/MCP. Model inference and Agent orchestration happen server-side; the frontend only handles presentation and interaction.</p>
+
+<p><strong>Advantages:</strong></p>
+<ul>
+  <li><strong>Full 6/6 coverage</strong>: native support for WeChat Mini Programs and HarmonyOS NEXT — impossible to bypass for the domestic consumer market</li>
+  <li>HBuilderX IDE cloud packaging saves environment configuration</li>
+  <li>9 million developers with a mature plugin marketplace</li>
+  <li>Actually used by big companies like Huawei, Alibaba, Tencent, Douyin, and Meituan</li>
+</ul>
+
+<p><strong>Disadvantages:</strong></p>
+<ul>
+  <li>Traditional desktop (Win/Mac/Linux) support is weaker than Electron/Qt</li>
+  <li>The AI ecosystem is weaker than Python — LangChain can’t run in the same process</li>
+  <li>Agent logic must be separated into a backend service</li>
+</ul>
+
+<p><strong>Key verdict:</strong> if your AI Agent is a consumer product that needs WeChat Mini Programs + HarmonyOS, uni-app X is the <strong>only correct choice</strong>. Just accept the “frontend UI layer + backend Agent service” architecture.</p>
+
+<hr />
+
+<h4 id="taro--576-points--new">Taro — 57.6 Points <code class="language-plaintext highlighter-rouge">★ New</code></h4>
+
+<p><strong>Positioning: a React-tech-stack, multi-platform framework centered on Mini Programs.</strong></p>
+
+<p>Created by JD.com, write one codebase in React and compile to multiple Mini Program platforms — WeChat/Alipay/Baidu/Douyin/Feishu/QQ/Kuaishou — plus H5 and React Native.</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre><span class="k">import</span> <span class="p">{</span> <span class="nx">ChatOpenAI</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@langchain/openai</span><span class="dl">'</span>
+<span class="c1">// Taro 环境中直接使用 LangChain.js</span>
+<span class="kd">const</span> <span class="nx">llm</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ChatOpenAI</span><span class="p">({</span> <span class="na">modelName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">gpt-4o-mini</span><span class="dl">'</span> <span class="p">})</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Best for:</strong> existing React frontend teams, AI Agents with Mini Programs as the primary entry point.
+<strong>Not suitable for:</strong> desktop (no native support), local inference needs.
+<strong>Compared with uni-app:</strong> Taro’s React ecosystem is more international, while uni-app’s Vue + HarmonyOS coverage is more domestic.</p>
+
+<hr />
+
+<h2 id="3-specialized-comparison-of-core-ai-agent-capabilities">3. Specialized Comparison of Core AI Agent Capabilities</h2>
+
+<p>Setting aside all frameworks’ GUI capabilities, this section looks only at the pure dimensions of AI Agent development.</p>
+
+<h3 id="31-llm-integration-and-agent-orchestration">3.1 LLM Integration and Agent Orchestration</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Capability</th>
+      <th style="text-align: center">Qt6 Python</th>
+      <th style="text-align: center">Electron</th>
+      <th style="text-align: center">React Native</th>
+      <th style="text-align: center">uni-app X</th>
+      <th style="text-align: center">Taro</th>
+      <th style="text-align: center">Flutter</th>
+      <th style="text-align: center">Tauri</th>
+      <th style="text-align: center">Qt6 C++</th>
+      <th style="text-align: center">Deno</th>
+      <th style="text-align: center">Kotlin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>LangChain Support</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">8(LangChain.js)</td>
+      <td style="text-align: center">6(HTTP)</td>
+      <td style="text-align: center">7(LangChain.js)</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td><strong>LangGraph Orchestration</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td><strong>MCP Protocol</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td><strong>OpenAI/Anthropic SDK</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">8(HTTP)</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">8(HTTP)</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">7</td>
+    </tr>
+    <tr>
+      <td><strong>Tool Calling Efficiency</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">5</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="32-local-model-deployment">3.2 Local Model Deployment</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Capability</th>
+      <th style="text-align: center">Qt6 C++</th>
+      <th style="text-align: center">Qt6 Python</th>
+      <th style="text-align: center">Tauri</th>
+      <th style="text-align: center">Kotlin</th>
+      <th style="text-align: center">Electron</th>
+      <th style="text-align: center">Deno</th>
+      <th style="text-align: center">React Native</th>
+      <th style="text-align: center">uni-app X</th>
+      <th style="text-align: center">Taro</th>
+      <th style="text-align: center">Flutter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>llama.cpp Integration</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td><strong>ONNX Runtime</strong></td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td><strong>GPU-Accelerated Inference</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td><strong>Quantized Model Support</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td><strong>Mobile Local Inference</strong></td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">5</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="33-per-platform-capability-comparison">3.3 Per-Platform Capability Comparison</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Capability</th>
+      <th style="text-align: center">Qt6</th>
+      <th style="text-align: center">Flutter</th>
+      <th style="text-align: center">RN</th>
+      <th style="text-align: center">uni-app X</th>
+      <th style="text-align: center">Taro</th>
+      <th style="text-align: center">Electron</th>
+      <th style="text-align: center">Tauri</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Desktop (Win/Mac/Linux)</strong></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">8</td>
+    </tr>
+    <tr>
+      <td><strong>iOS / Android Native</strong></td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">5(via RN)</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">7</td>
+    </tr>
+    <tr>
+      <td><strong>HarmonyOS</strong></td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">7(community)</td>
+      <td style="text-align: center">6(community)</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td><strong>WeChat Mini Programs</strong></td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td><strong>H5 / Web</strong></td>
+      <td style="text-align: center">5(WASM)</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="key-conclusions">Key Conclusions</h3>
+
+<ol>
+  <li>
+    <p><strong>Python is still the “home language” of AI Agents.</strong> For LangChain, LangGraph, CrewAI, and MCP — all the mainstream Agent frameworks — the Python SDK is a first-class citizen. But the platform coverage of Python’s native framework (Qt6) is only 3.5/6.</p>
+  </li>
+  <li>
+    <p><strong>All-platform capability is the core dividing line for technology selection in 2026.</strong> uni-app X (6/6) and Flutter/RN (5.5/6) lead far ahead in platform coverage. Although Electron (1/6) and Deno Desktop (1/6) have excellent AI ecosystems, “desktop only” is a fatal strategic shortcoming.</p>
+  </li>
+  <li>
+    <p><strong>WeChat Mini Programs and HarmonyOS are the two “tickets” to China-specific cross-platform development.</strong> If you’re building a consumer product, lacking WeChat Mini Programs means losing 80% of your reach channels. uni-app X and Taro are the only two frameworks that can cover both platforms at the same time.</p>
+  </li>
+  <li>
+    <p><strong>“Strong AI ecosystem + weak platform coverage” vs. “strong platform coverage + weak AI ecosystem”</strong> — this is the core contradiction in 2026’s AI Agent cross-platform selection. The MCP-decoupled architecture provides the best solution: use Python for the Agent core (strong AI ecosystem) and uni-app/Flutter/RN for the frontend (strong platform coverage).</p>
+  </li>
+  <li>
+    <p><strong>The performance ceiling for local inference is in C++/Rust.</strong> If you need 7B+ models to run real-time inference on consumer hardware, Qt6 C++ or a Tauri Rust backend is the only choice. But mobile and Mini Programs can’t carry local inference at this level — they naturally need backend services.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="4-recommended-agent-architecture-patterns">4. Recommended Agent Architecture Patterns</h2>
+
+<h3 id="41-the-classic-three-layer-architecture-suited-to-most-scenarios">4.1 The Classic Three-Layer Architecture (Suited to Most Scenarios)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td> --><td class="rouge-code"><pre>┌──────────────────────────────────────┐
+│           桌面 UI 层                  │  ← React / Vue / QML
+│       对话界面 + 工具状态展示          │
+├──────────────────────────────────────┤
+│         AI Agent 逻辑层              │  ← LangChain / LangGraph
+│  LLM 调用 + Tool Calling + RAG       │
+├──────────────────────────────────────┤
+│         模型推理层                    │  ← llama.cpp / ONNX / API
+│     本地推理 or 云端 API              │
+└──────────────────────────────────────┘
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>UI layer</strong>: Electron (React/Vue) or PySide6 (QML)
+<strong>Agent layer</strong>: Python (LangChain/LangGraph) — can be in the same process as the UI, or a separate process + IPC
+<strong>Inference layer</strong>: cloud APIs (OpenAI/Anthropic) or local (llama.cpp/ONNX)</p>
+
+<h3 id="42-mcp-decoupled-architecture-a-future-oriented-choice">4.2 MCP-Decoupled Architecture (A Future-Oriented Choice)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td> --><td class="rouge-code"><pre>┌──────────┐    MCP协议     ┌──────────────┐
+│  UI 层   │ ←──────────→  │  Agent 核心  │
+│ Electron │               │  Python 进程  │
+│  / Tauri │               │  LangGraph    │
+└──────────┘               └──────┬───────┘
+                                  │ MCP
+                    ┌─────────────┼─────────────┐
+                    │             │             │
+               ┌────┴────┐ ┌─────┴─────┐ ┌─────┴─────┐
+               │文件系统  │ │ 浏览器控制 │ │ 代码执行   │
+               │ MCP Svr │ │ MCP Server│ │ MCP Server│
+               └─────────┘ └───────────┘ └───────────┘
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The UI layer is decoupled from the tech stack, and the Agent core runs independently, exposing Tool Calling capabilities through the MCP protocol. This way the UI layer can be freely replaced (Electron → Tauri → Deno Desktop) without affecting the Agent logic.</p>
+
+<hr />
+
+<h2 id="5-all-platform-scenario-based-decision-matrix">5. All-Platform Scenario-Based Decision Matrix</h2>
+
+<p>Based on your target platform combination and AI Agent requirements, the following six selection paths are recommended:</p>
+
+<h3 id="scenario-a-consumer-all-platform-product-needs-mini-programs--harmonyos--mobile">Scenario A: Consumer All-Platform Product (Needs Mini Programs + HarmonyOS + Mobile)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre>第一选择：uni-app X（6/6 全覆盖）
+├── 前端 UI: uni-app X (Vue/UTS) → iOS/Android/鸿蒙/H5/微信小程序
+├── Agent 层: Python (LangChain/LangGraph) 独立部署为 HTTP/MCP 服务
+├── 推理层: 云端 API (OpenAI/DeepSeek) 或 独立 GPU 服务器
+└── 交付: HBuilderX 云端打包 + Docker 部署 Agent 后端
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Alternative: Taro</strong> (if the team is on the React stack and Mini Program-first)</p>
+
+<p><strong>Rationale</strong>: uni-app X is the only framework covering both WeChat Mini Programs and HarmonyOS. Accept the decoupled “frontend UI layer + backend Agent service” architecture, deploy the Agent core independently in Python, and communicate over HTTP/MCP. This is the optimal solution for Chinese consumer-facing AI Agent products in 2026.</p>
+
+<hr />
+
+<h3 id="scenario-b-mobile-first--desktop-secondary-iosandroid-primary-desktop-secondary">Scenario B: Mobile-First + Desktop Secondary (iOS/Android Primary, Desktop Secondary)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre>第一选择：Flutter（5.5/6 覆盖）
+├── 前端 UI: Flutter (Dart) → iOS/Android/Desktop/Web/鸿蒙(社区)
+├── Agent 层: Python 后端服务 (HTTP/MCP)
+├── 推理层: 云端 API 为主
+└── 交付: flutter build + Fastlane
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Alternative: React Native</strong> (if the team is on the React stack and needs deeper desktop integration)</p>
+
+<p><strong>Rationale</strong>: Flutter has the best all-platform consistency, and the Impeller engine delivers excellent performance. HarmonyOS is officially maintained by Huawei’s OpenHarmony SIG. If your Agent doesn’t need local inference, Flutter is the most balanced all-platform choice.</p>
+
+<hr />
+
+<h3 id="scenario-c-desktop-primary--mobile-extension-enterprise-desktop-agent">Scenario C: Desktop Primary + Mobile Extension (Enterprise Desktop Agent)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td> --><td class="rouge-code"><pre>第一选择：Qt6 Python (PySide6)
+├── Agent 层: LangChain/LangGraph (Python) — 与 UI 同进程
+├── 工具层: Shell / 文件系统 / Playwright / MCP Server
+├── 推理层: llama-cpp-python (本地) / OpenAI API (云端)
+├── UI 层: QML 声明式 UI → Desktop + iOS + Android
+└── 交付: PyInstaller (Desktop) + Qt for Mobile
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Rationale</strong>: the most complete AI ecosystem — the entire LangChain suite can run in the same process. The ceiling of Tool Calling. The strongest native desktop experience. Mobile is covered via Qt for Android/iOS. <strong>Mini Programs and HarmonyOS cannot be covered</strong>, requiring additional Taro/uni-app sub-projects to fill the gap.</p>
+
+<hr />
+
+<h3 id="scenario-d-pure-desktop-ai-agent-no-mobilemini-programs-needed">Scenario D: Pure Desktop AI Agent (No Mobile/Mini Programs Needed)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre>第一选择：Electron
+├── Agent 层: LangChain.js / Vercel AI SDK
+├── 推理层: OpenAI / Anthropic / Claude API
+├── UI 层: React / Vue
+└── 交付: electron-builder
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Alternative: Deno Desktop</strong> (pursuing lightness, not in a hurry for production)</p>
+
+<p><strong>Rationale</strong>: both the frontend and AI ecosystems are complete. <strong>But be fully aware: 1/6 platform coverage — future expansion to mobile/Mini Programs requires starting from scratch.</strong></p>
+
+<hr />
+
+<h3 id="scenario-e-local-large-model-inference-first-7b-models-consumer-hardware">Scenario E: Local Large-Model Inference First (7B+ Models, Consumer Hardware)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre>第一选择：Qt6 C++ 或 Tauri (Rust 后端)
+├── Agent 层: llama.cpp (C++) / candle (Rust) + Python 子进程辅助编排
+├── 推理层: 纯本地 GGUF 量化模型
+├── UI 层: QML / React
+└── 交付: CMake / cargo-bundle
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Rationale</strong>: only C++/Rust can make 7B+ models reach acceptable inference speed on a laptop. <strong>But mobile/Mini Program scenarios are inherently unsuitable for 7B+ local inference</strong> — this scenario is desktop-exclusive by nature.</p>
+
+<hr />
+
+<h3 id="scenario-f-lightweight-embedded-agent-iot--edge-devices">Scenario F: Lightweight Embedded Agent (IoT / Edge Devices)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre>选 Slint（Rust/C++ 路线）
+├── Agent 层: 轻量 Rust ML 推理
+├── 推理层: 微型模型 (1B 以下)
+├── UI 层: .slint DSL
+└── 交付: 单二进制 &lt;5MB
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Rationale</strong>: a &lt;300KB UI framework + micro models. Not suitable for complex Agent scenarios, but suitable for IoT offline command recognition and similar use cases.</p>
+
+<hr />
+
+<h3 id="quick-reference-table">Quick Reference Table</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Your Target Platforms</th>
+      <th style="text-align: left">Recommended Framework</th>
+      <th style="text-align: left">Alternative</th>
+      <th style="text-align: left">Agent Layer Strategy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Mini Programs + HarmonyOS + Mobile</strong></td>
+      <td style="text-align: left">uni-app X</td>
+      <td style="text-align: left">Taro</td>
+      <td style="text-align: left">Python Agent standalone service</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>iOS/Android + Desktop + Web</strong></td>
+      <td style="text-align: left">Flutter</td>
+      <td style="text-align: left">React Native</td>
+      <td style="text-align: left">Python Agent standalone service</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Desktop primary + mobile secondary</strong></td>
+      <td style="text-align: left">Qt6 Python</td>
+      <td style="text-align: left">Qt6 C++</td>
+      <td style="text-align: left">Same-process LangChain</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Desktop only</strong></td>
+      <td style="text-align: left">Electron</td>
+      <td style="text-align: left">Deno Desktop</td>
+      <td style="text-align: left">Same-process LangChain.js</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Desktop local large-model inference</strong></td>
+      <td style="text-align: left">Qt6 C++</td>
+      <td style="text-align: left">Tauri</td>
+      <td style="text-align: left">llama.cpp C++ API</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>IoT/Edge devices</strong></td>
+      <td style="text-align: left">Slint</td>
+      <td style="text-align: left">—</td>
+      <td style="text-align: left">Lightweight Rust ML</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="6-learning-paths-from-different-technical-backgrounds">6. Learning Paths from Different Technical Backgrounds</h2>
+
+<h3 id="61-python-backend-developers">6.1 Python Backend Developers</h3>
+
+<p><strong>Desktop Agent path</strong>: PySide6 + QML, 4-6 weeks. LangChain connects directly to existing Python model code.
+<strong>All-platform path</strong>: Python Agent service + uni-app X frontend, requires learning Vue/UTS, 8-10 weeks.</p>
+
+<h3 id="62-web-frontend-developers-react">6.2 Web Frontend Developers (React)</h3>
+
+<p><strong>Desktop path</strong>: Electron + LangChain.js → prototype running the same day.
+<strong>Mobile path</strong>: React Native → learning cost is almost zero.
+<strong>All-platform path</strong>: Taro (Mini Programs + H5) + React Native (mobile) + Electron (desktop) = a three-piece combo.
+<strong>Mini Program exclusive</strong>: Taro — React tech stack, zero extra learning cost.</p>
+
+<h3 id="63-web-frontend-developers-vue">6.3 Web Frontend Developers (Vue)</h3>
+
+<p><strong>All-platform path</strong>: uni-app X — the Vue ecosystem is reused directly, and one codebase covers 6 platforms. About 4-6 weeks.</p>
+
+<h3 id="64-native-mobile-developers-swift--kotlin">6.4 Native Mobile Developers (Swift / Kotlin)</h3>
+
+<p><strong>All-platform path</strong>: Flutter (Dart syntax is close to Swift/Kotlin, about 6-8 weeks) or Kotlin Multiplatform (Kotlin reuse, about 4-6 weeks).
+<strong>Desktop path</strong>: Qt6 Python (Python Agent + QML UI; the declarative syntax is close to SwiftUI/Compose, about 6-8 weeks).</p>
+
+<h3 id="65-c--system-level-developers">6.5 C++ / System-Level Developers</h3>
+
+<p><strong>Optimal path</strong>: Qt6 C++ + llama.cpp. Zero Python dependencies, C++ all the way through.</p>
+
+<h3 id="66-real-world-pitfall-log">6.6 Real-World Pitfall Log</h3>
+
+<ol>
+  <li>
+    <p><strong>The Python GIL is a real problem.</strong> In PySide6, if Agent inference blocks the GIL, the entire UI freezes. Solution: run the Agent logic in a separate QThread or subprocess.</p>
+  </li>
+  <li>
+    <p><strong>Electron/node-llama-cpp is a small horse pulling a big cart.</strong> When local inference is needed, use a Python subprocess or a standalone inference service.</p>
+  </li>
+  <li>
+    <p><strong>The MCP protocol is the silver bullet for decoupling.</strong> Don’t weld the UI and Agent logic into the same process. Connect with MCP: UI layer (uni-app/Flutter/RN/Electron) → Agent layer (standalone Python LangGraph service).</p>
+  </li>
+  <li>
+    <p><strong>WeChat Mini Programs’ request limitations are a real problem.</strong> Mini Programs don’t support SSE (Server-Sent Events) streaming responses, so the Agent’s streaming output must be implemented via WebSocket or polling.</p>
+  </li>
+  <li>
+    <p><strong>HarmonyOS development requires DevEco Studio.</strong> Whether you use uni-app X or Flutter, compiling to HarmonyOS ultimately requires Huawei’s DevEco Studio and the HarmonyOS SDK. The experience is good on macOS, with a slightly higher barrier on Windows.</p>
+  </li>
+  <li>
+    <p><strong>CMake is the first wall on the Qt6 C++ path.</strong> Just use Qt Creator to generate the template.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="7-ide-selection-guide">7. IDE Selection Guide</h2>
+
+<p>Choosing the right IDE is just as important as choosing the right framework. AI Agent development involves a mix of languages (Python for the Agent, C++/Rust for inference, JS/TS for the UI), and a capable IDE can help you avoid 70% of environment configuration pitfalls.</p>
+
+<h3 id="71-ide-recommendations-overview-by-framework">7.1 IDE Recommendations Overview by Framework</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Framework</th>
+      <th>Primary IDE</th>
+      <th>Alternative IDE</th>
+      <th style="text-align: center">macOS Experience</th>
+      <th>Core Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Qt6 (C++)</strong></td>
+      <td><strong>Qt Creator</strong></td>
+      <td>CLion / VS Code</td>
+      <td style="text-align: center">★★★★★</td>
+      <td>QML live preview, signal/slot auto-completion</td>
+    </tr>
+    <tr>
+      <td><strong>Qt6 (Python)</strong></td>
+      <td><strong>PyCharm Pro</strong></td>
+      <td>VS Code / Qt Creator</td>
+      <td style="text-align: center">★★★★☆</td>
+      <td>Python type inference + Qt bindings</td>
+    </tr>
+    <tr>
+      <td><strong>Electron</strong></td>
+      <td><strong>VS Code</strong></td>
+      <td>WebStorm</td>
+      <td style="text-align: center">★★★★★</td>
+      <td>JS/TS as first-class citizens</td>
+    </tr>
+    <tr>
+      <td><strong>Deno Desktop</strong></td>
+      <td><strong>VS Code</strong></td>
+      <td>No mature alternative</td>
+      <td style="text-align: center">★★★★☆</td>
+      <td>Deno official extension + LSP</td>
+    </tr>
+    <tr>
+      <td><strong>Tauri</strong></td>
+      <td><strong>VS Code</strong></td>
+      <td>RustRover / Zed</td>
+      <td style="text-align: center">★★★★★</td>
+      <td>Rust Analyzer + frontend dual-window</td>
+    </tr>
+    <tr>
+      <td><strong>Flutter</strong></td>
+      <td><strong>VS Code</strong></td>
+      <td>Android Studio</td>
+      <td style="text-align: center">★★★★★</td>
+      <td>Flutter extension + Dart LSP</td>
+    </tr>
+    <tr>
+      <td><strong>React Native</strong></td>
+      <td><strong>VS Code</strong></td>
+      <td>WebStorm</td>
+      <td style="text-align: center">★★★★☆</td>
+      <td>JS/TS ecosystem, Expo integration</td>
+    </tr>
+    <tr>
+      <td><strong>uni-app X</strong></td>
+      <td><strong>HBuilderX</strong></td>
+      <td>VS Code</td>
+      <td style="text-align: center">★★★★☆</td>
+      <td>Cloud packaging, visual drag-and-drop</td>
+    </tr>
+    <tr>
+      <td><strong>Taro</strong></td>
+      <td><strong>VS Code</strong></td>
+      <td>WebStorm</td>
+      <td style="text-align: center">★★★★☆</td>
+      <td>React ecosystem, mature CLI</td>
+    </tr>
+    <tr>
+      <td><strong>Kotlin Multiplatform</strong></td>
+      <td><strong>IntelliJ IDEA</strong></td>
+      <td>Fleet</td>
+      <td style="text-align: center">★★★★☆</td>
+      <td>JetBrains’ own Kotlin</td>
+    </tr>
+    <tr>
+      <td><strong>Wails</strong></td>
+      <td><strong>VS Code</strong></td>
+      <td>GoLand</td>
+      <td style="text-align: center">★★★★☆</td>
+      <td>Go + frontend dual-window</td>
+    </tr>
+    <tr>
+      <td><strong>Avalonia</strong></td>
+      <td><strong>Rider</strong></td>
+      <td>VS Code + C# Dev Kit</td>
+      <td style="text-align: center">★★★☆☆</td>
+      <td>Rider’s XAML preview ceiling</td>
+    </tr>
+    <tr>
+      <td><strong>Dioxus</strong></td>
+      <td><strong>VS Code</strong></td>
+      <td>RustRover</td>
+      <td style="text-align: center">★★★★☆</td>
+      <td>Rust Analyzer is good enough</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="72-deep-recommendations-for-the-macos-platform">7.2 Deep Recommendations for the macOS Platform</h3>
+
+<p>Developing desktop AI Agent apps on macOS adds another layer of consideration to IDE selection: <strong>the Xcode toolchain is the compilation foundation for all frameworks</strong>, but you don’t necessarily need to open Xcode.</p>
+
+<hr />
+
+<h4 id="-general-first-choice-vs-code">🥇 General First Choice: VS Code</h4>
+
+<p><strong>Suitable frameworks</strong>: Electron, Deno Desktop, Tauri, Flutter, Wails, Dioxus</p>
+
+<p>On macOS, VS Code’s native Apple Silicon support, Metal rendering performance, and extension ecosystem are all at their best. It’s especially friendly for AI Agent development:</p>
+
+<ul>
+  <li><strong>GitHub Copilot / Copilot Chat</strong>: AI-assisted Agent coding with full Python/TS/Rust language support</li>
+  <li><strong>Jupyter extension</strong>: run <code class="language-plaintext highlighter-rouge">.ipynb</code> in VS Code to debug LangChain Agent prototypes, then export</li>
+  <li><strong>REST Client extension</strong>: test LLM APIs directly (OpenAI / Anthropic / Ollama local endpoints)</li>
+  <li><strong>Remote - SSH</strong>: run the Agent inference layer on a remote GPU and develop remotely with local VS Code</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td> --><td class="rouge-code"><pre><span class="c"># macOS 安装 VS Code + AI Agent 必备扩展</span>
+brew <span class="nb">install</span> <span class="nt">--cask</span> visual-studio-code
+
+code <span class="nt">--install-extension</span> ms-python.python         <span class="c"># Python Agent</span>
+code <span class="nt">--install-extension</span> denoland.vscode-deno      <span class="c"># Deno Desktop</span>
+code <span class="nt">--install-extension</span> rust-lang.rust-analyzer   <span class="c"># Tauri / Dioxus</span>
+code <span class="nt">--install-extension</span> dart-code.flutter         <span class="c"># Flutter</span>
+code <span class="nt">--install-extension</span> github.copilot            <span class="c"># AI 辅助</span>
+code <span class="nt">--install-extension</span> github.copilot-chat       <span class="c"># AI Chat</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<hr />
+
+<h4 id="-the-best-choice-for-qt6-developers-qt-creator">🥈 The Best Choice for Qt6 Developers: Qt Creator</h4>
+
+<p><strong>Suitable frameworks</strong>: Qt6 C++, Qt6 Python (PySide6)</p>
+
+<p>On macOS, Qt Creator’s experience is in the same lineage as Xcode’s, but specifically optimized for Qt:</p>
+
+<ul>
+  <li><strong>Design mode</strong>: drag-and-drop QML UI design, WYSIWYG. Preview Aqua-style controls directly on macOS</li>
+  <li><strong>Signal/slot auto-completion</strong>: after <code class="language-plaintext highlighter-rouge">connect(</code>, it automatically lists all available signals — something other IDEs can’t do</li>
+  <li><strong>Qt RHI debugging</strong>: when running on the Metal backend on macOS, Qt Creator can capture frames to analyze rendering performance</li>
+  <li><strong>CMake project template</strong>: generate a macOS bundle project with one click, no need to hand-write <code class="language-plaintext highlighter-rouge">Info.plist</code></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre><span class="c"># macOS 安装 Qt Creator（开源版）</span>
+brew <span class="nb">install</span> <span class="nt">--cask</span> qt-creator
+
+<span class="c"># 或通过 Qt 在线安装器获取完整 SDK</span>
+<span class="c"># https://www.qt.io/download-open-source</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>For Qt6 Python (PySide6), I recommend running <strong>PyCharm Professional + Qt Creator side by side</strong>: write Python Agent logic in PyCharm, and open the same project’s QML files in Qt Creator for UI preview. The free Community edition of PyCharm doesn’t support QML syntax highlighting; you can use VS Code + the QML extension instead.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="-the-jetbrains-suite-the-choice-of-professional-teams">🥉 The JetBrains Suite: The Choice of Professional Teams</h4>
+
+<p>On macOS, JetBrains IDEs render their UI through JBR (JetBrains Runtime) with native Apple Silicon support. All are paid products (Community editions have limited features).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Framework</th>
+      <th>Recommended JetBrains IDE</th>
+      <th>Free Alternative</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Qt6 Python</td>
+      <td><strong>PyCharm Professional</strong></td>
+      <td>VS Code + Python + QML extensions</td>
+    </tr>
+    <tr>
+      <td>Qt6 C++</td>
+      <td><strong>CLion</strong></td>
+      <td>Qt Creator (free and better)</td>
+    </tr>
+    <tr>
+      <td>Electron / Deno</td>
+      <td><strong>WebStorm</strong></td>
+      <td>VS Code (nearly identical features)</td>
+    </tr>
+    <tr>
+      <td>Tauri / Dioxus</td>
+      <td><strong>RustRover</strong></td>
+      <td>VS Code + Rust Analyzer</td>
+    </tr>
+    <tr>
+      <td>Avalonia</td>
+      <td><strong>Rider</strong></td>
+      <td>VS Code + C# Dev Kit</td>
+    </tr>
+    <tr>
+      <td>Kotlin Compose</td>
+      <td><strong>IntelliJ IDEA Ultimate</strong></td>
+      <td>IDEA Community + Kotlin plugin</td>
+    </tr>
+    <tr>
+      <td>Wails</td>
+      <td><strong>GoLand</strong></td>
+      <td>VS Code + Go extension</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Reasons to choose JetBrains</strong>: the Toolbox App manages versions uniformly, settings are shared across IDEs, and AI Assistant works across IDEs.</p>
+
+<p><strong>Reasons not to choose JetBrains</strong>: subscription fees (personal ~¥1000/year/product, all-inclusive ~¥2500/year); Qt6 C++ is better served by Qt Creator (CLion has no QML live preview); and the Electron/Deno experience has no essential difference from the free VS Code.</p>
+
+<h3 id="73-macos-specific-environment-prerequisites">7.3 macOS-Specific Environment Prerequisites</h3>
+
+<p>No matter which IDE you choose, these basic tools are needed on macOS:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td> --><td class="rouge-code"><pre><span class="c"># 1. Xcode Command Line Tools（所有框架的编译基础）</span>
+xcode-select <span class="nt">--install</span>
+
+<span class="c"># 2. Homebrew 包管理器</span>
+/bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
+
+<span class="c"># 3. 按框架装编译依赖</span>
+brew <span class="nb">install </span>cmake ninja         <span class="c"># Qt6</span>
+brew <span class="nb">install </span>node                <span class="c"># Electron / Deno Desktop</span>
+brew <span class="nb">install </span>rustup-init         <span class="c"># Tauri / Dioxus（装完运行 rustup-init）</span>
+brew <span class="nb">install</span> <span class="nt">--cask</span> flutter      <span class="c"># Flutter</span>
+brew <span class="nb">install </span>go                  <span class="c"># Wails</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="74-ide-workflow-recommendations-for-ai-agent-development">7.4 IDE Workflow Recommendations for AI Agent Development</h3>
+
+<p>AI Agent desktop development is characterized by <strong>multi-language mixing + multi-process debugging</strong>; the recommended workflow is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td> --><td class="rouge-code"><pre>┌─────────────────────────────────────────┐
+│              终端 1                       │
+│  ollama serve                            │  ← 本地模型推理（常驻后台）
+│  GGUF 模型热加载，API 端点 :11434          │
+├─────────────────────────────────────────┤
+│              终端 2                       │
+│  python agent_server.py                  │  ← Agent 核心进程
+│  LangGraph + MCP Server                  │     PyCharm 调试模式
+├─────────────────────────────────────────┤
+│              IDE 主窗口                   │
+│  VS Code / Qt Creator / PyCharm          │  ← UI + Agent 逻辑开发
+│  前端代码 + Agent 代码 + 断点调试           │
+├─────────────────────────────────────────┤
+│              终端 3                       │
+│  deno desktop / npm run dev              │  ← 桌面应用热重载预览
+└─────────────────────────────────────────┘
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Key tips</strong>:</p>
+<ul>
+  <li><strong>Run the model service independently</strong>: keep <code class="language-plaintext highlighter-rouge">ollama serve</code> or <code class="language-plaintext highlighter-rouge">llama-server</code> running in the background; the IDE only debugs the Agent logic</li>
+  <li><strong>Agent core in Python</strong>: set breakpoints in PyCharm to observe LangGraph state transitions and Tool Calling inputs/outputs</li>
+  <li><strong>UI layer in VS Code</strong>: frontend hot reload, change the UI without restarting the Agent</li>
+  <li><strong>MCP Inspector</strong>: <code class="language-plaintext highlighter-rouge">npx @modelcontextprotocol/inspector</code> to debug MCP Tool requests/responses in the browser</li>
+</ul>
+
+<hr />
+
+<h2 id="8-summary">8. Summary</h2>
+
+<p>Back to the original question: <strong>if an AI Agent product needs to cover desktop + iOS + Android + H5 + HarmonyOS + WeChat Mini Programs, which cross-platform tech stack should you choose?</strong></p>
+
+<p><strong>Core conclusion: no single framework can do everything. The MCP-decoupled architecture is the only correct answer.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">If Your Priority Is…</th>
+      <th style="text-align: left">Recommended Framework</th>
+      <th>One-Line Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>AI ecosystem completeness</strong></td>
+      <td style="text-align: left">Qt6 Python (PySide6)</td>
+      <td>LangChain + MCP + local inference, all in one process</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>All-platform coverage (incl. Mini Programs + HarmonyOS)</strong></td>
+      <td style="text-align: left">uni-app X</td>
+      <td>The only 6/6 all-platform framework</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>All-platform coverage (no Mini Programs)</strong></td>
+      <td style="text-align: left">Flutter</td>
+      <td>5.5/6, Impeller engine + HarmonyOS community support</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Development efficiency (desktop only)</strong></td>
+      <td style="text-align: left">Electron</td>
+      <td>JS/TS full stack, frontend ecosystem out of the box</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Local inference performance (desktop)</strong></td>
+      <td style="text-align: left">Qt6 C++</td>
+      <td>The llama.cpp C++ API is the ceiling</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Mini Program AI Agent</strong></td>
+      <td style="text-align: left">Taro</td>
+      <td>React ecosystem + LangChain.js + multi Mini Programs</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Mobile AI Agent</strong></td>
+      <td style="text-align: left">React Native</td>
+      <td>npm ecosystem + Fabric architecture + RN-OH HarmonyOS</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Smallest package size</strong></td>
+      <td style="text-align: left">Tauri</td>
+      <td>3MB + model files</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>The most important advice</strong>: use the MCP protocol to decouple the UI and the Agent. When choosing a UI framework, follow your platform coverage needs (uni-app X for all platforms / Flutter for mobile-first / Electron for desktop-first), and always deploy the Agent core independently in Python. This is the most pragmatic and flexible architecture for 2026.</p>
+
+<hr />
+
+<h2 id="9-all-platform-framework-resource-guide-official-sites--installation--docs">9. All-Platform Framework Resource Guide (Official Sites · Installation · Docs)</h2>
+
+<h3 id="91-all-platform-frameworks-covering-4-platforms">9.1 All-Platform Frameworks (Covering 4+ Platforms)</h3>
+
+<h4 id="uni-app-x--66-all-platforms">uni-app X <code class="language-plaintext highlighter-rouge">★ 6/6 All Platforms</code></h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://uniapp.dcloud.net.cn/">https://uniapp.dcloud.net.cn/</a></td>
+    </tr>
+    <tr>
+      <td>uni-app X documentation</td>
+      <td><a href="https://uniapp.dcloud.net.cn/uni-app-x/">https://uniapp.dcloud.net.cn/uni-app-x/</a></td>
+    </tr>
+    <tr>
+      <td>HarmonyOS development guide</td>
+      <td><a href="https://uniapp.dcloud.net.cn/tutorial/harmony/">https://uniapp.dcloud.net.cn/tutorial/harmony/</a></td>
+    </tr>
+    <tr>
+      <td>Plugin marketplace</td>
+      <td><a href="https://ext.dcloud.net.cn/">https://ext.dcloud.net.cn/</a></td>
+    </tr>
+    <tr>
+      <td>IDE download (HBuilderX)</td>
+      <td><a href="https://www.dcloud.io/hbuilderx.html">https://www.dcloud.io/hbuilderx.html</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Supports cloud packaging; no need to configure iOS/Android SDK locally. 9 million developers, actually used by Tencent/Alibaba/Huawei/Douyin/Meituan and others.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="taro--the-king-of-mini-programs">Taro <code class="language-plaintext highlighter-rouge">★ The King of Mini Programs</code></h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td>&lt;&gt;</td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">npm install -g @tarojs/cli</code></td>
+    </tr>
+    <tr>
+      <td>Chinese documentation</td>
+      <td><a href="https://taro-docs.jd.com/">https://taro-docs.jd.com/</a></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/NervJS/taro">https://github.com/NervJS/taro</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Created by JD.com, write one codebase in React/Vue → WeChat/Alipay/Baidu/Douyin and other Mini Programs + H5 + RN.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="react-native">React Native</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://reactnative.dev/">https://reactnative.dev/</a></td>
+    </tr>
+    <tr>
+      <td>Chinese documentation</td>
+      <td><a href="https://reactnative.cn/">https://reactnative.cn/</a></td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">npx create-expo-app</code></td>
+    </tr>
+    <tr>
+      <td>Windows/macOS</td>
+      <td><a href="https://microsoft.github.io/react-native-windows/">https://microsoft.github.io/react-native-windows/</a></td>
+    </tr>
+    <tr>
+      <td>HarmonyOS (RN-OH)</td>
+      <td>&lt;&gt;</td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/facebook/react-native">https://github.com/facebook/react-native</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Expo for a quick start. The HarmonyOS adaptation is led by the Huawei Developer Alliance.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="flutter">Flutter</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://flutter.dev/">https://flutter.dev/</a></td>
+    </tr>
+    <tr>
+      <td>Chinese documentation</td>
+      <td><a href="https://docs.flutter.cn/">https://docs.flutter.cn/</a></td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">brew install --cask flutter</code> (macOS)</td>
+    </tr>
+    <tr>
+      <td>HarmonyOS (OpenHarmony)</td>
+      <td><a href="https://gitcode.com/openharmony-tpc/flutter_flutter">https://gitcode.com/openharmony-tpc/flutter_flutter</a></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/flutter/flutter">https://github.com/flutter/flutter</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>The HarmonyOS version is officially maintained by the OpenHarmony SIG.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="kotlin-multiplatform--compose">Kotlin Multiplatform + Compose</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://kotlinlang.org/compose-multiplatform/">https://kotlinlang.org/compose-multiplatform/</a></td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">brew install kotlin</code></td>
+    </tr>
+    <tr>
+      <td>Chinese documentation</td>
+      <td><a href="https://docs.kmpstudy.com/">https://docs.kmpstudy.com/</a></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/JetBrains/compose-multiplatform">https://github.com/JetBrains/compose-multiplatform</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="92-desktop-frameworks-desktop-first-some-extending-to-mobile">9.2 Desktop Frameworks (Desktop-First, Some Extending to Mobile)</h3>
+
+<h4 id="electron">Electron</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://www.electronjs.org/">https://www.electronjs.org/</a></td>
+    </tr>
+    <tr>
+      <td>Chinese official site</td>
+      <td><a href="https://electron.nodejs.cn/">https://electron.nodejs.cn/</a></td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">npm install electron</code></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/electron/electron">https://github.com/electron/electron</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h4 id="tauri-20">Tauri 2.0</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://tauri.app/">https://tauri.app/</a></td>
+    </tr>
+    <tr>
+      <td>Chinese official site</td>
+      <td><a href="https://v2.tauri.org.cn/">https://v2.tauri.org.cn/</a></td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">npm create tauri-app@latest</code></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/tauri-apps/tauri">https://github.com/tauri-apps/tauri</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Mobile (iOS/Android) is officially GA.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="deno-desktop-">Deno Desktop <code class="language-plaintext highlighter-rouge">★</code></h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://deno.com/">https://deno.com/</a></td>
+    </tr>
+    <tr>
+      <td>Desktop documentation</td>
+      <td><a href="https://docs.deno.com/runtime/desktop/">https://docs.deno.com/runtime/desktop/</a></td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">curl -fsSL https://deno.land/install.sh \| sh</code></td>
+    </tr>
+    <tr>
+      <td>Chinese documentation</td>
+      <td><a href="https://docs.deno.org.cn/">https://docs.deno.org.cn/</a></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/denoland/deno">https://github.com/denoland/deno</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">deno desktop</code> is built in starting from v2.9.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="wails">Wails</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://wails.io/">https://wails.io/</a></td>
+    </tr>
+    <tr>
+      <td>Chinese documentation</td>
+      <td><a href="https://wails.golang.ac.cn/">https://wails.golang.ac.cn/</a></td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">go install github.com/wailsapp/wails/v3/cmd/wails@latest</code></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/wailsapp/wails">https://github.com/wailsapp/wails</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h4 id="nwjs">NW.js</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://nwjs.io/">https://nwjs.io/</a></td>
+    </tr>
+    <tr>
+      <td>Chinese documentation</td>
+      <td><a href="https://nwjs-cn.readthedocs.io/">https://nwjs-cn.readthedocs.io/</a></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/nwjs/nw.js">https://github.com/nwjs/nw.js</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h4 id="dioxus">Dioxus</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://dioxuslabs.com/">https://dioxuslabs.com/</a></td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">cargo install dioxus-cli</code></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/DioxusLabs/dioxus">https://github.com/DioxusLabs/dioxus</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h4 id="electrobun-">Electrobun <code class="language-plaintext highlighter-rouge">★</code></h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/blackboardsh/electrobun">https://github.com/blackboardsh/electrobun</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="93-enterprise-grade-frameworks">9.3 Enterprise-Grade Frameworks</h3>
+
+<h4 id="qt6-c--python">Qt6 (C++ / Python)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://www.qt.io/development/qt-framework/qt6">https://www.qt.io/development/qt-framework/qt6</a></td>
+    </tr>
+    <tr>
+      <td>Chinese documentation</td>
+      <td><a href="https://doc.qt.ac.cn/">https://doc.qt.ac.cn/</a></td>
+    </tr>
+    <tr>
+      <td>PySide6 documentation</td>
+      <td><a href="https://doc.qt.io/qtforpython-6/">https://doc.qt.io/qtforpython-6/</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>For users in China, the Tsinghua mirror is recommended: `</p>
+</blockquote>
+
+<hr />
+
+<h4 id="net-maui">.NET MAUI</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://dotnet.microsoft.com/en-us/apps/maui">https://dotnet.microsoft.com/en-us/apps/maui</a></td>
+    </tr>
+    <tr>
+      <td>Installation</td>
+      <td><code class="language-plaintext highlighter-rouge">dotnet workload install maui</code></td>
+    </tr>
+    <tr>
+      <td>Documentation</td>
+      <td><a href="https://learn.microsoft.com/en-us/dotnet/maui/">https://learn.microsoft.com/en-us/dotnet/maui/</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h4 id="avalonia">Avalonia</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://avaloniaui.net/">https://avaloniaui.net/</a></td>
+    </tr>
+    <tr>
+      <td>Chinese documentation</td>
+      <td><a href="https://avaloniachina.github.io/avalonia-docs/">https://avaloniachina.github.io/avalonia-docs/</a></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/AvaloniaUI/Avalonia">https://github.com/AvaloniaUI/Avalonia</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h4 id="uno-platform">Uno Platform</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://platform.uno/">https://platform.uno/</a></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/unoplatform/uno">https://github.com/unoplatform/uno</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="94-lightweight-and-experimental">9.4 Lightweight and Experimental</h3>
+
+<h4 id="slint">Slint</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://slint.dev/">https://slint.dev/</a></td>
+    </tr>
+    <tr>
+      <td>Chinese reference</td>
+      <td><a href="https://qi-xmu.github.io/slint-reference-zh/">https://qi-xmu.github.io/slint-reference-zh/</a></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/slint-ui/slint">https://github.com/slint-ui/slint</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Package size &lt;300KB.</p>
+</blockquote>
+
+<hr />
+
+<h4 id="neutralinojs">Neutralinojs</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Official site</td>
+      <td><a href="https://neutralino.js.org/">https://neutralino.js.org/</a></td>
+    </tr>
+    <tr>
+      <td>GitHub</td>
+      <td><a href="https://github.com/neutralinojs/neutralinojs">https://github.com/neutralinojs/neutralinojs</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="95-ai-agent-ecosystem-resources">9.5 AI Agent Ecosystem Resources</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Link</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LangChain Python</td>
+      <td><a href="https://python.langchain.com/">https://python.langchain.com/</a></td>
+      <td>Agent orchestration framework</td>
+    </tr>
+    <tr>
+      <td>LangChain.js</td>
+      <td><a href="https://js.langchain.com/">https://js.langchain.com/</a></td>
+      <td>JS/TS Agent orchestration</td>
+    </tr>
+    <tr>
+      <td>LangGraph</td>
+      <td><a href="https://langchain-ai.github.io/langgraph/">https://langchain-ai.github.io/langgraph/</a></td>
+      <td>Stateful multi-step Agent</td>
+    </tr>
+    <tr>
+      <td>LlamaIndex</td>
+      <td><a href="https://docs.llamaindex.ai/">https://docs.llamaindex.ai/</a></td>
+      <td>RAG data framework</td>
+    </tr>
+    <tr>
+      <td>CrewAI</td>
+      <td><a href="https://docs.crewai.com/">https://docs.crewai.com/</a></td>
+      <td>Multi-Agent collaboration</td>
+    </tr>
+    <tr>
+      <td>AutoGen</td>
+      <td><a href="https://microsoft.github.io/autogen/">https://microsoft.github.io/autogen/</a></td>
+      <td>Microsoft’s multi-Agent</td>
+    </tr>
+    <tr>
+      <td>Vercel AI SDK</td>
+      <td><a href="https://sdk.vercel.ai/">https://sdk.vercel.ai/</a></td>
+      <td>Frontend AI components</td>
+    </tr>
+    <tr>
+      <td>MCP Protocol</td>
+      <td><a href="https://modelcontextprotocol.io/">https://modelcontextprotocol.io/</a></td>
+      <td>Agent-Tool standard protocol</td>
+    </tr>
+    <tr>
+      <td>llama.cpp</td>
+      <td><a href="https://github.com/ggerganov/llama.cpp">https://github.com/ggerganov/llama.cpp</a></td>
+      <td>C++ local inference</td>
+    </tr>
+    <tr>
+      <td>ONNX Runtime</td>
+      <td><a href="https://onnxruntime.ai/">https://onnxruntime.ai/</a></td>
+      <td>Cross-platform model inference</td>
+    </tr>
+    <tr>
+      <td>Ollama</td>
+      <td><a href="https://ollama.com/">https://ollama.com/</a></td>
+      <td>One-click local model deployment</td>
+    </tr>
+    <tr>
+      <td>DeepSeek API</td>
+      <td><a href="https://platform.deepseek.com/">https://platform.deepseek.com/</a></td>
+      <td>Domestic high-value LLM</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="96-harmonyos--mini-program-specific-resources">9.6 HarmonyOS / Mini Program Specific Resources</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Link</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HarmonyOS Developers</td>
+      <td><a href="https://developer.huawei.com/consumer/cn/harmonyos/">https://developer.huawei.com/consumer/cn/harmonyos/</a></td>
+      <td>The official HarmonyOS portal</td>
+    </tr>
+    <tr>
+      <td>DevEco Studio</td>
+      <td><a href="https://developer.huawei.com/consumer/cn/deveco-studio/">https://developer.huawei.com/consumer/cn/deveco-studio/</a></td>
+      <td>The official HarmonyOS IDE</td>
+    </tr>
+    <tr>
+      <td>ArkUI Documentation</td>
+      <td><a href="https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkui-overview">https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkui-overview</a></td>
+      <td>HarmonyOS native UI</td>
+    </tr>
+    <tr>
+      <td>WeChat Mini Program Docs</td>
+      <td>&lt;&gt;</td>
+      <td>Official Mini Program development</td>
+    </tr>
+    <tr>
+      <td>WeChat Mini Program AI Capabilities</td>
+      <td>&lt;&gt;</td>
+      <td>Built-in AI for Mini Programs</td>
+    </tr>
+    <tr>
+      <td>uni-app Plugin Marketplace</td>
+      <td><a href="https://ext.dcloud.net.cn/">https://ext.dcloud.net.cn/</a></td>
+      <td>uni-app/Taro plugins</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><em>This article is continuously updated. You’re welcome to discuss and correct via <a href="https://github.com/sunyazhou/sunyazhou.github.io/issues">GitHub Issues</a>.</em></p>
+:ET

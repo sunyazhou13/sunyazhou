@@ -1,0 +1,108 @@
+I"�<h1 id="preface">Preface</h1>
+
+<p>This article is highly personal in tone. If you find it uncomfortable to read, please close it as soon as possible. This article is only a personal learning record. Reposts and sharing are welcome within the scope of the license agreement. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h1 id="how-do-you-keep-a-value-inside-a-range">How do you keep a value inside a range?</h1>
+
+<h2 id="in-everyday-development-we-often-need-to-clamp-values-like-this">In everyday development we often need to clamp values, like this:</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="err">某个输入值</span>
+<span class="kt">float</span> <span class="n">maxValue</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1">//check  0 &lt; a &lt; the limit, assuming maxValue = 1</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">maxValue</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">a</span> <span class="o">=</span> <span class="n">maxValue</span>	
+<span class="p">}</span>
+
+<span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>This is the kind of code I wrote when I was first learning C.</p>
+
+<h2 id="years-later-this-is-how-i-write-it">Years later, this is how I write it</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">//Include the standard library header; the import statement is omitted here...</span>
+
+<span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="err">某个输入值</span>
+<span class="kt">float</span> <span class="n">maxValue</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1">//Elegance never goes out of style</span>
+<span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span> <span class="n">maxValue</span><span class="p">);</span> <span class="c1">// 0 &lt;= a &lt;= 1</span>
+<span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>One line, and it reads much better — the value is clamped between min and max.</p>
+
+<p>I once asked all the senior engineers at my previous company:</p>
+
+<p><strong>Is there a function that combines min + max to clamp a value within a certain range?</strong></p>
+
+<p>Most of them didn’t know.</p>
+
+<h2 id="smoothstep--the-hermite-smooth-interpolation-function">smoothstep() — the Hermite smooth interpolation function</h2>
+
+<p>Years later, though, I discovered my version wasn’t the last word either. The standard library is full of functions you only find once you go looking.</p>
+
+<p>While reading <code class="language-plaintext highlighter-rouge">Metal by Tutorials</code>, a fragment shader snippet caught my eye.</p>
+
+<pre><code class="language-txt">“smoothstep
+
+smoothstep(edge0, edge1, x) returns a smooth Hermite interpolation between 0 and 1.
+
+
+Note: edge1 must be greater than edge0, and x should be edge0 &lt;= x &lt;= edge1.”
+
+摘录来自
+Metal by Tutorials
+此材料可能受版权保护。
+</code></pre>
+
+<p>Here’s the fragment shader code:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">color</span> <span class="o">=</span> <span class="n">smoothstep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">in</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<span class="k">return</span> <span class="nf">float4</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>So the function I’d been using all these years actually has a name: <code class="language-plaintext highlighter-rouge">smoothstep</code>.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>The natural next step: wrap <code class="language-plaintext highlighter-rouge">smoothstep()</code> in a global inline helper.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="kr">inline</span> <span class="nf">xx_smoothstep</span><span class="p">(</span><span class="n">T</span> <span class="n">minEdge</span><span class="p">,</span> <span class="n">T</span> <span class="n">maxEdge</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">smoothstep</span><span class="p">(</span><span class="n">minEdge</span><span class="p">,</span> <span class="n">maxEdge</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span> 
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>That handles every range-clamping case in real-world code. It turns out what I’d been chasing all these years wasn’t fancier techniques — it was simply knowing the right tool exists.</p>
+:ET

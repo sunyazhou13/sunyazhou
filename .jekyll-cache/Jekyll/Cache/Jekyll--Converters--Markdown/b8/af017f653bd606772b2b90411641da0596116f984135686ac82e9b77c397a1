@@ -1,0 +1,660 @@
+I"ú<p><img src="/assets/images/20240116HarmonyPhoneSendFileTomacOS/harmonyOS.avif" alt="harmony OS" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article carries strong personal sentiments. If you find it uncomfortable to read, please close it. This article is for personal learning records only. You’re welcome to repost or share it within the scope of the license — please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h1 id="animation-background">Animation Background</h1>
+
+<p>In HarmonyOS development, the animation categories are richer than in iOS development, including the following animation types:</p>
+
+<ul>
+  <li>Property animation (animation)</li>
+  <li>Explicit animation (animateTo)</li>
+  <li>Keyframe animation (keyframeAnimationTo)</li>
+  <li>Transition animation (Transition)
+    <ul>
+      <li>Page transition (pageTransition)</li>
+      <li>Component transition (transition)</li>
+      <li>Shared element transition (sharedTransition)</li>
+      <li>Implicit shared element transition within component (geometryTransition)</li>
+    </ul>
+  </li>
+  <li>Path transition (motionPath)</li>
+  <li>Particle animation (Particle)</li>
+</ul>
+
+<p>Detailed source: <a href="https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-transition-animation-component-0000001862687721#ZH-CN_TOPIC_0000001862687721__transitioneffect10%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E">HarmonyOS Development Documentation - Animation</a></p>
+
+<h2 id="property-animation-animation">Property Animation (animation)</h2>
+
+<p><img src="/assets/images/20240505ArkTSAnimation/HarmonyOSAnimation.avif" alt="Harmony OS Animation" /></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">{</span> <span class="nx">SizeT</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@ohos.arkui.node</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Entry</span>
+<span class="p">@</span><span class="nd">Component</span>
+<span class="nx">struct</span> <span class="nx">MTAnimation3</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">message</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">迈腾大队长</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">buttonSize</span><span class="p">:</span> <span class="nx">Size</span> <span class="o">=</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="mi">266</span><span class="p">,</span> <span class="na">height</span><span class="p">:</span> <span class="mi">108</span><span class="p">};</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">didChanged</span><span class="p">:</span> <span class="nx">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="nf">build</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nc">Row</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nc">Column</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nc">Text</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>
+          <span class="p">.</span><span class="nf">fontSize</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+          <span class="p">.</span><span class="nf">fontWeight</span><span class="p">(</span><span class="nx">FontWeight</span><span class="p">.</span><span class="nx">Bold</span><span class="p">)</span>
+        <span class="nc">Button</span><span class="p">(</span><span class="dl">"</span><span class="s2">sunyazhou.com</span><span class="dl">"</span><span class="p">)</span>
+          <span class="c1">//.animation({}) // 公式：animation 增加到那个地方的后面，前面就会被animation管理，否则不生效</span>
+          <span class="p">.</span><span class="nf">onClick</span><span class="p">(</span> <span class="p">()</span><span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">点击sunyazhou.com按钮</span><span class="dl">"</span><span class="p">)</span>
+            <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">didChanged</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">buttonSize</span> <span class="o">=</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="mi">166</span><span class="p">,</span> <span class="na">height</span><span class="p">:</span><span class="mi">80</span><span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">buttonSize</span> <span class="o">=</span> <span class="p">{</span><span class="na">width</span><span class="p">:</span> <span class="mi">266</span><span class="p">,</span> <span class="na">height</span><span class="p">:</span><span class="mi">108</span><span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">didChanged</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">didChanged</span> <span class="c1">//反置 交换</span>
+          <span class="p">})</span>
+          <span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">buttonSize</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span>
+          <span class="p">.</span><span class="nf">animation</span><span class="p">({</span>
+              <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+              <span class="na">curve</span><span class="p">:</span> <span class="nx">Curve</span><span class="p">.</span><span class="nx">EaseInOut</span><span class="p">,</span>
+              <span class="c1">// iterations: 1, //执行次数,(动画来回算2次)</span>
+              <span class="na">playMode</span><span class="p">:</span> <span class="nx">PlayMode</span><span class="p">.</span><span class="nx">Alternate</span><span class="p">,</span> <span class="c1">//动画结束停在动画结束的位置</span>
+              <span class="na">onFinish</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">动画执行完成</span><span class="dl">"</span><span class="p">)</span>
+              <span class="p">}</span>
+          <span class="p">})</span> <span class="c1">//我只负责前面的代码 有动画，后面的代码，我不管(在这里之前的代码都受animation控制)</span>
+          <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">buttonSize</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span> <span class="c1">//注意;这行代码不在动画范围内</span>
+      <span class="p">}</span>
+      <span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="dl">'</span><span class="s1">100%</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="dl">'</span><span class="s1">100%</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<blockquote>
+  <p>Note: The .animation animation only takes effect on properties added before the code. Properties after it won’t be affected. <a href="https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-animatorproperty-0000001815927688">Property animation official documentation</a></p>
+</blockquote>
+
+<h2 id="explicit-animation-animateto">Explicit Animation (animateTo)</h2>
+
+<p>Anyone who has studied iOS development knows that the explicit animation in iOS is <code class="language-plaintext highlighter-rouge">[UIView animateWithDuratio...]</code></p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">animateWithDuration</span><span class="p">:(</span><span class="n">NSTimeInterval</span><span class="p">)</span><span class="nv">duration</span> <span class="nf">animations</span><span class="p">:(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="kt">void</span><span class="p">))</span><span class="nv">animations</span> <span class="n">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span> 
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>In HarmonyOS development, this type of animation is called <code class="language-plaintext highlighter-rouge">animateTo</code>.</p>
+
+<p>Let’s look at the demo. I want to rotate an image 90 degrees, then rotate it back. In iOS, you’d just modify the transform and put the modification code inside the UIView animation block:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="n">CGAffineTransformRotate</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="n">M_PI_2</span><span class="p">);</span> <span class="c1">//旋转90°</span>
+<span class="p">...</span>
+
+<span class="n">CGAffineTransformIdentity</span><span class="p">;</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo.avif" alt="Harmony OS Animate To" /></p>
+
+<p>Here’s the HarmonyOS ArkUI example code:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+</pre></td><td class="rouge-code"><pre><span class="p">@</span><span class="nd">Entry</span>
+<span class="p">@</span><span class="nd">Component</span>
+<span class="nx">struct</span> <span class="nx">MTAnimation2</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">message</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">显式动画(animateTo)</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">rotateValue</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">color</span><span class="p">:</span> <span class="nx">Color</span> <span class="o">=</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">Blue</span><span class="p">;</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">isStart</span><span class="p">:</span> <span class="nx">boolean</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="nf">build</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nc">Row</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nc">Column</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nc">Text</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>
+          <span class="p">.</span><span class="nf">fontSize</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+          <span class="p">.</span><span class="nf">fontWeight</span><span class="p">(</span><span class="nx">FontWeight</span><span class="p">.</span><span class="nx">Bold</span><span class="p">)</span>
+        <span class="nc">Divider</span><span class="p">()</span>
+          <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+        <span class="nc">Image</span><span class="p">(</span><span class="nf">$r</span><span class="p">(</span><span class="dl">'</span><span class="s1">app.media.sunyazhou</span><span class="dl">'</span><span class="p">))</span>
+          <span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="mi">333</span><span class="p">)</span>
+          <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="mi">333</span><span class="p">)</span>
+          <span class="p">.</span><span class="nf">rotate</span><span class="p">({</span>
+            <span class="na">angle</span><span class="p">:</span><span class="k">this</span><span class="p">.</span><span class="nx">rotateValue</span><span class="p">,</span> <span class="c1">//表面上是旋转功能， 实际上需要配合 x轴y抽z轴</span>
+            <span class="na">x</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+            <span class="na">y</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+            <span class="na">z</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+          <span class="p">})</span>
+          <span class="p">.</span><span class="nf">onClick</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nf">animateTo</span><span class="p">({</span>
+              <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="c1">//ms</span>
+              <span class="na">curve</span> <span class="p">:</span> <span class="nx">Curve</span><span class="p">.</span><span class="nx">EaseInOut</span><span class="p">,</span> <span class="c1">//动画速率</span>
+              <span class="na">onFinish</span><span class="p">:()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">动画执行完成</span><span class="dl">"</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">Green</span>
+              <span class="p">}</span>
+            <span class="p">},</span> <span class="p">()</span><span class="o">=&gt;</span> <span class="p">{</span>
+              <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isStart</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">rotateValue</span> <span class="o">=</span> <span class="mi">0</span>
+              <span class="p">}</span> <span class="k">else</span>  <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">rotateValue</span> <span class="o">=</span> <span class="mi">90</span>
+              <span class="p">}</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">isStart</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isStart</span>
+            <span class="p">})</span>
+          <span class="p">})</span>
+      <span class="p">}</span>
+      <span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="dl">'</span><span class="s1">100%</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="dl">'</span><span class="s1">100%</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>If you change x, y, z in <code class="language-plaintext highlighter-rouge">.rotate</code> all to 1 and rotate 625 degrees, it looks like this:</p>
+
+<p><img src="/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo2.avif" alt="Harmony OS Animate To" /></p>
+
+<p>When we click continuously during the animation, it’s very responsive — just like UIView Animation in iOS, if interrupted mid-animation, it directly executes the next explicit animation. The following demo shows the responsive effect:
+<img src="/assets/images/20240505ArkTSAnimation/HarmonyOSAnimateTo3.avif" alt="Harmony OS Animate To" /></p>
+
+<p><a href="https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-explicit-animation-0000001862687717">For more details, visit the HarmonyOS official documentation - Explicit Animation (animateTo)</a></p>
+
+<h2 id="keyframe-animation">Keyframe Animation</h2>
+
+<p>Keyframe animation in HarmonyOS development is implemented using <code class="language-plaintext highlighter-rouge">UIContext</code>:</p>
+
+<p><img src="/assets/images/20240505ArkTSAnimation/HarmonyOSKeyframeAnimation.avif" alt="Harmony OS Keyframe Animation" /></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+</pre></td><td class="rouge-code"><pre><span class="c1">// xxx.ets</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">UIContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@ohos.arkui.UIContext</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">@</span><span class="nd">Entry</span>
+<span class="p">@</span><span class="nd">Component</span>
+<span class="nx">struct</span> <span class="nx">KeyframeDemo</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">myScale</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+  <span class="nl">uiContext</span><span class="p">:</span> <span class="nx">UIContext</span> <span class="o">|</span> <span class="kc">undefined</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+
+  <span class="nf">aboutToAppear</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">uiContext</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getUIContext</span><span class="p">?.();</span>
+  <span class="p">}</span>
+
+  <span class="nf">build</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nc">Column</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nc">Circle</span><span class="p">()</span>
+        <span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="p">.</span><span class="nf">fill</span><span class="p">(</span><span class="dl">"</span><span class="s2">#46B1E3</span><span class="dl">"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nf">margin</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="p">.</span><span class="nf">scale</span><span class="p">({</span> <span class="na">x</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">myScale</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">myScale</span> <span class="p">})</span>
+        <span class="p">.</span><span class="nf">onClick</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">uiContext</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">"</span><span class="s2">no uiContext, keyframe failed</span><span class="dl">"</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+          <span class="p">}</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">myScale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="c1">// 设置关键帧动画整体播放3次</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">uiContext</span><span class="p">.</span><span class="nf">keyframeAnimateTo</span><span class="p">({</span> <span class="na">iterations</span><span class="p">:</span> <span class="mi">3</span> <span class="p">},</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="c1">// 第一段关键帧动画时长为800ms，scale属性做从1到1.5的动画</span>
+              <span class="na">duration</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+              <span class="na">event</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">myScale</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+              <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+              <span class="c1">// 第二段关键帧动画时长为500ms，scale属性做从1.5到1的动画</span>
+              <span class="na">duration</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+              <span class="na">event</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">myScale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">]);</span>
+        <span class="p">})</span>
+    <span class="p">}.</span><span class="nf">width</span><span class="p">(</span><span class="dl">'</span><span class="s1">100%</span><span class="dl">'</span><span class="p">).</span><span class="nf">margin</span><span class="p">({</span> <span class="na">top</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="component-transition-animation">Component Transition Animation</h2>
+
+<p>Component transition animation:</p>
+
+<p>As shown below:
+<img src="/assets/images/20240505ArkTSAnimation/transition1.avif" alt="transition" /></p>
+
+<p>Implementation code:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+</pre></td><td class="rouge-code"><pre><span class="p">@</span><span class="nd">Entry</span>
+<span class="p">@</span><span class="nd">Component</span>
+<span class="nx">struct</span> <span class="nx">MTAnimation1</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">phones</span><span class="p">:</span> <span class="kr">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="dl">'</span><span class="s1">HUAWEI Mete 60 Pro WIt9000S</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">HUAWEI Mete 40 Pro+ 5G soc</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">Xiaomi 14 Pro 第三代骁龙 5G</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">OPPO Find X Pro 第二代骁龙 5G</span><span class="dl">'</span>
+  <span class="p">]</span>
+
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">topIndex</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="p">@</span><span class="nd">State</span> <span class="nx">bottomIndex</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">phones</span><span class="p">.</span><span class="nx">length</span>
+
+  <span class="nf">build</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nc">Column</span><span class="p">({</span><span class="na">space</span><span class="p">:</span><span class="mi">12</span><span class="p">})</span> <span class="p">{</span>
+      <span class="nc">Column</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nc">ForEach</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">phones</span><span class="p">,</span> <span class="p">(</span><span class="nx">item</span><span class="p">:</span><span class="kr">string</span><span class="p">)</span><span class="o">=&gt;</span> <span class="p">{</span>
+           <span class="nc">Text</span><span class="p">(</span><span class="nx">item</span><span class="p">).</span><span class="nf">ft_text</span><span class="p">()</span>
+             <span class="p">.</span><span class="nf">transition</span><span class="p">(</span>
+               <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nf">asymmetric</span><span class="p">(</span>
+                 <span class="c1">// 1.出现时做从指定的透明度为0变为默认的透明度1的动画，该动画时长为1000ms，</span>
+                 <span class="c1">// 以及做从指定的绕z轴旋转180°变为默认的旋转角为0的动画，该动画1000ms后播放，时长为1000ms</span>
+                 <span class="c1">// 2.消失时做从默认的透明度为1变为指定的透明度0的动画，该动画1000ms后播放，</span>
+                 <span class="c1">// 时长为1000ms，以及做从默认的旋转角0变为指定的绕z轴旋转180°的动画，该动画时长为1000ms</span>
+                 <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nx">OPACITY</span><span class="p">.</span><span class="nf">animation</span><span class="p">({</span> <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}).</span><span class="nf">combine</span><span class="p">(</span>
+                   <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nf">rotate</span><span class="p">({</span> <span class="na">z</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">angle</span><span class="p">:</span> <span class="mi">180</span> <span class="p">}).</span><span class="nf">animation</span><span class="p">({</span> <span class="na">delay</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">})),</span>
+                   <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nx">OPACITY</span><span class="p">.</span><span class="nf">animation</span><span class="p">({</span> <span class="na">delay</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}).</span><span class="nf">combine</span><span class="p">(</span>
+                    <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nf">rotate</span><span class="p">({</span> <span class="na">z</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">angle</span><span class="p">:</span> <span class="mi">180</span> <span class="p">}).</span><span class="nf">animation</span><span class="p">({</span> <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">})</span>
+                    <span class="c1">// TransitionEffect.translate({x: 600, y: 0}).animation({duration: 1000})</span>
+                 <span class="p">)</span>
+               <span class="p">)</span>
+             <span class="p">)</span>
+             <span class="c1">// .transition(TransitionEffect.OPACITY.animation({duration: 2000, curve: Curve.Ease})</span>
+             <span class="c1">//   .combine(TransitionEffect.rotate({z: 1, angle: 180})</span>
+             <span class="c1">//   ))</span>
+
+             <span class="c1">// .transition(</span>
+             <span class="c1">//   TransitionEffect.asymmetric(</span>
+             <span class="c1">//     TransitionEffect.translate({x: 333, y: 333}),</span>
+             <span class="c1">//     TransitionEffect.IDENTITY</span>
+             <span class="c1">//   )</span>
+             <span class="c1">// )</span>
+        <span class="p">},</span> <span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">item</span><span class="p">))</span>
+      <span class="p">}.</span><span class="nf">ft_column</span><span class="p">()</span>
+
+      <span class="nc">Button</span><span class="p">(</span><span class="dl">'</span><span class="s1">在顶部增加手机</span><span class="dl">'</span><span class="p">).</span><span class="nf">ft_btn</span><span class="p">(</span><span class="nx">Color</span><span class="p">.</span><span class="nx">Red</span><span class="p">,()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="nf">animateTo</span><span class="p">({},</span> <span class="p">()</span><span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">topIndex</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">phones</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(</span><span class="dl">'</span><span class="s1">iPhone 15 Pro Max</span><span class="dl">'</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">phones</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(</span><span class="dl">'</span><span class="s1">iPhone 15 Pro Max</span><span class="dl">'</span><span class="o">+</span> <span class="dl">'</span><span class="s1">(</span><span class="dl">'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">topIndex</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">)</span><span class="dl">'</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">topIndex</span><span class="o">++</span>
+          <span class="p">})</span>
+      <span class="p">})</span>
+      <span class="nc">Button</span><span class="p">(</span><span class="dl">'</span><span class="s1">在底部增加手机</span><span class="dl">'</span><span class="p">).</span><span class="nf">ft_btn</span><span class="p">(</span><span class="nx">Color</span><span class="p">.</span><span class="nx">Green</span><span class="p">,</span> <span class="p">()</span><span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="nf">animateTo</span><span class="p">({},</span> <span class="p">()</span><span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">bottomIndex</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">phones</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="dl">'</span><span class="s1">iPhone 14 Pro Max</span><span class="dl">'</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">phones</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="dl">'</span><span class="s1">iPhone 14 Pro Max</span><span class="dl">'</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">(</span><span class="dl">'</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">bottomIndex</span> <span class="o">+</span><span class="dl">'</span><span class="s1">)</span><span class="dl">'</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">bottomIndex</span><span class="o">++</span>
+          <span class="p">})</span>
+      <span class="p">})</span>
+
+      <span class="nc">Button</span><span class="p">(</span><span class="dl">'</span><span class="s1">在头部删除手机</span><span class="dl">'</span><span class="p">).</span><span class="nf">ft_btn</span><span class="p">(</span><span class="nx">Color</span><span class="p">.</span><span class="nx">Blue</span><span class="p">,</span> <span class="p">()</span><span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">animateTo</span><span class="p">({},</span> <span class="p">()</span><span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">phones</span><span class="p">.</span><span class="nf">shift</span><span class="p">()</span>
+        <span class="p">})</span>
+      <span class="p">})</span>
+
+      <span class="nc">Button</span><span class="p">(</span><span class="dl">'</span><span class="s1">在底部删除手机</span><span class="dl">'</span><span class="p">).</span><span class="nf">ft_btn</span><span class="p">(</span><span class="nx">Color</span><span class="p">.</span><span class="nx">Pink</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">animateTo</span><span class="p">({},</span> <span class="p">()</span><span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">phones</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+        <span class="p">})</span>
+      <span class="p">})</span>
+    <span class="p">}</span>
+    <span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="dl">'</span><span class="s1">100%</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="dl">'</span><span class="s1">100%</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="nd">Extend</span><span class="p">(</span><span class="nx">Column</span><span class="p">)</span> <span class="kd">function</span> <span class="nf">ft_column</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nf">margin</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">justifyContent</span><span class="p">(</span><span class="nx">FlexAlign</span><span class="p">.</span><span class="nx">Start</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">alignItems</span><span class="p">(</span><span class="nx">HorizontalAlign</span><span class="p">.</span><span class="nx">Center</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="dl">'</span><span class="s1">90%</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="dl">'</span><span class="s1">50%</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="nd">Extend</span><span class="p">(</span><span class="nx">Text</span><span class="p">)</span> <span class="kd">function</span> <span class="nf">ft_text</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">fontSize</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">margin</span><span class="p">({</span><span class="na">top</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+  <span class="p">.</span><span class="nf">backgroundColor</span><span class="p">(</span><span class="nx">Color</span><span class="p">.</span><span class="nx">Yellow</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">textAlign</span><span class="p">(</span><span class="nx">TextAlign</span><span class="p">.</span><span class="nx">Center</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="nd">Extend</span><span class="p">(</span><span class="nx">Button</span><span class="p">)</span> <span class="kd">function</span> <span class="nf">ft_btn</span><span class="p">(</span><span class="nx">bgColor</span><span class="p">:</span> <span class="nx">Color</span><span class="p">,</span> <span class="nx">click</span><span class="p">:</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">fontSize</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">backgroundColor</span><span class="p">(</span><span class="nx">bgColor</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">onClick</span><span class="p">(()</span><span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">click</span><span class="p">()</span> <span class="c1">//此处的cLick是一个形参。具体代表的是调用除传进来的函数。后方跟小括号代表执行传进来的函数。</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">item</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span> <span class="nx">index</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Function not implemented.</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Here’s the core code:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre></td><td class="rouge-code"><pre><span class="nc">Text</span><span class="p">(</span><span class="nx">item</span><span class="p">).</span><span class="nf">ft_text</span><span class="p">()</span>
+	 <span class="p">.</span><span class="nf">transition</span><span class="p">(</span>
+	   <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nf">asymmetric</span><span class="p">(</span>
+	     <span class="c1">// 1.出现时做从指定的透明度为0变为默认的透明度1的动画，该动画时长为1000ms，</span>
+	     <span class="c1">// 以及做从指定的绕z轴旋转180°变为默认的旋转角为0的动画，该动画1000ms后播放，时长为1000ms</span>
+	     <span class="c1">// 2.消失时做从默认的透明度为1变为指定的透明度0的动画，该动画1000ms后播放，</span>
+	     <span class="c1">// 时长为1000ms，以及做从默认的旋转角0变为指定的绕z轴旋转180°的动画，该动画时长为1000ms</span>
+	     <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nx">OPACITY</span><span class="p">.</span><span class="nf">animation</span><span class="p">({</span> <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}).</span><span class="nf">combine</span><span class="p">(</span>
+	       <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nf">rotate</span><span class="p">({</span> <span class="na">z</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">angle</span><span class="p">:</span> <span class="mi">180</span> <span class="p">}).</span><span class="nf">animation</span><span class="p">({</span> <span class="na">delay</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">})),</span>
+	       <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nx">OPACITY</span><span class="p">.</span><span class="nf">animation</span><span class="p">({</span> <span class="na">delay</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}).</span><span class="nf">combine</span><span class="p">(</span>
+	        <span class="nx">TransitionEffect</span><span class="p">.</span><span class="nf">rotate</span><span class="p">({</span> <span class="na">z</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">angle</span><span class="p">:</span> <span class="mi">180</span> <span class="p">}).</span><span class="nf">animation</span><span class="p">({</span> <span class="na">duration</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">})</span>
+	        <span class="c1">// TransitionEffect.translate({x: 600, y: 0}).animation({duration: 1000})</span>
+	     <span class="p">)</span>
+	   <span class="p">)</span>
+	 <span class="p">)</span>
+	 <span class="c1">// .transition(TransitionEffect.OPACITY.animation({duration: 2000, curve: Curve.Ease})</span>
+	 <span class="c1">//   .combine(TransitionEffect.rotate({z: 1, angle: 180})</span>
+	 <span class="c1">//   ))</span>
+	
+	 <span class="c1">// .transition(</span>
+	 <span class="c1">//   TransitionEffect.asymmetric(</span>
+	 <span class="c1">//     TransitionEffect.translate({x: 333, y: 333}),</span>
+	 <span class="c1">//     TransitionEffect.IDENTITY</span>
+	 <span class="c1">//   )</span>
+	 <span class="c1">// )</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>I found the documentation: <a href="https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-transition-animation-component-0000001862687721">Component Transition (transition)</a> — there’s a detailed introduction here.</p>
+
+<p>This animation is somewhat similar to iOS’s affine animation, just on a different platform. The animations here are also very rich. I’ll continue implementing other animations and recording them here.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>I’ve learned HarmonyOS development 3 times now. Sometimes I need to record some animations and content as study notes. Hope it helps other developers.</p>
+:ET

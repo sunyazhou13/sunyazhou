@@ -1,0 +1,101 @@
+I"�<h1 id="preface">Preface</h1>
+
+<p>This post carries a strong personal tone. If you find it uncomfortable to read, please close it as soon as possible. This article is only for my personal learning notes. You’re welcome to repost or share it within the scope of the license, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h2 id="jekyll">jekyll</h2>
+
+<p>My blog started with Hexo. Later, <a href="https://onevcat.com/"><code class="language-plaintext highlighter-rouge">OneV's Den</code></a> switched his blog to Jekyll, and I really liked it. But with Hexo, writing a post was straightforward — you could just use</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>hexo new <span class="s2">"202300202XXXPaper"</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>in this form, generating a markdown file from a template.</p>
+
+<blockquote>
+  <p>For the specific usage, take a look at the <a href="https://hexo.io/zh-cn/docs/commands.html">Hexo commands</a></p>
+</blockquote>
+
+<p>However, in OneV’s Den’s simplified version of the new <a href="https://github.com/cotes2020/jekyll-theme-chirpy/">https://github.com/cotes2020/jekyll-theme-chirpy/ theme</a>, it’s still fairly simple and practical, except that it lacks a way to quickly write posts.</p>
+
+<p>After emailing OneV’s Den to ask,</p>
+
+<p><img src="/assets/images/20230202JekyllPost/email.avif" alt="email" /></p>
+
+<p>he not only replied, but also said he doesn’t write posts very often — he just copies an old one, which isn’t much trouble. At the end of the email, he gave a very practical Stack Overflow answer.</p>
+
+<p><img src="/assets/images/20230202JekyllPost/answer.avif" alt="answer" /></p>
+
+<p>In my blog, there’s a <code class="language-plaintext highlighter-rouge">Gemfile</code> file.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="nb">source</span> <span class="s2">"https://rubygems.org"</span>
+
+gem <span class="s2">"jekyll"</span>, <span class="s2">"&gt;=3.8.6"</span>
+
+<span class="c"># Official Plugins</span>
+group :jekyll_plugins <span class="k">do
+  </span>gem <span class="s2">"jekyll-paginate"</span>
+  gem <span class="s2">"jekyll-redirect-from"</span>
+  gem <span class="s2">"jekyll-seo-tag"</span>, <span class="s2">"~&gt; 2.6.1"</span>
+  gem <span class="s1">'jekyll-compose'</span> //新增这个
+end
+
+group :test <span class="k">do
+  </span>gem <span class="s2">"html-proofer"</span>
+end
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Then run it once.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>bundle <span class="nb">install</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>This ensures all the required libraries are loaded. Here you can configure the Ruby China mirror or use a proxy.</p>
+
+<p>What’s left is running this every time you publish a post:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>bundle <span class="nb">exec </span>jekyll post <span class="s2">"My New Post"</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>Don’t copy the <code class="language-plaintext highlighter-rouge">$</code> symbol — it just means this is a command you run in your shell terminal.</p>
+</blockquote>
+
+<p>After generation, it automatically formats the year-month structure.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>bundle <span class="nb">exec </span>jekyll post <span class="s2">"jekyllpost"</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/assets/images/20230202JekyllPost/post.avif" alt="post" /></p>
+
+<h3 id="a-question">A Question</h3>
+
+<p>The markdown generated here doesn’t allow the same customization as Hexo’s template. I haven’t found a way. If you’re interested, we can research it together.</p>
+
+<p><a href="https://stackoverflow.com/questions/43416113/why-isnt-there-a-jekyll-post-command-to-create-posts-like-in-hexo">Why isn’t there a “jekyll post” command to create posts like in hexo?</a></p>
+
+<h1 id="summary">Summary</h1>
+
+<p>This command-line tool is very well suited to someone like me who publishes posts frequently. I hope it helps friends using Jekyll.</p>
+
+:ET

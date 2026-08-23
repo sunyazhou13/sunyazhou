@@ -1,0 +1,114 @@
+I"3-<p><img src="/assets/images/20210406WCDBPractice/wcdb.avif" alt="wcdb" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This post carries strong personal opinions; if reading it makes you uncomfortable, please close it right away. This article is only for my personal study notes. You’re welcome to repost or share it within the scope of the license — please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h3 id="what-have-i-been-up-to-lately">What have I been up to lately?</h3>
+
+<p>I’ve been wrestling with WCDB lately. My company builds an IM product, and we maintain a very old codebase. To lay a solid foundation and solve upper-layer business problems, we decided to migrate from the original FMDB to WCDB in batches.</p>
+
+<h3 id="the-problem-i-ran-into">The problem I ran into</h3>
+
+<p>While using WCDB, I hit a really elementary bug: the condition placed after the <code class="language-plaintext highlighter-rouge">where</code> clause.</p>
+
+<p>First, let’s look at the code and a reproduction of the business problem scenario:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td> --><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">updateMsgHeight</span><span class="p">:(</span><span class="n">SYMessage</span> <span class="o">*</span><span class="p">)</span><span class="nv">msg</span> <span class="nf">toTable</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">tableName</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tableName</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">messageId</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[[</span><span class="n">self</span> <span class="nf">dataBase</span><span class="p">]</span> <span class="nf">updateRowsInTable</span><span class="p">:[</span><span class="n">self</span> <span class="nf">tablenameByID</span><span class="p">:</span><span class="n">tableName</span><span class="p">]</span>
+                                          <span class="nl">onProperty:</span><span class="n">SYMessage</span><span class="p">.</span><span class="n">chatMsgHeight</span>
+                                           <span class="nl">withValue:</span><span class="n">msg</span><span class="p">.</span><span class="n">chatMsgHeight</span>
+                                               <span class="nl">where:</span><span class="p">{</span><span class="n">SYMessage</span><span class="p">.</span><span class="n">messageId</span> <span class="o">==</span> <span class="n">msg</span><span class="p">.</span><span class="n">messageId</span> <span class="o">&amp;&amp;</span> 
+                                               		  <span class="n">SYMessage</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">type</span><span class="p">}];</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/assets/images/20210406WCDBPractice/chatlist.avif" alt="chatlist" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">cell</code> heights look wrong.</p>
+
+<p>After inspecting the database file with the <a href="https://github.com/FLEXTool/FLEX">FLEX tool</a>, I found that the <code class="language-plaintext highlighter-rouge">chatMsgHeight</code> values in the database were all identical.</p>
+
+<p><img src="/assets/images/20210406WCDBPractice/chatlist2.avif" alt="chatlist" /></p>
+
+<p>After carefully checking all the SQL statements, I found one call like this in the console:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>UPDATE msg_10003600 SET <span class="nv">chatMsgHeight</span><span class="o">=</span>? WHERE 1.000000 
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Its correct form should be:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre>SQL: UPDATE msg_10003600 SET <span class="nv">chatMsgHeight</span><span class="o">=</span>? WHERE <span class="o">((</span><span class="nv">messageId</span><span class="o">=</span><span class="s1">'936542df77de41778139a42b4f4be296'</span><span class="o">)</span> AND <span class="o">(</span><span class="nb">type</span><span class="o">=</span>2<span class="o">))</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>No need to think twice — the condition after <code class="language-plaintext highlighter-rouge">where</code> in the <code class="language-plaintext highlighter-rouge">SQL</code> statement was always <code class="language-plaintext highlighter-rouge">true</code>, which produced this bug so elementary it couldn’t get any more elementary.</p>
+
+<p>Here’s the corrected code:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td> --><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">updateMsgHeight</span><span class="p">:(</span><span class="n">SYMessage</span> <span class="o">*</span><span class="p">)</span><span class="nv">msg</span> <span class="nf">toTable</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">tableName</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tableName</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">messageId</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[[</span><span class="n">self</span> <span class="nf">dataBase</span><span class="p">]</span> <span class="nf">updateRowsInTable</span><span class="p">:[</span><span class="n">self</span> <span class="nf">tablenameByID</span><span class="p">:</span><span class="n">tableName</span><span class="p">]</span>
+                                          <span class="nl">onProperty:</span><span class="n">SYMessage</span><span class="p">.</span><span class="n">chatMsgHeight</span>
+                                           <span class="nl">withValue:</span><span class="n">msg</span><span class="p">.</span><span class="n">chatMsgHeight</span>
+                                               <span class="nl">where:</span><span class="p">{</span><span class="n">SYMessage</span><span class="p">.</span><span class="n">messageId</span> <span class="o">==</span> <span class="n">msg</span><span class="p">.</span><span class="n">messageId</span> <span class="o">&amp;&amp;</span> 
+                                               		  <span class="n">SYMessage</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">msg</span><span class="p">.</span><span class="n">type</span><span class="p">}];</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The problem was that it should be <code class="language-plaintext highlighter-rouge">SYMessage.type == msg.type</code>, not <code class="language-plaintext highlighter-rouge">SYMessage.type = msg.type</code>.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">==</code> means strictly equal
+<code class="language-plaintext highlighter-rouge">=</code> means assignment
+WCDB doesn’t flag an error because this isn’t an error — it’s a normal code assignment, and the C++ compiler won’t complain either.</p>
+</blockquote>
+
+<p>So watch out for this <code class="language-plaintext highlighter-rouge">pitfall</code>, folks. It was clearly caused by me leaving out an equals sign — after all, WCDB isn’t a compiler and can’t correct for us the <code class="language-plaintext highlighter-rouge">lexical analysis</code>, <code class="language-plaintext highlighter-rouge">syntax analysis</code>, <code class="language-plaintext highlighter-rouge">semantic analysis</code>, or <code class="language-plaintext highlighter-rouge">grammar analysis</code> errors covered in compiler theory.</p>
+
+<h3 id="my-honest-experience-after-using-wcdb">My honest experience after using WCDB</h3>
+
+<p>Fast! Convenient! Clean code!</p>
+
+<p>I migrated all the core modules involved in the chat feature — the conversation list, the message list, all of it — to WCDB.</p>
+
+<p>Another pitfall worth noting for everyone: when migrating from FMDB to WCDB, always remember — <code class="language-plaintext highlighter-rouge">go all the way or don't go at all</code>: replace everything in one pass, otherwise queue deadlocks and contention can easily occur. Don’t believe me? Try it and see.</p>
+
+<h3 id="documentation-roundup">Documentation roundup</h3>
+
+<p><a href="https://www.bookstack.cn/read/tencent-wcdb/66f893c12ef91f78.md">WCDB — Tencent’s open-source mobile database framework</a> — this link opens fast in China</p>
+
+<p><a href="https://github.com/FLEXTool/FLEX">FLEX debugging tool</a> — lets you inspect in real time all kinds of UIViews, network, objects, memory, sandbox files, and more inside the app.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>Next I plan to read WCDB’s source implementation and share some frequently used techniques. WCDB made me relearn database fundamentals all over again.</p>
+
+:ET

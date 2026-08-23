@@ -1,0 +1,152 @@
+I"�+<p><img src="/assets/images/20170713ios11NewSkills/whatisnewsinios11.avif" alt="whatisnewsinios" /></p>
+
+<h2 id="可用性检查api">可用性检查API</h2>
+
+<p>在swift代码中经常可以看到 某个API 适用于 iOS10.0</p>
+
+<p>如下代码</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td> --><td class="rouge-code"><pre>	<span class="k">if</span> <span class="p">(</span><span class="kd">@available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">,</span> <span class="o">*</span><span class="p">))</span> <span class="p">{</span>
+		<span class="c1">//iOS 11可用 </span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="c1">//老版本API</span>
+	<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>在Xcode9 中, 编译器增加了 Objective-C 版本的 API 可用性检查</p>
+
+<h5 id="通过api_available宏来标注方法的可用性">通过<code class="language-plaintext highlighter-rouge">API_AVAILABLE</code>宏来标注方法的可用性</h5>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre><span class="k">@interface</span> <span class="nc">ViewController</span> <span class="p">:</span> <span class="nc">UIViewController</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">xxxMethodA</span> <span class="nf">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mi">11</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">xxxMethodB</span> <span class="nf">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mi">8</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">macos</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">10</span><span class="p">),</span> <span class="n">watchos</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span> <span class="n">tvos</span><span class="p">(</span><span class="mi">9</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+<span class="k">@end</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>切记 <code class="language-plaintext highlighter-rouge">macos</code>、<code class="language-plaintext highlighter-rouge">ios</code>、<code class="language-plaintext highlighter-rouge">watchos</code>、<code class="language-plaintext highlighter-rouge">tvos</code>都是小写</p>
+</blockquote>
+
+<p>通过这种写法进行可用性判断, 编辑器就不会产生警告了, 并且在<code class="language-plaintext highlighter-rouge">运行时</code>就根据iOS系统版本执行相应代码.</p>
+
+<h5 id="通过api_available宏来标注整个class的可用性">通过<code class="language-plaintext highlighter-rouge">API_AVAILABLE</code>宏来标注整个<code class="language-plaintext highlighter-rouge">class</code>的可用性</h5>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre><span class="n">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mi">11</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span>
+<span class="k">@interface</span> <span class="nc">A</span> <span class="p">:</span> <span class="nc">NSObject</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">xxxMothod</span><span class="p">;</span>
+<span class="k">@end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>看了大家会发现 这个 都是用于OC的代码 那C/C++ 有吗? 必须有</p>
+
+<h5 id="cc-代码-可以使用-">C/C++ 代码 可以使用 ``</h5>
+
+<p>判断是否可用</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre>
+<span class="k">if</span> <span class="p">(</span><span class="n">__builtin_available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">,</span> <span class="n">macOS</span> <span class="mf">10.13</span><span class="p">,</span> <span class="o">*</span><span class="p">))</span> <span class="p">{</span>
+     <span class="n">xxxxFunc</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre><span class="c1">//导入头文件</span>
+<span class="cp">#include</span> <span class="cpf">&lt;os/availability.h&gt;</span><span class="c1"> </span><span class="cp">
+</span>
+<span class="c1">//可用性判断用于 声明函数 </span>
+<span class="kt">void</span> <span class="nf">myFunctionForiOS11OrNewer</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="n">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mf">11.0</span><span class="p">),</span> <span class="n">macos</span><span class="p">(</span><span class="mf">10.13</span><span class="p">));</span>  
+
+<span class="c1">//可用性判断 用于类 XXXClassA</span>
+<span class="k">class</span> <span class="nc">API_AVAILABLE</span><span class="p">(</span><span class="n">ios</span><span class="p">(</span><span class="mf">11.0</span><span class="p">),</span> <span class="n">macos</span><span class="p">(</span><span class="mf">10.13</span><span class="p">))</span> <span class="n">XXXClassA</span><span class="p">;</span>  
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>默认 <code class="language-plaintext highlighter-rouge">API_AVAILABLE()</code> 只能用于 <code class="language-plaintext highlighter-rouge">iOS 11</code> / <code class="language-plaintext highlighter-rouge">tvOS 11</code> / <code class="language-plaintext highlighter-rouge">macOS 10.13</code> / <code class="language-plaintext highlighter-rouge">watchOS 4</code> 以上的 API 生效</p>
+
+<p>如果就工程想使用这种llvm新版特性的话 需要修改 <code class="language-plaintext highlighter-rouge">buid setting</code>里面的 <code class="language-plaintext highlighter-rouge">Unguarded availability</code>  如下图:</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/availability.avif" alt="availability" /></p>
+
+<h2 id="静态分析">静态分析</h2>
+
+<p>前面的文章我又讲过<a href="https://www.sunyazhou.com/2017/06/EnableStaticAnalyer/">静态分析</a></p>
+
+<p>这里说一下变化</p>
+
+<h3 id="nsnumbercfnumberred-静态分析-延时">NSNumber/CFNumberRed 静态分析 延时</h3>
+
+<p>当我们错误的判断 NSNumber时  静态分析 则给出了提示</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/error.avif" alt="error" /></p>
+
+<p>在Xcode9 中可以直接把这种倍忽视 的问题改成 当错误处理</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/static.avif" alt="static" /></p>
+
+<h2 id="开启-lto-并设置为-incremental-模式">开启 LTO 并设置为 Incremental 模式</h2>
+
+<p>链接时优化（以下简称 <code class="language-plaintext highlighter-rouge">LTO</code>）是 LLVM 的一项优化特性，其主要原理是:</p>
+
+<p><em>利用对象文件经过一些优化得到的中间格式在链接阶段再进行深度优化，包含代码逻辑层面的分析，去除实际未用到的函数、变量、甚至局部代码片段，继而减小安装包大小，同时提高了运行时的效率。</em></p>
+
+<p>对于 LTO，Xcode 9 做出的改进主要是在进一步优化了编译速度。 苹果演示的例子是以某个大型 C++ 工程为参考，对于一次完整链接，Xcode 9 比 Xcode 8 提升了 35%；对于一次增量链接，Xcode 9 比 Xcode 8 提升了近 60%。</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/lto1.avif" alt="lto" /></p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/lto2.avif" alt="lto" /></p>
+
+<p>开启LTO</p>
+
+<p><img src="/assets/images/20170713ios11NewSkills/LTO.avif" alt="LTO" /></p>
+
+<p>据说对包大小和运行时速度有 10% 左右的优化</p>
+
+<h2 id="gcd-统一队列标识">GCD 统一队列标识</h2>
+
+<p>统一队列标识是指我们在工程中散落在各处的创建队列，如果队列标识是一样的，他们在内核中会被 bind 在一起，其效率可以提高 30%。Apple 没有告诉我们其内核是怎么做到的，它提供了这样的建议，如果一类操作重要性程度或其他属性接近，亦或开发者希望散落在工程各处的代码可以放在同一个队列里去控制，那么我们在创建队列的时候就可以指定一个共同的标识符。 然后系统在内核中会把这些标识相同的队列 bind 到一起来管理</p>
+
+<p>如下代码 如果app里面都使用同一个字符串 的话 效率可以提高30%</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre>	<span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_queue_create</span><span class="p">(</span><span class="s">"com.sunyazhou.demo.queue"</span><span class="p">,</span> <span class="n">DISPATCH_QUEUE_CONCURRENT</span><span class="p">);</span>
+    <span class="n">dispatch_async</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+       <span class="c1">//异步执行代码写在这里</span>
+    <span class="p">});</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>老实说 工程里面 避免不了文件上传下载 或者耗时任务处理  如果 整体搞成一个queue显然 不太符合业务需求 如果尽量保持 一个标识的Queue的话 也只能根据 业务分类来做到  可以有机会尝试一下</p>
+</blockquote>
+
+<p>全文完</p>
+
+:ET

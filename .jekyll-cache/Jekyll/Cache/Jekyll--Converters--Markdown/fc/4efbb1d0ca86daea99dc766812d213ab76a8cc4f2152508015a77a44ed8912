@@ -1,0 +1,40 @@
+I"	<p><img src="/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif" alt="i OS Interview Questions Album Cover" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This article is strongly personal in tone. If you find it uncomfortable to read, please close it as soon as possible. This article is only a personal learning record. You are welcome to repost or share it within the scope of the license agreement, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<p>In this article, we’ll talk about the performance optimization related questions from <a href="https://mp.weixin.qq.com/s/bDnsaD__ZpdHIk3_So382w">Alibaba &amp; ByteDance: A Set of Efficient iOS Interview Questions</a>.</p>
+
+<h2 id="performance-optimization">Performance Optimization</h2>
+
+<p>Here are the main optimizations:</p>
+
+<ol>
+  <li>How to optimize startup, and how to monitor it</li>
+  <li>How to optimize lag, and how to monitor it</li>
+  <li>How to optimize battery consumption, and how to monitor it</li>
+  <li>How to optimize networking, and how to monitor it</li>
+</ol>
+
+<p>First, optimization must be approached from multiple dimensions to yield significant gains.</p>
+
+<p>Here I recommend carefully analyzing your own project and studying Dai Ming’s article <a href="https://ming1016.github.io/2019/12/07/how-to-analyze-startup-time-cost-in-ios/">How to Analyze iOS Startup Time Cost</a>.</p>
+
+<p>You must analyze and approach it from multiple dimensions.</p>
+
+<p>The runtime initialization process is divided into:</p>
+
+<ul>
+  <li>Loading class extensions</li>
+  <li>Loading C++ static objects</li>
+  <li>Calling +load functions</li>
+  <li>Executing the main function</li>
+  <li>Application initialization, until applicationDidFinishLaunchingWithOptions finishes executing
+Initializing frame rendering, until viewDidAppear finishes executing, when the user can see and interact with the UI.</li>
+</ul>
+
+<h1 id="summary">Summary</h1>
+
+<p>There are no standard answers for performance optimization, so I’m sharing an important article as a starting point and reference. As long as you achieve the intended optimization goals and keep the program stable, that’s enough.</p>
+:ET

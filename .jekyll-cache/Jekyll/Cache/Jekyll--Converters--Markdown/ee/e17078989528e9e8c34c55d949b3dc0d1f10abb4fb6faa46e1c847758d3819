@@ -1,0 +1,67 @@
+I"<p><img src="/assets/images/20220701ReverseList/algorithm.avif" alt="algorithm" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This post carries strong personal sentiment; if you feel uncomfortable reading it, please close it as soon as possible. This post is only a personal learning record. Reposting or sharing within the license terms is welcome; please respect copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h1 id="the-problem">The Problem</h1>
+
+<p>Given an integer array <code class="language-plaintext highlighter-rouge">nums</code>, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.</p>
+
+<p>A <code class="language-plaintext highlighter-rouge">subarray</code> is a contiguous part of an array.</p>
+
+<h4 id="example-1">Example 1</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>Input: nums <span class="o">=</span> <span class="o">[</span><span class="nt">-2</span>,1,-3,4,-1,2,1,-5,4]
+Output: 6
+Explanation: The contiguous subarray <span class="o">[</span>4,-1,2,1] has the largest <span class="nb">sum</span>, which is 6.
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="example-2">Example 2</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>Input: nums <span class="o">=</span> <span class="o">[</span>1]
+Output: 1
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="example-3">Example 3</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>Input: nums <span class="o">=</span> <span class="o">[</span>5,4,-1,7,8]
+Output: 23
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="answer">Answer</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">int</span> <span class="n">maxSubArray</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">pre</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">maxAns</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="n">x</span><span class="o">:</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">pre</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span> <span class="n">pre</span> <span class="o">+</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+            <span class="n">maxAns</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">maxAns</span><span class="p">,</span><span class="n">pre</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">maxAns</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><a href="https://leetcode.cn/problems/maximum-subarray/">53. Maximum Subarray</a><br />
+<a href="https://codetop.cc/home">Reference from codetop</a></p>
+:ET

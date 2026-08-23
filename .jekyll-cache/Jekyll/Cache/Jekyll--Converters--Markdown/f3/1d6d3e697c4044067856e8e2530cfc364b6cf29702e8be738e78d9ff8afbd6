@@ -1,0 +1,445 @@
+I"I�<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<p>本文翻译自</p>
+
+<p><strong>作者：</strong> Pavel Zak<br />
+<strong>发布：</strong> 2024年6月27日<br />
+<strong>原文：</strong> https://nerdyak.tech/development/2024/06/27/particle-effects-with-SwiftUI-Canvas.html</p>
+
+<hr />
+
+<p>在我之前的一篇文章中，我分享了一种在 SwiftUI 中创建粒子效果的简单方法——利用 <code class="language-plaintext highlighter-rouge">ViewModifier</code>，非常简洁。但我不推荐在生产环境中使用，因为每个粒子都是一个独立的视图，粒子数量稍多时性能开销就会很大。</p>
+
+<p>本文介绍一种<strong>更优的替代方案</strong>：使用 <code class="language-plaintext highlighter-rouge">Canvas</code> 视图来渲染粒子。Let’s go 💪</p>
+
+<hr />
+
+<h2 id="基础架构">基础架构</h2>
+
+<p>我们从以下视图骨架开始：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">ParticleCanvasView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">TimelineView</span><span class="p">(</span><span class="o">.</span><span class="n">animation</span><span class="p">)</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
+            <span class="kt">Canvas</span> <span class="p">{</span> <span class="n">context</span><span class="p">,</span> <span class="n">size</span> <span class="k">in</span>
+                <span class="k">let</span> <span class="nv">particleSymbol</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="nf">resolveSymbol</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">!</span>
+                <span class="k">let</span> <span class="nv">position</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">size</span><span class="o">.</span><span class="n">width</span><span class="sr">/2, y: size.height/</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">context</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="n">particleSymbol</span><span class="p">,</span> <span class="nv">at</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span> <span class="nv">anchor</span><span class="p">:</span> <span class="o">.</span><span class="n">center</span><span class="p">)</span>
+            <span class="p">}</span> <span class="nv">symbols</span><span class="p">:</span> <span class="p">{</span>
+                <span class="kt">SingleParticleView</span><span class="p">()</span>
+                    <span class="o">.</span><span class="nf">tag</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这里有一个外层的 <code class="language-plaintext highlighter-rouge">TimelineView</code>，它负责定期触发内部视图的重绘。内容主体是 <code class="language-plaintext highlighter-rouge">Canvas</code> 视图。</p>
+
+<p>对于有 UIKit 背景的同学，绘图上下文（drawing context）的概念应该不陌生：我们拿到一块具有尺寸信息的画布区域，然后在上面绘制各种元素——形状、图像等。</p>
+
+<p>在我们的例子里，要绘制的粒子由 <code class="language-plaintext highlighter-rouge">SingleParticleView</code> 表示。注意它被放在 <code class="language-plaintext highlighter-rouge">symbols</code> 参数里——这意味着 SwiftUI 会<strong>预渲染</strong>它，后续每次绘制调用都极为高效，非常适合大量粒子的场景 ;)</p>
+
+<p>先把 <code class="language-plaintext highlighter-rouge">SingleParticleView</code> 定义成一个橙色小圆点：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">SingleParticleView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">Circle</span><span class="p">()</span><span class="o">.</span><span class="nf">fill</span><span class="p">(</span><span class="kt">Color</span><span class="o">.</span><span class="n">orange</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">frame</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">35</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/assets/images/20260316MagicalParticleEffectsWithSwiftUICanvas/16_01.avif" alt="静态粒子效果" /></p>
+
+<hr />
+
+<h2 id="让它动起来">让它动起来</h2>
+
+<p>现在来让粒子运动。</p>
+
+<p>我想实现一个类似火焰的效果——多个粒子向上飘动。先从最简单的做起：让单个粒子从画布底部周期性地向上移动：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">ParticleCanvasView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">movementDuration</span> <span class="o">=</span> <span class="mf">2.0</span>
+    
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">TimelineView</span><span class="p">(</span><span class="o">.</span><span class="n">animation</span><span class="p">)</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
+            <span class="k">let</span> <span class="nv">timeInterval</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">timeIntervalSinceReferenceDate</span>
+
+            <span class="k">let</span> <span class="nv">time</span> <span class="o">=</span> <span class="n">timeInterval</span><span class="o">.</span><span class="nf">truncatingRemainder</span><span class="p">(</span><span class="nv">dividingBy</span><span class="p">:</span> <span class="n">movementDuration</span><span class="p">)</span> <span class="o">/</span> <span class="n">movementDuration</span>
+            
+            <span class="kt">Canvas</span> <span class="p">{</span> <span class="n">context</span><span class="p">,</span> <span class="n">size</span> <span class="k">in</span>
+                <span class="k">let</span> <span class="nv">particleSymbol</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="nf">resolveSymbol</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">!</span>
+                <span class="k">let</span> <span class="nv">position</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">size</span><span class="o">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="n">size</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+                <span class="n">context</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="n">particleSymbol</span><span class="p">,</span> <span class="nv">at</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span> <span class="nv">anchor</span><span class="p">:</span> <span class="o">.</span><span class="n">center</span><span class="p">)</span>
+            <span class="p">}</span> <span class="nv">symbols</span><span class="p">:</span> <span class="p">{</span>
+                <span class="kt">SingleParticleView</span><span class="p">()</span><span class="o">.</span><span class="nf">tag</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>通过 <code class="language-plaintext highlighter-rouge">time</code> 变量控制向上的运动。<code class="language-plaintext highlighter-rouge">TimelineView</code> 提供了时间属性，但我们需要一个标准化的值，方便与粒子运动绑定。这里设定每次运动持续 2 秒（<code class="language-plaintext highlighter-rouge">movementDuration</code>），用截断余数让 <code class="language-plaintext highlighter-rouge">time</code> 永远周期性地从 0 增长到 1。</p>
+
+<p><a href="/assets/images/20260316MagicalParticleEffectsWithSwiftUICanvas/16_video_01.webm">视频：线性运动演示</a></p>
+
+<hr />
+
+<h2 id="还记得三角函数吗">还记得三角函数吗？</h2>
+
+<p>接下来，把运动从枯燥的直线升级成更有”火焰感”的样子 :)</p>
+
+<p>火焰的感觉是在飘动，所以让粒子沿<strong>余弦波</strong>路径运动，并且随着粒子升高振幅逐渐变小：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">ParticleCanvasView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">movementDuration</span> <span class="o">=</span> <span class="mf">2.0</span>
+    
+    <span class="kd">func</span> <span class="nf">particlePosition</span><span class="p">(</span><span class="nv">timeInterval</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">canvasSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGPoint</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">time</span> <span class="o">=</span> <span class="n">timeInterval</span><span class="o">.</span><span class="nf">truncatingRemainder</span><span class="p">(</span><span class="nv">dividingBy</span><span class="p">:</span> <span class="n">movementDuration</span><span class="p">)</span> <span class="o">/</span> <span class="n">movementDuration</span>
+        <span class="k">let</span> <span class="nv">rotations</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">let</span> <span class="nv">amplitude</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="n">canvasSize</span><span class="o">.</span><span class="n">width</span><span class="sr">/2 + cos(rotations * time * CGFloat.pi * 2) * canvasSize.width/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">amplitude</span>
+        <span class="k">return</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="n">canvasSize</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">TimelineView</span><span class="p">(</span><span class="o">.</span><span class="n">animation</span><span class="p">)</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
+            <span class="k">let</span> <span class="nv">timeInterval</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">timeIntervalSinceReferenceDate</span>
+            <span class="kt">Canvas</span> <span class="p">{</span> <span class="n">context</span><span class="p">,</span> <span class="n">size</span> <span class="k">in</span>
+                <span class="k">let</span> <span class="nv">particleSymbol</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="nf">resolveSymbol</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">!</span>
+                <span class="k">let</span> <span class="nv">position</span> <span class="o">=</span> <span class="nf">particlePosition</span><span class="p">(</span><span class="nv">timeInterval</span><span class="p">:</span> <span class="n">timeInterval</span><span class="p">,</span> <span class="nv">canvasSize</span><span class="p">:</span> <span class="n">size</span><span class="p">)</span>
+                <span class="n">context</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="n">particleSymbol</span><span class="p">,</span> <span class="nv">at</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span> <span class="nv">anchor</span><span class="p">:</span> <span class="o">.</span><span class="n">center</span><span class="p">)</span>
+            <span class="p">}</span> <span class="nv">symbols</span><span class="p">:</span> <span class="p">{</span>
+                <span class="kt">SingleParticleView</span><span class="p">()</span><span class="o">.</span><span class="nf">tag</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>位置计算被提取到独立函数里，保持 Canvas 闭包的整洁。</p>
+
+<p><a href="/assets/images/20260316MagicalParticleEffectsWithSwiftUICanvas/16_video_02.webm">视频：余弦波运动演示</a></p>
+
+<hr />
+
+<h2 id="生成大量粒子">生成大量粒子</h2>
+
+<p>运动效果令人满意了。现在把绘制包进 for 循环，一次画出更多粒子：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td> --><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">particleCount</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="c1">// …</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="n">particleCount</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">position</span> <span class="o">=</span> <span class="nf">particlePosition</span><span class="p">(</span>
+        <span class="nv">timeInterval</span><span class="p">:</span> <span class="n">timeInterval</span> <span class="o">+</span> <span class="p">(</span><span class="kt">Double</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="kt">Double</span><span class="p">(</span><span class="n">particleCount</span><span class="p">)),</span>
+        <span class="nv">canvasSize</span><span class="p">:</span> <span class="n">size</span>
+    <span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="n">particleSymbol</span><span class="p">,</span> <span class="nv">at</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span> <span class="nv">anchor</span><span class="p">:</span> <span class="o">.</span><span class="n">center</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><a href="/assets/images/20260316MagicalParticleEffectsWithSwiftUICanvas/16_video_03.webm">视频：多粒子演示</a></p>
+
+<hr />
+
+<h2 id="随机化">随机化</h2>
+
+<p>粒子多了，但都走同一条路径，看起来太整齐。用随机的<strong>初始旋转角</strong>和<strong>时间偏移</strong>让每个粒子各走各的路：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">ParticleCanvasView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">movementDuration</span><span class="p">:</span> <span class="kt">Double</span>
+    <span class="k">let</span> <span class="nv">particleCount</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">let</span> <span class="nv">startingParticleOffsets</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]</span>
+    <span class="k">let</span> <span class="nv">startingParticleAlphas</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]</span>
+    
+    <span class="nf">init</span><span class="p">(</span><span class="nv">particleCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">movementDuration</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">particleCount</span> <span class="o">=</span> <span class="n">particleCount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">movementDuration</span> <span class="o">=</span> <span class="n">movementDuration</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">startingParticleOffsets</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="n">particleCount</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="kt">CGFloat</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="mi">0</span><span class="o">...</span><span class="mi">1</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">startingParticleAlphas</span>  <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="n">particleCount</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="kt">CGFloat</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="mi">0</span><span class="o">...</span><span class="kt">CGFloat</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">particlePosition</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">timeInterval</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">canvasSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGPoint</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">startingRotation</span>  <span class="o">=</span> <span class="n">startingParticleAlphas</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">let</span> <span class="nv">startingTimeOffset</span> <span class="o">=</span> <span class="n">startingParticleOffsets</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">movementDuration</span>
+        
+        <span class="k">let</span> <span class="nv">time</span> <span class="o">=</span> <span class="p">(</span><span class="n">timeInterval</span> <span class="o">+</span> <span class="n">startingTimeOffset</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">truncatingRemainder</span><span class="p">(</span><span class="nv">dividingBy</span><span class="p">:</span> <span class="n">movementDuration</span><span class="p">)</span> <span class="o">/</span> <span class="n">movementDuration</span>
+        <span class="k">let</span> <span class="nv">rotations</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">let</span> <span class="nv">amplitude</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span>
+        
+        <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="n">canvasSize</span><span class="o">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="nf">cos</span><span class="p">(</span><span class="n">rotations</span> <span class="o">*</span> <span class="n">time</span> <span class="o">*</span> <span class="kt">CGFloat</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">startingRotation</span><span class="p">)</span>
+                 <span class="o">*</span> <span class="n">canvasSize</span><span class="o">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">amplitude</span>
+        <span class="k">return</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="n">canvasSize</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="c1">// … body 部分不变</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><a href="/assets/images/20260316MagicalParticleEffectsWithSwiftUICanvas/16_video_04.webm">视频：随机化粒子演示</a></p>
+
+<hr />
+
+<h2 id="优化视觉效果">优化视觉效果</h2>
+
+<p>运动逻辑完成了，还需要打磨外观，让效果更”出汁”。</p>
+
+<p><strong>第一步：</strong> 随着运动改变粒子透明度——在 draw 调用前修改上下文的 opacity：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre><span class="n">context</span><span class="o">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="n">positionAndAlpha</span><span class="o">.</span><span class="mi">1</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>第二步：</strong> 利用混合模式重新设计粒子外观：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">SingleParticleView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">Circle</span><span class="p">()</span><span class="o">.</span><span class="nf">fill</span><span class="p">(</span><span class="kt">Color</span><span class="o">.</span><span class="n">orange</span><span class="o">.</span><span class="nf">opacity</span><span class="p">(</span><span class="mf">0.4</span><span class="p">))</span>
+            <span class="o">.</span><span class="nf">frame</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">35</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">blendMode</span><span class="p">(</span><span class="o">.</span><span class="n">plusLighter</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">blur</span><span class="p">(</span><span class="nv">radius</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>粒子被做成大的模糊圆点，重叠时通过 <code class="language-plaintext highlighter-rouge">.plusLighter</code> 混合增亮交叠区域，从而形成火焰的体积感。</p>
+
+<p>还有一个困扰我的问题：粒子在顶部更密集，我希望反过来。调整 y 坐标公式解决：</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">time</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="n">canvasSize</span><span class="o">.</span><span class="n">height</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><a href="/assets/images/20260316MagicalParticleEffectsWithSwiftUICanvas/16_video_05.webm">视频：透明度效果</a></p>
+
+<p><a href="/assets/images/20260316MagicalParticleEffectsWithSwiftUICanvas/16_video_06.webm">视频：blendMode 效果</a></p>
+
+<hr />
+
+<h2 id="最终完整代码">最终完整代码</h2>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+</pre></td> --><td class="rouge-code"><pre><span class="kd">struct</span> <span class="kt">ParticleCanvasView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">movementDuration</span><span class="p">:</span> <span class="kt">Double</span>
+    <span class="k">let</span> <span class="nv">particleCount</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">let</span> <span class="nv">startingParticleOffsets</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]</span>
+    <span class="k">let</span> <span class="nv">startingParticleAlphas</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]</span>
+    
+    <span class="nf">init</span><span class="p">(</span><span class="nv">particleCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">movementDuration</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">particleCount</span> <span class="o">=</span> <span class="n">particleCount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">movementDuration</span> <span class="o">=</span> <span class="n">movementDuration</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">startingParticleOffsets</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="n">particleCount</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="kt">CGFloat</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="mi">0</span><span class="o">...</span><span class="mi">1</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">startingParticleAlphas</span>  <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="n">particleCount</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="kt">CGFloat</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="mi">0</span><span class="o">...</span><span class="kt">CGFloat</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">particlePositionAndAlpha</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">timeInterval</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">canvasSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">CGPoint</span><span class="p">,</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">startingRotation</span>   <span class="o">=</span> <span class="n">startingParticleAlphas</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">let</span> <span class="nv">startingTimeOffset</span> <span class="o">=</span> <span class="n">startingParticleOffsets</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">movementDuration</span>
+        
+        <span class="k">let</span> <span class="nv">time</span> <span class="o">=</span> <span class="p">(</span><span class="n">timeInterval</span> <span class="o">+</span> <span class="n">startingTimeOffset</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">truncatingRemainder</span><span class="p">(</span><span class="nv">dividingBy</span><span class="p">:</span> <span class="n">movementDuration</span><span class="p">)</span> <span class="o">/</span> <span class="n">movementDuration</span>
+        <span class="k">let</span> <span class="nv">rotations</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">1.5</span>
+        <span class="k">let</span> <span class="nv">amplitude</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span>
+        
+        <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="n">canvasSize</span><span class="o">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="nf">cos</span><span class="p">(</span><span class="n">rotations</span> <span class="o">*</span> <span class="n">time</span> <span class="o">*</span> <span class="kt">CGFloat</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">startingRotation</span><span class="p">)</span>
+                 <span class="o">*</span> <span class="n">canvasSize</span><span class="o">.</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="mf">0.8</span>
+        <span class="k">let</span> <span class="nv">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">time</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="n">canvasSize</span><span class="o">.</span><span class="n">height</span>
+        
+        <span class="nf">return</span> <span class="p">(</span><span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="n">y</span><span class="p">),</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">time</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">TimelineView</span><span class="p">(</span><span class="o">.</span><span class="n">animation</span><span class="p">)</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
+            <span class="k">let</span> <span class="nv">timeInterval</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">timeIntervalSinceReferenceDate</span>
+            <span class="kt">Canvas</span> <span class="p">{</span> <span class="n">context</span><span class="p">,</span> <span class="n">size</span> <span class="k">in</span>
+                <span class="k">let</span> <span class="nv">particleSymbol</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="nf">resolveSymbol</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">!</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="n">particleCount</span> <span class="p">{</span>
+                    <span class="k">let</span> <span class="nv">positionAndAlpha</span> <span class="o">=</span> <span class="nf">particlePositionAndAlpha</span><span class="p">(</span>
+                        <span class="nv">index</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="nv">timeInterval</span><span class="p">:</span> <span class="n">timeInterval</span><span class="p">,</span> <span class="nv">canvasSize</span><span class="p">:</span> <span class="n">size</span>
+                    <span class="p">)</span>
+                    <span class="n">context</span><span class="o">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="n">positionAndAlpha</span><span class="o">.</span><span class="mi">1</span>
+                    <span class="n">context</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="n">particleSymbol</span><span class="p">,</span> <span class="nv">at</span><span class="p">:</span> <span class="n">positionAndAlpha</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="nv">anchor</span><span class="p">:</span> <span class="o">.</span><span class="n">center</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="nv">symbols</span><span class="p">:</span> <span class="p">{</span>
+                <span class="kt">SingleParticleView</span><span class="p">()</span><span class="o">.</span><span class="nf">tag</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><a href="/assets/images/20260316MagicalParticleEffectsWithSwiftUICanvas/16_video_07.webm">视频：最终效果</a></p>
+
+<hr />
+
+<h2 id="现在轮到你了">现在轮到你了！</h2>
+
+<p>可以继续探索的方向：</p>
+<ul>
+  <li>改变粒子外观（形状、颜色、尺寸）</li>
+  <li>修改粒子运动路径</li>
+  <li>组合多种粒子类型</li>
+  <li>响应用户输入</li>
+  <li>💫 更多可能……</li>
+</ul>
+:ET

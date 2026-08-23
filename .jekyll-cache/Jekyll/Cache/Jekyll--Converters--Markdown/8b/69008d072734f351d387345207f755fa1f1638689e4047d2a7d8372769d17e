@@ -1,0 +1,58 @@
+I"o<h1 id="前言">前言</h1>
+
+<p>喜欢在博客文章打开的时候 播放一首背景音乐, 但Markdown本身是不支持插入音频视频,带着这个疑问开始这篇文章.</p>
+
+<h2 id="markdown插入音乐">markdown插入音乐</h2>
+
+<p><code class="language-plaintext highlighter-rouge">markdown</code>其实就是 一种<code class="language-plaintext highlighter-rouge">html</code>的转换语法,其实内部也同时支持直接写<code class="language-plaintext highlighter-rouge">html</code>标签, 如果不了解各种标签请点击<a href="https://www.w3schools.com/tags/tag_iframe.asp">w3cschool</a>查看各种 API 的用法,此时要用到的标签为<code class="language-plaintext highlighter-rouge">iframe</code>，代码如下所示，其中</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">div</code>用于控制格式，若无则默认为居左</li>
+  <li><code class="language-plaintext highlighter-rouge">frameborder</code>用于规定是否显示框架周围的边框，1为是，0为否</li>
+  <li><code class="language-plaintext highlighter-rouge">marginwidth</code>及<code class="language-plaintext highlighter-rouge">marginheight</code>表示距离边缘的像素大小</li>
+  <li><code class="language-plaintext highlighter-rouge">width</code>及<code class="language-plaintext highlighter-rouge">height</code>表示播放条的长度和宽度</li>
+  <li><code class="language-plaintext highlighter-rouge">src</code>为播放链接，可以在如网易云音乐的<code class="language-plaintext highlighter-rouge">生成外链播放器</code>获取该链接，同时也获得以下代码，并可以自行更改；也可将音频链接改为视频链接，从而播放视频</li>
+</ul>
+
+<blockquote>
+  <p>值得注意的是，音频和视频在默认情况下是会自动循环播放的，可以修改链接的值进行修改 
+在<code class="language-plaintext highlighter-rouge">src</code>域中，<code class="language-plaintext highlighter-rouge">auto</code>值表示是否自动播放，当值为<code class="language-plaintext highlighter-rouge">1</code>时为自动播放，<code class="language-plaintext highlighter-rouge">0</code>则不是
+在<code class="language-plaintext highlighter-rouge">src</code>域中，有些链接会附有<code class="language-plaintext highlighter-rouge">height</code>或<code class="language-plaintext highlighter-rouge">width</code>值，其表示表示播放框的基本宽高，可以更换其值以获得想要的播放框大小，此时可以不用填写外部的<code class="language-plaintext highlighter-rouge">width</code>及<code class="language-plaintext highlighter-rouge">height</code>.</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre><span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">life</span><span class="nt">&gt;</span> 
+<span class="nt">&lt;iframe</span> <span class="na">frameborder=</span><span class="s">"no"</span> <span class="na">marginwidth=</span><span class="s">"0"</span> <span class="na">marginheight=</span><span class="s">"0"</span> <span class="na">width=</span><span class="s">400</span> <span class="na">height=</span><span class="s">140</span> <span class="na">src=</span><span class="s">"https://music.163.com/outchain/player?type=2&amp;id=34341360&amp;auto=0&amp;height=66"</span><span class="nt">&gt;&lt;/iframe&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div align="life"> 
+<iframe frameborder="no" marginwidth="0" marginheight="0" width="400" height="140" src="https://music.163.com/outchain/player?type=2&amp;id=34341360&amp;auto=0&amp;height=66"></iframe>
+</div>
+
+<h2 id="接口说明">接口说明</h2>
+
+<p>这里面可以看到 用了</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre>https://music.163.com/outchain/player?type=2&amp;id=34341360&amp;auto=0&amp;height=66
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这个接口的<code class="language-plaintext highlighter-rouge">id=34341360</code>是从这里获取的</p>
+
+<p><img src="/assets/images/20171227MarkdownAudio/markdownAudio1.avif" alt="markdown Audio" /></p>
+
+<p>找到<code class="language-plaintext highlighter-rouge">复制链接</code>,然后用浏览器打开.</p>
+
+<p><img src="/assets/images/20171227MarkdownAudio/markdownAudio2.avif" alt="markdown Audio" /></p>
+
+<p>后边的 <code class="language-plaintext highlighter-rouge">id=34341360</code>就是我们要的 <code class="language-plaintext highlighter-rouge">id</code> 然后接口替换就可以了</p>
+
+<p>更多技巧可参考以前写的一篇文章<br />
+<a href="https://www.sunyazhou.com/2017/10/MarkdownSkill/">markdown折叠</a>  <br />
+<a href="https://www.sunyazhou.com/2017/09/MarkdownTable/">markdown 表格</a></p>
+
+<p>全文完</p>
+:ET

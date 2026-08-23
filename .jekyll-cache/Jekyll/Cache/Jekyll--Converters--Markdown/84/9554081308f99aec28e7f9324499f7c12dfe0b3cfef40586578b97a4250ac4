@@ -1,0 +1,190 @@
+I"S8<p><img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/album.avif" alt="album" /></p>
+
+<h1 id="preface">Preface</h1>
+<blockquote>
+  <p>No matter when you graduate or when you start working, this article of mine will be the chapter I recommend to you before you step onto campus or while you’re in college. <strong>If you study well, you must keep it up; studying poorly doesn’t mean there’s no chance in the future</strong>, and if you plan to major in something computer-related, I can tell you everything I’ve learned and the essential study gear I used, holding nothing back, and it can save you most of your study budget.</p>
+</blockquote>
+
+<h1 id="computer-science-study-path">Computer Science Study Path</h1>
+
+<p><a href="https://hackway.org/docs/cs/intro">Computer Science Study Path</a><br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/learnCSLine.avif" alt="learn CS Line" /></p>
+
+<p>It is said the site owner is a Peking University student who compiled a computer science study path based on prestigious American universities’ CS curricula.</p>
+
+<p>The link above is the most recently updated source for learning CS courses, last updated on 2023/06/30 ↑↑↑.</p>
+
+<h2 id="three-main-aspects">Three Main Aspects</h2>
+
+<ul>
+  <li>Books</li>
+  <li>Skills</li>
+  <li>Gear</li>
+</ul>
+
+<h3 id="books">Books</h3>
+<p>Let’s start with books — the classic must-haves for computer science in college.</p>
+
+<ul>
+  <li>
+    <p>C Programming Language (Tan Haoqiang) <strong>Must-learn</strong><br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/CLanguage.avif" alt="C Language" /></p>
+  </li>
+  <li>
+    <p><a href="https://item.jd.com/11076338.html">Tsinghua University Press Computer Science Series: Data Structures (C Language Edition)</a> <strong>Must-learn</strong><br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/DataStructure.avif" alt="Data Structure" /></p>
+  </li>
+  <li>
+    <p><a href="https://item.jd.com/10064429.html">Brother Bird’s Linux Private Kitchen (Basic Study, 3rd Edition)</a> <strong>Must-learn</strong><br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/linux.avif" alt="linux" /></p>
+  </li>
+</ul>
+
+<p><em><a href="https://github.com/torvalds">Linus Torvalds’ Blog</a></em></p>
+
+<ul>
+  <li>
+    <p><a href="https://item.jd.com/11017238.html">C++</a><br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/Cplusplus.avif" alt="Cplusplus" /></p>
+  </li>
+  <li>
+    <p>Git <br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/git.avif" alt="git" /></p>
+  </li>
+  <li>
+    <p>Databases<br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/sqlite.avif" alt="sqlite" /></p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>This one is important. You can simply think of it as an Excel spreadsheet, except the data is stored in a file. e.g., SQLite, SQL Server</p>
+</blockquote>
+
+<p>The books above can be bought in print. As for Python, Java, JS, Node.js, machine learning, and similar topics, you don’t need to buy books. But since I know many of you are short on cash, you can download e-book versions from the internet and learn just the same — for example iBooks (EPUB format on Macs), Kindle (MOBI format), and the commonly used PDF format. <strong>But I still recommend you don’t buy them; read on patiently</strong></p>
+
+<h3 id="skills">Skills</h3>
+
+<ul>
+  <li><a href="https://github.com/sunyazhou13/free-programming-books-zh_CN">Free Programming Books Index (Chinese)</a> This is the reason you don’t need to buy books — all the computer-related technical books, video tutorials, blogs, and other resources are all here. Yes, you read that right: one link does it all.</li>
+  <li>Learn how to set up your own blog, so you can record what you learn and boost your influence.
+For details, refer to my article <a href="https://www.sunyazhou.com/2017/02/BuildHexoBlogTutorial/">How to Build a Hexo Blog</a></li>
+  <li>Try to get up one hour earlier each day to read and preview what will be covered in class.</li>
+  <li>Read the blogs of masters in the field.</li>
+  <li>Subscribe to various blogs for new posts (I recommend an app called Reeder) <br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/Reeder.avif" alt="Reeder" /></li>
+</ul>
+
+<p>(Beginners probably don’t yet know who the masters in each field are; you can figure that out gradually.)
+I’m studying the iOS direction, so here’s a GitHub link to learning resources and a list of masters for me.</p>
+
+<ul>
+  <li><a href="https://github.com/tangqiaoboy/iOSBlogCN">Chinese iOS/Mac Development Blog List</a> Yes, once again you’re reading right — it’s one link, and it shows you how to feed blogs’ RSS into the Reeder app</li>
+  <li><a href="http://blog.devtang.com/2014/07/27/ios-levelup-tips/">Tang Qiao’s Blog</a></li>
+</ul>
+
+<p>Below is my Reeder<br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/ReederDetail.avif" alt="Reeder Detail" /></p>
+
+<h3 id="gear">Gear</h3>
+
+<p>This is what concerns everyone most, and it’s also what makes parents most anxious.</p>
+
+<p>College gear really does matter — that’s true. So let me start with the computer.</p>
+
+<ul>
+  <li>Mac computer (Apple computer, MacBook)<br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/macbook.avif" alt="macbook" /><br />
+Because it perfectly combines the Unix-based shell with an excellent graphical interface (say goodbye to Windows PCs; this machine will carry you through until you start working)</li>
+</ul>
+
+<h4 id="option-1-premium--luxurious"><strong>Option 1 (Premium &amp; Luxurious)</strong></h4>
+<p>If you have higher requirements, you can buy the <a href="https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.9.7HDqEB&amp;id=44131265268&amp;skuId=79231665633&amp;areaId=110100&amp;standard=1&amp;user_id=1669409267&amp;cat_id=2&amp;is_b=1&amp;rn=892765ac3efe1f5cd3df8f0d2eb48f87">MacBook Pro MF839CH</a> <code class="language-plaintext highlighter-rouge">￥7988</code></p>
+
+<p>The 840 model seems to be pricier. Of course, these are for students from better-off families.<br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/macbookPRO.avif" alt="macbook PRO" /></p>
+
+<h4 id="option-2-lightweight--practical"><strong>Option 2 (Lightweight &amp; Practical)</strong></h4>
+
+<p>If your requirements are average, you can also save money and get a 13.3-inch
+<a href="https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.1.7HDqEB&amp;id=530945296812&amp;skuId=3163301283248&amp;areaId=110100&amp;standard=1&amp;user_id=2616970884&amp;cat_id=2&amp;is_b=1&amp;rn=892765ac3efe1f5cd3df8f0d2eb48f87">MacBook Air 13.3</a> which is more than enough — one of my coworkers has used his for over 5 years. <code class="language-plaintext highlighter-rouge">￥6488</code><br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/macbookair.avif" alt="macbookair" /></p>
+
+<p>You’re probably thinking this is expensive. But since I said I’d help you save money, I will — keep reading.</p>
+
+<h4 id="option-3-on-a-shoestring-budget"><strong>Option 3 (On a Shoestring Budget)</strong></h4>
+
+<p>There’s an Apple computer that’s really cheap, called the <a href="https://www.apple.com/cn/mac-mini/">Mac mini</a>. The Hong Kong version on Taobao is around <code class="language-plaintext highlighter-rouge">￥3300</code>.</p>
+
+<p><img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/macmini.avif" alt="macmini" /></p>
+
+<p>Note: <strong><em>It doesn’t come with a monitor, mouse, or keyboard</em></strong> — you’ll need to buy a mouse and keyboard yourself. You can buy a second-hand monitor, but as far as I remember, most colleges can provide monitors for students to rent. Monitor + mouse + keyboard, 1500 RMB for new ones is enough.</p>
+
+<p>This fully satisfies study and everyday use; it’s just that many people aren’t used to it — Apple keyboards and PC keyboards have slightly different key layouts.
+But no worries: you can buy a Bluetooth keyboard compatible with Apple for 50 RMB on Taobao.</p>
+
+<p>In my opinion this is the best option — economical and practical.</p>
+
+<p>OK, we’re done with computers. Let’s move on.</p>
+
+<ul>
+  <li>Raspberry Pi<br />
+Let me first introduce this — it’s the cheapest and smallest computer I’ve ever seen, and it can run various Linux operating systems. It’s just ARM-level, but it’s very suitable for students to learn on, because a simple TF card can serve as its hard drive, and keyboard, mouse, Wi-Fi, Bluetooth, and network card are all supported — and it only costs around <code class="language-plaintext highlighter-rouge">￥275</code>.
+Yes, it’s that cheap, and it’s imported from the UK. If you get a domestic one, it’s only <code class="language-plaintext highlighter-rouge">￥230</code><br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/raspberry.avif" alt="raspberry" /></li>
+</ul>
+
+<p>Why is the Raspberry Pi a must-have? Because while learning Linux, you don’t want to keep messing around reinstalling different operating systems on your main computer. Actually, it’s not strictly necessary, but for learning the shell, I suggest using this — it’s more convenient.
+It’s a must-have for computer-science students who like to tinker, learn technologies, and play with tech.</p>
+
+<p>When I grow old, I’ll definitely put this in my museum.</p>
+
+<p><em>Note: this needs a monitor, mouse, and keyboard. If you chose Option 3 above, this is a great match.</em></p>
+
+<ul>
+  <li>
+    <p>Smartphone<br />
+For phones, I can only recommend buying an iPhone or a cheaper Android.<br />
+iPhone 5s/SE, around <code class="language-plaintext highlighter-rouge">￥3288</code><br />
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/iPhone.avif" alt="i Phone" />
+If you’re doing iOS development, of course you need to buy an iPhone. It’s not about the money — we’re in an era of explosive growth in mobile internet, so you need a decent device ready for whenever you might need it.</p>
+  </li>
+  <li>
+    <p>Kindle</p>
+
+    <p>The Kindle is a great device for reading. All the books mentioned above can be pushed to this device for free by following some WeChat public accounts. A tiny device can hold a ton of books, making relaxed study easy without hauling around a pile of heavy, useless books.  <code class="language-plaintext highlighter-rouge">￥558</code>
+<img src="/assets/images/20170429CmputerScienceAndTechnologyClassic/kindle.avif" alt="kindle" /></p>
+  </li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>It’s fair to say that after reading this article, at least you’ll know how to study and how to find study materials easily.</p>
+
+<p>Now let’s tally up the bill for back-to-school gear.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Computer + Raspberry Pi + Smartphone + Kindle = College Study Security</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">Option 1 + Raspberry Pi + Smartphone + Kindle</code>	= ?<br />
+<code class="language-plaintext highlighter-rouge">￥7988</code> + <code class="language-plaintext highlighter-rouge">￥275</code> + <code class="language-plaintext highlighter-rouge">￥3288</code> +  <code class="language-plaintext highlighter-rouge">￥558</code> = <code class="language-plaintext highlighter-rouge">￥12109</code> — I figure this one is hard for most parents to accept; it suits the premium &amp; luxurious type.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Option 2 + Raspberry Pi + Smartphone + Kindle </code>	= ?  <br />
+<code class="language-plaintext highlighter-rouge">￥6488</code> + <code class="language-plaintext highlighter-rouge">￥275</code> + <code class="language-plaintext highlighter-rouge">￥3288</code> +  <code class="language-plaintext highlighter-rouge">￥558</code> = <code class="language-plaintext highlighter-rouge">￥10609</code> — this is also over 10K. The main cost is the phone; if you can save a bit on the phone, you’d probably get under 10K.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Option 3 + Raspberry Pi + Smartphone + Kindle </code>	= ?  <br />
+<code class="language-plaintext highlighter-rouge">￥3300</code> + <code class="language-plaintext highlighter-rouge">￥275</code> + <code class="language-plaintext highlighter-rouge">￥3288</code> +  <code class="language-plaintext highlighter-rouge">￥558</code> = <code class="language-plaintext highlighter-rouge">￥7421</code></p>
+
+<p>This includes the main devices. Considering you still need to rent a monitor and a keyboard, let’s add <code class="language-plaintext highlighter-rouge">￥1000</code> for now.</p>
+
+<p><code class="language-plaintext highlighter-rouge">￥3300</code> + <code class="language-plaintext highlighter-rouge">￥275</code> + <code class="language-plaintext highlighter-rouge">￥3288</code> +  <code class="language-plaintext highlighter-rouge">￥558</code> + <code class="language-plaintext highlighter-rouge">￥1000</code> = <code class="language-plaintext highlighter-rouge">￥8421</code></p>
+
+<p>In the end it’s still over 8K. But this is already relatively frugal. If you get an Android phone, here’s what it looks like:</p>
+
+<p><code class="language-plaintext highlighter-rouge">￥3300</code> + <code class="language-plaintext highlighter-rouge">￥275</code> + <code class="language-plaintext highlighter-rouge">￥699</code> +  <code class="language-plaintext highlighter-rouge">￥558</code> + <code class="language-plaintext highlighter-rouge">￥1000</code> = <code class="language-plaintext highlighter-rouge">￥4832</code></p>
+
+<p>Yes, 5K is enough — this is actually the most economical option. If you don’t buy a phone and don’t buy a mouse and keyboard either, it’s just over 4K. Whether you’re a fresh graduate or a college student, remember to spend money where it counts, and make the most of your gear. Especially during college, you simply don’t need anything that fancy — as long as it works. Once you graduate and become self-sufficient, buying whatever you want won’t be a problem.</p>
+
+<p><strong>Make your college life a bit more organized.</strong></p>
+
+<p>The End</p>
+:ET

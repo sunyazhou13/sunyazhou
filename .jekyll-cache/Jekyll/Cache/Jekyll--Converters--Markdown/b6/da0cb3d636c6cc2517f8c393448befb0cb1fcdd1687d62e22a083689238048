@@ -1,0 +1,34 @@
+I"<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h2 id="如何检测一个cell滑动到屏幕以外">如何检测一个cell滑动到屏幕以外?</h2>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>
+<span class="c1">//判断cell视图是否在屏幕上.不在的话停止播放</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">scrollViewDidScroll</span><span class="p">:(</span><span class="n">UIScrollView</span> <span class="o">*</span><span class="p">)</span><span class="nv">scrollView</span><span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_currentPlayIndexPath</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">CGRect</span> <span class="n">cellR</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="nf">tableViewrectForRowAtIndexPath</span><span class="p">:</span><span class="n">_currentPlayIndexPath</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">scrollView</span><span class="p">.</span><span class="n">contentOffset</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">cellR</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">cellR</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span> <span class="o">||</span> <span class="n">scrollView</span><span class="p">.</span><span class="n">contentOffset</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">cellR</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">scrollView</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">){</span>
+            <span class="n">_currentPlayIndexPath</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+            <span class="c1">//做一些 滚动出屏幕以外的逻辑代码</span>
+        <span class="p">}</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">@"-------:%@"</span><span class="p">,</span><span class="n">NSStringFromCGPoint</span><span class="p">(</span><span class="n">scrollView</span><span class="p">.</span><span class="n">contentOffset</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+:ET

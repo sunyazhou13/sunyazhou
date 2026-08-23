@@ -1,0 +1,77 @@
+I"1<p><img src="/assets/images/20220701ReverseList/algorithm.avif" alt="algorithm" /></p>
+
+<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h1 id="如题">如题</h1>
+
+<p>给定一个整数数组<code class="language-plaintext highlighter-rouge">nums</code>和一个整数目标值<code class="language-plaintext highlighter-rouge">target</code>，请你在该数组中找出<code class="language-plaintext highlighter-rouge">和为目标值</code> <code class="language-plaintext highlighter-rouge">target</code>的那<code class="language-plaintext highlighter-rouge">两个</code>整数，并返回它们的数组下标。</p>
+
+<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
+
+<p>你可以按任意顺序返回答案。</p>
+
+<h4 id="示例1">示例1</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre>输入：nums <span class="o">=</span> <span class="o">[</span>2,7,11,15], target <span class="o">=</span> 9
+输出：[0,1]
+解释：因为 nums[0] + nums[1] <span class="o">==</span> 9 ，返回 <span class="o">[</span>0, 1] 。
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="示例2">示例2</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>输入：nums <span class="o">=</span> <span class="o">[</span>3,2,4], target <span class="o">=</span> 6
+输出：[1,2]
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="示例3">示例3</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>输入：nums <span class="o">=</span> <span class="o">[</span>3,3], target <span class="o">=</span> 6
+输出：[0,1]
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="answer">Answer</h2>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td> --><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">twoSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">};</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">{};</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><a href="https://leetcode.cn/problems/two-sum/">1. 两数之和</a><br />
+<a href="https://codetop.cc/home">引用自codetop</a></p>
+:ET

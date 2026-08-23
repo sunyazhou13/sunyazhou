@@ -1,0 +1,155 @@
+I"<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
+
+<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h1 id="背景">背景</h1>
+
+<p>很久以前记得很多人经常面试喜欢问 iOS的dSYM中ARM Thread State的寄存器有哪些,分别代表什么意思?</p>
+
+<p>基于一段数据 我们简单记录一下这个问题</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre>Thread 0 crashed with ARM Thread State <span class="o">(</span>64-bit<span class="o">)</span>:
+x0:000000000000000000
+x1:000000000000000000
+x2:0x000000016bd31ce0
+x3:0x000000016bd31d20
+x4:0x0000000000000010
+x5:0x00000000000022e0
+x6:0x00000002817762e0
+x7:0x00000000000000f0
+x8:0x0000000281f7b930
+x9:0x00000000000006bb
+x10:0x000000018aa49cf8
+x11:0x00ff0001238cf400
+x12:0x00000000000000b5
+x13:0x00000001238cff40
+x14:0x02000001e0ad6c89
+x15:0x00000001e0ad6c88
+x16:0x00000001d8922e40
+x17:0x00000001122301e8
+x18:000000000000000000
+x19:0x000000016bd31cc0
+x20:000000000000000000
+x21:000000000000000000
+x22:0x000000011222c21a
+x23:0x000000018652ddb0
+x24:000000000000000000
+x25:0x000000028115e880
+x26:0x000000010d8ca6ed
+x27:0x0000000281328930
+x28:0x0000000000000001
+fp:0x000000016bd31c60
+lr:0x0000000112216898
+sp:0x000000016bd31c30
+pc:0x00000001d8922e44
+cpsr:0x0000000060001000
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这是一段线程崩溃后的的 主线程crash 的线程状态</p>
+
+<h2 id="arm-thread-state寄存器含义">ARM Thread State寄存器含义</h2>
+
+<p>在iOS的dSYM中，ARM Thread State寄存器提供了程序崩溃时的上下文信息，以下是一些主要寄存器的含义：</p>
+
+<ul>
+  <li><strong>x0-x30</strong>：这些是通用寄存器，用于存储临时数据。在函数调用中，x0-x7通常用于传递参数，而x19-x28则用于保存局部变量和函数的返回地址。</li>
+  <li><strong>fp (Frame Pointer)</strong>：帧指针寄存器，通常用于指向当前函数的栈帧，以便于函数调用和返回时栈的管理和访问局部变量。</li>
+  <li><strong>lr (Link Register)</strong>：链接寄存器，存储着函数调用返回后的地址，即下一个要执行的指令地址。</li>
+  <li><strong>sp (Stack Pointer)</strong>：栈指针寄存器，指向当前线程的栈顶。</li>
+  <li><strong>pc (Program Counter)</strong>：程序计数器，指向下一条要执行的指令地址。</li>
+  <li><strong>cpsr (Current Program Status Register)</strong>：当前程序状态寄存器，包含处理器的状态和控制位，如条件标志位、中断使能位等。</li>
+</ul>
+
+<p>在您提供的崩溃日志中，pc寄存器的值为<code class="language-plaintext highlighter-rouge">0x00000001d8922e44</code>，这通常指向导致崩溃的指令地址。您可以使用<code class="language-plaintext highlighter-rouge">atos</code>命令结合dSYM文件来解析这个地址对应的代码位置，例如：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>atos <span class="nt">-arch</span> arm64 <span class="nt">-o</span> YourApp.app.dSYM/Contents/Resources/DWARF/YourApp <span class="nt">-l</span> 0xXXXXXXXX 0xXXXXXXXX
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>其中-arch arm64指定了架构，-o后面跟着的是dSYM文件的路径，-l后面跟着的是线程号和pc寄存器的值。这样可以帮助你找到崩溃发生时正在执行的代码行。</p>
+
+<h2 id="如何解析arm-thread-state寄存器中的pc值">如何解析ARM Thread State寄存器中的<code class="language-plaintext highlighter-rouge">pc</code>值？</h2>
+
+<p>解析ARM Thread State寄存器中的<code class="language-plaintext highlighter-rouge">pc</code>（Program Counter）值通常涉及到以下几个步骤：</p>
+
+<p>1.<strong>获取崩溃时的<code class="language-plaintext highlighter-rouge">pc</code>值</strong>：</p>
+
+<p>这是导致程序崩溃的指令的内存地址。在你的崩溃日志中，<code class="language-plaintext highlighter-rouge">pc</code>的值是<code class="language-plaintext highlighter-rouge">0x00000001d8922e44</code>。</p>
+
+<p>2.<strong>获取应用程序的dSYM文件</strong>：</p>
+
+<p>dSYM文件包含了应用程序的调试信息，包括符号表，这些符号表将内存地址映射到源代码中的函数和行号。确保你有对应崩溃时应用程序版本的dSYM文件。</p>
+
+<p>3.<strong>使用调试工具解析地址</strong>：</p>
+
+<p>你可以使用Xcode的调试工具，或者命令行工具如<code class="language-plaintext highlighter-rouge">atos</code>（Address to Symbol）来将<code class="language-plaintext highlighter-rouge">pc</code>值转换为源代码中的函数名和行号。</p>
+
+<p>使用<code class="language-plaintext highlighter-rouge">atos</code>的命令行示例如下：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>atos <span class="nt">-arch</span> arm64 <span class="nt">-o</span> YourApp.app.dSYM/Contents/Resources/DWARF/YourApp <span class="nt">-l</span> 0xXXXXXXXXXXXXXXXX 0xXXXXXXXXXXXXXXXX   
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>其中：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-arch arm64</code> 指定了架构类型。</li>
+  <li><code class="language-plaintext highlighter-rouge">-o</code> 后面跟着的是你的应用程序的dSYM文件路径。</li>
+  <li>` -l` 后面跟着的是线程号和pc寄存器的值。</li>
+</ul>
+
+<p>请将YourApp.app.dSYM/Contents/Resources/DWARF/YourApp替换为你的实际dSYM文件路径，将0xXXXXXXXXXXXXXXXX和0xXXXXXXXXXXXXXXXX替换为你的实际线程号和pc值。</p>
+
+<p>4.分析结果：
+atos命令会输出导致崩溃的函数名和行号。例如：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>0x00000001d8922e44: -[YourViewController yourMethod] <span class="o">(</span>YourViewController.m:123<span class="o">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这表明崩溃发生在YourViewController类的yourMethod方法中，位于YourViewController.m文件的第123行。</p>
+
+<p>5.调试和修复：
+根据解析出的函数名和行号，你可以在源代码中定位到具体的代码位置，进一步分析和修复导致崩溃的问题。</p>
+
+<h1 id="总结">总结</h1>
+
+<p>记录一下容易被遗忘的内容, 帮助修复工程中crash的问题</p>
+:ET

@@ -1,0 +1,210 @@
+I"5<p><img src="/assets/images/20200721iOSinterviewAnswers/iOSInterviewQuestionsAlbumCover.avif" alt="i OS Interview Questions Album Cover" /></p>
+
+<h1 id="preface">Preface</h1>
+
+<p>This post carries strong personal opinions; if reading it makes you uncomfortable, please close it right away. This article is only for my personal study notes. You’re welcome to repost or share it within the scope of the license — please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<p>In this post, we’ll cover the views &amp; graphics related questions from <a href="https://mp.weixin.qq.com/s/bDnsaD__ZpdHIk3_So382w">Alibaba &amp; ByteDance: An Efficient Set of iOS Interview Questions</a>.</p>
+
+<h2 id="views--graphics-related">Views &amp; Graphics Related</h2>
+
+<p>Here’s the main question list:</p>
+
+<ol>
+  <li>How does AutoLayout work, and how is its performance</li>
+  <li>Differences between UIView &amp; CALayer</li>
+  <li>The event response chain</li>
+  <li>When drawrect &amp; layoutsubviews get called</li>
+  <li>How UI refreshing works</li>
+  <li>Differences between implicit and explicit animations</li>
+  <li>What is off-screen rendering</li>
+  <li>Differences between imageName &amp; imageWithContentsOfFile</li>
+  <li>Will multiple identical images be loaded repeatedly</li>
+  <li>When are images decoded, and how to optimize</li>
+  <li>How to optimize image rendering</li>
+  <li>What happens if the GPU’s refresh rate exceeds the iOS screen’s 60Hz refresh rate, and how to fix it</li>
+</ol>
+
+<h3 id="1-how-does-autolayout-work-and-how-is-its-performance">1. How does AutoLayout work, and how is its performance?</h3>
+
+<h4 id="how-autolayout-works">How AutoLayout works</h4>
+
+<blockquote>
+  <p>Origin
+Most people assume Auto Layout is something Apple invented. Actually, no — as early as 1997, Alan Borning, Kim Marriott, Peter Stuckey and others published the paper “Solving Linear Arithmetic Constraints for User Interface Applications” (<a href="http://constraints.cs.washington.edu/solvers/uist97.html">paper link: http://constraints.cs.washington.edu/solvers/uist97.html</a>), which proposed the Cassowary constraint-solving algorithm implementation for layout problems, and released the code on their <a href="http://constraints.cs.washington.edu/cassowary/">Cassowary website http://constraints.cs.washington.edu/cassowary/</a>. Later, more developers wrote Cassowary in various languages — for example, pybee’s Python implementation at https://github.com/pybee/cassowary. Since its release, JavaScript, .NET, JAVA, Smalltalk, and C++ all have corresponding libraries. In 2011, Apple applied this algorithm in its own layout engine, grandly naming it Auto Layout.</p>
+</blockquote>
+
+<p>The paper’s download link is rather slow, so I downloaded a copy of the <a href="/assets/images/20200920UIViewGraphic/Cassowary.pdf">Cassowary original paper and put it on my blog — feel free to download</a>.</p>
+
+<p><strong>The principle of AutoLayout is using the Cassowary algorithm to abstract layout problems into linear inequalities, decomposed into constraints between multiple positions</strong>
+Since it adds the process of computing view size frames, its performance is definitely not as fast as specifying Frame coordinates directly.</p>
+
+<p>For detailed principles and advanced internals, please refer to teacher Dai Ming’s article:
+<a href="http://www.starming.com/2015/11/03/deeply-analyse-autolayout/">Written by Dai Ming: Deep Analysis of Auto Layout and the new features in each iOS version</a></p>
+
+<h4 id="how-is-its-performance">How is its performance?</h4>
+
+<p>Below is the live performance comparison of automatic layout under iOS12 vs. iOS11 from <a href="https://developer.apple.com/videos/play/wwdc2018/220/">WWDC2018 High Performance Auto Layout</a>.</p>
+
+<p><img src="/assets/images/20200920UIViewGraphic/HighPerformanceAutoLayoutiOS11iOS12Compare.avif" alt="High Performance Auto Layouti OS11i OS12Compare" /></p>
+
+<p>The experiments produced the chart conclusions below:</p>
+
+<p><img src="/assets/images/20200920UIViewGraphic/HighPerformanceAutoLayoutResult.avif" alt="High Performance Auto Layout Result" /></p>
+
+<p>Before iOS12, the impact of view nesting depth on performance grew exponentially; after iOS12’s optimization, the impact grows linearly, consuming little performance.</p>
+
+<p>No matter how it’s optimized, it still can’t be as direct and performant as setting with CGRectFrame.</p>
+
+<h3 id="2-differences-between-uiview--calayer">2. Differences between UIView &amp; CALayer</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Difference</th>
+      <th style="text-align: center">UIView</th>
+      <th style="text-align: center">CALayer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Parent class</td>
+      <td style="text-align: center">UIView:UIResponder:NSObject</td>
+      <td style="text-align: center">CALayer:NSObject</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Purpose</td>
+      <td style="text-align: center">Can handle touch events</td>
+      <td style="text-align: center">Doesn’t handle user interaction, doesn’t participate in response event delivery</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Relationship</td>
+      <td style="text-align: center">Has a CALayer member variable, eg: view.layer</td>
+      <td style="text-align: center">Is a member variable of UIView</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Division of labor</td>
+      <td style="text-align: center">Handles interaction-layer events and wraps simple settings of various graphics</td>
+      <td style="text-align: center">Renders graphics at a low level, supports animation</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="3-the-event-response-chain">3. The event response chain</h3>
+
+<p>I’ve mentioned the following article more than once in earlier posts when discussing runloop. Highly recommended reading — most of my Kuaishou colleagues take this understanding as the standard:</p>
+
+<p><a href="https://mp.weixin.qq.com/s/9rvSRt4kfpy7e87EJoaJOQ">iOS Touch Event: The Whole Shebang</a></p>
+
+<h3 id="4-when-drawrect--layoutsubviews-get-called">4. When drawrect &amp; layoutsubviews get called</h3>
+
+<p><code class="language-plaintext highlighter-rouge">layoutSubviews:</code> (equivalent to the layoutSubviews() function) is called in the following situations:</p>
+
+<ol>
+  <li>init does not trigger layoutSubviews.</li>
+  <li>addSubview triggers layoutSubviews.</li>
+  <li>Setting a view’s Frame triggers layoutSubviews (triggered when the frame changes).</li>
+  <li>Scrolling a UIScrollView triggers layoutSubviews.</li>
+  <li>Rotating the screen triggers the layoutSubviews event on the parent UIView.</li>
+  <li>Resizing a UIView also triggers the layoutSubviews event on the parent UIView.</li>
+  <li>Directly calling setLayoutSubviews.</li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">drawrect:</code> (the drawrect() function) is called in the following situations:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">drawrect:</code> is called after the UIViewController’s <code class="language-plaintext highlighter-rouge">loadView:</code> and <code class="language-plaintext highlighter-rouge">ViewDidLoad:</code> methods.</li>
+  <li>After we call <code class="language-plaintext highlighter-rouge">[UIFont sizeToFit]</code>, the system automatically calls <code class="language-plaintext highlighter-rouge">drawRect:</code></li>
+  <li>Setting a UIView’s contentMode or Frame immediately triggers the system to call <code class="language-plaintext highlighter-rouge">drawRect:</code></li>
+  <li>Directly calling <code class="language-plaintext highlighter-rouge">setNeedsDisplay</code> to set the flag, or <code class="language-plaintext highlighter-rouge">setNeedsDisplayInRect:</code>, triggers <code class="language-plaintext highlighter-rouge">drawRect:</code></li>
+</ol>
+
+<blockquote>
+  <p>Knowledge expansion: when we manipulate the drawRect method, we’re actually operating on the backingStore region in memory that holds the view, for subsequent graphics rendering operations. If this is unclear, see <a href="https://www.sunyazhou.com/2017/10/UIViewRendering/">The rendering process of UIView</a>.</p>
+</blockquote>
+
+<h3 id="5-how-ui-refreshing-works">5. How UI refreshing works</h3>
+
+<p>I’m not sure whether this question is asking about iOS’s off-screen rendering process, so let me briefly answer that.</p>
+
+<p>iOS’s <code class="language-plaintext highlighter-rouge">MainRunloop</code> is a 60fps callback — that is, the screen is drawn once every 16.7ms (milliseconds), during which the following work must be completed:</p>
+
+<ul>
+  <li>Creation of the view’s buffer</li>
+  <li>Drawing of the view’s content (if drawRect is overridden)</li>
+  <li>Receiving and processing system touch events</li>
+</ul>
+
+<p>The UI graphics we see are actually the result of continuous cooperation between the CPU and GPU. After <a href="https://www.sunyazhou.com/2017/10/UIViewRendering/">the rendering process of UIView</a>, our UI continuously receives the events the system gives us.</p>
+
+<p>Because the main thread’s runloop keeps callback-ing, our UI gets the window for refreshing. Whether rendering or handling events, it’s all the result of the runloop working non-stop. In earlier posts we learned that the main thread’s runloop is started by default, because we respond to interaction.</p>
+
+<p>I don’t know whether my answer satisfies this question. If my answer is wrong, please leave a comment below to let me know, and I’ll keep improving.</p>
+
+<h3 id="6-differences-between-implicit--explicit-animations">6. Differences between implicit &amp; explicit animations</h3>
+
+<p>Implicit animations always exist; to disable them, you must set a flag.
+Explicit animations don’t exist; to make one explicit, you have to enable it.</p>
+
+<p>Just observe the result after the animation finishes executing.
+For example: a simple UIView frame movement — if it moves from point A to point B, and upon completion returns to the original position, that’s an implicit animation.</p>
+
+<p>Core Animation is explicit animation, because it can animate layer properties directly and also override default layer behavior.</p>
+
+<h3 id="7-differences-between-imagename--imagewithcontentsoffile">7. Differences between imageName &amp; imageWithContentsOfFile</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Difference</th>
+      <th style="text-align: center">UIView</th>
+      <th style="text-align: center">imageWithContentsOfFile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Difference</td>
+      <td style="text-align: center">Caches the image in memory</td>
+      <td style="text-align: center">No caching</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="8-what-is-off-screen-rendering">8. What is off-screen rendering</h3>
+
+<p><img src="/assets/images/20200920UIViewGraphic/CoreAnimationPipeline.avif" alt="Core Animation Pipeline" /></p>
+
+<p><a href="https://zhuanlan.zhihu.com/p/72653360">An In-Depth Study of iOS Off-Screen Rendering</a></p>
+
+<h3 id="9-will-multiple-identical-images-be-loaded-repeatedly">9. Will multiple identical images be loaded repeatedly</h3>
+
+<p>No — the GPU has a pixel cache mask.</p>
+
+<h3 id="10-when-are-images-decoded-and-how-to-optimize">10. When are images decoded, and how to optimize</h3>
+
+<p>Decoding happens when loading into memory: from UIImage -&gt; CGImage -&gt; CGImageSourceCreateWithData(data) to create an ImageSource and turn it into a bitmap. All this work is done by Core Animation while the image is loaded into memory, stored in the backingStore, and decoded before being sent to the GPU pipeline for processing.</p>
+
+<h4 id="how-to-optimize">How to optimize</h4>
+
+<p>Manually operate the image encoding APIs yourself —</p>
+
+<p>the CGImageSource family. Based on sensible timing and use of operating system resources, tune out a library with small caching and fast loading.</p>
+
+<p>See the open-source <a href="https://github.com/pinterest/PINRemoteImage">PINRemoteImage</a> or <a href="https://github.com/ibireme/YYWebImage">YYWebImage</a></p>
+
+<h3 id="11-how-to-optimize-image-rendering">11. How to optimize image rendering</h3>
+
+<p>You can start with shadows and corner radius. Also frame rate, battery, image aliasing, and the like.</p>
+
+<p><a href="https://www.jianshu.com/p/748f9abafff8">iOS Development — View Rendering and Performance Optimization</a></p>
+
+<h3 id="12-what-happens-if-the-gpus-refresh-rate-exceeds-the-ios-screens-60hz-refresh-rate-and-how-to-fix-it">12. What happens if the GPU’s refresh rate exceeds the iOS screen’s 60Hz refresh rate, and how to fix it</h3>
+
+<p>The phenomenon: graphics are sharp and scenes look realistic, but an Arm-chip GPU refreshing above 60Hz is guaranteed to be a huge battery drain. The phone heats up and throttles down; FPS drops — because low power/battery can’t sustain a high GPU refresh rate.</p>
+
+<p>The solution is to use Xcode’s built-in tools to inspect the rendering process and see where it can be optimized.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>I briefly answered some graphics-related questions — most are about iOS off-screen rendering. This area deserves your serious study; a lot of the material takes time to go through.</p>
+:ET

@@ -1,0 +1,180 @@
+I"5><h1 id="preface">Preface</h1>
+
+<p>This article carries strong personal sentiment. If it makes you uncomfortable, please close it as soon as possible. This article is only for personal study records. Reprinting or sharing within the scope of the license is also welcome. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h2 id="the-swiftui-course">The SwiftUI Course</h2>
+
+<p>I’ve been persisting in learning SwiftUI recently. Over the weekend, when I had free time, I finished Chapter 4. What I mean by “watching” is hands-on practice plus tutorial study. Let me record some content that’s easy to forget.</p>
+
+<h3 id="main-contents">Main Contents</h3>
+
+<ul>
+  <li>Handling the TabBar transparency issue</li>
+  <li>Handling unit formatting issues</li>
+</ul>
+
+<h3 id="the-tabbar-transparency-issue">The TabBar Transparency Issue</h3>
+
+<p>After building various UIs with SwiftUI, I found that the TabBar view was being obscured,</p>
+
+<p><img src="/assets/images/20230805LearnSwiftUIChapter5/before.avif" alt="before" />
+<img src="/assets/images/20230805LearnSwiftUIChapter5/after.avif" alt="after" /></p>
+
+<p>and you need to use the following function <code class="language-plaintext highlighter-rouge">applyTabbarBackground()</code> when the app launches.</p>
+
+<pre><code class="language-swfit">import SwiftUI
+
+@main
+struct AppEntry: App {
+    init() {
+        applyTabbarBackground()
+    }
+    
+    var body: some Scene {
+        WindowGroup {
+            HomeScreen()
+        }
+    }
+    
+    func applyTabbarBackground() {
+        let tabbarAppearence = UITabBarAppearance()
+        tabbarAppearence.configureWithTransparentBackground()
+        tabbarAppearence.backgroundColor = .secondarySystemBackground.withAlphaComponent(0.3)
+        tabbarAppearence.backgroundEffect = UIBlurEffect(style: .systemChromeMaterial)
+        UITabBar.appearance().scrollEdgeAppearance = tabbarAppearence
+    }
+}
+</code></pre>
+
+<h4 id="handling-unit-formatting-issues">Handling Unit Formatting Issues</h4>
+
+<p>The iOS system provides an internationalized unit class, <code class="language-plaintext highlighter-rouge">Measurement</code>, to handle units like grams, g, pounds, etc.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">desciption</span> <span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">preferredUnit</span> <span class="o">=</span> <span class="kt">Unit</span><span class="o">.</span><span class="nf">getPreferredUnit</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">store</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">measureMent</span> <span class="o">=</span> <span class="kt">Measurement</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">wrappedValue</span><span class="p">,</span> <span class="nv">unit</span><span class="p">:</span> <span class="n">unit</span><span class="o">.</span><span class="n">dimension</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">converted</span> <span class="o">=</span> <span class="n">measureMent</span><span class="o">.</span><span class="nf">converted</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="n">preferredUnit</span><span class="o">.</span><span class="n">dimension</span><span class="p">)</span>
+<span class="c1">//        return converted.formatted(.measurement(width: .abbreviated, usage: .asProvided, numberFormatStyle: .number.precision(.fractionLength(0...1))))</span>
+        <span class="k">return</span> <span class="n">converted</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="nf">formatted</span><span class="p">(</span><span class="o">.</span><span class="n">number</span><span class="o">.</span><span class="nf">precision</span><span class="p">(</span><span class="o">.</span><span class="nf">fractionLength</span><span class="p">(</span><span class="mi">0</span><span class="o">...</span><span class="mi">1</span><span class="p">)))</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">preferredUnit</span><span class="o">.</span><span class="n">localizedSymbol</span>
+    <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Here I recommend checking out the official WWDC20 video <a href="https://developer.apple.com/videos/play/wwdc2020/10160/">Formatters: Make data human-friendly</a></p>
+
+<p>The video introduces tools that can format data such as dates, units, numbers, and text according to the user’s Locale.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>Actually, Chapter 5 talks a lot about the high-level wrapping of property wrappers. I think the content is too long; rather than me writing it all out here, you’re better off watching the <a href="https://www.bilibili.com/video/BV1bA411y71h/?spm_id_from=333.788&amp;vd_source=9309f71afe97e633abeadc8407870e76">tutorial video</a> yourself — the explanations are quite thorough.</p>
+
+<p>Secondly, a large portion covers unit testing. Since I’m not too keen on writing unit tests myself, I’ll skip it directly…</p>
+
+<p>I’ve been following this course and hope to gain something from it. Below are the course materials I’ve organized. Please take a look.</p>
+
+<h1 id="swiftui-introductory-course">SwiftUI Introductory Course</h1>
+<p>Place the related files of SwiftUI 入門課程 here, along with related links and further reading for each chapter.</p>
+
+<h3 id="chapter-1-basic-introduction">Chapter 1: Basic Introduction</h3>
+<p>Introduces the Xcode interface and the basic architecture of SwiftUI.</p>
+
+<h5 id="related-links">Related Links</h5>
+<ul>
+  <li><a href="https://mixpanel.com/trends">1-1 Website showing phone versions and upgrade trends</a></li>
+  <li><a href="https://www.flaticon.com/free-sticker/dinner_7603521">1-3 Source of the plate image used</a></li>
+  <li><a href="https://iosref.com/res">1-5 Website showing device information</a></li>
+  <li><a href="http://defagos.github.io/understanding_swiftui_layout_behaviors/">1-5 Further reading on layout types</a></li>
+  <li>If you’re coming from UIKit, you might ask where AppDelegate went.
+Pair it with <a href="https://developer.apple.com/documentation/swiftui/uiapplicationdelegateadaptor">this property wrapper</a>.
+However, if you just need to do some operations at launch, doing them in the App’s init is enough; for screen transition-related events, use <a href="https://developer.apple.com/documentation/swiftui/scenephase">ScenePhase</a>.</li>
+</ul>
+
+<hr />
+
+<h3 id="chapter-2-layout">Chapter 2: Layout</h3>
+<p>Practice layout and basic code refactoring.</p>
+
+<h5 id="related-links-1">Related Links</h5>
+<ul>
+  <li><a href="https://www.fatbobman.com/posts/centering_the_View_in_SwiftUI/">Several ways to center a view in SwiftUI</a></li>
+  <li>Besides using <strong>@ViewBuilder</strong> with computed properties as shown in the video, you might also <a href="https://swiftontap.com/viewbuilder">use it in init or closures</a>.</li>
+</ul>
+
+<hr />
+
+<h3 id="chapter-3-property-wrappers">Chapter 3: Property Wrappers</h3>
+<p>Introduces the commonly used property wrappers in SwiftUI: State, Binding, and Environment; practices creating lists and forms, and uses enums to organize code.</p>
+
+<h5 id="related-links-2">Related Links</h5>
+<ul>
+  <li><a href="https://developer.apple.com/documentation/swiftui/environmentvalues">EnvironmentValues environment variables</a></li>
+  <li>The “<strong>in a result builder, local variables are treated as the block being built</strong>” mentioned in the video — you can learn more in this <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0289-result-builders.md#the-result-builder-transform">evolution proposal</a>. Under the section <em>The result builder transform</em>, you can learn how result builders judge different statements.</li>
+</ul>
+
+<hr />
+
+<h3 id="chapter-4-data-persistence">Chapter 4: Data Persistence</h3>
+<p>Introduces iOS’s native data persistence methods and the concept of encoding, and implements a settings screen that uses AppStorage to store Boolean, enum, and Array data.</p>
+
+<h5 id="related-links-3">Related Links</h5>
+<ul>
+  <li><a href="https://developer.apple.com/documentation/swiftui/persistent-storage">Official data persistence documentation</a></li>
+  <li><a href="https://developer.apple.com/documentation/swiftui/view-presentation">Modifiers that add Presentation</a></li>
+  <li>The video mentions you can try to <strong>build your own AppStorage property wrapper</strong>. If interested, refer to <a href="https://www.avanderlee.com/swift/appstorage-explained/">this article by SwiftLee</a>, but this is relatively advanced content — you’ll need basic Combine concepts and an understanding of ObservableObject and DynamicProperty.</li>
+  <li>When using FileManager, you might need to know how to get file URLs.</li>
+</ul>
+
+<hr />
+
+<h3 id="chapter-5-testing">Chapter 5: Testing</h3>
+<p>Introduces basic testing concepts, Xcode’s testing interface, implements a test, and uses Measurement for unit conversion and displaying localized unit strings according to the user’s Locale.</p>
+
+<h5 id="related-links-4">Related Links</h5>
+<ul>
+  <li><a href="https://developer.apple.com/videos/play/wwdc2020/10160/">WWDC20: Localized formatting tools</a>, the video introduces tools that can format data such as dates, units, numbers, and text according to the user’s Locale.</li>
+  <li><a href="https://developer.apple.com/wwdc19/403">WWDC19: Introduction to Testing, Test Plans, and CI/CD</a></li>
+  <li>Understanding <a href="https://developer.apple.com/documentation/foundation/locale">Locale</a> — Locale doesn’t refer only to language, but combines language and region to provide more precise conventions. For example, even in the same English language, the order of writing dates still differs between countries.
+    <ul>
+      <li>If your app doesn’t support other languages yet, <strong>Locale will be set to your project’s base language</strong>. For a detailed introduction, see this article, which also provides <code class="language-plaintext highlighter-rouge">methods for getting the user's preferred / currently used language</code>. Before you do localization, you can try getting these values to force-modify the Locale.</li>
+    </ul>
+  </li>
+  <li><a href="https://sarunw.com/posts/swiftui-tabview-color/">Adding a background color to the toolbar in iOS 16</a>: the article focuses on the TabBar, but this <code class="language-plaintext highlighter-rouge">toolbarBackground</code> modifier can also modify the Navigation Bar.</li>
+  <li>You might notice that the TabBar looks different before iOS 14 🥲. If you want to unify it, you can refer to <a href="https://blog.personal-factory.com/2021/12/29/ios15-transparent-navigationbar-and-tabbar-by-default/">the code in this article</a> to make the changes.</li>
+</ul>
+
+<hr />
+
+<h3 id="chapter-6-network-calls">Chapter 6: Network Calls</h3>
+<p>Introduces basic networking concepts and further applications of Codable, and builds a new project that integrates <a href="https://thecatapi.com/">The Cat API</a>.
+The implementation of the new project includes:</p>
+<ul>
+  <li>Creating a Manager dedicated to handling networking.</li>
+  <li>Handling errors and showing alerts.</li>
+  <li>Observing reference types using <code class="language-plaintext highlighter-rouge">ObservableObject</code>.</li>
+  <li>Infinite Scroll that automatically loads more content.</li>
+  <li>Understanding the difference between the <code class="language-plaintext highlighter-rouge">.task</code> modifier and creating a new <code class="language-plaintext highlighter-rouge">Task</code>.</li>
+</ul>
+
+<h5 id="related-links-5">Related Links</h5>
+<ul>
+  <li>6-2 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status">Common HTTP status codes</a></li>
+  <li>6-2 <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">MIME type name lookup</a></li>
+  <li>6-2 <a href="https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy/useprotocolcachepolicy">Flowchart for deciding whether to use cached data</a></li>
+  <li>6-3 <a href="https://developer.apple.com/documentation/foundation/urlsessiondatadelegate/1411612-urlsession">The conditions for adding a response to the cache</a> mentioned in the video</li>
+  <li>6-5 <a href="https://app.quicktype.io/">The website for quickly generating JSON parsing code</a> used in the video. Remember, when using auto-generated code, always double-check it yourself, no matter how simple the data is.</li>
+  <li>6-8 <a href="https://developer.apple.com/documentation/swiftui/stateobject">StateObject documentation</a>: this document briefly introduces the three property wrappers used with <code class="language-plaintext highlighter-rouge">ObservableObject</code> and their update timing. I suggest reading the init and update parts; come back to it when you encounter StateObject being initialized repeatedly or not updating as expected.</li>
+  <li>6-8 If you have doubts about the difference between <strong>StateObject and ObservedObject</strong>, refer to onevcat’s <a href="https://onevcat.com/2020/06/stateobject/">this article</a>.</li>
+  <li>6-11 The difference between onAppear and the task modifier. I think the differences mentioned in this article are all quite important; besides what’s mentioned in the video, it also covers using task with an id.</li>
+  <li>6-11 If you’re unsure about when to use <code class="language-plaintext highlighter-rouge">Task</code> and <code class="language-plaintext highlighter-rouge">Task.detached</code>, refer to the <strong>When to use unstructured tasks</strong> and <strong>When to use detached tasks</strong> sections of <a href="https://www.donnywals.com/understanding-unstructured-and-detached-tasks-in-swift/">this article</a>.
+    <h6 id="additionally-the-mainstream-approach-nowadays-is-to-avoid-using-detached--not-because-its-bad-but-because-theres-no-strong-reason-to-use-it-ie-no-need-to-make-your-code-more-complex-however-i-personally-feel-that-detacheds-explicitness-is-very-helpful-for-initially-understanding-what-your-code-does-and-the-errors-and-warnings-arising-from-its-lack-of-inheritance-are-also-helpful-for-early-learning">Additionally, the mainstream approach nowadays is to avoid using detached — not because it’s bad, but because there’s no strong reason to use it (i.e., no need to make your code more complex). However, I personally feel that detached’s explicitness is very helpful for initially understanding what your code does, and the errors and warnings arising from its lack of inheritance are also helpful for early learning.</h6>
+  </li>
+  <li>6-11 If you want to learn more about when <code class="language-plaintext highlighter-rouge">onAppear</code> fires, check out this article on <a href="https://www.vadimbulavin.com/swiftui-view-lifecycle/">View lifecycle</a>.</li>
+  <li>6-11 As mentioned in the video, ObservableObject puts the entire View on the MainActor. <a href="https://oleb.net/2022/swiftui-task-mainactor/">This article</a> explains in detail the mysterious @MainActor situation of View structs. Once again, I don’t think you need to worry too much about this; when you encounter this error, just move it into the MainActor.</li>
+</ul>
+:ET

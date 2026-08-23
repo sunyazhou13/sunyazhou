@@ -1,0 +1,482 @@
+I"�<h1 id="preface">Preface</h1>
+
+<p>This article carries strong personal feelings. If you feel uncomfortable reading it, please close it as soon as possible. This article is only for personal learning records. Reposting or sharing within the scope of the license is welcome. Please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you think this site can help you, you can subscribe to this site via RSS. Thanks for your support!</p>
+
+<h2 id="background">Background</h2>
+
+<p><img src="/assets/images/20240322MasonryRelayoutViews/MasonryRelayout.avif" alt="Masonry Relayout" /></p>
+
+<p>During development, we often encounter situations where certain entries appear or disappear not in a specified time order. For example, for the three entries above, the appearance timings don’t follow a particular sequence, but the order of appearance is fixed. This creates some difficult problems, such as view A’s appearance depending on view B’s position; if B isn’t there, the dependency continues upward or downward.</p>
+
+<h2 id="the-challenges-we-face">The Challenges We Face</h2>
+
+<p>Given the background above, here are the problems we need to solve:</p>
+
+<ul>
+  <li>Assume the appearance or disappearance timing of the entry views is not sequential, but random.</li>
+  <li>Each entry view has dependencies, or a fixed order — how should this be handled?</li>
+  <li>Is there a simpler, more effective way to solve the above problems with a minimal amount of code?</li>
+</ul>
+
+<p>Based on the challenges above, let’s analyze how to solve them</p>
+
+<ul>
+  <li>All entry views need priorities; both adding and removing need to be sorted</li>
+  <li>The timing at which views are added is not fixed, so there must be a common method controlling their addition/removal — or rather, a method that must be called for both showing and hiding, used for layout</li>
+  <li>Can it be done in just a few lines with simple Masonry code?</li>
+</ul>
+
+<h3 id="the-optimal-implementation">The Optimal Implementation</h3>
+
+<p>First, let’s wrap a UIView subclass that exposes show and dismiss methods for each entry to the outside. Internally, whenever these entries are added or removed, a relayout function must be called. The relayout method sorts the existing views, then uniformly uses the methods Masonry provides to solve the layout problem.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td> --><td class="rouge-code"><pre><span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">,</span> <span class="n">MTContainerViewPriority</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MTContainerViewPriorityL1</span> <span class="o">=</span> <span class="mi">101</span><span class="p">,</span>
+    <span class="n">MTContainerViewPriorityL2</span> <span class="o">=</span> <span class="mi">102</span><span class="p">,</span>
+    <span class="n">MTContainerViewPriorityL3</span> <span class="o">=</span> <span class="mi">103</span><span class="p">,</span>
+    <span class="c1">//more ...</span>
+<span class="p">};</span>
+
+<span class="k">@interface</span> <span class="nc">MTContainerView</span> <span class="p">:</span> <span class="nc">UIView</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">showView1</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dismissView1</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">showView2</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dimissView2</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">showView3</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dismissView3</span><span class="p">;</span>
+
+<span class="k">@end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The implementation file</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+</pre></td> --><td class="rouge-code"><pre><span class="cp">#import "MTContainerView.h"
+#import &lt;Masonry/Masonry.h&gt;
+</span>
+<span class="k">const</span> <span class="n">CGSize</span> <span class="n">MTContainerSize</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">40</span> <span class="p">,</span> <span class="mi">40</span><span class="p">};</span>
+
+<span class="k">@interface</span> <span class="nc">MTContainerView</span> <span class="p">()</span>
+
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">UIView</span> <span class="o">*</span><span class="n">view1</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">UIView</span> <span class="o">*</span><span class="n">view2</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">UIView</span> <span class="o">*</span><span class="n">view3</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">MTContainerView</span>
+
+<span class="cp">#pragma mark -
+#pragma mark - private methods
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">layoutAllEntryViewsIfNeeded</span>
+<span class="p">{</span>
+    <span class="n">NSSortDescriptor</span> <span class="o">*</span><span class="n">ascendingSort</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSSortDescriptor</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithKey</span><span class="p">:</span><span class="s">@"tag"</span> <span class="nf">ascending</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+    <span class="n">NSArray</span> <span class="o">&lt;</span><span class="n">UIView</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">allEntries</span> <span class="o">=</span> <span class="p">[[</span><span class="n">self</span> <span class="nf">subviews</span><span class="p">]</span> <span class="nf">sortedArrayUsingDescriptors</span><span class="p">:[</span><span class="n">NSArray</span> <span class="nf">arrayWithObject</span><span class="p">:</span><span class="n">ascendingSort</span><span class="p">]];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">UIView</span> <span class="o">*</span><span class="n">entryView</span> <span class="o">=</span> <span class="p">[</span><span class="n">allEntries</span> <span class="nf">objectAtIndex</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">entryView</span> <span class="nf">mas_remakeConstraints</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">MASConstraintMaker</span> <span class="o">*</span><span class="n">make</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">mas_equalTo</span><span class="p">(</span><span class="n">MTContainerSize</span><span class="p">);</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">mas_right</span><span class="p">).</span><span class="n">offset</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">);</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">centerY</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">mas_centerY</span><span class="p">);</span>
+        <span class="p">}];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// Use mas_distributeViewsAlongAxis to align the three views horizontally to the right and spread them out</span>
+        <span class="p">[</span><span class="n">allEntries</span> <span class="nf">mas_remakeConstraints</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">MASConstraintMaker</span> <span class="o">*</span><span class="n">make</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">mas_equalTo</span><span class="p">(</span><span class="n">MTContainerSize</span><span class="p">);</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">centerY</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">mas_centerY</span><span class="p">);</span>
+        <span class="p">}];</span>
+        <span class="c1">// allEntries.count &gt;= 2 is required for the method below. The spacing formula: container width - used width (including right gap + each item's size + gaps between items)</span>
+        <span class="n">CGFloat</span> <span class="n">leadSpace</span> <span class="o">=</span> <span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">frame</span><span class="p">)</span> <span class="o">-</span> <span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">*</span> <span class="n">MTContainerSize</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">-</span> <span class="p">(</span><span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">allEntries</span> <span class="nf">mas_distributeViewsAlongAxis</span><span class="p">:</span><span class="n">MASAxisTypeHorizontal</span> <span class="nf">withFixedSpacing</span><span class="p">:</span><span class="mi">10</span> <span class="n">leadSpacing</span><span class="o">:</span><span class="n">leadSpace</span> <span class="n">tailSpacing</span><span class="o">:</span><span class="mi">10</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="p">[</span><span class="n">UIView</span> <span class="nf">animateWithDuration</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">3</span> <span class="nf">animations</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span> <span class="nf">layoutIfNeeded</span><span class="p">];</span>
+    <span class="p">}];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">UIColor</span> <span class="o">*</span><span class="p">)</span><span class="n">randomColor</span>
+<span class="p">{</span>
+    <span class="n">CGFloat</span> <span class="n">hue</span> <span class="o">=</span> <span class="p">(</span> <span class="n">arc4random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">256</span> <span class="o">/</span> <span class="mi">256</span><span class="p">.</span><span class="mi">0</span> <span class="p">);</span>  <span class="c1">//  0.0 to 1.0</span>
+    <span class="n">CGFloat</span> <span class="n">saturation</span> <span class="o">=</span> <span class="p">(</span> <span class="n">arc4random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span> <span class="o">/</span> <span class="mi">256</span><span class="p">.</span><span class="mi">0</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span>  <span class="c1">//  0.5 to 1.0, away from white</span>
+    <span class="n">CGFloat</span> <span class="n">brightness</span> <span class="o">=</span> <span class="p">(</span> <span class="n">arc4random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span> <span class="o">/</span> <span class="mi">256</span><span class="p">.</span><span class="mi">0</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span>  <span class="c1">//  0.5 to 1.0, away from black</span>
+    <span class="n">UIColor</span> <span class="o">*</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">colorWithHue</span><span class="p">:</span><span class="n">hue</span> <span class="nf">saturation</span><span class="p">:</span><span class="n">saturation</span> <span class="n">brightness</span><span class="o">:</span><span class="n">brightness</span> <span class="n">alpha</span><span class="o">:</span><span class="mi">1</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">color</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark -
+#pragma mark - public methods
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">showView1</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view1</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">view1</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIView</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">UIScreen</span><span class="p">.</span><span class="n">mainScreen</span><span class="p">.</span><span class="n">bounds</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MTContainerSize</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">MTContainerSize</span><span class="p">.</span><span class="n">height</span><span class="p">)];</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">view1</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nf">randomColor</span><span class="p">];</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">view1</span><span class="p">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">MTContainerViewPriorityL1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view1</span><span class="p">.</span><span class="n">superview</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">view1</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">layoutAllEntryViewsIfNeeded</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dismissView1</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view1</span><span class="p">.</span><span class="n">superview</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view1</span> <span class="nf">removeFromSuperview</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">view1</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">layoutAllEntryViewsIfNeeded</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">showView2</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view2</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">view2</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIView</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">UIScreen</span><span class="p">.</span><span class="n">mainScreen</span><span class="p">.</span><span class="n">bounds</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MTContainerSize</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">MTContainerSize</span><span class="p">.</span><span class="n">height</span><span class="p">)];</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">view2</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nf">randomColor</span><span class="p">];</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">view2</span><span class="p">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">MTContainerViewPriorityL2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view2</span><span class="p">.</span><span class="n">superview</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">view2</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">layoutAllEntryViewsIfNeeded</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dimissView2</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view2</span><span class="p">.</span><span class="n">superview</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view2</span> <span class="nf">removeFromSuperview</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">view2</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">layoutAllEntryViewsIfNeeded</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">showView3</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view3</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">view3</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIView</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">UIScreen</span><span class="p">.</span><span class="n">mainScreen</span><span class="p">.</span><span class="n">bounds</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MTContainerSize</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">MTContainerSize</span><span class="p">.</span><span class="n">height</span><span class="p">)];</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">view3</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nf">randomColor</span><span class="p">];</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">view3</span><span class="p">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">MTContainerViewPriorityL3</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view3</span><span class="p">.</span><span class="n">superview</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">view3</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">layoutAllEntryViewsIfNeeded</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dismissView3</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view3</span><span class="p">.</span><span class="n">superview</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view3</span> <span class="nf">removeFromSuperview</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">view3</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">layoutAllEntryViewsIfNeeded</span><span class="p">];</span>
+<span class="p">}</span>
+ 
+<span class="k">@end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Here we simulate adding views in no particular order and at different timings</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td> --><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">viewDidLoad</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">viewDidLoad</span><span class="p">];</span>
+    
+    <span class="n">self</span><span class="p">.</span><span class="n">continerView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MTContainerView</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">CGRectZero</span><span class="p">];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">continerView</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">cyanColor</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">continerView</span><span class="p">];</span>
+    
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">continerView</span> <span class="nf">mas_remakeConstraints</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">MASConstraintMaker</span> <span class="o">*</span><span class="n">make</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">make</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">);</span>
+        <span class="n">make</span><span class="p">.</span><span class="n">top</span><span class="p">.</span><span class="n">mas_equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">mas_topLayoutGuideBottom</span><span class="p">);</span>
+        <span class="n">make</span><span class="p">.</span><span class="n">height</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="mi">@60</span><span class="p">);</span>
+    <span class="p">}];</span>
+    
+    <span class="n">dispatch_after</span><span class="p">(</span><span class="n">dispatch_time</span><span class="p">(</span><span class="n">DISPATCH_TIME_NOW</span><span class="p">,</span> <span class="p">(</span><span class="kt">int64_t</span><span class="p">)(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">NSEC_PER_SEC</span><span class="p">)),</span> <span class="n">dispatch_get_main_queue</span><span class="p">(),</span> <span class="o">^</span><span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">continerView</span> <span class="nf">showView3</span><span class="p">];</span>
+    <span class="p">});</span>
+    <span class="n">dispatch_after</span><span class="p">(</span><span class="n">dispatch_time</span><span class="p">(</span><span class="n">DISPATCH_TIME_NOW</span><span class="p">,</span> <span class="p">(</span><span class="kt">int64_t</span><span class="p">)(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">NSEC_PER_SEC</span><span class="p">)),</span> <span class="n">dispatch_get_main_queue</span><span class="p">(),</span> <span class="o">^</span><span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">continerView</span> <span class="nf">showView1</span><span class="p">];</span>
+    <span class="p">});</span>
+    <span class="n">dispatch_after</span><span class="p">(</span><span class="n">dispatch_time</span><span class="p">(</span><span class="n">DISPATCH_TIME_NOW</span><span class="p">,</span> <span class="p">(</span><span class="kt">int64_t</span><span class="p">)(</span><span class="mi">7</span> <span class="o">*</span> <span class="n">NSEC_PER_SEC</span><span class="p">)),</span> <span class="n">dispatch_get_main_queue</span><span class="p">(),</span> <span class="o">^</span><span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">continerView</span> <span class="nf">showView2</span><span class="p">];</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="core-implementation-code">Core Implementation Code</h2>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre></td> --><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">layoutAllEntryViewsIfNeeded</span>
+<span class="p">{</span>
+    <span class="n">NSSortDescriptor</span> <span class="o">*</span><span class="n">ascendingSort</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSSortDescriptor</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithKey</span><span class="p">:</span><span class="s">@"tag"</span> <span class="nf">ascending</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+    <span class="n">NSArray</span> <span class="o">&lt;</span><span class="n">UIView</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">allEntries</span> <span class="o">=</span> <span class="p">[[</span><span class="n">self</span> <span class="nf">subviews</span><span class="p">]</span> <span class="nf">sortedArrayUsingDescriptors</span><span class="p">:[</span><span class="n">NSArray</span> <span class="nf">arrayWithObject</span><span class="p">:</span><span class="n">ascendingSort</span><span class="p">]];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">UIView</span> <span class="o">*</span><span class="n">entryView</span> <span class="o">=</span> <span class="p">[</span><span class="n">allEntries</span> <span class="nf">objectAtIndex</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">entryView</span> <span class="nf">mas_remakeConstraints</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">MASConstraintMaker</span> <span class="o">*</span><span class="n">make</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">mas_equalTo</span><span class="p">(</span><span class="n">MTContainerSize</span><span class="p">);</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">mas_right</span><span class="p">).</span><span class="n">offset</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">);</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">centerY</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">mas_centerY</span><span class="p">);</span>
+        <span class="p">}];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// Use mas_distributeViewsAlongAxis to align the three views horizontally to the right and spread them out</span>
+        <span class="p">[</span><span class="n">allEntries</span> <span class="nf">mas_remakeConstraints</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">MASConstraintMaker</span> <span class="o">*</span><span class="n">make</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">mas_equalTo</span><span class="p">(</span><span class="n">MTContainerSize</span><span class="p">);</span>
+            <span class="n">make</span><span class="p">.</span><span class="n">centerY</span><span class="p">.</span><span class="n">equalTo</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">mas_centerY</span><span class="p">);</span>
+        <span class="p">}];</span>
+        <span class="c1">// allEntries.count &gt;= 2 is required for the method below. The spacing formula: container width - used width (including right gap + each item's size + gaps between items)</span>
+        <span class="n">CGFloat</span> <span class="n">leadSpace</span> <span class="o">=</span> <span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">frame</span><span class="p">)</span> <span class="o">-</span> <span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">*</span> <span class="n">MTContainerSize</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">-</span> <span class="p">(</span><span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">allEntries</span> <span class="nf">mas_distributeViewsAlongAxis</span><span class="p">:</span><span class="n">MASAxisTypeHorizontal</span> <span class="nf">withFixedSpacing</span><span class="p">:</span><span class="mi">10</span> <span class="n">leadSpacing</span><span class="o">:</span><span class="n">leadSpace</span> <span class="n">tailSpacing</span><span class="o">:</span><span class="mi">10</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="p">[</span><span class="n">UIView</span> <span class="nf">animateWithDuration</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">3</span> <span class="nf">animations</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span> <span class="nf">layoutIfNeeded</span><span class="p">];</span>
+    <span class="p">}];</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>There are a few things that need to be made clear here</p>
+
+<ul>
+  <li>mas_makeConstraints is a method Masonry extends for NSArray, used for batch processing of views. It requires NSArray.count &gt; 1</li>
+  <li>The uniform layout here implements a fixed size. If you need multiple views of different sizes, this approach doesn’t apply</li>
+  <li>Masonry doesn’t have the declarative programming found in ArkUI and SwiftUI, with container alignment like start, center, end. That’s why you see code like the following</li>
+</ul>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre><span class="n">CGFloat</span> <span class="n">leadSpace</span> <span class="o">=</span> <span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">frame</span><span class="p">)</span> <span class="k">-</span> <span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">*</span> <span class="n">MTContainerSize</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">-</span> <span class="p">(</span><span class="n">allEntries</span><span class="p">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">[</span><span class="n">allEntries</span> <span class="nf">mas_distributeViewsAlongAxis</span><span class="p">:</span><span class="n">MASAxisTypeHorizontal</span> <span class="nf">withFixedSpacing</span><span class="p">:</span><span class="mi">10</span> <span class="n">leadSpacing</span><span class="o">:</span><span class="n">leadSpace</span> <span class="n">tailSpacing</span><span class="o">:</span><span class="mi">10</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Calculating the offset distance of <code class="language-plaintext highlighter-rouge">leadSpace</code> from the left to the right.</p>
+
+<p>Through the above implementation, we get the following demo</p>
+
+<p><img src="/assets/images/20240322MasonryRelayoutViews/MasonryRelayoutDemo.avif" alt="Masonry Relayout Demo" /></p>
+
+<p>The core code here is Masonry’s array extension methods</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td> --><td class="rouge-code"><pre><span class="k">-</span> <span class="p">(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="nf">mas_makeConstraints</span><span class="p">:(</span><span class="kt">void</span><span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">MASConstraintMaker</span> <span class="o">*</span><span class="p">))</span><span class="nv">block</span> <span class="p">{</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+    <span class="n">MASConstraintMaker</span> <span class="o">*</span><span class="n">constraintMaker</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MASConstraintMaker</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithView</span><span class="p">:</span><span class="n">self</span><span class="p">];</span>
+    <span class="n">block</span><span class="p">(</span><span class="n">constraintMaker</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">constraintMaker</span> <span class="nf">install</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mas_distributeViewsAlongAxis</span><span class="p">:(</span><span class="n">MASAxisType</span><span class="p">)</span><span class="nv">axisType</span> <span class="nf">withFixedSpacing</span><span class="p">:(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">fixedSpacing</span> <span class="nf">leadSpacing</span><span class="p">:(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">leadSpacing</span> <span class="nf">tailSpacing</span><span class="p">:(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">tailSpacing</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">mas_distributeViewsAlongAxis</span><span class="p">:(</span><span class="n">MASAxisType</span><span class="p">)</span><span class="nv">axisType</span> <span class="nf">withFixedItemLength</span><span class="p">:(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">fixedItemLength</span> <span class="nf">leadSpacing</span><span class="p">:(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">leadSpacing</span> <span class="nf">tailSpacing</span><span class="p">:(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">tailSpacing</span><span class="p">;</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The three methods above are the key to implementing the views described earlier</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>Understand Masonry’s API usage in depth. Use advanced usage to implement complex features.</p>
+
+<p><a href="https://github.com/sunyazhou13/MasonryRelayoutDemo">Demo for this article — click to download</a></p>
+:ET

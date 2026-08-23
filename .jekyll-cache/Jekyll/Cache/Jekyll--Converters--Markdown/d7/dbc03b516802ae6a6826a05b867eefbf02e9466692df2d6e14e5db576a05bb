@@ -1,0 +1,170 @@
+I"�*<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h2 id="背景">背景</h2>
+
+<p>最近开发功能产品有一个需求是这样的,将一张图片变成黑白图片,我们第一想法是加render着色,然而着色不产品想要的需求,产品的意思是加黑白滤镜,之前开发的同事曾经搞过一些私有API做混淆的方式实现了公祭日之类的纪念活动把工程里所有的视图都搞成了黑白色.可是我总不能为了一个艰难的功能动用私有API做混淆被苹果教育吧!</p>
+
+<p>经过各种查找都没有最优解,我想到了ChatGPT,经过和ChatGPT问答的形式它给出了如下代码:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre></td> --><td class="rouge-code"><pre>
+<span class="cp">#import &lt;UIKit/UIKit.h&gt;
+#import &lt;CoreImage/CoreImage.h&gt;
+</span>
+<span class="k">@interface</span> <span class="nc">UIImage</span> <span class="p">(</span><span class="nl">RenderingColor</span><span class="p">)</span>
+
+<span class="c1">/// 给一张图片加黑白滤镜</span>
+<span class="c1">/// - Parameter image: 图片</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">applyBlackWhiteFilterToImage</span><span class="p">:(</span><span class="n">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">UIImage</span> <span class="p">(</span><span class="nl">RenderingColor</span><span class="p">)</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">applyBlackWhiteFilterToImage</span><span class="p">:(</span><span class="n">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">image</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">CIImage</span> <span class="o">*</span><span class="n">ciImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">CIImage</span> <span class="nf">imageWithCGImage</span><span class="p">:</span><span class="n">image</span><span class="p">.</span><span class="n">CGImage</span><span class="p">];</span>
+    <span class="n">CIFilter</span> <span class="o">*</span><span class="n">filter</span> <span class="o">=</span> <span class="p">[</span><span class="n">CIFilter</span> <span class="nf">filterWithName</span><span class="p">:</span><span class="s">@"CIPhotoEffectMono"</span><span class="p">];</span> <span class="c1">// Create the black-and-white filter</span>
+    <span class="p">[</span><span class="n">filter</span> <span class="nf">setValue</span><span class="p">:</span><span class="n">ciImage</span> <span class="nf">forKey</span><span class="p">:</span><span class="n">kCIInputImageKey</span><span class="p">];</span>
+    <span class="n">CIContext</span> <span class="o">*</span><span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="n">CIContext</span> <span class="nf">contextWithOptions</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="n">CIImage</span> <span class="o">*</span><span class="n">outputImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">filter</span> <span class="nf">outputImage</span><span class="p">];</span>
+    <span class="n">CGImageRef</span> <span class="n">cgImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">context</span> <span class="nf">createCGImage</span><span class="p">:</span><span class="n">outputImage</span> <span class="nf">fromRect</span><span class="p">:[</span><span class="n">outputImage</span> <span class="nf">extent</span><span class="p">]];</span>
+    <span class="n">UIImage</span> <span class="o">*</span><span class="n">filteredImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIImage</span> <span class="nf">imageWithCGImage</span><span class="p">:</span><span class="n">cgImage</span><span class="p">];</span>
+    <span class="n">CGImageRelease</span><span class="p">(</span><span class="n">cgImage</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">filteredImage</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>通过上述操作我们就轻松的实现了给一个UIImage 加黑白滤镜让它变成灰白色的效果,</p>
+
+<p><img src="/assets/images/20230614BlackWhiteFilter/BlackWhiteFilter.avif" alt="Black White Filter" /></p>
+
+<h4 id="能给calayer加吗">能给CALayer加吗？</h4>
+
+<p>能</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td> --><td class="rouge-code"><pre><span class="cp">#import &lt;QuartzCore/QuartzCore.h&gt;
+#import &lt;CoreImage/CoreImage.h&gt;
+</span>
+<span class="k">@interface</span> <span class="nc">CALayer</span> <span class="p">(</span><span class="nl">BlackWhiteFilter</span><span class="p">)</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">applyBlackWhiteFilter</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">CALayer</span> <span class="p">(</span><span class="nl">BlackWhiteFilter</span><span class="p">)</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">applyBlackWhiteFilter</span> <span class="p">{</span>
+    <span class="n">CIFilter</span> <span class="o">*</span><span class="n">filter</span> <span class="o">=</span> <span class="p">[</span><span class="n">CIFilter</span> <span class="nf">filterWithName</span><span class="p">:</span><span class="s">@"CIPhotoEffectMono"</span><span class="p">];</span> <span class="c1">// Create the black-and-white filter</span>
+    
+    <span class="c1">// Convert the CALayer's contents to a CIImage</span>
+    <span class="k">if</span> <span class="p">([</span><span class="n">self</span><span class="p">.</span><span class="n">contents</span> <span class="nf">isKindOfClass</span><span class="p">:[</span><span class="n">UIImage</span> <span class="nf">class</span><span class="p">]])</span> <span class="p">{</span>
+        <span class="n">CIImage</span> <span class="o">*</span><span class="n">ciImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">CIImage</span> <span class="nf">imageWithCGImage</span><span class="p">:(</span><span class="n">CGImageRef</span><span class="p">)</span><span class="n">self</span><span class="p">.</span><span class="n">contents</span><span class="p">];</span>
+        
+        <span class="c1">// Set the input image for the filter</span>
+        <span class="p">[</span><span class="n">filter</span> <span class="nf">setValue</span><span class="p">:</span><span class="n">ciImage</span> <span class="nf">forKey</span><span class="p">:</span><span class="n">kCIInputImageKey</span><span class="p">];</span>
+        
+        <span class="c1">// Apply the filter</span>
+        <span class="n">CIContext</span> <span class="o">*</span><span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="n">CIContext</span> <span class="nf">contextWithOptions</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+        <span class="n">CIImage</span> <span class="o">*</span><span class="n">outputImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">filter</span> <span class="nf">outputImage</span><span class="p">];</span>
+        <span class="n">CGImageRef</span> <span class="n">cgImage</span> <span class="o">=</span> <span class="p">[</span><span class="n">context</span> <span class="nf">createCGImage</span><span class="p">:</span><span class="n">outputImage</span> <span class="nf">fromRect</span><span class="p">:[</span><span class="n">outputImage</span> <span class="nf">extent</span><span class="p">]];</span>
+        
+        <span class="c1">// Set the filtered image as the layer's contents</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">(</span><span class="n">__bridge</span> <span class="n">id</span><span class="p">)</span><span class="n">cgImage</span><span class="p">;</span>
+        
+        <span class="n">CGImageRelease</span><span class="p">(</span><span class="n">cgImage</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>本质核心是使用<code class="language-plaintext highlighter-rouge">CIPhotoEffectMono</code>内置滤镜对图片进行绘制</p>
+
+<blockquote>
+  <p>1.这个是iOS5.0以上提供的方法,大家不用担心系统兼容问题<br />
+2.这个不是私有API请放心使用,没有审核风险</p>
+</blockquote>
+
+<p>这个方法的最低兼容iOS系统是iOS 5.0及以上版本。关于私有API和App Store审核风险的问题，请注意以下几点：</p>
+
+<ul>
+  <li>1.该方法并不使用私有API，它是使用了Core Image框架提供的公共接口来创建和应用滤镜效果。</li>
+  <li>2.Core Image框架是iOS的公共框架，不属于私有API。因此，使用该方法不会违反苹果的App Store审核指南。</li>
+  <li>3.提供了适当的错误处理和安全检查，以确保在不支持的设备上不会发生崩溃或异常行为。</li>
+</ul>
+
+<h1 id="总结">总结</h1>
+
+<p>经过反复找寻互联网上的资料，千篇一律,各种复制粘贴的文章真是没法看,不好使不说还不解决问题的同时制造很多互联网垃圾.希望互联网上这样的事情能变的纯净一些.</p>
+
+:ET

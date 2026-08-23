@@ -1,0 +1,57 @@
+I"�<h1 id="preface">Preface</h1>
+
+<p>This post is strongly colored by personal opinions. If it makes you uncomfortable, please close the page as soon as possible. This post is for personal learning records only. Reposting or sharing within the scope of the license agreement is welcome, but please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<p><img src="/assets/images/20240813PickingAndHitTestinginMetal/picking.avif" alt="picking" /></p>
+
+<h1 id="learning-metal-recently">Learning Metal Recently</h1>
+
+<p>When I got to chapter 12, I came across a problem I had long wanted to solve but never found an answer to: how to detect a click on an element in a 3D scene. For example, when you bring a 3D scene into a phone or PC, you can tell which 3D model you clicked through a finger touch or a mouse click.</p>
+
+<p>In the book Metal.by.Tutorials.4th.2023.12.pdf, I found the answer - <code class="language-plaintext highlighter-rouge">Object Picking</code></p>
+
+<p><img src="/assets/images/20240813PickingAndHitTestinginMetal/Metal.by.Tutorials.4th.2023.12.avif" alt="Metal.by.Tutorials.4th.2023." /></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre>To get started with multipass rendering, you’ll create a simple render pass that adds object picking to your app. When you click a model <span class="k">in </span>your scene, that model will render <span class="k">in </span>a slightly different shade.
+There are several ways to hit-test rendered objects. For example, you could <span class="k">do </span>the math to convert the 2D <span class="nb">touch </span>location to a 3D ray and <span class="k">then </span>perform ray intersection to see which object intersects the ray. Warren Moore describes this method <span class="k">in </span>his Picking and Hit-Testing <span class="k">in </span>Metal <span class="o">(</span>https://bit.ly/3rlzm9b<span class="o">)</span> article. Alternatively, you could render a texture where each object is rendered <span class="k">in </span>a different color or object ID. Then, you calculate the texture coordinate from the screen <span class="nb">touch </span>location and <span class="nb">read </span>the texture to see which object was hit.
+You’re going to store the model’s object ID into a texture <span class="k">in </span>one render pass. You’ll <span class="k">then </span>send the <span class="nb">touch </span>location to the fragment shader <span class="k">in </span>the second render pass and <span class="nb">read </span>the texture from the first pass. If the fragment being rendered is from the selected object, you’ll render that fragment <span class="k">in </span>a different color.
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>This chapter finally solved a problem I’d been chasing for a long time: how to pick elements in 3D space from a 2D screen. The core idea is a technique called <strong>3D ray-object intersection</strong>.</p>
+
+<p>Besides this approach, there’s also one that <strong>uses a color/object ID to determine which object was clicked</strong>.</p>
+
+<p>Here are some good articles on picking:</p>
+
+<p><a href="https://bit.ly/3rlzm9b">Picking and Hit-Testing in Metal</a><br />
+<a href="https://github.com/metal-by-example/metal-picking">Picking and Hit-Testing in Metal Demo</a></p>
+
+<h1 id="summary">Summary</h1>
+
+<p>A computer graphics colleague once shared some Vulkan learning resources with me — collected here for reference</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td> --><td class="rouge-code"><pre>https://github.com/KhronosGroup/Vulkan-Guide
+https://github.com/KhronosGroup/Khronosdotorg/blob/main/api/vulkan/resources.md
+
+Tutorial:
+https://gavinkg.github.io/ILearnVulkanFromScratch-CN/
+https://vulkan-tutorial.com/
+https://software.intel.com/content/www/us/en/develop/articles/api-without-secrets-introduction-to-vulkan-preface.html
+https://renderdoc.org/vulkan-in-30-minutes.html
+https://www.fasterthan.life/blog/2017/7/11/i-am-graphics-and-so-can-you-part-1
+</pre></td></tr></tbody></table></code></pre></div></div>
+:ET

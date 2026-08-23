@@ -1,0 +1,40 @@
+I"<h1 id="preface">Preface</h1>
+
+<p>This post carries strong personal sentiment; if you feel uncomfortable reading it, please close it as soon as possible. This post is only a personal learning record. Reposting or sharing within the license terms is welcome; please respect copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe via RSS. Thanks for your support!</p>
+
+<h2 id="cocoapods-troubleshooting">CocoaPods Troubleshooting</h2>
+
+<p>I kept hitting tricky problems these past few days because I upgraded my CocoaPods to 1.9.1, which caused all sorts of issues and even got me censored. In desperation, I found the following solutions for various CocoaPods problems.</p>
+
+<p>For older versions of CocoaPods, you can use the TUNA mirror like this:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre><span class="nv">$ </span>pod repo remove master
+<span class="nv">$ </span>pod repo add master https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git
+<span class="nv">$ </span>pod repo update
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Newer versions of CocoaPods no longer allow adding the master repo directly with <code class="language-plaintext highlighter-rouge">pod repo add</code>, but you can still:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/.cocoapods/repos 
+<span class="nv">$ </span>pod repo remove master
+<span class="nv">$ </span>git clone https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git master
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Finally, go into your own project and add this line at the top of your project’s <code class="language-plaintext highlighter-rouge">PodFile</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre><span class="n">source</span> <span class="s1">'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="summary">Summary</h1>
+
+<p>I wrestled with it for a long time, but the trick is simply finding the right place.</p>
+
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/CocoaPods/">Reference: CocoaPods mirror usage help</a></p>
+:ET

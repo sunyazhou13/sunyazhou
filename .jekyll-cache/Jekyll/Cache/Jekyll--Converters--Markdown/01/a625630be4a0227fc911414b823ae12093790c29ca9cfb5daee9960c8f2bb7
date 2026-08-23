@@ -1,0 +1,150 @@
+I"�+<p><img src="/assets/images/20220916FBMemoryCheckTool/FBMemoryProfiler.avif" alt="FB Memory Profiler" /></p>
+
+<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<h2 id="讨论">讨论</h2>
+
+<p>如果申请一大块内存没有被release这属于内存泄漏,并不属于内存竞争导致的持有,根本原因是没有正确的release.
+在常规流程下(正常 alloc,release或者 malloc free,亦或是 new  delete)合理使用内存,造成内存泄漏的最主要原因是资源的竞争造成的相互持有.这是诱因导致 资源没有被正常释放. 此工具擅长解决 相互持有关系不释放内存问题,精确到实例类型和内存地址,并直观看到 找到相关对象.</p>
+
+<h2 id="内存检测工具-介绍">内存检测工具-介绍</h2>
+
+<ul>
+  <li>FBMemoryProfiler
+    <blockquote>
+      <p>FBMemoryProfiler 是几个组件的结合。其中包括 FBAllocationTracker 和 FBRetainCycleDetector。
+ 可视化工具，直接嵌入到 App 中，可以起到在 App 中直接查看内存使用情况，并筛选潜在泄漏对象的作用</p>
+    </blockquote>
+  </li>
+  <li>FBAllocationTracker
+    <blockquote>
+      <p>主要用于快速检测潜在的内存泄漏对象，并提供给 FBRetainCycleDetector 进行检测
+ 这是一个用来主动追踪所有 NSObject 的子类的内存分配和释放操作的工具。</p>
+    </blockquote>
+  </li>
+</ul>
+
+<blockquote>
+  <p>FBAllocationTracker 用于检测应用在运行时所有实例的分配。它的原理其实就是用 method swizzling 替换原本的 alloc 方法。这样就可以记录下所有的实例分配了。</p>
+</blockquote>
+
+<blockquote>
+  <p>在需要的时候调用 currentAllocationSummary 方法，就可以得到当前整体的实例分配情况（前提是在 main 中初始化过，下面有介绍）：</p>
+</blockquote>
+
+ 	<code class="language-plaintext highlighter-rouge">objc
+ 	NSArray&lt;FBAllocationTrackerSummary *&gt; *summaries = [[FBAllocationTrackerManager sharedManager] currentAllocationSummary];
+ 	</code>
+
+<ul>
+  <li>FBRetainCycleDetector
+    <blockquote>
+      <p>FBRetainCycleDetector 接受一个运行时的实例，然后从这个实例开始遍历它所有的属性，逐级递归。 如果发现遍历到重复的实例，就说明存在循环引用，并给出报告。</p>
+    </blockquote>
+  </li>
+</ul>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td> --><td class="rouge-code"><pre>  <span class="n">FBRetainCycleDetector</span> <span class="o">*</span><span class="n">detector</span> <span class="o">=</span> <span class="p">[</span><span class="n">FBRetainCycleDetector</span> <span class="nf">new</span><span class="p">];</span>
+ <span class="p">[</span><span class="n">detector</span> <span class="nf">addCandidate</span><span class="p">:</span><span class="n">myObject</span><span class="p">];</span>
+ <span class="n">NSSet</span> <span class="o">*</span><span class="n">retainCycles</span> <span class="o">=</span> <span class="p">[</span><span class="n">detector</span> <span class="nf">findRetainCycles</span><span class="p">];</span>
+ <span class="n">NSLog</span><span class="p">(</span><span class="s">@"%@"</span><span class="p">,</span> <span class="n">retainCycles</span><span class="p">);</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="代码检测循环引用-原理">代码检测循环引用-原理</h2>
+
+<p>在运行时中检测对象 的内存布局,实例地址</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">class_getIvarLayout</span><span class="p">(</span><span class="n">Class</span> <span class="n">cls</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">class_getWeakIvarLayout</span><span class="p">(</span><span class="n">Class</span> <span class="n">cls</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<blockquote>
+  <p>support for Objective-C++</p>
+</blockquote>
+
+<p>代码中使用</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre><span class="n">FBRetainCycleDetector</span> <span class="o">*</span><span class="n">detector</span> <span class="o">=</span> <span class="p">[[</span><span class="n">FBRetainCycleDetector</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithConfiguration</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="p">[</span><span class="n">detector</span> <span class="nf">addCandiate</span><span class="p">:</span><span class="n">myObject</span><span class="p">];</span>
+<span class="n">NSSet</span><span class="o">&lt;</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n">FBObjectiveCGraphElement</span> <span class="o">*&gt;</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">retainCycles</span> <span class="o">=</span> <span class="p">[</span><span class="n">detector</span> <span class="nf">findRetainCycles</span><span class="p">];</span>
+<span class="n">NSLog</span><span class="p">(</span><span class="s">@"%@"</span><span class="p">,</span> <span class="n">retainCycles</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<blockquote>
+  <p>这里的 <code class="language-plaintext highlighter-rouge">myObject </code>，就是我们所怀疑的实例变量</p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">FBObjectiveCGraphElement</code> 是所有用来查找对象类型的基类。所有的查找对象都基于它实现。该类并不需要外部的调用，主要是供内部查询使用。其提供的功能主要是：</p>
+
+<ul>
+  <li>提供初始化方法封装<code class="language-plaintext highlighter-rouge">object</code>（即调用<code class="language-plaintext highlighter-rouge">addCandiate</code>传入的<code class="language-plaintext highlighter-rouge">object</code>）</li>
+  <li>获取所有该对象所持有对象<code class="language-plaintext highlighter-rouge">- (NSSet *)allRetainedObjects;</code>。
+基类<code class="language-plaintext highlighter-rouge">FBObjectiveCGraphElement</code>所获取的对象类型是通过<code class="language-plaintext highlighter-rouge">associated object</code>所持有的对象。 <code class="language-plaintext highlighter-rouge">associated object</code>对象的获取是通过<code class="language-plaintext highlighter-rouge">Facebook</code>自身的<code class="language-plaintext highlighter-rouge">fishhook</code>去<code class="language-plaintext highlighter-rouge">hook</code>原先的<code class="language-plaintext highlighter-rouge">objc_setAssociatedObject</code>和<code class="language-plaintext highlighter-rouge">objc_removeAssociatedObjects</code>来实现对象的持有标记。</li>
+  <li>提供过滤接口<code class="language-plaintext highlighter-rouge">- (NSSet *)filterObjects:(nullable NSArray *)objects</code>;，过滤接口主要是与<code class="language-plaintext highlighter-rouge">FBObjectGraphConfiguration</code>相结合使用，<code class="language-plaintext highlighter-rouge">FBObjectGraphConfiguration</code>会在下文介绍。</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">FBObjectGraphConfiguration </code> 是提供过滤相关白名单的类,相关的配置</p>
+
+<p>其余的不就在这里过多介绍了.</p>
+
+<h4 id="findretaincycles查询方式---dfs深度优先">findRetainCycles查询方式 - DFS深度优先</h4>
+
+<p>这里查找对象的方式用的是深度优先遍历搜索</p>
+
+<p><img src="/assets/images/20220916FBMemoryCheckTool/retainCycle.avif" alt="retain Cycle" /></p>
+
+<h2 id="如何使用">如何使用</h2>
+
+<p><img src="/assets/images/20220916FBMemoryCheckTool/retainCycle1.avif" alt="retain Cycle" /></p>
+
+<p>示例场景分析</p>
+
+<p><img src="/assets/images/20220916FBMemoryCheckTool/retainCycle2.avif" alt="retain Cycle" /></p>
+
+<p>示例代码</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td> --><td class="rouge-code"><pre><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">NSTimer</span> <span class="o">*</span><span class="n">timer</span><span class="p">;</span>
+<span class="k">@property</span><span class="p">(</span><span class="n">copy</span><span class="p">,</span><span class="n">nonatomic</span><span class="p">)</span><span class="n">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
+
+ <span class="n">self</span><span class="p">.</span><span class="n">timer</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSTimer</span> <span class="nf">scheduledTimerWithTimeInterval</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span>
+                                              <span class="nl">target:</span><span class="n">self</span>
+                                            <span class="nl">selector:</span><span class="k">@selector</span><span class="p">(</span><span class="n">handleTimer</span><span class="p">)</span>
+                                            <span class="nl">userInfo:</span><span class="nb">nil</span>
+                                             <span class="nl">repeats:</span><span class="nb">YES</span><span class="p">];</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">handleTimer</span>
+<span class="p">{</span>
+     <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">@"123"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>参考</p>
+
+<p><a href="https://www.jianshu.com/p/bdce04214cf3">FBRetainCycleDetector分析</a><br />
+<a href="https://engineering.fb.com/2016/04/13/ios/automatic-memory-leak-detection-on-ios/">automatic-memory-leak-detection-on-ios</a></p>
+:ET

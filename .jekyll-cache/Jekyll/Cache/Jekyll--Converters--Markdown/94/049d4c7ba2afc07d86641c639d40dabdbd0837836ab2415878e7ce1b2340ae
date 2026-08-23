@@ -1,0 +1,84 @@
+I"p%<p><img src="/assets/images/20210121TextGradient/gradientcover.avif" alt="gradientcover" /></p>
+
+<h1 id="前言">前言</h1>
+
+<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+
+<p>最近看到搜狐发表了一篇文章,其中有一段是文本如何添加渐变颜色,使用<code class="language-plaintext highlighter-rouge">非mask</code>的方式.因为mask的方式非常耗费性能,因为mask会触发离屏渲染.今天的demo中我使用了原来的demo作为例子</p>
+
+<h2 id="实现滚动字幕中增加-渐变颜色">实现滚动字幕中增加 渐变颜色</h2>
+
+<p>核心实现很简单,<a href="https://mp.weixin.qq.com/s/4pWrwmZBEbrca2uxIt3o6w">带你实现完整的 iOS 视频弹幕系统</a>中并没有给出相关demo.只是把相关弹幕的实现思路大概说说.所以作为一个iOS开发要善于动手写代码实现和验证它的思路. 其实我内心是很讨厌 搜狐的这篇有头没尾的技术文章,无非就是写写思路,代码实现的demo一个也不放出来显然不厚道.</p>
+
+<p>这里面我们实现的比较简单.就是算出文本的size然后用 CoreGraphicContext画出一张图片.</p>
+
+<p>核心代码如下</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="k">+</span> <span class="p">(</span><span class="n">UIImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">gradientFromColor</span><span class="p">:(</span><span class="n">UIColor</span> <span class="o">*</span><span class="p">)</span><span class="nv">fromeColor</span> <span class="nf">toColor</span><span class="p">:(</span><span class="n">UIColor</span> <span class="o">*</span><span class="p">)</span><span class="nv">toColor</span> <span class="nf">andSize</span><span class="p">:(</span><span class="n">CGSize</span><span class="p">)</span><span class="nv">imageSize</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">fromeColor</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span> <span class="n">fromeColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">clearColor</span><span class="p">];</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">toColor</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span> <span class="n">toColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">clearColor</span><span class="p">];</span> <span class="p">}</span>
+    <span class="n">NSArray</span><span class="o">*</span> <span class="n">gradientColors</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSArray</span> <span class="nf">arrayWithObjects</span><span class="p">:</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">fromeColor</span><span class="p">.</span><span class="n">CGColor</span><span class="p">,</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">toColor</span><span class="p">.</span><span class="n">CGColor</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+    <span class="n">CGFloat</span> <span class="n">scale</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIScreen</span> <span class="nf">mainScreen</span><span class="p">].</span><span class="n">scale</span><span class="p">;</span>
+    <span class="n">UIGraphicsBeginImageContextWithOptions</span><span class="p">(</span><span class="n">imageSize</span><span class="p">,</span> <span class="nb">NO</span><span class="p">,</span> <span class="n">scale</span><span class="p">);</span>
+    <span class="n">CGContextRef</span> <span class="n">context</span> <span class="o">=</span> <span class="n">UIGraphicsGetCurrentContext</span><span class="p">();</span>
+    <span class="n">CGContextSaveGState</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+    <span class="n">CGColorSpaceRef</span> <span class="n">colorSpace</span> <span class="o">=</span> <span class="n">CGColorGetColorSpace</span><span class="p">([</span><span class="n">fromeColor</span> <span class="nf">CGColor</span><span class="p">]);</span>
+    <span class="n">CGGradientRef</span> <span class="n">gradient</span> <span class="o">=</span> <span class="n">CGGradientCreateWithColors</span><span class="p">(</span><span class="n">colorSpace</span><span class="p">,</span> <span class="p">(</span><span class="n">CFArrayRef</span><span class="p">)</span><span class="n">gradientColors</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">CGPoint</span> <span class="n">start</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">CGPoint</span> <span class="n">end</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="n">imageSize</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">CGContextDrawLinearGradient</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">kCGGradientDrawsBeforeStartLocation</span> <span class="o">|</span> <span class="n">kCGGradientDrawsAfterEndLocation</span><span class="p">);</span>
+    <span class="n">UIImage</span> <span class="o">*</span><span class="n">image</span> <span class="o">=</span> <span class="n">UIGraphicsGetImageFromCurrentImageContext</span><span class="p">();</span>
+    <span class="n">CGGradientRelease</span><span class="p">(</span><span class="n">gradient</span><span class="p">);</span>
+    <span class="n">CGContextRestoreGState</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+    <span class="n">UIGraphicsEndImageContext</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">image</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这里面需要着重强调就是 两行代码</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="c1">//获取渐变颜色的色彩空间</span>
+<span class="n">CGColorSpaceRef</span> <span class="n">colorSpace</span> <span class="o">=</span> <span class="n">CGColorGetColorSpace</span><span class="p">([</span><span class="n">fromeColor</span> <span class="nf">CGColor</span><span class="p">]);</span>
+<span class="c1">//然后根据渐变数组调用 线性渐变,至于放心可以在代码中找到 start 和end的CGPoint处设置</span>
+<span class="n">NSArray</span><span class="o">*</span> <span class="n">gradientColors</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSArray</span> <span class="nf">arrayWithObjects</span><span class="p">:</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">fromeColor</span><span class="p">.</span><span class="n">CGColor</span><span class="p">,</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">toColor</span><span class="p">.</span><span class="n">CGColor</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+<span class="n">CGGradientRef</span> <span class="n">gradient</span> <span class="o">=</span> <span class="n">CGGradientCreateWithColors</span><span class="p">(</span><span class="n">colorSpace</span><span class="p">,</span> <span class="p">(</span><span class="n">CFArrayRef</span><span class="p">)</span><span class="n">gradientColors</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>下面是我这边实现的逻辑展示 demo我会放到下面大家自行下载.</p>
+
+<p><img src="/assets/images/20210121TextGradient/gradienttextscroll.avif" alt="gradienttextscroll" /></p>
+
+<h1 id="总结">总结</h1>
+
+<p>2021年第二篇.时间紧凑,有时间仔细研究一下 搜狐的弹幕系统 写个demo.</p>
+
+<p><a href="https://github.com/sunyazhou13/UIScrollTextNewDemo">本文demo下载</a></p>
+
+<p><a href="https://mp.weixin.qq.com/s/4pWrwmZBEbrca2uxIt3o6w">参考 带你实现完整的 iOS 视频弹幕系统</a></p>
+:ET

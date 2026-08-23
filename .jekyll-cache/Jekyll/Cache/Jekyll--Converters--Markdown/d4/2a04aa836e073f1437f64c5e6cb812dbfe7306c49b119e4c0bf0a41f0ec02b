@@ -1,0 +1,26 @@
+I"z<p><img src="/assets/images/20170620EnableStaticAnalyer/static.avif" alt="static" /></p>
+
+<h2 id="clang-static-analyzer">Clang Static Analyzer</h2>
+
+<p>The Clang compiler (the compiler Xcode uses) ships with a static analyzer that performs control flow and data flow analysis on your code, catching many issues the compiler itself wouldn’t detect.</p>
+
+<p>You can run the analyzer manually from Xcode via Product → Analyze.</p>
+
+<p>The analyzer can run in two modes: “<code class="language-plaintext highlighter-rouge">shallow</code>” and “<code class="language-plaintext highlighter-rouge">deep</code>”. The latter is much slower, but it performs cross-method control flow and data flow analysis, so it can find more issues.</p>
+
+<h2 id="recommendations">Recommendations:</h2>
+
+<p>Enable all of the analyzer’s checks (by turning on every option in the “<code class="language-plaintext highlighter-rouge">Static Analyzer</code>” section of <code class="language-plaintext highlighter-rouge">build settings</code>)</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">build settings</code>, enable “<code class="language-plaintext highlighter-rouge">Analyze during</code> <code class="language-plaintext highlighter-rouge">'Build'</code>” for the <code class="language-plaintext highlighter-rouge">release</code> build configuration. (Seriously, do this — you won’t remember to run the analyzer manually.)</p>
+
+<p>Set “Mode of Analysis for <code class="language-plaintext highlighter-rouge">'Analyze'</code>” in <code class="language-plaintext highlighter-rouge">build settings</code> to <code class="language-plaintext highlighter-rouge">Deep</code></p>
+
+<p>Set “Mode of Analysis for <code class="language-plaintext highlighter-rouge">'Build'</code>” in <code class="language-plaintext highlighter-rouge">build settings</code> to <code class="language-plaintext highlighter-rouge">Shallow</code> (faster)</p>
+
+<p><img src="/assets/images/20170620EnableStaticAnalyer/EnableSStaticAnalyer.avif" alt="Enable S Static Analyer" /></p>
+
+<p>The End</p>
+
+<p><a href="http://mp.weixin.qq.com/s/x6XSQ_rrYCOXi2EVeiMfCg">Reference</a></p>
+:ET
