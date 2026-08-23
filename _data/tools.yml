@@ -84,3 +84,11 @@
   path: /tools/timestamp/
   category: 编码转换
   enabled: true
+
+- id: xml-viewer
+  path: /tools/xml-viewer/
+  title: XML 工具
+  icon: fas fa-code-branch
+  description: XML 树形浏览、格式化、压缩、复制与下载
+  category: 数据处理
+  enabled: true
