@@ -13,6 +13,14 @@
   category: Images & Graphics
   enabled: true
 
+- id: color-picker
+  title: Image Color Palette
+  icon: fas fa-palette
+  description: "Upload an image to extract dominant colors via pixel analysis. Three quantization algorithms (K-Means / Median Cut / Histogram), adjustable color count and sampling precision, results as HEX + RGB with generated Swift / Objective-C / CSS / Android XML code snippets, 100% local processing, nothing uploaded"
+  path: /tools/color-picker/
+  category: Images & Graphics
+  enabled: true
+
 - id: webp-heic
   title: Image Format Converter
   icon: fas fa-exchange-alt

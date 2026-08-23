@@ -13,6 +13,14 @@
   category: 图片与图像
   enabled: true
 
+- id: color-picker
+  title: 图片主色调提取
+  icon: fas fa-palette
+  description: 上传图片自动分析全部像素提取主色调，三种色彩量化算法（K-Means 聚类 / 中值切割 / 直方图统计）可选，颜色数量与采样精度可调，按占比输出 HEX + RGB 并生成 Swift / Objective-C / CSS / Android XML 代码片段，纯本地处理不上传
+  path: /tools/color-picker/
+  category: 图片与图像
+  enabled: true
+
 - id: webp-heic
   title: 图片格式转换
   icon: fas fa-exchange-alt
