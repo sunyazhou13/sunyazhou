@@ -76,3 +76,11 @@
   path: /tools/json-format/
   category: Data Processing
   enabled: true
+
+- id: timestamp
+  title: Timestamp Converter
+  icon: fas fa-clock
+  description: "Real-time clock with millisecond precision, Unix timestamp ↔ date conversion with Apple NSDate Double format support, auto-detect seconds/milliseconds/decimal timestamps, Swift / Objective-C API examples, 100% local, nothing uploaded"
+  path: /tools/timestamp/
+  category: Encoding & Conversion
+  enabled: true
