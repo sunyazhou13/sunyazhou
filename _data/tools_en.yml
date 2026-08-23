@@ -8,79 +8,152 @@
 - id: image-to-avif
   title: Image to AVIF
   icon: fas fa-image
-  description: Convert PNG / JPEG / WebP / GIF to AVIF in batch, animated images transcoded frame by frame, 100% local in-browser conversion, nothing uploaded (WASM libaom)
+  description: Convert PNG / JPEG / WebP / GIF to AVIF in batch, animated images transcoded
+    frame by frame, 100% local in-browser conversion, nothing uploaded (WASM libaom)
   path: /tools/image-to-avif/
   category: Images & Graphics
   enabled: true
-
 - id: color-picker
   title: Image Color Palette
   icon: fas fa-palette
-  description: "Upload an image to extract dominant colors via pixel analysis. Three quantization algorithms (K-Means / Median Cut / Histogram), adjustable color count and sampling precision, results as HEX + RGB with generated Swift / Objective-C / CSS / Android XML code snippets, 100% local processing, nothing uploaded"
+  description: Upload an image to extract dominant colors via pixel analysis. Three
+    quantization algorithms (K-Means / Median Cut / Histogram), adjustable color count
+    and sampling precision, results as HEX + RGB with generated Swift / Objective-C
+    / CSS / Android XML code snippets, 100% local processing, nothing uploaded
   path: /tools/color-picker/
   category: Images & Graphics
   enabled: true
-
 - id: webp-heic
   title: Image Format Converter
   icon: fas fa-exchange-alt
-  description: Convert PNG / JPEG / GIF / BMP / AVIF / HEIC etc. to WebP / JPEG / PNG, 100% local in-browser conversion, nothing uploaded
+  description: Convert PNG / JPEG / GIF / BMP / AVIF / HEIC etc. to WebP / JPEG /
+    PNG, 100% local in-browser conversion, nothing uploaded
   path: /tools/webp-heic/
   category: Images & Graphics
   enabled: true
-
 - id: qrcode
   title: QR Code Generator & Parser
   icon: fas fa-qrcode
-  description: Generate QR code images from text (selectable error-correction level, download as PNG) and parse QR images back to text or links, 100% local processing, nothing uploaded
+  description: Generate QR code images from text (selectable error-correction level,
+    download as PNG) and parse QR images back to text or links, 100% local processing,
+    nothing uploaded
   path: /tools/qrcode/
   category: Images & Graphics
   enabled: true
-
+- id: exif-stripper
+  title: Image Privacy Sanitizer
+  icon: fas fa-eye-slash
+  description: Upload an image to view all of its EXIF metadata (GPS coordinates,
+    device model, shooting time, etc.), strip every metadata field with one click
+    and download the sanitized image, with a before/after file-size and metadata-ratio
+    comparison. Parses JPEG/PNG entirely locally, nothing uploaded
+  path: /tools/exif-stripper/
+  category: Images & Graphics
+  enabled: true
+- id: grid-crop
+  title: 3×3 Grid Crop
+  icon: fas fa-th-large
+  description: Upload an image and split it into a 3×3 grid of 9 tiles with one click.
+    Subject-anchor protection auto-adjusts the crop grid so people or main subjects
+    are never cut off, with manual grid nudge, preview of all 9 tiles and ZIP download.
+    100% local processing, nothing uploaded
+  path: /tools/grid-crop/
+  category: Images & Graphics
+  enabled: true
 - id: base64
   title: Base64 Encode / Decode
   icon: fas fa-code
-  description: Convert text to and from Base64, supports standard and URL-safe (Base64URL) variants, encode, decode, one-click copy, 100% local processing, nothing uploaded
+  description: Convert text to and from Base64, supports standard and URL-safe (Base64URL)
+    variants, encode, decode, one-click copy, 100% local processing, nothing uploaded
   path: /tools/base64/
   category: Encoding & Conversion
   enabled: true
-
 - id: base-converter
   title: Number Base Converter
   icon: fas fa-calculator
-  description: Real-time linked conversion between binary / octal / decimal / hexadecimal, arbitrary big integers supported, 100% local computation, nothing uploaded
+  description: Real-time linked conversion between binary / octal / decimal / hexadecimal,
+    arbitrary big integers supported, 100% local computation, nothing uploaded
   path: /tools/base-converter/
   category: Encoding & Conversion
   enabled: true
-
 - id: hash-string
   title: String Hash
   icon: fas fa-hashtag
-  description: Enter a string and generate MD5 / SHA1 / SHA256 / SHA384 / SHA512 on click, with case toggle and one-click copy, 100% local computation, nothing uploaded
+  description: Enter a string and generate MD5 / SHA1 / SHA256 / SHA384 / SHA512 on
+    click, with case toggle and one-click copy, 100% local computation, nothing uploaded
   path: /tools/hash-string/
   category: Encoding & Conversion
   enabled: true
-
-- id: 3d-viewer
-  title: 3D Model Multi-Viewport Inspector
-  icon: fas fa-cube
-  description: "Analyze 3D models with four linked viewports in one renderer: wireframe for structure, UV checker for texture mapping, PBR for lighting, normal/depth for anomalies. Supports GLB/glTF/OBJ/FBX/STL/USDZ loading and format export, point-to-point measurement, screenshot annotation, 100% local rendering, nothing uploaded"
-  path: /tools/3d-viewer/
-  category: 3D Models
-  enabled: true
-
-- id: json-format
-  title: JSON Tools
-  icon: fas fa-file-code
-  description: "All-in-one JSON toolkit: tree viewer (expand/collapse, search, image-link hover preview), format/minify/sort by key, lenient parsing with auto-repair (trailing commas/single quotes/unquoted keys/comments), copy and download .json, precise error position. 100% local, nothing uploaded"
-  path: /tools/json-format/
-  category: Data Processing
-  enabled: true
-
 - id: timestamp
   title: Timestamp Converter
   icon: fas fa-clock
-  description: "Real-time clock with millisecond precision, Unix timestamp ↔ date conversion with Apple NSDate Double format support, auto-detect seconds/milliseconds/decimal timestamps, Swift / Objective-C API examples, 100% local, nothing uploaded"
+  description: Real-time clock with millisecond precision, Unix timestamp ↔ date conversion
+    with Apple NSDate Double format support, auto-detect seconds/milliseconds/decimal
+    timestamps, Swift / Objective-C API examples, 100% local, nothing uploaded
   path: /tools/timestamp/
   category: Encoding & Conversion
+  enabled: true
+- id: url-encode
+  title: URL Encode / Decode
+  icon: fas fa-link
+  description: Convert text to URL encoding (%20%2F) and back, supports encodeURIComponent
+    and encodeURI modes, two-way one-click swap and one-click copy, 100% local processing,
+    nothing uploaded
+  path: /tools/url-encode/
+  category: Encoding & Conversion
+  enabled: true
+- id: jwt-parser
+  title: JWT Online Parser
+  icon: fas fa-user-secret
+  description: Paste a JWT to auto-decode Header and Payload into a JSON tree, highlight
+    the expiration time and count remaining days, built-in HMAC-SHA256 signature verification
+    and tamper demo, 100% local parsing, nothing uploaded
+  path: /tools/jwt-parser/
+  category: Encoding & Conversion
+  enabled: true
+- id: uuid-ulid
+  title: UUID / ULID Generator
+  icon: fas fa-fingerprint
+  description: One-click batch generation of 1 / 10 / 100 UUID v4 and ULID, copy a
+    single one or all, regenerate a new batch, 100% local generation, nothing uploaded
+  path: /tools/uuid-ulid/
+  category: Encoding & Conversion
+  enabled: true
+- id: regex-tester
+  title: Regex Tester
+  icon: fas fa-terminal
+  description: Real-time highlighting of all regex matches against test text, shows
+    capture groups and match count, with backtracking / complexity monitoring and
+    warnings for catastrophic backtracking patterns, 100% local computation, nothing
+    uploaded
+  path: /tools/regex-tester/
+  category: Encoding & Conversion
+  enabled: true
+- id: 3d-viewer
+  title: 3D Model Multi-Viewport Inspector
+  icon: fas fa-cube
+  description: 'Analyze 3D models with four linked viewports in one renderer: wireframe
+    for structure, UV checker for texture mapping, PBR for lighting, normal/depth
+    for anomalies. Supports GLB/glTF/OBJ/FBX/STL/USDZ loading and format export, point-to-point
+    measurement, screenshot annotation, 100% local rendering, nothing uploaded'
+  path: /tools/3d-viewer/
+  category: 3D Models
+  enabled: true
+- id: json-format
+  title: JSON Tools
+  icon: fas fa-file-code
+  description: 'All-in-one JSON toolkit: tree viewer (expand/collapse, search, image-link
+    hover preview), format/minify/sort by key, lenient parsing with auto-repair (trailing
+    commas/single quotes/unquoted keys/comments), copy and download .json, precise
+    error position. 100% local, nothing uploaded'
+  path: /tools/json-format/
+  category: Data Processing
+  enabled: true
+- id: xml-viewer
+  title: XML Tools
+  icon: fas fa-code-branch
+  description: XML tree browsing, formatting (pretty-print), minify, one-click copy
+    and download, 100% local processing, nothing uploaded
+  path: /tools/xml-viewer/
+  category: Data Processing
   enabled: true

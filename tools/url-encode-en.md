@@ -1,16 +1,10 @@
 ---
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 66a6a10d0836fcca0ea80e5efce6d346_3c39ee229f3f11f1a65b525400826444
-    ReservedCode1: N8X7i8kbDOKq1E7/mZqEakGod1eS5jTXYOFd4BBCeUAzlOSLIXRJA1cchFR64hj4pWvmHDZMVJTyy8oeMjgoCKYXVRixAmzvx+pUCkldD1oWBQF9a6UOhsiwG19mAa5YJ4Ulp3ZzpYPF7/mceyLFQDBdYzrj6RPHaiXen2vq6n+6m7O7OmLMU9ecYMI=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 66a6a10d0836fcca0ea80e5efce6d346_3c39ee229f3f11f1a65b525400826444
-    ReservedCode2: N8X7i8kbDOKq1E7/mZqEakGod1eS5jTXYOFd4BBCeUAzlOSLIXRJA1cchFR64hj4pWvmHDZMVJTyy8oeMjgoCKYXVRixAmzvx+pUCkldD1oWBQF9a6UOhsiwG19mAa5YJ4Ulp3ZzpYPF7/mceyLFQDBdYzrj6RPHaiXen2vq6n+6m7O7OmLMU9ecYMI=
+layout: page
+title: URL Encoder / Decoder
+icon: fas fa-link
+lang: en
+permalink: /tools/url-encode/
 ---
-
-
-
 Convert text to and from percent encoding (URL encoding, `%20`, `%2F`, etc.) in both directions. Supports two modes — `encodeURIComponent` and `encodeURI` — with one-click swap between the two and one-click copy. Everything runs locally in your browser — your content is never uploaded.
 
 <link rel="stylesheet" href="/assets/tools/url-encode/app.css">

@@ -1,16 +1,10 @@
 ---
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 66a6a10d0836fcca0ea80e5efce6d346_3dc7369b9f3f11f1a65b525400826444
-    ReservedCode1: gBr8YBr6nB+rzk7ePAGwMORUhyoMme6GzONc6IBB0GAHxfKOvnvhOItXpr2/G75cFclyPTVKuPv3oSzVnVNojvARMwMGHHiYnw71YKpkTIJY6Km6PPCHDPP6ooapa05ACf9TnNxNJjLhe51uGPhgByNSTWG9pRwLZGuyWpfW/rqIRqnDcb42J6UI70o=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 66a6a10d0836fcca0ea80e5efce6d346_3dc7369b9f3f11f1a65b525400826444
-    ReservedCode2: gBr8YBr6nB+rzk7ePAGwMORUhyoMme6GzONc6IBB0GAHxfKOvnvhOItXpr2/G75cFclyPTVKuPv3oSzVnVNojvARMwMGHHiYnw71YKpkTIJY6Km6PPCHDPP6ooapa05ACf9TnNxNJjLhe51uGPhgByNSTWG9pRwLZGuyWpfW/rqIRqnDcb42J6UI70o=
+layout: page
+title: Regex Tester
+icon: fas fa-terminal
+lang: en
+permalink: /tools/regex-tester/
 ---
-
-
-
 Type a regular expression and some test text and every match is highlighted in real time, with each match and capture group shown alongside its text, position and processing time. Nested-quantifier patterns that risk catastrophic backtracking are flagged with a warning. Everything runs locally in your browser — your content is never uploaded.
 
 <link rel="stylesheet" href="/assets/tools/regex-tester/app.css">

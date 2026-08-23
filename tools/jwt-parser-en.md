@@ -1,16 +1,10 @@
 ---
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 66a6a10d0836fcca0ea80e5efce6d346_3cc17a959f3f11f1a238525400e6dd8f
-    ReservedCode1: wkN8bHhT25BzMAm9LGIKtwppPmFbdo4NqI3plxTsuH5yWh3bwqbfsBtWbe7R+jMv94R9khXfgTleV37LJyChbh/oxZN0gXjcVLZiU5Ux7hJMzP4KQ22ZZRPWdzLhew2GLE16gwhe9XdlfCvGMTuJwxhFVrnLJX7kpaAqhPO3LeM9C8ZDOk+qnpg13XQ=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 66a6a10d0836fcca0ea80e5efce6d346_3cc17a959f3f11f1a238525400e6dd8f
-    ReservedCode2: wkN8bHhT25BzMAm9LGIKtwppPmFbdo4NqI3plxTsuH5yWh3bwqbfsBtWbe7R+jMv94R9khXfgTleV37LJyChbh/oxZN0gXjcVLZiU5Ux7hJMzP4KQ22ZZRPWdzLhew2GLE16gwhe9XdlfCvGMTuJwxhFVrnLJX7kpaAqhPO3LeM9C8ZDOk+qnpg13XQ=
+layout: page
+title: JWT Decoder
+icon: fas fa-user-secret
+lang: en
+permalink: /tools/jwt-parser/
 ---
-
-
-
 Paste a JWT (JSON Web Token) and its Header and Payload are decoded into a JSON tree automatically, with `exp` highlighted and remaining validity days / expiry status calculated. Includes a pure front-end HMAC-SHA256 + Base64URL signature verification, plus a one-click "tamper attempt" that demonstrates how a modified Payload instantly invalidates the signature. Everything runs locally — your token is never uploaded.
 
 <link rel="stylesheet" href="/assets/tools/jwt-parser/app.css">

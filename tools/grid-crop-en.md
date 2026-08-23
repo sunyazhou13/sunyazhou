@@ -1,16 +1,10 @@
 ---
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 66a6a10d0836fcca0ea80e5efce6d346_3bae93829f3f11f1a65b525400826444
-    ReservedCode1: 726xxT4j6NNsdBe1d7IiAiBAGUlYuaGit+deuZeKo9yHQ0+47iCAcQ+twmXOtfDwIzFxAPH8yDEsZEez+ponmwIh9N4AqjzKY1G8nfEFp4cka/56Q174UGZkqeZ3K9A4df2AAnlFe+fm2rfCjLG+3Srtu6/nyV7vv2WEa2ik0Me0PZMv92nle7fjNDY=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 66a6a10d0836fcca0ea80e5efce6d346_3bae93829f3f11f1a65b525400826444
-    ReservedCode2: 726xxT4j6NNsdBe1d7IiAiBAGUlYuaGit+deuZeKo9yHQ0+47iCAcQ+twmXOtfDwIzFxAPH8yDEsZEez+ponmwIh9N4AqjzKY1G8nfEFp4cka/56Q174UGZkqeZ3K9A4df2AAnlFe+fm2rfCjLG+3Srtu6/nyV7vv2WEa2ik0Me0PZMv92nle7fjNDY=
+layout: page
+title: Grid Image Splitter (3×3)
+icon: fas fa-th-large
+lang: en
+permalink: /tools/grid-crop/
 ---
-
-
-
 Upload an image and split it into a 3×3 grid of 9 tiles with one click. Supports subject-anchor protection that automatically adjusts the crop grid so people or main subjects are never cut off; you can nudge the grid, preview all 9 tiles, then download them all as a ZIP. Everything runs locally in your browser — your images are never uploaded.
 
 <link rel="stylesheet" href="/assets/tools/grid-crop/app.css">

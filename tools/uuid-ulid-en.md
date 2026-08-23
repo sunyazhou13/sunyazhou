@@ -1,16 +1,10 @@
 ---
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 66a6a10d0836fcca0ea80e5efce6d346_3d45ab2e9f3f11f1a65b525400826444
-    ReservedCode1: K51GY2loz+UeqzAjyQjt/TSvYE2zyfZdHJ1S9rNL1z/wHHO4XcnihzUExt1Td8+GTsl1F4KEGuNpHrn/XzSBefB/P0BUolzVLX83yj3dU4fh72M3o5RYjDsxxTosAOQuuXVF58vA/Lk7ADHrhJBJWH25ojogZ9FdPGu8KaCafCXhgCpozNTKvXd6Q3A=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 66a6a10d0836fcca0ea80e5efce6d346_3d45ab2e9f3f11f1a65b525400826444
-    ReservedCode2: K51GY2loz+UeqzAjyQjt/TSvYE2zyfZdHJ1S9rNL1z/wHHO4XcnihzUExt1Td8+GTsl1F4KEGuNpHrn/XzSBefB/P0BUolzVLX83yj3dU4fh72M3o5RYjDsxxTosAOQuuXVF58vA/Lk7ADHrhJBJWH25ojogZ9FdPGu8KaCafCXhgCpozNTKvXd6Q3A=
+layout: page
+title: UUID / ULID Generator
+icon: fas fa-fingerprint
+lang: en
+permalink: /tools/uuid-ulid/
 ---
-
-
-
 Generate <strong>UUID v4</strong> and <strong>ULID</strong> identifiers with one click, in batches of 1 / 10 / 100. Copy a single item, copy all, or generate another batch. Everything is generated locally in your browser (preferring <code>crypto.getRandomValues</code>) — your data is never uploaded.
 
 <link rel="stylesheet" href="/assets/tools/uuid-ulid/app.css">

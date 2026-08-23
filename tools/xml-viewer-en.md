@@ -1,16 +1,10 @@
 ---
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 66a6a10d0836fcca0ea80e5efce6d346_3a7773609f3f11f1a65b525400826444
-    ReservedCode1: MuW0xKlAivlag9zLtExNRca+Dfda+2O9X+Pzh+U2G5MUMso9ceVXey2L4QjD8Be8ql6eyHXdaH/HL9FCMZbj+877sY9c3FyQKhfPC0g48mMATRreIq/A+7q19jAEP4KnGWprQClN8IopUP6mwd/A8N4BmPH8QLCuHpg0CLVhWlmoutrKTHXlFtX4TKA=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 66a6a10d0836fcca0ea80e5efce6d346_3a7773609f3f11f1a65b525400826444
-    ReservedCode2: MuW0xKlAivlag9zLtExNRca+Dfda+2O9X+Pzh+U2G5MUMso9ceVXey2L4QjD8Be8ql6eyHXdaH/HL9FCMZbj+877sY9c3FyQKhfPC0g48mMATRreIq/A+7q19jAEP4KnGWprQClN8IopUP6mwd/A8N4BmPH8QLCuHpg0CLVhWlmoutrKTHXlFtX4TKA=
+layout: page
+title: XML Viewer
+icon: fas fa-code-branch
+lang: en
+permalink: /tools/xml-viewer/
 ---
-
-
-
 Paste any XML / RSS / SML snippet to browse it as a structured tree; supports formatting, squeezing into a single line, one-click copy and download. Everything runs locally in your browser — your content is never uploaded.
 
 <link rel="stylesheet" href="/assets/tools/xml-viewer/app.css">
