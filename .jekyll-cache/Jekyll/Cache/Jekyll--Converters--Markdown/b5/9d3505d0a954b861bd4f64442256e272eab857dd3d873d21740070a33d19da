@@ -160,7 +160,7 @@
 
 <h2 id="示例一-swift-vs-objective-c-打印-hello-world">示例一: Swift vs Objective-C 打印 Hello World</h2>
 
-<ul id="hello-world" class="tab" data-tab="4e5b9cbd-d1ea-4c8d-866f-674f1cc7a736" data-name="hello-world">
+<ul id="hello-world" class="tab" data-tab="7bea5cbd-ac1d-4f92-b725-86310edea28b" data-name="hello-world">
   
       <li class="active" id="hello-world-swift">
           <a href="#">Swift </a>
@@ -171,7 +171,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="4e5b9cbd-d1ea-4c8d-866f-674f1cc7a736" data-name="hello-world">
+<ul class="tab-content" id="7bea5cbd-ac1d-4f92-b725-86310edea28b" data-name="hello-world">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
@@ -193,7 +193,7 @@
 
 <h2 id="示例二-单例模式">示例二: 单例模式</h2>
 
-<ul id="singleton" class="tab" data-tab="e6d9ed06-5560-41be-b25c-1b801812d88e" data-name="singleton">
+<ul id="singleton" class="tab" data-tab="7c7acfa1-8340-44b6-be6a-075eb8eb2320" data-name="singleton">
   
       <li class="active" id="singleton-swift">
           <a href="#">Swift </a>
@@ -204,7 +204,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="e6d9ed06-5560-41be-b25c-1b801812d88e" data-name="singleton">
+<ul class="tab-content" id="7c7acfa1-8340-44b6-be6a-075eb8eb2320" data-name="singleton">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
@@ -288,7 +288,7 @@
 
 <h2 id="示例三-gcd-异步执行">示例三: GCD 异步执行</h2>
 
-<ul id="gcd" class="tab" data-tab="13599a60-3f4f-4ecb-a0c5-be84e2bbc5bf" data-name="gcd">
+<ul id="gcd" class="tab" data-tab="81e25690-ca2e-4dfa-8910-837bdd460dc6" data-name="gcd">
   
       <li class="active" id="gcd-swift">
           <a href="#">Swift </a>
@@ -299,7 +299,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="13599a60-3f4f-4ecb-a0c5-be84e2bbc5bf" data-name="gcd">
+<ul class="tab-content" id="81e25690-ca2e-4dfa-8910-837bdd460dc6" data-name="gcd">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
@@ -349,7 +349,7 @@
 
 <h2 id="示例四-三种语言对比">示例四: 三种语言对比</h2>
 
-<ul id="greet" class="tab" data-tab="4707c817-c43d-4bb1-a561-2dcb81728af9" data-name="greet">
+<ul id="greet" class="tab" data-tab="dd526171-b355-4e39-a7c6-b53ad03c8454" data-name="greet">
   
       <li class="active" id="greet-swift">
           <a href="#">Swift </a>
@@ -364,7 +364,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="4707c817-c43d-4bb1-a561-2dcb81728af9" data-name="greet">
+<ul class="tab-content" id="dd526171-b355-4e39-a7c6-b53ad03c8454" data-name="greet">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1

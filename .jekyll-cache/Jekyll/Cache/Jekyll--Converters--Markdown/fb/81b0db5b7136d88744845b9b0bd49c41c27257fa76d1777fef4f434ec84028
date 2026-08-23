@@ -1,48 +1,48 @@
-I"�Z<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
+I"Q]<p><img src="/assets/images/20240727Magnificationgesture/SwiftUI.avif" alt="Swift UI" /></p>
 
-<h1 id="前言">前言</h1>
+<h1 id="preface">Preface</h1>
 
-<p>本文具有强烈的个人感情色彩,如有观看不适,请尽快关闭. 本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或分享,请尊重版权并且保留原文链接,谢谢您的理解合作. 如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,感谢支持!</p>
+<p>This article carries a strong personal tone. If you find it uncomfortable to read, please close it immediately. This article serves solely as a personal learning record. You are welcome to repost or share it within the scope of the license agreement; please respect the copyright and keep the original link. Thank you for your understanding and cooperation. If you find this site helpful, you can subscribe to it via RSS. Thanks for your support!</p>
 
-<h1 id="背景">背景</h1>
+<h1 id="background">Background</h1>
 
-<p>写博客时经常需要同时展示 Swift 和 Objective-C 两种语言的代码,或者同一个功能的多种实现方式.以前只能把代码块一个个堆在一起,阅读体验很差.</p>
+<p>When writing blog posts, I often need to show code in both Swift and Objective-C, or multiple implementations of the same feature. Previously, I could only stack code blocks one after another, which made for a poor reading experience.</p>
 
-<p>这次给博客加上了 <strong>Tab 切换代码块</strong>的功能,点击 Tab 标签即可在不同语言/实现之间自由切换,效果类似 VitePress、Docusaurus 等现代文档平台.</p>
+<p>This time I’ve added <strong>tabbed code blocks</strong> to the blog. Clicking a tab lets readers switch freely between different languages/implementations, similar to modern documentation platforms like VitePress and Docusaurus.</p>
 
-<h1 id="实现方案">实现方案</h1>
+<h1 id="implementation">Implementation</h1>
 
-<p>使用 <a href="https://github.com/Ovski4/jekyll-tabs">jekyll-tabs</a> 这个 gem,它的特点是:</p>
+<p>I use the <a href="https://github.com/Ovski4/jekyll-tabs">jekyll-tabs</a> gem, which offers:</p>
 
 <ul>
-  <li>✅ 不依赖任何 JS 框架,与已有的 jQuery/Bootstrap 不冲突</li>
-  <li>✅ 支持同一页面多个独立 Tab 组</li>
-  <li>✅ 支持同名 Tab 跨组联动</li>
-  <li>✅ 支持一键复制代码</li>
-  <li>✅ 本地构建部署,不受 GitHub Pages 插件限制</li>
+  <li>✅ No dependency on any JS framework; plays well with the existing jQuery/Bootstrap</li>
+  <li>✅ Supports multiple independent tab groups on the same page</li>
+  <li>✅ Supports syncing tabs with the same label across groups</li>
+  <li>✅ Supports one-click code copying</li>
+  <li>✅ Built and deployed locally, not limited by GitHub Pages plugin restrictions</li>
 </ul>
 
-<h2 id="安装步骤">安装步骤</h2>
+<h2 id="installation-steps">Installation Steps</h2>
 
-<h3 id="第一步-gemfile-添加依赖">第一步: Gemfile 添加依赖</h3>
+<h3 id="step-1-add-the-dependency-to-gemfile">Step 1: Add the Dependency to Gemfile</h3>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 </pre></td><td class="rouge-code"><pre><span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
-  <span class="c1"># ... 其他 gem</span>
+  <span class="c1"># ... other gems</span>
   <span class="n">gem</span> <span class="s2">"jekyll-tabs"</span>
 <span class="k">end</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>然后执行安装:</p>
+<p>Then run the installation:</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>bundle <span class="nb">install</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<h3 id="第二步-_configyml-声明插件">第二步: _config.yml 声明插件</h3>
+<h3 id="step-2-declare-the-plugin-in-_configyml">Step 2: Declare the Plugin in _config.yml</h3>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -50,9 +50,9 @@
   <span class="pi">-</span> <span class="s">jekyll-tabs</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<h3 id="第三步-引入-js">第三步: 引入 JS</h3>
+<h3 id="step-3-include-the-js">Step 3: Include the JS</h3>
 
-<p>在 <code class="language-plaintext highlighter-rouge">_includes/js-selector.html</code> 的 post 部分加入:</p>
+<p>In the post section of <code class="language-plaintext highlighter-rouge">_includes/js-selector.html</code>, add:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -62,7 +62,7 @@
   <span class="nt">&lt;script </span><span class="na">defer</span> <span class="na">src=</span><span class="s">"{{ '/assets/AISource/jekyll-tabs/tabs.js' | relative_url }}"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>JS 初始化配置(在 <code class="language-plaintext highlighter-rouge">tabs.js</code> 末尾):</p>
+<p>JS initialization config (at the end of <code class="language-plaintext highlighter-rouge">tabs.js</code>):</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -92,9 +92,9 @@
 <span class="p">});</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<h3 id="第四步-引入-css">第四步: 引入 CSS</h3>
+<h3 id="step-4-include-the-css">Step 4: Include the CSS</h3>
 
-<p>在 <code class="language-plaintext highlighter-rouge">_includes/head.html</code> 加入:</p>
+<p>In <code class="language-plaintext highlighter-rouge">_includes/head.html</code>, add:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -102,9 +102,9 @@
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{{ '/assets/AISource/jekyll-tabs/tabs.css' | relative_url }}"</span><span class="nt">&gt;</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<h2 id="资源文件位置">资源文件位置</h2>
+<h2 id="resource-file-locations">Resource File Locations</h2>
 
-<p>所有资源统一放在 <code class="language-plaintext highlighter-rouge">assets/AISource/jekyll-tabs/</code> 目录下:</p>
+<p>All resources are placed under the <code class="language-plaintext highlighter-rouge">assets/AISource/jekyll-tabs/</code> directory:</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -116,9 +116,9 @@
     └── tabs.css  <span class="c"># 融合博客主题变量的自定义样式</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<h1 id="使用方法">使用方法</h1>
+<h1 id="usage">Usage</h1>
 
-<p>在文章 Markdown 中使用如下语法:</p>
+<p>Use the following syntax in your post’s Markdown:</p>
 
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -139,13 +139,13 @@
 
 {% tab 组名 标签名 %}
 <span class="p">```</span><span class="nl">语言
-</span><span class="sb">// 代码内容</span>
+</span><span class="sb">// code content</span>
 <span class="p">```</span>
 {% endtab %}
 
 {% tab 组名 另一个标签名 %}
 <span class="p">```</span><span class="nl">语言
-</span><span class="sb">// 代码内容</span>
+</span><span class="sb">// code content</span>
 <span class="p">```</span>
 {% endtab %}
 
@@ -153,14 +153,14 @@
 </pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
-  <p><strong>注意</strong>: <code class="language-plaintext highlighter-rouge">{% tabs 组名 %}</code> 和 <code class="language-plaintext highlighter-rouge">{% tab 组名 标签名 %}</code> 中的<strong>组名必须一致</strong>,同一页面多个 Tab 组使用不同组名加以区分.</p>
+  <p><strong>Note</strong>: The <strong>group name</strong> in <code class="language-plaintext highlighter-rouge">{% tabs 组名 %}</code> and <code class="language-plaintext highlighter-rouge">{% tab 组名 标签名 %}</code> must be consistent, and multiple tab groups on the same page should use different group names to tell them apart.</p>
 </blockquote>
 
-<h1 id="示例">示例</h1>
+<h1 id="examples">Examples</h1>
 
-<h2 id="示例一-swift-vs-objective-c-打印-hello-world">示例一: Swift vs Objective-C 打印 Hello World</h2>
+<h2 id="example-1-printing-hello-world-in-swift-vs-objective-c">Example 1: Printing Hello World in Swift vs Objective-C</h2>
 
-<ul id="hello-world" class="tab" data-tab="4e5b9cbd-d1ea-4c8d-866f-674f1cc7a736" data-name="hello-world">
+<ul id="hello-world" class="tab" data-tab="ddf0f724-9477-4e02-a154-cf26cd2aa4d5" data-name="hello-world">
   
       <li class="active" id="hello-world-swift">
           <a href="#">Swift </a>
@@ -171,7 +171,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="4e5b9cbd-d1ea-4c8d-866f-674f1cc7a736" data-name="hello-world">
+<ul class="tab-content" id="ddf0f724-9477-4e02-a154-cf26cd2aa4d5" data-name="hello-world">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -191,9 +191,9 @@
   
 </ul>
 
-<h2 id="示例二-单例模式">示例二: 单例模式</h2>
+<h2 id="example-2-singleton-pattern">Example 2: Singleton Pattern</h2>
 
-<ul id="singleton" class="tab" data-tab="e6d9ed06-5560-41be-b25c-1b801812d88e" data-name="singleton">
+<ul id="singleton" class="tab" data-tab="aa870748-cf87-45f0-9805-bfe49f1db752" data-name="singleton">
   
       <li class="active" id="singleton-swift">
           <a href="#">Swift </a>
@@ -204,7 +204,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="e6d9ed06-5560-41be-b25c-1b801812d88e" data-name="singleton">
+<ul class="tab-content" id="aa870748-cf87-45f0-9805-bfe49f1db752" data-name="singleton">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -227,7 +227,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1">// 使用</span>
+<span class="c1">// Usage</span>
 <span class="kt">NetworkManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">request</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://sunyazhou.com"</span><span class="p">)</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 </li>
@@ -279,16 +279,16 @@
 
 <span class="k">@end</span>
 
-<span class="c1">// 使用</span>
+<span class="c1">// Usage</span>
 <span class="p">[[</span><span class="n">NetworkManager</span> <span class="nf">sharedManager</span><span class="p">]</span> <span class="nf">requestWithURL</span><span class="p">:</span><span class="s">@"https://sunyazhou.com"</span><span class="p">];</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 </li>
   
 </ul>
 
-<h2 id="示例三-gcd-异步执行">示例三: GCD 异步执行</h2>
+<h2 id="example-3-gcd-asynchronous-execution">Example 3: GCD Asynchronous Execution</h2>
 
-<ul id="gcd" class="tab" data-tab="13599a60-3f4f-4ecb-a0c5-be84e2bbc5bf" data-name="gcd">
+<ul id="gcd" class="tab" data-tab="dc81a91b-7f1e-4875-bc30-3560b3f0d518" data-name="gcd">
   
       <li class="active" id="gcd-swift">
           <a href="#">Swift </a>
@@ -299,7 +299,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="13599a60-3f4f-4ecb-a0c5-be84e2bbc5bf" data-name="gcd">
+<ul class="tab-content" id="dc81a91b-7f1e-4875-bc30-3560b3f0d518" data-name="gcd">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -312,11 +312,11 @@
 8
 9
 </pre></td><td class="rouge-code"><pre><span class="kt">DispatchQueue</span><span class="o">.</span><span class="nf">global</span><span class="p">(</span><span class="nv">qos</span><span class="p">:</span> <span class="o">.</span><span class="n">background</span><span class="p">)</span><span class="o">.</span><span class="k">async</span> <span class="p">{</span>
-    <span class="c1">// 后台执行耗时任务</span>
+    <span class="c1">// Run the time-consuming task in the background</span>
     <span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="nf">heavyTask</span><span class="p">()</span>
     
     <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="k">async</span> <span class="p">{</span>
-        <span class="c1">// 回到主线程更新 UI</span>
+        <span class="c1">// Update the UI back on the main thread</span>
         <span class="k">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">result</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -334,11 +334,11 @@
 8
 9
 </pre></td><td class="rouge-code"><pre><span class="n">dispatch_async</span><span class="p">(</span><span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">^</span><span class="p">{</span>
-    <span class="c1">// 后台执行耗时任务</span>
+    <span class="c1">// Run the time-consuming task in the background</span>
     <span class="n">NSString</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nf">heavyTask</span><span class="p">];</span>
     
     <span class="n">dispatch_async</span><span class="p">(</span><span class="n">dispatch_get_main_queue</span><span class="p">(),</span> <span class="o">^</span><span class="p">{</span>
-        <span class="c1">// 回到主线程更新 UI</span>
+        <span class="c1">// Update the UI back on the main thread</span>
         <span class="n">self</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
     <span class="p">});</span>
 <span class="p">});</span>
@@ -347,9 +347,9 @@
   
 </ul>
 
-<h2 id="示例四-三种语言对比">示例四: 三种语言对比</h2>
+<h2 id="example-4-comparing-three-languages">Example 4: Comparing Three Languages</h2>
 
-<ul id="greet" class="tab" data-tab="4707c817-c43d-4bb1-a561-2dcb81728af9" data-name="greet">
+<ul id="greet" class="tab" data-tab="7a37ff66-69ae-47d8-be7d-0a10227bd6cf" data-name="greet">
   
       <li class="active" id="greet-swift">
           <a href="#">Swift </a>
@@ -364,7 +364,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="4707c817-c43d-4bb1-a561-2dcb81728af9" data-name="greet">
+<ul class="tab-content" id="7a37ff66-69ae-47d8-be7d-0a10227bd6cf" data-name="greet">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -408,36 +408,36 @@
   
 </ul>
 
-<h1 id="总结">总结</h1>
+<h1 id="summary">Summary</h1>
 
-<p>整个接入过程改动极小,只涉及 4 个文件:</p>
+<p>The entire integration involved minimal changes, touching only 4 files:</p>
 
 <table>
   <thead>
     <tr>
-      <th>文件</th>
-      <th>改动内容</th>
+      <th>File</th>
+      <th>Change</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Gemfile</code></td>
-      <td>添加 <code class="language-plaintext highlighter-rouge">gem "jekyll-tabs"</code></td>
+      <td>Add <code class="language-plaintext highlighter-rouge">gem "jekyll-tabs"</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">_config.yml</code></td>
-      <td>添加 <code class="language-plaintext highlighter-rouge">plugins: - jekyll-tabs</code></td>
+      <td>Add <code class="language-plaintext highlighter-rouge">plugins: - jekyll-tabs</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">_includes/head.html</code></td>
-      <td>引入 <code class="language-plaintext highlighter-rouge">tabs.css</code></td>
+      <td>Include <code class="language-plaintext highlighter-rouge">tabs.css</code></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">_includes/js-selector.html</code></td>
-      <td>post 页面引入 <code class="language-plaintext highlighter-rouge">tabs.js</code></td>
+      <td>Include <code class="language-plaintext highlighter-rouge">tabs.js</code> on post pages</td>
     </tr>
   </tbody>
 </table>
 
-<p>效果符合预期,点击 Tab 不会跳顶,dark/light 双主题自动适配,代码高亮与原有 rouge 渲染完全兼容.</p>
+<p>The result works as expected: clicking a tab doesn’t jump to the top of the page, both dark and light themes are automatically supported, and code highlighting is fully compatible with the existing rouge rendering.</p>
 :ET

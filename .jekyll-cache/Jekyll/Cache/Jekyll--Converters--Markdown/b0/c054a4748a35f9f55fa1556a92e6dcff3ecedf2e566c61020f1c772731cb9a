@@ -1,4 +1,4 @@
-I"l<p>这里收录一些纯前端小工具。所有处理都在你的浏览器本地完成，<strong>文件不会被上传到任何服务器</strong>。</p>
+I"f<p>这里收录一些纯前端小工具。所有处理都在你的浏览器本地完成，<strong>文件不会被上传到任何服务器</strong>。</p>
 
 <div class="tools-landing">
 
@@ -64,7 +64,7 @@
 
 <a class="tools-card" href="/tools/json-format/">
   <span class="tools-card-head">
-    <i class="fas fa-diagram-project"></i>
+    <i class="fas fa-file-code"></i>
     <span class="tools-card-title">JSON 工具</span>
   </span>
   <span class="tools-card-desc">JSON 常用处理一条龙：树形浏览（展开/折叠、搜索、图片链接 hover 预览）、格式化/压缩/按键排序、宽容解析自动修复（尾逗号/单引号/无引号键/注释）、复制与下载 .json，错误定位行列，纯本地不上传</span>

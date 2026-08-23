@@ -160,7 +160,7 @@
 
 <h2 id="example-1-printing-hello-world-in-swift-vs-objective-c">Example 1: Printing Hello World in Swift vs Objective-C</h2>
 
-<ul id="hello-world" class="tab" data-tab="ec9dfb5d-11c8-4baf-a4d8-fbd1d473b6a2" data-name="hello-world">
+<ul id="hello-world" class="tab" data-tab="ddf0f724-9477-4e02-a154-cf26cd2aa4d5" data-name="hello-world">
   
       <li class="active" id="hello-world-swift">
           <a href="#">Swift </a>
@@ -171,7 +171,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="ec9dfb5d-11c8-4baf-a4d8-fbd1d473b6a2" data-name="hello-world">
+<ul class="tab-content" id="ddf0f724-9477-4e02-a154-cf26cd2aa4d5" data-name="hello-world">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
@@ -193,7 +193,7 @@
 
 <h2 id="example-2-singleton-pattern">Example 2: Singleton Pattern</h2>
 
-<ul id="singleton" class="tab" data-tab="54c28ce6-6650-4185-a523-f2a9a914e873" data-name="singleton">
+<ul id="singleton" class="tab" data-tab="aa870748-cf87-45f0-9805-bfe49f1db752" data-name="singleton">
   
       <li class="active" id="singleton-swift">
           <a href="#">Swift </a>
@@ -204,7 +204,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="54c28ce6-6650-4185-a523-f2a9a914e873" data-name="singleton">
+<ul class="tab-content" id="aa870748-cf87-45f0-9805-bfe49f1db752" data-name="singleton">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
@@ -288,7 +288,7 @@
 
 <h2 id="example-3-gcd-asynchronous-execution">Example 3: GCD Asynchronous Execution</h2>
 
-<ul id="gcd" class="tab" data-tab="711e347b-07cc-423a-af5e-7980f2a947e5" data-name="gcd">
+<ul id="gcd" class="tab" data-tab="dc81a91b-7f1e-4875-bc30-3560b3f0d518" data-name="gcd">
   
       <li class="active" id="gcd-swift">
           <a href="#">Swift </a>
@@ -299,7 +299,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="711e347b-07cc-423a-af5e-7980f2a947e5" data-name="gcd">
+<ul class="tab-content" id="dc81a91b-7f1e-4875-bc30-3560b3f0d518" data-name="gcd">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
@@ -349,7 +349,7 @@
 
 <h2 id="example-4-comparing-three-languages">Example 4: Comparing Three Languages</h2>
 
-<ul id="greet" class="tab" data-tab="1ae7be95-586b-43c6-a17f-a250b73b8a32" data-name="greet">
+<ul id="greet" class="tab" data-tab="7a37ff66-69ae-47d8-be7d-0a10227bd6cf" data-name="greet">
   
       <li class="active" id="greet-swift">
           <a href="#">Swift </a>
@@ -364,7 +364,7 @@
       </li>
   
 </ul>
-<ul class="tab-content" id="1ae7be95-586b-43c6-a17f-a250b73b8a32" data-name="greet">
+<ul class="tab-content" id="7a37ff66-69ae-47d8-be7d-0a10227bd6cf" data-name="greet">
   
       <li class="active">
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1

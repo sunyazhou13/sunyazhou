@@ -1,4 +1,4 @@
-I"�<p>支持 JSON 的常用操作，全部在浏览器本地完成，<strong>输入不上传</strong>：</p>
+I"�<p>支持 JSON 的常用操作，全部在浏览器本地完成，<strong>输入不上传</strong>：</p>
 
 <ul>
   <li><strong>树形浏览</strong>：输入即生成可折叠树，字符串若是图片链接（如 <code class="language-plaintext highlighter-rouge">https://...png</code>）hover 自动预览；支持搜索定位、全部展开 / 折叠、全屏新窗口浏览。</li>
@@ -51,5 +51,4 @@
 
 <script src="/assets/tools/json-format/app.js"></script>
 
-<p><em>（内容由AI生成，仅供参考）</em></p>
 :ET

@@ -1,12 +1,7 @@
 ---
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 66a6a10d0836fcca0ea80e5efce6d346_5d2b151e9e9e11f1a238525400e6dd8f
-    ReservedCode1: 0Bfmmojrx7zqSlECYV9iZnBdyj21WscjW58sMIz0E3X9mmBWGR8cq904O2l0FVi0l2GtUzdH+j3oSMkl8cCFHTJnEOSKyNCjKhkvetHMZ6iZuHOcs6CJkl3oCec4XaudO0B5MDRz62oVBlEUJFFVWS/Z10SS29YsSpgeN3irshPiYtICFoTMgDrwYi4=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 66a6a10d0836fcca0ea80e5efce6d346_5d2b151e9e9e11f1a238525400e6dd8f
-    ReservedCode2: 0Bfmmojrx7zqSlECYV9iZnBdyj21WscjW58sMIz0E3X9mmBWGR8cq904O2l0FVi0l2GtUzdH+j3oSMkl8cCFHTJnEOSKyNCjKhkvetHMZ6iZuHOcs6CJkl3oCec4XaudO0B5MDRz62oVBlEUJFFVWS/Z10SS29YsSpgeN3irshPiYtICFoTMgDrwYi4=
+layout: page
+title: JSON 工具
+icon: fas fa-file-code
 ---
 
 
@@ -61,4 +56,3 @@ AIGC:
 </div>
 
 <script src="/assets/tools/json-format/app.js"></script>
-*（内容由AI生成，仅供参考）*
