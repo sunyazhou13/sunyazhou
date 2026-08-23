@@ -7,6 +7,58 @@
 
   var ROOT = document.getElementById('xv-app');
   if (!ROOT) return;
+  /* 语言感知文案（zh / en），跟随 document.documentElement.lang */
+  var LANG = (document.documentElement.lang || '').toLowerCase() === 'en' ? 'en' : 'zh';
+  var I18N = {
+    zh: {
+      'sample-comment': '站点配置示例',
+      'sample-cdata': '支持 < 与 & 等特殊字符原样展示',
+      'xml-parse-fail': 'XML 解析失败',
+      'colon': '：',
+      'line-pre': '（第 ',
+      'line-post': ' 行）',
+      'xml-no-root': 'XML 缺少根元素',
+      'xml-parse-exc-pre': 'XML 解析异常：',
+      'comment-title': '注释',
+      'unit-el': ' 个元素',
+      'asut': '输入即树形',
+      'fmt-ok': '已格式化',
+      'minify-ok': '已压缩为单行',
+      'copied': '已复制到剪贴板',
+      'copy-fail': '复制失败，请手动复制',
+      'downloaded': '已下载 data.xml',
+      'win-cannot-open': '无法在窗口打开',
+      'win-blocked': '浏览器拦截了新窗口，请允许弹窗',
+      'win-title': 'XML 树形浏览',
+      'win-bar-hint': 'XML 树形浏览（新窗口）',
+      'win-close': '关闭',
+    },
+    en: {
+      'sample-comment': 'example site configuration',
+      'sample-cdata': 'Supports literal display of < and & etc. special characters',
+      'xml-parse-fail': 'XML parse failed',
+      'colon': ':',
+      'line-pre': ' (line ',
+      'line-post': ')',
+      'xml-no-root': 'XML is missing a root element',
+      'xml-parse-exc-pre': 'XML parse exception: ',
+      'comment-title': 'comment',
+      'unit-el': ' elements',
+      'asut': 'tree as you type',
+      'fmt-ok': 'Formatted',
+      'minify-ok': 'Minified to a single line',
+      'copied': 'Copied to clipboard',
+      'copy-fail': 'Copy failed; copy manually',
+      'downloaded': 'Downloaded data.xml',
+      'win-cannot-open': 'Cannot open in a window',
+      'win-blocked': 'The browser blocked the new window; please allow pop-ups',
+      'win-title': 'XML tree viewer',
+      'win-bar-hint': 'XML tree viewer (new window)',
+      'win-close': 'Close',
+    }
+  };
+  function t(key) { return I18N[LANG][key] != null ? I18N[LANG][key] : key; }
+
 
   function $id(k) { return document.getElementById('xv-' + k); }
   var els = {
@@ -20,7 +72,7 @@
 
   var SAMPLE =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +
-    '<!-- 站点配置示例 -->\n' +
+    '<!-- ' + t('sample-comment') + ' -->\n' +
     '<site name="Sun Yazhou" version="1.0">\n' +
     '  <author>\n' +
     '    <name>Sun Yazhou</name>\n' +
@@ -36,7 +88,7 @@
     '    <gzip enabled="true"/>\n' +
     '    <rss path="/feed.xml"/>\n' +
     '  </settings>\n' +
-    '  <notes><![CDATA[支持 < 与 & 等特殊字符原样展示]]></notes>\n' +
+    '  <notes><![CDATA[' + t('sample-cdata') + ']]></notes>\n' +
     '</site>';
 
   var state = { text: '', search: '' };
@@ -73,12 +125,12 @@
         var m = rawErr.match(/line\s+(\d+)/i);
         var ln = m ? m[1] : '';
         var brief = rawErr.split('\n').map(function (s) { return s.trim(); }).filter(Boolean).slice(0, 3).join(' ');
-        return { ok: false, error: 'XML 解析失败' + (ln ? '（第 ' + ln + ' 行）' : '') + '：' + brief };
+        return { ok: false, error: t('xml-parse-fail') + (ln ? t('line-pre') + ln + t('line-post') : '') + t('colon') + brief };
       }
-      if (!doc.documentElement) return { ok: false, error: 'XML 缺少根元素' };
+      if (!doc.documentElement) return { ok: false, error: t('xml-no-root') };
       return { ok: true, doc: doc };
     } catch (e) {
-      return { ok: false, error: 'XML 解析异常：' + (e && e.message || e) };
+      return { ok: false, error: t('xml-parse-exc-pre') + (e && e.message || e) };
     }
   }
 
@@ -192,7 +244,7 @@
       return '<div class="xv-row xv-row-text" data-s="' + esc(t.toLowerCase()) + '"><span class="xv-arrow xv-arrow-none"></span>' + textSpan(t) + '</div>';
     }
     if (n.nodeType === 8) {
-      return '<div class="xv-row xv-row-comment" data-s="' + esc(n.data.toLowerCase()) + '" title="注释"><span class="xv-arrow xv-arrow-none"></span><span class="xv-comment">&lt;!--' + esc(n.data) + '--&gt;</span></div>';
+      return '<div class="xv-row xv-row-comment" data-s="' + esc(n.data.toLowerCase()) + '" title="' + t('comment-title') + '"><span class="xv-arrow xv-arrow-none"></span><span class="xv-comment">&lt;!--' + esc(n.data) + '--&gt;</span></div>';
     }
     if (n.nodeType === 4) {
       return '<div class="xv-row xv-row-cdata" data-s="' + esc(n.data.toLowerCase()) + '"><span class="xv-arrow xv-arrow-none"></span><span class="xv-cdata">&lt;![CDATA[' + esc(n.data) + ']]&gt;</span></div>';
@@ -235,10 +287,10 @@
     var hrs = els.tree.querySelectorAll('.xv-close').length + els.tree.querySelectorAll('.xv-row-text').length +
       els.tree.querySelectorAll('.xv-row-comment').length + els.tree.querySelectorAll('.xv-row-cdata').length +
       els.tree.querySelectorAll('.xv-row-pi').length;
-    els.meta.textContent = elCount + ' 个元素';
+    els.meta.textContent = elCount + t('unit-el');
     blankStatus();
     var p = parse(els.input.value);
-    if (p.ok) note(elCount + ' 个元素 · 输入即树形');
+    if (p.ok) note(elCount + t('unit-el') + ' · ' + t('asut'));
   }
 
   function render(text) {
@@ -250,8 +302,8 @@
       els.treeWrap.hidden = true;
       els.error.hidden = false;
       els.error.innerHTML = '';
-      var tt = document.createElement('div'); tt.className = 'xv-err-title'; tt.textContent = 'XML 解析失败';
-      var td = document.createElement('div'); td.className = 'xv-err-detail'; td.textContent = p.error.replace('XML 解析失败', '').replace(/^：/, '');
+      var tt = document.createElement('div'); tt.className = 'xv-err-title'; tt.textContent = t('xml-parse-fail');
+      var td = document.createElement('div'); td.className = 'xv-err-detail'; td.textContent = p.error.replace(t('xml-parse-fail'), '').replace(/^：/, '');
       els.error.appendChild(tt); els.error.appendChild(td);
       blankStatus(); note(p.error);
       return;
@@ -327,7 +379,7 @@
     if (state.search) { els.search.value = ''; state.search = ''; }
     els.input.value = r.out;
     render(r.out);
-    note('已格式化');
+    note(t('fmt-ok'));
   });
 
   els.minify.addEventListener('click', function () {
@@ -336,12 +388,12 @@
     if (state.search) { els.search.value = ''; state.search = ''; }
     els.input.value = r.out;
     render(r.out);
-    note('已压缩为单行');
+    note(t('minify-ok'));
   });
 
   els.copy.addEventListener('click', function () {
     var out = els.input.value;
-    function done(ok) { note(ok ? '已复制到剪贴板' : '复制失败，请手动复制'); }
+    function done(ok) { note(ok ? t('copied') : t('copy-fail')); }
     if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(out).then(function () { done(true); }, function () { done(false); });
     } else {
@@ -362,7 +414,7 @@
     a.href = url; a.download = 'data.xml';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(url); }, 0);
-    note('已下载 data.xml');
+    note(t('downloaded'));
   });
 
   els.expand.addEventListener('click', function () { setAllCollapsed(false); });
@@ -370,17 +422,17 @@
 
   els.win.addEventListener('click', function () {
     var p = parse(els.input.value);
-    if (!p.ok) { note(p.error || '无法在窗口打开'); return; }
+    if (!p.ok) { note(p.error || t('win-cannot-open')); return; }
     var w = window.open('', '_blank', 'noopener');
-    if (!w) { note('浏览器拦截了新窗口，请允许弹窗'); return; }
+    if (!w) { note(t('win-blocked')); return; }
     var h = '';
     Array.prototype.forEach.call(p.doc.childNodes, function (c) { h += nodeHtml(c, 0); });
-    w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>XML 树形浏览</title>' +
+    w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + t('win-title') + '</title>' +
       '<meta name="robots" content="noindex">' +
       '<link rel="stylesheet" href="/assets/tools/xml-viewer/app.css">' +
       '</head><body><div id="xv-app" class="xv-window-mode"><div class="xv-win-bar">' +
-      '<span class="xv-hint">XML 树形浏览（新窗口）</span>' +
-      '<button type="button" class="xv-btn" onclick="window.close()">关闭</button></div>' +
+      '<span class="xv-hint">' + t('win-bar-hint') + '</span>' +
+      '<button type="button" class="xv-btn" onclick="window.close()">' + t('win-close') + '</button></div>' +
       '<div class="xv-tree" id="xv-tree">' + h + '</div></div></body></html>');
     w.document.close();
   });

@@ -11,12 +11,40 @@
 
   var root = document.getElementById('bc-app');
   if (!root) return;
+  /* 语言感知文案（zh / en），跟随 document.documentElement.lang */
+  var LANG = (document.documentElement.lang || '').toLowerCase() === 'en' ? 'en' : 'zh';
+  var I18N = {
+    zh: {
+      'n-bin': '二进制',
+      'n-oct': '八进制',
+      'n-dec': '十进制',
+      'n-hex': '十六进制',
+      'only-prefix': '：只有前缀，没有数字',
+      'bad-char-pre': '：包含非法字符「',
+      'bad-char-post': '」',
+      'copied-word': '已复制',
+    },
+    en: {
+      'n-bin': 'Binary',
+      'n-oct': 'Octal',
+      'n-dec': 'Decimal',
+      'n-hex': 'Hexadecimal',
+      'only-prefix': ': prefix only, no digits',
+      'bad-char-pre': ': contains illegal character "',
+      'bad-char-post': '"',
+      'copied-word': 'Copied',
+    }
+  };
+  function t(key) { return I18N[LANG][key] != null ? I18N[LANG][key] : key; }
 
-  var FIELDS = [
-    { id: 'bin', base: 2, prefix: '0b', label: '二进制' },
-    { id: 'oct', base: 8, prefix: '0o', label: '八进制' },
-    { id: 'dec', base: 10, prefix: '', label: '十进制' },
-    { id: 'hex', base: 16, prefix: '0x', label: '十六进制' }
+
+
+  var FIELDS
+ = [
+    { id: 'bin', base: 2, prefix: '0b', label: t('n-bin') },
+    { id: 'oct', base: 8, prefix: '0o', label: t('n-oct') },
+    { id: 'dec', base: 10, prefix: '', label: t('n-dec') },
+    { id: 'hex', base: 16, prefix: '0x', label: t('n-hex') }
   ];
 
   var els = {
@@ -57,14 +85,14 @@
     if (f.prefix && s.slice(0, f.prefix.length).toLowerCase() === f.prefix) {
       s = s.slice(f.prefix.length);
     }
-    if (!s.length) return { error: f.label + '：只有前缀，没有数字' };
+    if (!s.length) return { error: f.label + t('only-prefix') };
     var n = 0n;
     var bigBase = BigInt(f.base);
     for (var i = 0; i < s.length; i++) {
       var c = s.charAt(i).toLowerCase();
       var v = CHARS.indexOf(c);
       if (v < 0 || v >= f.base) {
-        return { error: f.label + '：包含非法字符「' + c + '」' };
+        return { error: f.label + t('bad-char-pre') + c + t('bad-char-post') };
       }
       n = n * bigBase + BigInt(v);
     }
@@ -127,7 +155,7 @@
 
   function flashCopied(btn) {
     var old = btn.textContent;
-    btn.textContent = '已复制';
+    btn.textContent = t('copied-word');
     btn.classList.add('bc-copied');
     clearTimeout(btn._t);
     btn._t = setTimeout(function () {

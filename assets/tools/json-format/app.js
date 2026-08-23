@@ -11,6 +11,108 @@
 
   var root = document.getElementById('jf-app');
   if (!root) return;
+
+  var LANG = (document.documentElement.lang || 'zh').toLowerCase();
+  if (LANG.indexOf('en') === 0) LANG = 'en';
+  var I18N = {
+    'zh': {
+    'img-prev-alt': '图片预览',
+    'img-prev-fail': '图片加载失败',
+    'jf-eof': 'JSON 提前结束：可能有未闭合的 {、[ 或 " 引号。',
+    'jf-prop': '此处应是对象键名 "key": 检查是否丢了逗号、冒号或多了花括号。',
+    'jf-comma': '此处应有一个逗号，但格式不对：可能是多余的逗号，或上一个值没写完整。',
+    'jf-colon': '键名后应有冒号 :，却出现了别的字符。',
+    'jf-token': '遇到了不该出现的字符：检查逗号、括号是否多写或漏写。',
+    'jf-trailing': '解析完成后还有多余内容：检查是否多写了 } ] 或 , 逗号。',
+    'jf-escape': '字符串中有非法转义：如反斜杠 \\ 后跟了非法字符。',
+    'jf-unterminated': '字符串引号可能未闭合。',
+    'jf-extra': 'JSON 后有多余的字符；也常见于多个 JSON 串在一起。',
+    'err-line-pre': '第 ',
+    'err-line-mid': ' 行，第 ',
+    'err-line-post': ' 列',
+    'err-locate-fail': '无法自动定位',
+    'hint-pre': '提示：',
+    'invalid-pre': 'JSON 无效：',
+    'jf-items': ' 项',
+    'img-hover': '图片链接，hover 预览',
+    'node-limit-pre': '节点数超过 ',
+    'node-limit-post': ' 个，树形视图会卡顿，请缩减数据后再试。',
+    'nodes': ' 个节点',
+    'valid-pre': '有效 JSON · ',
+    'valid-mid': ' · ',
+    'chars': ' 字符',
+    'repaired-pre': ' · 已自动修复 ',
+    'repaired-post': ' 处（可用「修复」写回标准格式）',
+    'hit-pre': '命中 ',
+    'alert-invalid': '当前不是有效 JSON，请先修正或使用「修复」。',
+    'note-fmt': '已格式化（2 空格缩进）',
+    'note-minify': '已压缩为单行',
+    'note-sort': '已按键名排序',
+    'alert-please-json': '请输入 JSON。',
+    'note-already': '已是标准 JSON，无需修复',
+    'alert-cant-repair': '无法自动修复：可能存在未闭合的引号或注释。',
+    'note-repaired-pre': '已修复 ',
+    'note-repaired-post': ' 处并写回标准 JSON',
+    'copied': '已复制到剪贴板',
+    'copy-failed': '复制失败，请手动选择复制',
+    'alert-invalid-dl': '当前不是有效 JSON，无法下载。',
+    'alert-no-download': '当前浏览器不支持下载。',
+    'note-downloaded': '已下载 data.json',
+    'alert-empty': '请先输入 JSON',
+    'alert-window': '无法打开新窗口，请直接使用下方树形视图',
+    'placeholder-nonode': '没有可展示的 JSON：请回到主工具页输入 JSON 后点「新窗口」。',
+    'win-title': 'JSON 树形浏览',
+    },
+    'en': {
+    'img-prev-alt': 'Image preview',
+    'img-prev-fail': 'Image preview failed to load',
+    'jf-eof': 'JSON ended early: there may be an unclosed {, [ or " quote.',
+    'jf-prop': 'A property name "key" is expected here: check for a missing comma, colon, or an extra curly brace.',
+    'jf-comma': 'A comma is expected here: there may be an extra comma, or the previous value was not written completely.',
+    'jf-colon': 'A colon : is expected after the key name, another character was found.',
+    'jf-token': 'Unexpected character: check whether a comma or bracket is missing or extra.',
+    'jf-trailing': 'Extra content remains after parsing: check for an extra }, ] or , comma.',
+    'jf-escape': 'Invalid escape in a string: e.g. a backslash \\ followed by an invalid character.',
+    'jf-unterminated': 'A string quote may be unclosed.',
+    'jf-extra': 'Extra characters after the JSON; this often happens when several JSON documents are concatenated.',
+    'err-line-pre': 'line ',
+    'err-line-mid': ', column ',
+    'err-line-post': '',
+    'err-locate-fail': 'Cannot auto-locate the error',
+    'hint-pre': 'Tip: ',
+    'invalid-pre': 'Invalid JSON: ',
+    'jf-items': ' items',
+    'img-hover': 'Image link, hover to preview',
+    'node-limit-pre': 'Node count exceeds ',
+    'node-limit-post': ', the tree view may become sluggish. Please reduce the data and try again.',
+    'nodes': ' nodes',
+    'valid-pre': 'Valid JSON · ',
+    'valid-mid': ' · ',
+    'chars': ' chars',
+    'repaired-pre': ', auto-repaired ',
+    'repaired-post': ' spot(s) (use "Repair" to write back standard JSON)',
+    'hit-pre': 'matched ',
+    'alert-invalid': 'This is not valid JSON yet. Please fix it or use "Repair".',
+    'note-fmt': 'Formatted (2-space indent)',
+    'note-minify': 'Minified into a single line',
+    'note-sort': 'Sorted by key name',
+    'alert-please-json': 'Please enter some JSON.',
+    'note-already': 'Already valid JSON, no repair needed',
+    'alert-cant-repair': 'Cannot auto-repair: there may be an unclosed quote or comment.',
+    'note-repaired-pre': 'Repaired ',
+    'note-repaired-post': ' spot(s) and wrote back standard JSON',
+    'copied': 'Copied to the clipboard',
+    'copy-failed': 'Copy failed, please select and copy manually',
+    'alert-invalid-dl': 'This is not valid JSON, cannot download.',
+    'alert-no-download': 'Download is not supported in this browser.',
+    'note-downloaded': 'Downloaded data.json',
+    'alert-empty': 'Please enter some JSON first',
+    'alert-window': 'Cannot open a new window, please use the tree view below',
+    'placeholder-nonode': 'No JSON to display: enter JSON on the main tool page, then click "New window".',
+    'win-title': 'JSON Tree View',
+    }
+  };
+  function t(key) { var v = (I18N[LANG] || {})[key]; return v != null ? v : key; }
   var isWindowMode = root.classList.contains('jf-window-mode');
 
   var els = {
@@ -229,10 +331,10 @@
       var im = document.createElement('img');
       im.src = url;
       im.loading = 'lazy';
-      im.alt = '图片预览';
+      im.alt = t('img-prev-alt');
       im.onerror = function () {
         box.classList.add('jf-img-pop-err');
-        box.textContent = '图片加载失败';
+        box.textContent = t('img-prev-fail');
       };
       box.appendChild(im);
       imgPop.appendChild(box);
@@ -274,15 +376,15 @@
 
   function errHint(msg) {
     var m = txt(msg);
-    if (/end of json input|unexpected end/i.test(m)) return 'JSON 提前结束：可能有未闭合的 {、[ 或 " 引号。';
-    if (/expected property name/i.test(m) || /expected (double-quoted|single-quoted) property name/i.test(m)) return '此处应是对象键名 "key": 检查是否丢了逗号、冒号或多了花括号。';
-    if (/expected ','/i.test(m)) return '此处应有一个逗号，但格式不对：可能是多余的逗号，或上一个值没写完整。';
-    if (/expected ':'/i.test(m)) return '键名后应有冒号 :，却出现了别的字符。';
-    if (/unexpected token/i.test(m) || /unexpected (number|string)/i.test(m)) return '遇到了不该出现的字符：检查逗号、括号是否多写或漏写。';
-    if (/trailing|non-whitespace/i.test(m)) return '解析完成后还有多余内容：检查是否多写了 } ] 或 , 逗号。';
-    if (/bad escaped|invalid escape|escape/i.test(m)) return '字符串中有非法转义：如反斜杠 \\ 后跟了非法字符。';
-    if (/unterminated|missing"/i.test(m)) return '字符串引号可能未闭合。';
-    if (/unexpected non-whitespace/i.test(m)) return 'JSON 后有多余的字符；也常见于多个 JSON 串在一起。';
+    if (/end of json input|unexpected end/i.test(m)) return t('jf-eof');
+    if (/expected property name/i.test(m) || /expected (double-quoted|single-quoted) property name/i.test(m)) return t('jf-prop');
+    if (/expected ','/i.test(m)) return t('jf-comma');
+    if (/expected ':'/i.test(m)) return t('jf-colon');
+    if (/unexpected token/i.test(m) || /unexpected (number|string)/i.test(m)) return t('jf-token');
+    if (/trailing|non-whitespace/i.test(m)) return t('jf-trailing');
+    if (/bad escaped|invalid escape|escape/i.test(m)) return t('jf-escape');
+    if (/unterminated|missing"/i.test(m)) return t('jf-unterminated');
+    if (/unexpected non-whitespace/i.test(m)) return t('jf-extra');
     return '';
   }
 
@@ -299,7 +401,7 @@
       for (var i = 0; i < Math.max(0, info.col - 1); i++) caretPad += ' ';
       var pos = document.createElement('div');
       pos.className = 'jf-err-pos';
-      pos.textContent = '第 ' + info.line + ' 行，第 ' + info.col + ' 列';
+      pos.textContent = t('err-line-pre') + info.line + t('err-line-mid') + info.col + t('err-line-post');
       detail.appendChild(pos);
       var lineEl = document.createElement('div');
       lineEl.className = 'jf-err-line';
@@ -316,14 +418,14 @@
     } else {
       var pos2 = document.createElement('div');
       pos2.className = 'jf-err-pos';
-      pos2.textContent = '无法自动定位';
+      pos2.textContent = t('err-locate-fail');
       detail.appendChild(pos2);
     }
     var hint = errHint(e.message);
     if (hint) {
       var hEl = document.createElement('div');
       hEl.className = 'jf-err-hint';
-      hEl.textContent = '提示：' + hint;
+      hEl.textContent = t('hint-pre') + hint;
       detail.appendChild(hEl);
     }
     if (els.error) {
@@ -331,7 +433,7 @@
       els.error.innerHTML = '';
       var tEl = document.createElement('div');
       tEl.className = 'jf-err-title';
-      tEl.textContent = 'JSON 无效：' + txt(e.message || e);
+      tEl.textContent = t('invalid-pre') + txt(e.message || e);
       els.error.appendChild(tEl);
       els.error.appendChild(detail);
     }
@@ -352,8 +454,8 @@
   }
 
   function summary(v) {
-    if (Array.isArray(v)) return '[' + v.length + ' 项]';
-    return '{' + Object.keys(v).length + ' 项}';
+    if (Array.isArray(v)) return '[' + v.length + t('jf-items') + ']';
+    return '{' + Object.keys(v).length + t('jf-items') + '}';
   }
 
   function buildNode(v, key, depth) {
@@ -412,7 +514,7 @@
       if (isImageUrl(v)) {
         wrap.classList.add('jf-has-img');
         vv.classList.add('jf-val-img');
-        vv.title = '图片链接，hover 预览';
+        vv.title = t('img-hover');
         bindImgPop(vv, v);
       }
       wrap.appendChild(row);
@@ -436,7 +538,7 @@
   function renderTree(obj, text) {
     var cnt = countNodes(obj, MAX_NODES);
     if (cnt.over) {
-      showError({ message: '节点数超过 ' + MAX_NODES + ' 个，树形视图会卡顿，请缩减数据后再试。' }, text);
+      showError({ message: t('node-limit-pre') + MAX_NODES + t('node-limit-post') }, text);
       return;
     }
     if (els.treeWrap) els.treeWrap.hidden = false;
@@ -447,10 +549,10 @@
       els.tree.appendChild(buildNode(obj, null, 0));
     }
     if (els.treeSearch) els.treeSearch.value = '';
-    if (els.treeMeta) els.treeMeta.textContent = cnt.n + ' 个节点';
+    if (els.treeMeta) els.treeMeta.textContent = cnt.n + t('nodes');
     if (els.status) {
-      var base = '有效 JSON · ' + cnt.n + ' 节点 · ' + text.length + ' 字符';
-      if (state.repaired) base += ' · 已自动修复 ' + state.fixed + ' 处（可用「修复」写回标准格式）';
+      var base = t('valid-pre') + cnt.n + t('nodes') + t('valid-mid') + text.length + t('chars');
+      if (state.repaired) base += t('repaired-pre') + state.fixed + t('repaired-post');
       els.status.textContent = base;
       els.status.className = 'jf-status-ok';
     }
@@ -498,7 +600,7 @@
         }
       }
     }
-    if (els.treeMeta) els.treeMeta.textContent = q === '' ? nodes.length + ' 个节点' : '命中 ' + hit + ' / ' + nodes.length + ' 个节点';
+    if (els.treeMeta) els.treeMeta.textContent = q === '' ? nodes.length + t('nodes') : t('hit-pre') + hit + ' / ' + nodes.length + t('nodes');
   }
 
   function expandAll() {
@@ -530,40 +632,40 @@
 
   function formatJson() {
     var r = parseSmart(els.input.value);
-    if (r.error) { if (window.alert) window.alert('当前不是有效 JSON，请先修正或使用「修复」。'); return; }
+    if (r.error) { if (window.alert) window.alert(t('alert-invalid')); return; }
     setInput(JSON.stringify(r.obj, null, 2));
-    note('已格式化（2 空格缩进）');
+    note(t('note-fmt'));
   }
 
   function minifyJson() {
     var r = parseSmart(els.input.value);
-    if (r.error) { if (window.alert) window.alert('当前不是有效 JSON，请先修正或使用「修复」。'); return; }
+    if (r.error) { if (window.alert) window.alert(t('alert-invalid')); return; }
     setInput(JSON.stringify(r.obj));
-    note('已压缩为单行');
+    note(t('note-minify'));
   }
 
   function sortJson() {
     var r = parseSmart(els.input.value);
-    if (r.error) { if (window.alert) window.alert('当前不是有效 JSON，请先修正或使用「修复」。'); return; }
+    if (r.error) { if (window.alert) window.alert(t('alert-invalid')); return; }
     setInput(JSON.stringify(sortKeyValues(r.obj), null, 2));
-    note('已按键名排序');
+    note(t('note-sort'));
   }
 
   function repairJson() {
     var text = els.input.value;
-    if (!text.trim()) { if (window.alert) window.alert('请输入 JSON。'); return; }
+    if (!text.trim()) { if (window.alert) window.alert(t('alert-please-json')); return; }
     var p = parseSmart(text);
-    if (!p.error && !p.repaired) { note('已是标准 JSON，无需修复'); return; }
+    if (!p.error && !p.repaired) { note(t('note-already')); return; }
     var r = repairJSON(text);
-    if (r.fixed < 0) { if (window.alert) window.alert('无法自动修复：可能存在未闭合的引号或注释。'); return; }
+    if (r.fixed < 0) { if (window.alert) window.alert(t('alert-cant-repair')); return; }
     setInput(r.text);
-    note('已修复 ' + r.fixed + ' 处并写回标准 JSON');
+    note(t('note-repaired-pre') + r.fixed + t('note-repaired-post'));
   }
 
   function copyJson() {
     var r = parseSmart(els.input.value);
     var out = r.error ? els.input.value : JSON.stringify(r.obj);
-    function done(ok) { note(ok ? '已复制到剪贴板' : '复制失败，请手动选择复制'); }
+    function done(ok) { note(ok ? t('copied') : t('copy-failed')); }
     if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(out).then(function () { done(true); }, function () { done(false); });
     } else {
@@ -580,13 +682,13 @@
 
   function downloadJson() {
     var r = parseSmart(els.input.value);
-    if (r.error) { if (window.alert) window.alert('当前不是有效 JSON，无法下载。'); return; }
+    if (r.error) { if (window.alert) window.alert(t('alert-invalid-dl')); return; }
     var out = JSON.stringify(r.repaired ? r.repairedObj : r.obj, null, 2);
     var blob;
     try {
       blob = new Blob([out], { type: 'application/json;charset=utf-8' });
     } catch (e) {
-      if (window.alert) window.alert('当前浏览器不支持下载。');
+      if (window.alert) window.alert(t('alert-no-download'));
       return;
     }
     var a = document.createElement('a');
@@ -598,7 +700,7 @@
       URL.revokeObjectURL(a.href);
       a.remove();
     }, 100);
-    note('已下载 data.json');
+    note(t('note-downloaded'));
   }
 
   function note(msg) {
@@ -653,12 +755,12 @@
   if (els.treeWindow) {
     els.treeWindow.addEventListener('click', function () {
       var text = els.input ? els.input.value : '';
-      if (!text.trim()) { if (window.alert) window.alert('请先输入 JSON'); return; }
+      if (!text.trim()) { if (window.alert) window.alert(t('alert-empty')); return; }
       try {
         sessionStorage.setItem('jf-tree-data', text);
         window.open('/assets/tools/json-format/tree.html', '_blank');
       } catch (e) {
-        if (window.alert) window.alert('无法打开新窗口，请直接使用下方树形视图');
+        if (window.alert) window.alert(t('alert-window'));
       }
     });
   }
@@ -671,7 +773,7 @@
       text = sessionStorage.getItem('jf-tree-data') || '';
     } catch (e) { /* 隐私模式不可用 */ }
     if (!text.trim()) {
-      if (els.tree) els.tree.innerHTML = '<div class="jf-placeholder">没有可展示的 JSON：请回到主工具页输入 JSON 后点「新窗口」。</div>';
+      if (els.tree) els.tree.innerHTML = '<div class="jf-placeholder">' + t('placeholder-nonode') + '</div>';
       return;
     }
     var r = parseSmart(text);
@@ -687,7 +789,7 @@
   /* ---------- 启动 ---------- */
 
   if (isWindowMode) {
-    if (!document.title) document.title = 'JSON 树形浏览';
+    if (!document.title) document.title = t('win-title');
     bootWindow();
   } else {
     reset();

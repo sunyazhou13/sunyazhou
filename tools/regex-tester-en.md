@@ -1,0 +1,46 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 66a6a10d0836fcca0ea80e5efce6d346_3dc7369b9f3f11f1a65b525400826444
+    ReservedCode1: gBr8YBr6nB+rzk7ePAGwMORUhyoMme6GzONc6IBB0GAHxfKOvnvhOItXpr2/G75cFclyPTVKuPv3oSzVnVNojvARMwMGHHiYnw71YKpkTIJY6Km6PPCHDPP6ooapa05ACf9TnNxNJjLhe51uGPhgByNSTWG9pRwLZGuyWpfW/rqIRqnDcb42J6UI70o=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 66a6a10d0836fcca0ea80e5efce6d346_3dc7369b9f3f11f1a65b525400826444
+    ReservedCode2: gBr8YBr6nB+rzk7ePAGwMORUhyoMme6GzONc6IBB0GAHxfKOvnvhOItXpr2/G75cFclyPTVKuPv3oSzVnVNojvARMwMGHHiYnw71YKpkTIJY6Km6PPCHDPP6ooapa05ACf9TnNxNJjLhe51uGPhgByNSTWG9pRwLZGuyWpfW/rqIRqnDcb42J6UI70o=
+---
+
+
+
+Type a regular expression and some test text and every match is highlighted in real time, with each match and capture group shown alongside its text, position and processing time. Nested-quantifier patterns that risk catastrophic backtracking are flagged with a warning. Everything runs locally in your browser — your content is never uploaded.
+
+<link rel="stylesheet" href="/assets/tools/regex-tester/app.css">
+
+<div id="rt-app">
+  <div class="rt-field">
+    <label for="rt-pattern">Regular expression</label>
+    <input type="text" id="rt-pattern" class="rt-pattern" spellcheck="false" autocomplete="off" placeholder="e.g. (\w+)@(\w+)\.(\w+) or /pattern/gi">
+  </div>
+
+  <div class="rt-flags">
+    <label><input type="checkbox" value="g" checked> g global</label>
+    <label><input type="checkbox" value="i"> i ignore case</label>
+    <label><input type="checkbox" value="m"> m multiline</label>
+    <label><input type="checkbox" value="s"> s dot matches newline</label>
+    <label><input type="checkbox" value="u"> u unicode</label>
+    <label><input type="checkbox" value="y"> y sticky</label>
+  </div>
+
+  <div class="rt-field">
+    <label for="rt-text">Test text</label>
+    <textarea id="rt-text" class="rt-textarea" rows="8" spellcheck="false" placeholder="Paste test text here…"></textarea>
+  </div>
+
+  <div class="rt-status" id="rt-status" role="status"></div>
+  <div class="rt-warn" id="rt-warn" hidden></div>
+  <div class="rt-meta" id="rt-meta"></div>
+  <div class="rt-output" id="rt-output"></div>
+  <div class="rt-groups" id="rt-groups"></div>
+</div>
+
+<script src="/assets/tools/regex-tester/app.js" defer></script>
+*（内容由AI生成，仅供参考）*

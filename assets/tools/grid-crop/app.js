@@ -30,6 +30,51 @@
   };
   var canvasCtx = els.canvas.getContext('2d');
 
+  var LANG = (document.documentElement.lang || 'zh').toLowerCase();
+  LANG = (LANG.indexOf('en') !== -1) ? 'en' : 'zh';
+  var I18N = {
+    zh: {
+      'gc-even': '全图等分',
+      'gc-detecting': '锚点检测中…',
+      'gc-anchor': '锚点保护（网格中心对准主体 / 人脸）',
+      'gc-anchor-fail': '全图等分（未能检测到主体）',
+      'gc-manual': '全图等分（手动微调）',
+      'gc-restore-note': '已恢复全图等分，如需更新预览请再次点击「预览 9 格」',
+      'gc-adjusted-note': '网格已调整，如需更新预览请再次点击「预览 9 格」',
+      'gc-preview-done': '已生成 9 张，可打包下载全部小图',
+      'gc-dl-loading': '打包中…',
+      'gc-dl-ready': '打包下载 9 张',
+      'gc-dl-note-pre': '已下载 ',
+      'gc-dl-note-suf': '（9 张 PNG）',
+      'gc-pick-img': '请选择图片文件（PNG / JPEG / WebP / GIF 等）',
+      'gc-load-note-suf': '· 可勾选「主体锚点保护」或拖动滑杆微调网格，然后点击「预览 9 格」',
+      'gc-img-fail': '图片加载失败，请重试其他图片',
+      'gc-no-file': '未读取到文件',
+      'gc-reset': '网格已重置'
+    },
+    en: {
+      'gc-even': 'Split evenly',
+      'gc-detecting': 'Detecting anchor…',
+      'gc-anchor': 'Anchor protection (grid center aligned on subject / face)',
+      'gc-anchor-fail': 'Split evenly (no subject detected)',
+      'gc-manual': 'Split evenly (manual adjustment)',
+      'gc-restore-note': 'Back to even split. Click "Preview 9 tiles" again to refresh the preview',
+      'gc-adjusted-note': 'Grid adjusted. Click "Preview 9 tiles" again to refresh the preview',
+      'gc-preview-done': '9 tiles generated — download them all below',
+      'gc-dl-loading': 'Packing…',
+      'gc-dl-ready': 'Download 9 tiles',
+      'gc-dl-note-pre': 'Downloaded ',
+      'gc-dl-note-suf': ' (9 PNG tiles)',
+      'gc-pick-img': 'Please choose an image file (PNG / JPEG / WebP / GIF, etc.)',
+      'gc-load-note-suf': '· check "Subject anchor protection" or drag the sliders to fine-tune the grid, then click "Preview 9 tiles"',
+      'gc-img-fail': 'Failed to load the image, please try another one',
+      'gc-no-file': 'No file read',
+      'gc-reset': 'Grid reset'
+    }
+  };
+  function t(key) { var v = (I18N[LANG] || {})[key]; return v != null ? v : key; }
+
+
   function note(msg) { els.note.textContent = msg || ''; }
 
   /* ---------- 主体锚点检测 ---------- */
@@ -151,22 +196,22 @@
       state.offsetX = 0; state.offsetY = 0;
       els.offsetX.value = 0; els.offsetY.value = 0;
       els.offsetXVal.textContent = '0'; els.offsetYVal.textContent = '0';
-      els.modeTag.textContent = '全图等分';
+      els.modeTag.textContent = t('gc-even');
       render();
-      if (els.grid.hidden === false && state.cells.length) note('已恢复全图等分，如需更新预览请再次点击「预览 9 格」');
+      if (els.grid.hidden === false && state.cells.length) note(t('gc-restore-note'));
       return;
     }
-    els.modeTag.textContent = '锚点检测中…';
+    els.modeTag.textContent = t('gc-detecting');
     computeAnchor().then(function (a) {
       if (!state.anchorOn) return;
       state.offsetX = Math.round(a.x - state.width / 2);
       state.offsetY = Math.round(a.y - state.height / 2);
       clampOffset();
-      els.modeTag.textContent = '锚点保护（网格中心对准主体 / 人脸）';
+      els.modeTag.textContent = t('gc-anchor');
       render();
-      if (els.grid.hidden === false) note('网格已调整，如需更新预览请再次点击「预览 9 格」');
+      if (els.grid.hidden === false) note(t('gc-adjusted-note'));
     }).catch(function () {
-      els.modeTag.textContent = '全图等分（未能检测到主体）';
+      els.modeTag.textContent = t('gc-anchor-fail');
     });
   }
 
@@ -212,7 +257,7 @@
       els.grid.appendChild(box);
     });
     els.download.disabled = false;
-    note('已生成 9 张，可打包下载全部小图');
+    note(t('gc-preview-done'));
   }
 
   /* ---------- 纯 JS ZIP 打包（STORE，无压缩，无外部依赖） ---------- */
@@ -317,7 +362,7 @@
   els.download.addEventListener('click', function () {
     if (!state.cells.length) return;
     els.download.disabled = true;
-    els.download.textContent = '打包中…';
+    els.download.textContent = t('gc-dl-loading');
     var files = [];
     var chain = Promise.resolve();
     state.cells.forEach(function (cell) {
@@ -336,15 +381,15 @@
       var zip = buildZip(files);
       saveBlob(new Blob([zip], { type: 'application/zip' }), state.baseName + '-9grid.zip');
       els.download.disabled = false;
-      els.download.textContent = '打包下载 9 张';
-      note('已下载 ' + state.baseName + '-9grid.zip（9 张 PNG）');
+      els.download.textContent = t('gc-dl-ready');
+      note(t('gc-dl-note-pre') + state.baseName + '-9grid.zip' + t('gc-dl-note-suf'));
     });
   });
 
   /* ---------- 文件加载 ---------- */
 
   function loadFile(file) {
-    if (!file || !/^image\//.test(file.type)) { note('请选择图片文件（PNG / JPEG / WebP / GIF 等）'); return; }
+    if (!file || !/^image\//.test(file.type)) { note(t('gc-pick-img')); return; }
     var url = URL.createObjectURL(file);
     var img = new Image();
     img.onload = function () {
@@ -355,16 +400,16 @@
       state.baseName = (file.name.replace(/\.[^.]+$/, '') || 'grid');
       state.offsetX = 0; state.offsetY = 0; state.anchorOn = false;
       els.anchor.checked = false;
-      els.modeTag.textContent = '全图等分';
+      els.modeTag.textContent = t('gc-even');
       els.panel.hidden = false;
       els.grid.hidden = true;
       els.grid.innerHTML = '';
       els.download.disabled = true;
-      note(state.width + ' × ' + state.height + ' · 可勾选「主体锚点保护」或拖动滑杆微调网格，然后点击「预览 9 格」');
+      note(state.width + ' × ' + state.height + ' ' + t('gc-load-note-suf'));
       URL.revokeObjectURL(url);
       render();
     };
-    img.onerror = function () { URL.revokeObjectURL(url); note('图片加载失败，请重试其他图片'); };
+    img.onerror = function () { URL.revokeObjectURL(url); note(t('gc-img-fail')); };
     img.src = url;
   }
 
@@ -388,7 +433,7 @@
   });
   els.drop.addEventListener('drop', function (e) {
     var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
-    if (f) loadFile(f); else note('未读取到文件');
+    if (f) loadFile(f); else note(t('gc-no-file'));
   });
   els.input.addEventListener('change', function () {
     loadFile(els.input.files && els.input.files[0]);
@@ -400,14 +445,14 @@
   els.offsetX.addEventListener('input', function () {
     state.offsetX = parseInt(els.offsetX.value, 10) || 0;
     state.anchorOn = false; els.anchor.checked = false;
-    els.modeTag.textContent = '全图等分（手动微调）';
+    els.modeTag.textContent = t('gc-manual');
     clampOffset();
     render();
   });
   els.offsetY.addEventListener('input', function () {
     state.offsetY = parseInt(els.offsetY.value, 10) || 0;
     state.anchorOn = false; els.anchor.checked = false;
-    els.modeTag.textContent = '全图等分（手动微调）';
+    els.modeTag.textContent = t('gc-manual');
     clampOffset();
     render();
   });
@@ -417,11 +462,11 @@
     els.offsetX.value = 0; els.offsetY.value = 0;
     els.offsetXVal.textContent = '0'; els.offsetYVal.textContent = '0';
     state.anchorOn = false; els.anchor.checked = false;
-    els.modeTag.textContent = '全图等分';
+    els.modeTag.textContent = t('gc-even');
     els.grid.hidden = true; els.grid.innerHTML = '';
     els.download.disabled = true;
     render();
-    note('网格已重置');
+    note(t('gc-reset'));
   });
 
   els.preview.addEventListener('click', renderPreview);

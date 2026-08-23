@@ -28,6 +28,111 @@ import { USDZExporter } from 'three/addons/exporters/USDZExporter.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import * as fflate from 'three/addons/libs/fflate.module.js';
 
+const I18N = {
+  zh: {
+    'status-load-fail': '加载失败',
+    'vn-wire': '线框',
+    'vn-normal': '法线',
+    'uv-note': '（模型无 UV 坐标，UV 视口无效）',
+    'w-tri': '三角面',
+    'w-vert': '顶点',
+    'puv-pre': '已为 ',
+    'puv-post': ' 个网格生成投影 UV（box 投影，非原始数据；导出的文件将包含该 UV）',
+    'sample-name': '内置示例 · 环面纽结',
+    'err-no-model': '未识别到支持的模型文件（.glb / .gltf / .obj / .fbx / .stl / .usdz，或包含它们的 .zip 压缩包）',
+    'parse-pre': '正在解析 ',
+    'gltf-hint': '提示：glTF 若引用外部 .bin / 贴图且未内嵌，将无法完整解析；建议连同资源打包成 zip 拖入，或使用 GLB',
+    'no-mtl-hint': '提示：未提供 MTL，使用默认材质',
+    'usdc-loading': '检测到二进制 usdc 场景，正在加载 WASM 解析器（首次约 1.3MB）…',
+    'parse-fail-pre': '解析 ',
+    'parse-fail-post': ' 失败：',
+    'unzip-pre': '正在解压 ',
+    'zip-invalid': '不是合法的 zip 压缩包（也可能是损坏的下载文件）',
+    'zip-empty': 'zip 包内没有有效文件',
+    'sep': '、',
+    'zn-pre': 'zip 内未找到支持的模型文件（共 ',
+    'zn-post': ' 个：',
+    'zm-pre': 'zip 内识别到 ',
+    'zm-post': '，正在解析 …',
+    'usd-loading': '检测到 USD 场景，正在加载 WASM 解析器（首次约 1.3MB）…',
+    'nm-pre': '',
+    'nm-post': '：解析完成但未提取到网格数据',
+    'usdz-empty': 'USDZ 无效：zip 包内没有任何文件',
+    'usdc-sc-pre': '场景文件（',
+    'usdc-sc-post': '）为二进制 usdc 格式',
+    'usdz-nf-pre': 'USDZ 内未找到场景文件（首个条目为 ',
+    'usdz-nf-post': '），不是标准 usdz 布局',
+    'usdz-aa-pre': 'USDZ 内含 ASCII usda（',
+    'usdz-aa-mid': '），但其层级 / 语法超出了浏览器端简化解析器的支持范围',
+    'usdz-aa-post': '（骨骼、实例、变种等复杂特性不支持），建议转为 GLB 后再导入',
+    'usdz-bad-zip': 'USDZ 无效：不是合法的 zip 压缩包',
+    'usdc-un': '{F}：usdc 解析完成但未提取到网格数据（骨骼/变种等复杂特性可能不被支持）',
+    'exp-pre': '已导出 ',
+    'exp-glb-fail': '导出 GLB 失败：',
+    'exp-stl-post': '.stl（二进制，可直接用于 3D 打印）',
+    'exp-usdz-post': '.usdz（可在 iOS AR Quick Look 中预览）',
+    'exp-fail': '导出失败：',
+    'measure-off': '关闭测距',
+    'measure-on': '开启测距',
+    'heat-normal': '法线',
+    'heat-depth': '深度',
+    'heat-lab-deep': '④ 深度 · 异常 ',
+    'heat-lab-norm': '④ 法线 · 异常 '
+  },
+  en: {
+    'status-load-fail': 'Failed to load',
+    'vn-wire': 'Wireframe',
+    'vn-normal': 'Normals',
+    'uv-note': ' (model has no UV coordinates; the UV viewport is inactive)',
+    'w-tri': 'triangles',
+    'w-vert': 'vertices',
+    'puv-pre': 'generated projection UV for ',
+    'puv-post': ' mesh(es) (box projection, not original data; exported files will include this UV)',
+    'sample-name': 'Built-in sample · Torus knot',
+    'err-no-model': 'No supported model file detected (.glb / .gltf / .obj / .fbx / .stl / .usdz, or a .zip archive containing them)',
+    'parse-pre': 'Parsing ',
+    'gltf-hint': 'Note: if this glTF references external .bin / textures that are not embedded, it cannot be fully parsed; zip the resources together and drop it in, or use GLB',
+    'no-mtl-hint': 'Note: no MTL provided, using default materials',
+    'usdc-loading': 'Detected a binary usdc scene, loading the WASM parser (about 1.3 MB on first use)…',
+    'parse-fail-pre': 'Failed to parse ',
+    'parse-fail-post': ': ',
+    'unzip-pre': 'Unzipping ',
+    'zip-invalid': 'Not a valid zip archive (the download may also be corrupted)',
+    'zip-empty': 'No valid files inside the zip',
+    'sep': ', ',
+    'zn-pre': 'No supported model file found in the zip (',
+    'zn-post': '): ',
+    'zm-pre': 'Found ',
+    'zm-post': ' in the zip, parsing…',
+    'usd-loading': 'Detected a USD scene, loading the WASM parser (about 1.3 MB on first use)…',
+    'nm-pre': 'Parsing of ',
+    'nm-post': ' finished but no mesh data was extracted',
+    'usdz-empty': 'Invalid USDZ: the zip contains no files',
+    'usdc-sc-pre': 'Scene file (',
+    'usdc-sc-post': ') is in binary usdc format',
+    'usdz-nf-pre': 'No scene file found in the USDZ (the first entry is ',
+    'usdz-nf-post': '), which is not the standard usdz layout',
+    'usdz-aa-pre': 'USDZ contains ASCII usda (',
+    'usdz-aa-mid': '), but its hierarchy / syntax is beyond this browser-side simplified parser',
+    'usdz-aa-post': ' (bones, instances, variants and other complex features are unsupported); convert to GLB before importing',
+    'usdz-bad-zip': 'Invalid USDZ: not a valid zip archive',
+    'usdc-un': 'usdc parsed but no mesh data was extracted for {F} (complex features such as bones/variants may be unsupported)',
+    'exp-pre': 'Exported ',
+    'exp-glb-fail': 'Failed to export GLB: ',
+    'exp-stl-post': '.stl (binary, ready for 3D printing)',
+    'exp-usdz-post': '.usdz (previewable in iOS AR Quick Look)',
+    'exp-fail': 'Export failed: ',
+    'measure-off': 'Disable measuring',
+    'measure-on': 'Enable measuring',
+    'heat-normal': 'Normals',
+    'heat-depth': 'Depth',
+    'heat-lab-deep': '④ Depth · anomalies ',
+    'heat-lab-norm': '④ Normals · anomalies '
+  }
+};
+const LANG = (document.documentElement.getAttribute('lang') || 'zh').toLowerCase();
+const t = (key) => ((I18N[LANG] && I18N[LANG][key]) != null ? I18N[LANG][key] : (I18N.zh[key] || key));
+
 /* ================= 基础引用 ================= */
 const $ = (id) => document.getElementById(id);
 const stage = $('tv3d-stage');
@@ -41,7 +146,7 @@ const mlabel = $('tv3d-mlabel');
 function showError(msg) {
   errorEl.textContent = msg;
   errorEl.hidden = false;
-  statusEl.textContent = '加载失败';
+  statusEl.textContent = t('status-load-fail');
 }
 function clearError() { errorEl.hidden = true; }
 
@@ -179,7 +284,7 @@ const heatMaterial = new THREE.ShaderMaterial({
 /* 视口 2：PBR —— 不覆写（null），直接渲染模型原始材质 + 环境贴图 + 阴影 */
 const overrides = [wireMaterial, uvMaterial, null, heatMaterial];
 const viewBgs = [0x0d1117, 0x0e1116, 0x14171c, 0x0e1116];
-const viewNames = ['线框', 'UV', 'PBR', '法线'];
+const viewNames = [t('vn-wire'), 'UV', 'PBR', t('vn-normal')];
 
 /* ================= 模型管理 ================= */
 const displayRoot = new THREE.Group(); // 场景中的展示副本（归一化缩放）
@@ -241,9 +346,9 @@ function setModel(object, name) {
   // 无 UV（常见于 STL / 部分 OBJ / 缺 primvars:st 的 USDZ）时在 UV 视口内给出
   // 明确提示 + 「生成投影 UV」入口，而不是渲染成一片死色
   $('tv3d-uv-hint').hidden = hasUV;
-  const uvNote = hasUV ? '' : '（模型无 UV 坐标，UV 视口无效）';
+  const uvNote = hasUV ? '' : t('uv-note');
   statusEl.textContent =
-    `${name} — ${(tris / 1000).toFixed(1)}k 三角面 / ${(verts / 1000).toFixed(1)}k 顶点 ${uvNote}`;
+    `${name} — ${(tris / 1000).toFixed(1)}k ${t('w-tri')} / ${(verts / 1000).toFixed(1)}k ${t('w-vert')}${uvNote}`;
 
   // 示例也算已加载模型，导出 / 截图可用
   for (const id of ['tv3d-export-glb', 'tv3d-export-obj', 'tv3d-export-stl', 'tv3d-export-usdz', 'tv3d-snap']) {
@@ -293,7 +398,7 @@ function generateProjectedUVs() {
     modelHasUV = true;
     $('tv3d-uv-hint').hidden = true;
     statusEl.textContent =
-      `${modelName} — 已为 ${generated} 个网格生成投影 UV（box 投影，非原始数据；导出的文件将包含该 UV）`;
+      `${modelName} — ${t('puv-pre')}${generated}${t('puv-post')}`;
   }
 }
 $('tv3d-gen-uv').addEventListener('click', generateProjectedUVs);
@@ -304,19 +409,19 @@ function loadSample() {
     new THREE.TorusKnotGeometry(0.72, 0.26, 220, 36),
     new THREE.MeshStandardMaterial({ color: 0xb9c2cc, metalness: 0.45, roughness: 0.32 })
   );
-  setModel(mesh, '内置示例 · 环面纽结');
+  setModel(mesh, t('sample-name'));
 }
 
 /* ================= 文件加载（GLB / glTF / OBJ+MTL / FBX / STL / USDZ / zip 包） ================= */
 async function loadFiles(fileList) {
   const files = [...fileList];
   const main = files.find((f) => /\.(glb|gltf|obj|fbx|stl|usdz|zip)$/i.test(f.name));
-  if (!main) { showError('未识别到支持的模型文件（.glb / .gltf / .obj / .fbx / .stl / .usdz，或包含它们的 .zip 压缩包）'); return; }
+  if (!main) { showError(t('err-no-model')); return; }
   const ext = main.name.split('.').pop().toLowerCase();
   const baseName = main.name.replace(/\.[^.]+$/, '');
 
   try {
-    statusEl.textContent = `正在解析 ${main.name} …`;
+    statusEl.textContent = t('parse-pre') + main.name + ' …';
     let object;
 
     if (ext === 'zip') {
@@ -331,7 +436,7 @@ async function loadFiles(fileList) {
         new GLTFLoader().parse(data, '', (g) => resolve(g.scene), reject));
       if (ext === 'gltf') {
         // glTF JSON 引用外部 .bin / 贴图时无法单文件解析
-        statusEl.textContent = '提示：glTF 若引用外部 .bin / 贴图且未内嵌，将无法完整解析；建议连同资源打包成 zip 拖入，或使用 GLB';
+        statusEl.textContent = t('gltf-hint');
       }
     } else if (ext === 'obj') {
       const text = await main.text();
@@ -343,7 +448,7 @@ async function loadFiles(fileList) {
         loader.setMaterials(creator);
       }
       object = loader.parse(text);
-      if (!mtlFile) statusEl.textContent = '提示：未提供 MTL，使用默认材质';
+      if (!mtlFile) statusEl.textContent = t('no-mtl-hint');
     } else if (ext === 'fbx') {
       const buf = await main.arrayBuffer();
       object = new FBXLoader().parse(buf, '');
@@ -364,7 +469,7 @@ async function loadFiles(fileList) {
       if (meshCount === 0) {
         const d = diagnoseUsdz(buf);
         if (d.crate) {
-          statusEl.textContent = '检测到二进制 usdc 场景，正在加载 WASM 解析器（首次约 1.3MB）…';
+          statusEl.textContent = t('usdc-loading');
           object = await loadUsdcUsdz(buf, main.name);
         } else {
           throw new Error(d.message);
@@ -375,7 +480,7 @@ async function loadFiles(fileList) {
     setModel(object, baseName);
   } catch (err) {
     console.error(err);
-    showError(`解析 ${main.name} 失败：${err && err.message ? err.message : err}`);
+    showError(t('parse-fail-pre') + main.name + t('parse-fail-post') + (err && err.message ? err.message : err));
   }
 }
 
@@ -393,17 +498,17 @@ function u8Buffer(u8) {
 }
 
 async function loadZipModel(buffer, zipName) {
-  statusEl.textContent = `正在解压 ${zipName} …`;
+  statusEl.textContent = t('unzip-pre') + zipName + ' …';
   let zip;
   try {
     zip = fflate.unzipSync(new Uint8Array(buffer));
   } catch (e) {
-    throw new Error('不是合法的 zip 压缩包（也可能是损坏的下载文件）');
+    throw new Error(t('zip-invalid'));
   }
   // 过滤 macOS 打包垃圾（__MACOSX / 隐藏文件 / 目录占位）
   const entries = Object.keys(zip).filter((p) =>
     !p.startsWith('__MACOSX/') && !p.endsWith('/') && !/(^|\/)\.[^.]/.test(p));
-  if (entries.length === 0) throw new Error('zip 包内没有有效文件');
+  if (entries.length === 0) throw new Error(t('zip-empty'));
 
   // 选主模型文件：自包含格式优先，带外部资源的格式靠后；同一扩展名有
   // 多个候选时取路径最短的 —— 根目录的主模型优先，避免误选零件分文件 / 预览图
@@ -412,8 +517,8 @@ async function loadZipModel(buffer, zipName) {
   const mainPath = pick(/\.(glb|usdz)$/i) || pick(/\.gltf$/i) || pick(/\.fbx$/i) ||
     pick(/\.obj$/i) || pick(/\.(usdc|usda)$/i) || pick(/\.stl$/i);
   if (!mainPath) {
-    const preview = entries.slice(0, 5).join('、');
-    throw new Error(`zip 内未找到支持的模型文件（共 ${entries.length} 个：${preview}${entries.length > 5 ? '…' : ''}）`);
+    const preview = entries.slice(0, 5).join(t('sep'));
+    throw new Error(t('zn-pre') + entries.length + t('zn-post') + preview + (entries.length > 5 ? '…' : ''));
   }
   const ext = mainPath.toLowerCase().split('.').pop();
   const mainData = zip[mainPath];
@@ -446,7 +551,7 @@ async function loadZipModel(buffer, zipName) {
     return url;
   });
 
-  statusEl.textContent = `zip 内识别到 ${mainPath}，正在解析 …`;
+  statusEl.textContent = t('zm-pre') + mainPath + t('zm-post');
   let object;
   if (ext === 'glb' || ext === 'gltf') {
     const data = ext === 'glb' ? u8Buffer(mainData) : new TextDecoder().decode(mainData);
@@ -481,20 +586,20 @@ async function loadZipModel(buffer, zipName) {
     if (meshCount === 0) {
       const d = diagnoseUsdz(u8Buffer(mainData));
       if (d.crate) {
-        statusEl.textContent = '检测到二进制 usdc 场景，正在加载 WASM 解析器（首次约 1.3MB）…';
+        statusEl.textContent = t('usdc-loading');
         object = await loadUsdcUsdz(u8Buffer(mainData), mainPath);
       } else {
         throw new Error(d.message);
       }
     }
   } else if (ext === 'usdc' || ext === 'usda') {
-    statusEl.textContent = '检测到 USD 场景，正在加载 WASM 解析器（首次约 1.3MB）…';
+    statusEl.textContent = t('usd-loading');
     object = await loadUsdcUsdz(u8Buffer(mainData), mainPath);
   }
 
   let count = 0;
   object.traverse((n) => { if (n.isMesh && n.geometry && n.geometry.attributes.position) count++; });
-  if (count === 0) throw new Error(`${mainPath}：解析完成但未提取到网格数据`);
+  if (count === 0) throw new Error(t('nm-pre') + mainPath + t('nm-post'));
   return { object, name: mainPath.split('/').pop() };
 }
 
@@ -505,7 +610,7 @@ function diagnoseUsdz(buffer) {
   try {
     const zip = fflate.unzipSync(new Uint8Array(buffer));
     const names = Object.keys(zip);
-    if (names.length === 0) return { crate: false, message: 'USDZ 无效：zip 包内没有任何文件' };
+    if (names.length === 0) return { crate: false, message: t('usdz-empty') };
     const first = names[0];
     const head = zip[first];
     // crate 文件头 8 字节魔数 "PXR-USDC"
@@ -513,18 +618,17 @@ function diagnoseUsdz(buffer) {
       head[0] === 0x50 && head[1] === 0x58 && head[2] === 0x52 && head[3] === 0x2D &&
       head[4] === 0x55 && head[5] === 0x53 && head[6] === 0x44 && head[7] === 0x43;
     if (isCrate || /\.usdc$/i.test(first)) {
-      return { crate: true, message: `场景文件（${first}）为二进制 usdc 格式` };
+      return { crate: true, message: t('usdc-sc-pre') + first + t('usdc-sc-post') };
     }
     if (!/\.(usda?|usdc)$/i.test(first)) {
-      return { crate: false, message: `USDZ 内未找到场景文件（首个条目为 ${first}），不是标准 usdz 布局` };
+      return { crate: false, message: t('usdz-nf-pre') + first + t('usdz-nf-post') };
     }
     return {
       crate: false,
-      message: `USDZ 内含 ASCII usda（${first}），但其层级 / 语法超出了浏览器端简化解析器的支持范围` +
-        '（骨骼、实例、变种等复杂特性不支持），建议转为 GLB 后再导入',
+      message: t('usdz-aa-pre') + first + t('usdz-aa-mid') + t('usdz-aa-post'),
     };
   } catch (e) {
-    return { crate: false, message: 'USDZ 无效：不是合法的 zip 压缩包' };
+    return { crate: false, message: t('usdz-bad-zip') };
   }
 }
 
@@ -559,7 +663,7 @@ async function loadUsdcUsdz(buffer, filename) {
     let count = 0;
     threeNode.traverse((n) => { if (n.isMesh && n.geometry && n.geometry.attributes.position) count++; });
     if (count === 0) {
-      throw new Error(`${filename}：usdc 解析完成但未提取到网格数据（骨骼/变种等复杂特性可能不被支持）`);
+      throw new Error(t('usdc-un').replace('{F}', filename));
     }
     return threeNode;
   } finally {
@@ -764,25 +868,25 @@ async function exportCurrent(type) {
     if (type === 'glb') {
       new GLTFExporter().parse(originalRoot, (result) => {
         downloadBlob(new Blob([result], { type: 'model/gltf-binary' }), `${name}.glb`);
-        statusEl.textContent = `已导出 ${name}.glb`;
-      }, (err) => showError(`导出 GLB 失败：${err.message || err}`), { binary: true });
+        statusEl.textContent = t('exp-pre') + name + '.glb';
+      }, (err) => showError(t('exp-glb-fail') + (err.message || err)), { binary: true });
     } else if (type === 'obj') {
       buildMTL(originalRoot); // 先统一材质名，保证与 OBJExporter 的 usemtl 输出一致
       const objText = new OBJExporter().parse(originalRoot);
       downloadBlob(new Blob([objText], { type: 'text/plain' }), `${name}.obj`);
       downloadBlob(new Blob([buildMTL(originalRoot)], { type: 'text/plain' }), `${name}.mtl`);
-      statusEl.textContent = `已导出 ${name}.obj + ${name}.mtl`;
+      statusEl.textContent = t('exp-pre') + name + '.obj + ' + name + '.mtl';
     } else if (type === 'stl') {
       const data = new STLExporter().parse(originalRoot, { binary: true });
       downloadBlob(new Blob([data], { type: 'model/stl' }), `${name}.stl`);
-      statusEl.textContent = `已导出 ${name}.stl（二进制，可直接用于 3D 打印）`;
+      statusEl.textContent = t('exp-pre') + name + t('exp-stl-post');
     } else if (type === 'usdz') {
       const result = await new USDZExporter().parse(originalRoot);
       downloadBlob(new Blob([result], { type: 'model/vnd.usdz+zip' }), `${name}.usdz`);
-      statusEl.textContent = `已导出 ${name}.usdz（可在 iOS AR Quick Look 中预览）`;
+      statusEl.textContent = t('exp-pre') + name + t('exp-usdz-post');
     }
   } catch (err) {
-    showError(`导出失败：${err.message || err}`);
+    showError(t('exp-fail') + (err.message || err));
   }
 }
 $('tv3d-export-glb').addEventListener('click', () => exportCurrent('glb'));
@@ -901,7 +1005,7 @@ function clearMeasure() {
 
 $('tv3d-measure').addEventListener('click', () => {
   measureMode = !measureMode;
-  $('tv3d-measure').textContent = measureMode ? '关闭测距' : '开启测距';
+  $('tv3d-measure').textContent = measureMode ? t('measure-off') : t('measure-on');
   $('tv3d-measure').classList.toggle('tv3d-btn-primary', measureMode);
   stage.style.cursor = measureMode ? 'crosshair' : '';
 });
@@ -1015,8 +1119,8 @@ $('tv3d-annot-close').addEventListener('click', () => { annot.hidden = true; });
 $('tv3d-heat-mode').addEventListener('click', () => {
   const depth = heatMaterial.uniforms.uMode.value < 0.5;
   heatMaterial.uniforms.uMode.value = depth ? 1.0 : 0.0;
-  $('tv3d-heat-mode').textContent = depth ? '法线' : '深度';
-  $('tv3d-heat-label').firstChild.textContent = depth ? '④ 深度 · 异常 ' : '④ 法线 · 异常 ';
+  $('tv3d-heat-mode').textContent = depth ? t('heat-normal') : t('heat-depth');
+  $('tv3d-heat-label').firstChild.textContent = depth ? t('heat-lab-deep') : t('heat-lab-norm');
 });
 
 /* ================= 模式切换 / 响应式 ================= */

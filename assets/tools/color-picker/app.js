@@ -23,6 +23,152 @@
   var root = document.getElementById('cp-app');
   if (!root) return;
 
+  var LANG = (document.documentElement.lang || 'zh').toLowerCase();
+  if (LANG.indexOf('en') === 0) LANG = 'en';
+  var I18N = {
+    'zh': {
+    'err-pixels': '图片像素不足，无法提取颜色',
+    'err-nocolor': '未能提取到颜色，请尝试调整参数',
+    'err-extra-pre': '提取失败：',
+    'lbl-main': '主色调',
+    'lbl-sub': '副色调',
+    'lbl-accent': '点缀色',
+    'lbl-extra-pre': '辅助色 ',
+    'sw-title-pre': '// 图片主色调提取（',
+    'sw-title-post': ' 色）',
+    'sw-ui-pre': '// 从 HEX 创建 UIColor（便捷扩展）：',
+    'sw-swiftui': '// SwiftUI Color 等价写法：',
+    'sw-uic-func': '// 从 HEX 创建 UIColor（便捷函数）：',
+    'sw-hex-parse': '// 或从 HEX 字符串解析：',
+    'sw-hex-ext': '// 从 HEX 字符串创建（便捷扩展）：',
+    'mark-imgpx': '// MARK: - 从 UIImage 提取像素',
+    'mark-kmeans': '// MARK: - K-Means 聚类（k-means++ 初始化）',
+    'ref-lloyd': '// 参考: Lloyd 1982 / Arthur & Vassilvitskii 2007',
+    'kmeans-seed': '    // k-means++: 逐个选中心，优先选离已有中心最远的点',
+    'lloyd-iter': '    // Lloyd 迭代: 分配 -> 更新 直到收敛',
+    'avg-color': '    // 统计每个聚类的平均色与像素数',
+    'euc-dist': '// 欧氏距离平方（避免 sqrt）',
+    'mark-medcut': '// MARK: - 中值切割（Median Cut, Heckbert 1982）',
+    'range-bucket': '        // 找 R/G/B 范围最大的桶',
+    'median-cut': '        // 沿最大范围通道排序，从中位数切割',
+    'bucket-avg': '    // 每个桶取平均色',
+    'mark-histo': '// MARK: - 直方图统计（3D 直方图 + 相似色合并）',
+    'rgb-for': '    // 将 RGB 量化到 4 位，组成 12-bit key',
+    'desc-arr': '    // 转数组，按像素数降序',
+    'greedy': '    // 贪心选 K 个，相似色（距离<30）合并为加权平均',
+    'mark-usage': '// MARK: - 使用示例',
+    'usage-call': '// let colors = kMeansClustering(pixels, k: 5)   // 或 medianCut / histogramQuantize',
+    'rgb-struct': '// RGB 像素结构体',
+    'pragma-imgpx': '#pragma mark - 从 UIImage 提取像素',
+    'pragma-kmeans': '#pragma mark - K-Means 聚类（k-means++ 初始化）',
+    'lloyd-iter-short': '    // Lloyd 迭代: 分配 -> 更新',
+    'stat-res': '    // 统计结果',
+    'sort-count': '    // 按 count 降序',
+    'pragma-medcut': '#pragma mark - 中值切割（Median Cut, Heckbert 1982）',
+    'bucket-range': '// 桶内范围计算',
+    'nsarr': '    // 用 NSMutableArray 存桶，每桶是 NSMutableIndexSet',
+    'pragma-histo': '#pragma mark - 直方图统计（3D 直方图 + 相似色合并）',
+    'nsdict': '    // 用 NSMutableDictionary 存桶，key 为 12-bit 量化值',
+    'arr-sort': '    // 转数组并排序',
+    'greedy-short': '    // 贪心选 K 个，相似色合并',
+    'pragma-usage': '#pragma mark - 使用示例',
+    'c-kmeans': '/* K-Means 聚类（k-means++ 初始化）',
+    'c-ref': ' * 参考: Lloyd 1982 / Arthur & Vassilvitskii 2007',
+    'c-return': ' * 返回: [{ r, g, b, count }, ...] 按像素数降序',
+    'c-seed': '  // k-means++: 逐个选中心',
+    'c-update-center': '    // 更新中心为聚类均值',
+    'c-stat-ret': '  // 统计并返回结果',
+    'c-medcut': '/* 中值切割（Median Cut, Heckbert 1982）',
+    'c-medcut-desc': ' * 反复找范围最大的桶，沿最长轴中位数切割',
+    'c-sort-axle': '    // 沿最长通道排序，中位数切割',
+    'c-med-avg': '  // 每个桶取平均色',
+    'c-histo': '/* 直方图统计（3D 直方图 + 相似色合并）',
+    'c-histo-quant': ' * 将 RGB 量化到 4 位，组 12-bit key',
+    'c-histo-merge': ' * 相似色（距离<30）合并为加权平均',
+    'c-arr-greedy': '  // 转数组排序，贪心选 K 个',
+    'c-src-ref': '// 完整源码见 /assets/tools/color-picker/app.js',
+    'copied': '已复制',
+    'err-not-image': '请选择图片文件（PNG / JPEG / WebP / GIF / BMP 等）',
+    'err-load-fail': '图片加载失败，请重试',
+    'js-rand-pick': '    else { /* 按距离平方权重随机选 */ }',
+    'js-lloyd': '  // Lloyd 迭代: 分配 -> 更新',
+    'js-nearest': '    for (var i = 0; i < n; i++) { /* 找最近中心 */ }',
+    'js-range-bucket': '    // 找 R/G/B 范围最大的桶',
+    'js-quantize': '  for (var i = 0; i < n; i++) { /* 量化 + 累加 */ }',
+    },
+    'en': {
+    'err-pixels': 'Not enough pixels in the image to extract colors',
+    'err-nocolor': 'No colors could be extracted, please try adjusting the parameters',
+    'err-extra-pre': 'Extraction failed: ',
+    'lbl-main': 'Primary',
+    'lbl-sub': 'Secondary',
+    'lbl-accent': 'Accent',
+    'lbl-extra-pre': 'Aux. color ',
+    'sw-title-pre': '// Extract dominant colors (',
+    'sw-title-post': ' colors)',
+    'sw-ui-pre': '// Create a UIColor from HEX (convenience extension):',
+    'sw-swiftui': '// SwiftUI Color equivalent:',
+    'sw-uic-func': '// Create a UIColor from HEX (convenience function):',
+    'sw-hex-parse': '// Or parse from a HEX string:',
+    'sw-hex-ext': '// Create from a HEX string (convenience extension):',
+    'mark-imgpx': '// MARK: - Extract pixels from UIImage',
+    'mark-kmeans': '// MARK: - K-Means clustering (k-means++ initialization)',
+    'ref-lloyd': '// Reference: Lloyd 1982 / Arthur & Vassilvitskii 2007',
+    'kmeans-seed': '    // k-means++: pick centers one by one, preferring points farthest from existing centers',
+    'lloyd-iter': '    // Lloyd iteration: assign -> update until convergence',
+    'avg-color': '    // Average color and pixel count of each cluster',
+    'euc-dist': '// Squared Euclidean distance (avoiding sqrt)',
+    'mark-medcut': '// MARK: - Median Cut (Heckbert 1982)',
+    'range-bucket': '        // Find the bucket with the widest R/G/B range',
+    'median-cut': '        // Sort by the widest channel, cut at the median',
+    'bucket-avg': '    // Average color of each bucket',
+    'mark-histo': '// MARK: - Histogram quantization (3D histogram + similar-color merging)',
+    'rgb-for': '    // Quantize RGB to 4 bits per channel, forming a 12-bit key',
+    'desc-arr': '    // Convert to an array, sorted by pixel count descending',
+    'greedy': '    // Greedily pick K, merging similar colors (distance < 30) as weighted average',
+    'mark-usage': '// MARK: - Usage example',
+    'usage-call': '// let colors = kMeansClustering(pixels, k: 5)   // or medianCut / histogramQuantize',
+    'rgb-struct': '// RGB pixel struct',
+    'pragma-imgpx': '#pragma mark - Extract pixels from UIImage',
+    'pragma-kmeans': '#pragma mark - K-Means clustering (k-means++ initialization)',
+    'lloyd-iter-short': '    // Lloyd iteration: assign -> update',
+    'stat-res': '    // Aggregate the result',
+    'sort-count': '    // Sort by count descending',
+    'pragma-medcut': '#pragma mark - Median Cut (Heckbert 1982)',
+    'bucket-range': '// Bucket range calculation',
+    'nsarr': '    // Use NSMutableArray for buckets, each bucket is an NSMutableIndexSet',
+    'pragma-histo': '#pragma mark - Histogram quantization (3D histogram + similar-color merging)',
+    'nsdict': '    // Use NSMutableDictionary for buckets, key is the 12-bit quantized value',
+    'arr-sort': '    // Convert to an array and sort',
+    'greedy-short': '    // Greedily pick K, merging similar colors',
+    'pragma-usage': '#pragma mark - Usage example',
+    'c-kmeans': '/* K-Means clustering (k-means++ initialization)',
+    'c-ref': ' * Reference: Lloyd 1982 / Arthur & Vassilvitskii 2007',
+    'c-return': ' * Returns: [{ r, g, b, count }, ...] sorted by pixel count descending',
+    'c-seed': '  // k-means++: pick centers one by one',
+    'c-update-center': '    // Update centers to the cluster mean',
+    'c-stat-ret': '  // Aggregate and return the result',
+    'c-medcut': '/* Median Cut (Heckbert 1982)',
+    'c-medcut-desc': ' * Repeatedly take the widest-range bucket and cut it at the median along the longest axis',
+    'c-sort-axle': '    // Sort by the longest channel, cut at the median',
+    'c-med-avg': '  // Average color of each bucket',
+    'c-histo': '/* Histogram quantization (3D histogram + similar-color merging)',
+    'c-histo-quant': ' * Quantize RGB to 4 bits per channel, building a 12-bit key',
+    'c-histo-merge': ' * Similar colors (distance < 30) are merged as a weighted average',
+    'c-arr-greedy': '  // Convert to an array, sort, and greedily pick K',
+    'c-src-ref': '// Full source: /assets/tools/color-picker/app.js',
+    'copied': 'Copied',
+    'err-not-image': 'Please choose an image file (PNG / JPEG / WebP / GIF / BMP, etc.)',
+    'err-load-fail': 'Failed to load the image, please try again',
+    'js-rand-pick': '    else { /* pick randomly weighted by squared distance */ }',
+    'js-lloyd': '  // Lloyd iteration: assign -> update',
+    'js-nearest': '    for (var i = 0; i < n; i++) { /* find nearest center */ }',
+    'js-range-bucket': '    // find the bucket with the widest R/G/B range',
+    'js-quantize': '  for (var i = 0; i < n; i++) { /* quantize + accumulate */ }',
+    }
+  };
+  function t(key) { var v = (I18N[LANG] || {})[key]; return v != null ? v : key; }
+
   var els = {
     drop: document.getElementById('cp-drop'),
     file: document.getElementById('cp-file'),
@@ -362,7 +508,7 @@
       try {
         var pixels = getPixels(step);
         if (pixels.length < 3) {
-          showError('图片像素不足，无法提取颜色');
+          showError(t('err-pixels'));
           return;
         }
         var totalPixels = pixels.length / 3;
@@ -377,7 +523,7 @@
         }
 
         if (colors.length === 0) {
-          showError('未能提取到颜色，请尝试调整参数');
+          showError(t('err-nocolor'));
           return;
         }
 
@@ -393,7 +539,7 @@
         els.palettePanel.hidden = false;
         els.codePanel.hidden = false;
       } catch (e) {
-        showError('提取失败：' + txt(e.message || e));
+        showError(t('err-extra-pre') + txt(e.message || e));
       } finally {
         els.loading.hidden = true;
         els.extract.disabled = false;
@@ -403,7 +549,7 @@
 
   /* ---------- 调色板渲染 ---------- */
 
-  var LABELS = ['主色调', '副色调', '点缀色'];
+  var LABELS = [t('lbl-main'), t('lbl-sub'), t('lbl-accent')];
 
   /* 感知亮度（Rec. 601 luma），用于色块上文字配色 */
   function luminance(r, g, b) {
@@ -414,7 +560,7 @@
     var html = '';
     for (var i = 0; i < colors.length; i++) {
       var c = colors[i];
-      var label = i < LABELS.length ? LABELS[i] : '辅助色 ' + (i + 1);
+      var label = i < LABELS.length ? LABELS[i] : t('lbl-extra-pre') + (i + 1);
       var pctStr = c.pct.toFixed(1);
       var hexUp = c.hex.toUpperCase();
       var lum = luminance(c.r, c.g, c.b);
@@ -469,10 +615,10 @@
   /* ---------- Swift ---------- */
 
   function genSwift(colors) {
-    var lines = ['// 图片主色调提取（' + colors.length + ' 色）'];
+    var lines = [t('sw-title-pre') + colors.length + t('sw-title-post')];
     lines.push('import UIKit');
     lines.push('');
-    lines.push('// 从 HEX 创建 UIColor（便捷扩展）：');
+    lines.push(t('sw-ui-pre'));
     lines.push('extension UIColor {');
     lines.push('    convenience init(hex: String, alpha: CGFloat = 1.0) {');
     lines.push('        let v = UInt32(hex.dropFirst(), radix: 16) ?? 0');
@@ -488,7 +634,7 @@
       lines.push('let color' + (i + 1) + ' = UIColor(hex: "' + c.hex.toUpperCase() + '")');
     }
     lines.push('');
-    lines.push('// SwiftUI Color 等价写法：');
+    lines.push(t('sw-swiftui'));
     lines.push('extension Color { init(hex: String) { self.init(UIColor(hex: hex)) } }');
     lines.push('');
     for (var i = 0; i < colors.length; i++) {
@@ -501,9 +647,9 @@
   /* ---------- Objective-C ---------- */
 
   function genObjC(colors) {
-    var lines = ['// 图片主色调提取（' + colors.length + ' 色）'];
+    var lines = [t('sw-title-pre') + colors.length + t('sw-title-post')];
     lines.push('');
-    lines.push('// 从 HEX 创建 UIColor（便捷函数）：');
+    lines.push(t('sw-uic-func'));
     lines.push('static inline UIColor *UIColorFromHex(NSString *hex) {');
     lines.push('    NSScanner *s = [NSScanner scannerWithString:[hex substringFromIndex:1]];');
     lines.push('    unsigned v = 0; [s scanHexInt:&v];');
@@ -523,7 +669,7 @@
   /* ---------- Kotlin（Jetpack Compose） ---------- */
 
   function genKotlin(colors) {
-    var lines = ['// 图片主色调提取（' + colors.length + ' 色）'];
+    var lines = [t('sw-title-pre') + colors.length + t('sw-title-post')];
     lines.push('import androidx.compose.ui.graphics.Color');
     lines.push('');
     for (var i = 0; i < colors.length; i++) {
@@ -533,7 +679,7 @@
       lines.push('val color' + (i + 1) + ' = Color(' + argb + ')');
     }
     lines.push('');
-    lines.push('// 或从 HEX 字符串解析：');
+    lines.push(t('sw-hex-parse'));
     for (var i = 0; i < colors.length; i++) {
       var c = colors[i];
       lines.push('val color' + (i + 1) + ' = Color(android.graphics.Color.parseColor("' + c.hex.toUpperCase() + '"))');
@@ -544,7 +690,7 @@
   /* ---------- Java（Android） ---------- */
 
   function genJava(colors) {
-    var lines = ['// 图片主色调提取（' + colors.length + ' 色）'];
+    var lines = [t('sw-title-pre') + colors.length + t('sw-title-post')];
     lines.push('import android.graphics.Color;');
     lines.push('');
     for (var i = 0; i < colors.length; i++) {
@@ -558,7 +704,7 @@
   /* ---------- ArkTS（HarmonyOS ArkUI） ---------- */
 
   function genArkTS(colors) {
-    var lines = ['// 图片主色调提取（' + colors.length + ' 色）'];
+    var lines = [t('sw-title-pre') + colors.length + t('sw-title-post')];
     lines.push('');
     for (var i = 0; i < colors.length; i++) {
       var c = colors[i];
@@ -571,10 +717,10 @@
   /* ---------- Dart（Flutter） ---------- */
 
   function genDart(colors) {
-    var lines = ['// 图片主色调提取（' + colors.length + ' 色）'];
+    var lines = [t('sw-title-pre') + colors.length + t('sw-title-post')];
     lines.push("import 'package:flutter/material.dart';");
     lines.push('');
-    lines.push('// 从 HEX 字符串创建（便捷扩展）：');
+    lines.push(t('sw-hex-ext'));
     lines.push('extension HexColor on Color {');
     lines.push('  static Color fromHex(String hex) {');
     lines.push('    final v = int.parse(hex.substring(1), radix: 16);');
@@ -605,7 +751,7 @@
 
   function genAlgoSwift() {
     var L = [];
-    L.push('// MARK: - 从 UIImage 提取像素');
+    L.push(t('mark-imgpx'));
     L.push('func extractPixels(_ image: UIImage, maxDim: Int = 1200) -> [(r: Int, g: Int, b: Int)] {');
     L.push('    var w = Int(image.size.width), h = Int(image.size.height)');
     L.push('    if max(w, h) > maxDim {');
@@ -626,14 +772,14 @@
     L.push('    return px');
     L.push('}');
     L.push('');
-    L.push('// MARK: - K-Means 聚类（k-means++ 初始化）');
-    L.push('// 参考: Lloyd 1982 / Arthur & Vassilvitskii 2007');
+    L.push(t('mark-kmeans'));
+    L.push(t('ref-lloyd'));
     L.push('func kMeansClustering(_ pixels: [(r: Int, g: Int, b: Int)],');
     L.push('                        k: Int, maxIter: Int = 12) -> [(r: Int, g: Int, b: Int, count: Int)] {');
     L.push('    let n = pixels.count; let actualK = min(k, n)');
     L.push('    guard actualK > 0 else { return [] }');
     L.push('');
-    L.push('    // k-means++: 逐个选中心，优先选离已有中心最远的点');
+    L.push(t('kmeans-seed'));
     L.push('    var centroids = [(r: Int, g: Int, b: Int)]()');
     L.push('    centroids.append(pixels[Int.random(in: 0..<n)])');
     L.push('    for _ in 1..<actualK {');
@@ -654,7 +800,7 @@
     L.push('        }');
     L.push('    }');
     L.push('');
-    L.push('    // Lloyd 迭代: 分配 -> 更新 直到收敛');
+    L.push(t('lloyd-iter'));
     L.push('    var assign = [Int](repeating: -1, count: n)');
     L.push('    for _ in 0..<maxIter {');
     L.push('        var changed = false');
@@ -675,7 +821,7 @@
     L.push('        }');
     L.push('    }');
     L.push('');
-    L.push('    // 统计每个聚类的平均色与像素数');
+    L.push(t('avg-color'));
     L.push('    var sums2 = [[Int]](repeating: [0,0,0], count: actualK)');
     L.push('    var counts2 = [Int](repeating: 0, count: actualK)');
     L.push('    for i in 0..<n {');
@@ -691,20 +837,20 @@
     L.push('    return result');
     L.push('}');
     L.push('');
-    L.push('// 欧氏距离平方（避免 sqrt）');
+    L.push(t('euc-dist'));
     L.push('private func sqDist(_ a: (r: Int, g: Int, b: Int), _ b: (r: Int, g: Int, b: Int)) -> Double {');
     L.push('    let dr = Double(a.r - b.r), dg = Double(a.g - b.g), db = Double(a.b - b.b)');
     L.push('    return dr*dr + dg*dg + db*db');
     L.push('}');
     L.push('');
-    L.push('// MARK: - 中值切割（Median Cut, Heckbert 1982）');
+    L.push(t('mark-medcut'));
     L.push('func medianCut(_ pixels: [(r: Int, g: Int, b: Int)], k: Int) -> [(r: Int, g: Int, b: Int, count: Int)] {');
     L.push('    let n = pixels.count; let actualK = min(k, n)');
     L.push('    guard actualK > 0 else { return [] }');
     L.push('    var buckets = [pixels]');
     L.push('');
     L.push('    while buckets.count < actualK {');
-    L.push('        // 找 R/G/B 范围最大的桶');
+    L.push(t('range-bucket'));
     L.push('        var maxRange = 0, maxIdx = -1, maxCh = 0');
     L.push('        for (bi, bucket) in buckets.enumerated() where bucket.count > 1 {');
     L.push('            var lo = (255, 255, 255), hi = (0, 0, 0)');
@@ -719,7 +865,7 @@
     L.push('            if m > maxRange { maxRange = m; maxIdx = bi; maxCh = ch }');
     L.push('        }');
     L.push('        if maxIdx == -1 { break }');
-    L.push('        // 沿最大范围通道排序，从中位数切割');
+    L.push(t('median-cut'));
     L.push('        let ch = maxCh');
     L.push('        buckets[maxIdx].sort { a, b in');
     L.push('            let va = ch==0 ? a.r : (ch==1 ? a.g : a.b)');
@@ -732,7 +878,7 @@
     L.push('        buckets.replaceSubrange(maxIdx...maxIdx, with: [b1, b2])');
     L.push('    }');
     L.push('');
-    L.push('    // 每个桶取平均色');
+    L.push(t('bucket-avg'));
     L.push('    var result = [(r: Int, g: Int, b: Int, count: Int)]()');
     L.push('    for bucket in buckets where !bucket.isEmpty {');
     L.push('        let cnt = bucket.count');
@@ -745,24 +891,24 @@
     L.push('    return result');
     L.push('}');
     L.push('');
-    L.push('// MARK: - 直方图统计（3D 直方图 + 相似色合并）');
+    L.push(t('mark-histo'));
     L.push('func histogramQuantize(_ pixels: [(r: Int, g: Int, b: Int)], k: Int) -> [(r: Int, g: Int, b: Int, count: Int)] {');
     L.push('    guard !pixels.isEmpty else { return [] }');
     L.push('    let BITS = 4, SHIFT = 8 - BITS');
     L.push('    var bins = [Int: (r: Int, g: Int, b: Int, count: Int)]()');
     L.push('');
-    L.push('    // 将 RGB 量化到 4 位，组成 12-bit key');
+    L.push(t('rgb-for'));
     L.push('    for p in pixels {');
     L.push('        let key = (p.r >> SHIFT) << 8 | (p.g >> SHIFT) << 4 | (p.b >> SHIFT)');
     L.push('        if bins[key] == nil { bins[key] = (0, 0, 0, 0) }');
     L.push('        bins[key]!.r += p.r; bins[key]!.g += p.g; bins[key]!.b += p.b; bins[key]!.count += 1');
     L.push('    }');
     L.push('');
-    L.push('    // 转数组，按像素数降序');
+    L.push(t('desc-arr'));
     L.push('    var arr = bins.map { (_, v) in (v.r/v.count, v.g/v.count, v.b/v.count, v.count) }');
     L.push('    arr.sort { $0.count > $1.count }');
     L.push('');
-    L.push('    // 贪心选 K 个，相似色（距离<30）合并为加权平均');
+    L.push(t('greedy'));
     L.push('    var result = [(r: Int, g: Int, b: Int, count: Int)]()');
     L.push('    let threshold = 30');
     L.push('    for c in arr where result.count < k {');
@@ -783,9 +929,9 @@
     L.push('    return result');
     L.push('}');
     L.push('');
-    L.push('// MARK: - 使用示例');
+    L.push(t('mark-usage'));
     L.push('// let pixels = extractPixels(image)');
-    L.push('// let colors = kMeansClustering(pixels, k: 5)   // 或 medianCut / histogramQuantize');
+    L.push(t('usage-call'));
     L.push('// for c in colors {');
     L.push('//     let color = UIColor(r: c.r, g: c.g, b: c.b)');
     L.push('//     print(String(format: "#%02X%02X%02X %.1f%%", c.r, c.g, c.b, c.count))');
@@ -797,11 +943,11 @@
 
   function genAlgoObjC() {
     var L = [];
-    L.push('// RGB 像素结构体');
+    L.push(t('rgb-struct'));
     L.push('typedef struct { int r, g, b; } RGBPixel;');
     L.push('typedef struct { int r, g, b; NSUInteger count; } ColorResult;');
     L.push('');
-    L.push('#pragma mark - 从 UIImage 提取像素');
+    L.push(t('pragma-imgpx'));
     L.push('static RGBPixel *extractPixels(UIImage *image, NSUInteger *outCount, NSUInteger maxDim) {');
     L.push('    CGFloat sw = image.size.width, sh = image.size.height;');
     L.push('    if (MAX(sw, sh) > maxDim) {');
@@ -827,14 +973,14 @@
     L.push('    return pixels;');
     L.push('}');
     L.push('');
-    L.push('#pragma mark - K-Means 聚类（k-means++ 初始化）');
-    L.push('// 参考: Lloyd 1982 / Arthur & Vassilvitskii 2007');
+    L.push(t('pragma-kmeans'));
+    L.push(t('ref-lloyd'));
     L.push('static ColorResult *kMeansClustering(RGBPixel *pixels, NSUInteger n,');
     L.push('                                       NSUInteger k, NSUInteger maxIter, NSUInteger *outCount) {');
     L.push('    if (n < k) k = n;');
     L.push('    if (k < 1) { *outCount = 0; return NULL; }');
     L.push('');
-    L.push('    // k-means++: 逐个选中心，优先选离已有中心最远的点');
+    L.push(t('kmeans-seed'));
     L.push('    RGBPixel *centroids = malloc(sizeof(RGBPixel) * k);');
     L.push('    centroids[0] = pixels[arc4random_uniform((uint32_t)n)];');
     L.push('    for (NSUInteger c = 1; c < k; c++) {');
@@ -864,7 +1010,7 @@
     L.push('        free(dists);');
     L.push('    }');
     L.push('');
-    L.push('    // Lloyd 迭代: 分配 -> 更新');
+    L.push(t('lloyd-iter-short'));
     L.push('    NSUInteger *assign = calloc(n, sizeof(NSUInteger));');
     L.push('    for (NSUInteger iter = 0; iter < maxIter; iter++) {');
     L.push('        BOOL changed = NO;');
@@ -896,7 +1042,7 @@
     L.push('        }');
     L.push('    }');
     L.push('');
-    L.push('    // 统计结果');
+    L.push(t('stat-res'));
     L.push('    double sums2[k][3]; NSUInteger counts2[k];');
     L.push('    memset(sums2, 0, sizeof(sums2)); memset(counts2, 0, sizeof(counts2));');
     L.push('    for (NSUInteger i = 0; i < n; i++) {');
@@ -924,7 +1070,7 @@
     L.push('        }');
     L.push('    }');
     L.push('    free(assign); free(centroids);');
-    L.push('    // 按 count 降序');
+    L.push(t('sort-count'));
     L.push('    qsort_b(result, rc, sizeof(ColorResult), ^int(const void *a, const void *b) {');
     L.push('        return (int)((ColorResult *)b)->count - (int)((ColorResult *)a)->count;');
     L.push('    });');
@@ -932,8 +1078,8 @@
     L.push('    return result;');
     L.push('}');
     L.push('');
-    L.push('#pragma mark - 中值切割（Median Cut, Heckbert 1982）');
-    L.push('// 桶内范围计算');
+    L.push(t('pragma-medcut'));
+    L.push(t('bucket-range'));
     L.push('static void bucketRange(RGBPixel *px, NSUInteger *indices, NSUInteger cnt,');
     L.push('                       int *outMax, int *outCh) {');
     L.push('    int minR=255,maxR=0,minG=255,maxG=0,minB=255,maxB=0;');
@@ -952,7 +1098,7 @@
     L.push('                                NSUInteger k, NSUInteger *outCount) {');
     L.push('    if (n < k) k = n;');
     L.push('    if (k < 1) { *outCount = 0; return NULL; }');
-    L.push('    // 用 NSMutableArray 存桶，每桶是 NSMutableIndexSet');
+    L.push(t('nsarr'));
     L.push('    NSMutableArray *buckets = [NSMutableArray array];');
     L.push('    NSMutableIndexSet *all = [NSMutableIndexSet indexSet];');
     L.push('    [all addIndexesInRange:NSMakeRange(0, n)];');
@@ -969,7 +1115,7 @@
     L.push('            if (m > maxRange) { maxRange=m; maxIdx=b; maxCh=ch; }');
     L.push('        }');
     L.push('        if (maxIdx == NSNotFound) break;');
-    L.push('        // 沿最大范围通道排序，从中位数切割');
+    L.push(t('median-cut'));
     L.push('        int ch = maxCh;');
     L.push('        NSMutableIndexSet *bucket = buckets[maxIdx];');
     L.push('        NSUInteger sortedIdxs[bucket.count];');
@@ -988,7 +1134,7 @@
     L.push('        [buckets insertObject:b2 atIndex:maxIdx+1];');
     L.push('    }');
     L.push('');
-    L.push('    // 每个桶取平均色');
+    L.push(t('bucket-avg'));
     L.push('    ColorResult *result = malloc(sizeof(ColorResult) * buckets.count);');
     L.push('    NSUInteger rc = 0;');
     L.push('    for (NSMutableIndexSet *bucket in buckets) {');
@@ -1009,12 +1155,12 @@
     L.push('    return result;');
     L.push('}');
     L.push('');
-    L.push('#pragma mark - 直方图统计（3D 直方图 + 相似色合并）');
+    L.push(t('pragma-histo'));
     L.push('static ColorResult *histogramQuantize(RGBPixel *pixels, NSUInteger n,');
     L.push('                                     NSUInteger k, NSUInteger *outCount) {');
     L.push('    if (n == 0) { *outCount = 0; return NULL; }');
     L.push('    int BITS = 4, SHIFT = 8 - BITS;');
-    L.push('    // 用 NSMutableDictionary 存桶，key 为 12-bit 量化值');
+    L.push(t('nsdict'));
     L.push('    NSMutableDictionary *bins = [NSMutableDictionary dictionary];');
     L.push('    for (NSUInteger i = 0; i < n; i++) {');
     L.push('        int r = pixels[i].r >> SHIFT;');
@@ -1028,7 +1174,7 @@
     L.push('        arr[2] = @([arr[2] integerValue] + pixels[i].b);');
     L.push('        arr[3] = @([arr[3] integerValue] + 1);');
     L.push('    }');
-    L.push('    // 转数组并排序');
+    L.push(t('arr-sort'));
     L.push('    NSMutableArray *arr2 = [NSMutableArray array];');
     L.push('    for (NSArray *v in bins.allValues) {');
     L.push('        NSUInteger cnt = [v[3] integerValue];');
@@ -1038,7 +1184,7 @@
     L.push('    [arr2 sortUsingComparator:^NSComparisonResult(id a, id b) {');
     L.push('        return [b[3] compare:a[3]];');
     L.push('    }];');
-    L.push('    // 贪心选 K 个，相似色合并');
+    L.push(t('greedy-short'));
     L.push('    NSMutableArray *result = [NSMutableArray array];');
     L.push('    int threshold = 30;');
     L.push('    for (NSArray *c in arr2) {');
@@ -1070,7 +1216,7 @@
     L.push('    return ret;');
     L.push('}');
     L.push('');
-    L.push('#pragma mark - 使用示例');
+    L.push(t('pragma-usage'));
     L.push('// NSUInteger n = 0;');
     L.push('// RGBPixel *px = extractPixels(image, &n, 1200);');
     L.push('// NSUInteger cnt = 0;');
@@ -1087,17 +1233,17 @@
 
   function genAlgoJS() {
     var L = [];
-    L.push('/* K-Means 聚类（k-means++ 初始化）');
-    L.push(' * 参考: Lloyd 1982 / Arthur & Vassilvitskii 2007');
+    L.push(t('c-kmeans'));
+    L.push(t('c-ref'));
     L.push(' * pixels: Uint8ClampedArray [r,g,b, r,g,b, ...]');
-    L.push(' * 返回: [{ r, g, b, count }, ...] 按像素数降序');
+    L.push(t('c-return'));
     L.push(' */');
     L.push('function kMeans(pixels, k, maxIter) {');
     L.push('  var n = pixels.length / 3;');
     L.push('  if (n < k) k = n;');
     L.push('  if (k < 1) return [];');
     L.push('');
-    L.push('  // k-means++: 逐个选中心');
+    L.push(t('c-seed'));
     L.push('  var centroids = [];');
     L.push('  var firstIdx = Math.floor(Math.random() * n) * 3;');
     L.push('  centroids.push([pixels[firstIdx], pixels[firstIdx+1], pixels[firstIdx+2]]);');
@@ -1115,43 +1261,43 @@
     L.push('      dists.push(minD); total += minD;');
     L.push('    }');
     L.push('    if (total === 0) { centroids.push(pixels.slice(...)); }');
-    L.push('    else { /* 按距离平方权重随机选 */ }');
+    L.push(t('js-rand-pick'));
     L.push('  }');
     L.push('');
-    L.push('  // Lloyd 迭代: 分配 -> 更新');
+    L.push(t('js-lloyd'));
     L.push('  var assign = new Array(n);');
     L.push('  for (var iter = 0; iter < maxIter; iter++) {');
     L.push('    var changed = false;');
-    L.push('    for (var i = 0; i < n; i++) { /* 找最近中心 */ }');
+    L.push(t('js-nearest'));
     L.push('    if (!changed && iter > 0) break;');
-    L.push('    // 更新中心为聚类均值');
+    L.push(t('c-update-center'));
     L.push('  }');
-    L.push('  // 统计并返回结果');
+    L.push(t('c-stat-ret'));
     L.push('}');
     L.push('');
-    L.push('/* 中值切割（Median Cut, Heckbert 1982）');
-    L.push(' * 反复找范围最大的桶，沿最长轴中位数切割');
+    L.push(t('c-medcut'));
+    L.push(t('c-medcut-desc'));
     L.push(' */');
     L.push('function medianCut(pixels, k) {');
     L.push('  var buckets = [allPixelIndices];');
     L.push('  while (buckets.length < k) {');
-    L.push('    // 找 R/G/B 范围最大的桶');
-    L.push('    // 沿最长通道排序，中位数切割');
+    L.push(t('js-range-bucket'));
+    L.push(t('c-sort-axle'));
     L.push('  }');
-    L.push('  // 每个桶取平均色');
+    L.push(t('c-med-avg'));
     L.push('}');
     L.push('');
-    L.push('/* 直方图统计（3D 直方图 + 相似色合并）');
-    L.push(' * 将 RGB 量化到 4 位，组 12-bit key');
-    L.push(' * 相似色（距离<30）合并为加权平均');
+    L.push(t('c-histo'));
+    L.push(t('c-histo-quant'));
+    L.push(t('c-histo-merge'));
     L.push(' */');
     L.push('function histogram(pixels, k) {');
     L.push('  var bins = {};');
-    L.push('  for (var i = 0; i < n; i++) { /* 量化 + 累加 */ }');
-    L.push('  // 转数组排序，贪心选 K 个');
+    L.push(t('js-quantize'));
+    L.push(t('c-arr-greedy'));
     L.push('}');
     L.push('');
-    L.push('// 完整源码见 /assets/tools/color-picker/app.js');
+    L.push(t('c-src-ref'));
     return L.join('\n');
   }
 
@@ -1170,7 +1316,7 @@
 
   function flashCopied(btn) {
     var old = btn.textContent;
-    btn.textContent = '已复制';
+    btn.textContent = t('copied');
     btn.classList.add('cp-copied');
     clearTimeout(btn._t);
     btn._t = setTimeout(function () {
@@ -1198,7 +1344,7 @@
     clearError();
     if (!file) return;
     if (!/^image\//.test(file.type)) {
-      showError('请选择图片文件（PNG / JPEG / WebP / GIF / BMP 等）');
+      showError(t('err-not-image'));
       return;
     }
     var url = URL.createObjectURL(file);
@@ -1228,7 +1374,7 @@
     };
     img.onerror = function () {
       URL.revokeObjectURL(url);
-      showError('图片加载失败，请重试');
+      showError(t('err-load-fail'));
     };
     img.src = url;
   }

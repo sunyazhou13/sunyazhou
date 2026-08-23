@@ -20,6 +20,50 @@
 
   var root = document.getElementById('hsh-app');
   if (!root) return;
+  /* 语言感知文案（zh / en），跟随 document.documentElement.lang */
+  var LANG = (document.documentElement.lang || '').toLowerCase() === 'en' ? 'en' : 'zh';
+  var I18N = {
+    zh: {
+      'badge-webcrypto-ok': 'MD5：纯 JS 实现 · SHA1–SHA512：WebCrypto 可用',
+      'badge-webcrypto-no': '当前环境无 WebCrypto，SHA 系列不可用（需 HTTPS 或 localhost）',
+      'total-pre': '总字符数：',
+      'ascii-pre': '半角空格 (0x20)：',
+      'full-pre': '全角空格 (U+3000)：',
+      'starts-pre': '以空格开头：',
+      'ends-pre': '以空格结尾：',
+      'consec-pre': '包含连续空格：',
+      'yes-word': '是',
+      'no-word': '否',
+      'unit-count': ' 个',
+      'copy-btn': '复制',
+      'computing': '计算中…',
+      'empty-input': '请先在输入框填写字符串，再点击下方按钮生成对应哈希',
+      'no-webcrypto-row': '不可用：需要 HTTPS 安全上下文（WebCrypto）',
+      'compute-fail': '计算失败',
+      'copied-flash': '已复制',
+    },
+    en: {
+      'badge-webcrypto-ok': 'MD5: pure JS · SHA1–SHA512: WebCrypto available',
+      'badge-webcrypto-no': 'No WebCrypto in this environment; the SHA family is unavailable (needs HTTPS or localhost)',
+      'total-pre': 'Total chars: ',
+      'ascii-pre': 'Half-width spaces (0x20): ',
+      'full-pre': 'Full-width spaces (U+3000): ',
+      'starts-pre': 'Starts with space: ',
+      'ends-pre': 'Ends with space: ',
+      'consec-pre': 'Has consecutive spaces: ',
+      'yes-word': 'yes',
+      'no-word': 'no',
+      'unit-count': ' ',
+      'copy-btn': 'Copy',
+      'computing': 'Computing…',
+      'empty-input': 'Type a string into the input box first, then click a button below to generate that hash',
+      'no-webcrypto-row': 'Unavailable: requires an HTTPS secure context (WebCrypto)',
+      'compute-fail': 'Computation failed',
+      'copied-flash': 'Copied',
+    }
+  };
+  function t(key) { return I18N[LANG][key] != null ? I18N[LANG][key] : key; }
+
 
   var els = {
     engineBadge: document.getElementById('hsh-engine-badge'),
@@ -197,9 +241,9 @@
 
   function renderBadge() {
     if (hasWebCrypto()) {
-      setBadge('MD5：纯 JS 实现 · SHA1–SHA512：WebCrypto 可用', 'ok');
+      setBadge(t('badge-webcrypto-ok'), 'ok');
     } else {
-      setBadge('当前环境无 WebCrypto，SHA 系列不可用（需 HTTPS 或 localhost）', 'error');
+      setBadge(t('badge-webcrypto-no'), 'error');
     }
   }
 
@@ -224,12 +268,12 @@
     }
     var s = analyzeSpaces(text);
     var items = [
-      '总字符数：' + s.total,
-      '半角空格 (0x20)：' + s.ascii + ' 个',
-      '全角空格 (U+3000)：' + s.full + ' 个',
-      '以空格开头：' + (s.starts ? '是' : '否'),
-      '以空格结尾：' + (s.ends ? '是' : '否'),
-      '包含连续空格：' + (s.consecutive ? '是' : '否')
+      t('total-pre') + s.total,
+      t('ascii-pre') + s.ascii + t('unit-count'),
+      t('full-pre') + s.full + t('unit-count'),
+      t('starts-pre') + (s.starts ? t('yes-word') : t('no-word')),
+      t('ends-pre') + (s.ends ? t('yes-word') : t('no-word')),
+      t('consec-pre') + (s.consecutive ? t('yes-word') : t('no-word'))
     ];
     els.space.hidden = false;
     els.spaceList.innerHTML = items.map(function (t) {
@@ -254,7 +298,7 @@
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'hsh-btn hsh-btn-copy';
-    btn.textContent = '复制';
+    btn.textContent = t('copy-btn');
     btn.addEventListener('click', function () {
       copyFrom(btn);
     });
@@ -268,8 +312,8 @@
   function fillRow(row, hex) {
     var code = row.querySelector('.hsh-hash');
     var btn = row.querySelector('.hsh-btn-copy');
-    if (hex === '计算中…') {
-      code.textContent = '计算中…';
+    if (hex === t('computing')) {
+      code.textContent = t('computing');
       code.removeAttribute('data-hash');
       if (btn) btn.disabled = true;
       return;
@@ -322,7 +366,7 @@
   function generateAlgo(algo) {
     var text = els.input.value;
     if (!text) {
-      els.placeholder.textContent = '请先在输入框填写字符串，再点击下方按钮生成对应哈希';
+      els.placeholder.textContent = t('empty-input');
       els.placeholder.style.display = '';
       return;
     }
@@ -350,17 +394,17 @@
     if (!spec) return;
 
     if (!hasWebCrypto()) {
-      failRow(row, '不可用：需要 HTTPS 安全上下文（WebCrypto）');
+      failRow(row, t('no-webcrypto-row'));
       return;
     }
 
-    fillRow(row, '计算中…');
+    fillRow(row, t('computing'));
     crypto.subtle.digest(spec.digest, new TextEncoder().encode(text))
       .then(function (buf) {
         fillRow(row, bufToHex(buf));
       })
       .catch(function () {
-        failRow(row, '计算失败');
+        failRow(row, t('compute-fail'));
       });
   }
 
@@ -398,7 +442,7 @@
 
   function flashCopied(btn) {
     var old = btn.textContent;
-    btn.textContent = '已复制';
+    btn.textContent = t('copied-flash');
     btn.classList.add('hsh-copied');
     clearTimeout(btn._t);
     btn._t = setTimeout(function () {

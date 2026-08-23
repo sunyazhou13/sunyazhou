@@ -1,0 +1,61 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 66a6a10d0836fcca0ea80e5efce6d346_3bae93829f3f11f1a65b525400826444
+    ReservedCode1: 726xxT4j6NNsdBe1d7IiAiBAGUlYuaGit+deuZeKo9yHQ0+47iCAcQ+twmXOtfDwIzFxAPH8yDEsZEez+ponmwIh9N4AqjzKY1G8nfEFp4cka/56Q174UGZkqeZ3K9A4df2AAnlFe+fm2rfCjLG+3Srtu6/nyV7vv2WEa2ik0Me0PZMv92nle7fjNDY=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 66a6a10d0836fcca0ea80e5efce6d346_3bae93829f3f11f1a65b525400826444
+    ReservedCode2: 726xxT4j6NNsdBe1d7IiAiBAGUlYuaGit+deuZeKo9yHQ0+47iCAcQ+twmXOtfDwIzFxAPH8yDEsZEez+ponmwIh9N4AqjzKY1G8nfEFp4cka/56Q174UGZkqeZ3K9A4df2AAnlFe+fm2rfCjLG+3Srtu6/nyV7vv2WEa2ik0Me0PZMv92nle7fjNDY=
+---
+
+
+
+Upload an image and split it into a 3×3 grid of 9 tiles with one click. Supports subject-anchor protection that automatically adjusts the crop grid so people or main subjects are never cut off; you can nudge the grid, preview all 9 tiles, then download them all as a ZIP. Everything runs locally in your browser — your images are never uploaded.
+
+<link rel="stylesheet" href="/assets/tools/grid-crop/app.css">
+
+<div id="gc-app">
+
+  <div class="gc-drop" id="gc-drop" tabindex="0" role="button" aria-label="Choose or drop an image">
+    <input type="file" id="gc-input" accept="image/*" hidden>
+    <i class="far fa-image"></i>
+    <p class="gc-drop-title">Drop an image or click to select</p>
+    <p class="gc-drop-sub">PNG · JPEG · WebP · GIF or any browser-displayable image</p>
+  </div>
+
+  <div class="gc-panel" id="gc-panel" hidden>
+    <div class="gc-canvas-wrap">
+      <canvas id="gc-canvas"></canvas>
+      <span class="gc-canvas-tag" id="gc-mode-tag">Split evenly</span>
+    </div>
+
+    <div class="gc-options">
+      <label class="gc-check">
+        <input type="checkbox" id="gc-anchor">
+        <span>Subject anchor protection (auto-align the crop center on the subject / face)</span>
+      </label>
+      <label class="gc-slider">Horizontal grid offset (px)
+        <input type="range" id="gc-offset-x" min="-500" max="500" step="1" value="0">
+        <output id="gc-offset-x-val">0</output>
+      </label>
+      <label class="gc-slider">Vertical grid offset (px)
+        <input type="range" id="gc-offset-y" min="-500" max="500" step="1" value="0">
+        <output id="gc-offset-y-val">0</output>
+      </label>
+      <div class="gc-actions">
+        <button type="button" class="gc-btn" id="gc-reset">Reset grid</button>
+        <button type="button" class="gc-btn gc-btn-primary" id="gc-preview">Preview 9 tiles</button>
+        <button type="button" class="gc-btn" id="gc-download" disabled>Download 9 tiles</button>
+      </div>
+    </div>
+
+    <p class="gc-note" id="gc-note"></p>
+
+    <div class="gc-grid" id="gc-grid" hidden></div>
+  </div>
+
+</div>
+
+<script src="/assets/tools/grid-crop/app.js" defer></script>
+*（内容由AI生成，仅供参考）*

@@ -19,6 +19,88 @@
   var root = document.getElementById('wic-app');
   if (!root) return;
 
+  var LANG = (document.documentElement.lang || 'zh').toLowerCase();
+  if (LANG.indexOf('en') === 0) LANG = 'en';
+  var I18N = {
+    'zh': {
+    'badge-detecting': '正在检测编码能力…',
+    'badge-webp-ok': 'WebP 编码：浏览器原生支持',
+    'badge-webp-warn': '当前浏览器不支持 WebP 编码，请改用 Chrome / Edge',
+    'badge-fmt-ok-post': ' 编码：浏览器原生支持',
+    'badge-heic-loading': 'HEIC 解码库加载中…（约 1.4 MB，仅首次）',
+    'badge-heic-error': 'HEIC 解码库加载异常',
+    'err-heic2any': 'heic2any 未正确挂载',
+    'badge-heic-fail': 'HEIC 解码库加载失败，请检查网络后重试',
+    'err-heic2any-load': '无法加载 HEIC 解码库',
+    'badge-heic-decoding': '正在解码 HEIC…',
+    'err-decode': '无法解码该图片',
+    'err-encode-pre': '编码失败，浏览器不支持 ',
+    'err-convert': '转换失败',
+    'sum-none': '没有待转换的图片',
+    'sum-webp-warn': '当前浏览器不支持 WebP 编码，请改用 Chrome 或 Edge',
+    'st-queued': '待转换',
+    'st-running': '转换中…',
+    'st-done': '完成',
+    'st-skipped-pre': '已是 ',
+    'st-skipped-post': ' · 跳过',
+    'st-error-pre': '失败：',
+    'dl': '下载',
+    'meta-out-pre': '输出文件名：',
+    'sum-total-pre': '共 ',
+    'sum-total-post': ' 张',
+    'sum-ok-pre': '成功 ',
+    'sum-fail-pre': '失败 ',
+    'sum-skip-pre': '跳过 ',
+    'sum-saved': '，节省 ',
+    'zip-zipping': '打包中…',
+    'zip-fail': 'ZIP 打包失败，请逐个下载',
+    'zip-download': '打包下载 ZIP',
+    'maxfiles-pre': '已达单批上限 ',
+    'maxfiles-post': ' 张，请分批处理',
+    'added-pre': '已添加 ',
+    'added-post': ' 张，点击「开始转换」',
+    },
+    'en': {
+    'badge-detecting': 'Detecting encoder capabilities…',
+    'badge-webp-ok': 'WebP encoding: supported natively by this browser',
+    'badge-webp-warn': 'WebP encoding is not supported in this browser, please use Chrome / Edge',
+    'badge-fmt-ok-post': ' encoding: supported natively by this browser',
+    'badge-heic-loading': 'Loading HEIC decoder library… (about 1.4 MB, once only)',
+    'badge-heic-error': 'HEIC decoder library loaded incorrectly',
+    'err-heic2any': 'heic2any did not attach correctly',
+    'badge-heic-fail': 'Failed to load the HEIC decoder, please check the network and retry',
+    'err-heic2any-load': 'Unable to load the HEIC decoder library',
+    'badge-heic-decoding': 'Decoding HEIC…',
+    'err-decode': 'Unable to decode this image',
+    'err-encode-pre': 'Encoding failed, this browser does not support ',
+    'err-convert': 'Conversion failed',
+    'sum-none': 'No images to convert',
+    'sum-webp-warn': 'WebP encoding is not supported in this browser, please use Chrome or Edge',
+    'st-queued': 'Queued',
+    'st-running': 'Converting…',
+    'st-done': 'Done',
+    'st-skipped-pre': 'Already ',
+    'st-skipped-post': ' · skipped',
+    'st-error-pre': 'Failed: ',
+    'dl': 'Download',
+    'meta-out-pre': 'Output filename: ',
+    'sum-total-pre': '',
+    'sum-total-post': ' images',
+    'sum-ok-pre': 'done ',
+    'sum-fail-pre': 'failed ',
+    'sum-skip-pre': 'skipped ',
+    'sum-saved': ' · saved ',
+    'zip-zipping': 'Zipping…',
+    'zip-fail': 'ZIP packing failed, please download the files individually',
+    'zip-download': 'Download ZIP',
+    'maxfiles-pre': 'Batch limit reached: ',
+    'maxfiles-post': ' images, please split into batches',
+    'added-pre': 'Added ',
+    'added-post': ' image(s). Click "Convert" to start',
+    }
+  };
+  function t(key) { var v = (I18N[LANG] || {})[key]; return v != null ? v : key; }
+
   var els = {
     engineBadge: document.getElementById('wic-engine-badge'),
     drop: document.getElementById('wic-drop'),
@@ -104,18 +186,18 @@
 
   function renderBadge() {
     if (state.canEncodeWebp === null) {
-      setBadge('正在检测编码能力…', 'loading');
+      setBadge(t('badge-detecting'), 'loading');
       return;
     }
     var format = els.format.value;
     if (format === 'webp') {
       if (state.canEncodeWebp) {
-        setBadge('WebP 编码：浏览器原生支持', 'ok');
+        setBadge(t('badge-webp-ok'), 'ok');
       } else {
-        setBadge('当前浏览器不支持 WebP 编码，请改用 Chrome / Edge', 'warn');
+        setBadge(t('badge-webp-warn'), 'warn');
       }
     } else {
-      setBadge(format.toUpperCase() + ' 编码：浏览器原生支持', 'ok');
+      setBadge(format.toUpperCase() + t('badge-fmt-ok-post'), 'ok');
     }
   }
 
@@ -128,7 +210,7 @@
       state.heic2any = window.heic2any;
       return Promise.resolve(window.heic2any);
     }
-    setBadge('HEIC 解码库加载中…（约 1.4 MB，仅首次）', 'loading');
+    setBadge(t('badge-heic-loading'), 'loading');
     return new Promise(function (resolve, reject) {
       var s = document.createElement('script');
       s.src = '/assets/tools/webp-heic/lib/heic2any.js';
@@ -139,13 +221,13 @@
           renderBadge();
           resolve(window.heic2any);
         } else {
-          setBadge('HEIC 解码库加载异常', 'error');
-          reject(new Error('heic2any 未正确挂载'));
+          setBadge(t('badge-heic-error'), 'error');
+          reject(new Error(t('err-heic2any')));
         }
       };
       s.onerror = function () {
-        setBadge('HEIC 解码库加载失败，请检查网络后重试', 'error');
-        reject(new Error('无法加载 HEIC 解码库'));
+        setBadge(t('badge-heic-fail'), 'error');
+        reject(new Error(t('err-heic2any-load')));
       };
       document.head.appendChild(s);
     });
@@ -157,7 +239,7 @@
     // HEIC 文件需要特殊处理
     if (isHeic(file)) {
       return loadHeic2Any().then(function (heic2any) {
-        setBadge('正在解码 HEIC…', 'loading');
+        setBadge(t('badge-heic-decoding'), 'loading');
         return heic2any({ blob: file, toType: 'blob' });
       }).then(function (blob) {
         renderBadge();
@@ -189,7 +271,7 @@
           };
           img.onerror = function () {
             URL.revokeObjectURL(url);
-            reject(new Error('无法解码该图片'));
+            reject(new Error(t('err-decode')));
           };
           img.src = url;
         });
@@ -210,7 +292,7 @@
           // PNG 的 mime 可能不带质量参数
           resolve(blob);
         } else {
-          reject(new Error('编码失败，浏览器不支持 ' + format.toUpperCase()));
+          reject(new Error(t('err-encode-pre') + format.toUpperCase()));
         }
       }, mimeType, q);
     });
@@ -249,7 +331,7 @@
       updateCard(item);
     }).catch(function (err) {
       item.status = 'error';
-      item.error = (err && err.message) ? err.message : '转换失败';
+      item.error = (err && err.message) ? err.message : t('err-convert');
       updateCard(item);
     });
   }
@@ -276,7 +358,7 @@
       return it.status === 'queued' || it.status === 'error';
     });
     if (!pending.length) {
-      setSummary('没有待转换的图片');
+      setSummary(t('sum-none'));
       return;
     }
 
@@ -303,7 +385,7 @@
 
     // WebP 编码能力检查
     if (format === 'webp' && !state.canEncodeWebp) {
-      setSummary('当前浏览器不支持 WebP 编码，请改用 Chrome 或 Edge');
+      setSummary(t('sum-webp-warn'));
       return;
     }
 
@@ -335,11 +417,11 @@
 
   function statusText(it) {
     switch (it.status) {
-      case 'queued': return '待转换';
-      case 'running': return '转换中…';
-      case 'done': return '完成';
-      case 'skipped': return '已是 ' + it.outFormat.toUpperCase() + ' · 跳过';
-      case 'error': return '失败：' + it.error;
+      case 'queued': return t('st-queued');
+      case 'running': return t('st-running');
+      case 'done': return t('st-done');
+      case 'skipped': return t('st-skipped-pre') + it.outFormat.toUpperCase() + t('st-skipped-post');
+      case 'error': return t('st-error-pre') + it.error;
     }
     return '';
   }
@@ -377,7 +459,7 @@
     item._dlEl = document.createElement('button');
     item._dlEl.type = 'button';
     item._dlEl.className = 'wic-btn wic-btn-sm';
-    item._dlEl.textContent = '下载';
+    item._dlEl.textContent = t('dl');
     item._dlEl.hidden = true;
     item._dlEl.addEventListener('click', function () {
       if (item.blob) saveBlob(item.blob, item.outName || 'image.' + els.format.value);
@@ -409,7 +491,7 @@
     }
     item._metaEl.textContent = parts.join(' · ');
     if (item.outName && item.status === 'done') {
-      item._metaEl.title = '输出文件名：' + item.outName;
+      item._metaEl.title = t('meta-out-pre') + item.outName;
     }
   }
 
@@ -437,12 +519,12 @@
       out += i.outSize;
     });
     var savedPct = orig > 0 ? Math.round((1 - out / orig) * 100) : 0;
-    var parts = ['共 ' + items.length + ' 张'];
-    if (done.length) parts.push('成功 ' + done.length);
-    if (failed.length) parts.push('失败 ' + failed.length);
-    if (skipped.length) parts.push('跳过 ' + skipped.length);
+    var parts = [t('sum-total-pre') + items.length + t('sum-total-post')];
+    if (done.length) parts.push(t('sum-ok-pre') + done.length);
+    if (failed.length) parts.push(t('sum-fail-pre') + failed.length);
+    if (skipped.length) parts.push(t('sum-skip-pre') + skipped.length);
     if (done.length) {
-      parts.push(fmtBytes(orig) + ' → ' + fmtBytes(out) + '，节省 ' + Math.max(0, savedPct) + '%');
+      parts.push(fmtBytes(orig) + ' → ' + fmtBytes(out) + t('sum-saved') + Math.max(0, savedPct) + '%');
     }
     setSummary(parts.join(' · '));
   }
@@ -519,7 +601,7 @@
     var done = state.items.filter(function (i) { return i.status === 'done'; });
     if (!done.length) return;
     els.zip.disabled = true;
-    els.zip.textContent = '打包中…';
+    els.zip.textContent = t('zip-zipping');
     
     import('./lib/fflate.js').then(function (fflate) {
       var chain = Promise.resolve();
@@ -543,10 +625,10 @@
         saveBlob(new Blob([zipped], { type: 'application/zip' }), 'images-' + stamp + '.zip');
       });
     }).catch(function () {
-      setSummary('ZIP 打包失败，请逐个下载');
+      setSummary(t('zip-fail'));
     }).finally(function () {
       els.zip.disabled = false;
-      els.zip.textContent = '打包下载 ZIP';
+      els.zip.textContent = t('zip-download');
     });
   }
 
@@ -606,7 +688,7 @@
       var f = files[i];
       if (!isImage(f)) continue;
       if (state.items.length >= MAX_FILES) {
-        setSummary('已达单批上限 ' + MAX_FILES + ' 张，请分批处理');
+        setSummary(t('maxfiles-pre') + MAX_FILES + t('maxfiles-post'));
         break;
       }
       var item = {
@@ -630,7 +712,7 @@
     }
     if (valid.length) {
       updateButtons();
-      setSummary('已添加 ' + valid.length + ' 张，点击「开始转换」');
+      setSummary(t('added-pre') + valid.length + t('added-post'));
     }
 
     // HEIC 文件浏览器无法直接渲染缩略图，异步解码后用解码 blob 替换

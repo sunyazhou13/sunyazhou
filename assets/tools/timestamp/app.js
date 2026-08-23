@@ -21,6 +21,115 @@
   var root = document.getElementById('ts-app');
   if (!root) return;
 
+  var LANG = (document.documentElement.lang || 'zh').toLowerCase();
+  if (LANG.indexOf('en') === 0) LANG = 'en';
+  var I18N = {
+    'zh': {
+    'err-ts-empty': '请输入时间戳',
+    'err-ts-parse': '无法解析时间戳，请检查输入',
+    'lbl-local': '本地时间',
+    'lbl-utc': 'UTC 时间',
+    'lbl-unix-sec': 'Unix 秒',
+    'lbl-unix-ms': 'Unix 毫秒',
+    'lbl-apple': 'Apple Double',
+    'lbl-local-confirm': '本地确认',
+    'copy': '复制',
+    'copied': '已复制',
+    'err-date-empty': '请选择日期',
+    'err-date-format': '日期格式错误',
+    'err-ms-range': '毫秒应在 0-999 范围内',
+    'err-date-invalid': '日期无效，请检查输入',
+    'dow-pre': ' 星期',
+    'c-mark-cur-ts': '// MARK: - 获取当前时间戳',
+    'c-sec-double': '// 秒级时间戳（Double，Apple 标准格式，带小数毫秒）',
+    'c-eg-double': '// 如: 1692800123.456',
+    'c-sec-int': '// 秒级整数时间戳',
+    'c-ms-int': '// 毫秒级整数时间戳',
+    'c-cfa': '// 纯整数方式（CFAbsoluteTime）',
+    'c-cfa-note': '// CFAbsoluteTime 从 2001-01-01 起，需加 978307200 转为 1970 起',
+    'c-mark-tsd': '// MARK: - 时间戳 → Date',
+    'c-apple-d': '// Apple Double（秒.毫秒）→ Date',
+    'c-ms-d': '// 毫秒整数 → Date',
+    'c-sec-d': '// 秒整数 → Date',
+    'c-mark-fmt': '// MARK: - Date → 格式化字符串',
+    'c-eg-fmt': '// 如: "2023-08-23 18:28:43.456"',
+    'c-mark-comp': '// MARK: - 获取当前时间各分量',
+    'c-ns2ms-line': 'let ms = comp.nanosecond! / 1_000_000  // 纳秒 → 毫秒',
+    'c-mark-iso': '// MARK: - ISO8601 格式',
+    'c-eg-iso-s': '// 如: "2023-08-23T10:28:43Z"',
+    'c-iso-ms': '// 带毫秒的 ISO8601',
+    'c-eg-iso-ms': '// 如: "2023-08-23T10:28:43.456Z"',
+    'c-pragma-cur': '#pragma mark - 获取当前时间戳',
+    'c-pragma-tsd': '#pragma mark - 时间戳 → NSDate',
+    'c-apple-ns': '// Apple Double（秒.毫秒）→ NSDate',
+    'c-ms-ns': '// 毫秒整数 → NSDate',
+    'c-sec-ns': '// 秒整数 → NSDate',
+    'c-pragma-fmt': '#pragma mark - NSDate → 格式化字符串',
+    'c-eg-objc-fmt': '// 如: @"2023-08-23 18:28:43.456"',
+    'c-pragma-comp': '#pragma mark - 获取当前时间各分量',
+    'c-objc-ns2ms': 'NSInteger ms = comp.nanosecond / 1000000;  // 纳秒 → 毫秒',
+    'c-pragma-iso': '#pragma mark - ISO8601 格式',
+    'c-eg-objc-iso': '// 如: @"2023-08-23T10:28:43.456Z"',
+    'c-pragma-perf': '#pragma mark - 性能计时（高精度）',
+    'c-mach': '// mach_absolute_time 适合微观级计时（纳秒精度）',
+    'c-dots': '// ... 执行耗时操作 ...',
+    },
+    'en': {
+    'err-ts-empty': 'Please enter a timestamp',
+    'err-ts-parse': 'Could not parse the timestamp, please check the input',
+    'lbl-local': 'Local time',
+    'lbl-utc': 'UTC time',
+    'lbl-unix-sec': 'Unix seconds',
+    'lbl-unix-ms': 'Unix milliseconds',
+    'lbl-apple': 'Apple Double',
+    'lbl-local-confirm': 'Local check',
+    'copy': 'Copy',
+    'copied': 'Copied',
+    'err-date-empty': 'Please pick a date',
+    'err-date-format': 'Invalid date format',
+    'err-ms-range': 'Milliseconds must be in 0-999',
+    'err-date-invalid': 'Invalid date, please check the input',
+    'dow-pre': ' ',
+    'c-mark-cur-ts': '// MARK: - Get the current timestamp',
+    'c-sec-double': '// Second-level timestamp (Double, Apple standard format, with fractional milliseconds)',
+    'c-eg-double': '// e.g. 1692800123.456',
+    'c-sec-int': '// Second-level integer timestamp',
+    'c-ms-int': '// Millisecond-level integer timestamp',
+    'c-cfa': '// Pure integer approach (CFAbsoluteTime)',
+    'c-cfa-note': '// CFAbsoluteTime starts at 2001-01-01; add 978307200 to convert to the 1970 epoch',
+    'c-mark-tsd': '// MARK: - Timestamp → Date',
+    'c-apple-d': '// Apple Double (sec.msec) → Date',
+    'c-ms-d': '// Millisecond integer → Date',
+    'c-sec-d': '// Second integer → Date',
+    'c-mark-fmt': '// MARK: - Date → formatted string',
+    'c-eg-fmt': '// e.g. "2023-08-23 18:28:43.456"',
+    'c-mark-comp': '// MARK: - Get current date components',
+    'c-ns2ms-line': 'let ms = comp.nanosecond! / 1_000_000  // nanoseconds → milliseconds',
+    'c-mark-iso': '// MARK: - ISO8601 formatting',
+    'c-eg-iso-s': '// e.g. "2023-08-23T10:28:43Z"',
+    'c-iso-ms': '// ISO8601 with milliseconds',
+    'c-eg-iso-ms': '// e.g. "2023-08-23T10:28:43.456Z"',
+    'c-pragma-cur': '#pragma mark - Get the current timestamp',
+    'c-pragma-tsd': '#pragma mark - Timestamp → NSDate',
+    'c-apple-ns': '// Apple Double (sec.msec) → NSDate',
+    'c-ms-ns': '// Millisecond integer → NSDate',
+    'c-sec-ns': '// Second integer → NSDate',
+    'c-pragma-fmt': '#pragma mark - NSDate → formatted string',
+    'c-eg-objc-fmt': '// e.g. @"2023-08-23 18:28:43.456"',
+    'c-pragma-comp': '#pragma mark - Get current date components',
+    'c-objc-ns2ms': 'NSInteger ms = comp.nanosecond / 1000000;  // nanoseconds → milliseconds',
+    'c-pragma-iso': '#pragma mark - ISO8601 formatting',
+    'c-eg-objc-iso': '// e.g. @"2023-08-23T10:28:43.456Z"',
+    'c-pragma-perf': '#pragma mark - High-precision timing',
+    'c-mach': '// mach_absolute_time suits micro-scale timing (nanosecond precision)',
+    'c-dots': '// ... perform the timed operation ...',
+    }
+  };
+  function t(key) { var v = (I18N[LANG] || {})[key]; return v != null ? v : key; }
+  var WEEKDAYS = (LANG === 'en')
+    ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    : ['日', '一', '二', '三', '四', '五', '六'];
+
   var els = {
     nowDate: document.getElementById('ts-now-date'),
     nowTime: document.getElementById('ts-now-time'),
@@ -85,9 +194,8 @@
     var S = pad(now.getSeconds());
     var Ms = pad(now.getMilliseconds(), 3);
     var weekday = now.getDay();
-    var WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
 
-    if (els.nowDate) els.nowDate.textContent = Y + '-' + Mo + '-' + D + ' 星期' + WEEKDAYS[weekday];
+    if (els.nowDate) els.nowDate.textContent = Y + '-' + Mo + '-' + D + t('dow-pre') + WEEKDAYS[weekday];
     if (els.nowTime) els.nowTime.textContent = H + ':' + Mi + ':' + S;
     if (els.nowMs) els.nowMs.textContent = '.' + Ms;
 
@@ -144,9 +252,8 @@
     var S = pad(d.getSeconds());
     var Ms = pad(d.getMilliseconds(), 3);
     var weekday = d.getDay();
-    var WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
 
-    var local = Y + '-' + Mo + '-' + D + ' ' + H + ':' + Mi + ':' + S + '.' + Ms + ' 星期' + WEEKDAYS[weekday];
+    var local = Y + '-' + Mo + '-' + D + ' ' + H + ':' + Mi + ':' + S + '.' + Ms + t('dow-pre') + WEEKDAYS[weekday];
     var utc = d.toISOString();
     var tsSec = Math.floor(d.getTime() / 1000);
     var tsMs = d.getTime();
@@ -167,26 +274,26 @@
     clearError();
     var input = els.tsInput.value;
     if (!input.trim()) {
-      showError('请输入时间戳');
+      showError(t('err-ts-empty'));
       els.tsResult.innerHTML = '';
       return;
     }
 
     var d = parseTimestamp(input);
     if (!d || isNaN(d.getTime())) {
-      showError('无法解析时间戳，请检查输入');
+      showError(t('err-ts-parse'));
       els.tsResult.innerHTML = '';
       return;
     }
 
     var fmt = formatDate(d);
     var html = '';
-    html += '<div class="ts-res-item"><span class="ts-res-label">本地时间</span><code class="ts-res-val">' + fmt.local + '</code></div>';
-    html += '<div class="ts-res-item"><span class="ts-res-label">UTC 时间</span><code class="ts-res-val">' + fmt.utc + '</code></div>';
+    html += '<div class="ts-res-item"><span class="ts-res-label">' + t('lbl-local') + '</span><code class="ts-res-val">' + fmt.local + '</code></div>';
+    html += '<div class="ts-res-item"><span class="ts-res-label">' + t('lbl-utc') + '</span><code class="ts-res-val">' + fmt.utc + '</code></div>';
     html += '<div class="ts-res-item"><span class="ts-res-label">ISO 8601</span><code class="ts-res-val">' + fmt.iso + '</code></div>';
-    html += '<div class="ts-res-item"><span class="ts-res-label">Unix 秒</span><code class="ts-res-val">' + fmt.tsSec + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + fmt.tsSec + '">复制</button></div>';
-    html += '<div class="ts-res-item"><span class="ts-res-label">Unix 毫秒</span><code class="ts-res-val">' + fmt.tsMs + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + fmt.tsMs + '">复制</button></div>';
-    html += '<div class="ts-res-item"><span class="ts-res-label">Apple Double</span><code class="ts-res-val">' + fmt.tsApple + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + fmt.tsApple + '">复制</button></div>';
+    html += '<div class="ts-res-item"><span class="ts-res-label">' + t('lbl-unix-sec') + '</span><code class="ts-res-val">' + fmt.tsSec + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + fmt.tsSec + '">' + t('copy') + '</button></div>';
+    html += '<div class="ts-res-item"><span class="ts-res-label">' + t('lbl-unix-ms') + '</span><code class="ts-res-val">' + fmt.tsMs + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + fmt.tsMs + '">' + t('copy') + '</button></div>';
+    html += '<div class="ts-res-item"><span class="ts-res-label">' + t('lbl-apple') + '</span><code class="ts-res-val">' + fmt.tsApple + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + fmt.tsApple + '">' + t('copy') + '</button></div>';
 
     els.tsResult.innerHTML = html;
   }
@@ -200,14 +307,14 @@
     var msStr = els.msInput.value || '0';
 
     if (!dateStr) {
-      showError('请选择日期');
+      showError(t('err-date-empty'));
       els.dateResult.innerHTML = '';
       return;
     }
 
     var parts = dateStr.split('-');
     if (parts.length !== 3) {
-      showError('日期格式错误');
+      showError(t('err-date-format'));
       els.dateResult.innerHTML = '';
       return;
     }
@@ -223,14 +330,14 @@
     var Ms = parseInt(msStr, 10) || 0;
 
     if (Ms < 0 || Ms > 999) {
-      showError('毫秒应在 0-999 范围内');
+      showError(t('err-ms-range'));
       els.dateResult.innerHTML = '';
       return;
     }
 
     var d = new Date(Y, Mo, D, H, Mi, S, Ms);
     if (isNaN(d.getTime())) {
-      showError('日期无效，请检查输入');
+      showError(t('err-date-invalid'));
       els.dateResult.innerHTML = '';
       return;
     }
@@ -241,11 +348,11 @@
     var iso = d.toISOString();
 
     var html = '';
-    html += '<div class="ts-res-item"><span class="ts-res-label">Unix 秒</span><code class="ts-res-val">' + tsSec + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + tsSec + '">复制</button></div>';
-    html += '<div class="ts-res-item"><span class="ts-res-label">Unix 毫秒</span><code class="ts-res-val">' + tsMs + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + tsMs + '">复制</button></div>';
-    html += '<div class="ts-res-item"><span class="ts-res-label">Apple Double</span><code class="ts-res-val">' + tsApple + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + tsApple + '">复制</button></div>';
+    html += '<div class="ts-res-item"><span class="ts-res-label">' + t('lbl-unix-sec') + '</span><code class="ts-res-val">' + tsSec + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + tsSec + '">' + t('copy') + '</button></div>';
+    html += '<div class="ts-res-item"><span class="ts-res-label">' + t('lbl-unix-ms') + '</span><code class="ts-res-val">' + tsMs + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + tsMs + '">' + t('copy') + '</button></div>';
+    html += '<div class="ts-res-item"><span class="ts-res-label">' + t('lbl-apple') + '</span><code class="ts-res-val">' + tsApple + '</code><button type="button" class="ts-btn ts-btn-copy" data-copy-value="' + tsApple + '">' + t('copy') + '</button></div>';
     html += '<div class="ts-res-item"><span class="ts-res-label">ISO 8601</span><code class="ts-res-val">' + iso + '</code></div>';
-    html += '<div class="ts-res-item"><span class="ts-res-label">本地确认</span><code class="ts-res-val">' + formatDate(d).local + '</code></div>';
+    html += '<div class="ts-res-item"><span class="ts-res-label">' + t('lbl-local-confirm') + '</span><code class="ts-res-val">' + formatDate(d).local + '</code></div>';
 
     els.dateResult.innerHTML = html;
   }
@@ -262,114 +369,114 @@
 
   function genSwiftCode() {
     var L = [];
-    L.push('// MARK: - 获取当前时间戳');
+    L.push(t('c-mark-cur-ts'));
     L.push('');
-    L.push('// 秒级时间戳（Double，Apple 标准格式，带小数毫秒）');
+    L.push(t('c-sec-double'));
     L.push('let tsApple = Date().timeIntervalSince1970');
-    L.push('// 如: 1692800123.456');
+    L.push(t('c-eg-double'));
     L.push('');
-    L.push('// 秒级整数时间戳');
+    L.push(t('c-sec-int'));
     L.push('let tsSec = Int(Date().timeIntervalSince1970)');
     L.push('');
-    L.push('// 毫秒级整数时间戳');
+    L.push(t('c-ms-int'));
     L.push('let tsMs = Int(Date().timeIntervalSince1970 * 1000)');
     L.push('');
-    L.push('// 纯整数方式（CFAbsoluteTime）');
+    L.push(t('c-cfa'));
     L.push('let absTime = CFAbsoluteTimeGetCurrent() + 978307200');
-    L.push('// CFAbsoluteTime 从 2001-01-01 起，需加 978307200 转为 1970 起');
+    L.push(t('c-cfa-note'));
     L.push('');
-    L.push('// MARK: - 时间戳 → Date');
+    L.push(t('c-mark-tsd'));
     L.push('');
-    L.push('// Apple Double（秒.毫秒）→ Date');
+    L.push(t('c-apple-d'));
     L.push('let date = Date(timeIntervalSince1970: 1692800123.456)');
     L.push('');
-    L.push('// 毫秒整数 → Date');
+    L.push(t('c-ms-d'));
     L.push('let date2 = Date(timeIntervalSince1970: TimeInterval(1692800123456) / 1000)');
     L.push('');
-    L.push('// 秒整数 → Date');
+    L.push(t('c-sec-d'));
     L.push('let date3 = Date(timeIntervalSince1970: TimeInterval(1692800123))');
     L.push('');
-    L.push('// MARK: - Date → 格式化字符串');
+    L.push(t('c-mark-fmt'));
     L.push('');
     L.push('let formatter = DateFormatter()');
     L.push('formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"');
     L.push('formatter.timeZone = TimeZone.current');
     L.push('let str = formatter.string(from: date)');
-    L.push('// 如: "2023-08-23 18:28:43.456"');
+    L.push(t('c-eg-fmt'));
     L.push('');
-    L.push('// MARK: - 获取当前时间各分量');
+    L.push(t('c-mark-comp'));
     L.push('');
     L.push('let cal = Calendar.current');
     L.push('let comp = cal.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: Date())');
-    L.push('let ms = comp.nanosecond! / 1_000_000  // 纳秒 → 毫秒');
+    L.push(t('c-ns2ms-line'));
     L.push('');
-    L.push('// MARK: - ISO8601 格式');
+    L.push(t('c-mark-iso'));
     L.push('');
     L.push('let isoStr = ISO8601DateFormatter().string(from: date)');
-    L.push('// 如: "2023-08-23T10:28:43Z"');
+    L.push(t('c-eg-iso-s'));
     L.push('');
-    L.push('// 带毫秒的 ISO8601');
+    L.push(t('c-iso-ms'));
     L.push('let isoFmt = ISO8601DateFormatter()');
     L.push('isoFmt.formatOptions = [.withInternetDateTime, .withFractionalSeconds]');
     L.push('let isoMs = isoFmt.string(from: date)');
-    L.push('// 如: "2023-08-23T10:28:43.456Z"');
+    L.push(t('c-eg-iso-ms'));
     return L.join('\n');
   }
 
   function genObjCCode() {
     var L = [];
-    L.push('#pragma mark - 获取当前时间戳');
+    L.push(t('c-pragma-cur'));
     L.push('');
-    L.push('// 秒级时间戳（Double，Apple 标准格式，带小数毫秒）');
+    L.push(t('c-sec-double'));
     L.push('NSTimeInterval tsApple = [[NSDate date] timeIntervalSince1970];');
-    L.push('// 如: 1692800123.456');
+    L.push(t('c-eg-double'));
     L.push('');
-    L.push('// 秒级整数时间戳');
+    L.push(t('c-sec-int'));
     L.push('NSInteger tsSec = (NSInteger)[[NSDate date] timeIntervalSince1970];');
     L.push('');
-    L.push('// 毫秒级整数时间戳');
+    L.push(t('c-ms-int'));
     L.push('NSInteger tsMs = (NSInteger)([[NSDate date] timeIntervalSince1970] * 1000);');
     L.push('');
-    L.push('#pragma mark - 时间戳 → NSDate');
+    L.push(t('c-pragma-tsd'));
     L.push('');
-    L.push('// Apple Double（秒.毫秒）→ NSDate');
+    L.push(t('c-apple-ns'));
     L.push('NSDate *date = [NSDate dateWithTimeIntervalSince1970:1692800123.456];');
     L.push('');
-    L.push('// 毫秒整数 → NSDate');
+    L.push(t('c-ms-ns'));
     L.push('NSDate *date2 = [NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)1692800123456 / 1000];');
     L.push('');
-    L.push('// 秒整数 → NSDate');
+    L.push(t('c-sec-ns'));
     L.push('NSDate *date3 = [NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)1692800123];');
     L.push('');
-    L.push('#pragma mark - NSDate → 格式化字符串');
+    L.push(t('c-pragma-fmt'));
     L.push('');
     L.push('NSDateFormatter *fmt = [NSDateFormatter new];');
     L.push('fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";');
     L.push('fmt.timeZone = [NSTimeZone localTimeZone];');
     L.push('NSString *str = [fmt stringFromDate:date];');
-    L.push('// 如: @"2023-08-23 18:28:43.456"');
+    L.push(t('c-eg-objc-fmt'));
     L.push('');
-    L.push('#pragma mark - 获取当前时间各分量');
+    L.push(t('c-pragma-comp'));
     L.push('');
     L.push('NSCalendar *cal = [NSCalendar currentCalendar];');
     L.push('NSDateComponents *comp = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth |');
     L.push('    NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute |');
     L.push('    NSCalendarUnitSecond | NSCalendarUnitNanosecond) fromDate:[NSDate date]];');
-    L.push('NSInteger ms = comp.nanosecond / 1000000;  // 纳秒 → 毫秒');
+    L.push(t('c-objc-ns2ms'));
     L.push('');
-    L.push('#pragma mark - ISO8601 格式');
+    L.push(t('c-pragma-iso'));
     L.push('');
     L.push('NSISO8601DateFormatter *isoFmt = [NSISO8601DateFormatter new];');
     L.push('isoFmt.formatOptions = NSISO8601DateFormatWithInternetDateTime |');
     L.push('                       NSISO8601DateFormatWithFractionalSeconds;');
     L.push('NSString *isoStr = [isoFmt stringFromDate:date];');
-    L.push('// 如: @"2023-08-23T10:28:43.456Z"');
+    L.push(t('c-eg-objc-iso'));
     L.push('');
-    L.push('#pragma mark - 性能计时（高精度）');
+    L.push(t('c-pragma-perf'));
     L.push('');
-    L.push('// mach_absolute_time 适合微观级计时（纳秒精度）');
+    L.push(t('c-mach'));
     L.push('uint64_t start = mach_absolute_time();');
-    L.push('// ... 执行耗时操作 ...');
+    L.push(t('c-dots'));
     L.push('uint64_t elapsed = mach_absolute_time() - start;');
     L.push('mach_timebase_info_data_t info;');
     L.push('mach_timebase_info(&info);');
@@ -408,7 +515,7 @@
 
   function flashCopied(btn) {
     var old = btn.textContent;
-    btn.textContent = '已复制';
+    btn.textContent = t('copied');
     btn.classList.add('ts-copied');
     clearTimeout(btn._t);
     btn._t = setTimeout(function () {

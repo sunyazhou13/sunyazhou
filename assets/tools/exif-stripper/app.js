@@ -32,6 +32,78 @@
     fields: null, stripped: null
   };
 
+  var LANG = (document.documentElement.lang || 'zh').toLowerCase();
+  LANG = (LANG.indexOf('en') !== -1) ? 'en' : 'zh';
+  var I18N = {
+    zh: {
+      'tag-010e': '图像描述', 'tag-010f': '厂商', 'tag-0110': '型号', 'tag-0112': '方向',
+      'tag-011a': 'X 分辨率', 'tag-011b': 'Y 分辨率', 'tag-0128': '分辨率单位', 'tag-0131': '软件',
+      'tag-0132': '修改时间', 'tag-013b': '作者', 'tag-013e': '白点', 'tag-013f': '主色度',
+      'tag-8298': '版权', 'tag-8769': 'Exif 子 IFD', 'tag-8825': 'GPS 信息',
+      'tag-a002': '像素宽', 'tag-a003': '像素高',
+      'tag-829a': '曝光时间', 'tag-829d': '光圈', 'tag-8827': 'ISO 感光度', 'tag-9000': 'Exif 版本',
+      'tag-9003': '拍摄时间', 'tag-9004': '数字化时间', 'tag-9209': '闪光灯', 'tag-920a': '焦距',
+      'tag-a001': '色彩空间',
+      'tag-0000': '纬度参考', 'tag-0001': '纬度', 'tag-0002': '经度参考', 'tag-0003': '经度',
+      'tag-0004': '海拔参考', 'tag-0005': '海拔', 'tag-0006': '时间', 'tag-0007': 'GPS 时间戳',
+      'tag-001d': 'GPS 日期',
+      'fmt-bmff': '视频或其他 ISO 媒体容器', 'grp-image': '图片', 'grp-coord': '坐标',
+      'val-readfail': '（读取失败）', 'inf-mid': ' · 格式 ', 'inf-sep': ' · ',
+      'st-before': '原始大小 → 脱敏后', 'st-diff-pre': '元数据约占&nbsp;', 'st-diff-b': ' B（',
+      'st-diff-end': '%）',
+      'err-iloc-ver-pre': '不支持的 iloc 版本（', 'err-iloc-ver-suf': '），当前仅支持 0/1/2',
+      'err-heic-top': 'HEIC 顶层缺少 ftyp / meta / mdat，结构不支持',
+      'err-heic-ftyp': 'HEIC 顶层结构不符合预期（ftyp 不在文件开头）',
+      'err-heic-iinf': 'HEIC meta 缺少 iinf / iloc，结构不支持',
+      'err-heic-big': 'HEIC 文件过大，暂不支持剥离',
+      'err-read-pre': '读取文件失败：', 'err-read-msg': '无法读取该文件', 'err-read-cancel': '读取文件已取消',
+      'err-fmt-pre': '不支持的图片格式：', 'err-fmt-suf': '。目前仅支持 JPEG / PNG / HEIC',
+      'err-ident-pre': '无法识别文件格式或文件已损坏：',
+      'err-ident-suf': '。请上传有效的 JPEG / PNG / HEIC 图片',
+      'note-none': '未发现可展示的 EXIF 元数据', 'err-parse-pre': '解析图片元数据失败：',
+      'f-unnamed': '未命名文件',
+      'err-big-pre': '文件过大（', 'err-big-suf': '），请上传小于 128MB 的图片',
+      'err-unsup-pre': '暂不支持此图片格式：', 'err-unsup-suf': '。目前仅支持 JPEG / PNG / HEIC',
+      'note-heic-fail-pre': 'HEIC 抹除失败：', 'note-heic-none': '该 HEIC 未发现可抹除的 EXIF 元数据',
+      'note-stripped': '已抹除全部元数据，可点击「下载脱敏图片」',
+      'note-strip-fail-pre': '抹除失败：', 'note-downloaded': '已下载脱敏图片'
+    },
+    en: {
+      'tag-010e': 'Image description', 'tag-010f': 'Make', 'tag-0110': 'Model', 'tag-0112': 'Orientation',
+      'tag-011a': 'X resolution', 'tag-011b': 'Y resolution', 'tag-0128': 'Resolution unit', 'tag-0131': 'Software',
+      'tag-0132': 'Date time', 'tag-013b': 'Artist', 'tag-013e': 'White point', 'tag-013f': 'Primary chromaticities',
+      'tag-8298': 'Copyright', 'tag-8769': 'Exif sub IFD', 'tag-8825': 'GPS info',
+      'tag-a002': 'Pixel width', 'tag-a003': 'Pixel height',
+      'tag-829a': 'Exposure time', 'tag-829d': 'Aperture', 'tag-8827': 'ISO speed', 'tag-9000': 'Exif version',
+      'tag-9003': 'Date time original', 'tag-9004': 'Date time digitized', 'tag-9209': 'Flash', 'tag-920a': 'Focal length',
+      'tag-a001': 'Color space',
+      'tag-0000': 'Latitude ref', 'tag-0001': 'Latitude', 'tag-0002': 'Longitude ref', 'tag-0003': 'Longitude',
+      'tag-0004': 'Altitude ref', 'tag-0005': 'Altitude', 'tag-0006': 'Time', 'tag-0007': 'GPS timestamp',
+      'tag-001d': 'GPS date',
+      'fmt-bmff': 'Video or other ISO media container', 'grp-image': 'Image', 'grp-coord': 'Coordinates',
+      'val-readfail': ' (read failed)', 'inf-mid': ' · format ', 'inf-sep': ' · ',
+      'st-before': 'original size → sanitized', 'st-diff-pre': 'metadata ≈ ', 'st-diff-b': ' B (',
+      'st-diff-end': '%)',
+      'err-iloc-ver-pre': 'Unsupported iloc version (', 'err-iloc-ver-suf': '); only 0/1/2 are supported',
+      'err-heic-top': 'HEIC is missing top-level ftyp / meta / mdat — unsupported structure',
+      'err-heic-ftyp': 'Unexpected HEIC top-level layout (ftyp is not at the start of the file)',
+      'err-heic-iinf': 'HEIC meta is missing iinf / iloc — unsupported structure',
+      'err-heic-big': 'HEIC file is too large to strip for now',
+      'err-read-pre': 'Failed to read the file: ', 'err-read-msg': 'Could not read the file', 'err-read-cancel': 'File reading cancelled',
+      'err-fmt-pre': 'Unsupported image format: ', 'err-fmt-suf': ' — only JPEG / PNG / HEIC are supported',
+      'err-ident-pre': 'Could not recognize the file format or the file is corrupted: ',
+      'err-ident-suf': ' — please upload a valid JPEG / PNG / HEIC image',
+      'note-none': 'No EXIF metadata to display found', 'err-parse-pre': 'Failed to parse image metadata: ',
+      'f-unnamed': 'unnamed file',
+      'err-big-pre': 'File too large (', 'err-big-suf': ') — please upload an image smaller than 128MB',
+      'err-unsup-pre': 'This image format is not supported yet: ', 'err-unsup-suf': ' — only JPEG / PNG / HEIC are supported',
+      'note-heic-fail-pre': 'HEIC strip failed: ', 'note-heic-none': 'No strippable EXIF metadata found in this HEIC',
+      'note-stripped': 'All metadata stripped — click "Download cleaned image"',
+      'note-strip-fail-pre': 'Stripping failed: ', 'note-downloaded': 'Sanitized image downloaded'
+    }
+  };
+  function t(key) { var v = (I18N[LANG] || {})[key]; return v != null ? v : key; }
+
   /* ---------- 基础工具 ---------- */
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -73,21 +145,21 @@
   var TIF_TYPE_SIZE = { 1: 1, 2: 1, 3: 2, 4: 4, 5: 8, 6: 1, 7: 1, 8: 2, 9: 4, 10: 8, 11: 4, 12: 8 };
 
   var IFD0_NAMES = {
-    0x010e: '图像描述', 0x010f: '厂商', 0x0110: '型号', 0x0112: '方向',
-    0x011a: 'X 分辨率', 0x011b: 'Y 分辨率', 0x0128: '分辨率单位', 0x0131: '软件',
-    0x0132: '修改时间', 0x013b: '作者', 0x013e: '白点', 0x013f: '主色度',
-    0x8298: '版权', 0x8769: 'Exif 子 IFD', 0x8825: 'GPS 信息',
-    0xa002: '像素宽', 0xa003: '像素高'
+    0x010e: t('tag-010e'), 0x010f: t('tag-010f'), 0x0110: t('tag-0110'), 0x0112: t('tag-0112'),
+    0x011a: t('tag-011a'), 0x011b: t('tag-011b'), 0x0128: t('tag-0128'), 0x0131: t('tag-0131'),
+    0x0132: t('tag-0132'), 0x013b: t('tag-013b'), 0x013e: t('tag-013e'), 0x013f: t('tag-013f'),
+    0x8298: t('tag-8298'), 0x8769: t('tag-8769'), 0x8825: t('tag-8825'),
+    0xa002: t('tag-a002'), 0xa003: t('tag-a003')
   };
   var EXIF_NAMES = {
-    0x829a: '曝光时间', 0x829d: '光圈', 0x8827: 'ISO 感光度', 0x9000: 'Exif 版本',
-    0x9003: '拍摄时间', 0x9004: '数字化时间', 0x9209: '闪光灯', 0x920a: '焦距',
-    0xa001: '色彩空间', 0xa002: '像素宽', 0xa003: '像素高'
+    0x829a: t('tag-829a'), 0x829d: t('tag-829d'), 0x8827: t('tag-8827'), 0x9000: t('tag-9000'),
+    0x9003: t('tag-9003'), 0x9004: t('tag-9004'), 0x9209: t('tag-9209'), 0x920a: t('tag-920a'),
+    0xa001: t('tag-a001'), 0xa002: t('tag-a002'), 0xa003: t('tag-a003')
   };
   var GPS_NAMES = {
-    0x0000: '纬度参考', 0x0001: '纬度', 0x0002: '经度参考', 0x0003: '经度',
-    0x0004: '海拔参考', 0x0005: '海拔', 0x0006: '时间', 0x0007: 'GPS 时间戳',
-    0x001d: 'GPS 日期'
+    0x0000: t('tag-0000'), 0x0001: t('tag-0001'), 0x0002: t('tag-0002'), 0x0003: t('tag-0003'),
+    0x0004: t('tag-0004'), 0x0005: t('tag-0005'), 0x0006: t('tag-0006'), 0x0007: t('tag-0007'),
+    0x001d: t('tag-001d')
   };
   var STARTC = '0123456789';
 
@@ -262,7 +334,7 @@
 
   var FORMAT_TIPS = {
     jpeg: 'JPEG', png: 'PNG', heic: 'HEIC/HEIF',
-    webp: 'WebP', gif: 'GIF', tiff: 'TIFF', bmp: 'BMP', bmff: '视频或其他 ISO 媒体容器'
+    webp: 'WebP', gif: 'GIF', tiff: 'TIFF', bmp: 'BMP', bmff: t('fmt-bmff')
   };
 
   /* ---------- 元数据提取 ---------- */
@@ -294,7 +366,7 @@
   function parseTiff(meta, dv, tiffOff) {
     var le = dv.getUint16(tiffOff, false) === 0x4949;
     var ifd0 = tiffOff + readU32(dv, tiffOff + 4, le);
-    parseIfd(meta, dv, tiffOff, ifd0, le, '图片', IFD0_NAMES);
+    parseIfd(meta, dv, tiffOff, ifd0, le, t('grp-image'), IFD0_NAMES);
     // GPS 坐标格式化（把纬度/经度 RATIONAL 转度分秒）
     if (ifd0 < tiffOff || ifd0 + 2 > dv.byteLength) return;
     var n = readU16(dv, ifd0, le);
@@ -306,7 +378,7 @@
         if (gpsOff > tiffOff && gpsOff + 2 <= dv.byteLength) {
           var lat = formatGpsCoordinate(dv, tiffOff, gpsOff, le, 0);
           var lng = formatGpsCoordinate(dv, tiffOff, gpsOff, le, 1);
-          meta.push({ group: 'GPS', name: '坐标', value: (lat && lng) ? (lat + ' ' + lng) : (lat || lng || '（读取失败）') });
+          meta.push({ group: 'GPS', name: t('grp-coord'), value: (lat && lng) ? (lat + ' ' + lng) : (lat || lng || t('val-readfail')) });
         }
       }
     }
@@ -440,7 +512,7 @@
     var p = iloc.off + iloc.hdr;
     var ver = dv.getUint8(p);
     p += 4; // fullbox
-    if (ver >= 3) throw new Error('不支持的 iloc 版本（' + ver + '），当前仅支持 0/1/2');
+    if (ver >= 3) throw new Error(t('err-iloc-ver-pre') + ver + t('err-iloc-ver-suf'));
     var sizes1 = dv.getUint8(p);
     var sizes2 = dv.getUint8(p + 1);
     p += 2;
@@ -594,7 +666,7 @@
       if (tiffOff > 0) {
         var before = meta.length;
         parseTiff(meta, dv, tiffOff);
-        for (m = before; m < meta.length; m++) if (meta[m].group === '图片') meta[m].group = 'Exif';
+        for (m = before; m < meta.length; m++) if (meta[m].group === t('grp-image')) meta[m].group = 'Exif';
       }
     }
   }
@@ -613,8 +685,8 @@
       else if (tops[i].type === 'mdat' && !mdat) mdat = tops[i];
       else if (tops[i].type === 'ftyp' && !ftyp) ftyp = tops[i];
     }
-    if (!ftyp || !meta || !mdat) throw new Error('HEIC 顶层缺少 ftyp / meta / mdat，结构不支持');
-    if (ftyp.off !== 0) throw new Error('HEIC 顶层结构不符合预期（ftyp 不在文件开头）');
+    if (!ftyp || !meta || !mdat) throw new Error(t('err-heic-top'));
+    if (ftyp.off !== 0) throw new Error(t('err-heic-ftyp'));
     var children = walkBoxes(bytes, dv, meta.off + meta.hdr + 4, meta.off + meta.size);
     var iinf = null, iloc = null, iref = null;
     for (i = 0; i < children.length; i++) {
@@ -622,7 +694,7 @@
       else if (children[i].type === 'iloc') iloc = children[i];
       else if (children[i].type === 'iref') iref = children[i];
     }
-    if (!iinf || !iloc) throw new Error('HEIC meta 缺少 iinf / iloc，结构不支持');
+    if (!iinf || !iloc) throw new Error(t('err-heic-iinf'));
     var items = parseIinfItems(bytes, dv, iinf);
     var exifItem = null, exifOrdinal = 0;
     for (i = 0; i < items.length; i++)
@@ -727,7 +799,7 @@
     newMeta[2] = (msz >>> 8) & 255; newMeta[3] = msz & 255;
     // 7) 重建 mdat（32 位头）
     var newMdatSize = 8 + newPayload.length;
-    if (newMdatSize > 0xFFFFFFFF) throw new Error('HEIC 文件过大，暂不支持剥离');
+    if (newMdatSize > 0xFFFFFFFF) throw new Error(t('err-heic-big'));
     var mdatHead = new Uint8Array(8);
     mdatHead[0] = (newMdatSize >>> 24) & 255; mdatHead[1] = (newMdatSize >>> 16) & 255;
     mdatHead[2] = (newMdatSize >>> 8) & 255; mdatHead[3] = newMdatSize & 255;
@@ -740,7 +812,7 @@
   function renderInfo() {
     var fmtName = { jpeg: 'JPEG', png: 'PNG', heic: 'HEIC/HEIF' }[state.format] || state.format;
     els.info.hidden = false;
-    els.info.textContent = state.name + ' · 格式 ' + fmtName + ' · ' + fmtBytes(state.buffer.byteLength);
+    els.info.textContent = state.name + t('inf-mid') + fmtName + t('inf-sep') + fmtBytes(state.buffer.byteLength);
   }
 
   function renderFields() {
@@ -760,18 +832,18 @@
     els.stats.hidden = false;
     var delta = before - after;
     var pct = before ? (delta / before * 100) : 0;
-    els.statBefore.innerHTML = '<b>' + fmtBytes(before) + '</b><span>&nbsp;原始大小 → 脱敏后&nbsp;</span><b>' + fmtBytes(after) + '</b>';
-    els.statDiff.innerHTML = '<span>元数据约占&nbsp;</span><b>' + delta + ' B（' + pct.toFixed(1) + '%）</b>';
+    els.statBefore.innerHTML = '<b>' + fmtBytes(before) + '</b><span>&nbsp;' + t('st-before') + '&nbsp;</span><b>' + fmtBytes(after) + '</b>';
+    els.statDiff.innerHTML = '<span>' + t('st-diff-pre') + '</span><b>' + delta + t('st-diff-b') + pct.toFixed(1) + t('st-diff-end') + '</b>';
   }
 
   /* ---------- 事件 ---------- */
   function loadBuffer(file) {
     var reader = new FileReader();
     reader.onerror = function () {
-      showError('读取文件失败：' + (reader.error && reader.error.message ? reader.error.message : '无法读取该文件') + '（' + (file.name || '') + '）');
+      showError(t('err-read-pre') + (reader.error && reader.error.message ? reader.error.message : t('err-read-msg')) + '(' + (file.name || '') + ')');
     };
     reader.onabort = function () {
-      showError('读取文件已取消');
+      showError(t('err-read-cancel'));
     };
     reader.onload = function () {
       var buffer = reader.result;
@@ -779,9 +851,9 @@
       var format = detectFormat(bytes);
       if (format !== 'jpeg' && format !== 'png' && format !== 'heic') {
         if (format) {
-          showError('不支持的图片格式：' + (file.name || '') + '（' + (FORMAT_TIPS[format] || format) + '）。目前仅支持 JPEG / PNG / HEIC');
+          showError(t('err-fmt-pre') + (file.name || '') + '(' + (FORMAT_TIPS[format] || format) + ')' + t('err-fmt-suf'));
         } else {
-          showError('无法识别文件格式或文件已损坏：' + (file.name || '') + '。请上传有效的 JPEG / PNG / HEIC 图片');
+          showError(t('err-ident-pre') + (file.name || '') + t('err-ident-suf'));
         }
         return;
       }
@@ -796,10 +868,10 @@
         els.actions.hidden = false;
         els.download.disabled = true;
         els.stats.hidden = true;
-        if (!state.fields.length) note('未发现可展示的 EXIF 元数据');
+        if (!state.fields.length) note(t('note-none'));
         else blankStatus();
       } catch (e) {
-        showError('解析图片元数据失败：' + (e && e.message || e) + '（' + (file.name || '') + '）');
+        showError(t('err-parse-pre') + (e && e.message || e) + '(' + (file.name || '') + ')');
       }
     };
     reader.readAsArrayBuffer(file);
@@ -807,9 +879,9 @@
 
   function pickFile(f) {
     if (!f) return;
-    var name = f.name || '未命名文件';
+    var name = f.name || t('f-unnamed');
     if (f.size > 128 * 1024 * 1024) {
-      showError('文件过大（' + fmtBytes(f.size) + '），请上传小于 128MB 的图片');
+      showError(t('err-big-pre') + fmtBytes(f.size) + t('err-big-suf'));
       return;
     }
     var t = (f.type || '').toLowerCase();
@@ -817,7 +889,7 @@
     var extOk = /\.(jpe?g|png|heic|heif)$/i.test(name);
     var knownUnsupported = (t.indexOf('image/') === 0 && !mimeOk && !extOk);
     if (knownUnsupported) {
-      showError('暂不支持此图片格式：' + (t || name) + '。目前仅支持 JPEG / PNG / HEIC');
+      showError(t('err-unsup-pre') + (t || name) + t('err-unsup-suf'));
       return;
     }
     // MIME 或扩展名任一明确命中 JPEG/PNG/HEIC，直接读取
@@ -865,19 +937,19 @@
         try {
           heicResult = stripHeic(bytes);
         } catch (e2) {
-          note('HEIC 抹除失败：' + (e2 && e2.stack || e2));
+          note(t('note-heic-fail-pre') + (e2 && e2.stack || e2));
           return;
         }
-        if (!heicResult) { note('该 HEIC 未发现可抹除的 EXIF 元数据'); return; }
+        if (!heicResult) { note(t('note-heic-none')); return; }
         state.stripped = heicResult;
       } else {
         state.stripped = state.format === 'jpeg' ? stripJpeg(bytes) : stripPng(bytes);
       }
       renderStats();
       els.download.disabled = false;
-      note('已抹除全部元数据，可点击「下载脱敏图片」');
+      note(t('note-stripped'));
     } catch (e) {
-      note('抹除失败：' + (e && e.message || e));
+      note(t('note-strip-fail-pre') + (e && e.message || e));
     }
   });
 
@@ -892,7 +964,7 @@
     a.href = url; a.download = base + '-stripped.' + ext;
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(url); }, 0);
-    note('已下载脱敏图片');
+    note(t('note-downloaded'));
   });
 
   els.reset.addEventListener('click', function () {

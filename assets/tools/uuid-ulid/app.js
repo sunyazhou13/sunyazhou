@@ -13,8 +13,32 @@
 
   var ROOT = document.getElementById('uu-app');
   if (!ROOT) return;
+  /* 语言感知文案（zh / en），跟随 document.documentElement.lang */
+  var LANG = (document.documentElement.lang || '').toLowerCase() === 'en' ? 'en' : 'zh';
+  var I18N = {
+    zh: {
+      'copy-word': '复制',
+      'generated-pre': '已生成 ',
+      'generated-mid': ' 个 ',
+      'copied-word': '已复制',
+      'copy-fail-word': '复制失败',
+      'nothing-yet': '还没有可复制的内容，请先生成',
+    },
+    en: {
+      'copy-word': 'Copy',
+      'generated-pre': 'Generated ',
+      'generated-mid': ' ',
+      'copied-word': 'Copied',
+      'copy-fail-word': 'Copy failed',
+      'nothing-yet': 'Nothing to copy yet — generate some first',
+    }
+  };
+  function t(key) { return I18N[LANG][key] != null ? I18N[LANG][key] : key; }
 
-  function $id(k) { return document.getElementById('uu-' + k); }
+
+
+  function $id
+(k) { return document.getElementById('uu-' + k); }
   var els = {
     type: $id('type'), count: $id('count'),
     gen: $id('gen'), more: $id('more'), copyAll: $id('copy-all'),
@@ -93,7 +117,7 @@
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'uu-btn uu-btn-sm';
-      btn.textContent = '复制';
+      btn.textContent = t('copy-word');
       btn.addEventListener('click', function () { copyText(v, btn); });
 
       row.appendChild(num);
@@ -110,14 +134,14 @@
     }
     state.list = list;
     renderList(list);
-    note('已生成 ' + n + ' 个 ' + (type === 'ulid' ? 'ULID' : 'UUID v4'));
+    note(t('generated-pre') + n + t('generated-mid') + (type === 'ulid' ? 'ULID' : 'UUID v4'));
   }
 
   /* ---------- 复制 ---------- */
   function copyText(text, btn) {
     function done(ok) {
       var old = btn.textContent;
-      btn.textContent = ok ? '已复制' : '复制失败';
+      btn.textContent = ok ? t('copied-word') : t('copy-fail-word');
       btn.classList.add('uu-copied');
       clearTimeout(btn._t);
       btn._t = setTimeout(function () {
@@ -155,7 +179,7 @@
     generate(p.type, p.n);
   });
   els.copyAll.addEventListener('click', function () {
-    if (!state.list.length) { note('还没有可复制的内容，请先生成'); return; }
+    if (!state.list.length) { note(t('nothing-yet')); return; }
     var text = state.list.join('\n') + '\n';
     copyText(text, els.copyAll);
   });

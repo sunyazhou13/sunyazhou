@@ -16,6 +16,40 @@
 
   var root = document.getElementById('qrcode-app');
   if (!root) return;
+  /* 语言感知文案（zh / en），跟随 document.documentElement.lang */
+  var LANG = (document.documentElement.lang || '').toLowerCase() === 'en' ? 'en' : 'zh';
+  var I18N = {
+    zh: {
+      'need-qr-text': '请输入要生成二维码的文本或链接',
+      'too-long': '内容过长（超过 3000 字符，将无法编码为二维码），请缩短后重试',
+      'encode-fail': '内容过长，无法编码。可降低纠错级别（如 L）或缩短内容后重试',
+      'meta-module-sep': ' 模块 · 输出 ',
+      'meta-ecl-pre': ' · 纠错 ',
+      'need-image-file': '请选择图片文件（PNG / JPEG / WebP / GIF 等）',
+      'img-unreadable': '无法读取该图片',
+      'no-qr': '未识别出二维码。请使用包含完整、清晰的二维码图片重试',
+      'decode-fail-pre': '解析失败：',
+      'img-load-fail': '图片加载失败，请重试',
+      'copied-flash': '已复制',
+      'char-unit': ' 字符',
+    },
+    en: {
+      'need-qr-text': 'Enter the text or link to encode into a QR code',
+      'too-long': 'Content too long (over 3000 chars; cannot be encoded into a QR code). Shorten it and try again',
+      'encode-fail': 'Content too long to encode. Lower the error-correction level (e.g. L) or shorten the content and try again',
+      'meta-module-sep': ' modules · output ',
+      'meta-ecl-pre': ' · ECL ',
+      'need-image-file': 'Please choose an image file (PNG / JPEG / WebP / GIF, etc.)',
+      'img-unreadable': 'Cannot read this image',
+      'no-qr': 'No QR code recognized. Use a complete, clear QR image and try again',
+      'decode-fail-pre': 'Decode failed: ',
+      'img-load-fail': 'Image failed to load; please retry',
+      'copied-flash': 'Copied',
+      'char-unit': ' chars',
+    }
+  };
+  function t(key) { return I18N[LANG][key] != null ? I18N[LANG][key] : key; }
+
 
   var QR = globalThis.QRCode;   // qrcode@1.4.4，全局对象
   var JsQR = globalThis.jsQR;   // jsQR
@@ -97,18 +131,18 @@
     clearError();
     var text = els.text.value;
     if (!text) {
-      showError('请输入要生成二维码的文本或链接');
+      showError(t('need-qr-text'));
       return;
     }
     if (text.length > 3000) {
-      showError('内容过长（超过 3000 字符，将无法编码为二维码），请缩短后重试');
+      showError(t('too-long'));
       return;
     }
     var ecl = els.ecl.value;
     try {
       var out = buildCanvas(text, ecl);
     } catch (e) {
-      showError('内容过长，无法编码。可降低纠错级别（如 L）或缩短内容后重试');
+      showError(t('encode-fail'));
       return;
     }
     state.generated = true;
@@ -123,7 +157,7 @@
 
     els.download.disabled = false;
     els.meta.textContent = 'Version ' + out.version + ' · ' + out.count + '×' + out.count +
-      ' 模块 · 输出 ' + out.size + '×' + out.size + ' px · 纠错 ' + ecl;
+      t('meta-module-sep') + out.size + '×' + out.size + ' px · ECL ' + ecl;
   }
 
   function downloadPng() {
@@ -142,7 +176,7 @@
     clearError();
     if (!file) return;
     if (!/^image\//.test(file.type)) {
-      showError('请选择图片文件（PNG / JPEG / WebP / GIF 等）');
+      showError(t('need-image-file'));
       return;
     }
     var url = URL.createObjectURL(file);
@@ -159,7 +193,7 @@
         ctx.drawImage(img, 0, 0, w, h);
       } catch (e) {
         URL.revokeObjectURL(url);
-        showError('无法读取该图片');
+        showError(t('img-unreadable'));
         return;
       }
       try {
@@ -172,21 +206,21 @@
         if (res && res.data) {
           els.decImg.src = preview;
           els.decText.value = res.data;
-          els.decMeta.textContent = w + '×' + h + ' px · ' + res.data.length + ' 字符';
+          els.decMeta.textContent = w + '×' + h + ' px · ' + res.data.length + t('char-unit');
           els.result.hidden = false;
         } else {
           els.result.hidden = true;
-          showError('未识别出二维码。请使用包含完整、清晰的二维码图片重试');
+          showError(t('no-qr'));
         }
       } catch (e) {
         URL.revokeObjectURL(url);
         els.result.hidden = true;
-        showError('解析失败：' + txt(e.message || e));
+        showError(t('decode-fail-pre') + txt(e.message || e));
       }
     };
     img.onerror = function () {
       URL.revokeObjectURL(url);
-      showError('图片加载失败，请重试');
+      showError(t('img-load-fail'));
     };
     img.src = url;
   }
@@ -206,7 +240,7 @@
 
   function flashCopied(btn) {
     var old = btn.textContent;
-    btn.textContent = '已复制';
+    btn.textContent = t('copied-flash');
     btn.classList.add('qr-copied');
     clearTimeout(btn._t);
     btn._t = setTimeout(function () {

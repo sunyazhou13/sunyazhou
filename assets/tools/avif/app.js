@@ -15,6 +15,112 @@
   var root = document.getElementById('avt-app');
   if (!root) return;
 
+  var LANG = (document.documentElement.lang || 'zh').toLowerCase();
+  if (LANG.indexOf('en') === 0) LANG = 'en';
+  var I18N = {
+    'zh': {
+    'badge-wasm-loading': 'WASM 编码引擎加载中…（约 3.5 MB，仅首次）',
+    'badge-wasm-fail': 'WASM 引擎加载失败，请检查网络后重试',
+    'badge-detect': '正在检测编码引擎…',
+    'badge-native': '编码引擎：浏览器原生 Canvas',
+    'badge-fallback': '当前浏览器不支持原生 AVIF 编码，将回退 WASM',
+    'badge-wasm': '编码引擎：WASM libaom（jsquash）',
+    'badge-native-ok': '编码引擎：浏览器原生 Canvas（已探测可用）',
+    'badge-wasm-fallback': '编码引擎：WASM libaom（当前浏览器不支持原生 AVIF 编码）',
+    'err-decode': '无法解码该图片',
+    'err-webp-track': '无法解析 WebP 轨道',
+    'err-native': '原生 AVIF 编码失败',
+    'err-wasm-big': 'WASM AVIF 编码失败（图片可能过大）',
+    'err-frames-suffix': ' 帧上限，请关闭「保留动画」改取首帧',
+    'err-frames-pre': '动图帧数超过 ',
+    'err-less2': '动图解码后不足 2 帧，请关闭「保留动画」改取首帧',
+    'err-rgba-pre': '动图原始帧数据约 ',
+    'err-rgba-suffix': ' MB，超出处理上限，请限制最大宽度或关闭「保留动画」',
+    'tr-frame-pre': '转码帧 ',
+    'err-anim': '动图转换失败',
+    'err-convert': '转换失败',
+    'sum-none': '没有待转换的图片（已是 AVIF 的文件会被跳过）',
+    'st-pending': '待转换',
+    'st-anim-keep': '动图 · 保留动画',
+    'st-anim-first': '动图 · 仅取首帧',
+    'st-running': '转换中…',
+    'st-done': '完成',
+    'st-skipped': '已是 AVIF · 跳过',
+    'st-err-pre': '失败：',
+    'btn-dl': '下载',
+    'meta-frames': ' 帧动画',
+    'meta-native': '原生',
+    'meta-anim-first': '动图 · 仅取首帧',
+    'meta-anim-keep': '动图 · 逐帧转码保留动画',
+    'meta-out-pre': '输出文件名：',
+    'meta-renamed': '（重名自动加序号）',
+    'sum-total-pre': '共 ',
+    'sum-total-suffix': ' 张',
+    'sum-done-pre': '成功 ',
+    'sum-fail-pre': '失败 ',
+    'sum-skip-pre': '跳过 ',
+    'sum-saved-pre': '，节省 ',
+    'zip-busy': '打包中…',
+    'zip-fail': 'ZIP 打包失败，请逐个下载',
+    'zip-btn': '打包下载 ZIP',
+    'sum-limit-pre': '已达单批上限 ',
+    'sum-limit-fix': ' 张，请分批处理',
+    'sum-added-pre': '已添加 ',
+    'sum-added-fix': ' 张，点击「开始转换」',
+    },
+    'en': {
+    'badge-wasm-loading': 'WASM encoder loading… (about 3.5 MB, once on first use)',
+    'badge-wasm-fail': 'Failed to load the WASM encoder, check your network and retry',
+    'badge-detect': 'Detecting encoding engine…',
+    'badge-native': 'Encoder: browser-native Canvas',
+    'badge-fallback': 'Native AVIF encoding is not supported by this browser, falling back to WASM',
+    'badge-wasm': 'Encoder: WASM libaom (jsquash)',
+    'badge-native-ok': 'Encoder: browser-native Canvas (detected available)',
+    'badge-wasm-fallback': 'Encoder: WASM libaom (this browser lacks native AVIF encoding)',
+    'err-decode': 'Unable to decode this image',
+    'err-webp-track': 'Unable to parse the WebP track',
+    'err-native': 'Native AVIF encoding failed',
+    'err-wasm-big': 'WASM AVIF encoding failed (image may be too large)',
+    'err-frames-suffix': ' exceeds the frame limit; disable "Keep animation" and keep the first frame instead',
+    'err-frames-pre': 'Animated image exceeds ',
+    'err-less2': 'Fewer than 2 frames after decoding; disable "Keep animation" and keep the first frame instead',
+    'err-rgba-pre': 'Raw frame data is about ',
+    'err-rgba-suffix': ' MB, beyond the processing limit — cap the max width or disable "Keep animation"',
+    'tr-frame-pre': 'Transcoding frame ',
+    'err-anim': 'Animated conversion failed',
+    'err-convert': 'Conversion failed',
+    'sum-none': 'No images to convert (files already in AVIF are skipped)',
+    'st-pending': 'Pending',
+    'st-anim-keep': 'Animated · keep animation',
+    'st-anim-first': 'Animated · first frame only',
+    'st-running': 'Converting…',
+    'st-done': 'Done',
+    'st-skipped': 'Already AVIF · skipped',
+    'st-err-pre': 'Failed: ',
+    'btn-dl': 'Download',
+    'meta-frames': ' frames · animated',
+    'meta-native': 'native',
+    'meta-anim-first': 'Animated · first frame only',
+    'meta-anim-keep': 'Animated · per-frame transcode keeps animation',
+    'meta-out-pre': 'Output file: ',
+    'meta-renamed': ' (auto-renamed with a number)',
+    'sum-total-pre': 'Total ',
+    'sum-total-suffix': ' images',
+    'sum-done-pre': 'Done ',
+    'sum-fail-pre': 'Failed ',
+    'sum-skip-pre': 'Skipped ',
+    'sum-saved-pre': ', saved ',
+    'zip-busy': 'Packing…',
+    'zip-fail': 'ZIP packing failed, download one by one',
+    'zip-btn': 'Download ZIP',
+    'sum-limit-pre': 'Reached the per-batch limit of ',
+    'sum-limit-fix': ' images; split them into batches',
+    'sum-added-pre': 'Added ',
+    'sum-added-fix': ' images. Click "Start converting"',
+    }
+  };
+  function t(key) { var v = (I18N[LANG] || {})[key]; return v != null ? v : key; }
+
   var els = {
     engineBadge: document.getElementById('avt-engine-badge'),
     drop: document.getElementById('avt-drop'),
@@ -98,12 +204,12 @@
 
   function getWasmModule() {
     if (!wasmModulePromise) {
-      setBadge('WASM 编码引擎加载中…（约 3.5 MB，仅首次）', 'loading');
+      setBadge(t('badge-wasm-loading'), 'loading');
       wasmModulePromise = import('./lib/avif_enc.js').then(function (m) {
         return m.default({ noInitialRun: true });
       });
       wasmModulePromise.then(function () { renderBadge(); }, function () {
-        setBadge('WASM 引擎加载失败，请检查网络后重试', 'error');
+        setBadge(t('badge-wasm-fail'), 'error');
       });
     }
     return wasmModulePromise;
@@ -116,18 +222,18 @@
 
   function renderBadge() {
     if (state.nativeAvif === null) {
-      setBadge('正在检测编码引擎…', 'loading');
+      setBadge(t('badge-detect'), 'loading');
       return;
     }
     var mode = els.engine.value;
     if (mode === 'native') {
-      setBadge(state.nativeAvif ? '编码引擎：浏览器原生 Canvas' : '当前浏览器不支持原生 AVIF 编码，将回退 WASM', state.nativeAvif ? 'ok' : 'warn');
+      setBadge(state.nativeAvif ? t('badge-native') : t('badge-fallback'), state.nativeAvif ? 'ok' : 'warn');
     } else if (mode === 'wasm') {
-      setBadge('编码引擎：WASM libaom（jsquash）', 'ok');
+      setBadge(t('badge-wasm'), 'ok');
     } else {
       setBadge(state.nativeAvif
-        ? '编码引擎：浏览器原生 Canvas（已探测可用）'
-        : '编码引擎：WASM libaom（当前浏览器不支持原生 AVIF 编码）',
+        ? t('badge-native-ok')
+        : t('badge-wasm-fallback'),
         state.nativeAvif ? 'ok' : 'warn');
     }
   }
@@ -228,7 +334,7 @@
           };
           img.onerror = function () {
             URL.revokeObjectURL(url);
-            reject(new Error('无法解码该图片'));
+            reject(new Error(t('err-decode')));
           };
           img.src = url;
         });
@@ -262,7 +368,7 @@
       var dec = new ImageDecoder({ data: buf, type: 'image/webp' });
       return dec.tracks.ready.then(function () {
         var track = dec.tracks.selectedTrack;
-        if (!track) throw new Error('无法解析 WebP 轨道');
+        if (!track) throw new Error(t('err-webp-track'));
         var n = Math.min(track.frameCount, MAX_ANIM_FRAMES);
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext('2d', { willReadFrequently: true });
@@ -305,7 +411,7 @@
     return new Promise(function (resolve, reject) {
       canvas.toBlob(function (blob) {
         if (blob && blob.type === 'image/avif') resolve(blob);
-        else reject(new Error('原生 AVIF 编码失败'));
+        else reject(new Error(t('err-native')));
       }, 'image/avif', quality / 100);
     });
   }
@@ -327,7 +433,7 @@
       var opts = Object.assign({}, WASM_DEFAULTS, { quality: quality, speed: speed });
       var out = mod.encode(new Uint8Array(imageData.data.buffer),
         imageData.width, imageData.height, opts);
-      if (!out) throw new Error('WASM AVIF 编码失败（图片可能过大）');
+      if (!out) throw new Error(t('err-wasm-big'));
       return new Blob([out], { type: 'image/avif' });
     });
   }
@@ -349,14 +455,14 @@
     return decodeP.then(function (decoded) {
       var frames = decoded.frames;
       if (!frames.length || decoded.frameCount > MAX_ANIM_FRAMES) {
-        throw new Error('动图帧数超过 ' + MAX_ANIM_FRAMES + ' 帧上限，请关闭「保留动画」改取首帧');
+        throw new Error(t('err-frames-pre') + MAX_ANIM_FRAMES + t('err-frames-suffix'));
       }
       if (frames.length < 2) {
-        throw new Error('动图解码后不足 2 帧，请关闭「保留动画」改取首帧');
+        throw new Error(t('err-less2'));
       }
       var totalRGBA = decoded.width * decoded.height * 4 * frames.length;
       if (totalRGBA > MAX_ANIM_BYTES) {
-        throw new Error('动图原始帧数据约 ' + Math.round(totalRGBA / 1048576) + ' MB，超出处理上限，请限制最大宽度或关闭「保留动画」');
+        throw new Error(t('err-rgba-pre') + Math.round(totalRGBA / 1048576) + t('err-rgba-suffix'));
       }
 
       var scale = Math.min(1, maxW / decoded.width);
@@ -385,7 +491,7 @@
         function step() {
           if (i >= frames.length) return Promise.resolve();
           var f = frames[i++];
-          item.progressText = '转码帧 ' + i + '/' + frames.length + '…';
+          item.progressText = t('tr-frame-pre') + i + '/' + frames.length + '…';
           updateCard(item);
 
           var encodeP;
@@ -451,7 +557,7 @@
         }).catch(function (err) {
           item.status = 'error';
           item.progressText = '';
-          item.error = (err && err.message) ? err.message : '动图转换失败';
+          item.error = (err && err.message) ? err.message : t('err-anim');
           updateCard(item);
         });
       }
@@ -481,7 +587,7 @@
       updateCard(item);
     }).catch(function (err) {
       item.status = 'error';
-      item.error = (err && err.message) ? err.message : '转换失败';
+      item.error = (err && err.message) ? err.message : t('err-convert');
       updateCard(item);
     });
   }
@@ -504,7 +610,7 @@
   function convertAll() {
     if (state.running) return;
     var pending = state.items.filter(function (it) { return it.status === 'queued' || it.status === 'error'; });
-    if (!pending.length) { setSummary('没有待转换的图片（已是 AVIF 的文件会被跳过）'); return; }
+    if (!pending.length) { setSummary(t('sum-none')); return; }
 
     // AVIF 输入直接标记跳过，避免二次有损压缩
     state.items.forEach(function (it) {
@@ -545,12 +651,12 @@
   function statusText(it) {
     switch (it.status) {
       case 'queued':
-        if (!it.animated) return '待转换';
-        return (keepAnim() && !it.animFallback) ? '动图 · 保留动画' : '动图 · 仅取首帧';
-      case 'running': return it.progressText || '转换中…';
-      case 'done': return '完成';
-      case 'skipped': return '已是 AVIF · 跳过';
-      case 'error': return '失败：' + it.error;
+        if (!it.animated) return t('st-pending');
+        return (keepAnim() && !it.animFallback) ? t('st-anim-keep') : t('st-anim-first');
+      case 'running': return it.progressText || t('st-running');
+      case 'done': return t('st-done');
+      case 'skipped': return t('st-skipped');
+      case 'error': return t('st-err-pre') + it.error;
     }
     return '';
   }
@@ -588,7 +694,7 @@
     item._dlEl = document.createElement('button');
     item._dlEl.type = 'button';
     item._dlEl.className = 'avt-btn avt-btn-sm';
-    item._dlEl.textContent = '下载';
+    item._dlEl.textContent = t('btn-dl');
     item._dlEl.hidden = true;
     item._dlEl.addEventListener('click', function () {
       if (item.blob) saveBlob(item.blob, item.outName || 'image.avif');
@@ -615,19 +721,19 @@
       parts.push('→ ' + fmtBytes(item.outSize) + '（' + (saved >= 0 ? '-' : '+') + Math.abs(saved) + '%）');
       parts.push(item.width + '×' + item.height);
       if (item.frameCount && item.frameCount > 1) {
-        parts.push(item.frameCount + ' 帧动画' + (item.animQuality ? ' · q' + item.animQuality : ''));
+        parts.push(item.frameCount + t('meta-frames') + (item.animQuality ? ' · q' + item.animQuality : ''));
       }
-      parts.push(item.engine === 'native' ? '原生' : 'WASM');
+      parts.push(item.engine === 'native' ? t('meta-native') : 'WASM');
       item._metaEl.classList.add('avt-meta-done');
       item._dlEl.hidden = false;
     } else if (item.status === 'skipped') {
       // no extra info
     } else if (item.animated && item.status === 'queued') {
-      parts.push(item.animFallback || !keepAnim() ? '动图 · 仅取首帧' : '动图 · 逐帧转码保留动画');
+      parts.push(item.animFallback || !keepAnim() ? t('meta-anim-first') : t('meta-anim-keep'));
     }
     item._metaEl.textContent = parts.join(' · ');
     if (item.outName && item.status === 'done') {
-      item._metaEl.title = '输出文件名：' + item.outName + (item.outName !== item.name.replace(/\.[^.]+$/, '') + '.avif' ? '（重名自动加序号）' : '');
+      item._metaEl.title = t('meta-out-pre') + item.outName + (item.outName !== item.name.replace(/\.[^.]+$/, '') + '.avif' ? t('meta-renamed') : '');
     }
   }
 
@@ -646,11 +752,11 @@
     var orig = 0, out = 0;
     done.forEach(function (i) { orig += i.origSize; out += i.outSize; });
     var savedPct = orig > 0 ? Math.round((1 - out / orig) * 100) : 0;
-    var parts = ['共 ' + items.length + ' 张'];
-    if (done.length) parts.push('成功 ' + done.length);
-    if (failed.length) parts.push('失败 ' + failed.length);
-    if (skipped.length) parts.push('跳过 ' + skipped.length);
-    if (done.length) parts.push(fmtBytes(orig) + ' → ' + fmtBytes(out) + '，节省 ' + Math.max(0, savedPct) + '%');
+    var parts = [t('sum-total-pre') + items.length + t('sum-total-suffix')];
+    if (done.length) parts.push(t('sum-done-pre') + done.length);
+    if (failed.length) parts.push(t('sum-fail-pre') + failed.length);
+    if (skipped.length) parts.push(t('sum-skip-pre') + skipped.length);
+    if (done.length) parts.push(fmtBytes(orig) + ' → ' + fmtBytes(out) + t('sum-saved-pre') + Math.max(0, savedPct) + '%');
     setSummary(parts.join(' · '));
   }
 
@@ -715,7 +821,7 @@
     var done = state.items.filter(function (i) { return i.status === 'done'; });
     if (!done.length) return;
     els.zip.disabled = true;
-    els.zip.textContent = '打包中…';
+    els.zip.textContent = t('zip-busy');
     import('./lib/fflate.js').then(function (fflate) {
       var chain = Promise.resolve();
       var map = {};
@@ -733,10 +839,10 @@
         saveBlob(new Blob([zipped], { type: 'application/zip' }), 'avif-' + stamp + '.zip');
       });
     }).catch(function () {
-      setSummary('ZIP 打包失败，请逐个下载');
+      setSummary(t('zip-fail'));
     }).finally(function () {
       els.zip.disabled = false;
-      els.zip.textContent = '打包下载 ZIP';
+      els.zip.textContent = t('zip-btn');
     });
   }
 
@@ -790,7 +896,7 @@
       var f = files[i];
       if (!isImage(f)) continue;
       if (state.items.length >= MAX_FILES) {
-        setSummary('已达单批上限 ' + MAX_FILES + ' 张，请分批处理');
+        setSummary(t('sum-limit-pre') + MAX_FILES + t('sum-limit-fix'));
         break;
       }
       var item = {
@@ -813,7 +919,7 @@
     }
     if (valid.length) {
       updateButtons();
-      setSummary('已添加 ' + valid.length + ' 张，点击「开始转换」');
+      setSummary(t('sum-added-pre') + valid.length + t('sum-added-fix'));
       valid.forEach(function (item) {
         detectAnimated(item.file).then(function (isAnim) {
           item.animated = isAnim;

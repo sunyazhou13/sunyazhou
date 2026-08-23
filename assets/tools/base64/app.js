@@ -14,8 +14,38 @@
 
   var root = document.getElementById('b64-app');
   if (!root) return;
+  /* 语言感知文案（zh / en），跟随 document.documentElement.lang */
+  var LANG = (document.documentElement.lang || '').toLowerCase() === 'en' ? 'en' : 'zh';
+  var I18N = {
+    zh: {
+      'not-base64': '包含非法字符或长度不正确，不是合法的 Base64 字符串',
+      'encode-fail-pre': '编码失败：',
+      'io-pre': '输入 ',
+      'io-mid': ' 字符 / 输出 ',
+      'io-post': ' 字符',
+      'utf8-note': '（UTF-8 编码后字节数）',
+      'urlsafe-hint': '；若输入是 URL 安全（- _）格式，请勾选「URL 安全」后重试',
+      'decode-fail-pre': '解码失败：',
+      'copied-word': '已复制',
+    },
+    en: {
+      'not-base64': 'Contains illegal characters or an invalid length; not a valid Base64 string',
+      'encode-fail-pre': 'Encode failed: ',
+      'io-pre': 'Input ',
+      'io-mid': ' chars / Output ',
+      'io-post': ' chars',
+      'utf8-note': ' (UTF-8 encoded byte count)',
+      'urlsafe-hint': '; if your input uses the URL-safe (- _) form, check "URL safe" and retry',
+      'decode-fail-pre': 'Decode failed: ',
+      'copied-word': 'Copied',
+    }
+  };
+  function t(key) { return I18N[LANG][key] != null ? I18N[LANG][key] : key; }
 
-  var els = {
+
+
+  var els
+ = {
     input: document.getElementById('b64-input'),
     encodeBtn: document.getElementById('b64-encode'),
     decodeBtn: document.getElementById('b64-decode'),
@@ -88,7 +118,7 @@
       while (s.length % 4 !== 0) s += '=';
     }
     if (/[^A-Za-z0-9+/=]/.test(s) || s.length % 4 !== 0) {
-      throw new Error('包含非法字符或长度不正确，不是合法的 Base64 字符串');
+      throw new Error(t('not-base64'));
     }
     var bin = atob(s);
     var bytes = new Uint8Array(bin.length);
@@ -108,10 +138,10 @@
     try {
       out = utf8ToBase64(text, state.urlSafe);
     } catch (e) {
-      showError('编码失败：' + txt(e.message || e));
+      showError(t('encode-fail-pre') + txt(e.message || e));
       return;
     }
-    showOutput(out, '输入 ' + text.length + ' 字符 / 输出 ' + out.length + ' 字符');
+    showOutput(out, t('io-pre') + text.length + t('io-mid') + out.length + t('io-post'));
   }
 
   function runDecode() {
@@ -121,10 +151,10 @@
     try {
       var out = base64ToUtf8(text, state.urlSafe);
       var bytes = new TextEncoder().encode(out);
-      showOutput(out, '输入 ' + text.length + ' 字符 / 输出 ' + bytes.length + ' 字符（UTF-8 编码后字节数）');
+      showOutput(out, t('io-pre') + text.length + t('io-mid') + bytes.length + t('io-post') + t('utf8-note'));
     } catch (e) {
-      var hint = state.urlSafe ? '' : '；若输入是 URL 安全（- _）格式，请勾选「URL 安全」后重试';
-      showError('解码失败：' + txt(e.message || e) + hint);
+      var hint = state.urlSafe ? '' : t('urlsafe-hint');
+      showError(t('decode-fail-pre') + txt(e.message || e) + hint);
     }
   }
 
@@ -155,7 +185,7 @@
 
   function flashCopied(btn) {
     var old = btn.textContent;
-    btn.textContent = '已复制';
+    btn.textContent = t('copied-word');
     btn.classList.add('b64-copied');
     clearTimeout(btn._t);
     btn._t = setTimeout(function () {
