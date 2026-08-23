@@ -4,3 +4,4 @@ _site
 .container/
 .DS_Store
 ads.txt
+.jekyll-cache/
