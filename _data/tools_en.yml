@@ -164,3 +164,17 @@
   path: /tools/english-dictionary/
   category: Frequently Used
   enabled: true
+- id: lottie-viewer
+  title: Lottie Animation Viewer
+  icon: fas fa-film
+  description: Upload Lottie JSON or dotLottie files to preview animations with play controls, seek bar, speed adjustment, loop toggle, background color switching, animation info display and frame export to PNG, 100% local rendering, nothing uploaded (lottie-web + JSZip)
+  path: /tools/lottie-viewer/
+  category: Images & Graphics
+  enabled: true
+- id: pag-viewer
+  title: PAG Animation Viewer
+  icon: fas fa-video
+  description: Upload PAG files to preview animations with play controls, seek bar, speed adjustment, loop toggle, background color switching, animation info display and frame export to PNG, powered by Tencent libpag WASM engine, 100% local rendering, nothing uploaded
+  path: /tools/pag-viewer/
+  category: Images & Graphics
+  enabled: true

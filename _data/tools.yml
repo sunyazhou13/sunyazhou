@@ -148,3 +148,19 @@
   path: /tools/english-dictionary/
   category: 常用工具
   enabled: true
+
+- id: lottie-viewer
+  title: Lottie 动画预览器
+  icon: fas fa-film
+  description: 上传 Lottie JSON 或 dotLottie 文件预览动画，支持播放控制、进度拖拽、速度调节、循环切换、背景色切换、动画信息展示、导出当前帧 PNG，纯本地渲染不上传（lottie-web + JSZip）
+  path: /tools/lottie-viewer/
+  category: 图片与图像
+  enabled: true
+
+- id: pag-viewer
+  title: PAG 动画预览器
+  icon: fas fa-video
+  description: 上传 PAG 文件预览动画，支持播放控制、进度拖拽、速度调节、循环切换、背景色切换、动画信息展示、导出当前帧 PNG，基于腾讯 libpag WASM 引擎，纯本地渲染不上传
+  path: /tools/pag-viewer/
+  category: 图片与图像
+  enabled: true
