@@ -162,5 +162,5 @@
   icon: fas fa-book
   description: Auto-detect language to look up English words or translate Chinese text. Built-in ECDICT 3.4M-entry local dictionary sharded by first letter and cached in IndexedDB for offline use, online API for detailed definitions and examples, browser speech synthesis for pronunciation, 100% local processing, nothing uploaded
   path: /tools/english-dictionary/
-  category: Data Processing
+  category: Frequently Used
   enabled: true

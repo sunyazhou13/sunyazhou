@@ -146,5 +146,5 @@
   icon: fas fa-book
   description: 输入英文或中文自动识别语言查词翻译，内置 ECDICT 339 万词条本地词库（按首字母分片按需下载缓存到 IndexedDB 离线可用），在线 API 补充英文详细释义与例句，浏览器语音合成发音，纯本地不上传
   path: /tools/english-dictionary/
-  category: 数据处理
+  category: 常用工具
   enabled: true

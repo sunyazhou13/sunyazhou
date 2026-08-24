@@ -4,16 +4,18 @@
     - zh：读 _data/tools.yml + 中文分类表
     - en：显式读 _data/tools_en.yml（polyglot 不会自动覆盖 site.data.tools，
       同 _includes/sidebar.html 手动切换 site.data.tabs_en 的做法）+ 英文分类表
+  「常用工具 / Frequently Used」为置顶分组，排在所有分类之前，用于放置高频工具
+  （当前仅英汉智能词典）；后续置顶其它工具时把对应条目的 category 改为该分组即可。
   注意：本文件中的英文分类名需与 _data/tools_en.yml 的 category 值保持一致。
 -->
 
 {% assign tools_data = site.data.tools %}
-{% assign tool_cats = "图片与图像,3D 模型,编码转换,数据处理,其他" | split: "," %}
+{% assign tool_cats = "常用工具,图片与图像,3D 模型,编码转换,数据处理,其他" | split: "," %}
 {% assign tools_empty = "暂无可用工具。" %}
 {% assign tools_cta = "打开工具" %}
 {% if site.active_lang == "en" %}
   {% assign tools_data = site.data.tools_en %}
-  {% assign tool_cats = "Images & Graphics,3D Models,Encoding & Conversion,Data Processing,Others" | split: "," %}
+  {% assign tool_cats = "Frequently Used,Images & Graphics,3D Models,Encoding & Conversion,Data Processing,Others" | split: "," %}
   {% assign tools_empty = "No tools available yet." %}
   {% assign tools_cta = "Open tool" %}
 {% endif %}
