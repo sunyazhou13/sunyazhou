@@ -164,3 +164,11 @@
   path: /tools/pag-viewer/
   category: 图片与图像
   enabled: true
+
+- id: command-reference
+  title: 命令行速查手册
+  icon: fas fa-terminal
+  description: Linux / macOS / Unix / Windows 常用命令查询手册，内置 40+ 条命令的详细语法、参数说明、用法示例与注意事项，支持平台筛选与实时搜索，纯本地不上传
+  path: /tools/command-reference/
+  category: 常用工具
+  enabled: true
