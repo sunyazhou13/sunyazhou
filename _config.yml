@@ -201,6 +201,12 @@ defaults:
         -
           label: 主页
           url: /
+  -
+    scope:
+      path: tools
+    values:
+      layout: page
+      dynamic_title: true    # 工具详情页标题与正文间距对齐栏目页
 
 
 sass:
