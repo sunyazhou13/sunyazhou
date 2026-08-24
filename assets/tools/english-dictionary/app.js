@@ -118,7 +118,11 @@
   const DB_VERSION = 3; // 升级到 340 万词条词库，旧缓存会被清除
   const STORE_NAME = 'shards';
   const META_STORE = 'meta';
-  const SHARD_BASE = '/assets/tools/english-dictionary/data/';
+  // 词库分片不再随博客仓库分发（26 个分片共 236MB，会撑爆 git 历史），
+  // 改从独立数据仓库的 GitHub Releases 按需下载。
+  // 迁移时只需改这一行；备用源可切 raw 分支：
+  //   https://raw.githubusercontent.com/sunyazhou13/english-dictionary-data/main/
+  const SHARD_BASE = 'https://github.com/sunyazhou13/english-dictionary-data/releases/download/v1/';
   const LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
   let _db = null;
