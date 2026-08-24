@@ -60,6 +60,15 @@ icon: fas fa-video
   <div id="pv-info-grid" class="pv-info-grid"></div>
 </div>
 
+<!-- 图层结构面板 -->
+<div id="pv-layers" class="pv-layers" style="display:none">
+  <div class="pv-layers-header">
+    <span class="pv-layers-title">图层结构</span>
+    <span class="pv-layers-count" id="pv-layers-count"></span>
+  </div>
+  <div id="pv-layers-tree" class="pv-layers-tree"></div>
+</div>
+
 </div>
 
 <link rel="stylesheet" href="/assets/tools/pag-viewer/app.css">

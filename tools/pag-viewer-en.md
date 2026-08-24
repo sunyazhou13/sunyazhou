@@ -62,6 +62,15 @@ Preview PAG animation files entirely in your browser. Files are **never uploaded
   <div id="pv-info-grid" class="pv-info-grid"></div>
 </div>
 
+<!-- Layer structure panel -->
+<div id="pv-layers" class="pv-layers" style="display:none">
+  <div class="pv-layers-header">
+    <span class="pv-layers-title">Layer Structure</span>
+    <span class="pv-layers-count" id="pv-layers-count"></span>
+  </div>
+  <div id="pv-layers-tree" class="pv-layers-tree"></div>
+</div>
+
 </div>
 
 <link rel="stylesheet" href="/assets/tools/pag-viewer/app.css">
