@@ -52,4 +52,3 @@ Paste a JWT (JSON Web Token) and its Header and Payload are decoded into a JSON 
 </div>
 
 <script src="/assets/tools/jwt-parser/app.js" defer></script>
-*（内容由AI生成，仅供参考）*

@@ -37,4 +37,3 @@ Type a regular expression and some test text and every match is highlighted in r
 </div>
 
 <script src="/assets/tools/regex-tester/app.js" defer></script>
-*（内容由AI生成，仅供参考）*

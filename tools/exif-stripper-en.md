@@ -45,4 +45,3 @@ Upload a JPEG / PNG image and all of its EXIF metadata is parsed and displayed a
 </div>
 
 <script src="/assets/tools/exif-stripper/app.js" defer></script>
-*（内容由AI生成，仅供参考）*

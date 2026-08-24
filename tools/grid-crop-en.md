@@ -52,4 +52,3 @@ Upload an image and split it into a 3×3 grid of 9 tiles with one click. Support
 </div>
 
 <script src="/assets/tools/grid-crop/app.js" defer></script>
-*（内容由AI生成，仅供参考）*

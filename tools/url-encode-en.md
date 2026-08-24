@@ -45,4 +45,3 @@ Convert text to and from percent encoding (URL encoding, `%20`, `%2F`, etc.) in 
 </div>
 
 <script src="/assets/tools/url-encode/app.js" defer></script>
-*（内容由AI生成，仅供参考）*

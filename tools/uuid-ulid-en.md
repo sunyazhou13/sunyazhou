@@ -40,4 +40,3 @@ Generate <strong>UUID v4</strong> and <strong>ULID</strong> identifiers with one
 </div>
 
 <script src="/assets/tools/uuid-ulid/app.js" defer></script>
-*（内容由AI生成，仅供参考）*

@@ -41,4 +41,3 @@ Paste any XML / RSS / SML snippet to browse it as a structured tree; supports fo
 </div>
 
 <script src="/assets/tools/xml-viewer/app.js" defer></script>
-*（内容由AI生成，仅供参考）*
