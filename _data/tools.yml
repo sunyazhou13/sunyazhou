@@ -166,9 +166,9 @@
   enabled: true
 
 - id: command-reference
-  title: 命令行速查手册
+  title: CocoaPods 速查手册
   icon: fas fa-terminal
-  description: Linux / macOS / Unix / Windows 常用命令查询手册，内置 40+ 条命令的详细语法、参数说明、用法示例与注意事项，支持平台筛选与实时搜索，纯本地不上传
+  description: CocoaPods 命令与 Podspec DSL 速查参考，内置 111 条 CLI 命令与 DSL 方法的详细语法、参数说明、用法示例与注意事项，支持分类筛选与实时搜索，纯本地不上传
   path: /tools/command-reference/
-  category: 常用工具
+  category: 开发文档
   enabled: true

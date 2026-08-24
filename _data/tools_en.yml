@@ -179,9 +179,9 @@
   category: Images & Graphics
   enabled: true
 - id: command-reference
-  title: Command Line Quick Reference
+  title: CocoaPods Quick Reference
   icon: fas fa-terminal
-  description: Quick reference for Linux / macOS / Unix / Windows commands with 40+ entries covering syntax, flags, usage examples and notes. Platform filter and real-time search. 100% local, nothing uploaded
+  description: Quick reference for CocoaPods CLI commands and Podspec DSL with 111+ entries covering syntax, flags, usage examples and notes. Category filter and real-time search. 100% local, nothing uploaded
   path: /tools/command-reference/
-  category: Frequently Used
+  category: Developer Docs
   enabled: true

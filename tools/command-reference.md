@@ -1,15 +1,15 @@
 ---
 layout: page
-title: 命令行速查手册
+title: CocoaPods 速查手册
 icon: fas fa-terminal
 ---
 
 <div id="cr-app">
 
 <div class="cr-search-bar">
-  <input type="text" id="cr-search" class="cr-search-input" placeholder="搜索命令、功能或参数…" autocomplete="off">
+  <input type="text" id="cr-search" class="cr-search-input" placeholder="搜索 pod 命令或 spec 方法…" autocomplete="off">
   <div class="cr-platforms" id="cr-platforms">
-    <!-- 由 JS 生成平台筛选芯片 -->
+    <!-- 由 JS 生成分类筛选芯片 -->
   </div>
 </div>
 
