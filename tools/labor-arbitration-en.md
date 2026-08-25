@@ -134,6 +134,11 @@ icon: fas fa-gavel
       <input type="number" id="year-end-pay" min="0" placeholder="e.g., 30000">
       <span class="la-note">If year-end bonus is a fixed component of labor compensation with contract/company policy basis, it should be prorated upon departure</span>
     </div>
+    <div class="la-form-row">
+      <label>Base Salary (CNY, for daily wage and leave pay calculation) <span class="la-required">*</span></label>
+      <input type="number" id="base-salary" min="0" step="0.01" placeholder="e.g., 8000">
+      <span class="la-note"><strong style="color:#d9534f;">Calculation: Daily Wage = Base Salary ÷ 21.75</strong>. Enter your contract base salary (or base pay). If not provided, the average monthly salary from above will be used.</span>
+    </div>
     <div class="la-actions">
       <button class="la-btn la-btn-primary" id="btn-calc-compensation">Calculate Total</button>
     </div>
@@ -141,6 +146,10 @@ icon: fas fa-gavel
       <div class="la-result-item">
         <span class="la-result-label">Severance / Compensation</span>
         <span class="la-result-value" id="compensation-main">--</span>
+      </div>
+      <div class="la-result-item">
+        <span class="la-result-label">Daily Wage</span>
+        <span class="la-result-value" id="compensation-daily">--</span>
       </div>
       <div class="la-result-item">
         <span class="la-result-label">Unused Leave Pay</span>

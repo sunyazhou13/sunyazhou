@@ -102,6 +102,11 @@ icon: fas fa-gavel
       <input type="number" id="year-end-pay" min="0" placeholder="如：30000">
       <span class="la-note">如果年终奖是劳动报酬的固定组成部分且有约定/制度依据，离职时应按比例折算发放</span>
     </div>
+    <div class="la-form-row">
+      <label>基本工资（元，用于计算日均工资及年假赔偿）<span class="la-required">*</span></label>
+      <input type="number" id="base-salary" min="0" step="0.01" placeholder="如：8000">
+      <span class="la-note"><strong style="color:#d9534f;">计算方式：日均工资 = 基本工资 ÷ 21.75</strong>。请填写劳动合同约定的基本工资（或底薪），未填写时将使用上方计算的月平均工资</span>
+    </div>
     <div class="la-actions">
       <button class="la-btn la-btn-primary" id="btn-calc-compensation">计算赔偿总额</button>
     </div>
@@ -109,6 +114,10 @@ icon: fas fa-gavel
       <div class="la-result-item">
         <span class="la-result-label">经济补偿金 / 赔偿金</span>
         <span class="la-result-value" id="compensation-main">--</span>
+      </div>
+      <div class="la-result-item">
+        <span class="la-result-label">日均工资</span>
+        <span class="la-result-value" id="compensation-daily">--</span>
       </div>
       <div class="la-result-item">
         <span class="la-result-label">未休年假工资</span>
