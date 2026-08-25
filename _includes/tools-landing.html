@@ -10,12 +10,12 @@
 -->
 
 {% assign tools_data = site.data.tools %}
-  {% assign tool_cats = "常用工具,图片与图像,3D 模型,数据处理,开发文档,编码转换,其他" | split: "," %}
+  {% assign tool_cats = "常用工具,图片与图像,3D 模型,数据处理,开发文档,编码转换,生活助手,其他" | split: "," %}
 {% assign tools_empty = "暂无可用工具。" %}
 {% assign tools_cta = "打开工具" %}
 {% if site.active_lang == "en" %}
   {% assign tools_data = site.data.tools_en %}
-  {% assign tool_cats = "Frequently Used,Images & Graphics,3D Models,Data Processing,Developer Docs,Encoding & Conversion,Others" | split: "," %}
+  {% assign tool_cats = "Frequently Used,Images & Graphics,3D Models,Data Processing,Developer Docs,Encoding & Conversion,Life Assistant,Others" | split: "," %}
   {% assign tools_empty = "No tools available yet." %}
   {% assign tools_cta = "Open tool" %}
 {% endif %}

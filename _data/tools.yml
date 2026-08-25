@@ -172,3 +172,11 @@
   path: /tools/command-reference/
   category: 开发文档
   enabled: true
+
+- id: labor-arbitration
+  title: 劳动仲裁助手
+  icon: fas fa-gavel
+  description: 被裁员后的维权一站式工具：12个月平均工资计算器、经济补偿金/赔偿金/年假工资/加班费估算、仲裁全流程指南、仲裁申请书一键生成模板。依据《劳动合同法》设计，纯本地不上传
+  path: /tools/labor-arbitration/
+  category: 生活助手
+  enabled: true

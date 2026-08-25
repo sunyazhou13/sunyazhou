@@ -185,3 +185,11 @@
   path: /tools/command-reference/
   category: Developer Docs
   enabled: true
+
+- id: labor-arbitration
+  title: Labor Arbitration Assistant
+  icon: fas fa-gavel
+  description: One-stop toolkit after layoff：12-month average salary calculator, severance/compensation/leave pay/overtime estimate, full arbitration process guide, and one-click application template generator. Based on Labor Contract Law, 100% local, nothing uploaded
+  path: /tools/labor-arbitration/
+  category: Life Assistant
+  enabled: true
