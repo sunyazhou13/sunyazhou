@@ -2,6 +2,8 @@
 layout: page
 title: Labor Arbitration Assistant
 icon: fas fa-gavel
+lang: en
+permalink: /tools/labor-arbitration/
 ---
 
 <div id="la-app">
@@ -62,6 +64,10 @@ icon: fas fa-gavel
           <option value="lasa" data-min="2360" data-max="18000">Lhasa (Min Wage ¥2,360)</option>
         </select>
         <span class="la-note">Sample data will be generated based on your city's wage standards</span>
+      </div>
+      <div class="la-map-section">
+        <div class="la-map-header">Or select city on the map <span class="la-map-hint">(click a city to select)</span></div>
+        <div id="city-map-container"></div>
       </div>
       <div class="la-actions">
         <button class="la-btn la-btn-ghost" id="btn-save-config">Save Config</button>
@@ -174,20 +180,6 @@ icon: fas fa-gavel
         <div id="avg-formula-content"></div>
       </div>
     </div>
-      <div class="la-result-item">
-        <span class="la-result-label">Excluded Items Total</span>
-        <span class="la-result-value" id="avg-total-ex">--</span>
-      </div>
-      <div class="la-divider"></div>
-      <div class="la-result-item">
-        <span class="la-result-label">Average Monthly Salary</span>
-        <span class="la-result-value" id="avg-monthly">--</span>
-      </div>
-      <div class="la-result-item">
-        <span class="la-result-label">Average Daily Salary</span>
-        <span class="la-result-value" id="avg-daily">--</span>
-      </div>
-    </div>
   </div>
 
   <div class="la-section">
@@ -251,28 +243,6 @@ icon: fas fa-gavel
       <div class="la-formula-panel" id="comp-formula" style="display:none;">
         <div class="la-panel-title">Compensation Breakdown</div>
         <div id="comp-formula-content"></div>
-      </div>
-    </div>
-      <div class="la-result-item">
-        <span class="la-result-label">Daily Wage</span>
-        <span class="la-result-value" id="compensation-daily">--</span>
-      </div>
-      <div class="la-result-item">
-        <span class="la-result-label">Unused Leave Pay</span>
-        <span class="la-result-value" id="compensation-leave">--</span>
-      </div>
-      <div class="la-result-item">
-        <span class="la-result-label">Overtime Pay</span>
-        <span class="la-result-value" id="compensation-overtime">--</span>
-      </div>
-      <div class="la-result-item">
-        <span class="la-result-label">Year-End Bonus</span>
-        <span class="la-result-value" id="compensation-bonus">--</span>
-      </div>
-      <div class="la-divider"></div>
-      <div class="la-result-item la-total">
-        <span class="la-result-label">Total Compensation</span>
-        <span class="la-result-value" id="compensation-total">--</span>
       </div>
     </div>
   </div>

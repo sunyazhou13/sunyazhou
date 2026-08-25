@@ -63,6 +63,10 @@ icon: fas fa-gavel
         </select>
         <span class="la-note">选择城市后，示例数据将根据该城市工资标准生成</span>
       </div>
+      <div class="la-map-section">
+        <div class="la-map-header">或在地图上选择城市 <span class="la-map-hint">（点击城市即可选中）</span></div>
+        <div id="city-map-container"></div>
+      </div>
       <div class="la-actions">
         <button class="la-btn la-btn-ghost" id="btn-save-config">保存配置</button>
         <button class="la-btn la-btn-ghost" id="btn-load-config">导入配置</button>
