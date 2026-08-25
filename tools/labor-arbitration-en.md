@@ -15,6 +15,62 @@ icon: fas fa-gavel
 
 <!-- Compensation Calculator Panel -->
 <div class="la-panel active" id="panel-calculator">
+  <!-- Configuration Area -->
+  <div class="la-config-card">
+    <div class="la-card-header">Tool Configuration</div>
+    <div class="la-card-body">
+      <div class="la-form-row">
+        <label>Your City <span class="la-required">*</span></label>
+        <select id="city-select">
+          <option value="">Select City</option>
+          <option value="beijing" data-min="2540" data-max="35000">Beijing (Min Wage ¥2,540)</option>
+          <option value="shanghai" data-min="2740" data-max="40000">Shanghai (Min Wage ¥2,740)</option>
+          <option value="shenzhen" data-min="2700" data-max="38000">Shenzhen (Min Wage ¥2,700)</option>
+          <option value="guangzhou" data-min="2680" data-max="35000">Guangzhou (Min Wage ¥2,680)</option>
+          <option value="hangzhou" data-min="2660" data-max="33000">Hangzhou (Min Wage ¥2,660)</option>
+          <option value="nanjing" data-min="2660" data-max="30000">Nanjing (Min Wage ¥2,660)</option>
+          <option value="suzhou" data-min="2660" data-max="32000">Suzhou (Min Wage ¥2,660)</option>
+          <option value="tianjin" data-min="2510" data-max="28000">Tianjin (Min Wage ¥2,510)</option>
+          <option value="chengdu" data-min="2100" data-max="25000">Chengdu (Min Wage ¥2,100)</option>
+          <option value="chongqing" data-min="2330" data-max="24000">Chongqing (Min Wage ¥2,330)</option>
+          <option value="wuhan" data-min="2400" data-max="22000">Wuhan (Min Wage ¥2,400)</option>
+          <option value="xian" data-min="2376" data-max="20000">Xi'an (Min Wage ¥2,376)</option>
+          <option value="qingdao" data-min="2400" data-max="22000">Qingdao (Min Wage ¥2,400)</option>
+          <option value="jinan" data-min="2400" data-max="20000">Jinan (Min Wage ¥2,400)</option>
+          <option value="zhengzhou" data-min="2350" data-max="18000">Zhengzhou (Min Wage ¥2,350)</option>
+          <option value="hefei" data-min="2320" data-max="18000">Hefei (Min Wage ¥2,320)</option>
+          <option value="foshan" data-min="2300" data-max="18000">Foshan (Min Wage ¥2,300)</option>
+          <option value="dongguan" data-min="2300" data-max="18000">Dongguan (Min Wage ¥2,300)</option>
+          <option value="dalian" data-min="2230" data-max="17000">Dalian (Min Wage ¥2,230)</option>
+          <option value="shenyang" data-min="2230" data-max="16000">Shenyang (Min Wage ¥2,230)</option>
+          <option value="changchun" data-min="2230" data-max="15000">Changchun (Min Wage ¥2,230)</option>
+          <option value="nanchang" data-min="2240" data-max="15000">Nanchang (Min Wage ¥2,240)</option>
+          <option value="haikou" data-min="2250" data-max="16000">Haikou (Min Wage ¥2,250)</option>
+          <option value="xiamen" data-min="2265" data-max="20000">Xiamen (Min Wage ¥2,265)</option>
+          <option value="fuzhou" data-min="2265" data-max="18000">Fuzhou (Min Wage ¥2,265)</option>
+          <option value="harbin" data-min="2270" data-max="14000">Harbin (Min Wage ¥2,270)</option>
+          <option value="wulumuqi" data-min="2270" data-max="16000">Urumqi (Min Wage ¥2,270)</option>
+          <option value="huhehaote" data-min="2380" data-max="17000">Hohhot (Min Wage ¥2,380)</option>
+          <option value="shijiazhuang" data-min="2380" data-max="16000">Shijiazhuang (Min Wage ¥2,380)</option>
+          <option value="changsha" data-min="2200" data-max="18000">Changsha (Min Wage ¥2,200)</option>
+          <option value="lanzhou" data-min="2200" data-max="14000">Lanzhou (Min Wage ¥2,200)</option>
+          <option value="nanning" data-min="2200" data-max="15000">Nanning (Min Wage ¥2,200)</option>
+          <option value="guiyang" data-min="2130" data-max="14000">Guiyang (Min Wage ¥2,130)</option>
+          <option value="kunming" data-min="2170" data-max="15000">Kunming (Min Wage ¥2,170)</option>
+          <option value="yinchuan" data-min="2235" data-max="14000">Yinchuan (Min Wage ¥2,235)</option>
+          <option value="xining" data-min="2080" data-max="13000">Xining (Min Wage ¥2,080)</option>
+          <option value="lasa" data-min="2360" data-max="18000">Lhasa (Min Wage ¥2,360)</option>
+        </select>
+        <span class="la-note">Sample data will be generated based on your city's wage standards</span>
+      </div>
+      <div class="la-actions">
+        <button class="la-btn la-btn-ghost" id="btn-save-config">Save Config</button>
+        <button class="la-btn la-btn-ghost" id="btn-load-config">Load Config</button>
+        <input type="file" id="config-file-input" accept=".json" style="display:none;">
+      </div>
+    </div>
+  </div>
+
   <div class="la-section">
     <h3>Salary Details (Past 12 Months)</h3>
     <p class="la-hint">Please enter your pre-tax gross salary (including base salary, bonuses, commissions, allowances, overtime pay, etc.) for the last 12 months to calculate your average monthly wage.</p>
@@ -93,9 +149,6 @@ icon: fas fa-gavel
     <div class="la-actions">
       <button class="la-btn la-btn-primary" id="btn-calc-avg">Calculate Average</button>
       <button class="la-btn la-btn-ghost" id="btn-fill-sample">Fill Sample Data</button>
-      <button class="la-btn la-btn-ghost" id="btn-save-config">Save Config</button>
-      <button class="la-btn la-btn-ghost" id="btn-load-config">Load Config</button>
-      <input type="file" id="config-file-input" accept=".json" style="display:none;">
     </div>
 
     <div class="la-result-box" id="avg-result">
