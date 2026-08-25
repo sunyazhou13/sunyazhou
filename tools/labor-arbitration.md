@@ -23,14 +23,18 @@ icon: fas fa-gavel
     </div>
 
     <div class="la-form-row la-bonus-row">
-      <label>年终奖（计入平均工资）</label>
+      <label>年终奖（计入平均工资）<span style="font-weight:normal;color:#6c757d;font-size:0.85rem;">可添加多项，系统会自动合计</span></label>
+      <div class="la-bonus-list" id="bonus-list">
+        <!-- JS 动态生成 -->
+      </div>
       <div class="la-inline-group">
-        <input type="number" id="year-end-bonus" min="0" step="0.01" placeholder="如：30000">
-        <select id="bonus-method">
+        <input type="number" id="bonus-amount" min="0" step="0.01" placeholder="金额，如：30000">
+        <select id="bonus-method-single">
           <option value="spread">平摊到12个月</option>
           <option value="month">计入发放当月</option>
         </select>
-        <input type="number" id="bonus-month" min="1" max="12" step="1" placeholder="发放月份 1-12" style="display:none;">
+        <input type="number" id="bonus-month-single" min="1" max="12" step="1" placeholder="月份 1-12" style="display:none;">
+        <button class="la-btn la-btn-sm la-btn-ghost" id="btn-add-bonus" type="button">添加</button>
       </div>
       <span class="la-note">上年度或当年度年终奖，属于劳动报酬的应计入平均工资基数</span>
     </div>
@@ -48,9 +52,18 @@ icon: fas fa-gavel
       <span class="la-note">具有福利性质、随机发放的一次性收入通常不计入经济补偿基数</span>
     </div>
 
+    <div class="la-form-row">
+      <label>基本工资（元）<span class="la-required">*</span></label>
+      <input type="number" id="base-salary" min="0" step="0.01" placeholder="如：8000">
+      <span class="la-note"><strong style="color:#d9534f;">日均工资 = 基本工资 ÷ 21.75</strong>。填写劳动合同约定的基本工资（或底薪），年假赔偿将严格按此计算</span>
+    </div>
+
     <div class="la-actions">
       <button class="la-btn la-btn-primary" id="btn-calc-avg">计算平均工资</button>
       <button class="la-btn la-btn-ghost" id="btn-fill-sample">填入示例数据</button>
+      <button class="la-btn la-btn-ghost" id="btn-save-config">保存配置</button>
+      <button class="la-btn la-btn-ghost" id="btn-load-config">导入配置</button>
+      <input type="file" id="config-file-input" accept=".json" style="display:none;">
     </div>
     <div class="la-result-box" id="avg-result">
       <div class="la-result-item">
@@ -69,6 +82,10 @@ icon: fas fa-gavel
       <div class="la-result-item">
         <span class="la-result-label">日平均工资</span>
         <span class="la-result-value" id="avg-daily">--</span>
+      </div>
+      <div class="la-formula-panel" id="avg-formula" style="display:none;">
+        <div class="la-panel-title">计算过程</div>
+        <div id="avg-formula-content"></div>
       </div>
     </div>
   </div>
@@ -102,11 +119,6 @@ icon: fas fa-gavel
       <input type="number" id="year-end-pay" min="0" placeholder="如：30000">
       <span class="la-note">如果年终奖是劳动报酬的固定组成部分且有约定/制度依据，离职时应按比例折算发放</span>
     </div>
-    <div class="la-form-row">
-      <label>基本工资（元，用于计算日均工资及年假赔偿）<span class="la-required">*</span></label>
-      <input type="number" id="base-salary" min="0" step="0.01" placeholder="如：8000">
-      <span class="la-note"><strong style="color:#d9534f;">计算方式：日均工资 = 基本工资 ÷ 21.75</strong>。请填写劳动合同约定的基本工资（或底薪），未填写时将使用上方计算的月平均工资</span>
-    </div>
     <div class="la-actions">
       <button class="la-btn la-btn-primary" id="btn-calc-compensation">计算赔偿总额</button>
     </div>
@@ -135,6 +147,10 @@ icon: fas fa-gavel
       <div class="la-result-item la-total">
         <span class="la-result-label">赔偿总额</span>
         <span class="la-result-value" id="compensation-total">--</span>
+      </div>
+      <div class="la-formula-panel" id="comp-formula" style="display:none;">
+        <div class="la-panel-title">赔偿计算明细</div>
+        <div id="comp-formula-content"></div>
       </div>
     </div>
   </div>

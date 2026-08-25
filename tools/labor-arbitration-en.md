@@ -55,14 +55,18 @@ icon: fas fa-gavel
     </div>
 
     <div class="la-form-row la-bonus-row">
-      <label>Year-End Bonus (included in average salary)</label>
+      <label>Year-End Bonus (included in average salary) <span style="font-weight:normal;color:#6c757d;font-size:0.85rem;">Multiple bonuses supported</span></label>
+      <div class="la-bonus-list" id="bonus-list">
+        <!-- JS dynamically generates -->
+      </div>
       <div class="la-inline-group">
-        <input type="number" id="year-end-bonus" min="0" step="0.01" placeholder="e.g., 30000">
-        <select id="bonus-method">
+        <input type="number" id="bonus-amount" min="0" step="0.01" placeholder="Amount, e.g., 30000">
+        <select id="bonus-method-single">
           <option value="spread">Spread over 12 months</option>
           <option value="month">Add to payment month</option>
         </select>
-        <input type="number" id="bonus-month" min="1" max="12" step="1" placeholder="Month 1-12" style="display:none;">
+        <input type="number" id="bonus-month-single" min="1" max="12" step="1" placeholder="Month 1-12" style="display:none;">
+        <button class="la-btn la-btn-sm la-btn-ghost" id="btn-add-bonus" type="button">Add</button>
       </div>
       <span class="la-note">Year-end bonus from last year or current year; part of labor compensation and should be included in the average salary base</span>
     </div>
@@ -80,15 +84,43 @@ icon: fas fa-gavel
       <span class="la-note">Welfare and one-time random payments are generally NOT included in the economic compensation base</span>
     </div>
 
+    <div class="la-form-row">
+      <label>Base Salary (CNY) <span class="la-required">*</span></label>
+      <input type="number" id="base-salary" min="0" step="0.01" placeholder="e.g., 8000">
+      <span class="la-note"><strong style="color:#d9534f;">Daily Wage = Base Salary ÷ 21.75</strong>. Enter your contract base salary (or base pay). Annual leave pay will be calculated strictly based on this.</span>
+    </div>
+
     <div class="la-actions">
       <button class="la-btn la-btn-primary" id="btn-calc-avg">Calculate Average</button>
       <button class="la-btn la-btn-ghost" id="btn-fill-sample">Fill Sample Data</button>
+      <button class="la-btn la-btn-ghost" id="btn-save-config">Save Config</button>
+      <button class="la-btn la-btn-ghost" id="btn-load-config">Load Config</button>
+      <input type="file" id="config-file-input" accept=".json" style="display:none;">
     </div>
+
     <div class="la-result-box" id="avg-result">
       <div class="la-result-item">
         <span class="la-result-label">Included Items Total</span>
         <span class="la-result-value" id="avg-total-in">--</span>
       </div>
+      <div class="la-result-item">
+        <span class="la-result-label">Excluded Items Total</span>
+        <span class="la-result-value" id="avg-total-ex">--</span>
+      </div>
+      <div class="la-divider"></div>
+      <div class="la-result-item">
+        <span class="la-result-label">Monthly Average Salary</span>
+        <span class="la-result-value" id="avg-monthly">--</span>
+      </div>
+      <div class="la-result-item">
+        <span class="la-result-label">Daily Average Salary</span>
+        <span class="la-result-value" id="avg-daily">--</span>
+      </div>
+      <div class="la-formula-panel" id="avg-formula" style="display:none;">
+        <div class="la-panel-title">Calculation Steps</div>
+        <div id="avg-formula-content"></div>
+      </div>
+    </div>
       <div class="la-result-item">
         <span class="la-result-label">Excluded Items Total</span>
         <span class="la-result-value" id="avg-total-ex">--</span>
@@ -134,11 +166,6 @@ icon: fas fa-gavel
       <input type="number" id="year-end-pay" min="0" placeholder="e.g., 30000">
       <span class="la-note">If year-end bonus is a fixed component of labor compensation with contract/company policy basis, it should be prorated upon departure</span>
     </div>
-    <div class="la-form-row">
-      <label>Base Salary (CNY, for daily wage and leave pay calculation) <span class="la-required">*</span></label>
-      <input type="number" id="base-salary" min="0" step="0.01" placeholder="e.g., 8000">
-      <span class="la-note"><strong style="color:#d9534f;">Calculation: Daily Wage = Base Salary ÷ 21.75</strong>. Enter your contract base salary (or base pay). If not provided, the average monthly salary from above will be used.</span>
-    </div>
     <div class="la-actions">
       <button class="la-btn la-btn-primary" id="btn-calc-compensation">Calculate Total</button>
     </div>
@@ -147,6 +174,32 @@ icon: fas fa-gavel
         <span class="la-result-label">Severance / Compensation</span>
         <span class="la-result-value" id="compensation-main">--</span>
       </div>
+      <div class="la-result-item">
+        <span class="la-result-label">Daily Wage</span>
+        <span class="la-result-value" id="compensation-daily">--</span>
+      </div>
+      <div class="la-result-item">
+        <span class="la-result-label">Unused Annual Leave Pay</span>
+        <span class="la-result-value" id="compensation-leave">--</span>
+      </div>
+      <div class="la-result-item">
+        <span class="la-result-label">Overtime Pay</span>
+        <span class="la-result-value" id="compensation-overtime">--</span>
+      </div>
+      <div class="la-result-item">
+        <span class="la-result-label">Year-End Bonus</span>
+        <span class="la-result-value" id="compensation-bonus">--</span>
+      </div>
+      <div class="la-divider"></div>
+      <div class="la-result-item la-total">
+        <span class="la-result-label">Total Compensation</span>
+        <span class="la-result-value" id="compensation-total">--</span>
+      </div>
+      <div class="la-formula-panel" id="comp-formula" style="display:none;">
+        <div class="la-panel-title">Compensation Breakdown</div>
+        <div id="comp-formula-content"></div>
+      </div>
+    </div>
       <div class="la-result-item">
         <span class="la-result-label">Daily Wage</span>
         <span class="la-result-value" id="compensation-daily">--</span>
