@@ -483,7 +483,7 @@ icon: fas fa-gavel
       <h4>Arbitration Claims & Facts</h4>
       <div class="la-form-row">
         <label>Arbitration Claims (one per line; include calculation for monetary claims)</label>
-        <textarea id="tpl-requests" rows="8" placeholder="1. Request confirmation that the respondent's termination of the labor contract is illegal;&#10;2. Request the respondent to pay illegal dismissal compensation (2N) totaling CNY 96,000; (Calculation: 4 years of service x 2 x monthly average salary CNY 12,000 = CNY 96,000)&#10;3. Request payment of unused annual leave wages totaling CNY 5,517; (Calculation: CNY 12,000 / 21.75 days x 5 days x 200% = CNY 5,517)&#10;4. Request payment of outstanding wages from July 1, 2026 to July 31, 2026 totaling CNY 12,000."></textarea>
+        <textarea id="tpl-requests" rows="8" placeholder="1. Request confirmation that the respondent's termination of the labor contract is illegal;&#10;2. Request the respondent to pay illegal dismissal compensation (2N) totaling CNY 96,000; (Calculation: 4 years of service x 2 x monthly average salary CNY 12,000 = CNY 96,000)&#10;3. Request payment of unused annual leave wages totaling CNY 8,276; (Calculation: CNY 12,000 / 21.75 days x 5 days x 300% = CNY 8,276)&#10;4. Request payment of outstanding wages from July 1, 2026 to July 31, 2026 totaling CNY 12,000."></textarea>
       </div>
       <div class="la-form-row">
         <label>Facts and Reasons</label>

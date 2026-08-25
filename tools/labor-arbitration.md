@@ -148,7 +148,7 @@ icon: fas fa-gavel
     <div class="la-form-row">
       <label>工作年限（年）<span class="la-required">*</span></label>
       <input type="number" id="work-years" min="0" step="0.1" placeholder="如：3.5">
-      <span class="la-note">不满半年按0.5年，满半年不满1年按1年</span>
+      <span class="la-note">严格按输入值计算，不做取整</span>
     </div>
     <div class="la-form-row">
       <label>离职类型</label>
@@ -416,7 +416,7 @@ icon: fas fa-gavel
         <label>仲裁请求（逐条填写，每条一行，涉及金额需写明计算方式）</label>
         <textarea id="tpl-requests" rows="8" placeholder="1. 请求裁决确认被申请人解除劳动合同的行为违法；
 2. 请求裁决被申请人支付违法解除劳动合同赔偿金（2N）共计人民币96,000元；（计算方式：工作年限4年×2×月平均工资12,000元=96,000元）
-3. 请求裁决被申请人支付未休年休假工资共计人民币5,517元；（计算方式：月工资12,000元÷21.75天×5天×200%=5,517元）
+3. 请求裁决被申请人支付未休年休假工资共计人民币8,276元；（计算方式：月工资12,000元÷21.75天×5天×300%=8,276元）
 4. 请求裁决被申请人支付2026年7月1日至2026年7月31日的工资12,000元。"></textarea>
       </div>
       <div class="la-form-row">
