@@ -4,6 +4,7 @@ title: QR Code
 icon: fas fa-qrcode
 lang: en
 permalink: /tools/qrcode/
+tool_css: /assets/tools/qrcode/app.css
 ---
 
 Generate QR codes from text and parse text back from QR images — both directions. Everything runs locally in your browser — **your images and text are never uploaded to any server**.
@@ -15,8 +16,6 @@ Notes:
 - Parse: choose or drop a QR code image (PNG / JPEG / WebP / GIF etc.) and the embedded text or link is recognized automatically
 - Parse results can be copied with one click
 - Pasted QR images that are crisp bitmaps give the best recognition rate
-
-<link rel="stylesheet" href="/assets/tools/qrcode/app.css">
 
 <div id="qrcode-app">
 

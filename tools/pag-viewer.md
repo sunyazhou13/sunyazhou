@@ -2,6 +2,7 @@
 layout: page
 title: PAG 动画预览器
 icon: fas fa-video
+tool_css: /assets/tools/pag-viewer/app.css
 ---
 
 <div id="pv-app">
@@ -71,7 +72,6 @@ icon: fas fa-video
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/pag-viewer/app.css">
 <script type="module">
   import { PAGInit } from 'https://cdn.jsdelivr.net/npm/libpag@4.5.85/lib/libpag.esm.js';
   window._PAGInit = PAGInit;

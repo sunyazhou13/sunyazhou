@@ -2,6 +2,7 @@
 layout: page
 title: JWT 解析
 icon: fas fa-user-secret
+tool_css: /assets/tools/jwt-parser/app.css
 ---
 
 <p class="hint">粘贴 JWT（JSON Web Token）自动解码 Header 与 Payload 为 JSON 树形展示，高亮 `exp` 并计算剩余有效天数 / 是否过期，内置 HMAC-SHA256 + Base64URL 纯前端签名校验，还可一键「篡改尝试」演示改动 Payload 后签名立即失效。全程本地计算，Token 不会上传。</p>
@@ -48,5 +49,4 @@ icon: fas fa-user-secret
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/jwt-parser/app.css">
 <script src="/assets/tools/jwt-parser/app.js" defer></script>

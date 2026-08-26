@@ -2,6 +2,7 @@
 layout: page
 title: XML 工具
 icon: fas fa-code-branch
+tool_css: /assets/tools/xml-viewer/app.css
 ---
 
 <p class="hint">粘贴任意 XML / RSS / SML 片段，即可获得结构树浏览；支持格式化、压缩成一行、一键复制与下载，全部在浏览器本地完成，内容不会上传。</p>
@@ -37,5 +38,4 @@ icon: fas fa-code-branch
   </div>
 </div>
 
-<link rel="stylesheet" href="/assets/tools/xml-viewer/app.css">
 <script src="/assets/tools/xml-viewer/app.js" defer></script>

@@ -4,6 +4,7 @@ title: String Hash
 icon: fas fa-hashtag
 lang: en
 permalink: /tools/hash-string/
+tool_css: /assets/tools/hash-string/app.css
 ---
 
 Enter any string and click the button below to generate **MD5 / SHA1 / SHA256 / SHA384 / SHA512** hashes. All computation happens locally in your browser — **your input is never uploaded to any server**.
@@ -15,8 +16,6 @@ Notes:
 - Everything is hashed as **UTF-8** and displayed in lowercase hex, with a one-click uppercase toggle
 - Every result row can be copied with one click
 - Bonus space detector: counts half-width / full-width spaces, their positions and runs, to help track down hash mismatches caused by invisible space differences
-
-<link rel="stylesheet" href="/assets/tools/hash-string/app.css">
 
 <div id="hsh-app">
 

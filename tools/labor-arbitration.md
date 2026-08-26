@@ -2,6 +2,7 @@
 layout: page
 title: 劳动仲裁助手
 icon: fas fa-gavel
+tool_css: /assets/tools/labor-arbitration/app.css
 ---
 
 <div id="la-app">
@@ -464,5 +465,4 @@ XXXX年XX月XX日，被申请人向申请人送达《解除劳动合同通知书
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/labor-arbitration/app.css">
 <script src="/assets/tools/labor-arbitration/app.js" defer></script>

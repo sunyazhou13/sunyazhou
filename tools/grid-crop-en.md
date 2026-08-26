@@ -4,10 +4,9 @@ title: Grid Image Splitter (3×3)
 icon: fas fa-th-large
 lang: en
 permalink: /tools/grid-crop/
+tool_css: /assets/tools/grid-crop/app.css
 ---
 Upload an image and split it into a 3×3 grid of 9 tiles with one click. Supports subject-anchor protection that automatically adjusts the crop grid so people or main subjects are never cut off; you can nudge the grid, preview all 9 tiles, then download them all as a ZIP. Everything runs locally in your browser — your images are never uploaded.
-
-<link rel="stylesheet" href="/assets/tools/grid-crop/app.css">
 
 <div id="gc-app">
 

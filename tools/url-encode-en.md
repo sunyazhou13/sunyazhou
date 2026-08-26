@@ -4,10 +4,9 @@ title: URL Encoder / Decoder
 icon: fas fa-link
 lang: en
 permalink: /tools/url-encode/
+tool_css: /assets/tools/url-encode/app.css
 ---
 Convert text to and from percent encoding (URL encoding, `%20`, `%2F`, etc.) in both directions. Supports two modes — `encodeURIComponent` and `encodeURI` — with one-click swap between the two and one-click copy. Everything runs locally in your browser — your content is never uploaded.
-
-<link rel="stylesheet" href="/assets/tools/url-encode/app.css">
 
 <div id="ue-app">
 

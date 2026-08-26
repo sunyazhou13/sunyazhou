@@ -4,6 +4,7 @@ title: Base64 Encode / Decode
 icon: fas fa-code
 lang: en
 permalink: /tools/base64/
+tool_css: /assets/tools/base64/app.css
 ---
 
 Enter any text for **Base64 encoding / decoding**. Everything runs locally in your browser — **your input is never uploaded to any server**.
@@ -16,8 +17,6 @@ Notes:
 - **URL safe**: when checked, uses the Base64URL variant (`-` `_` instead of `+` `/`, `=` omitted), suitable for URLs and file names; decoding also expects this format
 - When decoding fails (illegal characters, wrong length, non-UTF-8 content), the exact reason is shown
 - Results can be copied with one click
-
-<link rel="stylesheet" href="/assets/tools/base64/app.css">
 
 <div id="b64-app">
 

@@ -2,9 +2,8 @@
 layout: page
 title: 进制转换
 icon: fas fa-calculator
+tool_css: /assets/tools/base-converter/app.css
 ---
-
-
 
 二进制、八进制、十进制、十六进制四进制**实时联动**转换：在任意一个输入框中输入数字，其余进制自动更新。所有计算都在浏览器本地完成，**输入不会上传到任何服务器**。
 
@@ -15,8 +14,6 @@ icon: fas fa-calculator
 - 可粘贴带前缀写法：十六进制 `0x`、二进制 `0b`、八进制 `0o`（不带头直接输入也可以）
 - 每个输入框可一键复制结果
 - 非法输入（如二进制里出现 `2`）会明确提示原因
-
-<link rel="stylesheet" href="/assets/tools/base-converter/app.css">
 
 <div id="bc-app">
 

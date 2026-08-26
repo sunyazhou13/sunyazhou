@@ -4,6 +4,7 @@ title: Image Format Converter
 icon: fas fa-exchange-alt
 lang: en
 permalink: /tools/webp-heic/
+tool_css: /assets/tools/webp-heic/app.css
 ---
 
 Convert between PNG, JPEG, WebP, GIF, BMP, SVG, AVIF, **HEIC** and more. Everything runs locally in your browser — **your images are never uploaded to any server**.
@@ -17,8 +18,6 @@ Notes:
 - HEIC files need an extra decoder library (about 1.4 MB, loaded once the first time a HEIC file appears)
 - WebP encoding relies on native browser support (Chrome / Edge / Opera); Safari and Firefox cannot encode WebP yet
 - Higher quality slider values mean better image quality and larger files; 70–85 is usually plenty for everyday use
-
-<link rel="stylesheet" href="/assets/tools/webp-heic/app.css">
 
 <div id="wic-app">
 

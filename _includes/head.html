@@ -42,6 +42,11 @@
   <!-- Jekyll Tabs -->
   <link rel="stylesheet" href="{{ '/assets/AISource/jekyll-tabs/tabs.css' | relative_url }}">
 
+  {% if page.tool_css %}
+  <!-- Tool CSS (moved from body to head to prevent FOUC) -->
+  <link rel="stylesheet" href="{{ page.tool_css }}">
+  {% endif %}
+
   <!-- JavaScripts - Local -->
   <script src="{{ '/assets/AISource/jquery/jquery.min.js' | relative_url }}"></script>
 

@@ -4,10 +4,9 @@ title: JWT Decoder
 icon: fas fa-user-secret
 lang: en
 permalink: /tools/jwt-parser/
+tool_css: /assets/tools/jwt-parser/app.css
 ---
 Paste a JWT (JSON Web Token) and its Header and Payload are decoded into a JSON tree automatically, with `exp` highlighted and remaining validity days / expiry status calculated. Includes a pure front-end HMAC-SHA256 + Base64URL signature verification, plus a one-click "tamper attempt" that demonstrates how a modified Payload instantly invalidates the signature. Everything runs locally — your token is never uploaded.
-
-<link rel="stylesheet" href="/assets/tools/jwt-parser/app.css">
 
 <div id="jp-app">
 

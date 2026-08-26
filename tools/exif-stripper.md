@@ -2,6 +2,7 @@
 layout: page
 title: 图片隐私脱敏器
 icon: fas fa-eye-slash
+tool_css: /assets/tools/exif-stripper/app.css
 ---
 
 <p class="hint">上传 JPEG / PNG 图片，自动解析并展示其中全部 EXIF 元数据（厂商、型号、拍摄时间、GPS 坐标等）。一键抹除全部元数据生成脱敏图片并下载，同时对比擦除前后的文件大小。全部在浏览器本地完成，图片不会上传。</p>
@@ -41,5 +42,4 @@ icon: fas fa-eye-slash
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/exif-stripper/app.css">
 <script src="/assets/tools/exif-stripper/app.js" defer></script>

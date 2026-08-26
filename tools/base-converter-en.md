@@ -4,6 +4,7 @@ title: Number Base Converter
 icon: fas fa-calculator
 lang: en
 permalink: /tools/base-converter/
+tool_css: /assets/tools/base-converter/app.css
 ---
 
 Real-time linked conversion between **binary, octal, decimal and hexadecimal**: type a number into any input field and the other bases update automatically. All computation happens locally in your browser — **your input is never uploaded to any server**.
@@ -15,8 +16,6 @@ Notes:
 - Paste with prefixes: hexadecimal `0x`, binary `0b`, octal `0o` (plain input without prefix also works)
 - Every field has one-click copy
 - Invalid input (e.g. a `2` in binary) shows an explicit reason
-
-<link rel="stylesheet" href="/assets/tools/base-converter/app.css">
 
 <div id="bc-app">
 

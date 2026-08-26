@@ -4,6 +4,7 @@ title: 3D Model Multi-Viewport Inspector
 icon: fas fa-cube
 lang: en
 permalink: /tools/3d-viewer/
+tool_css: /assets/tools/3d-viewer/app.css
 ---
 
 A four-viewport 3D model inspector in a single renderer: wireframe for structure, UV for texture mapping, PBR for lighting, normal/depth for anomalies. All parsing and rendering happen locally in your browser — **your model files are never uploaded to any server**.
@@ -18,8 +19,6 @@ Notes:
 - When the model lacks UV coordinates (STL etc.), the UV viewport shows a hint and offers one-click box-projection UV generation
 - Before any model is loaded, a built-in sample (torus knot) is shown so you can try all four viewports right away
 - On mobile (width &lt; 768px) the tool switches to a single viewport with tab switching
-
-<link rel="stylesheet" href="/assets/tools/3d-viewer/app.css">
 
 <div id="tv3d-app">
 

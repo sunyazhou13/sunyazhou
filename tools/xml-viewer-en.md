@@ -4,10 +4,9 @@ title: XML Viewer
 icon: fas fa-code-branch
 lang: en
 permalink: /tools/xml-viewer/
+tool_css: /assets/tools/xml-viewer/app.css
 ---
 Paste any XML / RSS / SML snippet to browse it as a structured tree; supports formatting, squeezing into a single line, one-click copy and download. Everything runs locally in your browser — your content is never uploaded.
-
-<link rel="stylesheet" href="/assets/tools/xml-viewer/app.css">
 
 <div id="xv-app">
   <textarea id="xv-input" spellcheck="false" aria-label="XML input"></textarea>

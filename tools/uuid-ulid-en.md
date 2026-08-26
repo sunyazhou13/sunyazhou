@@ -4,10 +4,9 @@ title: UUID / ULID Generator
 icon: fas fa-fingerprint
 lang: en
 permalink: /tools/uuid-ulid/
+tool_css: /assets/tools/uuid-ulid/app.css
 ---
 Generate <strong>UUID v4</strong> and <strong>ULID</strong> identifiers with one click, in batches of 1 / 10 / 100. Copy a single item, copy all, or generate another batch. Everything is generated locally in your browser (preferring <code>crypto.getRandomValues</code>) — your data is never uploaded.
-
-<link rel="stylesheet" href="/assets/tools/uuid-ulid/app.css">
 
 <div id="uu-app">
   <div class="uu-controls">

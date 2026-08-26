@@ -4,6 +4,7 @@ title: JSON Tools
 icon: fas fa-file-code
 lang: en
 permalink: /tools/json-format/
+tool_css: /assets/tools/json-format/app.css
 ---
 
 Everyday JSON operations, all in your browser — **nothing is uploaded**:
@@ -13,8 +14,6 @@ Everyday JSON operations, all in your browser — **nothing is uploaded**:
 - **Sort by key**: recursively reorder objects alphabetically by key name.
 - **Auto-repair**: lenient parsing of trailing commas, single quotes, unquoted keys, `//` and `/* */` comments and other non-standard syntax — one click writes back standard JSON.
 - **Copy / Download**: standard JSON copied to the clipboard or downloaded as `data.json` with one click.
-
-<link rel="stylesheet" href="/assets/tools/json-format/app.css">
 
 <div id="jf-app">
 

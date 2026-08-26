@@ -4,6 +4,7 @@ title: Lottie Animation Viewer
 icon: fas fa-film
 lang: en
 permalink: /tools/lottie-viewer/
+tool_css: /assets/tools/lottie-viewer/app.css
 ---
 
 <div id="lv-app">
@@ -60,5 +61,4 @@ Preview Lottie / dotLottie animation files entirely in your browser. Files are *
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/lottie-viewer/app.css">
 <script src="/assets/tools/lottie-viewer/app.js" defer></script>

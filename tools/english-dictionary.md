@@ -2,6 +2,7 @@
 layout: page
 title: 英汉智能词典
 icon: fas fa-book
+tool_css: /assets/tools/english-dictionary/app.css
 ---
 
 输入英文单词或中文，自动识别语言并翻译查词。内置 ECDICT 339 万词条本地词库，可一键下载全量缓存到浏览器离线使用。在线 API 补充详细释义与例句，**所有处理在浏览器本地完成，输入不会上传到任何服务器**。
@@ -13,8 +14,6 @@ icon: fas fa-book
 - **分类标注**：标注词性（名词 / 动词 / 形容词等）、考试等级（中考 / 高考 / 四级 / 六级 / 考研 / 托福 / 雅思 / GRE）、专业领域（[医] / [计] / [化] / [法] 等）、Collins 星级、牛津 3000 核心词
 - **发音**：四级策略——优先真人发音音频 → 有道词典 TTS → 百度翻译 TTS → 浏览器语音引擎兜底，全程国内可直连
 - **双保险**：API 不可用时自动降级到本地词库，本地没有时 API 兜底
-
-<link rel="stylesheet" href="/assets/tools/english-dictionary/app.css">
 
 <div id="ed-app">
 

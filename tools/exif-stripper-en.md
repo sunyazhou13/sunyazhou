@@ -4,10 +4,9 @@ title: Image Privacy Sanitizer
 icon: fas fa-eye-slash
 lang: en
 permalink: /tools/exif-stripper/
+tool_css: /assets/tools/exif-stripper/app.css
 ---
 Upload a JPEG / PNG image and all of its EXIF metadata is parsed and displayed automatically (camera, model, shooting time, GPS coordinates, etc.). Strip every metadata field with one click to download a sanitized image, with a before/after file-size comparison. Everything runs locally in your browser — your images are never uploaded.
-
-<link rel="stylesheet" href="/assets/tools/exif-stripper/app.css">
 
 <div id="exif-stripper-app">
 

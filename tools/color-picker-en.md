@@ -4,6 +4,7 @@ title: Image Color Palette
 icon: fas fa-palette
 lang: en
 permalink: /tools/color-picker/
+tool_css: /assets/tools/color-picker/app.css
 ---
 
 Upload an image to automatically analyze all pixels and extract dominant colors. Three classic color quantization algorithms are available, with adjustable color count and sampling precision. Results are sorted by proportion and shown as HEX + RGB values, with code snippets generated for Swift / Objective-C / Kotlin / Java / ArkTS / Flutter. Everything runs locally in your browser — **your image is never uploaded to any server**.
@@ -20,8 +21,6 @@ Notes:
 - Output: each color shows HEX string, RGB value, and percentage, all one-click copyable
 - Code snippets: auto-generated Swift / Objective-C / Kotlin / Java / ArkTS / Flutter code, with switchable language tabs
 - Algorithm source: complete implementations of all three algorithms in Swift / Objective-C / JavaScript, for learning and porting to your own projects
-
-<link rel="stylesheet" href="/assets/tools/color-picker/app.css">
 
 <div id="cp-app">
 

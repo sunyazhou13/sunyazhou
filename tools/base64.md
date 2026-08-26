@@ -2,9 +2,8 @@
 layout: page
 title: Base64 编码解码
 icon: fas fa-code
+tool_css: /assets/tools/base64/app.css
 ---
-
-
 
 输入任意文本，即可做 **Base64 编码 / 解码**，所有处理都在浏览器本地完成，**输入不会上传到任何服务器**。
 
@@ -16,8 +15,6 @@ icon: fas fa-code
 - **URL 安全**：勾选后使用 Base64URL 变体（`-` `_` 替代 `+` `/` 并省略 `=`），适合放进 URL 或文件名；解码时也按此格式还原
 - 解码失败时（非法字符、长度错误、非 UTF-8 内容）会明确提示原因
 - 结果可直接一键复制
-
-<link rel="stylesheet" href="/assets/tools/base64/app.css">
 
 <div id="b64-app">
 

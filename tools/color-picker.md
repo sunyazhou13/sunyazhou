@@ -2,6 +2,7 @@
 layout: page
 title: 图片主色调提取
 icon: fas fa-palette
+tool_css: /assets/tools/color-picker/app.css
 ---
 
 上传图片后，自动分析全部像素并提取主色调。支持三种经典色彩量化算法，颜色数量与采样精度可调，结果按占比排序输出 HEX 与 RGB 值，并生成 Swift / Objective-C / Kotlin / Java / ArkTS / Flutter 代码片段。所有处理均在浏览器本地完成，**图片不会上传到任何服务器**。
@@ -18,8 +19,6 @@ icon: fas fa-palette
 - 输出：每个颜色显示 HEX 字符串、RGB 值、占比百分比，均可一键复制
 - 代码片段：自动生成 Swift / Objective-C / Kotlin / Java / ArkTS / Flutter 代码，语言标签可切换
 - 算法源码：提供 Swift / Objective-C / JavaScript 三种语言的三种算法完整实现，方便学习和修改
-
-<link rel="stylesheet" href="/assets/tools/color-picker/app.css">
 
 <div id="cp-app">
 

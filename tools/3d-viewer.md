@@ -2,6 +2,7 @@
 layout: page
 title: 3D 模型多视口分析
 icon: fas fa-cube
+tool_css: /assets/tools/3d-viewer/app.css
 ---
 
 单渲染器四视口 3D 模型分析工具：线框看骨架、UV 看皮囊、PBR 看光影、法线/深度看异常。所有解析与渲染都在你的浏览器本地完成，**模型文件不会被上传到任何服务器**。
@@ -16,8 +17,6 @@ icon: fas fa-cube
 - 模型缺少 UV 坐标时（STL 等），UV 视口会给出提示并支持一键生成 box 投影 UV
 - 未加载模型时显示内置示例（环面纽结），打开即可体验四个视口
 - 移动端（宽度 &lt; 768px）自动切换为单视口 + 标签切换
-
-<link rel="stylesheet" href="/assets/tools/3d-viewer/app.css">
 
 <div id="tv3d-app">
 

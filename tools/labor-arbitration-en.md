@@ -4,6 +4,7 @@ title: Labor Arbitration Assistant
 icon: fas fa-gavel
 lang: en
 permalink: /tools/labor-arbitration/
+tool_css: /assets/tools/labor-arbitration/app.css
 ---
 
 <div id="la-app">
@@ -485,5 +486,4 @@ permalink: /tools/labor-arbitration/
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/labor-arbitration/app.css">
 <script src="/assets/tools/labor-arbitration/app.js" defer></script>

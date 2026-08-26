@@ -2,6 +2,7 @@
 layout: page
 title: URL 编码解码
 icon: fas fa-link
+tool_css: /assets/tools/url-encode/app.css
 ---
 
 <p class="hint">文本与 `%20`、`%2F` 等百分号编码（URL 编码）双向互转，支持 `encodeURIComponent` 与 `encodeURI` 两种模式，双向转换一键互换、一键复制，全部在浏览器本地完成，内容不会上传。</p>
@@ -41,5 +42,4 @@ icon: fas fa-link
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/url-encode/app.css">
 <script src="/assets/tools/url-encode/app.js" defer></script>

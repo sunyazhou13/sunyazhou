@@ -4,6 +4,7 @@ title: Timestamp Converter
 icon: fas fa-clock
 lang: en
 permalink: /tools/timestamp/
+tool_css: /assets/tools/timestamp/app.css
 ---
 
 Real-time clock with millisecond precision, Unix timestamp ↔ date conversion with Apple `NSDate.timeIntervalSince1970` Double format support, and Swift / Objective-C API examples. All processing is local in your browser.
@@ -14,8 +15,6 @@ Notes:
 - Timestamp → Date: auto-detects format (10-digit seconds / 13-digit milliseconds / Apple Double with decimal like `1692800123.456`), outputs local time, UTC, ISO 8601
 - Date → Timestamp: pick date and time (optional milliseconds), outputs Unix seconds / milliseconds / Apple Double
 - Code examples: Swift and Objective-C APIs for getting timestamps, converting timestamps to Date, formatting strings, ISO8601
-
-<link rel="stylesheet" href="/assets/tools/timestamp/app.css">
 
 <div id="ts-app">
 

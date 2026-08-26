@@ -2,6 +2,7 @@
 layout: page
 title: 图片格式转换
 icon: fas fa-exchange-alt
+tool_css: /assets/tools/webp-heic/app.css
 ---
 
 PNG、JPEG、WebP、GIF、BMP、SVG、AVIF、**HEIC** 等格式互相转换，所有处理在浏览器本地完成，**图片不会上传到任何服务器**。
@@ -15,8 +16,6 @@ PNG、JPEG、WebP、GIF、BMP、SVG、AVIF、**HEIC** 等格式互相转换，�
 - HEIC 文件需要额外的解码库（约 1.4 MB，仅首次使用 HEIC 时加载一次）
 - WebP 编码依赖浏览器原生支持（Chrome / Edge / Opera），Safari 和 Firefox 暂不支持 WebP 编码
 - 质量滑杆数值越高画质越好、体积越大，一般 70–85 就够日常使用
-
-<link rel="stylesheet" href="/assets/tools/webp-heic/app.css">
 
 <div id="wic-app">
 

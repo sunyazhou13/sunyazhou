@@ -4,6 +4,7 @@ title: Image to AVIF
 icon: fas fa-image
 lang: en
 permalink: /tools/image-to-avif/
+tool_css: /assets/tools/avif/app.css
 ---
 
 Batch-convert PNG, JPEG, WebP, GIF, BMP and SVG to AVIF. **Animated images (GIF / animated WebP) are transcoded frame by frame and keep their animation**. All conversion runs locally in your browser — **your images are never uploaded to any server**.
@@ -20,8 +21,6 @@ Notes:
 - Higher quality slider values mean better image quality and larger files; 50–70 is usually plenty for blog images
 - WASM encoding being slow is normal (AVIF encoding is inherently heavy); for large batches, process in chunks. All browsers use this WASM path today
 - Animated transcoding time scales linearly with frame count (each frame is a full AVIF encode); a GIF with a few dozen frames taking a minute or two is normal. Per-image limits: 500 frames max, raw frame data up to about 400 MB
-
-<link rel="stylesheet" href="/assets/tools/avif/app.css">
 
 <div id="avt-app">
 

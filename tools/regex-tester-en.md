@@ -4,10 +4,9 @@ title: Regex Tester
 icon: fas fa-terminal
 lang: en
 permalink: /tools/regex-tester/
+tool_css: /assets/tools/regex-tester/app.css
 ---
 Type a regular expression and some test text and every match is highlighted in real time, with each match and capture group shown alongside its text, position and processing time. Nested-quantifier patterns that risk catastrophic backtracking are flagged with a warning. Everything runs locally in your browser — your content is never uploaded.
-
-<link rel="stylesheet" href="/assets/tools/regex-tester/app.css">
 
 <div id="rt-app">
   <div class="rt-field">

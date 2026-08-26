@@ -4,6 +4,7 @@ title: CocoaPods Quick Reference
 icon: fas fa-terminal
 lang: en
 permalink: /tools/command-reference/
+tool_css: /assets/tools/command-reference/app.css
 ---
 
 <div id="cr-app">
@@ -23,5 +24,4 @@ permalink: /tools/command-reference/
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/command-reference/app.css">
 <script src="/assets/tools/command-reference/app.js" defer></script>

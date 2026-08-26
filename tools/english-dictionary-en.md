@@ -4,6 +4,7 @@ title: English-Chinese Smart Dictionary
 icon: fas fa-book
 lang: en
 permalink: /tools/english-dictionary/
+tool_css: /assets/tools/english-dictionary/app.css
 ---
 
 Enter an English word or Chinese text — the tool auto-detects the language and looks it up. A built-in local dictionary with 3.4M entries can be fully downloaded and cached in the browser for offline use. Online APIs enrich with detailed definitions and examples. **All processing happens in your browser — your input is never uploaded to any server.**
@@ -15,8 +16,6 @@ Features:
 - **Annotations**: Part of speech (noun / verb / adj. etc.), exam levels (CET-4 / CET-6 / TOEFL / IELTS / GRE), professional fields ([Medical] / [Computing] / [Chemistry] / [Law] etc.), Collins star rating, Oxford 3000 core words
 - **Pronunciation**: Four-tier strategy — real human audio first → Youdao dictionary TTS → Baidu Translate TTS → browser speech engine fallback
 - **Dual safety net**: When the API is unavailable, falls back to the local dictionary; when the local dictionary lacks an entry, the API fills the gap
-
-<link rel="stylesheet" href="/assets/tools/english-dictionary/app.css">
 
 <div id="ed-app">
 

@@ -2,6 +2,7 @@
 layout: page
 title: 时间戳转换
 icon: fas fa-clock
+tool_css: /assets/tools/timestamp/app.css
 ---
 
 实时显示当前日期时间（精确到毫秒），支持 Unix 时间戳与日期互转，优先兼容 Apple `NSDate.timeIntervalSince1970` 带毫秒的 Double 格式。提供 Swift / Objective-C 获取时间戳的 API 示例。所有计算均在浏览器本地完成。
@@ -12,8 +13,6 @@ icon: fas fa-clock
 - 时间戳 → 日期：输入时间戳自动识别格式（10 位秒 / 13 位毫秒 / Apple Double 带小数如 `1692800123.456`），输出本地时间、UTC、ISO 8601
 - 日期 → 时间戳：选择日期时间（可选毫秒），输出 Unix 秒 / 毫秒 / Apple Double 三种格式
 - 代码示例：Swift 和 Objective-C 获取时间戳、时间戳转 Date、格式化字符串、ISO8601 等常用 API
-
-<link rel="stylesheet" href="/assets/tools/timestamp/app.css">
 
 <div id="ts-app">
 

@@ -2,6 +2,7 @@
 layout: page
 title: 九宫格切图
 icon: fas fa-th-large
+tool_css: /assets/tools/grid-crop/app.css
 ---
 
 <p class="hint">上传图片一键切成 3×3 共 9 张，支持「主体锚点保护」自动调整切割网格，避免人物或主体被拦腰切断；可平移微调网格、预览 9 格效果后打包下载全部小图，全部在浏览器本地完成，图片不会上传。</p>
@@ -48,5 +49,4 @@ icon: fas fa-th-large
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/grid-crop/app.css">
 <script src="/assets/tools/grid-crop/app.js" defer></script>

@@ -2,6 +2,7 @@
 layout: page
 title: 二维码
 icon: fas fa-qrcode
+tool_css: /assets/tools/qrcode/app.css
 ---
 
 文本生成二维码、从图片解析二维码文本，双向互转。所有处理都在浏览器本地完成，**图片与文本不会上传到任何服务器**。
@@ -13,8 +14,6 @@ icon: fas fa-qrcode
 - 解析：选择或拖入二维码图片（PNG / JPEG / WebP / GIF 等），自动识别并输出其中的文本/链接
 - 解析结果可一键复制
 - 粘贴的二维码图片为清晰位图时识别率最高
-
-<link rel="stylesheet" href="/assets/tools/qrcode/app.css">
 
 <div id="qrcode-app">
 

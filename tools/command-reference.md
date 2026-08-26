@@ -2,6 +2,7 @@
 layout: page
 title: CocoaPods 速查手册
 icon: fas fa-terminal
+tool_css: /assets/tools/command-reference/app.css
 ---
 
 <div id="cr-app">
@@ -21,5 +22,4 @@ icon: fas fa-terminal
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/command-reference/app.css">
 <script src="/assets/tools/command-reference/app.js" defer></script>

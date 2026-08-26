@@ -2,9 +2,8 @@
 layout: page
 title: 字符串 Hash
 icon: fas fa-hashtag
+tool_css: /assets/tools/hash-string/app.css
 ---
-
-
 
 输入任意字符串后，点击下方对应按钮生成 **MD5 / SHA1 / SHA256 / SHA384 / SHA512** 哈希，所有计算都在浏览器本地完成，**输入不会上传到任何服务器**。
 
@@ -15,8 +14,6 @@ icon: fas fa-hashtag
 - 统一按 **UTF-8** 编码计算，结果以十六进制小写展示，可一键切换为大写
 - 每个结果行均可一键复制
 - 附带空格检测：统计半角 / 全角空格、位置与连续性，帮助排查因空格差异导致的哈希不一致
-
-<link rel="stylesheet" href="/assets/tools/hash-string/app.css">
 
 <div id="hsh-app">
 

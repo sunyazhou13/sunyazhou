@@ -4,6 +4,7 @@ title: PAG Animation Viewer
 icon: fas fa-video
 lang: en
 permalink: /tools/pag-viewer/
+tool_css: /assets/tools/pag-viewer/app.css
 ---
 
 <div id="pv-app">
@@ -73,7 +74,6 @@ Preview PAG animation files entirely in your browser. Files are **never uploaded
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/pag-viewer/app.css">
 <script type="module">
   import { PAGInit } from 'https://cdn.jsdelivr.net/npm/libpag@4.5.85/lib/libpag.esm.js';
   window._PAGInit = PAGInit;

@@ -2,6 +2,7 @@
 layout: page
 title: Lottie 动画预览器
 icon: fas fa-film
+tool_css: /assets/tools/lottie-viewer/app.css
 ---
 
 <div id="lv-app">
@@ -58,5 +59,4 @@ icon: fas fa-film
 
 </div>
 
-<link rel="stylesheet" href="/assets/tools/lottie-viewer/app.css">
 <script src="/assets/tools/lottie-viewer/app.js" defer></script>

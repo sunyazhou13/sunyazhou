@@ -2,6 +2,7 @@
 layout: page
 title: 正则表达式测试器
 icon: fas fa-terminal
+tool_css: /assets/tools/regex-tester/app.css
 ---
 
 <p class="hint">输入正则表达式与测试文本，实时高亮所有匹配项，展示每个匹配与捕获分组的文本、位置、耗时，并对疑似灾难性回溯的嵌套量词写法给出警示。全部在浏览器本地计算，内容不会上传。</p>
@@ -33,5 +34,4 @@ icon: fas fa-terminal
   <div class="rt-groups" id="rt-groups"></div>
 </div>
 
-<link rel="stylesheet" href="/assets/tools/regex-tester/app.css">
 <script src="/assets/tools/regex-tester/app.js" defer></script>

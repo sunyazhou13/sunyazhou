@@ -2,9 +2,8 @@
 layout: page
 title: JSON 工具
 icon: fas fa-file-code
+tool_css: /assets/tools/json-format/app.css
 ---
-
-
 
 支持 JSON 的常用操作，全部在浏览器本地完成，**输入不上传**：
 
@@ -13,8 +12,6 @@ icon: fas fa-file-code
 - **按键排序**：递归按键名字母序重排对象。
 - **自动修复**：宽容解析尾逗号、单引号、无引号键、`//` 与 `/* */` 注释等非标准写法，一键写回标准 JSON。
 - **复制 / 下载**：标准 JSON 一键复制剪贴板或下载为 `data.json`。
-
-<link rel="stylesheet" href="/assets/tools/json-format/app.css">
 
 <div id="jf-app">
 

@@ -2,6 +2,7 @@
 layout: page
 title: 图片转 AVIF
 icon: fas fa-image
+tool_css: /assets/tools/avif/app.css
 ---
 
 把 PNG、JPEG、WebP、GIF、BMP、SVG 批量转成 AVIF，**动图（GIF / 动画 WebP）会逐帧转码保留动画**。所有转换都在你的浏览器里本地完成，**图片不会上传到任何服务器**。
@@ -18,8 +19,6 @@ icon: fas fa-image
 - 质量滑杆数值越高画质越好、体积越大，一般 50–70 就够博客配图用
 - WASM 编码较慢属于正常现象（AVIF 编码本身就重），大批量建议分批处理；当前所有浏览器走的都是这条 WASM 路径
 - 动图逐帧转码的耗时和帧数成正比（每帧都是一次完整的 AVIF 编码），几十帧的 GIF 等一两分钟属于正常；单个动图上限 500 帧、原始帧数据上限约 400 MB
-
-<link rel="stylesheet" href="/assets/tools/avif/app.css">
 
 <div id="avt-app">
 

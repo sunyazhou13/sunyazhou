@@ -2,6 +2,7 @@
 layout: page
 title: UUID / ULID 生成器
 icon: fas fa-fingerprint
+tool_css: /assets/tools/uuid-ulid/app.css
 ---
 
 <p class="hint">一键生成 <strong>UUID v4</strong> 与 <strong>ULID</strong>，支持批量 1 / 10 / 100 个，可复制单个、复制全部或换一批。全部在浏览器本地随机生成（优先使用 <code>crypto.getRandomValues</code>），内容不会上传。</p>
@@ -36,5 +37,4 @@ icon: fas fa-fingerprint
   <div class="uu-list" id="uu-list"></div>
 </div>
 
-<link rel="stylesheet" href="/assets/tools/uuid-ulid/app.css">
 <script src="/assets/tools/uuid-ulid/app.js" defer></script>
