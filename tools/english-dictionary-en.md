@@ -7,7 +7,7 @@ permalink: /tools/english-dictionary/
 tool_css: /assets/tools/english-dictionary/app.css
 ---
 
-Enter an English word or Chinese text — the tool auto-detects the language and looks it up. A built-in local dictionary with 3.4M entries can be fully downloaded and cached in the browser for offline use. Online APIs enrich with detailed definitions and examples. **All processing happens in your browser — your input is never uploaded to any server.**
+Enter an English word or Chinese text — the tool auto-detects the language and looks it up. A built-in local dictionary with 3.4M entries can be fully downloaded and cached in the browser for offline use. Online APIs enrich with detailed definitions and examples. Definitions are mainly based on the local ECDICT dictionary and online dictionaries; online translation sends your text to third-party translation services (Edge / MyMemory, etc.). Do not enter sensitive content.
 
 Features:
 
@@ -21,7 +21,7 @@ Features:
 
   <div class="ed-banner" id="ed-banner">
     <i class="fas fa-shield-alt"></i>
-    <span>Local dictionary + online API dual safety net — free and private</span>
+    <span>Local dictionary + online dictionaries — offline first; online translation goes through third-party services</span>
   </div>
 
   <div class="ed-download-bar">

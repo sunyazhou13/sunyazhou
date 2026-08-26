@@ -5,7 +5,7 @@ icon: fas fa-book
 tool_css: /assets/tools/english-dictionary/app.css
 ---
 
-输入英文单词或中文，自动识别语言并翻译查词。内置 ECDICT 339 万词条本地词库，可一键下载全量缓存到浏览器离线使用。在线 API 补充详细释义与例句，**所有处理在浏览器本地完成，输入不会上传到任何服务器**。
+输入英文单词或中文，自动识别语言并翻译查词。内置 ECDICT 339 万词条本地词库，可一键下载全量缓存到浏览器离线使用。在线 API 补充详细释义与例句。查词释义主要基于本地 ECDICT 词库与在线词典；在线翻译会将词句送至第三方翻译服务（Edge / MyMemory 等），请勿输入敏感内容。
 
 功能说明：
 
@@ -19,7 +19,7 @@ tool_css: /assets/tools/english-dictionary/app.css
 
   <div class="ed-banner" id="ed-banner">
     <i class="fas fa-shield-alt"></i>
-    <span>本地词库 + 在线 API 双保险，查词不花钱不上传</span>
+    <span>本地词库 + 在线词典双保险，离线优先；在线翻译经第三方翻译服务</span>
   </div>
 
   <div class="ed-download-bar">
