@@ -56,4 +56,4 @@ Features:
 
 </div>
 
-<script type="module" src="/assets/tools/english-dictionary/app.js?v=20260826"></script>
+<script type="module" src="/assets/tools/english-dictionary/app.js?v=20260827"></script>
