@@ -6,3 +6,5 @@ _site
 ads.txt
 .jekyll-cache/
 .bundle/
+# 词典词库分片（283MB）只随 Pages 部署仓分发，不入源码仓历史
+assets/tools/english-dictionary/data/
