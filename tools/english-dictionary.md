@@ -54,4 +54,4 @@ tool_css: /assets/tools/english-dictionary/app.css
 
 </div>
 
-<script type="module" src="/assets/tools/english-dictionary/app.js?v=20260829"></script>
+<script type="module" src="/assets/tools/english-dictionary/app.js?v=20260830"></script>
