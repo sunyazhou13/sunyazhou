@@ -23,6 +23,15 @@
   path: /tools/color-picker/
   category: Images & Graphics
   enabled: true
+- id: color-converter
+  title: Color Format Converter
+  icon: fas fa-palette
+  description: Convert between HEX / RGB / HSL / SwiftUI / UIColor / Android / CSS color
+    formats instantly. Real-time linked output, eyedropper picker, preset swatches,
+    one-click copy, 100% local processing, nothing uploaded
+  path: /tools/color-converter/
+  category: Images & Graphics
+  enabled: true
 - id: webp-heic
   title: Image Format Converter
   icon: fas fa-exchange-alt
@@ -82,6 +91,13 @@
   description: Enter a string and generate MD5 / SHA1 / SHA256 / SHA384 / SHA512 on
     click, with case toggle and one-click copy, 100% local computation, nothing uploaded
   path: /tools/hash-string/
+  category: Encoding & Conversion
+  enabled: true
+- id: json-to-swift
+  title: JSON ↔ Swift Converter
+  icon: fas fa-code
+  description: Paste JSON to generate Swift Codable structs, or paste a Swift struct to generate sample JSON. Supports nested objects, snake_case naming and automatic CodingKeys, Swift / Objective-C dual-language output, 100% local, nothing uploaded
+  path: /tools/json-to-swift/
   category: Encoding & Conversion
   enabled: true
 - id: timestamp

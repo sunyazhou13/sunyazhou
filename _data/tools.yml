@@ -21,6 +21,14 @@
   category: 图片与图像
   enabled: true
 
+- id: color-converter
+  title: 色彩格式转换
+  icon: fas fa-palette
+  description: HEX / RGB / HSL / SwiftUI / UIColor / Android / CSS 等色彩格式互转，实时联动、吸管取色、预设色板、一键复制，纯本地处理不上传
+  path: /tools/color-converter/
+  category: 图片与图像
+  enabled: true
+
 - id: webp-heic
   title: 图片格式转换
   icon: fas fa-exchange-alt
@@ -58,6 +66,14 @@
   icon: fas fa-hashtag
   description: 输入字符串点击生成 MD5 / SHA1 / SHA256 / SHA384 / SHA512，支持大小写切换与一键复制，纯本地计算不上传
   path: /tools/hash-string/
+  category: 编码转换
+  enabled: true
+
+- id: json-to-swift
+  title: JSON → Swift 互转
+  icon: fas fa-code
+  description: 输入 JSON 生成 Swift Codable 结构体，或输入 Swift 生成示例 JSON。支持嵌套对象、蛇形命名、CodingKeys 自动生成，提供 Swift / Objective-C 双语言输出，纯本地处理不上传
+  path: /tools/json-to-swift/
   category: 编码转换
   enabled: true
 
