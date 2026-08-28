@@ -180,6 +180,13 @@
   path: /tools/english-dictionary/
   category: Frequently Used
   enabled: true
+- id: md-translator
+  title: Markdown CN → EN (Local)
+  icon: fas fa-language
+  description: Paste Chinese Markdown and get English Markdown in one click. Runs fully offline on local Ollama + Qwen2.5, nothing uploaded. Auto-preserves code blocks / front matter / link and image URLs, locks glossary terms from translation. Built for bilingual blogging.
+  path: /tools/md-translator/
+  category: Frequently Used
+  enabled: true
 - id: lottie-viewer
   title: Lottie Animation Viewer
   icon: fas fa-film

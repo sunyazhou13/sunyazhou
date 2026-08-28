@@ -165,6 +165,14 @@
   category: 常用工具
   enabled: true
 
+- id: md-translator
+  title: Markdown 中文转英文
+  icon: fas fa-language
+  description: 粘贴中文 Markdown 一键译为英文 Markdown，本地 Ollama + Qwen2.5 离线运行不上传，自动保留代码块 / front matter / 链接与图片地址，术语可锁定不译，适合双语博客创作
+  path: /tools/md-translator/
+  category: 常用工具
+  enabled: true
+
 - id: lottie-viewer
   title: Lottie 动画预览器
   icon: fas fa-film
