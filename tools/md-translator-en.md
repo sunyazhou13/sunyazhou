@@ -2,6 +2,8 @@
 layout: page
 title: Markdown CN → EN (Local Ollama)
 icon: fas fa-language
+lang: en
+permalink: /tools/md-translator/
 tool_css: /assets/tools/md-translator/app.css?v=3
 ---
 
