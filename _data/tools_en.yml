@@ -216,3 +216,11 @@
   path: /tools/labor-arbitration/
   category: Life Assistant
   enabled: true
+
+- id: sqlite-manager
+  title: SQLite Database Manager
+  icon: fas fa-database
+  description: Browser-based SQLite manager run entirely in your browser—create/open .sqlite files, run SQL, browse & edit table data, import/export CSV and SQL. Powered by sql.js, fully local
+  path: /tools/sqlite-manager/
+  category: Data Processing
+  enabled: true
