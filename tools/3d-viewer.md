@@ -2,7 +2,7 @@
 layout: page
 title: 3D 模型多视口分析
 icon: fas fa-cube
-tool_css: /assets/tools/3d-viewer/app.css
+tool_css: /assets/tools/3d-viewer/app.css?v=2
 ---
 
 单渲染器四视口 3D 模型分析工具：线框看骨架、UV 看皮囊、PBR 看光影、法线/深度看异常。所有解析与渲染都在你的浏览器本地完成，**模型文件不会被上传到任何服务器**。

@@ -2,7 +2,7 @@
 layout: page
 title: 进制转换
 icon: fas fa-calculator
-tool_css: /assets/tools/base-converter/app.css
+tool_css: /assets/tools/base-converter/app.css?v=4
 ---
 
 二进制、八进制、十进制、十六进制四进制**实时联动**转换：在任意一个输入框中输入数字，其余进制自动更新。所有计算都在浏览器本地完成，**输入不会上传到任何服务器**。
